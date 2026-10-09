@@ -1,0 +1,377 @@
+/* Lerneinheit "Den Computer kennenlernen"
+   Reines CSS, keine externen Schriften oder Bibliotheken. */
+
+:root {
+  --farbe-hintergrund: #f4f7fb;
+  --farbe-flaeche: #ffffff;
+  --farbe-text: #1b2430;
+  --farbe-text-leise: #46556a;
+  --farbe-akzent: #1d5fb4;
+  --farbe-akzent-dunkel: #164a8c;
+  --farbe-rahmen: #c9d4e4;
+  --farbe-ok: #1b7a3d;
+  --farbe-ok-flaeche: #e4f4ea;
+  --farbe-fehler: #b4251d;
+  --farbe-fehler-flaeche: #fbe7e6;
+  --farbe-warn: #8a4b00;
+  --radius: 12px;
+  --schatten: 0 2px 8px rgba(20, 40, 70, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 18px; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, system-ui, sans-serif;
+  line-height: 1.6;
+  color: var(--farbe-text);
+  background: var(--farbe-hintergrund);
+}
+
+/* Tastatur: Sprung-Link */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--farbe-akzent-dunkel);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 0 0 var(--radius) 0;
+  z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* Sichtbarer Fokusrahmen für Tastaturbedienung */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #0a3d82;
+  outline-offset: 2px;
+}
+
+.kopf {
+  background: linear-gradient(135deg, var(--farbe-akzent) 0%, var(--farbe-akzent-dunkel) 100%);
+  color: #fff;
+  padding: 1.5rem 1rem;
+}
+.kopf-inhalt { max-width: 860px; margin: 0 auto; }
+.kopf-marke {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+.kopf h1 { margin: 0.2rem 0; font-size: 1.9rem; }
+.kopf-dauer { margin: 0; opacity: 0.95; }
+
+/* Schrittnavigation */
+.schritte {
+  max-width: 860px;
+  margin: 1rem auto 0;
+  padding: 0 1rem;
+}
+.schritte ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 0.8rem;
+  padding: 0;
+}
+.schritt-knopf {
+  font-size: 0.95rem;
+  padding: 0.5rem 0.8rem;
+  border: 2px solid var(--farbe-rahmen);
+  background: var(--farbe-flaeche);
+  color: var(--farbe-text);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.schritt-knopf[aria-current="true"] {
+  background: var(--farbe-akzent);
+  border-color: var(--farbe-akzent);
+  color: #fff;
+  font-weight: 600;
+}
+.schritt-knopf.erledigt:not([aria-current="true"]) {
+  border-color: var(--farbe-ok);
+  color: var(--farbe-ok);
+}
+.schritt-knopf.erledigt::before {
+  content: "\2713\00a0"; /* Häkchen + Leerzeichen */
+}
+
+/* Fortschrittsleiste */
+.fortschritt { margin-bottom: 0.5rem; }
+.fortschritt-leiste {
+  height: 12px;
+  background: #dde6f2;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--farbe-rahmen);
+}
+.fortschritt-balken {
+  height: 100%;
+  background: var(--farbe-ok);
+  transition: width 0.3s ease;
+}
+.fortschritt-text {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: var(--farbe-text-leise);
+}
+
+/* Inhaltsbereiche */
+main { max-width: 860px; margin: 0 auto; padding: 1rem; }
+main:focus { outline: none; }
+
+.abschnitt {
+  background: var(--farbe-flaeche);
+  border: 1px solid var(--farbe-rahmen);
+  border-radius: var(--radius);
+  box-shadow: var(--schatten);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.abschnitt[hidden] { display: none; }
+.abschnitt h2 { margin-top: 0; font-size: 1.5rem; }
+.gross { font-size: 1.15rem; }
+.klein { font-size: 0.9rem; color: var(--farbe-text-leise); }
+
+.hinweis-box {
+  background: #eef4fc;
+  border-left: 6px solid var(--farbe-akzent);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+}
+.hinweis-titel { margin: 0 0 0.4rem; font-weight: 700; }
+.symbol { font-weight: 700; }
+
+/* Knöpfe */
+.knopf-reihe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+}
+.knopf {
+  font-size: 1.05rem;
+  padding: 0.85rem 1.3rem;
+  min-height: 48px;
+  border: 2px solid var(--farbe-akzent);
+  background: var(--farbe-flaeche);
+  color: var(--farbe-akzent-dunkel);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+}
+.knopf:hover { background: #eef4fc; }
+.knopf-haupt {
+  background: var(--farbe-akzent);
+  color: #fff;
+}
+.knopf-haupt:hover { background: var(--farbe-akzent-dunkel); }
+.knopf-warn {
+  border-color: var(--farbe-warn);
+  color: var(--farbe-warn);
+}
+.knopf-warn:hover { background: #fbf0e2; }
+
+/* Lernkarten */
+.karten-raster {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.lernkarte {
+  text-align: left;
+  background: var(--farbe-flaeche);
+  border: 2px solid var(--farbe-rahmen);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-height: 120px;
+}
+.lernkarte:hover { border-color: var(--farbe-akzent); background: #f7faff; }
+.lernkarte .karte-symbol { font-size: 2rem; line-height: 1; }
+.lernkarte .karte-titel { font-size: 1.2rem; font-weight: 700; margin: 0; }
+.lernkarte.gelesen {
+  border-color: var(--farbe-ok);
+  background: var(--farbe-ok-flaeche);
+}
+.lernkarte .karte-status {
+  font-size: 0.85rem;
+  color: var(--farbe-text-leise);
+  margin-top: auto;
+}
+.lernkarte.gelesen .karte-status { color: var(--farbe-ok); font-weight: 600; }
+.lernkarte.gelesen .karte-status::before { content: "\2713\00a0"; }
+
+/* Karten-Dialog */
+.dialog-hintergrund {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 25, 45, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+}
+.dialog-hintergrund[hidden] { display: none; }
+.dialog {
+  background: var(--farbe-flaeche);
+  border-radius: var(--radius);
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+  padding: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+.dialog h3 { margin-top: 0; display: flex; align-items: center; gap: 0.5rem; font-size: 1.4rem; }
+.dialog .dialog-symbol { font-size: 1.8rem; }
+.dialog dt { font-weight: 700; margin-top: 0.8rem; }
+.dialog dd { margin: 0.2rem 0 0; }
+.begriff {
+  background: #eef4fc;
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.8rem;
+  font-size: 0.95rem;
+}
+.begriff strong { color: var(--farbe-akzent-dunkel); }
+
+/* Zuordnungsübung */
+.uebung-liste { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+.uebung-zeile {
+  border: 2px solid var(--farbe-rahmen);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+.uebung-geraet {
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+.uebung-geraet .symbol { font-size: 1.5rem; }
+.option-reihe { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.option-knopf {
+  font: inherit;
+  padding: 0.6rem 1rem;
+  min-height: 44px;
+  border: 2px solid var(--farbe-rahmen);
+  background: var(--farbe-flaeche);
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.option-knopf:hover { border-color: var(--farbe-akzent); }
+.option-knopf.gewaehlt-richtig {
+  border-color: var(--farbe-ok);
+  background: var(--farbe-ok-flaeche);
+  color: var(--farbe-ok);
+}
+.option-knopf.gewaehlt-falsch {
+  border-color: var(--farbe-fehler);
+  background: var(--farbe-fehler-flaeche);
+  color: var(--farbe-fehler);
+}
+.option-knopf.gewaehlt-richtig::after { content: "\00a0\2713"; }
+.option-knopf.gewaehlt-falsch::after { content: "\00a0\2717"; }
+.zeile-erklaerung {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  background: #f1f5fb;
+}
+
+/* Quiz */
+.quiz-liste { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem; }
+.quiz-frage {
+  border: 2px solid var(--farbe-rahmen);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+}
+.quiz-frage legend {
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0;
+  margin-bottom: 0.6rem;
+}
+.quiz-optionen { display: flex; flex-direction: column; gap: 0.5rem; border: 0; margin: 0; padding: 0; }
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  border: 2px solid var(--farbe-rahmen);
+  border-radius: var(--radius);
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+}
+.quiz-option:hover { border-color: var(--farbe-akzent); background: #f7faff; }
+.quiz-option input { margin-top: 0.35rem; width: 20px; height: 20px; }
+.quiz-option.richtig {
+  border-color: var(--farbe-ok);
+  background: var(--farbe-ok-flaeche);
+}
+.quiz-option.falsch {
+  border-color: var(--farbe-fehler);
+  background: var(--farbe-fehler-flaeche);
+}
+.quiz-option .markierung { font-weight: 700; margin-left: auto; }
+.quiz-option.richtig .markierung::after { content: "\2713 richtig"; color: var(--farbe-ok); }
+.quiz-option.falsch .markierung::after { content: "\2717 nicht richtig"; color: var(--farbe-fehler); }
+.quiz-erklaerung {
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  background: #f1f5fb;
+}
+.quiz-erklaerung[hidden] { display: none; }
+
+.rueckmeldung {
+  font-weight: 600;
+  min-height: 1.4rem;
+  margin: 1rem 0 0;
+}
+
+.zusammenfassung { list-style: none; padding: 0; }
+.zusammenfassung li { padding: 0.4rem 0; }
+.zusammenfassung .symbol { color: var(--farbe-akzent); }
+
+.fuss {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+  color: var(--farbe-text-leise);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Responsiv: Smartphone */
+@media (max-width: 560px) {
+  html { font-size: 17px; }
+  .kopf h1 { font-size: 1.5rem; }
+  .knopf-reihe .knopf { flex: 1 1 100%; }
+  .karten-raster { grid-template-columns: 1fr; }
+}
+
+/* Kontrast/Bewegung respektieren */
+@media (prefers-reduced-motion: reduce) {
+  .fortschritt-balken { transition: none; }
+}
