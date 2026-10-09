@@ -1,0 +1,10 @@
+# StarNet-Arbeitsdateien
+.output/
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*~
