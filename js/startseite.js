@@ -27,6 +27,19 @@
     if (m.lernfeld) inhalt.appendChild(erzeuge("span", "modul-lernfeld", m.lernfeld));
     inhalt.appendChild(erzeuge("span", "modul-titel", m.titel));
     if (m.beschreibung) inhalt.appendChild(erzeuge("span", "modul-beschreibung", m.beschreibung));
+    if (m.unterthemen && m.unterthemen.length) {
+      var unterliste = erzeuge("ul", "unterthemen");
+      unterliste.setAttribute("aria-label", "Geplante Unterthemen: " + m.titel);
+      m.unterthemen.forEach(function (u) {
+        var uli = erzeuge("li", "unterthema unterthema-gesperrt");
+        uli.setAttribute("aria-disabled", "true");
+        uli.appendChild(erzeuge("span", "unterthema-titel", u.titel));
+        uli.appendChild(erzeuge("span", "modul-status", "◷ In Kürze"));
+        unterliste.appendChild(uli);
+      });
+      /* In der Karte statt darunter, damit die Zugehörigkeit klar ist. */
+      inhalt.appendChild(unterliste);
+    }
     inhalt.appendChild(erzeuge("span", "modul-status",
       verfuegbar ? "▸ Jetzt lernen" : "◷ In Kürze"));
 

@@ -1,5 +1,8 @@
 /* Datengetriebene Modulübersicht der Startseite.
  * Neue Module werden über Einträge in dieser Liste ergänzt.
+ * Optional: "unterthemen" (Liste von Objekten) zeigt graue „In Kürze“-Unterthemen
+ * innerhalb einer Karte. Titel sind verständliche Bereichstitel, "lernfeld" trägt
+ * die offizielle Nummer.
  * Lernstruktur nach KMK-Rahmenlehrplan, ergänzt mit betrieblichen Inhalten der FIAusbV.
  * Keine verbindliche betriebliche Monatsplanung.
  */
@@ -14,12 +17,15 @@
         { id: "computer-grundlagen", titel: "Den Computer kennenlernen",
           beschreibung: "Einstieg: Computer, Bildschirm, Tastatur, Maus, Netzwerk. Ca. 10 Minuten.",
           status: "verfuegbar", datei: "module/computer-grundlagen.html" },
-        { id: "lf1", lernfeld: "Lernfeld 1", titel: "Das Unternehmen und die eigene Rolle im Betrieb beschreiben", status: "kommt-bald" },
-        { id: "lf2", lernfeld: "Lernfeld 2", titel: "Arbeitsplätze nach Kundenwunsch ausstatten", status: "kommt-bald" },
-        { id: "lf3", lernfeld: "Lernfeld 3", titel: "Clients in Netzwerke einbinden", status: "kommt-bald",
-          unterthemen: ["Netzwerktechnik: IPv4", "Subnetting"] },
-        { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen", status: "kommt-bald" },
-        { id: "lf5", lernfeld: "Lernfeld 5", titel: "Software zur Verwaltung von Daten anpassen", status: "kommt-bald" }
+        { id: "lf1", lernfeld: "Lernfeld 1", titel: "Ausbildungsbetrieb und berufliche Rolle", status: "kommt-bald" },
+        { id: "lf2", lernfeld: "Lernfeld 2", titel: "Hardware, Betriebssysteme und Arbeitsplatzgestaltung", status: "kommt-bald" },
+        { id: "lf3", lernfeld: "Lernfeld 3", titel: "Netzwerkgrundlagen und Client-Anbindung", status: "kommt-bald",
+          unterthemen: [
+            { id: "lf3-ipv4", titel: "IPv4", status: "kommt-bald" },
+            { id: "lf3-subnetting", titel: "Subnetting", status: "kommt-bald" }
+          ] },
+        { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "kommt-bald" },
+        { id: "lf5", lernfeld: "Lernfeld 5", titel: "Programmiergrundlagen und Datenverwaltung", status: "kommt-bald" }
       ]
     },
     {
