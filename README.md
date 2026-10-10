@@ -35,9 +35,9 @@ css/startseite.css              Zusatzgestaltung der Startseite
 js/module-daten.js              Modulliste (Daten) für die Startseite
 js/startseite.js                Baut die Startseite aus der Modulliste
 js/app.js                       Ablauf: Lernkarten, Übung, Quiz, Fortschritt
-tests/logic.test.js             Logiktest der Lerneinheit (DOM-Mock)
-tests/startseite.test.js        Datentest der Modulliste
 start.sh                        Startet einen lokalen Webserver mit Python 3
+tests/logic.test.js             Logiktest der bestehenden Lerneinheit
+tests/startseite.test.js        Modultest der Startseiten-Daten und -Darstellung
 ```
 
 ## Startseite und Module ergänzen
@@ -48,17 +48,9 @@ anklickbar; alle anderen erscheinen grau, nicht anklickbar und mit „In Kürze�
 
 Ein Modul ergänzen: HTML-Datei unter `module/` anlegen, den Eintrag in
 `js/module-daten.js` auf `status: "verfuegbar"` stellen und `datei` setzen.
-Weitere Änderungen am Code sind dafür nicht nötig.
-
-Geplant, aber noch nicht umgesetzt: „IPv4“ und „Subnetting“. Sie erscheinen
-als graue Unterthemen „In Kürze“ innerhalb der Netzwerk-Karte (Lernfeld 3),
-nicht als eigene Karten. Dafür gibt es das optionale Feld `unterthemen` im
-Moduleintrag.
-
-Die Bereichstitel der Startseite sind verständliche Titel; die Nummern
-(Lernfeld …) verweisen auf die offiziellen Lernfelder.
-
-Datentest: `node tests/startseite.test.js`
+Weitere Änderungen am Code sind dafür nicht nötig. Geplante Unterthemen wie
+IPv4 und Subnetting erscheinen ebenfalls als „In Kürze“ und sind keine
+verfügbaren Lektionen.
 
 ## Starten
 
@@ -144,10 +136,13 @@ keine personenbezogenen Daten erhoben. Über die Schaltfläche
 Die Startseite bildet eine Lernstruktur auf Basis der offiziellen Ordnungsmittel
 ab; sie ist **kein verbindlicher betrieblicher Monatsplan**. Die Jahreszuordnung
 folgt dem KMK-Rahmenlehrplan; betriebliche Inhalte werden anhand der FIAusbV
-ergänzt. Reihenfolge und betriebliche Umsetzung können abweichen.
+ergänzt. Die verständlichen Bereichstitel folgen der vom Auftraggeber
+festgelegten Themenstruktur; die Nummern verweisen auf die Lernfelder der
+Fachrichtung Systemintegration. Reihenfolge und betriebliche Umsetzung können
+abweichen.
 
 - Kultusministerkonferenz (KMK), Downloadbereich Rahmenlehrpläne, Eintrag
-  „Fachinformatiker und Fachinformatikerin“ (13.12.2019):
+  „Fachinformatiker und Fachinformatikerin“ (13.12.2019; Rahmenlehrplan):
   https://www.kmk.org/service/servicebereich-berufliche-schulen/downloadbereich-rahmenlehrplaene.html
 - Fachinformatikerausbildungsverordnung (FIAusbV), Verordnung über die
   Berufsausbildung zum Fachinformatiker und zur Fachinformatikerin,

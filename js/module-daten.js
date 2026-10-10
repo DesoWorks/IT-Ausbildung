@@ -1,8 +1,5 @@
 /* Datengetriebene Modulübersicht der Startseite.
  * Neue Module werden über Einträge in dieser Liste ergänzt.
- * Optional: "unterthemen" (Liste von Objekten) zeigt graue „In Kürze“-Unterthemen
- * innerhalb einer Karte. Titel sind verständliche Bereichstitel, "lernfeld" trägt
- * die offizielle Nummer.
  * Lernstruktur nach KMK-Rahmenlehrplan, ergänzt mit betrieblichen Inhalten der FIAusbV.
  * Keine verbindliche betriebliche Monatsplanung.
  */
@@ -32,19 +29,19 @@
       jahr: 2,
       titel: "2. Ausbildungsjahr",
       module: [
-        { id: "lf6", lernfeld: "Lernfeld 6", titel: "Serviceanfragen bearbeiten", status: "kommt-bald" },
-        { id: "lf7", lernfeld: "Lernfeld 7", titel: "Cyber-physische Systeme ergänzen", status: "kommt-bald" },
-        { id: "lf8", lernfeld: "Lernfeld 8", titel: "Daten systemübergreifend bereitstellen", status: "kommt-bald" },
-        { id: "lf9", lernfeld: "Lernfeld 9", titel: "Netzwerke und Dienste bereitstellen", status: "kommt-bald" }
+        { id: "lf6", lernfeld: "Lernfeld 6", titel: "Support und Bearbeitung von Servicefällen", status: "kommt-bald" },
+        { id: "lf7", lernfeld: "Lernfeld 7", titel: "Vernetzte Geräte und cyber-physische Systeme", status: "kommt-bald" },
+        { id: "lf8", lernfeld: "Lernfeld 8", titel: "Datenaustausch zwischen Systemen", status: "kommt-bald" },
+        { id: "lf9", lernfeld: "Lernfeld 9", titel: "Planung und Einrichtung von Netzwerken und Diensten", status: "kommt-bald" }
       ]
     },
     {
       jahr: 3,
       titel: "3. Ausbildungsjahr",
       module: [
-        { id: "lf10b", lernfeld: "Lernfeld 10b", titel: "Serverdienste bereitstellen und Administrationsaufgaben automatisieren", status: "kommt-bald" },
-        { id: "lf11b", lernfeld: "Lernfeld 11b", titel: "Betrieb und Sicherheit vernetzter Systeme gewährleisten", status: "kommt-bald" },
-        { id: "lf12b", lernfeld: "Lernfeld 12b", titel: "Kundenspezifische Systemintegration durchführen", status: "kommt-bald" }
+        { id: "lf10b", lernfeld: "Lernfeld 10b", titel: "Serveradministration und Automatisierung", status: "kommt-bald" },
+        { id: "lf11b", lernfeld: "Lernfeld 11b", titel: "Sicherer Betrieb vernetzter IT-Systeme", status: "kommt-bald" },
+        { id: "lf12b", lernfeld: "Lernfeld 12b", titel: "Planung und Umsetzung eines Systemintegrationsprojekts", status: "kommt-bald" }
       ]
     }
   ];
