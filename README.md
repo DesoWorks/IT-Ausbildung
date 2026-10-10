@@ -132,19 +132,19 @@ keine personenbezogenen Daten erhoben. Über die Schaltfläche
 
 ## Quellen und Hinweis zur Lernstruktur
 
-Die Gliederung der Startseite orientiert sich an den Lernfeldern des
-Rahmenlehrplans. Sie ist eine **Orientierung und kein verbindlicher
-Monatsplan**; Zuordnung zu den Ausbildungsjahren und Reihenfolge können je
-Berufsschule und Betrieb abweichen.
+Die Startseite bildet eine Lernstruktur auf Basis der offiziellen Ordnungsmittel
+ab; sie ist **kein verbindlicher betrieblicher Monatsplan**. Die Jahreszuordnung
+folgt dem KMK-Rahmenlehrplan; betriebliche Inhalte werden anhand der FIAusbV
+ergänzt. Reihenfolge und betriebliche Umsetzung können abweichen.
 
-- KMK, Downloadbereich Rahmenlehrpläne:
+- Kultusministerkonferenz (KMK), Downloadbereich Rahmenlehrpläne, Eintrag
+  „Fachinformatiker und Fachinformatikerin“ (13.12.2019):
   https://www.kmk.org/service/servicebereich-berufliche-schulen/downloadbereich-rahmenlehrplaene.html
-- Ausbildungsordnung (FIAusbV), Verordnung über die Berufsausbildung zum
-  Fachinformatiker und zur Fachinformatikerin:
+- Fachinformatikerausbildungsverordnung (FIAusbV), Verordnung über die
+  Berufsausbildung zum Fachinformatiker und zur Fachinformatikerin,
+  insbesondere Fachrichtung Systemintegration (§§ 18–25) und Anlage:
   https://www.gesetze-im-internet.de/fiausbv/
-  (Fachrichtung Systemintegration: §§ 18–25; Ausbildungsrahmenplan in der Anlage)
 
-**Prüfstand der Quellen:** Die FIAusbV-Seite wurde abgerufen und die
-Fachrichtung Systemintegration bestätigt. Die Lernfeld-Nummern und -Titel in
-`js/module-daten.js` sind **noch nicht** gegen den Originalrahmenlehrplan
-(PDF der KMK) abgeglichen und müssen dort verifiziert werden.
+Die Modulliste (`js/module-daten.js`) enthält neben den Bereichstiteln die
+offiziellen Lernfeldnummern. Sie bildet eine Orientierung ab und erzeugt keine
+vollständigen Lektionen; nicht umgesetzte Inhalte tragen den Status „In Kürze“.
