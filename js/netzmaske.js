@@ -43,7 +43,24 @@
     messages.push(state.broadcast ? "Broadcastadresse richtig." : "Broadcastadresse noch nicht richtig. Für die Broadcastadresse stehen im Geräteanteil Einsen: 192.168.1.255.");
     if (n === "192.168.1.20") messages.push("192.168.1.20 ist die Adresse des Geräts, nicht die Netzadresse.");
     if (b === "192.168.1.1") messages.push(".1 ist eine nutzbare Geräteadresse, nicht die Broadcastadresse.");
-    el("werte-feedback").textContent = messages.join(" "); update(); informProgress();
+    var box = el("werte-feedback");
+    box.textContent = "";
+    var right = Number(state.network) + Number(state.broadcast);
+    var title = make("h3", "", right === 2 ? "✓ Alles richtig" : right === 1 ? "◐ Teilweise richtig" : "✗ Noch nicht richtig");
+    box.appendChild(title);
+    [
+      { label: "Netzadresse", value: n, ok: state.network, correct: "192.168.1.0", why: "Bei /24 bleiben die ersten drei Oktette gleich; für die Netzadresse wird das Geräte-Oktett 0." },
+      { label: "Broadcastadresse", value: b, ok: state.broadcast, correct: "192.168.1.255", why: "Bei /24 werden für die Broadcastadresse alle Geräte-Bits auf 1 gesetzt." }
+    ].forEach(function (answer) {
+      var p = make("p", answer.ok ? "feedback-richtig" : "feedback-falsch");
+      p.setAttribute("aria-label", answer.ok ? "Richtig" : "Nicht richtig");
+      p.textContent = (answer.ok ? "✓ Richtig: " : "✗ " + (answer.value ? "Nicht richtig: " : "Unbeantwortet: ")) + answer.label + ". " + (answer.ok ? "" : answer.why + " Richtige Antwort: " + answer.correct + ".");
+      box.appendChild(p);
+    });
+    box.hidden = false; update(); informProgress();
+  }
+  function invalidateValueResult() {
+    var box = el("werte-feedback"); box.hidden = true; box.textContent = "";
   }
   function step(id) {
     ["erklaerung", "schaubild", "uebung", "abschluss"].forEach(function (x) { el(x).hidden = x !== id; });
@@ -58,12 +75,12 @@
   function reset() {
     state = { answers: {}, network: false, broadcast: false, finish: false };
     try { global.localStorage.removeItem(KEY); } catch (e) { /* ignorieren */ }
-    el("netz-eingabe").value = ""; el("broadcast-eingabe").value = ""; el("quiz-feedback").hidden = true; el("werte-feedback").textContent = ""; renderQuestions(); update(); informProgress(); step("erklaerung");
+    el("netz-eingabe").value = ""; el("broadcast-eingabe").value = ""; el("quiz-feedback").hidden = true; el("werte-feedback").textContent = ""; el("werte-feedback").hidden = true; renderQuestions(); update(); informProgress(); step("erklaerung");
   }
   function init() {
     glossary(); renderQuestions();
     global.document.querySelectorAll("[data-weiter], .schritt-knopf").forEach(function (b) { b.addEventListener("click", function () { step(b.dataset.weiter || b.dataset.ziel); }); });
-    el("werte-form").addEventListener("submit", checkValues); el("uebung-reset").addEventListener("click", reset);
+    el("werte-form").addEventListener("submit", checkValues); el("werte-form").addEventListener("input", invalidateValueResult); el("werte-form").addEventListener("change", invalidateValueResult); el("uebung-reset").addEventListener("click", reset);
     el("reset-alles").addEventListener("click", function () { if (global.confirm("Möchtest du den Lernfortschritt dieser Lektion zurücksetzen?")) reset(); });
     if (state.network) el("netz-eingabe").value = "192.168.1.0"; if (state.broadcast) el("broadcast-eingabe").value = "192.168.1.255";
     step("erklaerung");

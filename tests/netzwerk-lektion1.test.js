@@ -150,12 +150,13 @@ t("Übung: beschriftetes Eingabefeld, Live-Rückmeldung, kein Zeitdruck, kein Su
   assert(!/<h[23][^>]*>[^<]*Subnetting/i.test(html), "keine Subnetting-Lektion");
 });
 
-t("Startseite verlinkt IPv4 und lässt Subnetting gesperrt", () => {
+t("Startseite verlinkt IPv4 und die neue Subnetting-Lektion", () => {
   global.MODULE_DATEN = undefined;
   require(path.join(wurzel, "js", "module-daten.js"));
   const lf3 = global.MODULE_DATEN[0].module.find(m => m.id === "lf3");
   assert.strictEqual(lf3.unterthemen.find(u => u.id === "lf3-ipv4").datei, "module/netzwerkgrundlagen.html");
-  assert(!lf3.unterthemen.find(u => u.id === "lf3-subnetting").datei);
+  assert.strictEqual(lf3.unterthemen.find(u => u.id === "lf3-subnetting").datei, "module/subnetting.html");
+  assert(fs.existsSync(path.join(wurzel, "module/subnetting.html")));
 });
 
 console.log("\nnetzwerk-lektion1.test.js: " + ok + " Prüfungen bestanden");

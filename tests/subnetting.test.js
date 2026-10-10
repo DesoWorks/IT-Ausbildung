@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'module/subnetting.html'),'utf8'),js=fs.readFileSync(path.join(root,'js/subnetting.js'),'utf8'),data=fs.readFileSync(path.join(root,'js/module-daten.js'),'utf8');
+assert(html.includes('192.168.1.0/24')&&html.includes('255.255.255.128'));
+for(const value of ['192.168.1.0','192.168.1.127','192.168.1.1–192.168.1.126','192.168.1.128','192.168.1.255','192.168.1.129–192.168.1.254']) assert(html.includes(value),value);
+assert(/<svg[^>]*role="img"[^>]*aria-labelledby="subnet-svg-title subnet-svg-desc"/.test(html));
+assert(html.includes('aria-live="polite"')&&html.includes('Antworten prüfen'));
+assert(data.includes('id: "lf3-subnetting"')&&data.includes('datei: "module/subnetting.html"'));
+const context={window:{},module:{exports:{}},document:undefined};vm.runInNewContext(js,context);const api=context.module.exports;
+assert.equal(api.progress(),0);assert.equal(api.complete(),false);assert.equal(api.questions.length,2);assert.equal(api.items.length,2);
+const progress=fs.readFileSync(path.join(root,'js/fortschritt.js'),'utf8');assert(progress.includes('lf3-subnetting')&&progress.includes('192.168.1.127'));
+console.log('subnetting.test.js: all assertions passed');

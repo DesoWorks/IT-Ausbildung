@@ -5,7 +5,8 @@
   var SCHLUESSEL = {
     "computer-grundlagen": "it-ausbildung.computer-grundlagen.v1",
     "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
-    "lf3-netzmaske": "it-ausbildung.netzmaske.v1"
+    "lf3-netzmaske": "it-ausbildung.netzmaske.v1",
+    "lf3-subnetting": "it-ausbildung.subnetting.v1"
   };
 
   function abgeschlossen(id) {
@@ -39,6 +40,11 @@
         var answers = state.answers || {};
         return !!state.finish && !!state.network && !!state.broadcast &&
           answers[0] === true && answers[1] === true && answers[2] === true;
+      }
+      if (id === "lf3-subnetting") {
+        var subnetAnswers = state.answers || {};
+        return !!state.finish && subnetAnswers.q1 === "true" && subnetAnswers.q2 === "true" &&
+          subnetAnswers.net1 === "192.168.1.127" && subnetAnswers.net2 === "192.168.1.129";
       }
     } catch (e) { return false; }
     return false;

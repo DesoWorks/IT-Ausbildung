@@ -10,6 +10,7 @@ assert(/<svg[^>]*role="img"[^>]*aria-labelledby="maske-svg-titel maske-svg-desc"
 assert(html.includes("<table")&&html.includes("scope=\"row\""));
 assert(html.includes("netzmaske.js")&&html.includes("anzeige-glossar.js")&&html.includes("glossar-daten.js"));
 assert(js.includes('it-ausbildung.netzmaske.v1')&&js.includes("function isComplete")&&js.includes("Richtig")&&js.includes("Noch nicht"));
+assert(html.includes('id="werte-feedback" class="feedback-box"')&&js.includes('Unbeantwortet:')&&js.includes('Teilweise richtig'));
 const ctx={window:{},module:{exports:{}},document:undefined}; vm.runInNewContext(js,ctx);
 const api=ctx.module.exports; assert.equal(api.key,"it-ausbildung.netzmaske.v1");
 assert.equal(api.progress(),0); assert.equal(api.isComplete(),false);

@@ -22,7 +22,7 @@
               status: "verfuegbar", datei: "module/netzwerkgrundlagen.html", page: "netzwerkgrundlagen" },
             { id: "lf3-netzmaske", titel: "Netzmaske und Netz-/Geräteanteil", beschreibung: "Lektion 2: Beispiel 192.168.1.20/24.",
               status: "verfuegbar", datei: "module/netzmaske.html", page: "netzmaske" },
-            { id: "lf3-subnetting", titel: "Subnetting", status: "kommt-bald" }
+            { id: "lf3-subnetting", titel: "Subnetting: /24 in zwei /25-Netze teilen", beschreibung: "Lektion 3: zwei gleich große Teilnetze Schritt für Schritt.", page: "subnetting", status: "verfuegbar", datei: "module/subnetting.html" }
           ] },
         { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "kommt-bald" },
         { id: "lf5", lernfeld: "Lernfeld 5", titel: "Programmiergrundlagen und Datenverwaltung", status: "kommt-bald" }

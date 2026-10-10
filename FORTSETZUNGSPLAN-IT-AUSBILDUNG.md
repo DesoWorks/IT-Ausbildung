@@ -200,3 +200,16 @@ Der vorherige Laufbericht meldet als bestanden: automatisierte `startseite.test.
 ### Offene Risiken
 - Der Arbeitsbranch hatte vor der Bearbeitung denselben Head wie PR #1. Branch-Head nach den Änderungen ist noch nicht gepusht oder per GitHub bestätigt.
 - Keine echte Windows-Doppelklick- oder Screenreaderprüfung in dieser Fortsetzung. Vor Merge/öffentlicher Freigabe verbleiben diese manuellen Prüfungen.
+
+
+## Fortsetzung: Navigation, Feedback und Subnetting (Arbeitsstand)
+
+- Arbeitszweig `prototype/computer-grundlagen` und origin/PR-Head stimmten vor Beginn auf `53ad8afd2b0185e25d3d7964f8efa9dc00564f88` überein.
+- Lernfeldgruppen in der gemeinsamen Navigation verwenden native, einzeln aufklappbare `details/summary`; das zur aktuellen Lektion passende Lernfeld ist beim Seitenaufruf geöffnet. Geplante Unterthemen bleiben ohne Link als „In Kürze“.
+- Übungsfeedback wurde in der Computer-Einheit, IPv4-, Netzmasken- und neuen Subnetting-Übungen auf sichtbare Einzelbewertungen, unbeantwortete Aufgaben und Ergebnisüberschriften umgestellt; Antwortänderungen leeren das vorherige Sammelergebnis. Die Netzmasken-Eingaben sind nun ebenfalls einzeln ausgewertet.
+- Neue Lektion `/24` zu zwei `/25`-Netzen: Maske `255.255.255.128`; Netzadressen `.0` und `.128`; Broadcasts `.127` und `.255`; nutzbare Bereiche `.1–.126` und `.129–.254`. Schaubild mit SVG-Textalternative, Begriffe aus zentralem Glossar und Übung.
+- Version `0.5.0-alpha.1`; Changelog aktualisiert.
+- Erfolgreich: `node --check` für App-/Netzwerkskripte; `startseite.test.js`, `fortschritt.test.js`, `logic.test.js` (13/13), `navigation-glossar.test.js`, `netzmaske.test.js`, `netzwerk-lektion1.test.js` (14) und `subnetting.test.js`; `git diff --check`. Ein interaktiver Chrome-CDP-Test über lokale `file://`-Seiten besteht für Navigation/Escape, Glossar-Suche/-Rückweg, gespeicherte Anzeigeeinstellung, 320 px und Page-Scale 200 %. Der vorhandene CDP-Test wurde an die hinzugefügten Glossarbegriffe und aktuelle Linkbeschriftung angepasst.
+- Sichtbare Screenshots aufgenommen: `screenshots/subnetting-desktop.png`, `screenshots/subnetting-320.png`, `screenshots/subnetting-200.png`. Desktop/Mobil-Screenshots sind visuell durchgesehen. Screenshot-Emulation ist jedoch kein Nachweis browserseitiger echter 200-%-Textvergrößerung. Hell/Dunkel/hoher Kontrast in dieser Runde nicht vollständig visuell getestet; Screenreader nicht getestet.
+- Der Agent-Browser verweigerte lokalen Servernachweis; HTML-interaktive Prüfung gelang stattdessen mittels bestehendem Chrome-CDP-Skript über `file://`. Lokaler `python -m http.server` wurde gestartet, Port 8765 war belegt, Port 8766 lief; der UI-Test nicht auf diesem Server ausgeführt.
+- Stand zum Dokumentationszeitpunkt noch uncommitted. Vor PR-Abschluss: endgültige vollständige Test-/Diff-Prüfung, Commit, normaler Push und PR-Head nach Fetch/GitHub bestätigen. Kein Merge/Release.

@@ -44,10 +44,13 @@
     var sub = document.createElement("ul");
     (yearData.module || []).forEach(function (m) {
       if (m.id === "computer-grundlagen") return;
-      var groupLi = document.createElement("li"); groupLi.className = "nav-topic";
-      var heading = document.createElement("div"); heading.className = "nav-learning-field";
+      var groupLi = document.createElement("li"); groupLi.className = "nav-topic nav-learning-group";
+      var field = document.createElement("details"); field.className = "nav-learning-details";
+      field.open = m.page === page || (m.unterthemen || []).some(function (u) { return u.page === page; });
+      field.setAttribute("data-learning-field", m.id);
+      var heading = document.createElement("summary"); heading.className = "nav-learning-field";
       heading.textContent = (m.lernfeld ? m.lernfeld + " · " : "") + m.titel;
-      groupLi.appendChild(heading);
+      field.appendChild(heading);
       if (m.unterthemen && m.unterthemen.length) {
         var topics = document.createElement("ul");
         m.unterthemen.forEach(function (u) {
@@ -60,11 +63,12 @@
             planned.setAttribute("aria-disabled", "true"); planned.textContent = u.titel + " — In Kürze"; topics.appendChild(planned);
           }
         });
-        groupLi.appendChild(topics);
+        field.appendChild(topics);
       } else if (m.status !== "verfuegbar") {
         var planned = document.createElement("div"); planned.className = "nav-planned";
-        planned.setAttribute("aria-disabled", "true"); planned.textContent = "In Kürze"; groupLi.appendChild(planned);
+        planned.setAttribute("aria-disabled", "true"); planned.textContent = "In Kürze"; field.appendChild(planned);
       }
+      groupLi.appendChild(field);
       sub.appendChild(groupLi);
     });
     details.appendChild(sub); group.appendChild(details); list.appendChild(group);

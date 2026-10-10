@@ -303,6 +303,7 @@
     zustand.uebung[eintrag.id] = wert;
     speichern();
     zeigeUebungErgebnis(eintrag, wert, zeile);
+    el("uebung-ergebnis").textContent = "";
     aktualisiereUebungErgebnis();
     aktualisiereFortschritt();
   }
@@ -329,14 +330,20 @@
     UEBUNG.forEach(function (e) {
       if (zustand.uebung[e.id] === e.loesung) richtig++;
     });
-    var beantwortet = Object.keys(zustand.uebung).length;
     var ergebnis = el("uebung-ergebnis");
-    if (beantwortet === 0) {
+    var beantwortet = UEBUNG.some(function (e) { return zustand.uebung[e.id] != null; });
+    if (!beantwortet) {
       ergebnis.textContent = "";
-    } else if (richtig === UEBUNG.length) {
-      ergebnis.textContent = "Sehr gut – alle " + UEBUNG.length + " richtig zugeordnet!";
     } else {
-      ergebnis.textContent = "Richtig zugeordnet: " + richtig + " von " + UEBUNG.length + ". Du kannst jede Zeile neu wählen.";
+      ergebnis.textContent = "";
+      ergebnis.appendChild(erzeuge("strong", { class: "feedback-titel" }, richtig === UEBUNG.length ? "✓ Alle 5 richtig zugeordnet" : richtig ? "◐ Teilweise richtig" : "✗ Noch nicht richtig"));
+      var list = erzeuge("ul");
+      UEBUNG.forEach(function (e) {
+        var value = zustand.uebung[e.id], li = erzeuge("li", value === e.loesung ? "feedback-richtig" : "feedback-falsch");
+        li.textContent = value == null ? e.geraet + " — Unbeantwortet." : (value === e.loesung ? "✓ Richtig: " : "✗ Nicht richtig: ") + e.geraet + ". " + e.erklaerung;
+        list.appendChild(li);
+      });
+      ergebnis.appendChild(list); ergebnis.className = "rueckmeldung feedback-box";
     }
   }
 
@@ -379,6 +386,7 @@
     zustand.quiz[frage.id] = index;
     speichern();
     zeigeQuizErgebnis(frage, index, feld);
+    el("quiz-ergebnis").textContent = "";
     aktualisiereQuizErgebnis();
     aktualisiereFortschritt();
   }
@@ -405,14 +413,21 @@
       var idx = zustand.quiz[f.id];
       if (idx != null && f.antworten[idx] && f.antworten[idx].richtig) richtig++;
     });
-    var beantwortet = Object.keys(zustand.quiz).length;
     var ergebnis = el("quiz-ergebnis");
-    if (beantwortet === 0) {
+    var bewertet = QUIZ.some(function (f) { return zustand.quiz[f.id] != null; });
+    if (!bewertet) {
       ergebnis.textContent = "";
-    } else if (richtig === QUIZ.length) {
-      ergebnis.textContent = "Perfekt – alle " + QUIZ.length + " Fragen richtig beantwortet!";
     } else {
-      ergebnis.textContent = "Richtig: " + richtig + " von " + QUIZ.length + ". Kein Zeitdruck – du kannst Fragen neu beantworten.";
+      ergebnis.textContent = "";
+      ergebnis.appendChild(erzeuge("strong", { class: "feedback-titel" }, richtig === QUIZ.length ? "✓ Alle 5 Fragen richtig" : richtig ? "◐ Teilweise richtig" : "✗ Noch nicht richtig"));
+      var list = erzeuge("ul");
+      QUIZ.forEach(function (f) {
+        var idx = zustand.quiz[f.id], answer = idx != null ? f.antworten[idx] : null;
+        var li = erzeuge("li", answer && answer.richtig ? "feedback-richtig" : "feedback-falsch");
+        li.textContent = !answer ? f.frage + " — Unbeantwortet." : (answer.richtig ? "✓ Richtig: " : "✗ Nicht richtig: ") + f.frage + " " + answer.erklaerung;
+        list.appendChild(li);
+      });
+      ergebnis.appendChild(list); ergebnis.className = "rueckmeldung feedback-box";
     }
   }
 
@@ -493,12 +508,14 @@
     el("uebung-reset").addEventListener("click", function () {
       zustand.uebung = {};
       speichern();
+      el("uebung-ergebnis").textContent = ""; el("uebung-ergebnis").className = "rueckmeldung feedback-box";
       baueUebung();
       aktualisiereFortschritt();
     });
     el("quiz-reset").addEventListener("click", function () {
       zustand.quiz = {};
       speichern();
+      el("quiz-ergebnis").textContent = ""; el("quiz-ergebnis").className = "rueckmeldung feedback-box";
       baueQuiz();
       aktualisiereFortschritt();
     });

@@ -14,7 +14,8 @@ window.GLOSSAR = [
   { begriff: "Netzadresse", erklaerung: "Die Adresse, bei der alle Bits des Geräteanteils 0 sind. Sie bezeichnet das Teilnetz und wird im üblichen IPv4-Netz nicht einem Endgerät zugewiesen." },
   { begriff: "Broadcastadresse", erklaerung: "Die Adresse, bei der alle Bits des Geräteanteils 1 sind. Sie erreicht im üblichen IPv4-Netz alle Geräte des Teilnetzes." },
   { begriff: "Oktett", erklaerung: "Eine Gruppe aus 8 Bit. In einer IPv4-Adresse ist jede der vier Zahlen ein Oktett. Ein Oktett kann Werte von 0 bis 255 haben." },
-  { begriff: "Subnetting", erklaerung: "Ein Netzwerk wird in kleinere Teilnetze aufgeteilt. Das Thema ist geplant; es gibt hier noch keine Lektion dazu." },
+  { begriff: "Subnetting", erklaerung: "Ein Netzwerk wird in kleinere Teilnetze aufgeteilt. In diesem Beispiel wird ein /24-Netz in zwei /25-Netze geteilt." },
+  { begriff: "Teilnetz", erklaerung: "Ein abgegrenzter IP-Adressbereich innerhalb eines größeren Netzwerks. Netzmaske und Netzadresse bestimmen, welche Adressen dazugehören." },
   { begriff: "Touchpad", erklaerung: "Eine berührungsempfindliche Fläche am Laptop, mit der du den Zeiger bewegst." },
   { begriff: "WLAN", erklaerung: "Drahtlose Netzwerkverbindung über Funk." }
 ];

@@ -64,7 +64,7 @@ class El {
     return this.childNodes.map(c => c.nodeType === 3 ? c.textContent : c.textContent).join("");
   }
   set innerHTML(v) { if (!v) this.childNodes = []; }
-  appendChild(c) { c.parentNode = this; this.childNodes.push(c); return c; }
+  appendChild(c) { this._text = null; c.parentNode = this; this.childNodes.push(c); return c; }
   focus() { doc.activeElement = this; }
   addEventListener(t, fn) { (this._listeners[t] = this._listeners[t] || []).push(fn); }
   _fire(t) { (this._listeners[t] || []).forEach(fn => fn({ target: this, key: undefined })); }

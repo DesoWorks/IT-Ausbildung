@@ -471,7 +471,7 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
   .kopf { grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: 17rem minmax(0, 1fr); }
   .kopf-inhalt { grid-column: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
   .site-navigation { grid-column: 1; grid-row: 2 / span 3; position: relative; width: 17rem; min-width: 0; align-self: stretch; border-right: 1px solid var(--farbe-rahmen); background: var(--farbe-flaeche); }
-  .site-nav { position: sticky; top: 0; max-height: 100vh; overflow-y: auto; border: 0; }
+  .site-nav { position: sticky; top: 0; max-height: none; overflow: visible; border: 0; }
   .site-nav > ul { display: block; }
   .site-nav > ul > li { margin: .2rem 0; }
   .site-nav-title, .nav-options { padding: 0 .4rem; }
@@ -506,6 +506,20 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
   background: #176b32; color: #fff; font-size: .82rem; line-height: 1;
 }
 .site-nav .abschlusszeichen { margin-left: auto; }
+.feedback-box { margin-top: .9rem; padding: 1rem 1.2rem; border: 3px solid var(--farbe-akzent); border-radius: var(--radius); background: var(--farbe-flaeche); color: var(--farbe-text); }
+.feedback-box h3 { margin: 0 0 .5rem; }
+.feedback-box ul { margin: .3rem 0 0; padding-left: 1.4rem; }
+.feedback-box p { margin: 0; }
+.feedback-richtig { color: var(--farbe-ok); }
+.feedback-falsch { color: var(--farbe-fehler); }
+.feedback-box[hidden] { display: none; }
 .modul-gesperrt .modul-inhalt, .unterthema-gesperrt { background: var(--farbe-geplant-flaeche); color: var(--farbe-geplant-tekst); }
 .modul-gesperrt .modul-lernfeld, .modul-gesperrt .modul-status,
 .unterthema-gesperrt .modul-status { color: var(--farbe-geplant-tekst); }
+
+/* Lernfelder lassen sich unabhängig öffnen; natives details/summary bietet Tastaturbedienung. */
+.site-nav summary.nav-learning-field { justify-content: flex-start; gap: .45rem; }
+.site-nav summary.nav-learning-field::before { content: "▸"; display: inline-block; width: 1em; transition: transform .12s ease; }
+.site-nav details[open] > summary.nav-learning-field::before { content: "▾"; }
+.site-nav summary.nav-learning-field:focus-visible { outline: 3px solid #0a3d82; outline-offset: 2px; }
+.site-nav .nav-learning-details > ul { padding-left: 1rem; }

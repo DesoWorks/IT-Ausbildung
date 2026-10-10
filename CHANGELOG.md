@@ -17,3 +17,8 @@ Versionen werden bewusst erst für einen freigegebenen Stand geändert.
 - Geplante Inhalte und Navigation nach Lernfeldern gruppiert; Farbvariablen für geplante Inhalte, dunkle und kontrastreiche Darstellung ergänzt.
 - Lektion 2 zu IPv4-Netzmaske sowie Netz- und Geräteanteil ergänzt; Subnetting bleibt geplant.
 - Zentrale Glossarbegriffe und eigener Lernfortschritt für die Netzmaskenlektion ergänzt.
+
+## 0.5.0-alpha.1
+- Lernfeldgruppen in der Navigation einzeln auf- und zuklappbar; aktuelles Lernfeld wird geöffnet.
+- Einstieg Subnetting: /24 wird in zwei /25-Netze mit Masken, Netz-/Broadcastadressen und Hostbereichen geteilt.
+- Ergebnisbox mit Einzelbewertung, unbeantworteten Aufgaben und Korrekturhinweisen ergänzt.

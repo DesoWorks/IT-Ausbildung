@@ -35,6 +35,9 @@ assert.equal(api.abgeschlossen("lf3-ipv4"), true, "IPv4 lesson completion derive
 assert.equal(api.abgeschlossen("lf3"), false, "lesson never marks whole learning field complete");
 values.delete("it-ausbildung.netzwerkgrundlagen.v1");
 assert.equal(api.abgeschlossen("lf3-ipv4"), false, "reset/removed progress clears topic status");
+values.set("it-ausbildung.subnetting.v1",JSON.stringify({finish:true,answers:{q1:"true",q2:"true",net1:"192.168.1.127",net2:"192.168.1.129"}}));
+assert.equal(api.abgeschlossen("lf3-subnetting"), true, "Subnetting topic completion derives from its lesson answers");
+assert.equal(api.abgeschlossen("lf3"), false, "completed Subnetting lesson does not complete the entire learning field");
 const marker=api.abschlusszeichen();
 assert.equal(marker.textContent,"✓"); assert.equal(marker.attrs["aria-label"],"Abgeschlossen");
 console.log("fortschritt.test.js: all assertions passed");

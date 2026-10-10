@@ -201,6 +201,7 @@
     zustand.antworten[frage.id] = index;
     speichern();
     zeigeAntwort(frage, index, feld);
+    var summary = el("netz-ergebnis"); summary.textContent = "";
     aktualisiereUebungErgebnis();
     aktualisiereFortschritt();
   }
@@ -221,11 +222,22 @@
   function aktualisiereUebungErgebnis() {
     var richtig = 0;
     FRAGEN.forEach(function (f) { if (frageRichtig(f, zustand.antworten[f.id])) richtig++; });
-    var beantwortet = Object.keys(zustand.antworten).length;
     var ziel = el("netz-ergebnis");
-    if (beantwortet === 0) ziel.textContent = "";
-    else if (richtig === FRAGEN.length) ziel.textContent = "Alle " + FRAGEN.length + " Fragen richtig. Weiter mit deiner eigenen Adresse.";
-    else ziel.textContent = "Richtig: " + richtig + " von " + FRAGEN.length + ". Kein Zeitdruck – ändere Antworten, so oft du möchtest.";
+    var bewertet = FRAGEN.some(function (f) { return zustand.antworten[f.id] != null; });
+    if (!bewertet) { ziel.textContent = ""; return; }
+    ziel.textContent = "";
+    var titel = erzeuge("strong", { class: "feedback-titel" }, richtig === FRAGEN.length ? "✓ Alle Fragen richtig" : richtig ? "◐ Teilweise richtig" : "✗ Noch nicht richtig");
+    ziel.appendChild(titel);
+    var liste = erzeuge("ul");
+    FRAGEN.forEach(function (f) {
+      var idx = zustand.antworten[f.id], a = idx != null ? f.antworten[idx] : null;
+      var li = erzeuge("li", a && a.richtig ? "feedback-richtig" : "feedback-falsch");
+      li.textContent = !a ? f.frage + " — Unbeantwortet." : (a.richtig ? "✓ Richtig: " : "✗ Nicht richtig: ") + f.frage + " " + a.erklaerung;
+      liste.appendChild(li);
+    });
+
+    ziel.appendChild(liste);
+    ziel.className = "rueckmeldung feedback-box";
   }
 
   function zeigeEigeneAdresse(ergebnis) {
@@ -246,11 +258,18 @@
     if (ereignis && ereignis.preventDefault) ereignis.preventDefault();
     var ergebnis = pruefeIPv4(el("eigene-eingabe").value);
     zeigeEigeneAdresse(ergebnis);
+    if (!ergebnis.gueltig) zustand.eigeneGueltig = false;
     if (ergebnis.gueltig && !zustand.eigeneGueltig) {
       zustand.eigeneGueltig = true;
       speichern();
     }
     aktualisiereFortschritt();
+  }
+
+  function invalidiereEigeneAdresse() {
+    el("eigene-ergebnis").textContent = "";
+    el("eigene-zerlegung").textContent = "";
+    if (zustand.eigeneGueltig) { zustand.eigeneGueltig = false; speichern(); aktualisiereFortschritt(); }
   }
 
   function aktualisiereFortschritt() {
@@ -306,6 +325,7 @@
       b.addEventListener("click", function () { zeigeSchritt(b.dataset.weiter); });
     });
     el("eigene-form").addEventListener("submit", pruefeEigene);
+    el("eigene-eingabe").addEventListener("input", invalidiereEigeneAdresse);
     el("eigene-beispiel").addEventListener("click", function () {
       el("eigene-eingabe").value = BEISPIEL_ADRESSE;
       el("eigene-eingabe").focus();
