@@ -14,11 +14,11 @@ require(path.join(wurzel, "js", "module-daten.js"));
 const daten = global.MODULE_DATEN;
 
 const erwartetJahr1 = [
-  ["LF 1", "Ausbildungsbetrieb und berufliche Rolle"],
-  ["LF 2", "Hardware, Betriebssysteme und Arbeitsplatzgestaltung"],
-  ["LF 3", "Netzwerkgrundlagen und Client-Anbindung"],
-  ["LF 4", "Schutzbedarf und Grundlagen der IT-Sicherheit"],
-  ["LF 5", "Programmiergrundlagen und Datenverwaltung"]
+  ["Lernfeld 1", "Ausbildungsbetrieb und berufliche Rolle"],
+  ["Lernfeld 2", "Hardware, Betriebssysteme und Arbeitsplatzgestaltung"],
+  ["Lernfeld 3", "Netzwerkgrundlagen und Client-Anbindung"],
+  ["Lernfeld 4", "Schutzbedarf und Grundlagen der IT-Sicherheit"],
+  ["Lernfeld 5", "Programmiergrundlagen und Datenverwaltung"]
 ];
 
 assert.strictEqual(daten.length, 3, "drei Ausbildungsjahre");
