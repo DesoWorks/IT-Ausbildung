@@ -18,7 +18,8 @@
         { id: "lf2", lernfeld: "Lernfeld 2", titel: "Hardware, Betriebssysteme und Arbeitsplatzgestaltung", status: "kommt-bald" },
         { id: "lf3", lernfeld: "Lernfeld 3", titel: "Netzwerkgrundlagen und Client-Anbindung", status: "kommt-bald",
           unterthemen: [
-            { id: "lf3-ipv4", titel: "IPv4", status: "kommt-bald" },
+            { id: "lf3-ipv4", titel: "IPv4", beschreibung: "Lektion 1: IPv4-Adresse und vier Oktette.",
+              status: "verfuegbar", datei: "module/netzwerkgrundlagen.html" },
             { id: "lf3-subnetting", titel: "Subnetting", status: "kommt-bald" }
           ] },
         { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "kommt-bald" },

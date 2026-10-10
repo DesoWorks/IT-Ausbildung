@@ -1,0 +1,52 @@
+/* Zusatzstile für das Modul Netzwerkgrundlagen.
+   Nutzt die Farbvariablen aus styles.css, damit Hell/Dunkel/Kontrast passen. */
+
+.netz-schaubild {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--farbe-rahmen);
+  border-radius: var(--radius);
+  background: var(--farbe-flaeche);
+}
+.netz-schaubild svg { display: block; width: 100%; height: auto; max-width: 640px; margin: 0 auto; }
+.svg-box { fill: var(--farbe-flaeche); stroke: var(--farbe-akzent); stroke-width: 3; }
+.svg-wert { fill: var(--farbe-text); font: 700 44px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
+.svg-punkt { fill: var(--farbe-text); font: 700 48px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
+.svg-label { fill: var(--farbe-text-leise); font: 600 24px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
+.svg-klammer { stroke: var(--farbe-akzent); stroke-width: 3; fill: none; }
+
+.netz-tabelle { width: 100%; border-collapse: collapse; margin: 0.8rem 0; }
+.netz-tabelle caption { text-align: left; font-weight: 700; padding: 0.4rem 0; }
+.netz-tabelle th, .netz-tabelle td {
+  border: 1px solid var(--farbe-rahmen);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+}
+.netz-tabelle thead th { background: var(--farbe-hintergrund); }
+
+.netz-eingabe-gruppe { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.8rem; }
+.netz-eingabe-gruppe label { font-weight: 700; }
+.netz-eingabe-gruppe input[type="text"] {
+  font: inherit;
+  min-height: 48px;
+  padding: 0.5rem 0.8rem;
+  border: 2px solid var(--farbe-rahmen);
+  border-radius: var(--radius);
+  background: var(--farbe-flaeche);
+  color: var(--farbe-text);
+  max-width: 22rem;
+}
+.netz-eingabe-gruppe input[type="text"]:focus-visible { outline: 3px solid var(--farbe-akzent-dunkel); outline-offset: 2px; }
+.netz-ok::before { content: "\2713\00a0"; color: var(--farbe-ok); }
+.netz-fehler::before { content: "\2717\00a0"; color: var(--farbe-fehler); }
+.netz-ok { color: var(--farbe-ok); }
+.netz-fehler { color: var(--farbe-fehler); }
+#fachwoerter-liste { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; }
+
+input:focus-visible, summary:focus-visible { outline: 3px solid var(--farbe-akzent-dunkel); outline-offset: 2px; }
+
+@media (forced-colors: active) {
+  .netz-schaubild, .netz-tabelle th, .netz-tabelle td { border: 1px solid CanvasText; }
+  .svg-box, .svg-klammer { stroke: CanvasText; }
+  .svg-wert, .svg-punkt, .svg-label { fill: CanvasText; }
+}

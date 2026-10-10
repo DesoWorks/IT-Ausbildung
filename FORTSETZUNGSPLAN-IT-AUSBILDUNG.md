@@ -66,3 +66,33 @@ Die folgende Gliederung ist eine Arbeitsvorlage für den Ausbauplan, keine amtli
 - Der PR-Head selbst wurde nicht verändert; kein Push, Merge nach main oder Veröffentlichung. Lokaler Integrationscommit und PR-Head sind verschiedene Commits. Dateien aus dem PR-Arbeitsstand sind lokal eingebunden; für einen PR-Update wäre gesonderte Remote-Schreibaktion erforderlich.
 - Verfügbarkeitsprobe für Jarvis: `team.dispatch` lieferte `reason=error`, leeren Text, 0 Tokens und 0 Tools, mit Vermerk über kontaminierte/replayte GitHub-Connector-Ausgabe. Das ist kein Nachweis eines Kontingentfehlers und erlaubt keine belastbare Aussage über das Kontingent. Jarvis' separate Session steht im Stationsstatus als „online“, was ebenfalls keine Kontingentbestätigung ist.
 - Noch nicht ausgeführt: offene App-Bedienungsprüfungen, Ausbauplan-Verifikation gegen das KMK-Original-PDF sowie Entwicklung oder Test eines nächsten Moduls. Nächster sicherer Schritt: nach dem angekündigten Reset die Verfügbarkeit einmal bestätigen; nur bei verwertbarem Agentenlauf mit den offenen Prüfungen beginnen. Keine wiederholten Startversuche.
+
+
+## Fortsetzung: dokumentierte App-Prüfungen und Netzwerkmodul
+
+### Bestehende App-Prüfungen (aus dem vorherigen Laufbericht übernommen)
+
+Der vorherige Laufbericht meldet als bestanden: automatisierte `startseite.test.js` und `logic.test.js` (13/13); interaktive Chromium-Prüfung des lokalen `file://`-Starts, Modulnavigation, Übungsauswahl und Rückmeldung, Rücknavigation, Glossaröffnung und Anzeigeoptionen; außerdem kein horizontaler Überlauf bei 320 und 390 CSS-Pixeln. Das sind übergebene Testergebnisse; in dieser Fortsetzung wurden sie nicht erneut ausgeführt. Eine vollständige manuelle visuelle Prüfung bei 200-%-Zoom und ein Screenreader-Test blieben offen. Die damalige Aussage zum Remote-Head ist seit dem Git-Abgleich überholt.
+
+### Git-/PR-Grundlage dieser Fortsetzung
+
+- Arbeitszweig `prototype/computer-grundlagen`; Arbeitsbaum zu Beginn sauber.
+- `git fetch origin` erfolgreich. Lokaler `HEAD` `5d228342390731448620c352fa9eb87fee6cea18` enthielt `origin/prototype/computer-grundlagen` `a233ca2b1a745319050cd49c0ee586132476db98` als Vorfahren; der lokale Fortsetzungsplan und Reconciliation-Commits waren bereits darüber aufgebaut. Keine auseinanderlaufenden Dateiänderungen beim aktuellen Stand.
+- PR #1 offen, Basis `main`, Branch `prototype/computer-grundlagen`; Connector bestätigte Head `a233ca2b1a745319050cd49c0ee586132476db98` zum Prüfzeitpunkt.
+
+### Modulentwicklung
+
+- Das erste Netzwerkmodul ist auf eine einzelne kleine Scheibe begrenzt: IPv4-Adresse, vier Oktette, Wertebereich und Validierung. Netzmaske und Subnetting bleiben weitere geplante Lektionen; sie sind nicht Teil der gelieferten Scheibe.
+- Die Scheibe gilt erst nach fachlicher Kontrolle, automatisierten Prüfungen und interaktiver Bedienungsprüfung als abgeschlossen. DOM-/Quelltextprüfungen sind nicht als interaktive Tests zu bezeichnen.
+- Prüfgrenzen sind nach den tatsächlich ausgeführten Tests in diesem Abschnitt nachzutragen. Insbesondere bleiben 200-%-Zoom und Screenreader offen, wenn nicht real geprüft.
+
+
+### Verifikation dieser Fortsetzung (10.10.2026)
+
+- `node tests/startseite.test.js`: bestanden.
+- `node tests/logic.test.js`: 13 bestanden, 0 fehlgeschlagen.
+- `node tests/netzwerk-lektion1.test.js`: 14 Prüfungen bestanden.
+- `node --check js/netzwerk-lektion1.js`, `node --check js/startseite.js` und `git diff --check`: bestanden.
+- Interaktive Bedienungsprüfung in isoliertem Headless Chrome gegen den lokalen Entwicklungsserver: gestartet, Schritte Erklärung → Schaubild → Übung bedient, Glossarbegriffe geladen, falsche Quizantwort mit Erklärung gewählt und danach korrigiert, ungültige `192.168.1.256` und gültige `192.168.1.20` im Formular geprüft (jeweils korrekte Rückmeldung und Oktettzerlegung), Formular per Enter bedient, Rücklink zur Themenübersicht geprüft.
+- Responsive Prüfung durch Chromium bei 320, 390 und 1280 CSS-Pixeln: Dokumentbreite 320, 390 bzw. 1265 CSS-Pixel; kein horizontaler Seitenüberlauf.
+- Prüfgrenzen: Diese interaktive Prüfung wurde von uns per lokalem Chrome DevTools Protocol (CDP) durchgeführt, nicht über den integrierten Station-Browser. Die integrierte Testnavigation verweigerte die lokale URL trotz aktivem Server; GLaDOS stoppte richtliniengemäß nach diesem verweigerten Zugriff. Kein Screenreader-Test und keine echte manuelle Windows-Dateidoppelklickprüfung in dieser Fortsetzung. Kein Nachweis vollständiger WCAG-2.2-AA-Konformität.

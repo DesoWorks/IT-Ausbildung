@@ -57,3 +57,18 @@
   .modul-liste { grid-template-columns: 1fr; }
 }
 .leseoptionen { max-width: 896px; }
+
+/* Verfügbares Unterthema (z. B. IPv4) innerhalb einer Lernfeld-Karte */
+.modul-teilweise .modul-inhalt { border-style: solid; border-color: var(--farbe-rahmen); }
+.unterthema-verfuegbar {
+  padding: 0; border: 2px solid var(--farbe-akzent);
+  background: var(--farbe-flaeche); color: var(--farbe-text); cursor: auto;
+}
+.unterthema-link {
+  display: flex; flex-direction: column; gap: 0.2rem; width: 100%;
+  padding: 0.5rem 0.75rem; min-height: 44px; box-sizing: border-box;
+  color: var(--farbe-text); text-decoration: none; border-radius: var(--radius);
+}
+.unterthema-link:hover { background: #eaf1fb; }
+.unterthema-link:focus-visible { outline: 3px solid var(--farbe-akzent-dunkel); outline-offset: 2px; }
+.unterthema-verfuegbar .modul-status { color: var(--farbe-akzent-dunkel); }

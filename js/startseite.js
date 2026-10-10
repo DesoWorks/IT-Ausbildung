@@ -12,12 +12,19 @@
   function baueModul(m) {
     var li = erzeuge("li", "modul");
     var verfuegbar = m.status === "verfuegbar" && m.datei;
+    var teilweise = !verfuegbar && (m.unterthemen || []).some(function (u) {
+      return u.status === "verfuegbar" && u.datei;
+    });
     var inhalt;
 
     if (verfuegbar) {
       li.classList.add("modul-verfuegbar");
       inhalt = erzeuge("a", "modul-inhalt");
       inhalt.href = m.datei;
+    } else if (teilweise) {
+      /* Karte selbst nicht anklickbar, aber ein Unterthema ist es. */
+      li.classList.add("modul-teilweise");
+      inhalt = erzeuge("div", "modul-inhalt");
     } else {
       li.classList.add("modul-gesperrt");
       li.setAttribute("aria-disabled", "true");
@@ -31,17 +38,29 @@
       var unterliste = erzeuge("ul", "unterthemen");
       unterliste.setAttribute("aria-label", "Geplante Unterthemen: " + m.titel);
       m.unterthemen.forEach(function (u) {
-        var uli = erzeuge("li", "unterthema unterthema-gesperrt");
-        uli.setAttribute("aria-disabled", "true");
-        uli.appendChild(erzeuge("span", "unterthema-titel", u.titel));
-        uli.appendChild(erzeuge("span", "modul-status", "◷ In Kürze"));
+        var uVerfuegbar = u.status === "verfuegbar" && u.datei;
+        var uli = erzeuge("li", uVerfuegbar ? "unterthema unterthema-verfuegbar" : "unterthema unterthema-gesperrt");
+        if (uVerfuegbar) {
+          var link = erzeuge("a", "unterthema-link");
+          link.href = u.datei;
+          link.appendChild(erzeuge("span", "unterthema-titel", u.titel));
+          if (u.beschreibung) link.appendChild(erzeuge("span", "modul-beschreibung", u.beschreibung));
+          link.appendChild(erzeuge("span", "modul-status", "▸ Jetzt lernen"));
+          uli.appendChild(link);
+        } else {
+          uli.setAttribute("aria-disabled", "true");
+          uli.appendChild(erzeuge("span", "unterthema-titel", u.titel));
+          uli.appendChild(erzeuge("span", "modul-status", "◷ In Kürze"));
+        }
         unterliste.appendChild(uli);
       });
       /* In der Karte statt darunter, damit die Zugehörigkeit klar ist. */
       inhalt.appendChild(unterliste);
     }
-    inhalt.appendChild(erzeuge("span", "modul-status",
-      verfuegbar ? "▸ Jetzt lernen" : "◷ In Kürze"));
+    if (!teilweise) {
+      inhalt.appendChild(erzeuge("span", "modul-status",
+        verfuegbar ? "▸ Jetzt lernen" : "◷ In Kürze"));
+    }
 
     li.appendChild(inhalt);
     return li;

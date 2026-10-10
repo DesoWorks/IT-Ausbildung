@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Netzwerkgrundlagen, Lektion 1: Die IPv4-Adresse und ihre vier Oktette.">
+  <title>Netzwerkgrundlagen – Lektion 1: IPv4-Adresse</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+</head>
+<body>
+  <a class="skip-link" href="#hauptinhalt">Direkt zum Inhalt springen</a>
+
+  <nav class="rueckzeile" aria-label="Zurück zur Themenübersicht">
+    <a class="zurueck-link" href="../index.html">← Zur Themenübersicht</a>
+  </nav>
+  <header class="kopf">
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Netzwerkgrundlagen</p>
+      <h1>Lektion 1: Die IPv4-Adresse</h1>
+      <p class="kopf-dauer">Dauer: ungefähr 10 Minuten · kein Zeitdruck</p>
+    </div>
+  </header>
+
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol id="schritt-liste">
+      <li><button type="button" class="schritt-knopf" data-ziel="erklaerung" aria-current="true">1 · Erklärung</button></li>
+      <li><button type="button" class="schritt-knopf" data-ziel="schaubild">2 · Schaubild</button></li>
+      <li><button type="button" class="schritt-knopf" data-ziel="uebung">3 · Übung</button></li>
+      <li><button type="button" class="schritt-knopf" data-ziel="abschluss">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste">
+        <div class="fortschritt-balken" id="fortschritt-balken" style="width:0%"></div>
+      </div>
+      <p class="fortschritt-text" id="fortschritt-text" aria-live="polite">Fortschritt: 0 %</p>
+    </div>
+  </nav>
+
+  <main id="hauptinhalt" tabindex="-1">
+
+    <section id="erklaerung" class="abschnitt" aria-labelledby="erklaerung-titel">
+      <h2 id="erklaerung-titel">Wozu braucht ein Gerät eine Adresse?</h2>
+      <p class="gross">
+        Damit ein Brief ankommt, braucht das Haus eine Adresse. Im Netzwerk ist es genauso:
+        Jedes Gerät bekommt eine <strong>IP-Adresse</strong>, damit Daten das richtige Gerät finden.
+      </p>
+      <div class="hinweis-box">
+        <p class="hinweis-titel"><span class="symbol" aria-hidden="true">◎</span> Dein Lernziel</p>
+        <p>Du erkennst eine IPv4-Adresse, nennst ihre vier <strong>Oktette</strong> und prüfst, ob eine Adresse gültig ist.</p>
+      </div>
+      <h3>Beispiel aus dem Alltag</h3>
+      <p>
+        Stell dir ein Mehrfamilienhaus vor. Die Straße steht für das Netzwerk, die Wohnungsnummer für das einzelne Gerät.
+        Die Adresse <strong>192.168.1.20</strong> sagt also: Hier ist ein bestimmtes Gerät in einem bestimmten Netz.
+        Diese Rollen (Netz und Gerät) lernst du erst in einer späteren Lektion genauer kennen.
+      </p>
+      <h3>So ist eine IPv4-Adresse aufgebaut</h3>
+      <ul>
+        <li>Sie besteht aus <strong>vier Zahlen</strong>, den Oktetten.</li>
+        <li>Die Zahlen sind durch <strong>Punkte</strong> getrennt.</li>
+        <li>Jedes Oktett besteht aus 8 Bit und hat einen Wert von <strong>0 bis 255</strong>.</li>
+      </ul>
+      <h3>Fachwörter</h3>
+      <p class="klein">Öffne einen Begriff, um die Erklärung zu lesen. Das ganze Glossar steht unten auf der Seite.</p>
+      <div id="fachwoerter-liste"></div>
+      <div class="knopf-reihe">
+        <button type="button" class="knopf knopf-haupt" data-weiter="schaubild">Weiter zum Schaubild</button>
+      </div>
+    </section>
+
+    <section id="schaubild" class="abschnitt" aria-labelledby="schaubild-titel" hidden>
+      <h2 id="schaubild-titel">Schaubild: vier Oktette</h2>
+      <figure class="netz-schaubild">
+        <svg viewBox="0 0 640 220" role="img" aria-labelledby="svg-titel svg-beschr">
+          <title id="svg-titel">Aufbau der IPv4-Adresse 192.168.1.20</title>
+          <desc id="svg-beschr">Vier Kästen mit den Zahlen 192, 168, 1 und 20, getrennt durch drei Punkte. Jeder Kasten ist ein Oktett mit 8 Bit und einem Wert von 0 bis 255.</desc>
+          <rect class="svg-box" x="20" y="50" width="120" height="90" rx="10"/>
+          <rect class="svg-box" x="180" y="50" width="120" height="90" rx="10"/>
+          <rect class="svg-box" x="340" y="50" width="120" height="90" rx="10"/>
+          <rect class="svg-box" x="500" y="50" width="120" height="90" rx="10"/>
+          <text class="svg-wert" x="80" y="108">192</text>
+          <text class="svg-wert" x="240" y="108">168</text>
+          <text class="svg-wert" x="400" y="108">1</text>
+          <text class="svg-wert" x="560" y="108">20</text>
+          <text class="svg-punkt" x="160" y="128">.</text>
+          <text class="svg-punkt" x="320" y="128">.</text>
+          <text class="svg-punkt" x="480" y="128">.</text>
+          <text class="svg-label" x="80" y="35">Oktett 1</text>
+          <text class="svg-label" x="240" y="35">Oktett 2</text>
+          <text class="svg-label" x="400" y="35">Oktett 3</text>
+          <text class="svg-label" x="560" y="35">Oktett 4</text>
+          <path class="svg-klammer" d="M20 165 H620 M20 165 V155 M620 165 V155"/>
+          <text class="svg-label" x="320" y="200">4 Oktette × 8 Bit = 32 Bit</text>
+        </svg>
+        <figcaption>Die Adresse 192.168.1.20 in ihre vier Oktette zerlegt.</figcaption>
+      </figure>
+      <h3>Textalternative zum Schaubild</h3>
+      <p>Die Adresse 192.168.1.20 besteht aus vier Zahlen, die durch drei Punkte getrennt sind:</p>
+      <table class="netz-tabelle">
+        <caption>Oktette der Adresse 192.168.1.20</caption>
+        <thead><tr><th scope="col">Oktett</th><th scope="col">Wert</th><th scope="col">Erlaubter Bereich</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">1</th><td>192</td><td>0 bis 255</td></tr>
+          <tr><th scope="row">2</th><td>168</td><td>0 bis 255</td></tr>
+          <tr><th scope="row">3</th><td>1</td><td>0 bis 255</td></tr>
+          <tr><th scope="row">4</th><td>20</td><td>0 bis 255</td></tr>
+        </tbody>
+      </table>
+      <p>Zusammen sind es 4 Oktette zu je 8 Bit, also 32 Bit.</p>
+      <div class="knopf-reihe">
+        <button type="button" class="knopf" data-weiter="erklaerung">Zurück</button>
+        <button type="button" class="knopf knopf-haupt" data-weiter="uebung">Weiter zur Übung</button>
+      </div>
+    </section>
+
+    <section id="uebung" class="abschnitt" aria-labelledby="uebung-titel" hidden>
+      <h2 id="uebung-titel">Übung</h2>
+      <p>Es gibt keinen Zeitdruck. Du kannst Antworten beliebig oft ändern und bekommst zu jeder eine Erklärung.</p>
+      <h3>Teil 1: Drei Fragen</h3>
+      <div id="netz-fragen" class="quiz-liste"></div>
+      <p class="rueckmeldung" id="netz-ergebnis" aria-live="polite"></p>
+
+      <h3>Teil 2: Prüfe eine eigene Adresse</h3>
+      <form id="eigene-form" class="netz-eingabe-gruppe" novalidate>
+        <label for="eigene-eingabe">IPv4-Adresse eingeben</label>
+        <input type="text" id="eigene-eingabe" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="eigene-hilfe">
+        <p class="klein" id="eigene-hilfe">Vier Zahlen von 0 bis 255, durch Punkte getrennt. Beispiel: 192.168.1.20</p>
+        <div class="knopf-reihe">
+          <button type="submit" class="knopf knopf-haupt">Adresse prüfen</button>
+          <button type="button" class="knopf" id="eigene-beispiel">Beispiel einfügen</button>
+        </div>
+      </form>
+      <p class="rueckmeldung" id="eigene-ergebnis" aria-live="polite"></p>
+      <ul id="eigene-zerlegung"></ul>
+
+      <div class="knopf-reihe">
+        <button type="button" class="knopf" data-weiter="schaubild">Zurück</button>
+        <button type="button" class="knopf" id="uebung-reset">Übung neu starten</button>
+        <button type="button" class="knopf knopf-haupt" data-weiter="abschluss">Zum Abschluss</button>
+      </div>
+    </section>
+
+    <section id="abschluss" class="abschnitt" aria-labelledby="abschluss-titel" hidden>
+      <h2 id="abschluss-titel">Das hast du gelernt</h2>
+      <ul class="zusammenfassung">
+        <li><span class="symbol" aria-hidden="true">▸</span> Eine <strong>IP-Adresse</strong> macht ein Gerät im Netzwerk auffindbar.</li>
+        <li><span class="symbol" aria-hidden="true">▸</span> Eine <strong>IPv4-Adresse</strong> hat vier Oktette, getrennt durch Punkte.</li>
+        <li><span class="symbol" aria-hidden="true">▸</span> Jedes <strong>Oktett</strong> hat 8 Bit und einen Wert von 0 bis 255.</li>
+      </ul>
+      <p class="klein">Die Aufteilung in Netz- und Geräteanteil, die Netzmaske und Subnetting folgen in späteren Lektionen.</p>
+      <p class="rueckmeldung" id="abschluss-status" aria-live="polite"></p>
+      <div class="knopf-reihe">
+        <button type="button" class="knopf" data-weiter="uebung">Zurück zur Übung</button>
+        <button type="button" class="knopf knopf-warn" id="reset-alles">Fortschritt zurücksetzen</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="fuss">
+    <p>Netzwerkgrundlagen · Lektion 1 · Version <span data-version></span> · Läuft lokal in deinem Browser.</p>
+  </footer>
+
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/netzwerk-lektion1.js"></script>
+</body>
+</html>
