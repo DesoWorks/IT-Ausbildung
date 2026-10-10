@@ -12,7 +12,7 @@ assert(css.includes("grid-template-columns: 17rem minmax(0, 1fr)"), "desktop all
 assert(css.includes(".kopf { grid-column: 1 / -1; grid-row: 1;"), "header spans the full desktop window above navigation");
 assert(css.includes("main, .fuss, .schritte, .rueckzeile { grid-column: 2;"), "content is placed beside navigation in the remaining column");
 assert(css.includes("padding-left: 2rem; padding-right: 2rem"), "content has clear horizontal gutters");
-assert(startCss.includes(".startseite { max-width: none; margin: 0; padding: 0; }"), "no nested centered homepage width");
+assert(startCss.includes(".startseite { max-width: none; margin: 0; padding: 1rem 2rem; }"), "no nested centered homepage width and explicit content gutters");
 assert(!/(?:^|[}\n])\s*(?:body|main|\.kopf|\.startseite)[^{]*\{[^}]*overflow\s*:\s*hidden/s.test(css), "page content is not concealed by hidden overflow");
 assert(nav.includes("aria-label", nav.indexOf("Abgeschlossen")) || nav.includes("LERNFORTSCHRITT.abschlusszeichen"), "navigation renders accessible completion marker");
 assert(start.includes("data-progress-id") && start.includes("LERNFORTSCHRITT.abgeschlossen(u.id)"), "overview topic card uses topic progress id");
