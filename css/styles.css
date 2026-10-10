@@ -20,7 +20,7 @@
 
 * { box-sizing: border-box; }
 
-html { font-size: 18px; }
+html { font-size: 18px; font-size: calc(18px * var(--text-scale, 1)); }
 
 body {
   margin: 0;
@@ -65,6 +65,23 @@ button:focus-visible {
 }
 .kopf h1 { margin: 0.2rem 0; font-size: 1.9rem; }
 .kopf-dauer { margin: 0; opacity: 0.95; }
+
+.rueckzeile {
+  background: #f1f5fa;
+  border-bottom: 1px solid #aebdce;
+  padding: 0.7rem max(1rem, calc((100% - 860px) / 2));
+}
+.zurueck-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.45rem 0.8rem;
+  color: #142c48;
+  font-weight: 700;
+  border-radius: 6px;
+}
+.zurueck-link:hover { background: #e1eaf5; }
+.zurueck-link:focus-visible { outline: 3px solid #0a3d82; outline-offset: 2px; }
 
 /* Schrittnavigation */
 .schritte {
@@ -375,3 +392,40 @@ main:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   .fortschritt-balken { transition: none; }
 }
+
+@media (forced-colors: active) {
+  .hinweis-box, .begriff, .zeile-erklaerung, .quiz-erklaerung,
+  .modul, .unterthema, .lernkarte, .uebung-zeile, .quiz-frage {
+    border: 1px solid CanvasText;
+  }
+  a:focus-visible, button:focus-visible { outline: 3px solid Highlight; }
+}
+
+html[data-theme="dunkel"] {
+  --farbe-hintergrund: #111820; --farbe-flaeche: #1c2733; --farbe-text: #f2f5f8;
+  --farbe-text-leise: #d2dce7; --farbe-akzent: #80b8ff; --farbe-akzent-dunkel: #b5d5ff;
+  --farbe-rahmen: #8293a5; --farbe-ok: #81dfa1; --farbe-ok-flaeche: #203a2b;
+  --farbe-fehler: #ffaaa4; --farbe-fehler-flaeche: #492c2a; --farbe-warn: #ffd08a;
+}
+html[data-theme="kontrast"] {
+  --farbe-hintergrund: #fff; --farbe-flaeche: #fff; --farbe-text: #000; --farbe-text-leise: #222;
+  --farbe-akzent: #003a70; --farbe-akzent-dunkel: #00284d; --farbe-rahmen: #333;
+  --farbe-ok: #075b21; --farbe-ok-flaeche: #e5f5e9; --farbe-fehler: #8a0000;
+  --farbe-fehler-flaeche: #ffe8e8; --farbe-warn: #653700;
+}
+html.mehr-abstand body { line-height: 1.9; }
+html.mehr-abstand p, html.mehr-abstand li, html.mehr-abstand dd { margin-bottom: 1.15em; }
+html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+.leseoptionen, .glossar { max-width: 860px; margin: 1rem auto; padding: 0 1rem; }
+.leseoptionen summary, .glossar-eintrag summary { cursor: pointer; min-height: 44px; padding: 0.5rem 0.7rem; font-weight: 700; }
+.leseoptionen summary { background: #fff; border: 2px solid #53677d; border-radius: 8px; color: #18283a; }
+.leseoptionen-inhalt { display: grid; gap: 0.7rem; padding: 1rem; background: var(--farbe-flaeche); border: 1px solid var(--farbe-rahmen); }
+.leseoptionen-inhalt button, .leseoptionen-inhalt select { min-height: 44px; font: inherit; padding: 0.5rem; }
+.glossar { background: var(--farbe-flaeche); color: var(--farbe-text); border: 1px solid var(--farbe-rahmen); border-radius: var(--radius); padding: 1rem; }
+.glossar h2 { margin-top: 0; }
+.glossar-eintrag { border-top: 1px solid var(--farbe-rahmen); }
+.glossar-eintrag p { padding: 0 0.7rem; }
+
+.fachwort-hinweis { display: inline-block; }
+.fachwort-hinweis summary { cursor: pointer; text-decoration: underline; text-underline-offset: 0.15em; }
+.fachwort-hinweis p { max-width: 28rem; margin: 0.25rem 0; padding: 0.5rem; background: var(--farbe-flaeche); border: 1px solid var(--farbe-rahmen); color: var(--farbe-text); }
