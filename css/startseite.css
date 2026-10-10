@@ -1,52 +1,45 @@
-/* Zusatzgestaltung für die modulare Startseite; Farben/Grundlayout aus styles.css. */
-.startseite { max-width: 896px; }
-.startseite > .gross { margin-bottom: 0.2rem; }
-.jahr {
-  background: var(--farbe-flaeche);
-  border: 1px solid var(--farbe-rahmen);
-  border-radius: var(--radius);
-  box-shadow: var(--schatten);
-  padding: 1.2rem;
-  margin: 1.3rem 0;
-}
-.jahr h2 { margin: 0 0 0.8rem; font-size: 1.35rem; }
-.modul-liste {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-  gap: 0.8rem;
-}
-.modul {
-  border: 2px solid var(--farbe-rahmen);
-  border-radius: var(--radius);
-  min-width: 0;
-  background: #fff;
-}
-.modul-inhalt {
-  color: inherit;
-  min-height: 132px;
-  height: 100%;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  text-decoration: none;
-  border-radius: calc(var(--radius) - 2px);
-}
-.modul a.modul-inhalt:hover { border-color: var(--farbe-akzent); background: #f7faff; }
-.modul a.modul-inhalt:focus-visible { outline: 3px solid #0a3d82; outline-offset: 2px; }
-.modul-lernfeld { color: var(--farbe-akzent-dunkel); font-weight: 700; font-size: 0.88rem; }
-.modul-titel { font-weight: 700; font-size: 1.05rem; line-height: 1.35; }
-.modul-beschreibung { color: var(--farbe-text-leise); font-size: 0.9rem; }
-.modul-status { margin-top: auto; font-size: 0.88rem; font-weight: 700; color: var(--farbe-akzent-dunkel); }
-.modul-gesperrt { background: #edf0f4; color: #46505e; border-color: #c5cbd3; }
-.modul-gesperrt .modul-inhalt { cursor: not-allowed; }
-.modul-gesperrt .modul-status { color: #46505e; }
-.modul-gesperrt .modul-lernfeld { color: #46505e; }
+/* Zusatzgestaltung der Startseite; nutzt die Variablen aus styles.css. */
+.startseite { max-width: 896px; margin: 0 auto; padding: 1rem; }
 
-/* Geplante Unterthemen innerhalb einer Lernfeld-Karte (grau, nicht anklickbar) */
+.jahr { margin: 2rem 0; }
+.jahr h2 { margin-bottom: 0.75rem; }
+
+.modul-liste {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.modul { border-radius: var(--radius); }
+.modul-inhalt {
+  display: flex; flex-direction: column; gap: 0.3rem;
+  height: 100%; box-sizing: border-box;
+  padding: 1rem; border-radius: var(--radius);
+  border: 2px solid var(--farbe-rahmen);
+  background: var(--farbe-flaeche);
+  box-shadow: var(--schatten);
+  color: var(--farbe-text); text-decoration: none;
+}
+.modul-lernfeld { font-size: 0.85rem; font-weight: 600; color: var(--farbe-text-leise); }
+.modul-titel { font-weight: 700; }
+.modul-beschreibung { font-size: 0.95rem; color: var(--farbe-text-leise); }
+.modul-status { margin-top: auto; font-size: 0.9rem; font-weight: 600; }
+
+.modul-verfuegbar .modul-inhalt { border-color: var(--farbe-akzent); }
+.modul-verfuegbar .modul-status { color: var(--farbe-akzent-dunkel); }
+.modul-verfuegbar a.modul-inhalt:hover { background: #eaf1fb; }
+.modul-verfuegbar a.modul-inhalt:focus-visible {
+  outline: 3px solid var(--farbe-akzent-dunkel); outline-offset: 2px;
+}
+
+/* Gesperrt: grau, nicht anklickbar, Bedeutung zusätzlich über Text und Symbol */
+.modul-gesperrt .modul-inhalt {
+  background: #eceff3; border-style: dashed; box-shadow: none;
+  color: #4d5866; cursor: not-allowed;
+}
+.modul-gesperrt .modul-status { color: #4d5866; }
+
+/* Geplante Unterthemen unter einer Lernfeld-Karte (grau, nicht anklickbar) */
 .unterthemen {
   list-style: none; margin: 0.25rem 0; padding: 0;
   display: grid; gap: 0.4rem;
@@ -54,16 +47,13 @@
 .unterthema {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 0.75rem;
   padding: 0.5rem 0.75rem; border-radius: var(--radius);
-  border: 2px dashed #c5cbd3;
-  background: #e3e7ec; color: #46505e; cursor: not-allowed;
+  border: 2px dashed var(--farbe-rahmen);
+  background: #eceff3; color: #4d5866; cursor: not-allowed;
 }
 .unterthema-titel { font-weight: 600; }
-.unterthema .modul-status { margin-top: 0; color: #46505e; }
+.unterthema .modul-status { margin-top: 0; color: #4d5866; }
 
 @media (max-width: 560px) {
-  .jahr { padding: 0.9rem; }
   .modul-liste { grid-template-columns: 1fr; }
-  .modul-inhalt { min-height: 112px; }
 }
-
 .leseoptionen { max-width: 896px; }
