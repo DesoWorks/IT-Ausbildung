@@ -12,14 +12,16 @@
       titel: "1. Ausbildungsjahr",
       module: [
         { id: "computer-grundlagen", titel: "Den Computer kennenlernen",
-          beschreibung: "Einstieg: Computer, Bildschirm, Tastatur, Maus, Netzwerk. Ca. 10 Minuten.",
+          beschreibung: "Einstieg: Computer, Bildschirm, Tastatur, Maus, Netzwerk. Ca. 10 Minuten.", page: "computer-grundlagen",
           status: "verfuegbar", datei: "module/computer-grundlagen.html" },
         { id: "lf1", lernfeld: "Lernfeld 1", titel: "Ausbildungsbetrieb und berufliche Rolle", status: "kommt-bald" },
         { id: "lf2", lernfeld: "Lernfeld 2", titel: "Hardware, Betriebssysteme und Arbeitsplatzgestaltung", status: "kommt-bald" },
         { id: "lf3", lernfeld: "Lernfeld 3", titel: "Netzwerkgrundlagen und Client-Anbindung", status: "kommt-bald",
           unterthemen: [
-            { id: "lf3-ipv4", titel: "IPv4", beschreibung: "Lektion 1: IPv4-Adresse und vier Oktette.",
-              status: "verfuegbar", datei: "module/netzwerkgrundlagen.html" },
+            { id: "lf3-ipv4", titel: "IPv4", beschreibung: "Lektion 1: IPv4-Adresse und vier Oktette.", page: "netzwerkgrundlagen",
+              status: "verfuegbar", datei: "module/netzwerkgrundlagen.html", page: "netzwerkgrundlagen" },
+            { id: "lf3-netzmaske", titel: "Netzmaske und Netz-/Geräteanteil", beschreibung: "Lektion 2: Beispiel 192.168.1.20/24.",
+              status: "verfuegbar", datei: "module/netzmaske.html", page: "netzmaske" },
             { id: "lf3-subnetting", titel: "Subnetting", status: "kommt-bald" }
           ] },
         { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "kommt-bald" },

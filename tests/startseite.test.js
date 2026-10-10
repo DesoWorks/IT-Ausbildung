@@ -30,11 +30,14 @@ assert.strictEqual(daten[1].module.length, 4, "Jahr 2: vier Bereiche");
 assert.strictEqual(daten[2].module.length, 3, "Jahr 3: drei Bereiche");
 
 const lf3 = j1.find(m => m.id === "lf3");
-assert.deepStrictEqual(lf3.unterthemen.map(u => u.titel), ["IPv4", "Subnetting"]);
+assert.deepStrictEqual(lf3.unterthemen.map(u => u.titel), ["IPv4", "Netzmaske und Netz-/Geräteanteil", "Subnetting"]);
 const ipv4 = lf3.unterthemen.find(u => u.id === "lf3-ipv4");
+const netzmaske = lf3.unterthemen.find(u => u.id === "lf3-netzmaske");
 const subnetting = lf3.unterthemen.find(u => u.id === "lf3-subnetting");
 assert(ipv4.status === "verfuegbar" && ipv4.datei === "module/netzwerkgrundlagen.html", "IPv4: verfügbar mit Moduldatei");
 assert(fs.existsSync(path.join(wurzel, ipv4.datei)), "IPv4-Moduldatei existiert");
+assert(netzmaske.status === "verfuegbar" && netzmaske.datei === "module/netzmaske.html", "Netzmaske: verfügbar mit Moduldatei");
+assert(fs.existsSync(path.join(wurzel, netzmaske.datei)), "Netzmasken-Moduldatei existiert");
 assert(subnetting.status === "kommt-bald" && !subnetting.datei, "Subnetting: weiterhin In Kürze, ohne Datei");
 
 const alle = daten.flatMap(j => j.module);

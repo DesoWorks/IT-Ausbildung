@@ -14,6 +14,9 @@
 .svg-punkt { fill: var(--farbe-text); font: 700 48px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
 .svg-label { fill: var(--farbe-text-leise); font: 600 24px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
 .svg-klammer { stroke: var(--farbe-akzent); stroke-width: 3; fill: none; }
+.svg-netz-box { fill: var(--farbe-geplant-flaeche); stroke: var(--farbe-akzent); stroke-width: 3; }
+.svg-host-box { fill: var(--farbe-ok-flaeche); stroke: var(--farbe-ok); stroke-width: 3; }
+.svg-address { fill: var(--farbe-text); font: 700 34px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
 
 .netz-tabelle { width: 100%; border-collapse: collapse; margin: 0.8rem 0; }
 .netz-tabelle caption { text-align: left; font-weight: 700; padding: 0.4rem 0; }

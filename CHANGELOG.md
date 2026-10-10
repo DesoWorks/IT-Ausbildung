@@ -12,3 +12,8 @@ Versionen werden bewusst erst für einen freigegebenen Stand geändert.
 - Gemeinsame responsive Seitennavigation mit Statusmarkierung und Anzeigeoptionen ergänzt.
 - Vollständiges Glossar in eine eigene durchsuchbare Seite verschoben; Rückweg zur vorherigen Lernseite ergänzt.
 - Geplante Navigationseinträge sind als „In Kürze“ gekennzeichnet und nicht anklickbar.
+
+## 0.4.0-alpha.1
+- Geplante Inhalte und Navigation nach Lernfeldern gruppiert; Farbvariablen für geplante Inhalte, dunkle und kontrastreiche Darstellung ergänzt.
+- Lektion 2 zu IPv4-Netzmaske sowie Netz- und Geräteanteil ergänzt; Subnetting bleibt geplant.
+- Zentrale Glossarbegriffe und eigener Lernfortschritt für die Netzmaskenlektion ergänzt.

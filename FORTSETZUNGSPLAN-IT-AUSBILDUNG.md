@@ -174,3 +174,29 @@ Der vorherige Laufbericht meldet als bestanden: automatisierte `startseite.test.
 
 ### PR
 - PR #1 war zum Beginn offen, Basis `main`, Head `ca1b868eb456a6a6b778bd7cd379186aa33dae42`. Änderungen sind noch lokal und müssen nach Abschluss committed und normal gepusht werden; kein Merge oder Veröffentlichung.
+
+
+## Fortsetzung: Lernfeld-Navigation, Dunkelmodus und Netzmaske (10.10.2026)
+
+### Git-/PR-Grundlage
+- Lokaler Branch `prototype/computer-grundlagen`, Start-HEAD `e0cb7ad22e52d53f4f31ebe6919b4d3400f4f83f`; `git fetch origin` erfolgreich; `origin/prototype/computer-grundlagen` und PR #1 meldeten denselben Head. Arbeitsbaum vor Beginn sauber.
+- Kein Merge oder Release vorgenommen.
+
+### Änderungen
+- Geplante Karten/Unterthemen nutzen gemeinsame CSS-Farbwerte für hell, dunkel und hohen Kontrast. Navigation gruppiert Module aus `MODULE_DATEN` nach Ausbildungsjahr und ordnet Themen unter Lernfeldüberschriften; Einstieg „Den Computer kennenlernen“ bleibt separat. Der Sammelbereich „Weitere Themen“ entfällt. Geplante Items sind disabled-Text, kein Link.
+- Anzeige-&-Lesen-Schalter und aktiver Navigationseintrag verwenden modusabhängige Vordergrundfarben; geplante Nummern/Titel/Status bleiben lesbar.
+- Lektion 2 `module/netzmaske.html`: /24, 255.255.255.0, Netz-/Geräteanteil, Netzadresse, Broadcast und 254 nutzbare Adressen; SVG mit Textalternative und Tabelle; wiederholbare Aussagen- und Eingabeübungen mit fachbezogenem Feedback. Subnetting bleibt geplant.
+- Glossar um Netzmaske, Präfixlänge, Netzanteil, Geräteanteil, Netzadresse und Broadcastadresse ergänzt. Lektion nutzt bestehende Anzeigeoptionen, eigener Schlüssel `it-ausbildung.netzmaske.v1`; Abschluss wird nur aus dieser Lektion abgeleitet.
+- Version `0.4.0-alpha.1`, README und Changelog angepasst.
+
+### Tests
+- `node tests/netzmaske.test.js`, `tests/startseite.test.js`, `tests/logic.test.js` (13/13), `tests/navigation-glossar.test.js`, `tests/fortschritt.test.js`, `tests/netzwerk-lektion1.test.js` (14), Syntaxchecks und `git diff --check` bestanden.
+- Headless Chrome-CDP-Prüfung gegen lokale `file://`-App bestanden; Screenshots: `screenshots/uebersicht-dunkel-navigation.png`, `screenshots/netzmaske-uebung-desktop.png`, `screenshots/netzmaske-200-prozent.png`, `screenshots/glossar-dunkel.png`. Übersichtsscreenshot visuell geprüft: Dunkelmodus aktiv, geplante Karten und ihre Beschriftungen sichtbar. Lektion-Screenshot zeigt die neue Seite gerendert.
+- Interaktiv geprüft: drei Jahresgruppen, separater Einstieg, geplante Items ohne Links, Quiz-Falschantwort samt Erklärung und Korrektur, fehlerhafte Netz-/Broadcastwerte mit Feedback, danach richtige Adressen, Menüöffnung und Escape-Schließung.
+- Responsive Prüfung: 320/390 CSS-Pixel zeigen das Menü; Dokumentbreite passt jeweils zum Viewport. Desktop 1440px ohne horizontalen Überlauf. Bei 200% Page-Scale (Logikviewport 720 CSS-Pixel) bleibt Menü sichtbar und Dokumentbreite 705px; Screenshot gespeichert.
+- Kontrastwerte aus den gerenderten Farben, WCAG-Luminanzformel: geplante Fläche/Text 10.07:1; Lernfeldbeschriftung 10.07:1; Anzeige-&-Lesen-Schalter 11.46:1; aktive Navigation 8.71:1. Alle über 4.5:1.
+- Kein Screenreader- oder echter Windows-Doppelklick-Test in dieser Fortsetzung; keine vollständige WCAG-Konformität behauptet.
+
+### Offene Risiken
+- Der Arbeitsbranch hatte vor der Bearbeitung denselben Head wie PR #1. Branch-Head nach den Änderungen ist noch nicht gepusht oder per GitHub bestätigt.
+- Keine echte Windows-Doppelklick- oder Screenreaderprüfung in dieser Fortsetzung. Vor Merge/öffentlicher Freigabe verbleiben diese manuellen Prüfungen.

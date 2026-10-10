@@ -36,10 +36,10 @@
 
 /* Gesperrt: grau, nicht anklickbar, Bedeutung zusätzlich über Text und Symbol */
 .modul-gesperrt .modul-inhalt {
-  background: #eceff3; border-style: dashed; box-shadow: none;
-  color: #4d5866; cursor: not-allowed;
+  background: var(--farbe-geplant-flaeche); border-style: dashed; box-shadow: none;
+  color: var(--farbe-geplant-tekst); cursor: not-allowed;
 }
-.modul-gesperrt .modul-status { color: #4d5866; }
+.modul-gesperrt .modul-status, .modul-gesperrt .modul-lernfeld { color: var(--farbe-geplant-tekst); }
 
 /* Geplante Unterthemen unter einer Lernfeld-Karte (grau, nicht anklickbar) */
 .unterthemen {
@@ -50,10 +50,10 @@
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 0.75rem;
   padding: 0.5rem 0.75rem; border-radius: var(--radius);
   border: 2px dashed var(--farbe-rahmen);
-  background: #eceff3; color: #4d5866; cursor: not-allowed;
+  background: var(--farbe-geplant-flaeche); color: var(--farbe-geplant-tekst); cursor: not-allowed;
 }
 .unterthema-titel { font-weight: 600; }
-.unterthema .modul-status { margin-top: 0; color: #4d5866; }
+.unterthema .modul-status { margin-top: 0; color: var(--farbe-geplant-tekst); }
 
 @media (max-width: 560px) {
   .modul-liste { grid-template-columns: 1fr; }

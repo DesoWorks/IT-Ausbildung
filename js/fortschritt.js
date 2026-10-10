@@ -4,7 +4,8 @@
   "use strict";
   var SCHLUESSEL = {
     "computer-grundlagen": "it-ausbildung.computer-grundlagen.v1",
-    "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1"
+    "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
+    "lf3-netzmaske": "it-ausbildung.netzmaske.v1"
   };
 
   function abgeschlossen(id) {
@@ -33,6 +34,11 @@
         var correct = { anzahl: 1, wertebereich: 2, gueltig: 0 };
         return !!state.abschlussGesehen && !!state.eigeneGueltig &&
           questions.every(function (q) { return state.antworten && state.antworten[q] === correct[q]; });
+      }
+      if (id === "lf3-netzmaske") {
+        var answers = state.answers || {};
+        return !!state.finish && !!state.network && !!state.broadcast &&
+          answers[0] === true && answers[1] === true && answers[2] === true;
       }
     } catch (e) { return false; }
     return false;
