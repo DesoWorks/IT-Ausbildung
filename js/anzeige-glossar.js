@@ -67,31 +67,15 @@
     });
     panel.appendChild(reset);
     box.appendChild(panel);
-    var header = document.querySelector("header");
-    if (header) header.insertAdjacentElement("afterend", box); else document.body.insertBefore(box, document.body.firstChild);
-  }
-
-  function addGlossary() {
-    var items = window.GLOSSAR || [];
-    if (!items.length) return;
-    var section = document.createElement("section"); section.className = "glossar";
-    section.setAttribute("aria-labelledby", "glossar-titel");
-    var h = document.createElement("h2"); h.id = "glossar-titel"; h.textContent = "Glossar"; section.appendChild(h);
-    var note = document.createElement("p"); note.textContent = "Wähle einen Fachbegriff, um die Erklärung zu öffnen. Du kannst sie mit Maus, Tastatur oder Touch bedienen."; section.appendChild(note);
-    items.forEach(function (item) {
-      var details = document.createElement("details"); details.className = "glossar-eintrag";
-      var term = document.createElement("summary"); term.textContent = item.begriff; details.appendChild(term);
-      var explanation = document.createElement("p"); explanation.textContent = item.erklaerung; details.appendChild(explanation);
-      section.appendChild(details);
-    });
-    var footer = document.querySelector("footer");
-    if (footer) footer.parentNode.insertBefore(section, footer);
+    var target = document.getElementById("nav-options");
+    if (target) target.appendChild(box);
+    else { var header = document.querySelector("header"); if (header) header.insertAdjacentElement("afterend", box); else document.body.insertBefore(box, document.body.firstChild); }
   }
 
   function init() {
     if (window.matchMedia && window.matchMedia("(prefers-contrast: more)").matches && current.theme === "hell") current.theme = "kontrast";
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("bewegung-reduziert");
-    apply(); addControl(); addGlossary();
+    apply(); addControl();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

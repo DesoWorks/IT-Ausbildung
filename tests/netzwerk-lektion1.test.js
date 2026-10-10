@@ -124,8 +124,8 @@ t("Schritte, Weiter-Knöpfe und Schrittknöpfe passen zusammen", () => {
 });
 
 t("Einbindung: Glossar, Anzeigeoptionen, Version, Rücklink, Sprunglink", () => {
-  ["../js/glossar-daten.js", "../js/anzeige-glossar.js", "../js/version.js", "../js/netzwerk-lektion1.js",
-   "../css/styles.css", "../css/netzwerk.css", "../index.html", "#hauptinhalt"].forEach(p =>
+  ["../js/module-daten.js", "../js/navigation.js", "../js/glossar-daten.js", "../js/anzeige-glossar.js", "../js/version.js", "../js/netzwerk-lektion1.js",
+   "../css/styles.css", "../css/netzwerk.css", "data-page=\"netzwerkgrundlagen\"", "#hauptinhalt"].forEach(p =>
     assert(html.includes(p), "fehlt: " + p));
   assert(html.indexOf("glossar-daten.js") < html.indexOf("anzeige-glossar.js"), "Reihenfolge Glossar vor Anzeige");
   ["../js/glossar-daten.js", "../js/anzeige-glossar.js", "../js/version.js", "../js/netzwerk-lektion1.js",

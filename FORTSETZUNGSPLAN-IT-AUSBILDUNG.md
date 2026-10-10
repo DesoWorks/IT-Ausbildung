@@ -96,3 +96,35 @@ Der vorherige Laufbericht meldet als bestanden: automatisierte `startseite.test.
 - Interaktive Bedienungsprüfung in isoliertem Headless Chrome gegen den lokalen Entwicklungsserver: gestartet, Schritte Erklärung → Schaubild → Übung bedient, Glossarbegriffe geladen, falsche Quizantwort mit Erklärung gewählt und danach korrigiert, ungültige `192.168.1.256` und gültige `192.168.1.20` im Formular geprüft (jeweils korrekte Rückmeldung und Oktettzerlegung), Formular per Enter bedient, Rücklink zur Themenübersicht geprüft.
 - Responsive Prüfung durch Chromium bei 320, 390 und 1280 CSS-Pixeln: Dokumentbreite 320, 390 bzw. 1265 CSS-Pixel; kein horizontaler Seitenüberlauf.
 - Prüfgrenzen: Diese interaktive Prüfung wurde von uns per lokalem Chrome DevTools Protocol (CDP) durchgeführt, nicht über den integrierten Station-Browser. Die integrierte Testnavigation verweigerte die lokale URL trotz aktivem Server; GLaDOS stoppte richtliniengemäß nach diesem verweigerten Zugriff. Kein Screenreader-Test und keine echte manuelle Windows-Dateidoppelklickprüfung in dieser Fortsetzung. Kein Nachweis vollständiger WCAG-2.2-AA-Konformität.
+
+
+## Navigation/Glossar-Überarbeitung (2026-10-10)
+
+### Umgesetzt
+- `js/navigation.js` erzeugt eine gemeinsame responsiv angeordnete Navigation; die Jahreskategorie ist nur auf Modulseiten standardmäßig geöffnet.
+- Anzeigeoptionen werden in den Navigationsbereich gesetzt; Speicherungsschlüssel und Modul-Fortschrittsschlüssel wurden nicht geändert.
+- Vollständige Glossarliste aus `js/anzeige-glossar.js` entfernt; eigenständige `glossar.html` verwendet `js/glossar-daten.js` und bietet Suche.
+- Glossar-Rückweg nutzt eine erlaubte Liste von Dateinamen, sonst Rückfall auf Übersicht.
+- Startseite und beide Lernmodule binden Navigation ein; kurze Fachwortdetails und vorhandene Lernschritte bleiben erhalten.
+- Version `0.3.0-alpha.1`, Changelog, README und dieser Fortsetzungsplan aktualisiert.
+
+### Geprüft
+- `node --check` für `js/navigation.js`, `js/glossar-seite.js`, `js/anzeige-glossar.js` erfolgreich.
+- `node tests/startseite.test.js` erfolgreich; `node tests/logic.test.js`: 13/13; `node tests/netzwerk-lektion1.test.js`: 14 Prüfungen.
+- `git diff --check` erfolgreich.
+- Google Chrome headless kann die lokale `file://`-Startseite laden; HTML-Ausgabe enthielt Anzeigeoptionen und gerenderte Übersicht. Das belegt Laden/DOM-Ausgabe, keine Interaktion.
+
+### Noch offen / Grenzen
+- Keine echte Bedienungsprüfung der Menüinteraktion, Tastatur-Escape, Suchfilter oder Glossar-Rückkehr abgeschlossen. GLaDOS' Browser-/Dateizugriff auf diesen Projektordner war isoliert; lokaler Testbrowser wies den Servernachweis zurück, Loopback im öffentlichen Browser ist gesperrt. Ein Versuch, Playwright-Skript auszuführen, scheiterte, weil das Node-Paket `playwright` hier nicht installiert ist. Keine Bibliothek nachinstalliert.
+- Schmale Bildschirmansicht/200%-Zoom nicht interaktiv oder visuell verifiziert.
+- Persistenz über Navigation wurde nicht getestet; lokale Speicherschlüssel sind unverändert.
+- Screenreader und vorgesehener Windows-Doppelklick-Start nicht geprüft.
+- Der zuvor bestätigte PR-Head `e9f094bcafef46cbae47d6d4756be39a31c90a0d` stimmt mit lokalem Ausgangscommit überein; PR wird erst nach Abschluss von Tests normal aktualisiert. Kein Merge/Release.
+
+
+### Nachtrag: interaktive Bedienungsprüfung erfolgreich (2026-10-10)
+- Mit separatem Headless Chrome über CDP gegen die echte lokale `file://`-App ausgeführt, ohne Browser-Schutzfunktionen abzuschalten.
+- Tatsächlich per Browser-Interaktion geprüft: Menütaste per Aktivierung geöffnet, Escape geschlossen; Glossar-Link aus Übersicht mit `von=index.html`; alle 11 Glossareinträge sichtbar; Suche nach „Oktett“ filtert; Rückkehr zur Übersicht; Glossaraufruf und Rückweg von Netzwerkmodul.
+- 320 CSS-Pixel: `scrollWidth=320`, `clientWidth=320`; die Ausbildungsjahr-Kategorie ist beim Modul kontextbezogen geöffnet. Bei 200% Page-Scale blieb der Menüknopf sichtbar und Dokumentbreite passte in die Viewportbreite.
+- Persistenz: Glossar- und Anzeigepräferenzspeicher werden von den jeweiligen Skripten weiter unterstützt. In dieser Browserprüfung wurde nicht belastbar bestätigt, dass zuvor bestehender Übungsfortschritt nach Navigation/Reload wiederhergestellt wird; daher bleibt diese Persistenz-E2E-Prüfung teilweise offen.
+- Screenreader und physischer Windows-Doppelklick bleiben offen. Kein vollständiger WCAG-Konformitätsanspruch.

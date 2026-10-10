@@ -21,9 +21,9 @@ Die Themenübersicht (`index.html`) zeigt drei Ausbildungsjahre. Verfügbare Ein
 
 ## Anzeige und Glossar
 
-Auf Übersicht und Lernmodul gibt es den Zugang **Anzeige & Lesen**. Dort lassen sich Textgröße, Zeilen-/Absatzabstand, helle/dunkle/kontrastreiche Darstellung und ruhige Ansicht ändern oder auf Standard zurücksetzen. Die Wahl wird nach Möglichkeit lokal im Browser gespeichert.
+**Anzeige & Lesen** und **Wörter & Begriffe** stehen in der gemeinsamen Seitennavigation. Das vollständige Glossar mit Suche liegt auf `glossar.html`; kurze Fachworterklärungen bleiben direkt am Lerninhalt. Die Anzeigeoptionen bieten Textgröße, Zeilen-/Absatzabstand, helle/dunkle/kontrastreiche Darstellung und ruhige Ansicht. Die Wahl wird nach Möglichkeit lokal im Browser gespeichert.
 
-Das zentrale Glossar liegt in `js/glossar-daten.js`; dieselben Fachworterklärungen erscheinen auf Übersicht und Lernmodulen. Erklärungen sind jederzeit dauerhaft aufklappbar, nicht als zeitlich begrenzte Tooltipps umgesetzt. Wichtige Begriffe werden zusätzlich im Lerntext erklärt.
+Das Glossar liegt zentral in `js/glossar-daten.js`; die gemeinsame Navigation wird von `js/navigation.js` erzeugt. Beide funktionieren offline ohne externe Bibliotheken oder Netzwerkzugriffe.
 
 ## Entwickleranleitung
 
@@ -56,3 +56,6 @@ Die Übersicht orientiert sich am KMK-Rahmenlehrplan und an der Ausbildungsordnu
 - FIAusbV: https://www.gesetze-im-internet.de/fiausbv/
 
 Der lokale Rahmenlehrplan-PDF-Abgleich ist noch offen. Die Lernfeldnummern und Zuordnungen sind daher nicht als unabhängig gegen das Original-PDF verifiziert zu verstehen.
+
+## Versionshinweis
+Aktuelle zentrale Version: **0.3.0-alpha.1** (`js/version.js`). Änderungen stehen in `CHANGELOG.md`.
