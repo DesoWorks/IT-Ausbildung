@@ -1,5 +1,7 @@
 /* Zusatzgestaltung der Startseite; nutzt die Variablen aus styles.css. */
-.startseite { max-width: 896px; margin: 0 auto; padding: 1rem; }
+/* main stellt bereits den Inhaltsabstand bereit; keine zweite zentrierte
+   Maximalbreite innerhalb von main (sonst rücken Titel und Karten ein). */
+.startseite { max-width: none; margin: 0; padding: 1rem 2rem; }
 
 .jahr { margin: 2rem 0; }
 .jahr h2 { margin-bottom: 0.75rem; }

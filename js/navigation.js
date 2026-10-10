@@ -8,7 +8,7 @@
   var registry = [
     { id: "overview", label: "Themenübersicht", href: base + "index.html", page: "overview" },
     { id: "computer-grundlagen", label: "Den Computer kennenlernen", href: base + "module/computer-grundlagen.html", page: "computer-grundlagen", status: "verfuegbar", jahr: 1 },
-    { id: "netzwerkgrundlagen", label: "Netzwerkgrundlagen · IPv4", href: base + "module/netzwerkgrundlagen.html", page: "netzwerkgrundlagen", status: "verfuegbar", jahr: 1 },
+    { id: "lf3-ipv4", label: "Netzwerkgrundlagen · IPv4", href: base + "module/netzwerkgrundlagen.html", page: "netzwerkgrundlagen", status: "verfuegbar", jahr: 1 },
     { id: "glossary", label: "Wörter & Begriffe", href: base + "glossar.html", page: "glossary" }
   ];
   var host = document.createElement("div");
@@ -22,8 +22,16 @@
   function item(entry) {
     var li = document.createElement("li");
     var a = document.createElement("a"); a.textContent = entry.label; a.href = entry.href;
+    a.setAttribute("data-progress-id", entry.id);
     if (entry.page === page) a.setAttribute("aria-current", "page");
+    aktualisiereMarkierung(a, entry.id);
     li.appendChild(a); return li;
+  }
+  function aktualisiereMarkierung(a, id) {
+    var mark = a.querySelector(".abschlusszeichen");
+    var fertig = window.LERNFORTSCHRITT && window.LERNFORTSCHRITT.abgeschlossen(id);
+    if (fertig && !mark) a.appendChild(window.LERNFORTSCHRITT.abschlusszeichen());
+    else if (!fertig && mark) mark.remove();
   }
   list.appendChild(item(registry[0]));
   var activeYear = page === "computer-grundlagen" || page === "netzwerkgrundlagen" ? 1 : null;
@@ -43,10 +51,6 @@
     (yearData.module || []).forEach(function (m) {
       if (m.id === "computer-grundlagen") return;
       if (m.id === "lf3") {
-        var net = document.createElement("li");
-        var netLink = document.createElement("a"); netLink.href = base + "module/netzwerkgrundlagen.html"; netLink.textContent = "Netzwerkgrundlagen · IPv4";
-        if (page === "netzwerkgrundlagen") netLink.setAttribute("aria-current", "page");
-        net.appendChild(netLink); sub.appendChild(net);
         (m.unterthemen || []).filter(function (u) { return u.status !== "verfuegbar"; }).forEach(function (u) {
           var plannedSub = document.createElement("li"); plannedSub.className = "nav-planned"; plannedSub.setAttribute("aria-disabled", "true"); plannedSub.textContent = u.titel + " — In Kürze"; plannedList.appendChild(plannedSub);
         });
@@ -56,13 +60,6 @@
       li.textContent = (m.lernfeld ? m.lernfeld + " · " : "") + m.titel + " — In Kürze"; plannedList.appendChild(li);
     });
     plannedGroup.appendChild(plannedList); planned.appendChild(plannedGroup); sub.appendChild(planned);
-    (yearData.module || []).forEach(function (m) {
-      if (m.id !== "lf3") return;
-      (m.unterthemen || []).filter(function (u) { return u.status !== "verfuegbar"; }).forEach(function (u) {
-        var plannedSub = document.createElement("li"); plannedSub.className = "nav-planned"; plannedSub.setAttribute("aria-disabled", "true"); plannedSub.textContent = u.titel + " — In Kürze"; plannedList.appendChild(plannedSub);
-      });
-    });
-    plannedGroup.appendChild(plannedList); planned.appendChild(plannedGroup);
     details.appendChild(sub); group.appendChild(details); list.appendChild(group);
   }
   list.appendChild(item(registry[3])); nav.appendChild(list);
@@ -83,4 +80,9 @@
   nav.addEventListener("click", function (event) { if (event.target.closest("a")) closeMenu(); });
   var glossaryLink = nav.querySelector('a[href*="glossar.html"]');
   if (glossaryLink) glossaryLink.href += "?von=" + encodeURIComponent(location.pathname.slice(location.pathname.lastIndexOf("/") + 1) || "index.html");
+  window.addEventListener("lernfortschritt-geaendert", function () {
+    nav.querySelectorAll("[data-progress-id]").forEach(function (a) {
+      aktualisiereMarkierung(a, a.getAttribute("data-progress-id"));
+    });
+  });
 })();

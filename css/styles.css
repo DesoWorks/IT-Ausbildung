@@ -451,16 +451,28 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 .glossar-liste .glossar-eintrag { border-top: 1px solid var(--farbe-rahmen); }
 #glossar-suche { display: block; width: 100%; max-width: 36rem; min-height: 48px; margin-top: .4rem; padding: .6rem; font: inherit; color: var(--farbe-text); background: var(--farbe-flaeche); border: 2px solid var(--farbe-rahmen); border-radius: 6px; }
 @media (min-width: 1100px) {
-  body { padding-left: 18rem; }
-  .site-navigation { position: fixed; inset: 0 auto 0 0; width: 17rem; overflow-y: auto; border-right: 1px solid var(--farbe-rahmen); background: var(--farbe-flaeche); }
-  .site-nav { border: 0; }
+  /* Vollbreiter Header oben; Navigation und Inhalt teilen erst darunter die Breite. */
+  body { display: grid; grid-template-columns: 17rem minmax(0, 1fr); align-content: start; }
+  .kopf { grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: 17rem minmax(0, 1fr); }
+  .kopf-inhalt { grid-column: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
+  .site-navigation { grid-column: 1; grid-row: 2 / span 3; position: relative; width: 17rem; min-width: 0; align-self: stretch; border-right: 1px solid var(--farbe-rahmen); background: var(--farbe-flaeche); }
+  .site-nav { position: sticky; top: 0; max-height: 100vh; overflow-y: auto; border: 0; }
   .site-nav > ul { display: block; }
   .site-nav > ul > li { margin: .2rem 0; }
   .site-nav-title, .nav-options { padding: 0 .4rem; }
   .site-nav details ul { padding-left: .5rem; }
-  .kopf-inhalt, main, .fuss, .schritte { max-width: 960px; }
+  main, .fuss, .schritte, .rueckzeile { grid-column: 2; width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 2rem; padding-right: 2rem; }
+  main { grid-row: auto; }
+  .fuss { text-align: left; }
 }
 @media (max-width: 1099px) {
+  body { display: flex; flex-direction: column; }
+  .kopf { order: 1; }
+  .site-navigation { order: 2; }
+  .rueckzeile { order: 3; }
+  main { order: 4; width: 100%; }
+  .schritte { order: 4; }
+  .fuss { order: 5; }
   .nav-toggle { display: block; width: calc(100% - 2rem); max-width: 40rem; min-height: 48px; margin: .5rem auto; font: inherit; font-weight: 700; color: var(--farbe-text); background: var(--farbe-flaeche); border: 2px solid var(--farbe-rahmen); border-radius: 8px; }
   .site-nav { display: none; border-top: 1px solid var(--farbe-rahmen); }
   .site-nav.is-open { display: block; }
@@ -468,3 +480,14 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
   .site-nav > ul > li { margin: .2rem 0; }
   .site-nav details ul { padding-left: .75rem; }
 }
+
+/* Lange Texte bei schmaler Ansicht und Vergrößerung vollständig umbrechen. */
+.kopf h1, .kopf-dauer, .site-nav a, .nav-planned, .modul-titel,
+.modul-beschreibung, .unterthema-titel { overflow-wrap: anywhere; }
+.modul-titelzeile { display: flex; align-items: flex-start; gap: .5rem; }
+.abschlusszeichen {
+  display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center;
+  width: 1.35rem; height: 1.35rem; border-radius: 50%;
+  background: #176b32; color: #fff; font-size: .82rem; line-height: 1;
+}
+.site-nav .abschlusszeichen { margin-left: auto; }

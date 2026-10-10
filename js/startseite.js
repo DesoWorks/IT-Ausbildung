@@ -32,7 +32,12 @@
     }
 
     if (m.lernfeld) inhalt.appendChild(erzeuge("span", "modul-lernfeld", m.lernfeld));
-    inhalt.appendChild(erzeuge("span", "modul-titel", m.titel));
+    var titel = erzeuge("span", "modul-titelzeile");
+    titel.appendChild(erzeuge("span", "modul-titel", m.titel));
+    if (window.LERNFORTSCHRITT && window.LERNFORTSCHRITT.abgeschlossen(m.id)) {
+      titel.appendChild(window.LERNFORTSCHRITT.abschlusszeichen());
+    }
+    inhalt.appendChild(titel);
     if (m.beschreibung) inhalt.appendChild(erzeuge("span", "modul-beschreibung", m.beschreibung));
     if (m.unterthemen && m.unterthemen.length) {
       var unterliste = erzeuge("ul", "unterthemen");
@@ -42,8 +47,14 @@
         var uli = erzeuge("li", uVerfuegbar ? "unterthema unterthema-verfuegbar" : "unterthema unterthema-gesperrt");
         if (uVerfuegbar) {
           var link = erzeuge("a", "unterthema-link");
+          link.setAttribute("data-progress-id", u.id);
           link.href = u.datei;
-          link.appendChild(erzeuge("span", "unterthema-titel", u.titel));
+          var untertitel = erzeuge("span", "modul-titelzeile");
+          untertitel.appendChild(erzeuge("span", "unterthema-titel", u.titel));
+          if (window.LERNFORTSCHRITT && window.LERNFORTSCHRITT.abgeschlossen(u.id)) {
+            untertitel.appendChild(window.LERNFORTSCHRITT.abschlusszeichen());
+          }
+          link.appendChild(untertitel);
           if (u.beschreibung) link.appendChild(erzeuge("span", "modul-beschreibung", u.beschreibung));
           link.appendChild(erzeuge("span", "modul-status", "▸ Jetzt lernen"));
           uli.appendChild(link);

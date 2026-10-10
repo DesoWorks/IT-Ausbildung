@@ -293,6 +293,7 @@
     setzeUebungZurueck();
     aktualisiereAbschluss();
     zeigeSchritt("erklaerung");
+    if (global.LERNFORTSCHRITT) global.LERNFORTSCHRITT.benachrichtigen();
   }
 
   function init() {

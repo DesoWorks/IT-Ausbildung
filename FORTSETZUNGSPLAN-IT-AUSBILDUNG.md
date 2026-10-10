@@ -128,3 +128,49 @@ Der vorherige Laufbericht meldet als bestanden: automatisierte `startseite.test.
 - 320 CSS-Pixel: `scrollWidth=320`, `clientWidth=320`; die Ausbildungsjahr-Kategorie ist beim Modul kontextbezogen geöffnet. Bei 200% Page-Scale blieb der Menüknopf sichtbar und Dokumentbreite passte in die Viewportbreite.
 - Persistenz: Glossar- und Anzeigepräferenzspeicher werden von den jeweiligen Skripten weiter unterstützt. In dieser Browserprüfung wurde nicht belastbar bestätigt, dass zuvor bestehender Übungsfortschritt nach Navigation/Reload wiederhergestellt wird; daher bleibt diese Persistenz-E2E-Prüfung teilweise offen.
 - Screenreader und physischer Windows-Doppelklick bleiben offen. Kein vollständiger WCAG-Konformitätsanspruch.
+
+
+## Layout- und Fortschrittskorrektur (10.10.2026)
+
+### Änderungen
+- Gemeinsames Desktoplayout: Seitenleiste 17rem und Body-Einzug 17rem statt 18rem; Header, Main, Lernschritte, Footer und Startseiteninhalt starten links im verfügbaren Inhaltsbereich und verwenden keine zusätzliche zentrierte schmale Startseitenbreite.
+- Lange Kopf-, Navigations- und Kartentexte dürfen mit `overflow-wrap:anywhere` umbrechen. Kein `overflow:hidden` wurde für Seiten-/Inhaltsbereiche ergänzt; vorhandenes Clipping der kleinen Fortschrittsleiste dient ausschließlich der gerundeten Balkenform.
+- `js/fortschritt.js` leitet den Abschluss ausschließlich aus bestehenden Lernschlüsseln ab. Für Computer-Grundlagen verlangt es gelesene Karten, richtige Übungsantworten, sämtliche richtigen Quizantworten und aufgerufenen Abschluss. IPv4 erfordert richtige Quizantworten, gültige eigene Adresse und gesehenen Abschluss. Kein LF3-/Gesamtmodulstatus wird daraus abgeleitet.
+- Abschluss-Haken mit zugänglicher Beschriftung „Abgeschlossen“ werden beim zugehörigen Thema in der Übersicht und Navigation gerendert. Fortschrittsreset sendet ein lokales Aktualisierungsereignis; Rückkehr/Neuladen liest denselben bestehenden Speicher erneut. Keine separate Abschlussmarkierung wird gespeichert.
+- Navigationseinträge nutzen Thema-ID `lf3-ipv4`; Subnetting und weitere geplante Inhalte erhalten weiterhin keinen Link oder Abschlussstatus.
+
+### Verifikation
+- `node tests/fortschritt.test.js`: bestanden. Prüft Layoutabstände/kein Content-Overflow-Verstecken, echte Zustandsableitung für beide vorhanden Themen, falsches Quiz, Reset-Äquivalent (entfernter Speicher), keine LF3-Markierung, zugängliche Beschriftung.
+- `node tests/startseite.test.js`: bestanden.
+- `node tests/logic.test.js`: 13/13 bestanden.
+- `node tests/navigation-glossar.test.js`: bestanden.
+- `node tests/netzwerk-lektion1.test.js`: 14 bestanden.
+- Syntaxprüfungen für `fortschritt.js`, `startseite.js`, `navigation.js`, `app.js`, `netzwerk-lektion1.js` sowie `git diff --check`: bestanden.
+- Interaktive/responsive Browserprüfung bleibt offen. Der kontrollierte Testbrowser wies den lokalen Server als nicht dem Agenten zugehörig zurück; `browser.navigate` akzeptiert keine `file://`-URLs. Chrome ist installiert, aber Playwright/Puppeteer/Selenium sind nicht vorhanden. Ein lokaler HTTP-Server wurde gestartet, nicht als Testbrowser-Prüfung ausgegeben.
+- Noch zu prüfen: tatsächliche Browserdarstellung bei Desktop, 320/390 CSS-Pixeln und 200% Zoom für Übersicht, beide Module und Glossar; Tastaturbedienung, Fortschrittsanzeige in gerendertem UI, Reset/Aktualisierung interaktiv. Keine Screenreader-Prüfung in diesem Schritt. Kein Konformitätsanspruch.
+
+### Arbeitsstand
+- Änderungen liegen lokal im bestehenden Branch `prototype/computer-grundlagen`; kein Commit, Push, Merge oder Release in diesem Auftrag ausgeführt.
+
+
+## Layoutkorrektur und Abschlussstatus (2026-10-10)
+
+### Änderungen
+- Desktoplayout in `css/styles.css` auf ein echtes Zweispalten-Grid umgestellt: Header liegt in erster Reihe über beide Spalten; Navigation beginnt erst darunter in eigener 17rem-Spalte; Hauptinhalt steht rechts mit 2rem Seitenabstand und bis 1200px begrenzter Breite. Auf schmalen Ansichten wird die Reihenfolge per Flexlayout auf Header, Menüschalter, Rückzeile, Inhalt gestellt.
+- Startseiten-Einzug wurde so angepasst, dass Titel, Einführung und Karten innerhalb desselben gepolsterten Inhaltsbereichs bündig beginnen. Lange Titel dürfen vollständig umbrechen.
+- Abschluss-Haken bleiben aus denselben gespeicherten Lernzuständen abgeleitet. Karten und Navigation aktualisieren über das Fortschrittsereignis; Wiederholung bleibt möglich.
+
+### Automatisierte Prüfungen
+- `node tests/fortschritt.test.js`, `node tests/startseite.test.js`, `node tests/logic.test.js` (13/13), `node tests/navigation-glossar.test.js`, `node tests/netzwerk-lektion1.test.js` (14) bestanden.
+- `node --check` für `navigation.js`, `startseite.js`, `fortschritt.js`, plus `git diff --check`: bestanden.
+- Bestehendes `tests/browser-navigation-cdp.js` lief erfolgreich gegen die lokale file://-App in isoliertem Chrome: Menü per Klick öffnen und per Escape schließen; Glossarsuche und Rückwege; 320px ohne Overflow; Menü auf 200% Page Scale sichtbar.
+
+### Visuelle Prüfung
+- Mit Headless Chrome tatsächlich Screenshots erzeugt und visuell geprüft: Desktop 1440×1100 für Übersicht und Netzwerkmodul; Screenshots `screenshots/uebersicht-desktop.png` und `screenshots/lernmodul-desktop.png`.
+- Zusätzlich Viewport-Screenshots bei 320px und 390px für Übersicht, beide Module und Glossar unter `screenshots/viewport-tests/`; visuelle Stichprobe zeigte Menüschalter sichtbar, gut lesbare Umbrüche und keine Überlagerung. Weitere Inhalte laufen regulär unterhalb des Screenshot-Ausschnitts weiter.
+- Aufnahmen mit 200% Geräteskalierung für dieselben Seiten erstellt; Mediengröße der gerenderten Screenshots 1440×1800 (Logikviewport 720×900). Keine vollständige manuelle Interaktion bei jeder einzelnen Seite/Skalierung vorgenommen.
+- Fortschrittslogik per Unit-Assertions geprüft; dedizierter ausführbarer CDP-Test zur dynamischen Karten-/Nav-Hakenanzeige, Speicherreset und Reload war nicht erfolgreich (WebSocket-Prüfskript lief in Timeout). Daher ist die visuelle E2E-Bestätigung genau dieser Statuswechsel noch offen; Quelllogik und automatisierte Ableitungstests bestanden.
+- Screenreader nicht geprüft; kein WCAG-2.2-AA-Konformitätsanspruch.
+
+### PR
+- PR #1 war zum Beginn offen, Basis `main`, Head `ca1b868eb456a6a6b778bd7cd379186aa33dae42`. Änderungen sind noch lokal und müssen nach Abschluss committed und normal gepusht werden; kein Merge oder Veröffentlichung.

@@ -471,6 +471,7 @@
     aktualisiereFortschritt();
     aktualisiereAbschluss();
     zeigeSchritt("start");
+    if (window.LERNFORTSCHRITT) window.LERNFORTSCHRITT.benachrichtigen();
   }
 
   /* ---------- Verdrahtung ---------- */
