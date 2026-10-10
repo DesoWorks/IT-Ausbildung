@@ -45,8 +45,6 @@
 .modul-gesperrt .modul-inhalt { cursor: not-allowed; }
 .modul-gesperrt .modul-status { color: #46505e; }
 .modul-gesperrt .modul-lernfeld { color: #46505e; }
-.zurueck-link { color: #fff; }
-.zurueck-link:focus-visible { outline-color: #fff; }
 
 /* Geplante Unterthemen innerhalb einer Lernfeld-Karte (grau, nicht anklickbar) */
 .unterthemen {
@@ -67,3 +65,5 @@
   .modul-liste { grid-template-columns: 1fr; }
   .modul-inhalt { min-height: 112px; }
 }
+
+.leseoptionen { max-width: 896px; }
