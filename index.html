@@ -3,144 +3,45 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lerneinheit für angehende Fachinformatikerinnen und Fachinformatiker: Den Computer kennenlernen.">
-  <title>Den Computer kennenlernen</title>
+  <meta name="description" content="IT-Ausbildung: Lernmodule für Fachinformatiker/-innen für Systemintegration, gegliedert nach den drei Ausbildungsjahren.">
+  <title>IT-Ausbildung – Themenübersicht</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/startseite.css">
 </head>
 <body>
   <a class="skip-link" href="#hauptinhalt">Direkt zum Inhalt springen</a>
 
   <header class="kopf">
     <div class="kopf-inhalt">
-      <p class="kopf-marke">IT-Ausbildung · Lerneinheit</p>
-      <h1>Den Computer kennenlernen</h1>
-      <p class="kopf-dauer">Dauer: ungefähr 10 Minuten</p>
+      <p class="kopf-marke">IT-Ausbildung</p>
+      <h1>Themenübersicht</h1>
+      <p class="kopf-dauer">Fachinformatiker/-in für Systemintegration · drei Ausbildungsjahre</p>
     </div>
   </header>
 
-  <nav class="schritte" aria-label="Lernschritte">
-    <ol id="schritt-liste">
-      <li><button type="button" class="schritt-knopf" data-ziel="start" aria-current="true">1 · Start</button></li>
-      <li><button type="button" class="schritt-knopf" data-ziel="karten">2 · Lernkarten</button></li>
-      <li><button type="button" class="schritt-knopf" data-ziel="uebung">3 · Zuordnung</button></li>
-      <li><button type="button" class="schritt-knopf" data-ziel="quiz">4 · Quiz</button></li>
-      <li><button type="button" class="schritt-knopf" data-ziel="abschluss">5 · Abschluss</button></li>
-    </ol>
-    <div class="fortschritt" aria-hidden="false">
-      <div class="fortschritt-leiste">
-        <div class="fortschritt-balken" id="fortschritt-balken" style="width:0%"></div>
-      </div>
-      <p class="fortschritt-text" id="fortschritt-text" aria-live="polite">Fortschritt: 0 %</p>
+  <main id="hauptinhalt" tabindex="-1" class="startseite">
+    <p class="gross">
+      Wähle ein Modul. Verfügbare Module sind anklickbar, geplante Module
+      sind grau markiert und erscheinen „In Kürze“.
+    </p>
+    <p class="klein">
+      Die Gliederung orientiert sich an den Lernfeldern des Rahmenlehrplans und ist
+      keine verbindliche Monatsplanung.
+    </p>
+
+    <div id="jahre">
+      <noscript>
+        <p>Die Übersicht benötigt JavaScript. Direkt zur verfügbaren Einheit:
+          <a href="module/computer-grundlagen.html">Den Computer kennenlernen</a>.</p>
+      </noscript>
     </div>
-  </nav>
-
-  <main id="hauptinhalt" tabindex="-1">
-
-    <!-- Schritt 1: Start -->
-    <section id="start" class="abschnitt" aria-labelledby="start-titel">
-      <h2 id="start-titel">Herzlich willkommen</h2>
-      <p class="gross">
-        Schön, dass du da bist. In dieser kurzen Einheit lernst du die wichtigsten
-        Teile eines Computers kennen – ganz ohne Vorwissen.
-      </p>
-      <div class="hinweis-box">
-        <p class="hinweis-titel"><span class="symbol" aria-hidden="true">◎</span> Dein Lernziel</p>
-        <p>
-          Am Ende kannst du die fünf Grundbausteine eines Computer-Arbeitsplatzes benennen
-          und erklären, welcher Teil zur <strong>Eingabe</strong>, zur <strong>Ausgabe</strong>
-          oder zur <strong>Verarbeitung</strong> gehört.
-        </p>
-      </div>
-      <p>
-        Du brauchst nichts zu installieren und machst nichts kaputt. Klicke dich in Ruhe durch,
-        wiederhole, was du möchtest, und mache Pausen, wann immer du magst.
-      </p>
-      <div class="knopf-reihe">
-        <button type="button" class="knopf knopf-haupt" data-weiter="karten">Los geht es</button>
-      </div>
-    </section>
-
-    <!-- Schritt 2: Lernkarten -->
-    <section id="karten" class="abschnitt" aria-labelledby="karten-titel" hidden>
-      <h2 id="karten-titel">Fünf Lernkarten</h2>
-      <p>Tippe oder klicke auf eine Karte, um die Erklärung zu öffnen. Schon gelesene Karten werden markiert.</p>
-      <div class="karten-raster" id="karten-raster" role="list"></div>
-      <div class="knopf-reihe">
-        <button type="button" class="knopf" data-weiter="start">Zurück</button>
-        <button type="button" class="knopf knopf-haupt" data-weiter="uebung">Weiter zur Übung</button>
-      </div>
-    </section>
-
-    <!-- Schritt 3: Zuordnungsübung -->
-    <section id="uebung" class="abschnitt" aria-labelledby="uebung-titel" hidden>
-      <h2 id="uebung-titel">Zuordnungsübung: Eingabe, Ausgabe oder Verarbeitung?</h2>
-      <p>
-        Jedes Gerät hat eine Aufgabe. <strong>Eingabe</strong> heißt: Du gibst dem Computer etwas.
-        <strong>Ausgabe</strong> heißt: Der Computer zeigt dir etwas. <strong>Verarbeitung</strong>
-        heißt: Der Computer denkt und rechnet im Inneren.
-      </p>
-      <p>Wähle für jedes Gerät mit den Knöpfen die passende Aufgabe. Du bekommst sofort eine Rückmeldung.</p>
-      <div id="uebung-liste" class="uebung-liste"></div>
-      <p class="rueckmeldung" id="uebung-ergebnis" aria-live="polite"></p>
-      <div class="knopf-reihe">
-        <button type="button" class="knopf" data-weiter="karten">Zurück</button>
-        <button type="button" class="knopf" id="uebung-reset">Übung neu starten</button>
-        <button type="button" class="knopf knopf-haupt" data-weiter="quiz">Weiter zum Quiz</button>
-      </div>
-    </section>
-
-    <!-- Schritt 4: Quiz -->
-    <section id="quiz" class="abschnitt" aria-labelledby="quiz-titel" hidden>
-      <h2 id="quiz-titel">Quiz: Fünf Fragen</h2>
-      <p>
-        Drei Antworten je Frage, nur eine ist richtig. Zu jeder Antwort bekommst du eine Erklärung.
-        Es gibt keinen Zeitdruck – du kannst jede Frage neu versuchen.
-      </p>
-      <div id="quiz-liste" class="quiz-liste"></div>
-      <p class="rueckmeldung" id="quiz-ergebnis" aria-live="polite"></p>
-      <div class="knopf-reihe">
-        <button type="button" class="knopf" data-weiter="uebung">Zurück</button>
-        <button type="button" class="knopf" id="quiz-reset">Quiz neu starten</button>
-        <button type="button" class="knopf knopf-haupt" data-weiter="abschluss">Zum Abschluss</button>
-      </div>
-    </section>
-
-    <!-- Schritt 5: Abschluss -->
-    <section id="abschluss" class="abschnitt" aria-labelledby="abschluss-titel" hidden>
-      <h2 id="abschluss-titel">Geschafft – das hast du gelernt</h2>
-      <ul class="zusammenfassung">
-        <li><span class="symbol" aria-hidden="true">▸</span> Ein <strong>Computer</strong> verarbeitet Daten – er ist das rechnende Herz.</li>
-        <li><span class="symbol" aria-hidden="true">▸</span> Der <strong>Bildschirm</strong> gibt Bilder und Texte aus (Ausgabe).</li>
-        <li><span class="symbol" aria-hidden="true">▸</span> Die <strong>Tastatur</strong> dient zur Eingabe von Text und Befehlen.</li>
-        <li><span class="symbol" aria-hidden="true">▸</span> <strong>Maus oder Touchpad</strong> steuern den Zeiger – ebenfalls Eingabe.</li>
-        <li><span class="symbol" aria-hidden="true">▸</span> Das <strong>Netzwerk</strong> verbindet Computer miteinander und mit dem Internet.</li>
-      </ul>
-      <div class="hinweis-box">
-        <p class="hinweis-titel"><span class="symbol" aria-hidden="true">◎</span> Kleine Beobachtungsaufgabe am Ausbildungsplatz</p>
-        <p>
-          Schau dir in Ruhe deinen Arbeitsplatz an. Suche und benenne für dich:
-          den Computer, den Bildschirm, die Tastatur, die Maus oder das Touchpad und die
-          Netzwerkbuchse oder das WLAN-Zeichen. Überlege bei jedem Teil:
-          Ist das Eingabe, Ausgabe oder Verarbeitung?
-        </p>
-        <p class="klein">
-          Nur schauen und benennen – bitte nichts installieren, nichts umstecken
-          und keine Einstellungen verändern.
-        </p>
-      </div>
-      <p class="rueckmeldung" id="abschluss-status" aria-live="polite"></p>
-      <div class="knopf-reihe">
-        <button type="button" class="knopf" data-weiter="quiz">Zurück</button>
-        <button type="button" class="knopf knopf-warn" id="reset-alles">Fortschritt zurücksetzen</button>
-      </div>
-    </section>
-
   </main>
 
   <footer class="fuss">
-    <p>Lerneinheit „Den Computer kennenlernen" · Läuft vollständig lokal in deinem Browser · Keine Anmeldung, keine persönlichen Daten.</p>
+    <p>IT-Ausbildung · Läuft vollständig lokal in deinem Browser · Keine Anmeldung, keine persönlichen Daten.</p>
   </footer>
 
-  <script src="js/app.js"></script>
+  <script src="js/module-daten.js"></script>
+  <script src="js/startseite.js"></script>
 </body>
 </html>
