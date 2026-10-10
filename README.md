@@ -28,11 +28,28 @@ Sie setzt keine Vorkenntnisse voraus und dauert ungefähr 10 Minuten.
 ## Dateien
 
 ```
-index.html        Die Lern-App (Einstiegsseite)
-css/styles.css    Gestaltung
-js/app.js         Ablauf: Lernkarten, Übung, Quiz, Fortschritt
-start.sh          Startet einen lokalen Webserver mit Python 3
+index.html                      Modulare Startseite (Themenübersicht)
+module/computer-grundlagen.html Lerneinheit „Den Computer kennenlernen"
+css/styles.css                  Gestaltung der Lerneinheit
+css/startseite.css              Zusatzgestaltung der Startseite
+js/module-daten.js              Modulliste (Daten) für die Startseite
+js/startseite.js                Baut die Startseite aus der Modulliste
+js/app.js                       Ablauf: Lernkarten, Übung, Quiz, Fortschritt
+start.sh                        Startet einen lokalen Webserver mit Python 3
 ```
+
+## Startseite und Module ergänzen
+
+Die Startseite (`index.html`) zeigt die drei Ausbildungsjahre. Welche Module
+es gibt, steht allein in `js/module-daten.js`. Verfügbare Module sind
+anklickbar; alle anderen erscheinen grau, nicht anklickbar und mit „In Kürze“.
+
+Ein Modul ergänzen: HTML-Datei unter `module/` anlegen, den Eintrag in
+`js/module-daten.js` auf `status: "verfuegbar"` stellen und `datei` setzen.
+Weitere Änderungen am Code sind dafür nicht nötig.
+
+Geplant, aber noch nicht umgesetzt: u. a. „Netzwerktechnik: IPv4 und
+Subnetting“.
 
 ## Starten
 
@@ -112,3 +129,22 @@ Die App speichert ausschließlich den Lernfortschritt lokal im Browser
 (über `localStorage`). Es werden keine Daten an einen Server gesendet und
 keine personenbezogenen Daten erhoben. Über die Schaltfläche
 „Fortschritt zurücksetzen" kannst du alle gespeicherten Daten jederzeit löschen.
+
+## Quellen und Hinweis zur Lernstruktur
+
+Die Gliederung der Startseite orientiert sich an den Lernfeldern des
+Rahmenlehrplans. Sie ist eine **Orientierung und kein verbindlicher
+Monatsplan**; Zuordnung zu den Ausbildungsjahren und Reihenfolge können je
+Berufsschule und Betrieb abweichen.
+
+- KMK, Downloadbereich Rahmenlehrpläne:
+  https://www.kmk.org/service/servicebereich-berufliche-schulen/downloadbereich-rahmenlehrplaene.html
+- Ausbildungsordnung (FIAusbV), Verordnung über die Berufsausbildung zum
+  Fachinformatiker und zur Fachinformatikerin:
+  https://www.gesetze-im-internet.de/fiausbv/
+  (Fachrichtung Systemintegration: §§ 18–25; Ausbildungsrahmenplan in der Anlage)
+
+**Prüfstand der Quellen:** Die FIAusbV-Seite wurde abgerufen und die
+Fachrichtung Systemintegration bestätigt. Die Lernfeld-Nummern und -Titel in
+`js/module-daten.js` sind **noch nicht** gegen den Originalrahmenlehrplan
+(PDF der KMK) abgeglichen und müssen dort verifiziert werden.
