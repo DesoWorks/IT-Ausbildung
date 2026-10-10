@@ -35,6 +35,8 @@ css/startseite.css              Zusatzgestaltung der Startseite
 js/module-daten.js              Modulliste (Daten) für die Startseite
 js/startseite.js                Baut die Startseite aus der Modulliste
 js/app.js                       Ablauf: Lernkarten, Übung, Quiz, Fortschritt
+tests/logic.test.js             Logiktest der Lerneinheit (DOM-Mock)
+tests/startseite.test.js        Datentest der Modulliste
 start.sh                        Startet einen lokalen Webserver mit Python 3
 ```
 
@@ -48,8 +50,15 @@ Ein Modul ergänzen: HTML-Datei unter `module/` anlegen, den Eintrag in
 `js/module-daten.js` auf `status: "verfuegbar"` stellen und `datei` setzen.
 Weitere Änderungen am Code sind dafür nicht nötig.
 
-Geplant, aber noch nicht umgesetzt: u. a. „Netzwerktechnik: IPv4 und
-Subnetting“.
+Geplant, aber noch nicht umgesetzt: „IPv4“ und „Subnetting“. Sie erscheinen
+als graue Unterthemen „In Kürze“ innerhalb der Netzwerk-Karte (Lernfeld 3),
+nicht als eigene Karten. Dafür gibt es das optionale Feld `unterthemen` im
+Moduleintrag.
+
+Die Bereichstitel der Startseite sind verständliche Titel; die Nummern
+(Lernfeld …) verweisen auf die offiziellen Lernfelder.
+
+Datentest: `node tests/startseite.test.js`
 
 ## Starten
 
