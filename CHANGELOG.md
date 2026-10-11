@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.3-alpha.1
+- Finale Orbital-Werkstatt-Wortmarke für helle Flächen und lokales Favicon-Paket (SVG, PNG, ICO) zentral auf allen Plattformseiten integriert.
+- Logo bleibt ein zugänglicher Link zur Themenübersicht; relative Assets funktionieren auch bei direktem file://-Aufruf von Unterseiten.
+
 ## 0.8.2-alpha.1
 - DesoWorks-Logo als unverändertes, lokales SVG im gemeinsamen Header ergänzt; Logo führt barrierearm zur Themenübersicht.
 - Header responsive für Übersicht, Lernmodule, Glossar und Werkzeuge angepasst; helle Logofläche erhält die unveränderten dunklen Logobestandteile.

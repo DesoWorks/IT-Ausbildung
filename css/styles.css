@@ -65,12 +65,12 @@ button:focus-visible {
 .kopf-inhalt { max-width: 860px; margin: 0 auto; min-width: 0; }
 .kopf-logo {
   display: inline-flex; align-items: center; justify-content: center;
-  flex: 0 1 18rem; width: min(18rem, 100%); min-width: 0;
-  padding: .55rem .75rem; background: #f4f7fa;
+  flex: 0 1 18.5rem; width: min(18.5rem, 100%); min-width: 0;
+  padding: .65rem .8rem; background: #f4f7fa;
   border: 1px solid rgba(16, 32, 45, .22); border-radius: .6rem;
   text-decoration: none;
 }
-.kopf-logo img { display: block; width: 100%; height: auto; }
+.kopf-logo img { display: block; width: 100%; height: auto; aspect-ratio: 708 / 114; object-fit: contain; }
 .kopf-logo:focus-visible { outline: 3px solid #ffd166; outline-offset: 4px; }
 .kopf-marke {
   margin: 0;
