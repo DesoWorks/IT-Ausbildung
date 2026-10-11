@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.1-alpha.1
+- Werkzeuge aus der Themenübersicht und Lernfeld-Lektionen entfernt; zentrale Kataloge unterscheiden Lektionen und Werkzeuge.
+- „Ruhige Ansicht“ präzisiert zu „Bewegungen reduzieren“ mit Checkbox, Erklärung und Beachtung der Systemeinstellung.
+- Zahlensystemrechner zeigt die Summe gesetzter Bits und erklärt 0b/0x.
+- Einheiten-Tabelle hat keine unmittelbar doppelte sichtbare Überschrift; sehr kleine positive Werte werden nicht als 0 dargestellt.
+- IPv4-Rechenweg erklärt Netzmaskenbits, UND/ODER und stellt große Adresszahlen einheitlich dar.
+
 ## 0.2.0-alpha.1
 - Rücknavigation, Versionsanzeige, Anzeigeoptionen und zentrales Glossar ergänzt.
 - Etappe 1/2 der Überarbeitung für lokalen Start und zugänglichere Lernführung vorbereitet.

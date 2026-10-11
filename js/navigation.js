@@ -30,6 +30,14 @@
     if (fertig && !mark) a.appendChild(window.LERNFORTSCHRITT.abschlusszeichen());
     else if (!fertig && mark) mark.remove();
   }
+  function markGroupSummary(summary, details, label) {
+    function update() {
+      summary.setAttribute("aria-expanded", String(details.open));
+      summary.setAttribute("aria-label", label + (details.open ? " – schließen" : " – öffnen"));
+    }
+    update();
+    details.addEventListener("toggle", update);
+  }
   list.appendChild(item({ id: "overview", label: "Themenübersicht", href: base + "index.html", page: "overview" }));
   var entryData = (window.MODULE_EINSTIEG || []).find(function (m) { return m.id === "computer-grundlagen"; }) || (modules[0] && modules[0].module || []).find(function (m) { return m.id === "computer-grundlagen"; }) || { id: "computer-grundlagen", titel: "Den Computer kennenlernen", status: "verfuegbar", datei: "module/computer-grundlagen.html", page: "computer-grundlagen" };
   var entryItem = item({ id: entryData.id, label: entryData.titel, href: base + entryData.datei, page: entryData.page });
@@ -41,7 +49,7 @@
     details.open = (yearData.module || []).some(function (m) {
       return m.page === page || (m.unterthemen || []).some(function (u) { return u.page === page; });
     });
-    var summary = document.createElement("summary"); summary.textContent = yearData.titel; details.appendChild(summary);
+    var summary = document.createElement("summary"); summary.textContent = yearData.titel; markGroupSummary(summary, details, yearData.titel); details.appendChild(summary);
     var sub = document.createElement("ul");
     (yearData.module || []).forEach(function (m) {
       if (m.id === "computer-grundlagen") return;
@@ -51,6 +59,7 @@
       field.setAttribute("data-learning-field", m.id);
       var heading = document.createElement("summary"); heading.className = "nav-learning-field";
       heading.textContent = (m.lernfeld ? m.lernfeld + " · " : "") + m.titel;
+      markGroupSummary(heading, field, heading.textContent);
       field.appendChild(heading);
       if (m.unterthemen && m.unterthemen.length) {
         var topics = document.createElement("ul");
@@ -77,7 +86,7 @@
   var toolsGroup = document.createElement("li"); toolsGroup.className = "nav-category nav-tools";
   var toolsDetails = document.createElement("details");
   toolsDetails.open = tools.some(function (tool) { return tool.page === page; });
-  var toolsSummary = document.createElement("summary"); toolsSummary.textContent = "Tools & Nachschlagen"; toolsDetails.appendChild(toolsSummary);
+  var toolsSummary = document.createElement("summary"); toolsSummary.textContent = "Tools & Nachschlagen"; markGroupSummary(toolsSummary, toolsDetails, toolsSummary.textContent); toolsDetails.appendChild(toolsSummary);
   var toolsList = document.createElement("ul");
   tools.forEach(function (tool) {
     var toolEntry = item({ id: tool.id, label: tool.titel, href: base + tool.datei, page: tool.page });

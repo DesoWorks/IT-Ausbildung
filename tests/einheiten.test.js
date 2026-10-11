@@ -36,6 +36,7 @@ const w = c("5", "GB", "GiB").steps.join("\n");
 assert(w.includes("5 × 8.000.000.000 = 40.000.000.000 bit") && w.includes("8.589.934.592") && w.includes("4,656613 GiB"), w);
 // kleine Werte
 assert.equal(c("1", "bit", "TiB").result.tiny, true);
+assert.match(c("1", "bit", "TiB").line, /weniger als 0,000001/);
 assert.equal(c("0", "GB", "MB").result.text, "0");
 // Validierung
 for (const bad of ["", "   ", "abc", "-5", "+5", "1e3", "1,2,3", "1.2.3", ",5", "5,", "1234567890123456"]) {
@@ -52,6 +53,7 @@ assert.equal(e.unit("GiB").bits, 8n * 1073741824n);
 for (const s of ["navigation.js", "anzeige-glossar.js", "glossar-daten.js", "einheiten.js", "module-daten.js"]) assert(html.includes(s), s);
 assert(html.includes('data-page="einheiten"') && html.includes("skip-link") && html.includes('lang="de"'));
 assert(html.includes('for="eh-eingabe"') && html.includes('for="eh-von"') && html.includes('for="eh-nach"') && html.includes('role="alert"') && html.includes('aria-live="polite"'));
+assert(!html.includes('<h2 id="eh-uebersicht">Einheiten im Überblick</h2>'), "keine unmittelbar doppelte sichtbare Tabellenüberschrift");
 assert(js.includes('addEventListener("input", clearResult)') && js.includes('addEventListener("change", clearResult)'), "stale result wird gelöscht");
 assert(css.includes("var(--farbe-") && !/#[0-9a-f]{3,6}\b/i.test(css), "nur gemeinsame Farbvariablen");
 const data = fs.readFileSync(path.join(root, "js/module-daten.js"), "utf8");

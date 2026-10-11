@@ -14,6 +14,8 @@
 .ip-binary { line-height:2; word-break:normal; }
 .ip-netzbits { background:var(--farbe-hinweis-flaeche); color:var(--farbe-akzent-dunkel); font-weight:700; }
 .ip-geraetebits { background:var(--farbe-ok-flaeche); color:var(--farbe-ok); font-weight:700; }
+.ip-netzbits::after { content:"N"; display:inline-block; min-width:.8em; font:700 .62em/1.2 sans-serif; vertical-align:top; text-align:center; }
+.ip-geraetebits::after { content:"G"; display:inline-block; min-width:.8em; font:700 .62em/1.2 sans-serif; vertical-align:top; text-align:center; }
 .ip-binary-figure { padding:.8rem; border:1px solid var(--farbe-rahmen); border-radius:var(--radius); overflow-wrap:anywhere; }
 .ip-binary-figure figcaption { font-weight:700; }
 .ip-steps { padding-left:1.5rem; }

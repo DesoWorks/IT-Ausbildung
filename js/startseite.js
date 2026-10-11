@@ -40,9 +40,10 @@
     inhalt.appendChild(titel);
     if (m.beschreibung) inhalt.appendChild(erzeuge("span", "modul-beschreibung", m.beschreibung));
     if (m.unterthemen && m.unterthemen.length) {
+      var lernlektionen = m.unterthemen.filter(function (u) { return u.typ !== "werkzeug"; });
       var unterliste = erzeuge("ul", "unterthemen");
-      unterliste.setAttribute("aria-label", "Geplante Unterthemen: " + m.titel);
-      m.unterthemen.forEach(function (u) {
+      unterliste.setAttribute("aria-label", "Lernlektionen zu " + m.titel);
+      lernlektionen.forEach(function (u) {
         var uVerfuegbar = u.status === "verfuegbar" && u.datei;
         var uli = erzeuge("li", uVerfuegbar ? "unterthema unterthema-verfuegbar" : "unterthema unterthema-gesperrt");
         if (uVerfuegbar) {
@@ -103,7 +104,7 @@
       abschnitt.appendChild(h);
 
       var liste = erzeuge("ul", "modul-liste");
-      jahr.module.forEach(function (m) { liste.appendChild(baueModul(m)); });
+      jahr.module.filter(function (m) { return m.typ !== "werkzeug"; }).forEach(function (m) { liste.appendChild(baueModul(m)); });
       abschnitt.appendChild(liste);
       ziel.appendChild(abschnitt);
     });

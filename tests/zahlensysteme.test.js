@@ -9,9 +9,12 @@ const z = ctx.module.exports;
 
 // Umrechnung
 const r = z.convert("192", 10);
+assert.equal(r.bitSum, "128 + 64 = 192");
 assert.equal(r.ok, true); assert.equal(r.results.dec, "192"); assert.equal(r.results.bin, "1100 0000"); assert.equal(r.results.hex, "0xC0");
 assert.equal(z.convert("1100 0000", 2).value, 192); assert.equal(z.convert("0b11000000", 2).value, 192);
 assert.equal(z.convert("c0", 16).value, 192); assert.equal(z.convert("0xFF", 16).value, 255); assert.equal(z.convert("0", 10).results.bin, "0000 0000");
+assert.equal(z.convert("0", 10).bitSum, "Kein Bit gesetzt; Summe: 0");
+assert.equal(z.convert("256", 10).bitSum, "256 = 256");
 assert.equal(z.convert("4294967295", 10).results.hex, "0xFFFFFFFF"); assert.equal(z.convert("256", 10).results.bin, "0000 0001 0000 0000");
 // Validierung
 for (const [t, b] of [["", 10], ["  ", 2], ["12", 2], ["xyz", 16], ["-5", 10], ["1.5", 10], ["4294967296", 10], ["1" + "0".repeat(32), 2], ["FFFFFFFFF", 16], ["0x", 16], ["2", 2], ["G", 16]]) {
@@ -32,6 +35,7 @@ assert(z.steps(0, 10)[0].includes("0 : 2 = 0 Rest 0"));
 for (const s of ["navigation.js", "anzeige-glossar.js", "glossar-daten.js", "zahlensysteme.js", "module-daten.js"]) assert(html.includes(s), s);
 assert(html.includes('data-page="zahlensysteme"') && html.includes("skip-link") && html.includes('lang="de"'));
 assert(html.includes('for="zs-eingabe"') && html.includes('for="zs-system"') && html.includes('role="alert"') && html.includes('aria-live="polite"'));
+assert(js.includes("0b kennzeichnet eine Binärzahl; 0x kennzeichnet eine Hexadezimalzahl."), "Vorsilben erklärt");
 assert(js.includes('addEventListener("input", clearResult)') && js.includes('addEventListener("change", clearResult)'), "stale result wird gelöscht");
 assert(css.includes("var(--farbe-") && !/#[0-9a-f]{3,6}\b/i.test(css), "nur gemeinsame Farbvariablen");
 const data = fs.readFileSync(path.join(root, "js/module-daten.js"), "utf8");

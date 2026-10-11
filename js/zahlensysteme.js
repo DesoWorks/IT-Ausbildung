@@ -67,13 +67,18 @@
     return lines;
   }
 
+  function bitSum(value) {
+    var set = placeTable(value).filter(function (row) { return row.bit === "1"; }).map(function (row) { return row.weight; });
+    return set.length ? set.join(" + ") + " = " + value : "Kein Bit gesetzt; Summe: 0";
+  }
+
   function convert(text, base) {
     var p = parse(text, base);
     if (!p.ok) return p;
-    return { ok: true, value: p.value, results: all(p.value), table: placeTable(p.value), steps: steps(p.value, base), base: base };
+    return { ok: true, value: p.value, results: all(p.value), table: placeTable(p.value), bitSum: bitSum(p.value), steps: steps(p.value, base), base: base };
   }
 
-  var api = { parse: parse, convert: convert, placeTable: placeTable, steps: steps, groupBinary: groupBinary, hex: hex, width: width, max: MAX, names: NAMES };
+  var api = { parse: parse, convert: convert, placeTable: placeTable, bitSum: bitSum, steps: steps, groupBinary: groupBinary, hex: hex, width: width, max: MAX, names: NAMES };
   global.ZAHLENSYSTEME = api;
 
   if (typeof global.document === "undefined") { if (typeof module !== "undefined" && module.exports) module.exports = api; return; }
@@ -114,6 +119,8 @@
     out.appendChild(dl);
     out.appendChild(make("h3", "", "Stellenwerte (Binär, " + res.results.width + " Bit)"));
     out.appendChild(renderTable(res.table));
+    out.appendChild(make("p", "zs-bit-summe", "Summe der gesetzten Bits: " + res.bitSum));
+    out.appendChild(make("p", "klein", "0b kennzeichnet eine Binärzahl; 0x kennzeichnet eine Hexadezimalzahl."));
     out.appendChild(make("h3", "", "Rechenweg (von " + NAMES[res.base] + ")"));
     var ol = make("ol", "zs-weg"); res.steps.forEach(function (l) { ol.appendChild(make("li", "", l)); }); out.appendChild(ol);
     out.hidden = false;

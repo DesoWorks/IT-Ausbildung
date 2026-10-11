@@ -29,14 +29,16 @@ assert.strictEqual(einstieg.length, 1, "eigener Einstiegsbereich");
 assert.strictEqual(einstieg[0].id, "computer-grundlagen", "Computer-Grundlagen bleibt eigener Einstieg");
 assert(!daten.some(j => j.module.some(m => m.id === "computer-grundlagen")), "Einstieg nicht im Ausbildungsjahr doppelt");
 assert(fs.readFileSync(path.join(wurzel, "js/startseite.js"), "utf8").includes('erzeuge("section", "jahr einstieg")'), "Startseite rendert Einstieg zuerst");
+const startseitenScript = fs.readFileSync(path.join(wurzel, "js/startseite.js"), "utf8");
+assert(startseitenScript.includes('m.typ !== "werkzeug"'), "Startseite schließt typisierte Werkzeuge defensiv aus");
 const lernfelder = j1.filter(m => m.lernfeld);
 assert.deepStrictEqual(lernfelder.map(m => [m.lernfeld, m.titel]), erwartetJahr1, "Jahr-1-Titel wörtlich");
 assert.strictEqual(daten[1].module.length, 4, "Jahr 2: vier Bereiche");
 assert.strictEqual(daten[2].module.length, 3, "Jahr 3: drei Bereiche");
 
 const lf3 = j1.find(m => m.id === "lf3");
-assert.deepStrictEqual(lf3.unterthemen.map(u => u.titel), ["IPv4", "Netzmaske und Netz-/Geräteanteil", "Werkzeug: Zahlensystemrechner", "Werkzeug: Bit-/Byte- und Einheitenrechner", "Werkzeug: IPv4-Subnetzrechner", "Subnetting: /24 in zwei /25-Netze teilen"]);
-const zahlensysteme = lf3.unterthemen.find(u => u.id === "lf3-zahlensysteme");
+assert.deepStrictEqual(lf3.unterthemen.map(u => u.titel), ["IPv4", "Netzmaske und Netz-/Geräteanteil", "Subnetting: /24 in zwei /25-Netze teilen"]);
+const zahlensysteme = global.MODULE_TOOLS.find(u => u.id === "lf3-zahlensysteme");
 assert(zahlensysteme.status === "verfuegbar" && zahlensysteme.datei === "module/zahlensysteme.html", "Zahlensystemrechner: verfügbar mit Moduldatei");
 assert(fs.existsSync(path.join(wurzel, zahlensysteme.datei)), "Zahlensystem-Moduldatei existiert");
 const ipv4 = lf3.unterthemen.find(u => u.id === "lf3-ipv4");
@@ -50,6 +52,9 @@ assert(subnetting.status === "verfuegbar" && subnetting.datei === "module/subnet
 assert(fs.existsSync(path.join(wurzel, subnetting.datei)), "Subnetting-Moduldatei existiert");
 
 const alle = daten.flatMap(j => j.module);
+assert.equal(global.MODULE_TOOLS.length, 3, "alle drei Werkzeuge bleiben im zentralen Werkzeugkatalog");
+assert(global.MODULE_TOOLS.every(t => t.typ === "werkzeug" && t.datei), "Tools typisiert und mit Zielseiten");
+assert(!lf3.unterthemen.some(u => global.MODULE_TOOLS.some(t => t.id === u.id)), "Werkzeuge erscheinen nicht in den Lernlektionen");
 const alleVerfuegbar = alle.concat(einstieg);
 assert(alleVerfuegbar.some(m => m.id === "computer-grundlagen"), "vorhandenes Modul bleibt im Einstieg verfügbar");
 assert(!alle.some(m => /^ipv4|^subnet/i.test(m.titel)), "IPv4/Subnetting keine eigene Lernfeldkarte");

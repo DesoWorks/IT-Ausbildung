@@ -435,6 +435,8 @@ html[data-theme="kontrast"] {
 html.mehr-abstand body { line-height: 1.9; }
 html.mehr-abstand p, html.mehr-abstand li, html.mehr-abstand dd { margin-bottom: 1.15em; }
 html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+.bewegung-label { display: flex; align-items: center; gap: .6rem; font-weight: 700; }
+.bewegung-label input { width: 1.25rem; height: 1.25rem; accent-color: var(--farbe-akzent); }
 .leseoptionen, .glossar { max-width: 860px; margin: 1rem auto; padding: 0 1rem; }
 .leseoptionen summary, .glossar-eintrag summary { cursor: pointer; min-height: 44px; padding: 0.5rem 0.7rem; font-weight: 700; }
 .leseoptionen summary { background: var(--farbe-kontroll-flaeche); border: 2px solid var(--farbe-rahmen); border-radius: 8px; color: var(--farbe-kontroll-text); }
@@ -462,6 +464,9 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 .site-nav .nav-tools { border-top: 1px solid var(--farbe-rahmen); margin-top: .8rem !important; padding-top: .4rem; }
 .site-nav details li a { min-height: 40px; }
 .site-nav summary { cursor: pointer; }
+.site-nav summary::after { content: "▸ öffnen"; margin-left: auto; font-size: .78em; color: var(--farbe-text-leise); }
+.site-nav details[open] > summary::after { content: "▾ schließen"; }
+.site-nav summary[aria-expanded="true"]::after { content: "▾ schließen"; }
 .nav-planned { padding: .4rem .75rem; color: var(--farbe-geplant-tekst); background: var(--farbe-geplant-flaeche); border-radius: 6px; }
 .nav-category { border-top: 1px solid var(--farbe-rahmen); margin-top: .8rem !important; padding-top: .4rem; }
 .nav-category > details > summary { font-weight: 700; }

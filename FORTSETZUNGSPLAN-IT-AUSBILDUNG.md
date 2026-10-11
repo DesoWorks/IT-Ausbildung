@@ -421,3 +421,35 @@ Keine Codeänderung, kein Commit/Push/Merge oder Release in dieser Vorbereitungs
 - Primärquelle: RFC 3021 §2.1 weist beide /31-Adressen auf einem Punkt-zu-Punkt-Link als Hostadressen aus: https://www.rfc-editor.org/rfc/rfc3021 . RFC 4632 (CIDR) und RFC 791 (IPv4) bleiben Referenzen: https://www.rfc-editor.org/rfc/rfc4632 ; https://www.rfc-editor.org/rfc/rfc791 .
 - Vollständige Projekt-Tests bestanden: sämtliche `tests/*.test.js`, alle `js/*.js` Syntaxchecks, `git diff --check`.
 - Grenzen: kein Screenreader-Test; 200-%-echter Browser-/Textzoom wurde nicht geprüft (Page-Scale-Emulation ist nicht gleichwertig). Tastatur wurde im Formular per Tab und Enter geprüft; keine vollständige assistive-Technik-Abnahme. Farbvarianten visuell erfasst; dies ist keine WCAG-Konformitätsbestätigung.
+
+
+## Korrekturpaket Übersicht, Anzeigeoption und Rechnertexte (2026-10-11)
+
+### Ausgangslage
+- Branch `prototype/computer-grundlagen`, Start-HEAD `981edbc9649b31e9e57a6e25ed0e5bd88b9b9029`; `git fetch origin` erfolgreich und Remote-Head gleich. Arbeitsbaum sauber; PR #1 offen.
+- Kein aktiver Umsetzungsrun erkannt. Die gelesenen Historieneinträge aus `team_subagents` gehören anderen Aufgaben; kein Jarvis-Lauf für dieses Paket gestartet.
+- Reproduzierbare Katalogursache: drei Tool-IDs waren doppelt vorhanden – einmal in `MODULE_TOOLS` und nochmals als LF3-Unterthemen. `startseite.js` gab alle Unterthemen aus und hängte Abschlussstatus an Links. Damit entstanden Toolkacheln und mögliche Tool-Häkchen.
+- „Ruhige Ansicht“ setzte `animation:none`, `transition:none` und `scroll-behavior:auto`; im vorhandenen CSS ist tatsächlich eine Fortschrittsanimation vorhanden. Das Bedienelement war ein Button mit `aria-pressed`, ohne getrennte An/Aus-Beschriftung und ohne direkte Funktionsbeschreibung.
+- Zahlensystemseite zeigte Stellenwerttabelle, aber keine separate dynamische Summe gesetzter Bits; Erklärungen der Präfixe waren nicht direkt am Ergebnis.
+- Einheiten-Seite hatte eine sichtbare H2 und Tabellen-Caption mit demselben Wortlaut. Formatter bewahrt positive Werte kleiner als 0,000001 als Schwellenwerttext; das Ergebnis benutzt eine Näherungsmarke. Neue Fehlermeldung im Ergebnis erklärt nun ausdrücklich, dass der positive Wert kleiner als der Grenzwert ist.
+- IPv4-Rechner gab Gesamtadresszahl/Schritt teils ungegruppiert aus und erklärte nicht, dass Netzbits/ Gerätebits die binäre Netzmaske beschreiben. Die Tabellen-Nutzadresszahl war nur teilweise gruppiert. Die Farbdarstellung der Eingabeadresse benötigte eine textliche, farbunabhängige Zuordnung.
+
+### Änderungen
+- Werkzeuge typisiert mit `typ: "werkzeug"`, nur noch im zentralen Werkzeugkatalog. LF3 enthält in Reihenfolge IPv4, Netzmaske, Subnetting. Startseite filtert typisierte Werkzeuge zusätzlich defensiv aus den Lektionen. Tool-Dateien/Navigation bleiben erhalten; Tool-Kacheln erhalten dadurch keine Fortschrittsmarkierung.
+- Gemeinsame Navigation ergänzt sichtbare „öffnen/schließen“-Hinweise; native Details/Summary-Bedienbarkeit bleibt erhalten.
+- Anzeigeoption heißt nun „Bewegungen reduzieren“, ist eine beschriftete Checkbox mit direkter Erklärung. `prefers-reduced-motion` wird angewendet, auf Änderungen reagiert und in der Checkbox wird weiterhin die eigene gespeicherte Auswahl angezeigt. Vorhandener localStorage-Schlüssel bleibt unverändert; Speicherung bleibt try/catch-geschützt.
+- Zahlensystemrechner liefert die Summe aktivierter Stellenwerte (inklusive Nullfall) und erklärt 0b/0x am Ergebnis sowie auf der Seite.
+- Einheitentabelle behält zugänglichen Tabellen-Caption-Namen; doppelte sichtbare Abschnittsüberschrift entfernt.
+- IPv4-Zahlenformatierung nutzt Dezimalpunkt-Trennung an Ergebnis, Rechenweg und Tabelle. Netzmaskenbit-Erklärung unterscheidet explizit die Maske von den Adressbitwerten; UND/AND und ODER/OR sind erläutert. Text benennt Netz-/Geräteanteile unabhängig von Farbe, inklusive N/G-Markern.
+- Version `0.8.1-alpha.1`; Changelog ergänzt.
+
+### Verifikation
+- Alle `tests/*.test.js` bestanden: Einheiten, Fortschritt, IPv4, Logik (13/13), Navigation/Glossar, Netzmaske, Netzwerklektion (14), Übersicht, Subnetting inkl. gerendertem Feedback und Zahlensysteme. Syntaxchecks und `git diff --check` bestanden.
+- Neuer/angepasster Test prüft Tooltypen, keine Tool-IDs unter LF3 und keine Werkzeugübersichtseinträge; Rechnerregressionen prüfen Bit-Summe, Nullfall, Prefix-Hinweis, positive Kleinstwerte, IPv4-Gruppierung und Formulierungen zur Maske/Logik.
+- Die zuvor gemeldeten manuellen Läufe `/tmp/themes-run2.json` und `/tmp/kbd-run2.json` stammen vom gleichen Start-HEAD, aber vor diesen Änderungen; sie sind nicht als Nachweis der geänderten Bereiche verwendet.
+- `node tests/browser-themes-cdp.js` scheiterte wegen veralteter Testannahme (wartete auf `data-theme` am IPv4-Seitentitel, das Skript landete auf Subnetting). Keine Schleife damit wiederholt. Stattdessen eigene CDP-Interaktion auf tatsächlicher lokalen `file://`-App: Übersicht enthält keine Tooltitel; Einstieg vor Jahr 1; 320/390px-Ansicht für Übersicht und drei Rechner ohne Seitenüberlauf, mobiles Menü sichtbar; Zahlensystem-Ergebnis enthält gesetzte-Bits-Summe; Bewegungscheckbox schaltet Klasse und speichert; IPv4 /16 zeigt 65.536 und verständlichen Rechenweg ohne `undefined`.
+- Screenshots auf tatsächlicher gerenderter Übersicht, Toolnavigation und aufgeklappten Anzeigeoptionen sowie Beispielresultaten der Rechner erstellt unter `screenshots/korrekturpaket/`. Screenshot-Stichprobe zeigt keine Toolkacheln, LF3 enthält nur drei Lektionen, und Bewegungsoption ist mit Checkbox/Hilfetext sichtbar.
+- Aktuell offen: Nav-Fokus per vollständiger Tastatursequenz und Tool-aufklappen/-Status im Browser nicht separat durchlaufen; Systemswitch/reduced-motion und nicht verfügbarem localStorage nicht interaktiv simuliert. Große Schriftänderung und Kontrastmessung für geänderte Screens nicht erneut; 200%-Echtzoom/Textzoom nicht ausgeführt. Kein Screenreader-Test. Keine WCAG-Konformitätsaussage.
+
+### Fortsetzungspunkt
+- Automatisierte Tests, CDP-Smoke und Screenshots oben sind abgeschlossen. Fortsetzung: abschließenden Diff prüfen, Commit, normaler Push, danach `gh pr view 1` und Fetch/Remote-Head auf Commitgleichheit bestätigen. Keine neuen Rechner/Lernmodule, kein Merge/Release.

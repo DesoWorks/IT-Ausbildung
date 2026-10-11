@@ -25,4 +25,5 @@
 .zs-tabelle .zs-bit-aus { color: var(--farbe-text-leise); }
 .zs-weg { padding-left: 1.6rem; font-family: ui-monospace, Consolas, monospace; overflow-wrap: anywhere; }
 .zs-weg li { margin-bottom: .3rem; }
+.zs-bit-summe { padding: .65rem .8rem; border-left: 4px solid var(--farbe-akzent); background: var(--farbe-hinweis-flaeche); font-weight: 700; overflow-wrap: anywhere; }
 @media (max-width: 480px) { .zs-werte { grid-template-columns: 1fr; } }

@@ -122,7 +122,7 @@
     var out = el("eh-ergebnis");
     out.appendChild(make("h3", "", "Ergebnis"));
     out.appendChild(make("p", "eh-gross", res.line));
-    if (!res.result.exact) out.appendChild(make("p", "klein", "Gerundet auf höchstens " + DECIMALS + " Nachkommastellen (≈)."));
+    if (!res.result.exact) out.appendChild(make("p", "klein", res.result.tiny ? "Der positive Wert ist kleiner als 0,000001 der Zieleinheit; deshalb wird er als Grenzwert statt als 0 angezeigt." : "Gerundet auf höchstens " + DECIMALS + " Nachkommastellen (≈)."));
     out.appendChild(make("h3", "", "Rechenweg"));
     var ol = make("ol", "eh-weg"); res.steps.forEach(function (l) { ol.appendChild(make("li", "", l)); }); out.appendChild(ol);
     if (res.comparison) { out.appendChild(make("h3", "", "Warum GB und GiB nicht gleich sind")); out.appendChild(make("p", "", res.comparison)); }

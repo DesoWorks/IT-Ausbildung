@@ -4,6 +4,7 @@
   var KEY = "it-ausbildung.anzeige.v1";
   var defaults = { text: 100, spacing: false, theme: "hell", ruhig: false };
   var current = load();
+  var systemReduceMotion = false;
 
   function load() {
     try {
@@ -19,7 +20,7 @@
     document.documentElement.style.setProperty("--text-scale", String(current.text / 100));
     document.documentElement.dataset.theme = current.theme;
     document.documentElement.classList.toggle("mehr-abstand", !!current.spacing);
-    document.documentElement.classList.toggle("ruhige-ansicht", !!current.ruhig);
+    document.documentElement.classList.toggle("ruhige-ansicht", !!current.ruhig || systemReduceMotion);
   }
   function addControl() {
     var box = document.createElement("details");
@@ -55,15 +56,23 @@
     theme.addEventListener("change", function () { current.theme = theme.value; save(); });
     panel.append(themeLabel, theme);
 
-    var calm = document.createElement("button"); calm.type = "button"; calm.textContent = "Ruhige Ansicht";
-    calm.setAttribute("aria-pressed", String(!!current.ruhig));
-    calm.addEventListener("click", function () { current.ruhig = !current.ruhig; calm.setAttribute("aria-pressed", String(current.ruhig)); save(); });
-    panel.appendChild(calm);
+    var calmLabel = document.createElement("label"); calmLabel.className = "bewegung-label";
+    var calm = document.createElement("input"); calm.type = "checkbox"; calm.id = "bewegung-reduzieren"; calm.checked = !!current.ruhig;
+    calm.addEventListener("change", function () { current.ruhig = calm.checked; save(); });
+    calmLabel.append(calm, document.createTextNode(" Bewegungen reduzieren"));
+    var calmHelp = document.createElement("p"); calmHelp.id = "bewegung-hilfe"; calmHelp.className = "klein";
+    calmHelp.textContent = "Schaltet Animationen und Übergänge aus und verhindert weiches Scrollen. Inhalte und Rückmeldungen bleiben erhalten.";
+    calm.setAttribute("aria-describedby", "bewegung-hilfe");
+    panel.append(calmLabel, calmHelp);
+    var motionNote = document.createElement("p"); motionNote.id = "bewegung-system-hinweis"; motionNote.className = "klein";
+    motionNote.hidden = !systemReduceMotion;
+    motionNote.textContent = "Dein System verlangt reduzierte Bewegung; die entsprechende Einstellung bleibt aktiv.";
+    panel.appendChild(motionNote);
 
     var reset = document.createElement("button"); reset.type = "button"; reset.textContent = "Auf Standard zurücksetzen";
     reset.addEventListener("click", function () {
       current = Object.assign({}, defaults); size.value = "100"; value.textContent = "100%";
-      space.setAttribute("aria-pressed", "false"); calm.setAttribute("aria-pressed", "false"); theme.value = "hell"; save();
+      space.setAttribute("aria-pressed", "false"); calm.checked = false; theme.value = "hell"; save();
     });
     panel.appendChild(reset);
     box.appendChild(panel);
@@ -74,7 +83,10 @@
 
   function init() {
     if (window.matchMedia && window.matchMedia("(prefers-contrast: more)").matches && current.theme === "hell") current.theme = "kontrast";
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("bewegung-reduziert");
+    var motion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+    systemReduceMotion = !!(motion && motion.matches);
+    if (motion && motion.addEventListener) motion.addEventListener("change", function (event) { systemReduceMotion = event.matches; apply(); var note = document.getElementById("bewegung-system-hinweis"); if (note) note.hidden = !systemReduceMotion; });
+    else if (motion && motion.addListener) motion.addListener(function (event) { systemReduceMotion = event.matches; apply(); });
     apply(); addControl();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
