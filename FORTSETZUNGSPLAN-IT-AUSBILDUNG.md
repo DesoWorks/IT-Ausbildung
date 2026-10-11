@@ -398,3 +398,26 @@ Keine Codeänderung, kein Commit/Push/Merge oder Release in dieser Vorbereitungs
 - Tests/Prüfungen laut vorhandenen Artefakten und vorherigem Implementierungsbericht: alle neun `tests/*.test.js`, Syntaxchecks, `git diff --check`, Browser-CDP-Interaktion, 320/390/1280 CSS-Pixel und Page-Scale 2; Kontrastprüfung inklusive Rechner und Tastaturprüfung bestanden. Die vom Commander gelieferten Prüfdateien beziehen sich ausdrücklich nur auf Übersicht/Subnetting/Zahlensysteme; sie sind nicht als Prüfung des neuen Einheitenrechners zu werten.
 - Kein Screenreader- oder echter Windows-Doppelklick-Test. 200 % wurde als Page-Scale-Emulation, nicht als echter Browser-/Textzoom geprüft. Keine vollständige WCAG-Aussage.
 - Nächster zulässiger Schritt: erst nach Abschluss dieser Bit-/Byte-Etappe den separaten IPv4-Subnetzrechner planen/implementieren; /31- und /32-Sonderfälle ausdrücklich testen. Kein Merge oder Release.
+
+
+## IPv4-Subnetzrechner – Umsetzungsetappe (2026-10-11)
+
+- Ausgangsstand: `prototype/computer-grundlagen`, lokaler HEAD und `origin/prototype/computer-grundlagen` beide `385a49dea889b5ccdb08b0ddfe6c4bdc50a9efe6`; Arbeitsbaum sauber. Vorherige Bit-/Byte-Etappe ist bereits im PR.
+- Neu angelegt: `module/ipv4-rechner.html`, `js/ipv4-rechner.js`, `css/ipv4-rechner.css`. Zentrales Themenverzeichnis verlinkt den Rechner; zentrale Glossardaten ergänzen Bitmaske, UND-Verknüpfung und Punkt-zu-Punkt-Verbindung.
+- Algorithmus nutzt exakt 32-Bit-BigInt: Netzadresse = Eingabe UND Maske; Broadcast = Netzadresse ODER invertierte Maske; Gesamtzahl = 2^(32-Präfix). Validiert vier Oktette, Präfix 0–32 und zusammenhängende Netzmasken; akzeptiert Präfix oder dotted mask.
+- Nutzbarer Bereich: /0–/30 gewöhnlicher Bereich zwischen Netz-/Broadcastadresse; /31 beide Adressen als Endpunkte nur im RFC-3021-Punkt-zu-Punkt-Kontext; /32 eine Adresse/Hostroute ohne gewöhnlichen Bereich. Kein pauschales Minus-zwei.
+- Oberfläche liefert Präfix, Maske, Netz- und Broadcastadresse, Gesamtadresszahl, nutzbaren Bereich, Bits und binäre Oktette, eingesetzte UND-/ODER-Schritte und kurze Begründung. Änderungen an Eingaben löschen Ergebnis. Tabelle listet /0–/32. Gemeinsame Navigation, Anzeigeoptionen, Glossar und Offline-Aufbau genutzt.
+- Primärquellen erneut abgerufen: RFC 4632 (CIDR), RFC 3021 (/31), RFC 791 (IPv4-Grundlage). /31-Aussage explizit auf Punkt-zu-Punkt beschränkt; /32 als einzelne Hostroute behandelt.
+- Version auf `0.8.0-alpha.1` angehoben, Changelog ergänzt.
+- **Verifikation noch ausstehend:** gezielte Tests /0,/24,/25,/30,/31,/32; ungültige und nicht zusammenhängende Masken; tatsächlicher DOM-/Ergebnistext; Tastatur; mobile Breiten; Hell/Dunkel/hoher Kontrast. Vor diesen Läufen keine Etappe als abgeschlossen oder PR-Stand als gesichert melden.
+
+
+### IPv4-Rechner – gezielte Verifikation
+
+- Unit-Test `tests/ipv4-rechner.test.js`: bestanden für /0, /24, /25, /30, /31, /32, alternative dotted mask, ungültige IPv4, ungültiges Präfix und nicht zusammenhängende Maske; zusätzlich alle Präfixe /0–/32 und Formeln/Grenzen gegengeprüft.
+- Browserprüfung `tests/browser-ipv4-cdp.js` über lokale `file://`-Seite: PASS. Prüfte sichtbaren Ergebnistext der sechs Schwerpunktpräfixe, ungültige Eingaben, Ergebnislöschung nach Eingabeänderung, Formularbedienung per Tab/Enter und 320/390/1440 CSS-Pixel ohne Seitenüberlauf; 33 Tabellenzeilen und Eingabehöhe >=44 CSS-Pixel.
+- Visuelle Browser-Screenshots mit ausgefülltem Beispiel in Hell, Dunkel und hohem Kontrast: `screenshots/ipv4-rechner-hell.png`, `screenshots/ipv4-rechner-dunkel.png`, `screenshots/ipv4-rechner-kontrast.png`.
+- Bei Sichtprüfung fiel auf, dass eine generische Tabelle zunächst Beispiel-IP-Bereiche irrtümlich wie allgemeingültige Netzbereiche darstellte. Das wurde vor Abschluss korrigiert: Tabelle zeigt jetzt Adresszahlen (deutsch gruppiert) und zählt übliche Nutzadressen nur unter ausdrücklich genannter Netz-/Broadcast-Annahme; /31 und /32 separat. Beispiel-Rechenweg zeigt außerdem nun wirklich die eingegebene IP binär, nicht nur die abgeleitete Netzadresse.
+- Primärquelle: RFC 3021 §2.1 weist beide /31-Adressen auf einem Punkt-zu-Punkt-Link als Hostadressen aus: https://www.rfc-editor.org/rfc/rfc3021 . RFC 4632 (CIDR) und RFC 791 (IPv4) bleiben Referenzen: https://www.rfc-editor.org/rfc/rfc4632 ; https://www.rfc-editor.org/rfc/rfc791 .
+- Vollständige Projekt-Tests bestanden: sämtliche `tests/*.test.js`, alle `js/*.js` Syntaxchecks, `git diff --check`.
+- Grenzen: kein Screenreader-Test; 200-%-echter Browser-/Textzoom wurde nicht geprüft (Page-Scale-Emulation ist nicht gleichwertig). Tastatur wurde im Formular per Tab und Enter geprüft; keine vollständige assistive-Technik-Abnahme. Farbvarianten visuell erfasst; dies ist keine WCAG-Konformitätsbestätigung.

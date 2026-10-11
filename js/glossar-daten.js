@@ -22,6 +22,9 @@ window.GLOSSAR = [
   { begriff: "Gigabyte (GB)", erklaerung: "Dezimale Einheit: 1 GB sind 1.000.000.000 Byte (Faktor 1000 pro Schritt). Hersteller geben Speichergrößen meist so an." },
   { begriff: "Gibibyte (GiB)", erklaerung: "Binäre Einheit: 1 GiB sind 1.073.741.824 Byte (Faktor 1024 pro Schritt). 1 GiB ist daher größer als 1 GB." },
   { begriff: "Subnetting", erklaerung: "Ein Netzwerk wird in kleinere Teilnetze aufgeteilt. In diesem Beispiel wird ein /24-Netz in zwei /25-Netze geteilt." },
+  { begriff: "Bitmaske", erklaerung: "Eine Folge aus 32 Bits, die mit einer IPv4-Adresse verknüpft wird. Bei der Netzmaske stehen Netzbits auf 1 und Gerätebits auf 0." },
+  { begriff: "UND-Verknüpfung", erklaerung: "Bitweise Rechenoperation: Das Ergebnisbit ist nur dann 1, wenn beide Eingabebits 1 sind. IPv4-Adresse UND Netzmaske ergibt die Netzadresse." },
+  { begriff: "Punkt-zu-Punkt-Verbindung", erklaerung: "Direkte Verbindung zwischen genau zwei Endpunkten. Auf solchen IPv4-Verbindungen können nach RFC 3021 beide Adressen eines /31-Präfixes verwendet werden." },
   { begriff: "Teilnetz", erklaerung: "Ein abgegrenzter IP-Adressbereich innerhalb eines größeren Netzwerks. Netzmaske und Netzadresse bestimmen, welche Adressen dazugehören." },
   { begriff: "Touchpad", erklaerung: "Eine berührungsempfindliche Fläche am Laptop, mit der du den Zeiger bewegst." },
   { begriff: "WLAN", erklaerung: "Drahtlose Netzwerkverbindung über Funk." }

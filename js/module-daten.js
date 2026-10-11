@@ -6,6 +6,12 @@
 (function (global) {
   "use strict";
 
+  global.MODULE_TOOLS = [
+    { id: "lf3-zahlensysteme", titel: "Zahlensystemrechner", beschreibung: "Binär, Dezimal und Hexadezimal umrechnen, mit Stellenwerten und Rechenweg.", page: "zahlensysteme", status: "verfuegbar", datei: "module/zahlensysteme.html" },
+    { id: "lf3-einheiten", titel: "Bit-/Byte- und Einheitenrechner", beschreibung: "Bit, Byte, GB und GiB umrechnen, mit nachvollziehbarem Rechenweg.", page: "einheiten", status: "verfuegbar", datei: "module/einheiten.html" },
+    { id: "lf3-ipv4-rechner", titel: "IPv4-Subnetzrechner", beschreibung: "Präfix oder Netzmaske, Adressgrenzen und Rechenweg nachvollziehen.", page: "ipv4-rechner", status: "verfuegbar", datei: "module/ipv4-rechner.html" }
+  ];
+
   global.MODULE_EINSTIEG = [
     { id: "computer-grundlagen", titel: "Den Computer kennenlernen",
       beschreibung: "Einstieg: Computer, Bildschirm, Tastatur, Maus, Netzwerk. Ca. 10 Minuten.", page: "computer-grundlagen",
@@ -27,6 +33,7 @@
               status: "verfuegbar", datei: "module/netzmaske.html", page: "netzmaske" },
             { id: "lf3-zahlensysteme", titel: "Werkzeug: Zahlensystemrechner", beschreibung: "Binär, Dezimal und Hexadezimal umrechnen, mit Stellenwerten und Rechenweg.", page: "zahlensysteme", status: "verfuegbar", datei: "module/zahlensysteme.html" },
             { id: "lf3-einheiten", titel: "Werkzeug: Bit-/Byte- und Einheitenrechner", beschreibung: "Bit, Byte, GB und GiB umrechnen, mit nachvollziehbarem Rechenweg.", page: "einheiten", status: "verfuegbar", datei: "module/einheiten.html" },
+            { id: "lf3-ipv4-rechner", titel: "Werkzeug: IPv4-Subnetzrechner", beschreibung: "Präfix oder Netzmaske, Adressgrenzen und Rechenweg nachvollziehen.", page: "ipv4-rechner", status: "verfuegbar", datei: "module/ipv4-rechner.html" },
             { id: "lf3-subnetting", titel: "Subnetting: /24 in zwei /25-Netze teilen", beschreibung: "Lektion 3: zwei gleich große Teilnetze Schritt für Schritt.", page: "subnetting", status: "verfuegbar", datei: "module/subnetting.html" }
           ] },
         { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "kommt-bald" },

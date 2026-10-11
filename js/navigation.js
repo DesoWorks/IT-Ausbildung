@@ -5,6 +5,7 @@
   var page = body.getAttribute("data-page") || "overview";
   var base = body.getAttribute("data-base") || "";
   var modules = window.MODULE_DATEN || [];
+  var tools = window.MODULE_TOOLS || [];
 
   var host = document.createElement("div");
   host.className = "site-navigation";
@@ -73,6 +74,16 @@
     });
     details.appendChild(sub); group.appendChild(details); list.appendChild(group);
   });
+  var toolsGroup = document.createElement("li"); toolsGroup.className = "nav-category nav-tools";
+  var toolsDetails = document.createElement("details");
+  toolsDetails.open = tools.some(function (tool) { return tool.page === page; });
+  var toolsSummary = document.createElement("summary"); toolsSummary.textContent = "Tools & Nachschlagen"; toolsDetails.appendChild(toolsSummary);
+  var toolsList = document.createElement("ul");
+  tools.forEach(function (tool) {
+    var toolEntry = item({ id: tool.id, label: tool.titel, href: base + tool.datei, page: tool.page });
+    toolEntry.classList.add("nav-topic"); toolsList.appendChild(toolEntry);
+  });
+  toolsDetails.appendChild(toolsList); toolsGroup.appendChild(toolsDetails); list.appendChild(toolsGroup);
   var glossaryEntry = item({ id: "glossary", label: "Wörter & Begriffe", href: base + "glossar.html", page: "glossary" });
   list.appendChild(glossaryEntry); nav.appendChild(list);
   var optionsHost = document.createElement("div"); optionsHost.className = "nav-options"; optionsHost.id = "nav-options"; nav.appendChild(optionsHost);

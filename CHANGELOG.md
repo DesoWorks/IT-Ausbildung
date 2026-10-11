@@ -31,3 +31,6 @@ Versionen werden bewusst erst für einen freigegebenen Stand geändert.
 ## 0.7.0-alpha.1
 - Offline-Werkzeug Bit-/Byte- und Einheitenrechner (bit, B, dezimale und binäre Einheiten, GB/GiB) mit Rechenweg und Vergleich ergänzt.
 - Zahlensystemrechner, Einstieg-Sektion und Subnetting-Korrekturen aus den vorherigen Etappen.
+
+## 0.8.0-alpha.1
+- Offline-IPv4-Subnetzrechner mit Präfix-/Maskeneingabe, sichtbarem Rechenweg, /31-/32-Sonderfällen und Präfix-Nachschlagetabelle ergänzt.

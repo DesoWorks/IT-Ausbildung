@@ -1,0 +1,26 @@
+/* IPv4-Rechner; Farben aus dem gemeinsamen Hell-/Dunkel-/Kontrastthema. */
+.ip-form { display:grid; gap:.55rem; max-width:38rem; }
+.ip-form label { font-weight:700; }
+.ip-form input { width:100%; font:inherit; font-family:ui-monospace,Consolas,monospace; padding:.65rem .75rem; min-height:3rem; border:2px solid var(--farbe-rahmen); border-radius:8px; background:var(--farbe-kontroll-flaeche); color:var(--farbe-kontroll-text); }
+.ip-form input:focus-visible { outline:3px solid var(--farbe-akzent); outline-offset:2px; }
+.ip-form input[aria-invalid=true] { border-color:var(--farbe-fehler); }
+.ip-error { margin-top:1rem; padding:.8rem 1rem; border:3px solid var(--farbe-fehler); border-radius:var(--radius); background:var(--farbe-fehler-flaeche); color:var(--farbe-fehler); font-weight:700; }
+.ip-error[hidden], .ip-result[hidden] { display:none; }
+.ip-result { margin-top:1.4rem; }
+.ip-results { display:grid; grid-template-columns:minmax(9rem, .35fr) minmax(0,1fr); gap:.45rem 1rem; }
+.ip-results dt { font-weight:700; }
+.ip-results dd { margin:0; overflow-wrap:anywhere; }
+.ip-mono,.ip-binary { font-family:ui-monospace,Consolas,monospace; overflow-wrap:anywhere; }
+.ip-binary { line-height:2; word-break:normal; }
+.ip-netzbits { background:var(--farbe-hinweis-flaeche); color:var(--farbe-akzent-dunkel); font-weight:700; }
+.ip-geraetebits { background:var(--farbe-ok-flaeche); color:var(--farbe-ok); font-weight:700; }
+.ip-binary-figure { padding:.8rem; border:1px solid var(--farbe-rahmen); border-radius:var(--radius); overflow-wrap:anywhere; }
+.ip-binary-figure figcaption { font-weight:700; }
+.ip-steps { padding-left:1.5rem; }
+.ip-steps li { margin:.45rem 0; }
+.ip-table-wrap { max-width:100%; overflow:auto; }
+.ip-table-wrap table { width:100%; border-collapse:collapse; min-width:38rem; }
+.ip-table-wrap caption { text-align:left; font-weight:700; padding:.4rem; }
+.ip-table-wrap th,.ip-table-wrap td { border:1px solid var(--farbe-rahmen); padding:.5rem; text-align:left; vertical-align:top; color:var(--farbe-text); }
+.ip-table-wrap thead th { background:var(--farbe-geplant-flaeche); color:var(--farbe-geplant-tekst); }
+@media(max-width:600px){.ip-results{grid-template-columns:1fr;gap:.1rem}.ip-results dd{margin-bottom:.65rem}.ip-table-wrap table{min-width:34rem}}

@@ -459,6 +459,7 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 .site-nav a, .site-nav summary { display: flex; align-items: center; min-height: 44px; padding: .45rem .75rem; color: var(--farbe-text); border-radius: 6px; font-weight: 600; }
 .site-nav a[aria-current="page"] { background: var(--farbe-akzent); color: var(--farbe-aktiv-tekst); text-decoration: none; }
 .site-nav details ul { list-style: none; padding: .25rem 0 0 .75rem; margin: 0; }
+.site-nav .nav-tools { border-top: 1px solid var(--farbe-rahmen); margin-top: .8rem !important; padding-top: .4rem; }
 .site-nav details li a { min-height: 40px; }
 .site-nav summary { cursor: pointer; }
 .nav-planned { padding: .4rem .75rem; color: var(--farbe-geplant-tekst); background: var(--farbe-geplant-flaeche); border-radius: 6px; }
