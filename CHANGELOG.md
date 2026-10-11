@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.1-alpha.1
+- LF1-Schaubild als klare vertikale Folge Betrieb → Abteilung → Team → Samira innerhalb des Teams umgeordnet; Textalternative an die Darstellung angepasst.
+- Antwortoptionen als untereinander stehende, native Radio-Antwortkarten mit vollständiger Klickfläche und sichtbarem Fokus gestaltet.
+- Bildschirmaufgabe an die ausdrücklich beschriebene Zusammenarbeit Samiras mit dem Support-Team gebunden; keine allgemeine Pflicht zur gemeinsamen Erledigung einfacher Aufgaben.
+
+
 ## 0.9.0-alpha.1
 - Lernfeld 1: erste Einstiegslektion zu Betrieb, Team, Systemintegrationsaufgaben, Ansprechpersonen und Abstimmung eigener Aufgaben ergänzt; fachlich am KMK-Rahmenlehrplan ausgerichtet.
 - Ausdrücklich fiktiver Beispielbetrieb, zugängliches Schaubild, zentrale Glossarbegriffe, wiederholbare Fallübungen und sichtbare Einzelrückmeldungen ergänzt.
