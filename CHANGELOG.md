@@ -102,3 +102,5 @@ Versionen werden bewusst erst für einen freigegebenen Stand geändert.
 - LF2.2: Kriterien aus einem fiktiven Kundenbedarf ableiten, Pflicht- und Wunschkriterien unterscheiden.
 - LF2.3: fiktive Produktkarten und verständliche Orientierung zu CE, GS und Elektroaltgeräte-Sammlung, mit offiziellen Quellenlinks.
 - Beide Lektionen haben stabile Fortschritts-IDs und eigene Übungen; vollständige Test-Suite bestanden. Interaktive Bedienprüfung bleibt offen.
+
+- LF2.4 „Technische Daten lesen“ hinzugefügt: fiktiver Systemvergleich und zweisprachiger Datenblatt-Auszug mit Übersetzung, Kriterienbezug und Übungen. Keine realen Produktbehauptungen.
