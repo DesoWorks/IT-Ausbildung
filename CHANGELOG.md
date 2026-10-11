@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0-alpha.1
+- Lernfeld 1: erste Einstiegslektion zu Betrieb, Team, Systemintegrationsaufgaben, Ansprechpersonen und Abstimmung eigener Aufgaben ergänzt; fachlich am KMK-Rahmenlehrplan ausgerichtet.
+- Ausdrücklich fiktiver Beispielbetrieb, zugängliches Schaubild, zentrale Glossarbegriffe, wiederholbare Fallübungen und sichtbare Einzelrückmeldungen ergänzt.
+
 ## 0.8.3-alpha.1
 - Finale Orbital-Werkstatt-Wortmarke für helle Flächen und lokales Favicon-Paket (SVG, PNG, ICO) zentral auf allen Plattformseiten integriert.
 - Logo bleibt ein zugänglicher Link zur Themenübersicht; relative Assets funktionieren auch bei direktem file://-Aufruf von Unterseiten.

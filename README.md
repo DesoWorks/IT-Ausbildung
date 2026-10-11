@@ -58,4 +58,4 @@ Die Übersicht orientiert sich am KMK-Rahmenlehrplan und an der Ausbildungsordnu
 Der lokale Rahmenlehrplan-PDF-Abgleich ist noch offen. Die Lernfeldnummern und Zuordnungen sind daher nicht als unabhängig gegen das Original-PDF verifiziert zu verstehen.
 
 ## Versionshinweis
-Aktuelle zentrale Version: **0.4.0-alpha.1** (`js/version.js`). Änderungen stehen in `CHANGELOG.md`.
+Aktuelle zentrale Version: **0.9.0-alpha.1** (`js/version.js`). Änderungen stehen in `CHANGELOG.md`.

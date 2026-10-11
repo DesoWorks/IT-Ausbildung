@@ -23,7 +23,10 @@
       jahr: 1,
       titel: "1. Ausbildungsjahr",
       module: [
-        { id: "lf1", lernfeld: "Lernfeld 1", titel: "Ausbildungsbetrieb und berufliche Rolle", status: "kommt-bald" },
+        { id: "lf1", lernfeld: "Lernfeld 1", titel: "Ausbildungsbetrieb und berufliche Rolle", status: "verfuegbar",
+          unterthemen: [
+            { id: "lf1-betrieb-aufgaben", typ: "lektion", titel: "Dein Ausbildungsbetrieb und deine Aufgaben", beschreibung: "Betrieb, Abteilung und Team unterscheiden; Aufgaben und Ansprechpersonen einordnen.", page: "lf1-ausbildungsbetrieb", status: "verfuegbar", datei: "module/lf1-ausbildungsbetrieb.html" }
+          ] },
         { id: "lf2", lernfeld: "Lernfeld 2", titel: "Hardware, Betriebssysteme und Arbeitsplatzgestaltung", status: "kommt-bald" },
         { id: "lf3", lernfeld: "Lernfeld 3", titel: "Netzwerkgrundlagen und Client-Anbindung", status: "kommt-bald",
           unterthemen: [

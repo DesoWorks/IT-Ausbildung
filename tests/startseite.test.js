@@ -33,6 +33,10 @@ const startseitenScript = fs.readFileSync(path.join(wurzel, "js/startseite.js"),
 assert(startseitenScript.includes('m.typ !== "werkzeug"'), "Startseite schließt typisierte Werkzeuge defensiv aus");
 const lernfelder = j1.filter(m => m.lernfeld);
 assert.deepStrictEqual(lernfelder.map(m => [m.lernfeld, m.titel]), erwartetJahr1, "Jahr-1-Titel wörtlich");
+const lf1 = j1.find(m => m.id === "lf1");
+assert.equal(lf1.unterthemen.length, 1, "genau eine LF1-Lektion");
+assert.equal(lf1.unterthemen[0].page, "lf1-ausbildungsbetrieb");
+assert(fs.existsSync(path.join(wurzel, lf1.unterthemen[0].datei)), "LF1-Lektion verlinkt auf vorhandene Datei");
 assert.strictEqual(daten[1].module.length, 4, "Jahr 2: vier Bereiche");
 assert.strictEqual(daten[2].module.length, 3, "Jahr 3: drei Bereiche");
 
@@ -60,7 +64,11 @@ assert(alleVerfuegbar.some(m => m.id === "computer-grundlagen"), "vorhandenes Mo
 assert(!alle.some(m => /^ipv4|^subnet/i.test(m.titel)), "IPv4/Subnetting keine eigene Lernfeldkarte");
 
 const verfuegbar = alle.filter(m => m.status === "verfuegbar");
-verfuegbar.forEach(m => assert(fs.existsSync(path.join(wurzel, m.datei)), "Datei fehlt: " + m.datei));
+verfuegbar.forEach(m => {
+  if (m.datei) assert(fs.existsSync(path.join(wurzel, m.datei)), "Datei fehlt: " + m.datei);
+  (m.unterthemen || []).filter(u => u.status === "verfuegbar").forEach(u =>
+    assert(fs.existsSync(path.join(wurzel, u.datei)), "Lektionsdatei fehlt: " + u.datei));
+});
 alle.filter(m => m.status !== "verfuegbar").forEach(m => assert(!m.datei, m.id + " ohne Datei"));
 
 console.log("startseite.test.js: alle Prüfungen bestanden");

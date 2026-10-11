@@ -4,6 +4,7 @@
   "use strict";
   var SCHLUESSEL = {
     "computer-grundlagen": "it-ausbildung.computer-grundlagen.v1",
+    "lf1-betrieb-aufgaben": "it-ausbildung.lf1-betrieb-aufgaben.v1",
     "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
     "lf3-netzmaske": "it-ausbildung.netzmaske.v1",
     "lf3-subnetting": "it-ausbildung.subnetting.v1"
@@ -29,6 +30,10 @@
             var answer = state.quiz[q];
             return typeof answer === "number" && answer >= 0;
           }) && quiz.every(function (q) { return [1, 0, 1, 0, 1][quiz.indexOf(q)] === state.quiz[q]; });
+      }
+      if (id === "lf1-betrieb-aufgaben") {
+        var lf1 = state.answers || {};
+        return !!state.finish && lf1.q1 === "team" && lf1.q2 === "abstimmen" && lf1.q3 === "betrieb";
       }
       if (id === "lf3-ipv4") {
         var questions = ["anzahl", "wertebereich", "gueltig"];

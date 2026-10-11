@@ -1,9 +1,14 @@
 /* Zentrales Glossar. Dieselben Begriffe und Erklärungen für alle Module. */
 window.GLOSSAR = [
   { begriff: "Bit", erklaerung: "Die kleinste Informationseinheit im Computer. Ein Bit hat genau einen von zwei Werten: 0 oder 1." },
+  { begriff: "Abteilung", erklaerung: "Ein möglicher organisatorischer Bereich eines Betriebs, der bestimmte Aufgaben bündelt. Nicht jeder Betrieb ist gleich aufgebaut oder verwendet dieselben Bezeichnungen." },
+  { begriff: "Ausbilderin oder Ausbilder", erklaerung: "Eine Person, die im Betrieb für die Ausbildung zuständig ist und beim Lernen und bei Ausbildungsaufgaben unterstützt. Die konkrete Zuständigkeit ist betrieblich geregelt." },
+  { begriff: "Betrieb", erklaerung: "Eine Organisation, die Waren herstellt oder Leistungen anbietet. Aufbau, Größe und Aufgaben unterscheiden sich je nach Betrieb." },
   { begriff: "IP-Adresse", erklaerung: "Eine Adresse, mit der ein Gerät in einem Netzwerk gefunden wird. Damit Daten ankommen, braucht jedes Gerät in seinem Netz eine eigene Adresse." },
   { begriff: "IPv4", erklaerung: "Die vierte Version des Internet Protocols. Eine IPv4-Adresse besteht aus vier Zahlen, die durch Punkte getrennt sind, zum Beispiel 192.168.1.20." },
   { begriff: "LAN", erklaerung: "Local Area Network: ein lokales Netzwerk, zum Beispiel in einem Betrieb." },
+  { begriff: "Team", erklaerung: "Eine Gruppe von Menschen, die an gemeinsamen Aufgaben arbeitet. Teams können je nach Betrieb und Aufgabe unterschiedlich zusammengesetzt sein." },
+  { begriff: "Wertschöpfungskette", erklaerung: "Die Schritte und Tätigkeiten, durch die ein Betrieb ein Angebot entwickelt, erstellt und für Kundinnen und Kunden bereitstellt." },
   { begriff: "LF", erklaerung: "Lernfeld: ein Themenbereich des Rahmenlehrplans für die Berufsausbildung." },
   { begriff: "localStorage", erklaerung: "Lokaler Browserspeicher. Die Daten bleiben auf diesem Gerät und werden nicht automatisch übertragen." },
   { begriff: "Monitor", erklaerung: "Ein anderes Wort für Bildschirm." },
