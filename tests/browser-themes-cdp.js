@@ -44,7 +44,7 @@ const CONTRAST_JS = `(()=>{
     const r = await cmd('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true });
     fs.writeFileSync('screenshots/theme-check/' + n + '.png', Buffer.from(r.result.data, 'base64'));
   };
-  const pages = [['index', 'index.html'], ['subnetting', 'module/subnetting.html'], ['zahlensysteme', 'module/zahlensysteme.html']];
+  const pages = [['index', 'index.html'], ['subnetting', 'module/subnetting.html'], ['zahlensysteme', 'module/zahlensysteme.html'], ['einheiten', 'module/einheiten.html']];
   const out = {}, failures = [];
   await cmd('Emulation.setDeviceMetricsOverride', { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
   for (const [name, file] of pages) {

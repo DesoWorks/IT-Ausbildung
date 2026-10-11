@@ -377,3 +377,12 @@ Keine Codeänderung, kein Commit/Push/Merge oder Release in dieser Vorbereitungs
 - Automatisierte Tests auf dem Arbeitsstand erneut bestanden: alle `tests/*.test.js`, `node --check js/*.js`, `git diff --check`.
 - Weiterhin offen: Screenreader, echter Windows-Doppelklick-Start, echter Browser-Zoom (nur Page-Scale-Emulation geprüft).
 - Nächste Etappe: Bit-/Byte- und Einheitenrechner (GB/GiB). IPv4-Rechner erst danach.
+
+
+## Etappe Bit-/Byte- und Einheitenrechner (11.10.2026)
+
+- Neu: `module/einheiten.html`, `js/einheiten.js`, `css/einheiten.css`, `tests/einheiten.test.js`, `tests/browser-einheiten-cdp.js`; Eintrag in LF 3, Glossar um Byte, GB, GiB ergänzt; Version `0.7.0-alpha.1`.
+- Exakte Rechnung mit BigInt (Basis Bit); dezimal Faktor 1000 (kB–TB, kbit–Gbit), binär Faktor 1024 (KiB–TiB); Rechenweg mit eingesetzten Werten; GB/GiB-Vergleich nur bei Paar dezimal/binär; Rundung auf höchstens 6 Nachkommastellen mit ≈-Kennzeichnung.
+- Fehler während der Etappe behoben: Vergleich erschien fälschlich bei MB nach kbit; Dunkelmodus-Kontrast des Fließtext-Links (1,61:1, Browser-Standardfarbe) per Themenvariable korrigiert.
+- Geprüft: alle `tests/*.test.js`, Syntaxchecks, `git diff --check`, Browser-CDP-Test (Bedienung, Fehlerfall, Enter, Ergebnis löschen, kein Überlauf bei 320/390/1280/Page-Scale 2), Kontrast `themes` PASS inkl. Einheitenseite, Tastatur PASS. Keine vollständige WCAG-Prüfung; kein Screenreader; 200 % nur als Page-Scale-Emulation.
+- Weiterhin offen: IPv4-Rechner (nächste Etappe, nicht begonnen), /31- und /32-Behandlung dort beachten.

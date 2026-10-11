@@ -31,7 +31,7 @@ const TAB_JS = `(()=>{const a=document.activeElement;if(!a||a===document.body)re
   await cmd('Emulation.setDeviceMetricsOverride', { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
   const out = {}, failures = [];
 
-  for (const [name, file] of [['index', 'index.html'], ['subnetting', 'module/subnetting.html'], ['zahlensysteme', 'module/zahlensysteme.html']]) {
+  for (const [name, file] of [['index', 'index.html'], ['subnetting', 'module/subnetting.html'], ['zahlensysteme', 'module/zahlensysteme.html'], ['einheiten', 'module/einheiten.html']]) {
     await cmd('Page.navigate', { url: root + file }); await wait(700);
     await ev('localStorage.removeItem("it-ausbildung.anzeige.v1")');
     const seq = [], noFocus = [];

@@ -35,7 +35,7 @@ assert.strictEqual(daten[1].module.length, 4, "Jahr 2: vier Bereiche");
 assert.strictEqual(daten[2].module.length, 3, "Jahr 3: drei Bereiche");
 
 const lf3 = j1.find(m => m.id === "lf3");
-assert.deepStrictEqual(lf3.unterthemen.map(u => u.titel), ["IPv4", "Netzmaske und Netz-/Geräteanteil", "Werkzeug: Zahlensystemrechner", "Subnetting: /24 in zwei /25-Netze teilen"]);
+assert.deepStrictEqual(lf3.unterthemen.map(u => u.titel), ["IPv4", "Netzmaske und Netz-/Geräteanteil", "Werkzeug: Zahlensystemrechner", "Werkzeug: Bit-/Byte- und Einheitenrechner", "Subnetting: /24 in zwei /25-Netze teilen"]);
 const zahlensysteme = lf3.unterthemen.find(u => u.id === "lf3-zahlensysteme");
 assert(zahlensysteme.status === "verfuegbar" && zahlensysteme.datei === "module/zahlensysteme.html", "Zahlensystemrechner: verfügbar mit Moduldatei");
 assert(fs.existsSync(path.join(wurzel, zahlensysteme.datei)), "Zahlensystem-Moduldatei existiert");

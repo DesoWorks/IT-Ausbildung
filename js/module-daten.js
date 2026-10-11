@@ -26,6 +26,7 @@
             { id: "lf3-netzmaske", titel: "Netzmaske und Netz-/Geräteanteil", beschreibung: "Lektion 2: Beispiel 192.168.1.20/24.",
               status: "verfuegbar", datei: "module/netzmaske.html", page: "netzmaske" },
             { id: "lf3-zahlensysteme", titel: "Werkzeug: Zahlensystemrechner", beschreibung: "Binär, Dezimal und Hexadezimal umrechnen, mit Stellenwerten und Rechenweg.", page: "zahlensysteme", status: "verfuegbar", datei: "module/zahlensysteme.html" },
+            { id: "lf3-einheiten", titel: "Werkzeug: Bit-/Byte- und Einheitenrechner", beschreibung: "Bit, Byte, GB und GiB umrechnen, mit nachvollziehbarem Rechenweg.", page: "einheiten", status: "verfuegbar", datei: "module/einheiten.html" },
             { id: "lf3-subnetting", titel: "Subnetting: /24 in zwei /25-Netze teilen", beschreibung: "Lektion 3: zwei gleich große Teilnetze Schritt für Schritt.", page: "subnetting", status: "verfuegbar", datei: "module/subnetting.html" }
           ] },
         { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "kommt-bald" },
