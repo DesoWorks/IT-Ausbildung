@@ -19,6 +19,8 @@
   --farbe-kontroll-flaeche: #ffffff;
   --farbe-kontroll-text: #18283a;
   --farbe-aktiv-tekst: #ffffff;
+  --farbe-hinweis-flaeche: #eef4fc; --farbe-hover-flaeche: #eef4fc; --farbe-erklaerung-flaeche: #f1f5fb;
+  --farbe-leiste: #dde6f2; --farbe-rueckzeile: #f1f5fa; --farbe-kopf-von: #1d5fb4; --farbe-kopf-bis: #164a8c; --farbe-kopf-text: #ffffff;
   --radius: 12px;
   --schatten: 0 2px 8px rgba(20, 40, 70, 0.08);
 }
@@ -41,7 +43,7 @@ body {
   left: -999px;
   top: 0;
   background: var(--farbe-akzent-dunkel);
-  color: #fff;
+  color: var(--farbe-aktiv-tekst);
   padding: 0.6rem 1rem;
   border-radius: 0 0 var(--radius) 0;
   z-index: 100;
@@ -51,13 +53,13 @@ body {
 /* Sichtbarer Fokusrahmen für Tastaturbedienung */
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid #0a3d82;
+  outline: 3px solid var(--farbe-akzent);
   outline-offset: 2px;
 }
 
 .kopf {
-  background: linear-gradient(135deg, var(--farbe-akzent) 0%, var(--farbe-akzent-dunkel) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--farbe-kopf-von) 0%, var(--farbe-kopf-bis) 100%);
+  color: var(--farbe-kopf-text);
   padding: 1.5rem 1rem;
 }
 .kopf-inhalt { max-width: 860px; margin: 0 auto; }
@@ -72,8 +74,8 @@ button:focus-visible {
 .kopf-dauer { margin: 0; opacity: 0.95; }
 
 .rueckzeile {
-  background: #f1f5fa;
-  border-bottom: 1px solid #aebdce;
+  background: var(--farbe-rueckzeile);
+  border-bottom: 1px solid var(--farbe-rahmen);
   padding: 0.7rem max(1rem, calc((100% - 860px) / 2));
 }
 .zurueck-link {
@@ -81,12 +83,12 @@ button:focus-visible {
   align-items: center;
   min-height: 44px;
   padding: 0.45rem 0.8rem;
-  color: #142c48;
+  color: var(--farbe-text);
   font-weight: 700;
   border-radius: 6px;
 }
-.zurueck-link:hover { background: #e1eaf5; }
-.zurueck-link:focus-visible { outline: 3px solid #0a3d82; outline-offset: 2px; }
+.zurueck-link:hover { background: var(--farbe-hover-flaeche); }
+.zurueck-link:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
 
 /* Schrittnavigation */
 .schritte {
@@ -114,7 +116,7 @@ button:focus-visible {
 .schritt-knopf[aria-current="true"] {
   background: var(--farbe-akzent);
   border-color: var(--farbe-akzent);
-  color: #fff;
+  color: var(--farbe-aktiv-tekst);
   font-weight: 600;
 }
 .schritt-knopf.erledigt:not([aria-current="true"]) {
@@ -129,7 +131,7 @@ button:focus-visible {
 .fortschritt { margin-bottom: 0.5rem; }
 .fortschritt-leiste {
   height: 12px;
-  background: #dde6f2;
+  background: var(--farbe-leiste);
   border-radius: 999px;
   overflow: hidden;
   border: 1px solid var(--farbe-rahmen);
@@ -163,7 +165,7 @@ main:focus { outline: none; }
 .klein { font-size: 0.9rem; color: var(--farbe-text-leise); }
 
 .hinweis-box {
-  background: #eef4fc;
+  background: var(--farbe-hinweis-flaeche);
   border-left: 6px solid var(--farbe-akzent);
   border-radius: 8px;
   padding: 1rem 1.2rem;
@@ -190,17 +192,17 @@ main:focus { outline: none; }
   cursor: pointer;
   font-weight: 600;
 }
-.knopf:hover { background: #eef4fc; }
+.knopf:hover { background: var(--farbe-hover-flaeche); }
 .knopf-haupt {
   background: var(--farbe-akzent);
-  color: #fff;
+  color: var(--farbe-aktiv-tekst);
 }
 .knopf-haupt:hover { background: var(--farbe-akzent-dunkel); }
 .knopf-warn {
   border-color: var(--farbe-warn);
   color: var(--farbe-warn);
 }
-.knopf-warn:hover { background: #fbf0e2; }
+.knopf-warn:hover { background: var(--farbe-hover-flaeche); }
 
 /* Lernkarten */
 .karten-raster {
@@ -223,7 +225,7 @@ main:focus { outline: none; }
   gap: 0.4rem;
   min-height: 120px;
 }
-.lernkarte:hover { border-color: var(--farbe-akzent); background: #f7faff; }
+.lernkarte:hover { border-color: var(--farbe-akzent); background: var(--farbe-hover-flaeche); }
 .lernkarte .karte-symbol { font-size: 2rem; line-height: 1; }
 .lernkarte .karte-titel { font-size: 1.2rem; font-weight: 700; margin: 0; }
 .lernkarte.gelesen {
@@ -265,7 +267,7 @@ main:focus { outline: none; }
 .dialog dt { font-weight: 700; margin-top: 0.8rem; }
 .dialog dd { margin: 0.2rem 0 0; }
 .begriff {
-  background: #eef4fc;
+  background: var(--farbe-hinweis-flaeche);
   border-radius: 6px;
   padding: 0.6rem 0.8rem;
   margin-top: 0.8rem;
@@ -296,6 +298,7 @@ main:focus { outline: none; }
   min-height: 44px;
   border: 2px solid var(--farbe-rahmen);
   background: var(--farbe-flaeche);
+  color: var(--farbe-text);
   border-radius: 999px;
   cursor: pointer;
   font-weight: 600;
@@ -318,7 +321,7 @@ main:focus { outline: none; }
   font-size: 0.95rem;
   padding: 0.6rem 0.8rem;
   border-radius: 8px;
-  background: #f1f5fb;
+  background: var(--farbe-erklaerung-flaeche);
 }
 
 /* Quiz */
@@ -344,7 +347,7 @@ main:focus { outline: none; }
   padding: 0.7rem 1rem;
   cursor: pointer;
 }
-.quiz-option:hover { border-color: var(--farbe-akzent); background: #f7faff; }
+.quiz-option:hover { border-color: var(--farbe-akzent); background: var(--farbe-hover-flaeche); }
 .quiz-option input { margin-top: 0.35rem; width: 20px; height: 20px; }
 .quiz-option.richtig {
   border-color: var(--farbe-ok);
@@ -362,7 +365,7 @@ main:focus { outline: none; }
   font-size: 0.95rem;
   padding: 0.7rem 0.9rem;
   border-radius: 8px;
-  background: #f1f5fb;
+  background: var(--farbe-erklaerung-flaeche);
 }
 .quiz-erklaerung[hidden] { display: none; }
 
@@ -415,6 +418,8 @@ html[data-theme="dunkel"] {
   --farbe-geplant-flaeche: #293643; --farbe-geplant-tekst: #e2e9f0;
   --farbe-kontroll-flaeche: #263544; --farbe-kontroll-text: #f2f5f8;
   --farbe-aktiv-tekst: #101820;
+  --farbe-hinweis-flaeche: #22364d; --farbe-hover-flaeche: #2b3d52; --farbe-erklaerung-flaeche: #263544;
+  --farbe-leiste: #3a4d61; --farbe-rueckzeile: #18222d; --farbe-kopf-von: #1f4f8f; --farbe-kopf-bis: #163a6b; --farbe-kopf-text: #ffffff;
 }
 html[data-theme="kontrast"] {
   --farbe-hintergrund: #fff; --farbe-flaeche: #fff; --farbe-text: #000; --farbe-text-leise: #222;
@@ -424,6 +429,8 @@ html[data-theme="kontrast"] {
   --farbe-geplant-flaeche: #fff; --farbe-geplant-tekst: #111;
   --farbe-kontroll-flaeche: #fff; --farbe-kontroll-text: #000;
   --farbe-aktiv-tekst: #fff;
+  --farbe-hinweis-flaeche: #fff; --farbe-hover-flaeche: #e6e6e6; --farbe-erklaerung-flaeche: #fff;
+  --farbe-leiste: #ddd; --farbe-rueckzeile: #fff; --farbe-kopf-von: #003a70; --farbe-kopf-bis: #00284d; --farbe-kopf-text: #fff;
 }
 html.mehr-abstand body { line-height: 1.9; }
 html.mehr-abstand p, html.mehr-abstand li, html.mehr-abstand dd { margin-bottom: 1.15em; }
@@ -467,10 +474,10 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 #glossar-suche { display: block; width: 100%; max-width: 36rem; min-height: 48px; margin-top: .4rem; padding: .6rem; font: inherit; color: var(--farbe-text); background: var(--farbe-flaeche); border: 2px solid var(--farbe-rahmen); border-radius: 6px; }
 @media (min-width: 1100px) {
   /* Vollbreiter Header oben; Navigation und Inhalt teilen erst darunter die Breite. */
-  body { display: grid; grid-template-columns: 17rem minmax(0, 1fr); align-content: start; }
+  body { display: grid; grid-template-columns: 17rem minmax(0, 1fr); grid-template-rows: auto repeat(4, auto) 1fr; align-content: start; }
   .kopf { grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: 17rem minmax(0, 1fr); }
   .kopf-inhalt { grid-column: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
-  .site-navigation { grid-column: 1; grid-row: 2 / span 3; position: relative; width: 17rem; min-width: 0; align-self: stretch; border-right: 1px solid var(--farbe-rahmen); background: var(--farbe-flaeche); }
+  .site-navigation { grid-column: 1; grid-row: 2 / span 6; position: relative; width: 17rem; min-width: 0; align-self: stretch; border-right: 1px solid var(--farbe-rahmen); background: var(--farbe-flaeche); }
   .site-nav { position: sticky; top: 0; max-height: none; overflow: visible; border: 0; }
   .site-nav > ul { display: block; }
   .site-nav > ul > li { margin: .2rem 0; }
@@ -521,5 +528,15 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 .site-nav summary.nav-learning-field { justify-content: flex-start; gap: .45rem; }
 .site-nav summary.nav-learning-field::before { content: "▸"; display: inline-block; width: 1em; transition: transform .12s ease; }
 .site-nav details[open] > summary.nav-learning-field::before { content: "▾"; }
-.site-nav summary.nav-learning-field:focus-visible { outline: 3px solid #0a3d82; outline-offset: 2px; }
+.site-nav summary.nav-learning-field:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
 .site-nav .nav-learning-details > ul { padding-left: 1rem; }
+
+/* Sichtbarer Tastaturfokus auch für aufklappbare Bereiche und Formularfelder. */
+summary:focus-visible,
+select:focus-visible,
+input:focus-visible,
+.schritt-knopf:focus-visible,
+.option-knopf:focus-visible {
+  outline: 3px solid var(--farbe-akzent);
+  outline-offset: 2px;
+}

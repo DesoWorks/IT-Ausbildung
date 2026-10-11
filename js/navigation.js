@@ -30,7 +30,7 @@
     else if (!fertig && mark) mark.remove();
   }
   list.appendChild(item({ id: "overview", label: "Themenübersicht", href: base + "index.html", page: "overview" }));
-  var entryData = (modules[0] && modules[0].module || []).find(function (m) { return m.id === "computer-grundlagen"; }) || { id: "computer-grundlagen", titel: "Den Computer kennenlernen", status: "verfuegbar", datei: "module/computer-grundlagen.html", page: "computer-grundlagen" };
+  var entryData = (window.MODULE_EINSTIEG || []).find(function (m) { return m.id === "computer-grundlagen"; }) || (modules[0] && modules[0].module || []).find(function (m) { return m.id === "computer-grundlagen"; }) || { id: "computer-grundlagen", titel: "Den Computer kennenlernen", status: "verfuegbar", datei: "module/computer-grundlagen.html", page: "computer-grundlagen" };
   var entryItem = item({ id: entryData.id, label: entryData.titel, href: base + entryData.datei, page: entryData.page });
   entryItem.classList.add("nav-topic", "nav-entry");
   list.appendChild(entryItem);

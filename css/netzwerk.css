@@ -53,3 +53,41 @@ input:focus-visible, summary:focus-visible { outline: 3px solid var(--farbe-akze
   .svg-box, .svg-klammer { stroke: CanvasText; }
   .svg-wert, .svg-punkt, .svg-label { fill: CanvasText; }
 }
+
+/* Subnetting: responsives Teilnetz-Diagramm statt SVG-Textzeilen */
+.subnetz-raster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.subnetz-karte { padding: 0.9rem 1rem; border: 3px solid var(--farbe-akzent); border-radius: var(--radius); background: var(--farbe-geplant-flaeche); color: var(--farbe-text); min-width: 0; overflow-wrap: anywhere; }
+.subnetz-karte-2 { border-color: var(--farbe-ok); background: var(--farbe-ok-flaeche); }
+.subnetz-karte h4 { margin: 0 0 0.3rem; font-size: 1.05rem; }
+.subnetz-bereich { margin: 0 0 0.6rem; font-size: 1.5rem; font-weight: 700; }
+.subnetz-karte dl { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 0.8rem; }
+.subnetz-karte dt { font-weight: 600; }
+.subnetz-karte dd { margin: 0; }
+.subnetz-maske { margin: 0.9rem 0 0; text-align: center; }
+@media (max-width: 36rem) {
+  .subnetz-raster { grid-template-columns: minmax(0, 1fr); }
+  .subnetz-karte dl { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
+  .subnetz-karte dt { margin-top: 0.55rem; }
+  .subnetz-karte dd { overflow-wrap: normal; word-break: normal; font-variant-numeric: tabular-nums; }
+  .subnetz-bereich { overflow-wrap: normal; word-break: keep-all; }
+}
+@media (forced-colors: active) { .subnetz-karte { border-color: CanvasText; } }
+
+/* Eingaben und Formularabstände */
+.netz-eingabe-gruppe input:not([type="radio"]):not([type="checkbox"]) {
+  font: inherit; min-height: 48px; padding: 0.5rem 0.8rem; border: 2px solid var(--farbe-rahmen);
+  border-radius: var(--radius); background: var(--farbe-flaeche); color: var(--farbe-text); width: 100%; max-width: 22rem; box-sizing: border-box;
+}
+.netz-eingabe-gruppe label:not(:first-child) { margin-top: 0.6rem; }
+.formular-aktionen { margin-top: 1.2rem; }
+#subnet-result { margin-top: 1.2rem; margin-bottom: 1.2rem; }
+
+/* Subnetting-Tabelle: auf schmaler Breite als beschriftete Blöcke stapeln, kein Seitenüberlauf */
+@media (max-width: 52rem) {
+  .netz-tabelle, .netz-tabelle tbody, .netz-tabelle tr, .netz-tabelle th, .netz-tabelle td, .netz-tabelle caption { display: block; width: auto; }
+  .netz-tabelle thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .netz-tabelle tr { margin-bottom: 1rem; border: 1px solid var(--farbe-rahmen); border-radius: var(--radius); }
+  .netz-tabelle th, .netz-tabelle td { border: 0; overflow-wrap: anywhere; }
+  .netz-tabelle tbody th { background: var(--farbe-hintergrund); border-bottom: 1px solid var(--farbe-rahmen); }
+  .netz-tabelle td[data-label]::before { content: attr(data-label) ": "; font-weight: 600; }
+}

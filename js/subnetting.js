@@ -21,7 +21,15 @@
   function update() { var p = progress(); el("fortschritt-balken").style.width = p + "%"; el("fortschritt-text").textContent = "Fortschritt: " + p + " %"; el("subnet-finish").textContent = complete() ? "Lektion abgeschlossen. Du kannst sie jederzeit wiederholen." : "Fortschritt: " + p + " %. Du kannst Antworten ändern und später weitermachen."; }
   function inputValue(id) { return el(id).value.trim(); }
   function checked(name) { var selected = global.document.querySelector('input[name="' + name + '"]:checked'); return selected ? selected.value : ""; }
-  function resultRow(text, ok, explanation) { var p = global.document.createElement("p"); p.className = ok ? "feedback-richtig" : "feedback-falsch"; p.textContent = (ok ? "✓ Richtig: " : "✗ Noch nicht richtig: ") + text + ". " + explanation; return p; }
+  function promptOf(q) { return String(q.text || q.label || q.id).replace(/[.\s]+$/, ""); }
+  function displayValue(q, v) { if (v === "" || v == null) return "keine Eingabe"; if (q.correct) return v === "true" ? "Richtig" : "Falsch"; return String(v); }
+  function resultRow(prompt, shown, status, explanation) {
+    var p = global.document.createElement("p");
+    p.className = status === "richtig" ? "feedback-richtig" : "feedback-falsch";
+    var head = status === "richtig" ? "✓ Richtig" : status === "leer" ? "– Nicht beantwortet" : "✗ Noch nicht richtig";
+    p.textContent = head + ": " + prompt + ". Deine Eingabe: " + shown + ". " + explanation;
+    return p;
+  }
   function check(event) {
     event.preventDefault();
     var submitted = { q1: checked("q1"), q2: checked("q2"), net1: inputValue("net1"), net2: inputValue("net2") };
@@ -29,8 +37,10 @@
     var results = QUESTIONS.concat(ITEMS).map(function (q) {
       var value = submitted[q.id], expected = q.correct || q.answer;
       var ok = value !== "" && value === expected;
-      var explanation = value === "" ? "Noch nicht beantwortet." : ok ? q.why : (q.why + " Richtiger Wert: " + expected + ".");
-      return { ok: ok, element: resultRow(q.text, ok, explanation) };
+      var isChoice = !!q.correct;
+      var hint = isChoice ? (expected === "true" ? "Die Aussage stimmt." : "Die Aussage stimmt nicht.") : "Richtiger Wert: " + expected + ".";
+      var explanation = value === "" ? (isChoice ? "Wähle Richtig oder Falsch. " : "Trage einen Wert ein. ") + hint + " " + q.why : ok ? q.why : hint + " " + q.why;
+      return { ok: ok, element: resultRow(promptOf(q), displayValue(q, value), value === "" ? "leer" : ok ? "richtig" : "falsch", explanation) };
     });
     var box = el("subnet-result"); box.textContent = "";
     var right = results.filter(function (r) { return r.ok; }).length;

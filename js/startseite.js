@@ -83,6 +83,17 @@
     if (!ziel) return;
     ziel.textContent = "";
 
+    var einstieg = window.MODULE_EINSTIEG || [];
+    if (einstieg.length) {
+      var start = erzeuge("section", "jahr einstieg");
+      start.setAttribute("aria-labelledby", "einstieg-titel");
+      var startH = erzeuge("h2", null, "Einstieg"); startH.id = "einstieg-titel";
+      start.appendChild(startH);
+      var startList = erzeuge("ul", "modul-liste");
+      einstieg.forEach(function (m) { startList.appendChild(baueModul(m)); });
+      start.appendChild(startList); ziel.appendChild(start);
+    }
+
     daten.forEach(function (jahr) {
       var abschnitt = erzeuge("section", "jahr");
       var ueberschriftId = "jahr-" + jahr.jahr + "-titel";

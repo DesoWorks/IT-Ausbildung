@@ -22,3 +22,8 @@ Versionen werden bewusst erst für einen freigegebenen Stand geändert.
 - Lernfeldgruppen in der Navigation einzeln auf- und zuklappbar; aktuelles Lernfeld wird geöffnet.
 - Einstieg Subnetting: /24 wird in zwei /25-Netze mit Masken, Netz-/Broadcastadressen und Hostbereichen geteilt.
 - Ergebnisbox mit Einzelbewertung, unbeantworteten Aufgaben und Korrekturhinweisen ergänzt.
+
+## 0.6.0-alpha.1
+- Subnetting-Diagramm und Übungsrückmeldungen responsiv verbessert; Abschlussansicht und Ergebnistext gezielt geprüft.
+- „Den Computer kennenlernen“ als eigenen Einstieg vor das 1. Ausbildungsjahr verschoben.
+- Offline-Zahlensystemrechner für Binär, Dezimal und Hexadezimal mit Stellenwerten und Rechenweg ergänzt.

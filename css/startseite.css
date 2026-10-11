@@ -29,7 +29,7 @@
 
 .modul-verfuegbar .modul-inhalt { border-color: var(--farbe-akzent); }
 .modul-verfuegbar .modul-status { color: var(--farbe-akzent-dunkel); }
-.modul-verfuegbar a.modul-inhalt:hover { background: #eaf1fb; }
+.modul-verfuegbar a.modul-inhalt:hover { background: var(--farbe-hover-flaeche); }
 .modul-verfuegbar a.modul-inhalt:focus-visible {
   outline: 3px solid var(--farbe-akzent-dunkel); outline-offset: 2px;
 }
@@ -71,6 +71,6 @@
   padding: 0.5rem 0.75rem; min-height: 44px; box-sizing: border-box;
   color: var(--farbe-text); text-decoration: none; border-radius: var(--radius);
 }
-.unterthema-link:hover { background: #eaf1fb; }
+.unterthema-link:hover { background: var(--farbe-hover-flaeche); }
 .unterthema-link:focus-visible { outline: 3px solid var(--farbe-akzent-dunkel); outline-offset: 2px; }
 .unterthema-verfuegbar .modul-status { color: var(--farbe-akzent-dunkel); }

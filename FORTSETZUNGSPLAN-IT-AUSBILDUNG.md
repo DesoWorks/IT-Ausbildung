@@ -213,3 +213,167 @@ Der vorherige Laufbericht meldet als bestanden: automatisierte `startseite.test.
 - Sichtbare Screenshots aufgenommen: `screenshots/subnetting-desktop.png`, `screenshots/subnetting-320.png`, `screenshots/subnetting-200.png`. Desktop/Mobil-Screenshots sind visuell durchgesehen. Screenshot-Emulation ist jedoch kein Nachweis browserseitiger echter 200-%-Textvergrößerung. Hell/Dunkel/hoher Kontrast in dieser Runde nicht vollständig visuell getestet; Screenreader nicht getestet.
 - Der Agent-Browser verweigerte lokalen Servernachweis; HTML-interaktive Prüfung gelang stattdessen mittels bestehendem Chrome-CDP-Skript über `file://`. Lokaler `python -m http.server` wurde gestartet, Port 8765 war belegt, Port 8766 lief; der UI-Test nicht auf diesem Server ausgeführt.
 - Stand zum Dokumentationszeitpunkt noch uncommitted. Vor PR-Abschluss: endgültige vollständige Test-/Diff-Prüfung, Commit, normaler Push und PR-Head nach Fetch/GitHub bestätigen. Kein Merge/Release.
+
+
+## Bestandsprüfung und Vorbereitung: Subnetting-UI / Tools & Nachschlagen (10.10.2026)
+
+### Arbeitsstand und Grenzen
+- Projektwurzel: `/home/starnet/projects/IT-Ausbildung`; Branch `prototype/computer-grundlagen`; bei Prüfung `HEAD=7df1a7a8bc81030d3bff261016dc08979e02f59b`, Arbeitsbaum sauber. Keine Quellcodeänderungen, kein Merge oder Push vorgenommen. Jarvis nicht kontaktiert und keine Verfügbarkeitsprobe ausgeführt.
+- Die im aktuellen Auftrag erwähnten Screenshots waren nicht als zusätzliche Bilddateien zugänglich. Vorhandene `screenshots/subnetting-desktop.png`, `subnetting-320.png` und `subnetting-200.png` sind lediglich Ansichten der ersten Lektionsteile; das Schaubild, die Adresseingaben und deren Prüfergebnis sind in diesen Frames nicht sichtbar. Sie belegen die benannten Defekte nicht; Ursachen unten folgen aus HTML/JS/CSS.
+- Beigefügte Dateien waren nicht lesbar: `ipv4cheatsheet.pdf` (übermittelte Workspace-Angabe `.attachments/c8ee3dbd-f0b1-42eb-84dc-a144e507ea04.pdf`) und `IPv6CheatSheet.pdf` (`.attachments/23862872-52a0-4bec-a6e0-a9ca80366f73.pdf`). Die PDF-Lese- und Shell-Zugriffe im Projektordner fanden beide Pfade nicht; Inhalt daher nicht ausgewertet. Für eine spätere Themenvorlagenprüfung müssen die Anhänge erneut im Projekt verfügbar gemacht werden.
+
+### Belegte Ursachen und gezielte Korrekturen
+1. **SVG-Beschriftungen über Rahmen / mögliche Überlagerung:** `module/subnetting.html` enthält das Diagramm als statische SVG mit `viewBox="0 0 760 190"`; jede Teilnetzbox ist 355 Einheiten breit. Die langen Detailbeschriftungen („Netz .0 · Hosts … · Broadcast …“) sind jeweils ein einzelnes `<text>`-Element mit mittiger Textausrichtung, keine Zeilenaufteilung. SVG-Text wird nicht automatisch umgebrochen. `css/netzwerk.css` setzt `.svg-label` auf 24px und das SVG auf `max-width: 640px` (Dateizeilen: `module/subnetting.html` 24; `css/netzwerk.css` 11, 15, 17–19). Damit ist Überbreite/Überlappung durch lange Textläufe technisch plausibel und responsive Skalierung verkleinert zwar alles, schafft aber keinen Zeilenumbruch. **Korrektur:** Diagramm als responsive HTML-/CSS-Teilnetz-Karten mit eigener Textzeile pro Merkmal und Grid `repeat(2,minmax(0,1fr))`; unter definierter Breite eine Spalte. Alternativ gezielte SVG-Textelemente mit getesteten `<tspan>`-Zeilen. Farbflächen mit Textlabels „Teilnetz 1/2“, Netz/Host-Werte und zugänglicher Textalternative kennzeichnen. Nichts abschneiden.
+2. **Eingabefelder zu flach/Browser-Default:** In `module/subnetting.html` 29 fehlen bei `#net1` und `#net2` `type="text"`. HTML lässt sie zwar als Textfelder rendern, jedoch matcht der vorhandene Selektor `css/netzwerk.css` 32–42 `.netz-eingabe-gruppe input[type="text"]` nicht. Anders als Netzmaskenfelder erhalten sie daher weder `font: inherit`, `min-height:48px`, Padding noch kontrollierte Rahmen-/Flächenfarben. **Korrektur:** Typ explizit setzen, Eingabestil robust auf `.netz-eingabe-gruppe input` oder alle Textcontrols vereinheitlichen; mindestens Schrift, Innenabstand, Bedienhöhe wie `module/netzmaske.html` und vorhandene Lektionen.
+3. **Button ohne Abstand:** In `module/subnetting.html` 29 steht der Submit-Button unmittelbar nach `</div>` der Eingabegruppe. `css/netzwerk.css` 30–42 gibt nur der Eingabegruppe Gap/Margin; für den Button innerhalb desselben Formulars gibt es keine Layoutgruppe oder Margin-Regel. **Korrektur:** Formularbereich mit konsistentem vertikalem `gap`/Abstand; Ergebnisbox darunter mit eigenem Abstand. Abstände visuell gegen vorherige Module vergleichen.
+4. **„undefined“ und fehlender Aufgaben-/Wertbezug:** `js/subnetting.js` 9–12 definiert freie Eingabeaufgaben mit Feld `label`, nicht `text`. In `check()` wird jede Frage aber mit `resultRow(q.text, ...)` gerendert (`js/subnetting.js` 29–38). Für `net1`/`net2` ist `q.text` undefiniert; Stringverkettung in `resultRow` rendert wörtlich `undefined`. Zusätzlich enthält die Ergebniszeile den abgegebenen Wert nicht (`resultRow` 24), und bei leerer Eingabe wird lediglich „Noch nicht beantwortet“ ausgegeben. **Korrektur:** Ergebnisdatenmodell vereinheitlichen (`prompt` + `label`/`getValue`), Antwortwert sicher auswerten und sichtbare Zeile aus Aufgabenname, eingegebenem Wert (leere Antwort explizit „keine Eingabe“), Richtig/Falsch und passender Erklärung zusammensetzen. Für fehlende Werte einen sicheren Fallback einsetzen, niemals `undefined` ausgeben.
+5. **Ergebnistexttests decken den Bug nicht ab:** `tests/subnetting.test.js` prüft aktuell statischen HTML-Inhalt, Daten-/Fortschrittsflags und Zahl der Fragen/Felder. Es führt `check()` nicht mit DOM-Formular aus und behauptet/prüft keinen tatsächlich gerenderten Rückmeldungstext. Der Fehler kann daher trotz bestandenem Rechentest bestehen bleiben. **Korrektur/Abnahmekriterium:** gezielter Browser- oder DOM-Integrationstest submitet korrekt, falsch und leer; prüft `#subnet-result.innerText` tatsächlich, dass beide Aufgabenlabels, eingegebene Werte bzw. „keine Eingabe“, Erklärungen und Zusammenfassung erscheinen, dass `undefined` nie vorkommt, und dass nur eingereichte richtige Werte die „Alles richtig“-Überschrift auslösen. Nach Antwortänderung muss alte Ergebnisbox verschwinden; Tastaturbedienung und Screenreader-Ankündigung/Fokusverhalten zusätzlich prüfen.
+6. **Abschlussseite/Leerraum:** Im geprüften HTML gibt es keine separate Abschlussseiten-Route; Abschluss ist `#abschluss` im selben Dokument und wird von `step()` in `js/subnetting.js` 49 eingeblendet. Die Lernnavigation samt Fortschrittsanzeige (`module/subnetting.html` 10) bleibt oberhalb des `main`; gemeinsame Regeln geben `.schritte` oben 1rem Margin (`css/styles.css` 77 ff.) und `main` zusätzlich 1rem Padding (`css/styles.css` 149). Die vorliegenden Screenshotdateien zeigen nicht den Zustand `#abschluss`. Damit ist ein genereller Abstand von Lernnavigation zu Inhalt durch die zwei Layoutabstände belegt, aber die vom Commander beschriebene besonders große Lücke auf der Abschlussansicht ist mit dem verfügbaren Frame nicht als konkrete gerenderte Ursache abschließend verifiziert. **Korrektur zur nächsten Umsetzung:** gemeinsamen Layoutabstand an einer Stelle definieren und den doppelten vertikalen Abstand zwischen `.schritte` und `main` vermeiden; Abschlusszustand per Browser-Screenshot prüfen und sicherstellen, dass dort keine leere/zusätzliche Navigationsfläche entsteht. Nicht mit `overflow:hidden` kaschieren.
+
+### Prioritäten und Abnahmekriterien für die nächste Umsetzung
+1. Funktionaler Rückmeldungsfehler (Aufgaben-/Wertdatenmodell): keine „undefined“-Zeichenfolge; sichtbare Auswertung muss Aufgabenbezeichnung, eingegebenen Wert, Urteil und fachliche Erklärung jeder Antwort enthalten; richtige, falsche, teilweise richtige, leere und nachträglich geänderte Eingaben testen. Assertions auf den echten angezeigten Text, nicht nur Rechenfunktionen.
+2. Layout-CSS/Formular: gleiche Schrift, Innenabstände und Mindestbedienhöhe wie bisher; klarer Abstand zwischen Eingabegruppe, Submitbutton und Ergebnisbox; Fokus sichtbar; per Tastatur vollständig.
+3. Diagramm neu strukturieren und responsiv testen: zwei Teilnetz-Karten nebeneinander bei ausreichender Breite, untereinander auf schmaler Fläche/Zoom. Lange Inhalte umbrechen, kein Clipping/Überlappen. Farbe ist redundant durch Beschriftung; Textalternative fachlich vollständig.
+4. Einheitlicher Vertikalabstand zwischen Lernschritt-Navigation/Fortschritt und Hauptinhalt; Abschlussansicht gezielt mitscreenshotten.
+5. Auf Desktop und schmalen Viewports, 320/390 CSS-Pixeln und 200% Zoom visuell prüfen; Eingaben/Button/Feedback tatsächlich bedienen; Testzustände samt sichtbarem Ergebnistext dokumentieren. Automatisierte Rechentests separat als solche ausweisen. Dunkel/Hell/hoher Kontrast sowie vorhandene Glossar-/Anzeigeoptionen kurz regressionsprüfen.
+
+### Tools & Nachschlagen – gemeinsame Spezifikation und Etappen
+**Gemeinsames Muster für jede offlinefähige, tastaturbedienbare HTML-Seite:** 1) Eingabe(n) inklusive Einheit, Beispiel und verständlicher Validierung; 2) unmittelbar sichtbares Ergebnis; 3) Rechenweg mit den konkret eingesetzten Werten und Einheiten; 4) kurze Erklärung samt Annahmen/Grenzen; 5) Verweis zur passenden Lektion. Gemeinsame Navigation, Glossardaten/-erklärungen und Anzeigeoptionen verwenden; Fachwörter zusätzlich an der relevanten Stelle kurz erklären. Eigene Texte/Diagramme erstellen, keine Gestaltung, Logos oder wörtlichen Texte der nicht zugänglichen PDFs kopieren.
+
+**Etappe A – Zahlensysteme:** Binär, Dezimal, Hexadezimal; Ein-/Ausgabe in allen Basen, Validierung; Stellenwertdarstellung und schrittweise Umrechnung anhand konkreter Ziffern/Werte.
+
+**Etappe B – Datenmengen:** bit, B, kbit, Mbit, kB/MB/GB/TB, KiB/MiB/GiB/TiB; dezimale 1000er- und binäre 1024er-Schritte getrennt und klar benennen, Einheitenumrechnung mit nachvollziehbarer Rechnung.
+
+**Etappe C – IPv4-Rechner/Tabelle:** Adresse + Präfix oder Maske; Präfix, Maske, Netzadresse, Broadcast, Gesamtadresszahl und nutzbarer Bereich. Standardbereich /0–/30 sauber unterscheiden; /31 ist gemäß RFC 3021 Sonderfall nur für Punkt-zu-Punkt-Verbindungen (beide Adressen verwendbar); /32 beschreibt genau eine Adresse/Hostroute und hat kein gewöhnliches Hostintervall. Definition und Anzeige dieser Fälle fachlich präzise und ohne pauschale „Netz/Broadcast abziehen“-Regel.
+
+**Spätere Etappen:** D) Übertragungsdauer/Datenrate; E) Bilddatenmenge aus Pixeln/Farbtiefe; F) Video: Rohdaten aus Bildrate/Dauer sowie komprimierte Größe bei vorgegebener Bitrate getrennt ausweisen; G) elektrische Größen, Energie und USV-Laufzeitschätzung mit sichtbaren Annahmen; H) IPv6-Nachschlagen/Schreibweisenprüfung, RFC-5952-Empfehlungen. IPv6 bleibt aus dem ersten Tools-Release heraus.
+
+**Pro Modul fertig heißt:** fachlich belegte Formeln und Randfälle; Erklärung + Beispiel; tastaturbedienbare Eingabe; validierte richtige/falsche/fehlende Eingaben; sichtbarer Ergebnistext und eingesetzter Rechenweg automatisiert geprüft; interaktive Bedienung sowie kleine/große Ansicht geprüft. Module nacheinander liefern, erst nach diesen Gates zur nächsten Etappe gehen.
+
+### Fachliche Primärquellen geprüft
+- RFC Editor, **RFC 4632 / BCP 122**, CIDR und Präfixnotation: https://www.rfc-editor.org/rfc/rfc4632 (direkt gelesen; Norm für klassenlose IPv4-Präfixkonzepte).
+- RFC Editor, **RFC 3021**, /31 auf Punkt-zu-Punkt-Links: https://www.rfc-editor.org/rfc/rfc3021 (direkt gelesen; Abschnitt 2.1 erklärt, dass beide Adressen bei /31 als Hostadressen interpretiert werden).
+- RFC Editor, **RFC 791**, Internet Protocol/IPv4: https://www.rfc-editor.org/rfc/rfc791 (direkt gelesen; Hintergrundquelle zum IPv4-Protokoll).
+- RFC Editor, **RFC 4291**, IPv6 Addressing Architecture: https://www.rfc-editor.org/rfc/rfc4291 (direkt gelesen; Adressarchitektur, Textnotation und Typen; Seite nennt Aktualisierungen, daher bei späterer Umsetzung zusätzlich einschlägige Updates beachten).
+- RFC Editor, **RFC 3879**, Site-Local formal deprecated: https://www.rfc-editor.org/rfc/rfc3879 (direkt gelesen; daher nicht als aktuelle IPv6-Empfehlung lehren).
+- RFC Editor, **RFC 4007**, IPv6 scoped address architecture: https://www.rfc-editor.org/rfc/rfc4007 (direkt gelesen; erklärt, dass unicast Site-Local als veraltet behandelt wird).
+- RFC Editor, **RFC 5952**, kanonische IPv6-Textdarstellung: https://www.rfc-editor.org/rfc/rfc5952 (direkt gelesen; Empfehlung zu Nullenkompression/Kleinschreibung; RFC 4291 selbst bleibt flexibler).
+- PDF-Bezug: Weil beide bereitgestellten Cheatsheets konkret nicht zugänglich waren, besteht noch kein Vergleich ihrer Themenauswahl/Fehler mit diesen RFC-Quellen. IPv4-„nutzbare Adressen“ müssen abhängig von Präfix und Einsatzkontext erklärt werden; /31 nicht wie übliches Broadcast-Subnetz behandeln. IPv4-Compatible IPv6 nicht als aktuelle Betriebsempfehlung einplanen; vor späterer Umsetzung die aktuelle RFC-4291-Fassung und Updates erneut verifizieren.
+
+### Status
+- Dies ist Vorbereitung. Noch keine Korrekturen an `module/subnetting.html`, `js/subnetting.js`, CSS oder Tests implementiert; kein App-Code geändert. Keine Jarvis-Beauftragung/Probe. Keine Merge-, Push- oder Veröffentlichungsaktion.
+
+
+## PDF-Auswertung und Vorbereitung „Tools & Nachschlagen“ (11.10.2026)
+
+### Zugriff und Herkunft der Arbeitskopien
+- Extraktion erfolgte aus den bestätigten absoluten Agenten-Workspace-Pfaden (Shell-CWD blieb separat `/home/starnet/projects/IT-Ausbildung`):
+  - `ipv4cheatsheet.pdf`: `/home/starnet/.local/share/StarNet/workspaces/agent/.attachments/c8ee3dbd-f0b1-42eb-84dc-a144e507ea04.pdf` (53.577 Bytes, 1 Seite).
+  - `IPv6CheatSheet.pdf`: `/home/starnet/.local/share/StarNet/workspaces/agent/.attachments/23862872-52a0-4bec-a6e0-a9ca80366f73.pdf` (66.959 Bytes, 2 Seiten).
+- Beide Dateien vorhanden, nicht verschlüsselt und durch `pdfinfo`/`pdftotext -layout` erfolgreich lesbar. Die Anhänge wurden nicht verschoben oder verändert.
+- **Arbeitsregel:** Attachment-Referenzen wie `.attachments/<Dateiname>` werden relativ zum Agenten-Workspace aufgelöst. Shell-Aufrufe starten dagegen im festgelegten Projektverzeichnis. Nicht versuchen, Attachment-Referenzen gegen die Projektwurzel oder einen Windows-PC-Pfad aufzulösen.
+
+### Aus den PDFs extrahierte Themen
+**IPv4-Cheatsheet (Adobe InDesign CC 13.0, erstellt 2017; 1 Seite):**
+- CIDR-Präfixe /0–/32, Subnetzmasken, Gesamtanzahl von Adressen und Wildcard-Masken.
+- Dezimal-/Binärumrechnung für Masken; Beispiel der Zerlegung einer IPv4-Adresse in vier Oktette.
+- Private IPv4-Bereiche 10/8, 172.16/12 und 192.168/16; außerdem Loopback 127/8 und Link-Local 169.254/16.
+- Historische Adressklassen A–E und knappe CIDR-/Wildcard-Erklärungen.
+
+**IPv6-Cheatsheet (Adobe InDesign CC 13.0, erstellt 2018; 2 Seiten):**
+- 128-Bit-Adressformat und Headerfelder; Next Header und Hop Limit.
+- Textnotation: führende Nullen weglassen, aufeinanderfolgende Nullfelder komprimieren, `::` höchstens einmal; IPv6-Adressen mit Port in URLs in eckige Klammern setzen.
+- Global Unicast, Link-Local, Multicast, IPv4-mapped, Dokumentationsbereich, Unique Local und Default/Unspecified/Loopback.
+- Präfix-/Adressaufteilung, Extension Headers, ICMPv6 sowie Konzepte Dual Stack, Tunneling und Translation.
+- Das Blatt zeigt ebenfalls Site-Local `FEC0::/10`, IPv4-Compatible IPv6, Teredo und 6to4. Diese Einträge sind als historische/Status-erklärende Beispiele zu behandeln, nicht als aktuelle Empfehlung. Es nennt zudem mehrere feste Präfix-Aufteilungen; diese nicht als universelle Regel lehren.
+
+### Fachliche Korrekturen und Einordnung vor späterer Umsetzung
+- IPv4-Klassennetz A/B/C ist historische Einordnung; heutige Subnetzplanung und Rechner müssen klassenlos mit CIDR-Präfixen arbeiten.
+- Die Adressanzahl aus einer Maske ist zunächst `2^(32-Präfix)` Gesamtadressen. Nutzbare Hostadressen dürfen nicht pauschal als Gesamtzahl minus 2 dargestellt werden: insbesondere /31 kann gemäß RFC 3021 auf Punkt-zu-Punkt-Verbindungen beide Adressen als Endpunkte verwenden; /32 ist eine einzelne Adresse/Hostroute ohne gewöhnlichen Hostbereich. Auch andere Spezial-/Einsatzkontexte müssen klar abgegrenzt werden.
+- Wildcard-Maske ist die bitweise Invertierung der Netzmaske und kommt insbesondere in konkreten Konfigurationskontexten vor; sie ist nicht selbst die Netzmaske und soll nicht als allgemeiner Ersatz für Präfixnotation erklärt werden.
+- IPv6 hat 128 Bit und keinen Broadcast; Multicast deckt bestimmte Gruppenkommunikationsfälle ab. Die `::`-Nullkompression darf in einer Adresse nur einmal verwendet werden; kanonische Ausgabe nach RFC 5952 ist von der Menge gültiger Eingabeformen zu unterscheiden.
+- Site-Local `FEC0::/10` ist deprecated (RFC 3879), nicht als aktuelle Adressart empfehlen. „IPv4-Compatible IPv6“ ist eine historische Form und soll nicht als empfohlene aktuelle Betriebsform erscheinen. IPv4-mapped Adressen sind ein bestimmter Interoperabilitäts-/API-Kontext, keine allgemeine IPv6-Adressplanung.
+- Das Cheatsheet entstand 2018 und ist Themenvorlage, keine aktuelle normative Quelle. Übergangsmechanismen (insbesondere 6to4/Teredo) sind nicht als pauschale Empfehlung zu übernehmen; Status und heutige Einsatzbedingungen müssen vor inhaltlicher Darstellung jeweils aktuell anhand einschlägiger Standards geprüft werden.
+
+### Primärquellen für die Planung und fachliche Prüfung
+- RFC 791, Internet Protocol (IPv4-Grundlage; historische Spezifikation): https://www.rfc-editor.org/rfc/rfc791
+- RFC 4632, CIDR; BCP 122: https://www.rfc-editor.org/rfc/rfc4632
+- RFC 3021, 31-Bit-Präfixe auf IPv4-Punkt-zu-Punkt-Links: https://www.rfc-editor.org/rfc/rfc3021
+- RFC 4291, IPv6 Addressing Architecture (mit auf der RFC-Seite aufgeführten Aktualisierungen): https://www.rfc-editor.org/rfc/rfc4291
+- RFC 5952, kanonische Textdarstellung von IPv6; aktualisiert RFC 4291: https://www.rfc-editor.org/rfc/rfc5952
+- RFC 3879, Deprecating Site Local Addresses: https://www.rfc-editor.org/rfc/rfc3879
+- IANA IPv6 Special-Purpose Address Registry (aktuelle Registry, beim Abruf zuletzt aktualisiert 2025-10-09): https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml
+
+Diese Quellen wurden für die Planungsnotiz direkt abgerufen. Vor einer konkreten Rechnerimplementierung sind einschlägige Normabschnitte, Errata und Registry-Stand erneut zu prüfen; insbesondere muss jeder angezeigte Spezialbereich seine tatsächliche Semantik und Reichweite nennen.
+
+### Geplante Tools – erste und spätere Etappen
+Gemeinsames Offline-Muster bleibt: Eingabe mit Einheit und Beispiel → sichtbares Ergebnis → Rechenweg mit eingesetzten Werten → kurze verständliche Erklärung/Annahmen → Verweis auf passende Lektion. Alle Seiten nutzen die gemeinsame Navigation, bestehende Anzeigeoptionen und Glossardaten, sind tastaturbedienbar und verwenden eigene Texte/Schaubilder.
+
+**Erste Tools-Etappe nach den priorisierten Subnetting-Korrekturen:**
+1. Zahlensystemrechner: Binär, Dezimal, Hexadezimal; Eingabevalidierung, Stellenwerte und Umrechnungsschritte.
+2. Bit-/Byte- und Einheitenrechner: bit, B, kbit, Mbit, kB/MB/GB/TB sowie KiB/MiB/GiB/TiB; dezimale 1000er- und binäre 1024er-Faktoren sichtbar unterscheiden.
+3. IPv4-Subnetzrechner plus Nachschlagetabelle: Adresse/Präfix oder Maske, Präfix, Maske, Netzadresse, Broadcast, Gesamtadresszahl und nutzbarer Bereich; /31 und /32 fachlich ausdrücklich behandeln.
+
+**Spätere Etappen:** Übertragungsdauer/Datenrate; Bildgröße aus Pixelzahl und Farbtiefe; Videodatenmenge aus Bildrate/Dauer und separat aus Bitrate (Rohdaten vs. komprimiert); Strom/Leistung/Energie und USV-Laufzeitschätzung mit offengelegten Annahmen; IPv6-Nachschlagen und Schreibweisenprüfung. IPv6 bleibt zunächst später eingeplant.
+
+### Priorität und Abnahme
+1. Zuerst die dokumentierten sichtbaren Subnetting-Fehler in `module/subnetting.html`, `js/subnetting.js` und den zugehörigen Styles korrigieren: SVG-Beschriftungsüberlauf/Überlappung; zu flache Adressfelder durch fehlende passende Eingabeklasse bzw. `type`; fehlender Abstand vor Prüfung/Feedback; `q.text`/`label`-Namensabweichung, die im Feedback `undefined` erzeugt; Einheitlichkeit des Abstands zwischen Navigation und Inhalt. Screenshotbefund nicht als Codeursache ausgeben, wenn der Zustand nicht reproduziert ist.
+2. Für die Korrektur gezielte Regressionstests ergänzen, die den tatsächlich gerenderten Feedbacktext prüfen (Aufgabenbezeichnung, eingegebener Wert, Erklärung, kein `undefined`), außerdem Diagramm-Layout bei breit/schmal, Eingabehöhe/-schrift/Abstände und Abschlussansicht. Rechentests allein genügen nicht.
+3. Erst nach diesen Korrekturen mit Tools-Etappe 1 beginnen. Jedes Tool separat bauen, fachlich prüfen, Ergebnis/Rechenweg/Fehlertexte testen und Tastatur-/responsive Interaktion vor dem nächsten Tool abnehmen.
+4. Jarvis erst nach dem Reset und einer einmaligen erfolgreichen, verwertbaren Verfügbarkeitsprobe beauftragen. Keine Wiederholungsversuche bei Fehlschlag; Plan und vorhandene Ergebnisse erhalten.
+
+Keine Codeänderung, kein Commit/Push/Merge oder Release in dieser Vorbereitungsarbeit. Die PDFs dienten ausschließlich als Themenvorlage; Layout, Logos oder Formulierungen werden nicht übernommen.
+
+
+## Fortsetzung nach kontrolliertem Neustart: Subnetting-Korrekturen
+
+- Laufprüfung vor Delegation: `station.inspect` meldete den Sidecar gesund und keine Jarvis-Agentenläufe als aktiv. Der zuvor uncommitted Plan blieb erhalten. Branch `prototype/computer-grundlagen`, Ausgangs-HEAD `7df1a7a`; Fortsetzungsplan war bereits geändert und wurde nicht überschrieben.
+- Genau ein Umsetzungslauf an JARVIS (custom-chefingenieur) wurde gestartet. Der Agent lieferte innerhalb des dispatch-Zeitfensters nur Teilfortschritt und wurde wegen Zeitlimit gestoppt; dieser Teamauftrag ist daher nicht als abgeschlossen bestätigt.
+- Der sichtbare Zwischenstand wurde von mir geprüft und die eigentliche Subnetting-Etappe selbst lokal verifiziert. Änderungen: `module/subnetting.html`, `js/subnetting.js`, `css/netzwerk.css`, `css/styles.css`, `tests/subnetting.test.js`, `tests/browser-subnetting-cdp.js`, Screenshots in `screenshots/subnetting-fix/`.
+- SVG mit langen, nicht umbrechenden Textläufen wurde durch responsive beschriftete HTML-Karten ersetzt. Bei schmalem Layout stapeln die Karten; die Datentabelle wird auf kleineren Ansichten zu beschrifteten Blöcken.
+- Eingaben sind explizit `type=text` und erhalten 48px Mindesthöhe, `font: inherit`, Polsterung und Rahmen. Formularaktionen und Ergebnisbox haben sichtbare Abstände.
+- Feedback verwendet `label` als sichere Aufgabenbezeichnung, enthält Eingabewert/„keine Eingabe“ und Erklärung; alle vier Fragen werden einzeln beurteilt. Antwortänderung löscht/verbirgt das alte Ergebnis. Tests lesen den tatsächlich erzeugten Feedbacktext und decken leer, falsch, teilweise richtig, alles richtig und geänderte Antworten ab; keine `undefined`.
+- Gemeinsames Desktop-Grid wurde mit expliziten Zeilenbereichen ergänzt, damit die linke Navigation nicht eine implizite Zeile erzwingt. Abschlusszustand wird im CDP-Test direkt erfasst.
+
+### Verifikation dieser Etappe
+- `node tests/subnetting.test.js`: bestanden, einschließlich Fake-DOM-Integrationstest mit angezeigten Feedbacktexten (leer/falsch/teilweise/geändert/richtig). Das ist automatisierte DOM-Logikprüfung, kein Browser-Interaktionstest.
+- Regression: `node tests/startseite.test.js`, `tests/logic.test.js` (13/13), `tests/navigation-glossar.test.js`, `tests/netzmaske.test.js`, `tests/netzwerk-lektion1.test.js` (14) und `tests/fortschritt.test.js`: bestanden. `node --check js/subnetting.js` und `git diff --check`: bestanden.
+- `node tests/browser-subnetting-cdp.js`: interaktive Prüfung im Chrome via CDP über vorhandene lokale `file://`-App. Tatsächlicher `#subnet-result.innerText` geprüft; leere, falsche, teilweise richtige und richtige Antworten durch Browser-Submit; Änderung nach Submit verbirgt alte Auswertung. Tastatur/Fokusnavigation dabei nicht vollständig geprüft.
+- Responsiv: 320 und 390 CSS-Pixel stapeln Karten sauber; Desktop 1440px nebeneinander; 200%-Page-Scale-Emulation bei 720px geprüft. Eingaben gerendert mit min. 53.3px (schmal) und 71.8px (Desktop/Scale); Abstand zweites Eingabefeld→Prüfbutton 20.4px bzw. 28.1px. Keine Kartenüberlappung oder Dokument-Überbreite.
+- Abschlussansicht gerendert: Fortschrittstext→Inhalt 34.6px (320/390), 47.6px (1440/200%-Emulation); Inhalt→Footer 42.5–58.5px. Die früher auffällige Lücke ist in den erfassten Zuständen nicht vorhanden. Screenshots: `screenshots/subnetting-fix/beispiel-1440.png`, `beispiel-390.png`, `beispiel-320.png`, `beispiel-720-zoom200.png`, `uebung-leer-1440.png`, `uebung-leer-390.png`, `uebung-leer-320.png`, `uebung-leer-720-zoom200.png`, `uebung-teilweise-1440.png`, `uebung-teilweise-390.png`, `uebung-teilweise-320.png`, `uebung-teilweise-720-zoom200.png`, `abschluss-1440.png`, `abschluss-390.png`, `abschluss-320.png`, `abschluss-720-zoom200.png`.
+- Grenzen: 200% war Page-Scale-Emulation, nicht echter Browser-Zoom oder echte Textvergrößerung. Hell/Dunkel/hoher Kontrast in dieser Runde nicht visuell regressionsgeprüft. Kein Screenreader-Test. Kein Commit/Push/PR-Update. Tools-Etappen beginnen erst nach eigenständiger Prüfung und Sicherung der fertigen Subnetting-Arbeit; laufende Umsetzung nicht durch einen zweiten Jarvis-Auftrag ersetzen.
+
+
+## Fortsetzung Nachtauftrag (11.10.2026, aktueller Arbeitsstand)
+
+### Laufstatus und Subnetting
+- Zu Beginn lokaler Branch `prototype/computer-grundlagen`, HEAD `7df1a7a8bc81030d3bff261016dc08979e02f59b`, origin/branch derselbe Commit. Vorhandene Änderungen im Baum erhalten.
+- Der Status-Agent sah keinen aktiven Jarvis-Lauf, aber konnte nicht belegen, ob der zuletzt beendete Lauf der Subnetting-Run war. Es wurde kein weiterer Subnetting-Umsetzungslauf gestartet. Bereits vorhandene Subnetting-Änderungen wurden selbst geprüft.
+- Automatisierte Suite bestanden: `subnetting.test.js` (echte DOM-Test-Fixture liest Feedbacktexte für leer/falsch/teilweise/geändert/richtig), `startseite.test.js`, `logic.test.js` (13), `navigation-glossar.test.js`, `netzmaske.test.js`, `netzwerk-lektion1.test.js` (14), `fortschritt.test.js`, `zahlensysteme.test.js`; Syntax und `git diff --check` bestanden.
+- `tests/browser-subnetting-cdp.js` lief gegen die tatsächlich gerenderte lokale file://-Seite. Eingaben 53.3px mobil / 71.8px Desktop, Eingabe-Button-Abstand 20.4px mobil / 28.1px Desktop. Ergebnistext bei leer/falsch/teilweise/richtig enthielt Aufgabe, Wert und Erklärung; kein `undefined`; Änderung verbarg alte Bestätigung. Abschlussansicht Abstand Fortschritt→Inhalt 34.6px mobil / 47.6px Desktop, kein extremer Leerraum. Karten waren bei 320px zunächst Zeichen-für-Zeichen umgebrochen; auf Basis visueller Screenshotprüfung CSS geändert und erneut gerendert. Neuer Screenshot `screenshots/subnetting-fix/beispiel-320.png` zeigt gestapelte Karten, lesbare Oktettwerte und Labels. Weitere Screenshots zuvor aufgenommen für Desktop, 390px und Page-Scale-Emulation.
+- Visuelle Nachprüfung der neuen mobilen Ansicht erfolgte anhand Screenshot. Echte Maus-/Tastaturinteraktion mit fokussierten Inputs und Navigation ist nicht vollständig abgenommen; GLaDOS konnte lokal nicht browsen (`refusing to navigate to private/loopback/intranet host: localhost`). Screenreader fehlt. Hell/Dunkel/hoher Kontrast visuell und rechnerisch noch offen. Die 200%-Prüfung ist ausschließlich Page-Scale-Emulation, kein echter Browser- oder Textzoom.
+
+### Einstieg
+- `MODULE_EINSTIEG` enthält nun „Den Computer kennenlernen“ mit unveränderter ID und Dateipfad. Startseite rendert eigene Sektion „Einstieg“ vor den drei Ausbildungsjahren; Einstieg wurde aus Jahr 1 entfernt, das Jahr beginnt mit LF1.
+- Navigation liest Einstiegsdaten bevorzugt aus der neuen Liste, mit altem Fallback. Lernfortschritt bleibt an der ID gebunden.
+- Daten-/Startseitentest wurde angepasst und `node tests/startseite.test.js` bestanden. Browserprüfung der Reihenfolge, des Links und eines bereits abgeschlossenen Häkchens noch offen.
+
+### Tools Etappe 1
+- Zahlensystemrechner implementiert: `module/zahlensysteme.html`, `js/zahlensysteme.js`, `css/zahlensysteme.css`, Test `tests/zahlensysteme.test.js`; Eintrag in Lernfeld 3, zentrale Glossarbegriffe ergänzt. Binär/Dezimal/Hex, 32-Bit-Grenze, Eingabevalidierung, Beispiel/Leeren, Stellenwerttabelle, Rechenweg; Ergebnis wird bei Änderungen gelöscht.
+- Review fand didaktische Schwäche in der Hex-Konversion: Vierergruppen waren nicht eindeutig den Hexziffern zugeordnet und führende Nullen fehlten im Endwert. Code und Tests korrigiert; je Gruppe wird `0001 = 1` etc. angezeigt und Endwert mit passender Gruppenschreibweise ausgegeben.
+- Automatisierter Test bestanden; keine Browser-/Tastatur-/Theme-Prüfung des Rechners. Kein Bit-/Byte- oder IPv4-Rechner begonnen.
+
+### Version/Git/PR/Übergabe
+- Version `0.6.0-alpha.1`; Changelog um die abgeschlossenen Änderungen ergänzt.
+- Keine Commit-/Push-Aktion bisher. Arbeitsbaum enthält dokumentierte Subnetting-Arbeit, Einstieg und Zahlensystem-Rechner. PR #1 normal aktualisieren und lokalen Commit/Remote-Head abgleichen bleibt offen.
+- Keine Merge-/Release-/Sichtbarkeitsaktion.
+- Nächster Punkt: Zahlensystemrechner interaktiv samt Tastatur/Theme/320px prüfen, fehlende Einstieg-Browserprüfung abschließen; erst nach akzeptabler Etappenprüfung Änderungen commiten und normal pushen. Danach Etappe Bit/Byte, danach IPv4-Rechner.
+
+
+## Etappenabschluss Subnetting/Einstieg/Zahlensysteme (11.10.2026)
+
+- Übernommene manuelle Terminalprüfungen (vom Commander gemeldet, hier nur ausgelesen): `/tmp/themes-run2.json` Ergebnis PASS, `badCount` 0 für Übersicht, Subnetting und Zahlensystemrechner in Hell, Dunkel und hohem Kontrast (kleinster gemessener Kontrast 6,27:1). `/tmp/kbd-run2.json` Ergebnis PASS (Exit-Code 0 laut Meldung), keine Stopps ohne sichtbaren Fokus auf den drei Seiten; Enter-Bedienung von Subnetting-Übung und Zahlensystemrechner bestätigt. Das ist keine vollständige WCAG-Konformitätsprüfung.
+- Laufprüfung: keine aktiven Jarvis-Prozesse, `station.inspect` ohne laufenden Agentenlauf.
+- Automatisierte Tests auf dem Arbeitsstand erneut bestanden: alle `tests/*.test.js`, `node --check js/*.js`, `git diff --check`.
+- Weiterhin offen: Screenreader, echter Windows-Doppelklick-Start, echter Browser-Zoom (nur Page-Scale-Emulation geprüft).
+- Nächste Etappe: Bit-/Byte- und Einheitenrechner (GB/GiB). IPv4-Rechner erst danach.
