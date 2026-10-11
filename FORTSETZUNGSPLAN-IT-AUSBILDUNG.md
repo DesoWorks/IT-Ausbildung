@@ -519,3 +519,29 @@ Keine Codeänderung, kein Commit/Push/Merge oder Release in dieser Vorbereitungs
 - Interaktive Prüfung nicht abgeschlossen: vorhandene Chrome-CDP Instanz erreichte den Discovery-Endpunkt, aber `Page.enable` endete mit `CDP timeout Page.enable` (Helfer-Grenze 8 s); kein identischer Wiederholungsversuch und keine parallele Instanz. `browser.test_navigate` lehnt `file://` ab (`local browser tests allow http(s) only`). Playwright/Puppeteer fehlen.
 - Offen: tatsächliche Browserauswertung für leer/falsch/teilweise/richtig/geänderte Antworten, Enter/Tastatur, Abschluss/Reload/Reset; visuelle Prüfung der Diagramm- und Antwortkartenansicht Desktop/320/390 in Hell, Dunkel und hohem Kontrast. Echter Zoom und Screenreader nicht geprüft. Keine Konformitätsaussage.
 - Nächster Schritt: bei stabil verfügbarer Einzel-Browserverbindung die in vorherigem Prüfprotokoll dokumentierten LF1-Szenarien ausführen; Screenshots aller geforderten Ansichten sichern. Erst danach Commit/Push/PR-Abgleich.
+
+
+## LF1/LF2-Inhaltsausbau – geprüfte Planung und Etappe LF1.2 (11.10.2026)
+
+### Arbeitsstand und Quelle
+- Projekt `/home/starnet/projects/IT-Ausbildung`, Branch `prototype/computer-grundlagen`. Zu Beginn sauberer Arbeitsbaum, kein aktiver Lauf; nach `git fetch origin` bestätigten `HEAD` und `origin/prototype/computer-grundlagen` denselben Commit `9c639c64c55550ccd9d0a6fc21c6261c7f84cc2e`. `gh pr view 1` meldete offenen PR #1 mit demselben Head und Basis `main`.
+- Offizielles KMK-PDF wurde über `curl` heruntergeladen, mit `pdfinfo` geprüft und mit `pdftotext -layout` extrahiert. Quelle: https://www.kmk.org/fileadmin/Dateien/pdf/Bildung/BeruflicheBildung/rlp/Fachinformatiker_19-12-13_EL.pdf . LF1 vollständiger Abschnitt Seite 12; LF2 Seite 13. LF1: Unternehmensziele (ökonomisch, ökologisch, sozial), Markt-/Kundenbeziehungen, Wertschöpfungskette, Leistungsschwerpunkte/Besonderheiten, Aufbauorganisation/Rechtsform, Handlungsspielraum/Vollmachten, Weiterbildung, multimediale Darstellung, Präsentation, Kriterienprüfung/Verbesserung, Rollenreflexion. LF2: Kundenwunsch interner/extern, Soft-/Hardwareanforderungen, Kriterien, Normen/Kennzeichnung/elektrische Sicherheit, technische und energietechnische Daten, Nutzwertanalyse, Ergonomie/Nachhaltigkeit/Recherche auch fremdsprachig, Energieeffizienz dokumentieren, Bezugsquellen und Lieferantenvergleich, Angebot mit vorgegebenen Zuschlägen, Kaufvertrag/Beschaffung/Lieferzeiten, Wareneingang/Mängel, Integration/Konfiguration/Inbetriebnahme unter Arbeitssicherheit, Übergabeprotokoll, Kundenzufriedenheit/Auftragsbewertung/Verbesserung.
+- Die vollständige kompakte Zuordnung Lernziel → Lektion → Übung, Abschlussprüfung sowie explizite Lücken ist in `docs/plan-lf1-lf2.md` gesichert. Struktur ist Orientierung, keine verbindliche Monatsplanung. Alle Betriebe, Angebote und Werte als fiktive Aufgabenfälle; keine persönlichen Daten oder produktiven Systeme.
+
+### Etappe abgeschlossen: LF1.2
+- Neue Lektion `module/lf1-leitbild.html`, Skript `js/lf1-leitbild.js`, Fortschritts-ID `lf1-leitbild-ziele` und Speicherkey `it-ausbildung.lf1-leitbild-ziele.v1`.
+- Behandelt Zweck eines Leitbilds sowie ökonomische, ökologische und soziale Ziele; Fallbeispiel Nordlicht IT-Service (frei erfunden), Zielkonflikt zwischen Anschaffungskosten und Lebensdauer/Reparierbarkeit; Lernziele, Vorkenntnisse, Glossarverknüpfungen, Zusammenfassung, Wiederholung, ID-basierte Radioübung und individuelles Feedback.
+- Zentraler Katalog, Glossar, Fortschrittsableitung und Glossar-Rücksprung-Allowlist ergänzt. LF1.1 bleibt erhalten. Anzeigeoptionen, Offlinepfade, gemeinsames Logo/Navigation und vorhandene Fortschritts-IDs bleiben erhalten. Kein weiterer LF1/LF2-Unterrichtsinhalt begonnen.
+- Version auf `0.10.0-alpha.1`, Changelog und README aktualisiert.
+
+### Prüfungen
+- Vor Änderungen alle 11 vorhandenen Tests bestanden. Nach LF1.2 zusätzlich `node tests/lf1-leitbild.test.js`, `node tests/startseite.test.js`, `node tests/lf1-ausbildungsbetrieb.test.js`, `node tests/fortschritt.test.js`, `node tests/navigation-glossar.test.js` und `node --check js/lf1-leitbild.js` bestanden. Der Test kontrolliert stabile Antwort-IDs, richtige Antworten auf wechselnden Positionen, leere/falsche/richtige Modelle, Fortschritt, Invalidierung nach Änderung, Glossar/Katalog, zugängliche Markupstruktur und fehlende Vorauswahl.
+- `node tests/*.test.js` ist kein gültiger Shell-Glob-Aufruf für Einzeltests; daher wurden Tests einzeln oder gezielt ausgeführt. Vorab bestand der vollständige Loop über alle `tests/*.test.js`.
+- Noch nicht durchgeführt: echte Browserinteraktion, sichtbare gerenderte Feedbackzustände, Tastatur, Reload/Reset-Persistenz im Browser, Hell/Dunkel/hoher Kontrast, Desktop/320/390 Pixel, größere Schrift, echter 200-%-Zoom und Screenreader. Keine WCAG-Konformitätsbehauptung. Vor Abschluss der LF1.2-Etappe Browserprüfung nach lokalem etablierten Testweg durchführen; wenn blockiert, genaue Grenze und Testanleitung dokumentieren.
+
+### Nächster Fortsetzungspunkt
+1. Browserprüfung von LF1.2 wie oben; erst nach bestandenem oder klar dokumentiertem Prüflauf LF1-Etappe committen und normal in PR #1 pushen, Remote-Head mit lokalem Commit vergleichen.
+2. Danach einzeln LF1.3 Markt/Kundschaft/Wertschöpfungskette; weitere LF1-Lektionen bleiben im Plan und sollen jeweils kleine abgeschlossene Scheiben sein.
+3. Danach LF2 mit dem zusammenhängenden fiktiven Kundenauftrag und Umsetzung der geplanten LF2.1–LF2.12-Lektionen. Keine Preis-/Produkt-/Rechtsbehauptungen ohne geeignete aktuelle Quelle; fiktive Beispielwerte klar markieren.
+4. LF1 bleibt trotz LF1.1/1.2 unvollständig; offene Themen und Abschlussprüfung laut `docs/plan-lf1-lf2.md`. LF2 ist vollständig geplant, aber noch nicht implementiert.
+5. Kein Merge, Release oder Sichtbarkeitswechsel. HOSHI sendet genau eine Abschlussmeldung erst am Ende oder bei endgültigem Stoppen des Gesamtauftrags.

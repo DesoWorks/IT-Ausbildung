@@ -17,7 +17,7 @@ Es muss weder Python noch Node.js installiert werden. Im Ordner `start/` liegt d
 
 Die Themenübersicht (`index.html`) zeigt drei Ausbildungsjahre. Verfügbare Einheiten sind anklickbar; geplante Inhalte sind nicht anklickbar und mit „In Kürze“ gekennzeichnet. IPv4 und Subnetting bleiben geplante Unterthemen; es gibt dazu keine neue Lektion.
 
-„LF“ bedeutet **Lernfeld**. Die Jahres- und Themenübersicht ist eine Orientierung, kein verbindlicher betrieblicher Monatsplan. Die Zuordnung kann je Berufsschule und Betrieb abweichen.
+„LF“ bedeutet **Lernfeld**. Die Jahres- und Themenübersicht ist eine Orientierung, kein verbindlicher betrieblicher Monatsplan. Die Zuordnung kann je Berufsschule und Betrieb abweichen. Die Zuordnung der vollständigen Inhalte von Lernfeld 1 und 2 zum Rahmenlehrplan sowie die geplanten Lektionen, Übungen, Abschlussaufgaben und ausdrücklich offenen Themen sind in [`docs/plan-lf1-lf2.md`](docs/plan-lf1-lf2.md) dokumentiert. Die erste zusätzliche LF1-Lektion zu Leitbild und Zielarten ist eine Lernorientierung anhand eines fiktiven Betriebs.
 
 ## Anzeige und Glossar
 
@@ -58,4 +58,4 @@ Die Übersicht orientiert sich am KMK-Rahmenlehrplan und an der Ausbildungsordnu
 Der lokale Rahmenlehrplan-PDF-Abgleich ist noch offen. Die Lernfeldnummern und Zuordnungen sind daher nicht als unabhängig gegen das Original-PDF verifiziert zu verstehen.
 
 ## Versionshinweis
-Aktuelle zentrale Version: **0.9.0-alpha.1** (`js/version.js`). Änderungen stehen in `CHANGELOG.md`.
+Aktuelle zentrale Version: **0.10.0-alpha.1** (`js/version.js`). Änderungen stehen in `CHANGELOG.md`.

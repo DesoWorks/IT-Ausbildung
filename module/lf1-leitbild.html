@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lernfeld 1: Ökonomische, ökologische und soziale Ziele sowie das Leitbild eines Betriebs verstehen.">
+  <title>Woran orientiert sich ein Betrieb? · Lernfeld 1</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .rollen-karten { display:grid; grid-template-columns:minmax(0,1fr); gap:.55rem; margin:1.25rem 0; max-width:48rem; }
+    .rollen-karte { border:2px solid var(--rahmen,#bdcde3); border-radius:.8rem; padding:1rem; background:var(--flaeche,#fff); }
+    .rollen-karte h3 { margin-top:0; }
+    .rollen-karte p:last-child { margin-bottom:0; }
+    .leitbild-zitat { margin:1rem 0; padding:.9rem 1.1rem; border-left:5px solid var(--primaer,#0754a6); background:var(--hinweis-flaeche,#eef4fb); max-width:48rem; }
+    .leitbild-zitat ul { margin:.4rem 0 0; padding-left:1.2rem; }
+    .rollen-frage { margin:1rem 0; }
+    .rollen-optionen { display:grid; grid-template-columns:minmax(0,1fr); gap:.65rem; }
+    .rollen-option { display:flex; align-items:flex-start; gap:.7rem; width:100%; min-width:0; box-sizing:border-box; padding:.85rem 1rem; border:2px solid var(--rahmen,#bdcde3); border-radius:.75rem; background:var(--flaeche,#fff); font:inherit; line-height:1.5; cursor:pointer; overflow-wrap:anywhere; }
+    .rollen-option input { flex:0 0 auto; margin:.28rem 0 0; }
+    .rollen-option:has(input:checked) { border-color:var(--primaer,#0754a6); box-shadow:0 0 0 1px var(--primaer,#0754a6); }
+    .rollen-option:hover { border-color:var(--primaer,#0754a6); }
+    .rollen-option:focus-within { outline:3px solid var(--fokus,#0754a6); outline-offset:3px; }
+    .rollen-feedback { padding:.7rem 1rem; border-left:4px solid currentColor; background:var(--hinweis-flaeche,#eef4fb); }
+    .ergebnis-box { margin-top:1.25rem; padding:1rem; border:2px solid var(--primaer,#0754a6); border-radius:.75rem; }
+    .ergebnis-box[hidden] { display:none; }
+  </style>
+</head>
+<body data-page="lf1-leitbild" data-base="../">
+  <a class="skip-link" href="#hauptinhalt">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 1</p>
+      <h1>Woran orientiert sich ein Betrieb?</h1>
+      <p class="kopf-dauer">Lektion 2 · ungefähr 15 Minuten · kein Zeitdruck</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol id="schritt-liste">
+      <li><button type="button" class="schritt-knopf" data-ziel="start" aria-current="true">1 · Überblick</button></li>
+      <li><button type="button" class="schritt-knopf" data-ziel="erklaerung">2 · Zielarten</button></li>
+      <li><button type="button" class="schritt-knopf" data-ziel="beispiel">3 · Beispiel</button></li>
+      <li><button type="button" class="schritt-knopf" data-ziel="uebung">4 · Übung</button></li>
+      <li><button type="button" class="schritt-knopf" data-ziel="abschluss">5 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt"><div class="fortschritt-leiste"><div class="fortschritt-balken" id="fortschritt-balken" style="width:0%"></div></div><p class="fortschritt-text" id="fortschritt-text" aria-live="polite">Fortschritt: 0 %</p></div>
+  </nav>
+  <main id="hauptinhalt" tabindex="-1">
+    <section id="start" class="abschnitt" aria-labelledby="start-titel">
+      <h2 id="start-titel">Was du in dieser Lektion lernst</h2>
+      <p>Jeder Betrieb verfolgt Ziele. Manche betreffen das Geld, andere die Umwelt, andere die Menschen im Betrieb. Du lernst, diese Ziele zu unterscheiden und zu erkennen, wie ein Leitbild sie bündelt.</p>
+      <h3>Lernziele</h3>
+      <ul>
+        <li>Ökonomische, ökologische und soziale Ziele unterscheiden.</li>
+        <li>Erklären, wozu ein Leitbild dient.</li>
+        <li>Aussagen eines Leitbilds den passenden Zielarten zuordnen.</li>
+        <li>Einen Zielkonflikt an einem Beispiel erkennen und beschreiben.</li>
+      </ul>
+      <h3>Vorkenntnisse</h3>
+      <p>Du solltest die Begriffe Betrieb, Abteilung und Team kennen. Sie kommen in Lektion 1 „Dein Ausbildungsbetrieb und deine Aufgaben“ vor. Mehr brauchst du nicht.</p>
+      <aside class="hinweis-box"><p class="hinweis-titel">Ein Lernbeispiel, keine allgemeine Betriebsregel</p><p><strong>Nordlicht IT-Service und sein Leitbild sind frei erfunden.</strong> Du musst keine Angaben zu deinem eigenen Betrieb machen. Die Lektion gibt keine Rechtsberatung und ist kein verbindlicher betrieblicher Ausbildungsplan.</p></aside>
+      <h3>Fachwörter</h3><p class="klein">Öffne einen Begriff für eine kurze Erklärung. Das vollständige Glossar findest du unter „Wörter &amp; Begriffe“.</p><div id="fachwoerter-liste"></div>
+      <div class="knopf-reihe"><button type="button" class="knopf knopf-haupt" data-weiter="erklaerung">Weiter: Die drei Zielarten</button></div>
+    </section>
+    <section id="erklaerung" class="abschnitt" aria-labelledby="erklaerung-titel" hidden>
+      <h2 id="erklaerung-titel">Drei Arten von Zielen</h2>
+      <p>Ein Betrieb muss mehr beachten als seinen Gewinn. Üblich ist, Ziele in drei Gruppen zu ordnen.</p>
+      <div class="rollen-karten">
+        <div class="rollen-karte"><h3>Ökonomische Ziele</h3><p>Hier geht es um die Wirtschaftlichkeit: Der Betrieb soll seine Kosten decken, sein Angebot finanzieren und langfristig bestehen können.</p><p><em>Beispielfrage:</em> Können wir uns diese Anschaffung leisten, und rechnet sie sich?</p></div>
+        <div class="rollen-karte"><h3>Ökologische Ziele</h3><p>Hier geht es um die Umwelt: Ressourcen schonen, Energie sparen, Abfall verringern und Geräte verantwortungsvoll weiterverwenden oder recyceln.</p><p><em>Beispielfrage:</em> Wie lange lässt sich ein Gerät nutzen, und was geschieht danach damit?</p></div>
+        <div class="rollen-karte"><h3>Soziale Ziele</h3><p>Hier geht es um die Menschen: faire Arbeitsbedingungen, Gesundheit, Weiterbildung und ein respektvolles Miteinander im Betrieb und gegenüber Kundschaft.</p><p><em>Beispielfrage:</em> Wie gut können Beschäftigte hier dauerhaft und gesund arbeiten?</p></div>
+      </div>
+      <div data-begriffe="Ökonomisches Ziel|Ökologisches Ziel|Soziales Ziel"></div>
+      <h3>Das Leitbild</h3>
+      <p>Ein Leitbild fasst zusammen, wofür ein Betrieb steht und woran er sich orientieren möchte. Oft enthält es Aussagen zu allen drei Zielarten. Es gibt eine Richtung vor. Es ersetzt weder Gesetze noch Verträge noch Arbeitsanweisungen.</p>
+      <div data-begriffe="Leitbild|Nachhaltigkeit"></div>
+      <h3>Wenn Ziele nicht zusammenpassen</h3>
+      <p>Ziele passen nicht immer zusammen. Eine günstige Lösung kann mehr Ressourcen verbrauchen, eine nachhaltigere Lösung kann zunächst mehr kosten. Dann spricht man von einem Zielkonflikt. Man löst ihn nicht mit einem Bauchgefühl, sondern durch Abwägen nachvollziehbarer Kriterien und Absprache mit den Verantwortlichen.</p>
+      <div data-begriffe="Zielkonflikt"></div>
+      <div class="knopf-reihe"><button type="button" class="knopf" data-weiter="start">Zurück</button><button type="button" class="knopf knopf-haupt" data-weiter="beispiel">Weiter zum Beispiel</button></div>
+    </section>
+    <section id="beispiel" class="abschnitt" aria-labelledby="beispiel-titel" hidden>
+      <h2 id="beispiel-titel">Beispiel: Das Leitbild von Nordlicht IT-Service</h2>
+      <p>Samira ist Auszubildende im Support-Team von Nordlicht IT-Service. In ihrer ersten Woche liest sie das Leitbild des Betriebs. Es ist ausdrücklich fiktiv.</p>
+      <figure class="leitbild-zitat">
+        <p><strong>Leitbild von Nordlicht IT-Service (fiktiv)</strong></p>
+        <ul>
+          <li>Wir arbeiten kostendeckend und investieren verlässlich in unsere Technik.</li>
+          <li>Wir verlängern die Nutzungsdauer von Geräten und geben Altgeräte in ein geordnetes Recycling.</li>
+          <li>Wir sorgen für verlässliche Arbeitszeiten und fördern Weiterbildung.</li>
+        </ul>
+        <figcaption class="klein">Erfundenes Beispiel. Echte Leitbilder sind ausführlicher und unterscheiden sich je Betrieb.</figcaption>
+      </figure>
+      <p>Samira ordnet die Sätze der Reihe nach zu: Der erste Satz nennt Kosten und Investitionen, ist also ökonomisch. Der zweite Satz betrifft Ressourcen und Altgeräte, ist also ökologisch. Der dritte Satz betrifft Arbeitszeiten und Weiterbildung, ist also sozial.</p>
+      <h3>Ein Zielkonflikt im Alltag</h3>
+      <p>Das Team plant neue Bildschirme für Arbeitsplätze. Zur Wahl stehen zwei Modelle. Die folgenden Werte sind nur ein Beispiel.</p>
+      <div class="rollen-karten">
+        <div class="rollen-karte"><h3>Modell A</h3><p>Günstiger in der Anschaffung, im Beispiel kürzer nutzbar.</p></div>
+        <div class="rollen-karte"><h3>Modell B</h3><p>Teurer in der Anschaffung, im Beispiel länger nutzbar und reparierbar.</p></div>
+      </div>
+      <p>Das Leitbild nennt sowohl Kostendeckung als auch längere Nutzung. Die Ziele ziehen hier in verschiedene Richtungen. Samira kann einen Vergleich vorbereiten, zum Beispiel Preis pro Nutzungsjahr. Die Entscheidung stimmt sie mit der verantwortlichen Person ab.</p>
+      <div class="knopf-reihe"><button type="button" class="knopf" data-weiter="erklaerung">Zurück</button><button type="button" class="knopf knopf-haupt" data-weiter="uebung">Weiter zur Übung</button></div>
+    </section>
+    <section id="uebung" class="abschnitt" aria-labelledby="uebung-titel" hidden>
+      <h2 id="uebung-titel">Übung: Ziele erkennen und abwägen</h2>
+      <p>Wähle je Aufgabe eine Antwort. Drücke anschließend „Antworten prüfen“. Du kannst Antworten ändern und erneut prüfen. Nach einer Änderung musst du neu prüfen. Es gibt keinen Zeitdruck.</p>
+      <div id="leitbild-fragen"></div>
+      <button type="button" class="knopf knopf-haupt" id="antworten-pruefen">Antworten prüfen</button>
+      <section id="leitbild-ergebnis" class="ergebnis-box" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button type="button" class="knopf" data-weiter="beispiel">Zurück zum Beispiel</button><button type="button" class="knopf" id="uebung-reset">Antworten zurücksetzen</button><button type="button" class="knopf knopf-haupt" data-weiter="abschluss">Zum Abschluss</button></div>
+    </section>
+    <section id="abschluss" class="abschnitt" aria-labelledby="abschluss-titel" hidden>
+      <h2 id="abschluss-titel">Das nimmst du mit</h2>
+      <ul>
+        <li>Ökonomische Ziele betreffen die Wirtschaftlichkeit, ökologische die Umwelt und Ressourcen, soziale die Menschen im und um den Betrieb.</li>
+        <li>Ein Leitbild gibt Orientierung, ersetzt aber keine Gesetze, Verträge oder Arbeitsanweisungen.</li>
+        <li>Ziele können sich widersprechen. Dann hilft ein Vergleich nachvollziehbarer Kriterien und die Abstimmung mit den Verantwortlichen.</li>
+        <li>Alle Betriebe, Leitbilder und Werte in dieser Lektion sind erfunden. Dein Betrieb kann andere Schwerpunkte haben.</li>
+      </ul>
+      <p id="abschluss-status" class="rueckmeldung" aria-live="polite"></p>
+      <div class="knopf-reihe"><button type="button" class="knopf" data-weiter="uebung">Übung wiederholen</button><button type="button" class="knopf knopf-warn" id="reset-alles">Fortschritt zurücksetzen</button></div>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 1 · Lektion 2 · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script><script src="../js/fortschritt.js"></script><script src="../js/navigation.js"></script><script src="../js/glossar-daten.js"></script><script src="../js/anzeige-glossar.js"></script><script src="../js/version.js"></script><script src="../js/lf1-leitbild.js"></script>
+</body>
+</html>

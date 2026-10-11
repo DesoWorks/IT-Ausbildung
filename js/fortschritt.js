@@ -5,6 +5,7 @@
   var SCHLUESSEL = {
     "computer-grundlagen": "it-ausbildung.computer-grundlagen.v1",
     "lf1-betrieb-aufgaben": "it-ausbildung.lf1-betrieb-aufgaben.v1",
+    "lf1-leitbild-ziele": "it-ausbildung.lf1-leitbild-ziele.v1",
     "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
     "lf3-netzmaske": "it-ausbildung.netzmaske.v1",
     "lf3-subnetting": "it-ausbildung.subnetting.v1"
@@ -34,6 +35,11 @@
       if (id === "lf1-betrieb-aufgaben") {
         var lf1 = state.answers || {};
         return !!state.finish && lf1.q1 === "team" && lf1.q2 === "abstimmen" && lf1.q3 === "betrieb";
+      }
+      if (id === "lf1-leitbild-ziele") {
+        var lf12 = state.answers || {};
+        return !!state.finish && !!state.checked && lf12.q1 === "q1-orientierung" && lf12.q2 === "q2-oekologisch" &&
+          lf12.q3 === "q3-sozial" && lf12.q4 === "q4-oekonomisch" && lf12.q5 === "q5-abwaegen";
       }
       if (id === "lf3-ipv4") {
         var questions = ["anzahl", "wertebereich", "gueltig"];

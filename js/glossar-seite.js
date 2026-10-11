@@ -5,7 +5,7 @@
   var search = document.getElementById("glossar-suche");
   var back = document.getElementById("glossar-zurueck");
   if (!list || !search || !back) return;
-  var allowed = { "index.html": true, "computer-grundlagen.html": true, "netzwerkgrundlagen.html": true, "lf1-ausbildungsbetrieb.html": true };
+  var allowed = { "index.html": true, "computer-grundlagen.html": true, "netzwerkgrundlagen.html": true, "lf1-ausbildungsbetrieb.html": true, "lf1-leitbild.html": true };
   var from = new URLSearchParams(location.search).get("von") || "index.html";
   var candidate = allowed[from] ? from : null;
   if (candidate && from !== "index.html") candidate = "module/" + from;

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0-alpha.1
+- Lernfeld 1 gegen den vollständigen KMK-Abschnitt geprüft; kompakte LF1-/LF2-Zuordnung mit allen Themen, Übungen, Abschlussaufgaben und offenen Lücken ergänzt.
+- LF1.2 „Woran orientiert sich ein Betrieb?“ ergänzt: fiktives Leitbild, ökonomische/ökologische/soziale Ziele und Zielkonflikt mit ID-basierten Übungen und Rückmeldungen.
+
 ## 0.9.1-alpha.1
 - LF1-Schaubild als klare vertikale Folge Betrieb → Abteilung → Team → Samira innerhalb des Teams umgeordnet; Textalternative an die Darstellung angepasst.
 - Antwortoptionen als untereinander stehende, native Radio-Antwortkarten mit vollständiger Klickfläche und sichtbarem Fokus gestaltet.

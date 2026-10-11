@@ -34,7 +34,7 @@ assert(startseitenScript.includes('m.typ !== "werkzeug"'), "Startseite schließt
 const lernfelder = j1.filter(m => m.lernfeld);
 assert.deepStrictEqual(lernfelder.map(m => [m.lernfeld, m.titel]), erwartetJahr1, "Jahr-1-Titel wörtlich");
 const lf1 = j1.find(m => m.id === "lf1");
-assert.equal(lf1.unterthemen.length, 1, "genau eine LF1-Lektion");
+assert.equal(lf1.unterthemen.length, 2, "zwei LF1-Lektionen (LF1.1 und LF1.2)");
 assert.equal(lf1.unterthemen[0].page, "lf1-ausbildungsbetrieb");
 assert(fs.existsSync(path.join(wurzel, lf1.unterthemen[0].datei)), "LF1-Lektion verlinkt auf vorhandene Datei");
 assert.strictEqual(daten[1].module.length, 4, "Jahr 2: vier Bereiche");
