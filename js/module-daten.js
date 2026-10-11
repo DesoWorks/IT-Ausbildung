@@ -41,7 +41,7 @@
           unterthemen: [
             { id: "lf2-kundenbedarf", typ: "lektion", titel: "Kundenbedarf verstehen", beschreibung: "Fiktiven Auftrag in Wünsche, Anforderungen und offene Rückfragen gliedern.", page: "lf2-kundenbedarf", status: "verfuegbar", datei: "module/lf2-kundenbedarf.html" },
             { id: "lf2-kriterien", typ: "lektion", titel: "Anforderungen in Kriterien übersetzen", beschreibung: "Pflicht- und Wunschkriterien aus dem Bedarf ableiten.", page: "lf2-kriterien", status: "verfuegbar", datei: "module/lf2-kriterien.html" },
-            { id: "lf2-sichere-auswahl", typ: "lektion", titel: "Sicher auswählen und Kennzeichnungen prüfen", beschreibung: "Sicherheitsinformationen aus bereitgestellten Quellen prüfen.", page: "lf2-sichere-auswahl", status: "in-kuerze" },
+            { id: "lf2-sichere-auswahl", typ: "lektion", titel: "Sicher auswählen und Kennzeichnungen prüfen", beschreibung: "Sicherheitsinformationen aus bereitgestellten Quellen prüfen.", page: "lf2-sichere-auswahl", status: "verfuegbar", datei: "module/lf2-sichere-auswahl.html" },
             { id: "lf2-technische-daten", typ: "lektion", titel: "Technische Daten lesen", beschreibung: "Fiktive Produktdaten und fremdsprachige Angaben auswerten.", page: "lf2-technische-daten", status: "in-kuerze" },
             { id: "lf2-varianten", typ: "lektion", titel: "Arbeitsplatzvarianten vergleichen", beschreibung: "Technische, wirtschaftliche, ergonomische und ökologische Kriterien abwägen.", page: "lf2-varianten", status: "in-kuerze" },
             { id: "lf2-energie", typ: "lektion", titel: "Energiebedarf transparent vergleichen", beschreibung: "Energieverbrauch anhand fiktiver Daten berechnen und Annahmen nennen.", page: "lf2-energie", status: "in-kuerze" },

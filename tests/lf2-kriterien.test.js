@@ -32,7 +32,7 @@ for (const t of ['data-page="lf2-kriterien"', "Fiktiver Auftrag", "1.200 Euro", 
 const catalog = fs.readFileSync(path.join(root, "js/module-daten.js"), "utf8");
 assert(catalog.includes('page: "lf2-kriterien", status: "verfuegbar", datei: "module/lf2-kriterien.html"'));
 assert.equal((catalog.match(/id: "lf2-kriterien"/g) || []).length, 1, "stabile ID genau einmal");
-assert.equal((catalog.match(/id: "lf2-sichere-auswahl"[^}]*status: "in-kuerze"/g) || []).length, 1, "andere LF2-Lektionen bleiben geplant");
+assert.equal((catalog.match(/id: "lf2-technische-daten"[^}]*status: "in-kuerze"/g) || []).length, 1, "andere LF2-Lektionen bleiben geplant");
 
 const gl = fs.readFileSync(path.join(root, "js/glossar-daten.js"), "utf8");
 assert(gl.includes('begriff: "Pflichtkriterium"') && gl.includes('begriff: "Wunschkriterium"'));

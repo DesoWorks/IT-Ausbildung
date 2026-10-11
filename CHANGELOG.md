@@ -97,3 +97,8 @@ Versionen werden bewusst erst für einen freigegebenen Stand geändert.
 - Zustände werden lokal gespeichert; bei Rückkehr aus einer Lektion öffnet sich das zugehörige Jahr und Lernfeld. Fortschritt wird aus bestehenden Lernmodul-IDs abgeleitet; Tools bleiben ausgeschlossen.
 - Geplante Lernfelder und Lektionen bleiben als „In Kürze“ sichtbar, ohne leere oder gestreckte Spalten.
 - Automatisierte Regression für Disclosure-Zustände, zentrale Katalogdaten und kompakte Übersicht ergänzt.
+
+### Inhaltserweiterung LF2.2–LF2.3 (11.10.2026)
+- LF2.2: Kriterien aus einem fiktiven Kundenbedarf ableiten, Pflicht- und Wunschkriterien unterscheiden.
+- LF2.3: fiktive Produktkarten und verständliche Orientierung zu CE, GS und Elektroaltgeräte-Sammlung, mit offiziellen Quellenlinks.
+- Beide Lektionen haben stabile Fortschritts-IDs und eigene Übungen; vollständige Test-Suite bestanden. Interaktive Bedienprüfung bleibt offen.
