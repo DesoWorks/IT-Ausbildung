@@ -16,6 +16,7 @@
     "lf1-reflexion": "it-ausbildung.lf1-reflexion.v1",
     "lf1-abschluss": "it-ausbildung.lf1-abschluss.v1",
     "lf2-kundenbedarf": "it-ausbildung.lf2-kundenbedarf.v1",
+    "lf2-kriterien": "it-ausbildung.lf2-kriterien.v1",
     "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
     "lf3-netzmaske": "it-ausbildung.netzmaske.v1",
     "lf3-subnetting": "it-ausbildung.subnetting.v1"
@@ -77,6 +78,10 @@
       if (id === "lf2-kundenbedarf") {
         var need = state.answers || {};
         return !!state.finish && !!state.checked && need.q1 === "anforderung" && need.q2 === "software" && need.q3 === "rahmen" && need.q4 === "klaeren";
+      }
+      if (id === "lf2-kriterien") {
+        var crit = state.answers || {};
+        return !!state.finish && !!state.checked && crit.q1 === "pflicht" && crit.q2 === "wunsch" && crit.q3 === "messbar" && crit.q4 === "ausscheiden";
       }
       if (id === "lf1-abschluss") {
         var finalAnswers = state.answers || {};

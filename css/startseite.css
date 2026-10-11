@@ -74,3 +74,42 @@
 .unterthema-link:hover { background: var(--farbe-hover-flaeche); }
 .unterthema-link:focus-visible { outline: 3px solid var(--farbe-akzent-dunkel); outline-offset: 2px; }
 .unterthema-verfuegbar .modul-status { color: var(--farbe-akzent-dunkel); }
+
+/* Kompakte, unabhängig aufklappbare Jahre und Lernfelder. */
+.overview-entry { margin: 1rem 0 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--farbe-rahmen); }
+.overview-year { margin: 1rem 0; border: 1px solid var(--farbe-rahmen); border-radius: var(--radius); background: var(--farbe-flaeche); }
+.overview-year > summary, .overview-field-summary {
+  display: flex; align-items: flex-start; flex-wrap: wrap; gap: .35rem .8rem;
+  min-height: 3rem; padding: .75rem 1rem; cursor: pointer; color: var(--farbe-text);
+  font-weight: 700; list-style: none;
+}
+.overview-year > summary::-webkit-details-marker, .overview-field-summary::-webkit-details-marker { display: none; }
+.overview-year > summary::before, .overview-field-summary::before { content: "▸"; flex: 0 0 1em; }
+.overview-year[open] > summary::before, .overview-field[open] > summary::before { content: "▾"; }
+.overview-year > summary:focus-visible, .overview-field-summary:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; border-radius: 6px; }
+.overview-fields { padding: 0 .9rem .9rem; }
+.overview-field { margin: .55rem 0; border: 1px solid var(--farbe-rahmen); border-radius: calc(var(--radius) * .75); }
+.overview-field-summary { min-height: 2.75rem; font-size: .96em; }
+.overview-field-title { flex: 1 1 18rem; min-width: 0; overflow-wrap: anywhere; }
+.overview-field-count { flex: 1 1 12rem; color: var(--farbe-text-leise); font-size: .86em; font-weight: 500; }
+.overview-lessons { list-style: none; display: grid; gap: .45rem; margin: 0; padding: .2rem .75rem .75rem 2.15rem; }
+.overview-lesson { min-width: 0; border-radius: .55rem; }
+.overview-lesson-link, .overview-lesson.planned {
+  display: flex; flex-direction: column; gap: .2rem; min-height: 44px; padding: .55rem .75rem;
+  border: 1px solid var(--farbe-rahmen); border-radius: .55rem; color: var(--farbe-text);
+  background: var(--farbe-flaeche); text-decoration: none; overflow-wrap: anywhere;
+}
+.overview-lesson-link:hover { background: var(--farbe-hover-flaeche); }
+.overview-lesson-link:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
+.overview-lesson.available .modul-status { color: var(--farbe-akzent-dunkel); }
+.overview-lesson.planned { border-style: dashed; color: var(--farbe-geplant-tekst); background: var(--farbe-geplant-flaeche); }
+.overview-lesson.planned .modul-status { margin-top: 0; color: var(--farbe-geplant-tekst); }
+.overview-planned { margin: 0; padding: 0 1rem 1rem 2.6rem; color: var(--farbe-geplant-tekst); }
+#jahre { display: block; }
+#jahre > .overview-year { height: auto; align-self: start; }
+@media (max-width: 560px) {
+  .startseite { padding-inline: 1rem; }
+  .overview-fields { padding-inline: .55rem; }
+  .overview-lessons { padding-left: 1.35rem; }
+  .overview-field-count { flex-basis: 100%; padding-left: 1.4rem; }
+}

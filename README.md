@@ -29,7 +29,7 @@ Das Glossar liegt zentral in `js/glossar-daten.js`; die gemeinsame Navigation wi
 
 Technische Grundlage: statische HTML-, CSS- und JavaScript-Dateien ohne Bibliotheken, CDN oder Buildschritt. `index.html` ist die Themenübersicht. Moduldateien liegen unter `module/`. Die Startseite bezieht ihre Einträge aus `js/module-daten.js`; ein einzelnes neues Modul kann durch eine eigene HTML-Datei und einen Eintrag in dieser Datenliste ergänzt werden.
 
-Zentrale Version: `js/version.js`. Version nur für einen bewusst freigegebenen Stand ändern. Änderungen sind in `CHANGELOG.md` einzutragen.
+Zentrale Version: `js/version.js`. Version nur für einen bewusst freigegebenen Stand ändern. Änderungen sind in `CHANGELOG.md` einzutragen. Die Themenübersicht nutzt einklappbare Ausbildungsjahre und Lernfelder; deren Zustände werden nach Möglichkeit lokal gesichert.
 
 Automatische Prüfungen (Node.js nur für Entwickler):
 
@@ -58,4 +58,4 @@ Die Übersicht orientiert sich am KMK-Rahmenlehrplan und an der Ausbildungsordnu
 Der lokale Rahmenlehrplan-PDF-Abgleich ist noch offen. Die Lernfeldnummern und Zuordnungen sind daher nicht als unabhängig gegen das Original-PDF verifiziert zu verstehen.
 
 ## Versionshinweis
-Aktuelle zentrale Version: **0.10.0-alpha.1** (`js/version.js`). Änderungen stehen in `CHANGELOG.md`.
+Aktuelle zentrale Version: **0.13.1-alpha.1** (`js/version.js`). Änderungen stehen in `CHANGELOG.md`.

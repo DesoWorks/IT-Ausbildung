@@ -15,7 +15,7 @@ assert(css.includes("padding-left: 2rem; padding-right: 2rem"), "content has cle
 assert(startCss.includes(".startseite { max-width: none; margin: 0; padding: 1rem 2rem; }"), "no nested centered homepage width and explicit content gutters");
 assert(!/(?:^|[}\n])\s*(?:body|main|\.kopf|\.startseite)[^{]*\{[^}]*overflow\s*:\s*hidden/s.test(css), "page content is not concealed by hidden overflow");
 assert(nav.includes("aria-label", nav.indexOf("Abgeschlossen")) || nav.includes("LERNFORTSCHRITT.abschlusszeichen"), "navigation renders accessible completion marker");
-assert(start.includes("data-progress-id") && start.includes("LERNFORTSCHRITT.abgeschlossen(u.id)"), "overview topic card uses topic progress id");
+assert(start.includes("data-progress-id") && start.includes("LERNFORTSCHRITT.abgeschlossen(lesson.id)"), "overview lesson entry uses its stable topic progress id");
 
 const values = new Map();
 const document = { createElement(tag) { return { tagName: tag.toUpperCase(), attrs: {}, setAttribute(k,v){this.attrs[k]=v;}, className:"", textContent:"" }; } };
@@ -52,6 +52,10 @@ assert.equal(api.abgeschlossen("lf1-weiterbildung"),true,"LF1.7 completion deriv
 for(const [id,key,answer] of [["lf1-praesentation","it-ausbildung.lf1-praesentation.v1","purpose"],["lf1-qualitaet","it-ausbildung.lf1-qualitaet.v1","add"],["lf1-reflexion","it-ausbildung.lf1-reflexion.v1","learn"]]){values.set(key,JSON.stringify({finish:true,checked:true,answer}));assert.equal(api.abgeschlossen(id),true,id+" completion derives from its own answer store");}
 values.set("it-ausbildung.lf2-kundenbedarf.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"anforderung",q2:"software",q3:"rahmen",q4:"klaeren"}}));
 assert.equal(api.abgeschlossen("lf2-kundenbedarf"),true,"LF2.1 completion derives from its own checked needs");
+values.set("it-ausbildung.lf2-kriterien.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"pflicht",q2:"wunsch",q3:"messbar",q4:"ausscheiden"}}));
+assert.equal(api.abgeschlossen("lf2-kriterien"),true,"LF2.2 completion derives from its own checked criteria");
+values.set("it-ausbildung.lf2-kriterien.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"wunsch",q2:"wunsch",q3:"messbar",q4:"ausscheiden"}}));
+assert.equal(api.abgeschlossen("lf2-kriterien"),false,"LF2.2 not complete with a wrong answer");
 values.set("it-ausbildung.lf1-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"yes",q2:"yes",q3:"yes",q4:"yes"}}));
 assert.equal(api.abgeschlossen("lf1-abschluss"),true,"LF1 Abschluss completion derives from all self-check items");
 const marker=api.abschlusszeichen();

@@ -556,3 +556,21 @@ Keine Codeänderung, kein Commit/Push/Merge oder Release in dieser Vorbereitungs
 3. Danach LF2 mit dem zusammenhängenden fiktiven Kundenauftrag und Umsetzung der geplanten LF2.1–LF2.12-Lektionen. Keine Preis-/Produkt-/Rechtsbehauptungen ohne geeignete aktuelle Quelle; fiktive Beispielwerte klar markieren.
 4. LF1 bleibt trotz LF1.1/1.2 unvollständig; offene Themen und Abschlussprüfung laut `docs/plan-lf1-lf2.md`. LF2 ist vollständig geplant, aber noch nicht implementiert.
 5. Kein Merge, Release oder Sichtbarkeitswechsel. HOSHI sendet genau eine Abschlussmeldung erst am Ende oder bei endgültigem Stoppen des Gesamtauftrags.
+
+
+## Themenübersicht: einklappbare Ausbildungsjahre und Lernfelder (11.10.2026)
+
+### Umsetzung
+- `index.html` behält den separaten Einstieg vor Ausbildungsjahr 1; die Jahr-/Lernfeldanzeige wird aus `js/module-daten.js` aufgebaut, ebenso die zentrale Navigation. Die Übersicht filtert Werkzeugtypen heraus.
+- `js/startseite.js` rendert drei native, unabhängig aufklappbare Jahres-`details` und je Lernfeld eigene `details`. Ohne gespeicherten Zustand ist Jahr 1 geöffnet, Jahr 2/3 geschlossen. Ein `localStorage`-Objekt speichert Jahres- und Feldzustände unter `it-ausbildung.uebersicht-aufklappzustand.v1`; Schreib-/Lesefehler werfen keine Bedienungsblockade.
+- Geschlossene Lernfelder zeigen Titel, verfügbare/geplante Lektionen und Zahl abgeschlossener verfügbarer Lektionen. Eine Gruppe wird nicht als vollständig abgeschlossen bezeichnet, wenn geplante Lektionen fehlen. Geplante Lernfelder bleiben kompakt „In Kürze“ und nicht verlinkt.
+- Beim Verlassen der Übersicht über einen verfügbaren Lernlink wird dessen Lernfeld in `sessionStorage` notiert; Rückkehr öffnet zugehöriges Jahr und Lernfeld. Bestehende Fortschritts-IDs und gespeicherte Lernstände werden nicht geändert. `css/startseite.css` gestaltet disclosure-Elemente ohne erzwungene gleiche Spaltenhöhe.
+
+### Verifikation und Grenzen
+- Automatisiert: alle 25 Dateien `tests/*.test.js` bestanden, darunter Startseite, Fortschritt, Navigation/Glossar, alle LF1/LF2-Tests und `overview-disclosures.test.js`; `node --check js/startseite.js` und `git diff --check` bestanden.
+- Visuell: Headless Chrome direkt auf lokalem `file://` erstellte `screenshots/overview-disclosures/lf1-closed.png` und `lf1-open.png`. Der Screenshot des geschlossenen Zustands zeigt Jahr 1 geöffnet, Jahr 2/3 geschlossen, Einstieg davor und kompakte Zusammenfassungen. Der geöffnete Screenshot zeigt die LF1-Lektionen eingerückt unter LF1. Dies ist visuelle Darstellung, nicht interaktive Tastaturprüfung.
+- Der vorhandene CDP-Helper fand Chrome 154 und das vorhandene `file://`-Ziel. `node tests/browser-navigation-cdp.js` scheiterte genau einmal bei `CDP timeout Page.enable`; keine identische Wiederholung. Öffnen/Schließen, Rückkehr nach echter Lektion, gespeicherte Zustände und Fortschritt wurden daher nicht end-to-end interaktiv bestätigt.
+- Neu: `tests/overview-disclosures.test.js` für natives Disclosure-Markup, Default, Zustandskeys, Status-/Rückkehrlogik, Tools-Ausschluss und keine künstliche Höhe.
+- Interaktive Bedienung/Keyboards, Speichern über Reload und Wiederöffnung nach Lektion bleiben offen; die statischen Screenshots sind nur Desktop-Hellansicht. Responsive 320/390 px, größere Schrift, Dunkel/Hochkontrast wurden für dieses Layout noch nicht visuell belegt.
+- Kein echter 200-%-Zoom oder Screenreader-Test berichtet, sofern nicht tatsächlich durchgeführt.
+- Danach diese Etappe mit passender Version/Changelog, Tests, Commit und normalem Push sichern und PR-Head verifizieren. Erst dann verbleibende LF2-Lektionen gemäß `docs/plan-lf1-lf2.md` aufnehmen.

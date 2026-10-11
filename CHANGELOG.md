@@ -87,3 +87,13 @@ Versionen werden bewusst erst für einen freigegebenen Stand geändert.
 
 ## 0.8.0-alpha.1
 - Offline-IPv4-Subnetzrechner mit Präfix-/Maskeneingabe, sichtbarem Rechenweg, /31-/32-Sonderfällen und Präfix-Nachschlagetabelle ergänzt.
+## 0.13.1-alpha.1
+- Themenübersicht mit unabhängig aufklappbaren Ausbildungsjahren und Lernfeldern; Zustand lokal speicherbar, Jahr 1 standardmäßig offen.
+- Bei Rückkehr aus einer Lektion wird deren Lernfeld geöffnet; Fortschritt bleibt aus den vorhandenen Lern-IDs abgeleitet.
+- Regressionstests und Screenshots für geschlossene/geöffnete LF1-Ansicht ergänzt. CDP-Interaktion bei `Page.enable` weiterhin blockiert und dokumentiert.
+
+## 0.13.0-alpha.1
+- Themenübersicht auf kompakte, unabhängig aufklappbare Ausbildungsjahre und Lernfelder umgestellt; Einstieg bleibt davor separat.
+- Zustände werden lokal gespeichert; bei Rückkehr aus einer Lektion öffnet sich das zugehörige Jahr und Lernfeld. Fortschritt wird aus bestehenden Lernmodul-IDs abgeleitet; Tools bleiben ausgeschlossen.
+- Geplante Lernfelder und Lektionen bleiben als „In Kürze“ sichtbar, ohne leere oder gestreckte Spalten.
+- Automatisierte Regression für Disclosure-Zustände, zentrale Katalogdaten und kompakte Übersicht ergänzt.

@@ -27,6 +27,8 @@ window.GLOSSAR = [
   { begriff: "Qualitätskriterium", erklaerung: "Eine vorher festgelegte, überprüfbare Eigenschaft, anhand derer ein Ergebnis beurteilt wird." },
   { begriff: "Reflexion", erklaerung: "Eine Situation bewusst betrachten: Ziel, eigenes Handeln, Ergebnis und mögliche nächste Schritte verbinden." },
   { begriff: "Anforderung", erklaerung: "Eine beschriebene Eigenschaft oder Funktion, die eine Lösung erfüllen soll und anhand der Aufgabe geprüft werden kann." },
+  { begriff: "Pflichtkriterium", erklaerung: "Ein Auswahlkriterium, das eine Lösung zwingend erfüllen muss. Wird es verfehlt, scheidet die Lösung aus." },
+  { begriff: "Wunschkriterium", erklaerung: "Ein Auswahlkriterium, das die Passung verbessert, aber nicht zwingend ist. Es kann bei ähnlich guten Lösungen den Ausschlag geben." },
   { begriff: "Wertschöpfungskette", erklaerung: "Die Schritte und Tätigkeiten, durch die ein Betrieb ein Angebot entwickelt, erstellt und für Kundinnen und Kunden bereitstellt." },
   { begriff: "LF", erklaerung: "Lernfeld: ein Themenbereich des Rahmenlehrplans für die Berufsausbildung." },
   { begriff: "localStorage", erklaerung: "Lokaler Browserspeicher. Die Daten bleiben auf diesem Gerät und werden nicht automatisch übertragen." },
