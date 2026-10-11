@@ -1,5 +1,16 @@
 # Fortsetzungsplan – IT-Ausbildung
 
+## Gesamtauftrag LF1/LF2 – aktueller Etappenstand (11.10.2026)
+
+- Projektpfad: `/home/starnet/projects/IT-Ausbildung`, Branch `prototype/computer-grundlagen`. Vor dieser Fortsetzung lagen lokaler HEAD und Remote-Tracking-Branch auf `d35a2ef867ab82498971cdacbfaa52e15d46f171`; Änderungen dieses Arbeitsgangs sind noch nicht committed oder gepusht.
+- LF1.1–LF1.10 und die Abschlussaufgabe sind im Katalog verfügbar und als einzelne Orientierungseinheiten umgesetzt. LF1-Abschlussaufgabe ist als unbenotete Selbstprüfung umgesetzt. LF1.1–LF1.10 und Abschluss sind als inhaltliche Erstfassung katalogisiert; vollständige fachliche Abdeckungsreview und interaktive Tests bleiben offen.
+- LF2.1 „Kundenbedarf verstehen“ ist umgesetzt: fiktiver interner/externer Kundenvergleich; Wunsch/Anforderung/Rahmenbedingung/Rückfragen; vier Übungen mit ID-basierter Bewertung, differenziertem Feedback, Wiederholung, lokaler Fortschritts-ID und Glossarverknüpfung. LF2.2–LF2.12 einschließlich Abschlussaufgabe offen; LF2 nicht vollständig.
+- CDP-Testweg wurde einmal zum vorhandenen Chrome/file://-Ziel probiert. Chrome 154 und Zielseite waren erreichbar; `Runtime.evaluate` schlug mit `CDP timeout Runtime.evaluate` fehl. `browser_navigate` kann file:// nicht öffnen. Kein wiederholter Timeoutversuch. Daher bleiben interaktive Bedienung, Feedbackanzeige, Tastatur, Reload/Reset und visuelle Ansichten für LF1 und LF2 ausdrücklich ungeprüft.
+- Letzte komplette Suite vor der Abschlussaufgabe und Katalogänderung: alle Tests bestanden. Danach `lf1-abschluss.test.js`, `fortschritt.test.js` und `startseite.test.js` bestanden. Nach LF2-Lektion ebenfalls `lf2-kundenbedarf.test.js` und Fortschrittstest bestanden. Ein vollständiger Suite-Lauf brach bei `startseite.test.js` nach KMK-Titelkorrektur ab; die Assertion wurde an den exakten KMK-Titel angepasst, Einzeltest besteht. Vollständiger Lauf erneut erforderlich.
+- Offene Arbeit: LF2.2–LF2.12 sind vollständig geplant, aber noch nicht implementiert. Fachquellen für Sicherheit, Normen, technische Angaben und Beschaffung jeweils vor konkreter Lektion verifizieren.
+- Abschlussaufgabe LF1 wurde umgesetzt als selbstgesteuerte, unbenotete Synthese plus Selbsteinschätzungscheck. Sie beurteilt nicht automatisch von Lernenden verfasste Texte. Gezielter Test besteht.
+- Etappensicherung: bisheriger Changelog/README/Version sind aktualisiert; abschließende Version-/Dokument-Konsistenzprüfung, Commit, normaler Push und PR-Head-Verifikation sind offen. Kein Merge/Release/Sichtbarkeitswechsel. Keine Telegram-Zwischenmeldung; HOSHI einmal nur am Abschluss oder endgültigen Stoppen.
+
 ## Aktueller Prüfstand – Lernfeld 1 (11.10.2026)
 
 - Live-Arbeitsstand vor Umsetzung: Projekt `/home/starnet/projects/IT-Ausbildung`, Branch `prototype/computer-grundlagen`, `HEAD=1c0e40715c99278c69ba3ecc3de50317a1bf5195`; `git fetch origin` erfolgreich, `origin/prototype/computer-grundlagen` identisch; Arbeitsbaum sauber. Kein aktiver Arbeitslauf war in der verfügbaren Laufübersicht ausgewiesen. Jarvis wurde in dieser Runde nicht beauftragt.

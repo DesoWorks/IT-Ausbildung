@@ -15,9 +15,9 @@ Es muss weder Python noch Node.js installiert werden. Im Ordner `start/` liegt d
 
 ## Inhalte
 
-Die Themenübersicht (`index.html`) zeigt drei Ausbildungsjahre. Verfügbare Einheiten sind anklickbar; geplante Inhalte sind nicht anklickbar und mit „In Kürze“ gekennzeichnet. IPv4 und Subnetting bleiben geplante Unterthemen; es gibt dazu keine neue Lektion.
+Die Themenübersicht (`index.html`) zeigt drei Ausbildungsjahre. Verfügbare Einheiten sind anklickbar; geplante Inhalte sind nicht anklickbar und mit „In Kürze“ gekennzeichnet. IPv4-, Netzmasken- und Subnetting-Lektionen sowie dazugehörige Tools sind bereits im Projekt vorhanden. LF1-Lektionen werden schrittweise ergänzt; die LF1-Abschlussaufgabe und die meisten LF2-Lektionen sind noch geplant.
 
-„LF“ bedeutet **Lernfeld**. Die Jahres- und Themenübersicht ist eine Orientierung, kein verbindlicher betrieblicher Monatsplan. Die Zuordnung kann je Berufsschule und Betrieb abweichen. Die Zuordnung der vollständigen Inhalte von Lernfeld 1 und 2 zum Rahmenlehrplan sowie die geplanten Lektionen, Übungen, Abschlussaufgaben und ausdrücklich offenen Themen sind in [`docs/plan-lf1-lf2.md`](docs/plan-lf1-lf2.md) dokumentiert. Die erste zusätzliche LF1-Lektion zu Leitbild und Zielarten ist eine Lernorientierung anhand eines fiktiven Betriebs.
+„LF“ bedeutet **Lernfeld**. Die Jahres- und Themenübersicht ist eine Orientierung, kein verbindlicher betrieblicher Monatsplan. Die Zuordnung kann je Berufsschule und Betrieb abweichen. Die Zuordnung der vollständigen Inhalte von Lernfeld 1 und 2 zum Rahmenlehrplan sowie die geplanten Lektionen, Übungen, Abschlussaufgaben und ausdrücklich offenen Themen sind in [`docs/plan-lf1-lf2.md`](docs/plan-lf1-lf2.md) dokumentiert. Die verfügbaren Einstiegslektionen in LF1 behandeln Ausbildungsbetrieb/Rolle, Leitbild/Ziele, Markt/Kundschaft, Wertschöpfung, Organisation/Rechtsformprofile, Handlungsspielraum, Weiterbildung, Präsentation, Qualitätsprüfung und Reflexion. Alle Fälle sind fiktive Lernorientierungen. Die LF1-Abschlussaufgabe ist eine unbenotete Selbstprüfung; LF2 ist bisher nur mit LF2.1 begonnen.
 
 ## Anzeige und Glossar
 

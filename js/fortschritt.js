@@ -6,6 +6,16 @@
     "computer-grundlagen": "it-ausbildung.computer-grundlagen.v1",
     "lf1-betrieb-aufgaben": "it-ausbildung.lf1-betrieb-aufgaben.v1",
     "lf1-leitbild-ziele": "it-ausbildung.lf1-leitbild-ziele.v1",
+    "lf1-markt-kundschaft": "it-ausbildung.lf1-markt-kundschaft.v1",
+    "lf1-wertschoepfung": "it-ausbildung.lf1-wertschoepfung.v1",
+    "lf1-organisation": "it-ausbildung.lf1-organisation.v1",
+    "lf1-handlungsspielraum": "it-ausbildung.lf1-handlungsspielraum.v1",
+    "lf1-weiterbildung": "it-ausbildung.lf1-weiterbildung.v1",
+    "lf1-praesentation": "it-ausbildung.lf1-praesentation.v1",
+    "lf1-qualitaet": "it-ausbildung.lf1-qualitaet.v1",
+    "lf1-reflexion": "it-ausbildung.lf1-reflexion.v1",
+    "lf1-abschluss": "it-ausbildung.lf1-abschluss.v1",
+    "lf2-kundenbedarf": "it-ausbildung.lf2-kundenbedarf.v1",
     "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
     "lf3-netzmaske": "it-ausbildung.netzmaske.v1",
     "lf3-subnetting": "it-ausbildung.subnetting.v1"
@@ -40,6 +50,37 @@
         var lf12 = state.answers || {};
         return !!state.finish && !!state.checked && lf12.q1 === "q1-orientierung" && lf12.q2 === "q2-oekologisch" &&
           lf12.q3 === "q3-sozial" && lf12.q4 === "q4-oekonomisch" && lf12.q5 === "q5-abwaegen";
+      }
+      if (id === "lf1-markt-kundschaft") {
+        var market = state.answers || {};
+        return !!state.finish && !!state.checked && market.q1 === "kunde" && market.q2 === "lieferant" &&
+          market.q3 === "intern" && market.q4 === "wettbewerber";
+      }
+      if (id === "lf1-wertschoepfung") {
+        return !!state.finish && !!state.checked && state.answer === "plan";
+      }
+      if (id === "lf1-organisation") {
+        var org = state.answers || {};
+        return !!state.finish && !!state.checked && org.q1 === "service" && org.q2 === "zuordnung" && org.q3 === "leitung";
+      }
+      if (id === "lf1-handlungsspielraum") {
+        var action = state.answers || {};
+        return !!state.finish && !!state.checked && action.q1 === "selbst" && action.q2 === "klaeren" && action.q3 === "fragen";
+      }
+      if (id === "lf1-weiterbildung") {
+        return !!state.finish && !!state.checked && state.answer === "step";
+      }
+      if (id === "lf1-praesentation" || id === "lf1-qualitaet" || id === "lf1-reflexion") {
+        var expected = { "lf1-praesentation": "purpose", "lf1-qualitaet": "add", "lf1-reflexion": "learn" };
+        return !!state.finish && !!state.checked && state.answer === expected[id];
+      }
+      if (id === "lf2-kundenbedarf") {
+        var need = state.answers || {};
+        return !!state.finish && !!state.checked && need.q1 === "anforderung" && need.q2 === "software" && need.q3 === "rahmen" && need.q4 === "klaeren";
+      }
+      if (id === "lf1-abschluss") {
+        var finalAnswers = state.answers || {};
+        return !!state.finish && !!state.checked && ["q1", "q2", "q3", "q4"].every(function (q) { return finalAnswers[q] === "yes"; });
       }
       if (id === "lf3-ipv4") {
         var questions = ["anzahl", "wertebereich", "gueltig"];

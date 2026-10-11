@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.12.0-alpha.1
+- LF1.6–LF1.10 als kleine, einzeln verlinkte Orientierungseinheiten zu Handlungsspielraum, Weiterbildung, Präsentation, Qualität und Reflexion ergänzt.
+- LF1.3–LF1.10 erhalten eigene stabile Fortschritts-IDs; Abschlussstatus wird aus den vorhandenen Lernantworten abgeleitet.
+- LF1-Lernzielmatrix und Fortsetzungsplan aktualisiert; zusammenhängende fiktive Abschlussaufgabe LF1 ergänzt.
+- Interaktive Browserprüfungen der neuen LF1-Lektionen sind wegen des dokumentierten CDP-Timeouts nicht durchgeführt.
+- Erste LF2-Lektion „Kundenbedarf verstehen“ mit fiktivem Kundenauftrag, Rückfragen-Übung, Erklärfeedback und stabiler Fortschritts-ID ergänzt.
+- Curriculare Statusangaben aktualisiert; LF2.2–LF2.12 bleiben offen.
+
+## 0.10.3-alpha.1
+- LF1.5 „Wie ein Betrieb organisiert sein kann“ mit fiktiven Organigrammen und begrenzten Rechtsform-Lernprofilen umgesetzt.
+- Aufbauorganisation und Rechtsform im zentralen Glossar ergänzt; Fortschrittszeichen für LF1.3–LF1.5 aus vorhandenen Antwortzuständen abgeleitet.
+- LF1 bleibt teilweise abgedeckt; LF1.6–LF1.10, Abschlussaufgabe und interaktive Prüfungen sind offen.
+
+## 0.10.2-alpha.1
+- LF1.4 „Von der Anfrage zur IT-Leistung“ als fiktiver Ablauf mit Schritten von Bedarfsklärung bis Übergabe und Übung ergänzt.
+- LF1.3 „Betrieb, Markt und Kundschaft“ mit internen/externalen Kundenrollen, Lieferanten, Wettbewerbern und Glossarbegriffen ergänzt.
+- Richtige Antworten der bestehenden LF1.1 fest umgestellt; interaktive LF1-Prüfungen bleiben wegen eines einmaligen CDP-Timeouts offen.
+
+## 0.10.1-alpha.1
+- LF1.3 „Betrieb, Markt und Kundschaft“ als fiktive, wiederholbare Einstiegslektion mit Glossar, stabiler ID und Fallübungen ergänzt.
+- LF1.1-Antworten fest umsortiert, sodass die richtigen Antworten nicht mehr durchgehend an erster Position stehen.
+- Fortsetzungsplan mit fachlicher LF1-Abdeckung und konkreter CDP-Prüfgrenze ergänzt; LF1/LF2 bleiben inhaltlich offen.
+
+
 ## 0.10.0-alpha.1
 - Lernfeld 1 gegen den vollständigen KMK-Abschnitt geprüft; kompakte LF1-/LF2-Zuordnung mit allen Themen, Übungen, Abschlussaufgaben und offenen Lücken ergänzt.
 - LF1.2 „Woran orientiert sich ein Betrieb?“ ergänzt: fiktives Leitbild, ökonomische/ökologische/soziale Ziele und Zielkonflikt mit ID-basierten Übungen und Rückmeldungen.

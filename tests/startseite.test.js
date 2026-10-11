@@ -16,7 +16,7 @@ const einstieg = global.MODULE_EINSTIEG;
 
 const erwartetJahr1 = [
   ["Lernfeld 1", "Ausbildungsbetrieb und berufliche Rolle"],
-  ["Lernfeld 2", "Hardware, Betriebssysteme und Arbeitsplatzgestaltung"],
+  ["Lernfeld 2", "Arbeitsplätze nach Kundenwunsch ausstatten"],
   ["Lernfeld 3", "Netzwerkgrundlagen und Client-Anbindung"],
   ["Lernfeld 4", "Schutzbedarf und Grundlagen der IT-Sicherheit"],
   ["Lernfeld 5", "Programmiergrundlagen und Datenverwaltung"]
@@ -34,7 +34,7 @@ assert(startseitenScript.includes('m.typ !== "werkzeug"'), "Startseite schließt
 const lernfelder = j1.filter(m => m.lernfeld);
 assert.deepStrictEqual(lernfelder.map(m => [m.lernfeld, m.titel]), erwartetJahr1, "Jahr-1-Titel wörtlich");
 const lf1 = j1.find(m => m.id === "lf1");
-assert.equal(lf1.unterthemen.length, 2, "zwei LF1-Lektionen (LF1.1 und LF1.2)");
+assert.equal(lf1.unterthemen.length, 11, "elf katalogisierte LF1-Themen, einschließlich Abschlussaufgabe");
 assert.equal(lf1.unterthemen[0].page, "lf1-ausbildungsbetrieb");
 assert(fs.existsSync(path.join(wurzel, lf1.unterthemen[0].datei)), "LF1-Lektion verlinkt auf vorhandene Datei");
 assert.strictEqual(daten[1].module.length, 4, "Jahr 2: vier Bereiche");

@@ -38,6 +38,22 @@ assert.equal(api.abgeschlossen("lf3-ipv4"), false, "reset/removed progress clear
 values.set("it-ausbildung.subnetting.v1",JSON.stringify({finish:true,answers:{q1:"true",q2:"true",net1:"192.168.1.127",net2:"192.168.1.129"}}));
 assert.equal(api.abgeschlossen("lf3-subnetting"), true, "Subnetting topic completion derives from its lesson answers");
 assert.equal(api.abgeschlossen("lf3"), false, "completed Subnetting lesson does not complete the entire learning field");
+values.set("it-ausbildung.lf1-markt-kundschaft.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"kunde",q2:"lieferant",q3:"intern",q4:"wettbewerber"}}));
+assert.equal(api.abgeschlossen("lf1-markt-kundschaft"),true,"LF1.3 derives completion from its existing answer store");
+assert.equal(api.abgeschlossen("lf1"),false,"individual LF1 lesson never completes the whole field");
+values.set("it-ausbildung.lf1-wertschoepfung.v1",JSON.stringify({finish:true,checked:true,answer:"plan"}));
+assert.equal(api.abgeschlossen("lf1-wertschoepfung"),true,"LF1.4 completion derives from its lesson answer");
+values.set("it-ausbildung.lf1-organisation.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"service",q2:"zuordnung",q3:"leitung"}}));
+assert.equal(api.abgeschlossen("lf1-organisation"),true,"LF1.5 completion derives from its lesson answers");
+values.set("it-ausbildung.lf1-handlungsspielraum.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"selbst",q2:"klaeren",q3:"fragen"}}));
+assert.equal(api.abgeschlossen("lf1-handlungsspielraum"),true,"LF1.6 completion derives from its lesson answers");
+values.set("it-ausbildung.lf1-weiterbildung.v1",JSON.stringify({finish:true,checked:true,answer:"step"}));
+assert.equal(api.abgeschlossen("lf1-weiterbildung"),true,"LF1.7 completion derives from its lesson answer");
+for(const [id,key,answer] of [["lf1-praesentation","it-ausbildung.lf1-praesentation.v1","purpose"],["lf1-qualitaet","it-ausbildung.lf1-qualitaet.v1","add"],["lf1-reflexion","it-ausbildung.lf1-reflexion.v1","learn"]]){values.set(key,JSON.stringify({finish:true,checked:true,answer}));assert.equal(api.abgeschlossen(id),true,id+" completion derives from its own answer store");}
+values.set("it-ausbildung.lf2-kundenbedarf.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"anforderung",q2:"software",q3:"rahmen",q4:"klaeren"}}));
+assert.equal(api.abgeschlossen("lf2-kundenbedarf"),true,"LF2.1 completion derives from its own checked needs");
+values.set("it-ausbildung.lf1-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"yes",q2:"yes",q3:"yes",q4:"yes"}}));
+assert.equal(api.abgeschlossen("lf1-abschluss"),true,"LF1 Abschluss completion derives from all self-check items");
 const marker=api.abschlusszeichen();
 assert.equal(marker.textContent,"✓"); assert.equal(marker.attrs["aria-label"],"Abgeschlossen");
 console.log("fortschritt.test.js: all assertions passed");

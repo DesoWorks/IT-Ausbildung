@@ -5,18 +5,18 @@
   var STEPS = ["start", "rollen", "uebung", "abschluss"];
   var QUESTIONS = [
     { id:"q1", prompt:"Samira richtet im fiktiven Beispiel einen Bildschirm für einen neuen Arbeitsplatz ein. Zu welcher Gruppe gehört sie bei dieser Aufgabe?", correct:"team", options:[
-      {value:"team", label:"Zum Support-Team innerhalb der IT-Service-Abteilung", feedback:"Richtig. Samira lernt und arbeitet im Beispiel im Support-Team. Dort bearbeitet sie passende Aufgaben."},
       {value:"kunde", label:"Zum gesamten Kundenbetrieb", feedback:"Der Kundenbetrieb kann Auftraggeber sein. Samiras beschriebene Rolle im Beispiel ist das Support-Team."},
+      {value:"team", label:"Zum Support-Team innerhalb der IT-Service-Abteilung", feedback:"Richtig. Samira lernt und arbeitet im Beispiel im Support-Team. Dort bearbeitet sie passende Aufgaben."},
       {value:"abteilung", label:"Zur gesamten Abteilung als eigener Arbeitsgruppe", feedback:"Das Beispiel ordnet Samira dem Support-Team innerhalb der IT-Service-Abteilung zu. Andere Betriebe können anders organisiert sein."}
     ]},
     { id:"q2", prompt:"Samira soll Zugriffsrechte an einem produktiven System ändern. Was ist eine gute nächste Handlung?", correct:"abstimmen", options:[
-      {value:"abstimmen", label:"Vorher mit der verantwortlichen Person abstimmen", feedback:"Richtig. Zugriffsrechte wirken sich auf andere aus. Änderungen daran vorher mit der verantwortlichen Person abstimmen."},
       {value:"sofort", label:"Sofort ändern, ohne Rückfrage", feedback:"Das kann andere beeinträchtigen oder Sicherheitsregeln verletzen. Erst Zuständigkeit und Freigabe klären."},
+      {value:"abstimmen", label:"Vorher mit der verantwortlichen Person abstimmen", feedback:"Richtig. Zugriffsrechte wirken sich auf andere aus. Änderungen daran vorher mit der verantwortlichen Person abstimmen."},
       {value:"ignorieren", label:"Die Aufgabe ohne Rückmeldung liegen lassen", feedback:"Wenn eine Aufgabe unklar oder nicht freigegeben ist, frage nach und erkläre, was du noch klären musst."}
     ]},
     { id:"q3", prompt:"Welche Aussage beschreibt den Begriff Betrieb am besten?", correct:"betrieb", options:[
-      {value:"betrieb", label:"Die Organisation, die Leistungen anbietet oder Waren herstellt", feedback:"Richtig. Ein Betrieb ist die Organisation. Seine Größe und interne Struktur können sehr verschieden sein."},
       {value:"team", label:"Immer eine Gruppe von genau drei Personen", feedback:"Ein Team ist eine Gruppe, die zusammenarbeitet. Eine feste Personenzahl gibt es nicht."},
+      {value:"betrieb", label:"Die Organisation, die Leistungen anbietet oder Waren herstellt", feedback:"Richtig. Ein Betrieb ist die Organisation. Seine Größe und interne Struktur können sehr verschieden sein."},
       {value:"abteilung", label:"Ein anderes Wort für jedes Team", feedback:"Abteilung und Team sind nicht dasselbe. Ein Team kann zu einer Abteilung gehören; die Struktur ist je Betrieb verschieden."}
     ]}
   ];
