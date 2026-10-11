@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.2-alpha.1
+- DesoWorks-Logo als unverändertes, lokales SVG im gemeinsamen Header ergänzt; Logo führt barrierearm zur Themenübersicht.
+- Header responsive für Übersicht, Lernmodule, Glossar und Werkzeuge angepasst; helle Logofläche erhält die unveränderten dunklen Logobestandteile.
+
 ## 0.8.1-alpha.1
 - Werkzeuge aus der Themenübersicht und Lernfeld-Lektionen entfernt; zentrale Kataloge unterscheiden Lektionen und Werkzeuge.
 - „Ruhige Ansicht“ präzisiert zu „Bewegungen reduzieren“ mit Checkbox, Erklärung und Beachtung der Systemeinstellung.

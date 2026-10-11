@@ -453,3 +453,14 @@ Keine Codeänderung, kein Commit/Push/Merge oder Release in dieser Vorbereitungs
 
 ### Fortsetzungspunkt
 - Automatisierte Tests, CDP-Smoke und Screenshots oben sind abgeschlossen. Fortsetzung: abschließenden Diff prüfen, Commit, normaler Push, danach `gh pr view 1` und Fetch/Remote-Head auf Commitgleichheit bestätigen. Keine neuen Rechner/Lernmodule, kein Merge/Release.
+
+
+## 0.8.2-alpha.1 – DesoWorks-Logo im gemeinsamen Header
+- Quelle `/home/starnet/projects/desoworks/logo/desoworks-02-terminal.svg` unverändert nach `assets/desoworks-02-terminal.svg` kopiert; SHA-256 beider Dateien identisch: `cc47666fa9e6deea0b0ec96b28a3da396d05384f4c1a305bec461141dc5eae63`.
+- Logo-Link mit zugänglichem Namen zur Themenübersicht in Übersicht, allen sieben Lern-/Toolseiten und Glossar ergänzt. Relative Asset- und Rücksprungpfade passend zur jeweiligen Verzeichnistiefe; Lernplattform-Navigation unverändert.
+- Gemeinsames Header-CSS um responsive Logo-/Titelanordnung und dezente helle Logo-Unterlage ergänzt, damit die dunkle Wortmarke auf dem blauen Header lesbar bleibt. Keine Logoänderung.
+- Geänderte HTML-Dateien: `index.html`, `glossar.html`, `module/computer-grundlagen.html`, `module/netzwerkgrundlagen.html`, `module/netzmaske.html`, `module/subnetting.html`, `module/zahlensysteme.html`, `module/einheiten.html`, `module/ipv4-rechner.html`; außerdem `css/styles.css`, `assets/desoworks-02-terminal.svg`, `js/version.js`, `CHANGELOG.md`.
+- Version `0.8.2-alpha.1`. Prüfungen werden nach Umsetzung protokolliert: lokale relative Bildpfade / `file://`, Header auf Übersicht und Lektion, Desktop/320/390 Pixel, größere Schrift, Hell/Dunkel/Hoher Kontrast, Tastaturfokus und Rücknavigation. Echten Zoom getrennt von Simulation bewerten; keine vollständige WCAG-Konformität ohne vollständige Prüfung behaupten.
+
+- Verifikation ergänzt: SVG SHA-256 identisch Quelle/Kopie; Chrome über direktes `file://` bestätigte Bildladung und relative Rücksprungziele auf Übersicht, Glossar und allen sieben Modulseiten. Getestet: Desktop 1440×1000, schmale 390/320 px, gespeicherte Textvergrößerung 150 % (berechnete Schrift 25.5 px, keine horizontale Überbreite). Logo-Link wurde per Tab fokussiert (3-px sichtbarer Fokus) und per Enter zur Übersicht geöffnet. Übersicht und Netzmaskenlektion jeweils visuell in Hell, Dunkel und hohem Kontrast geprüft; vollständige Header-Screenshots unter `screenshots/desoworks-logo/`, größere Schrift unter `screenshots/desoworks-logo/uebersicht-grossschrift.png`. Echte Browser-Zoomstufe 200 % nicht separat verifiziert; 150-%-Textskalierung ist kein Ersatz. Keine Screenreader-Prüfung.
+- Testausführung: sämtliche `tests/*.test.js` bestanden; `git diff --check` bestanden. `npm test` ist nicht der Projekt-Check: es existiert keine `package.json`, Aufruf scheitert mit ENOENT. Kein Harness-/Codefehler daraus abgeleitet.

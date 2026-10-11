@@ -62,7 +62,16 @@ button:focus-visible {
   color: var(--farbe-kopf-text);
   padding: 1.5rem 1rem;
 }
-.kopf-inhalt { max-width: 860px; margin: 0 auto; }
+.kopf-inhalt { max-width: 860px; margin: 0 auto; min-width: 0; }
+.kopf-logo {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 1 18rem; width: min(18rem, 100%); min-width: 0;
+  padding: .55rem .75rem; background: #f4f7fa;
+  border: 1px solid rgba(16, 32, 45, .22); border-radius: .6rem;
+  text-decoration: none;
+}
+.kopf-logo img { display: block; width: 100%; height: auto; }
+.kopf-logo:focus-visible { outline: 3px solid #ffd166; outline-offset: 4px; }
 .kopf-marke {
   margin: 0;
   text-transform: uppercase;
@@ -390,6 +399,9 @@ main:focus { outline: none; }
 
 /* Responsiv: Smartphone */
 @media (max-width: 560px) {
+  .kopf { align-items: flex-start; }
+  .kopf-logo { flex-basis: min(100%, 18rem); }
+  .kopf-inhalt { flex-basis: 100%; }
   html { font-size: 17px; }
   .kopf h1 { font-size: 1.5rem; }
   .knopf-reihe .knopf { flex: 1 1 100%; }
@@ -481,8 +493,9 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 @media (min-width: 1100px) {
   /* Vollbreiter Header oben; Navigation und Inhalt teilen erst darunter die Breite. */
   body { display: grid; grid-template-columns: 17rem minmax(0, 1fr); grid-template-rows: auto repeat(4, auto) 1fr; align-content: start; }
-  .kopf { grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: 17rem minmax(0, 1fr); }
-  .kopf-inhalt { grid-column: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
+  .kopf { grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: minmax(17rem, 1fr) minmax(0, 2fr); align-items: center; gap: clamp(1.5rem, 4vw, 4rem); padding: 1.5rem clamp(1.5rem, 3vw, 3rem); }
+  .kopf-logo { width: min(18rem, 100%); }
+  .kopf-inhalt { grid-column: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding-left: 0; padding-right: 0; }
   .site-navigation { grid-column: 1; grid-row: 2 / span 6; position: relative; width: 17rem; min-width: 0; align-self: stretch; border-right: 1px solid var(--farbe-rahmen); background: var(--farbe-flaeche); }
   .site-nav { position: sticky; top: 0; max-height: none; overflow: visible; border: 0; }
   .site-nav > ul { display: block; }
@@ -495,7 +508,9 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 }
 @media (max-width: 1099px) {
   body { display: flex; flex-direction: column; }
-  .kopf { order: 1; }
+  .kopf { order: 1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 1.5rem; }
+  .kopf-logo { width: min(18rem, 100%); }
+  .kopf-inhalt { flex: 1 1 18rem; margin: 0; }
   .site-navigation { order: 2; }
   .rueckzeile { order: 3; }
   main { order: 4; width: 100%; }

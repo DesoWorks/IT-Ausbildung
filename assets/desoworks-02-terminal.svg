@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220" role="img" aria-labelledby="title desc">
+  <title id="title">DesoWorks — Terminal</title><desc id="desc">Kompakte Terminal-Wortmarke mit Cursor und warmer Akzentfarbe für den Merch-Shop.</desc>
+  <rect x="26" y="34" width="154" height="144" rx="24" fill="#10202D" stroke="#81BFFF" stroke-width="5"/>
+  <path d="m60 79 30 25-30 25" fill="none" stroke="#F4F7FA" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M103 131h42" stroke="#E31837" stroke-width="12" stroke-linecap="round"/>
+  <text x="220" y="121" font-family="Arial, Helvetica, sans-serif" font-size="71" font-weight="700" letter-spacing="-2.5" fill="#11212E" stroke="#FFFFFF" stroke-width="2" paint-order="stroke">DESO<tspan fill="#E31837">WORKS</tspan></text>
+  <text x="225" y="165" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" letter-spacing="3.5" fill="#35536A">IT-HUMOR · GUTE IDEEN · GUTE GEAR</text>
+</svg>
