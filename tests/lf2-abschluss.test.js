@@ -1,0 +1,9 @@
+"use strict";
+const fs=require("node:fs"),path=require("node:path"),assert=require("node:assert/strict"),root=path.resolve(__dirname,"..");global.window=global;const m=require(path.join(root,"js/lf2-abschluss.js"));
+assert.equal(m.ID,"lf2-abschluss");assert.equal(m.KEY,"it-ausbildung.lf2-abschluss.v1");assert.equal(m.QUESTIONS.length,6);
+for(const q of m.QUESTIONS){assert.equal(q.options.filter(o=>o.id===q.correct).length,1);assert.equal(new Set(q.options.map(o=>o.id)).size,3);assert(q.options.every(o=>o.feedback.length>20));}
+const pos=m.QUESTIONS.map(q=>q.options.findIndex(o=>o.id===q.correct));assert(new Set(pos).size>=2);
+const a={q1:"anforderung",q2:"pflicht",q3:"gesamt",q4:"melden",q5:"pruefen",q6:"massnahme"};assert.equal(m.evaluate({}).empty,6);assert.equal(m.evaluate(a).correct,6);assert.equal(m.evaluate({...a,q3:"billig"}).wrong,1);assert.equal(m.evaluate({...a,q4:undefined}).empty,1);assert.equal(m.progress({checked:true,finish:true,answers:a}),100);
+const h=fs.readFileSync(path.join(root,"module/lf2-abschluss.html"),"utf8"),catalog=fs.readFileSync(path.join(root,"js/module-daten.js"),"utf8"),fp=fs.readFileSync(path.join(root,"js/fortschritt.js"),"utf8"),js=fs.readFileSync(path.join(root,"js/lf2-abschluss.js"),"utf8");
+for(const x of ["Nordlicht IT-Service","Praxis am Park","fiktiv","role=\"img\"","Textalternative","data-page=\"lf2-abschluss\""])assert(h.includes(x),x);assert(!/checked(?:="checked")?/.test(h));assert(h.includes("LF2.1–LF2.12"));assert(catalog.includes('page: "lf2-abschluss", status: "verfuegbar", datei: "module/lf2-abschluss.html"'));assert(fp.includes('"lf2-abschluss": "it-ausbildung.lf2-abschluss.v1"'));assert(js.includes("clear();save();update();"));
+console.log("lf2-abschluss.test.js: PASS — integrierter Auftrag, Antwortlogik, Katalog und Fortschritt");

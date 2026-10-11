@@ -41,7 +41,7 @@ for (const t of ['data-page="lf2-sichere-auswahl"', "Fiktive Produktkarten", "ke
 const catalog = fs.readFileSync(path.join(root, "js/module-daten.js"), "utf8");
 assert(catalog.includes('page: "lf2-sichere-auswahl", status: "verfuegbar", datei: "module/lf2-sichere-auswahl.html"'));
 assert.equal((catalog.match(/id: "lf2-sichere-auswahl"/g) || []).length, 1, "stabile ID genau einmal");
-assert.equal((catalog.match(/id: "lf2-varianten"[^}]*status: "in-kuerze"/g) || []).length, 1, "LF2.5 bleibt geplant");
+assert.equal((catalog.match(/id: "lf2-auswertung"[^}]*status: "verfuegbar"/g) || []).length, 1, "LF2.12 ist umgesetzt");
 
 const fp = fs.readFileSync(path.join(root, "js/fortschritt.js"), "utf8");
 assert(fp.includes('"lf2-sichere-auswahl": "it-ausbildung.lf2-sichere-auswahl.v1"'));

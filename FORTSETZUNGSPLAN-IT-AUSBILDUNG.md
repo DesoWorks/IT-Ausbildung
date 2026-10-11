@@ -574,3 +574,53 @@ Keine Codeänderung, kein Commit/Push/Merge oder Release in dieser Vorbereitungs
 - Interaktive Bedienung/Keyboards, Speichern über Reload und Wiederöffnung nach Lektion bleiben offen; die statischen Screenshots sind nur Desktop-Hellansicht. Responsive 320/390 px, größere Schrift, Dunkel/Hochkontrast wurden für dieses Layout noch nicht visuell belegt.
 - Kein echter 200-%-Zoom oder Screenreader-Test berichtet, sofern nicht tatsächlich durchgeführt.
 - Danach diese Etappe mit passender Version/Changelog, Tests, Commit und normalem Push sichern und PR-Head verifizieren. Erst dann verbleibende LF2-Lektionen gemäß `docs/plan-lf1-lf2.md` aufnehmen.
+
+
+## Jarvis-Kontingent und Fortsetzungsregel (11.10.2026)
+
+- Der Commander stellte klar: Drei unmittelbar fehlgeschlagene Aufträge waren **drei getrennte Versuche**; die frühere Einordnung als einzelner Versuch war falsch.
+- Verbindliche Stoppregel für künftige Agentenaufträge: Wenn ein Auftrag an denselben Agenten sofort mit leerer Antwort und `toolsOk=0` fehlschlägt, keinen weiteren Auftrag an diesen Agenten starten. Fehlerbehandlung nicht als weitere Probe oder neuen Einzelversuch umdeuten; keine Wiederholungsschleife.
+- Jarvis bis heute 21:00 Uhr weder delegieren noch auf Verfügbarkeit prüfen. Nach 21:00 Uhr nur dann fortsetzen, wenn der Commander eine neue Fortsetzungsnachricht sendet; daraufhin genau eine Verfügbarkeitsprüfung. Nur bei erfolgreicher, verwertbarer Antwort mit der Umsetzung fortfahren. Kein automatischer Neustart.
+- Gesicherter Fortsetzungspunkt bleibt **LF2.5–LF2.12 und die integrierte Abschlussaufgabe** gemäß `docs/plan-lf1-lf2.md`. Vorhandene Ergebnisse und offene Prüfungen erhalten; nicht erledigte Schritte nicht als abgeschlossen darstellen.
+- Diese Dokumentationsaktualisierung selbst ist keine Umsetzung der offenen LF2-Lektionen. Es wurden weder Jarvis kontaktiert noch Anwendungscode oder bestehende Testergebnisse verändert.
+
+
+## Fortsetzung nach Pause – Stand LF2.5–LF2.11 (11.10.2026)
+
+### Ausgangsprüfung
+- Projekt `/home/starnet/projects/IT-Ausbildung`; Branch `prototype/computer-grundlagen`.
+- `HEAD` und `origin/prototype/computer-grundlagen`: `3598e447f6e9bf22ed18f2b0121053a743be619d`; Arbeitsbaum hatte nur die vorhandene Änderung in diesem Plan. Diese wurde erhalten.
+- Laufübersicht zeigte keinen aktiven Chefingenieur-Lauf vor dem Start; kein paralleler Jarvis-Lauf.
+- Einmalige Jarvis-Verfügbarkeitsprobe erfolgreich: Antwort `BEREIT`, Run-ID `1255dab8-0a1a-4ab9-80ad-fa4eea072789`, `toolsOk=0` entsprechend dem Auftrag „keine Tools“.
+
+### In dieser Fortsetzung fertiggestellt
+- **LF2.5 Arbeitsplatzvarianten vergleichen:** gewichtete Nutzwertanalyse mit fiktiven Varianten, offenem Rechenweg, Ergonomie/Energie/Recycling und Sensitivität anderer Gewichte. Tests berechnen 25/45/43 und alternatives 25/44/45.
+- **LF2.6 Energiebedarf transparent vergleichen:** fiktive Last-/Leerlaufzeiten und Nutzungsannahmen; W × h = Wh, Umrechnung in kWh; keine Markt- oder Kostenbehauptung.
+- **LF2.7 Angebote und Bezugsquellen vergleichen:** drei ausdrücklich fiktive Angebote, vollständige Gesamtkosten mit gekennzeichneten Schätzungen, quantitative und qualitative Kriterien sowie Nutzwertvergleich.
+- **LF2.8 Ein nachvollziehbares Angebot erstellen:** fiktive Positionen und vorgegebene Zuschläge mit Netto-/Zwischensummen und kaufmännischer Rundung; keine Steuer-/Vertragsrechtsberatung.
+- **LF2.9 Beschaffung und Wareneingang planen:** rein simulierter Ablauf; Bestellabgleich, fiktive Lieferzeit und sachlicher Mängelbericht; Rechtsfragen zu Kaufvertrag/Mängelrechten bewusst ausgeschlossen und als fachliche Restlücke markiert.
+- **LF2.10 Arbeitsplatz einrichten und prüfen:** nicht-produktiver Musterplatz, simulierte Prüfschritte und Eskalation; keine reale Netzspannungsarbeit.
+- **LF2.11 Arbeitsplatz übergeben und dokumentieren:** fiktives Protokoll, offener Filtermangel darf nicht als erfolgreiche Übergabe bezeichnet werden; Übungsergebnisse konsistent mit LF2.10.
+- **LF2.12 Auftrag auswerten und verbessern:** fiktiver Befund, Trennung von Meinung und belegtem Ergebnis, konkrete Maßnahme und spätere Wirkungsprüfung.
+- **Integrierte LF2-Abschlussaufgabe:** fiktiver End-to-End-Fall von Bedarf über Auswahl, Angebot, Wareneingang und Prüfung bis Übergabe/Auswertung; unbenotete Selbstprüfung.
+- Neue Module: `module/lf2-{varianten,energie,angebote,angebot,beschaffung,einrichten,uebergabe}.html`; passende `js/lf2-*.js` und `tests/lf2-*.test.js`. Katalog, Glossar und Fortschrittsableitungen ergänzt, stabile IDs erhalten.
+- Eine Regression in LF2.11-Test wurde entdeckt: die Assertion prüft sprechende Options-IDs, aber Option `ja` war zu kurz. Geprüft wurden Test und Implementierung; ID in der Implementierung zu `zusage` geändert. `node tests/lf2-uebergabe.test.js`, Syntaxcheck und `git diff --check` danach bestanden.
+- Neue gezielte Tests für LF2.12 und die integrierte Abschlussaufgabe ergänzt; komplette Suite zuletzt tatsächlich ausgeführt: alle 35 `tests/*.test.js` bestanden. Alle `js/*.js` bestanden `node --check`; `git diff --check` sauber.
+
+### Browsergrenzen
+- Für diese Lektionen in dieser Fortsetzung keine neuen Browserläufe angefordert; keine gerenderten Rückmeldungen oder interaktive Bedienung daraus ableiten.
+- Frühere bekannte offene interaktive Tests für LF2.1–LF2.3 bleiben offen; für LF2.5–LF2.11 sind tatsächliche Browserfeedbacks, Tastaturdurchlauf, Reload/Reset, 320/390 CSS-Pixel, drei Darstellungen und größere Schrift ebenfalls offen. Screenreader und echter Zoom nicht geprüft.
+
+### Unmittelbarer Fehler und Stoppregel
+- Versuch, LF2.12 „Auftrag auswerten und verbessern“ an Jarvis zu delegieren: Run-ID `7b69dd1b-c04c-46b1-9f98-ad4fefee1adb`, `reason=error`, leere Antwort, `toolsOk=0`, 0 Tokens, Dauer 2.677 ms. Gemäß Regel keinen zweiten Auftrag an Jarvis gestartet.
+- Ein Jarvis-Auftrag für LF2.12 scheiterte sofort mit leerer Antwort, `toolsOk=0`, Run-ID `7b69dd1b-c04c-46b1-9f98-ad4fefee1adb`. Es gab keinen Retry. Danach wurden LF2.12 und die integrierte Abschlussaufgabe lokal selbst erstellt.
+- Inhaltsstatus: geplante LF2.1–LF2.12 und Abschlussaufgabe liegen als Erstfassung vor. **Offene fachliche Lücke:** konkrete Rechtsfolgen von Kaufvertrag und Mängelrechten sind bewusst nicht behauptet; vor weiterem Unterrichtseinsatz sind aktuelle Primärquellen und fachliche Prüfung erforderlich. Inhaltliche Abdeckung ersetzt keine vollständige Validierung.
+- `docs/plan-lf1-lf2.md` und dieser Fortsetzungsplan dokumentieren die Abdeckungsmatrix und Prüfgrenzen. README/Changelog/Zentralversion sind noch nicht aktualisiert. Änderungen noch nicht committet oder gepusht. Nächster Schritt: alle LF2-Dateien und Planänderungen prüfen, README/Changelog/Zentralversion aktualisieren, weitere Browserprüfung soweit möglich, dann Etappe committen/pushen und Remote/PR-Head vergleichen. Kein Merge oder Release.
+
+
+### Aktualisierung nach LF2.12 und integrierter Aufgabe
+- LF2.12 „Auftrag auswerten und verbessern“ und `module/lf2-abschluss.html` sind jetzt lokal vorhanden; Modul-Katalog, Fortschrittsschlüssel und Glossar wurden ergänzt. Die zuvor sofort fehlgeschlagene Jarvis-Delegation blieb ohne Retry; diese Inhalte wurden in diesem Lauf lokal erstellt.
+- Gezielte Testdatei `tests/lf2-auswertung.test.js` prüft Antworten, stabile IDs, Feedbackmodelle, Fortschritt, Katalog und Glossar. Die Regressionstests für LF2.2/LF2.3 und frühere LF2-Module wurden auf den jetzt verfügbaren LF2.12-Status angepasst.
+- Noch nicht erfolgt: interaktive Browserprüfung, komplette integrierte Abschlussaufgabe Testdatei, Versionierung/Dokumentation vollständig verifizieren, commit/push/PR-Abgleich.
+
+- Kontrollierter CDP-Testweg erneut genau einmal geprüft: `/json` an `127.0.0.1:9223` antwortete mit der kontrollierten Projektseite `file:///home/starnet/projects/IT-Ausbildung/module/lf1-ausbildungsbetrieb.html`; Verbindung zur Seite erreichte jedoch wieder `CDP timeout Page.enable`. Nicht erneut versucht. Diese konkrete Browsergrenze gilt für interaktive Rückmeldungsprüfungen in dieser Etappe; lokale Bedienungsanleitung: `file:///home/starnet/projects/IT-Ausbildung/module/lf2-auswertung.html`, dann Lernschritte 1→2→3, zuerst „Antworten prüfen“ ohne Auswahl, danach einzelne richtige/falsche Antworten wählen, Ausgabe im sichtbaren Feld unter dem Button prüfen und nach einer Antwortänderung kontrollieren, dass das Ergebnis verschwindet; danach Zurücksetzen, Reload sowie Hell/Dunkel/hoher Kontrast und 320/390 px prüfen.

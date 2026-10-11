@@ -19,6 +19,15 @@
     "lf2-kriterien": "it-ausbildung.lf2-kriterien.v1",
     "lf2-sichere-auswahl": "it-ausbildung.lf2-sichere-auswahl.v1",
     "lf2-technische-daten": "it-ausbildung.lf2-technische-daten.v1",
+    "lf2-varianten": "it-ausbildung.lf2-varianten.v1",
+    "lf2-energie": "it-ausbildung.lf2-energie.v1",
+    "lf2-angebote": "it-ausbildung.lf2-angebote.v1",
+    "lf2-angebot": "it-ausbildung.lf2-angebot.v1",
+    "lf2-beschaffung": "it-ausbildung.lf2-beschaffung.v1",
+    "lf2-einrichten": "it-ausbildung.lf2-einrichten.v1",
+    "lf2-uebergabe": "it-ausbildung.lf2-uebergabe.v1",
+    "lf2-auswertung": "it-ausbildung.lf2-auswertung.v1",
+    "lf2-abschluss": "it-ausbildung.lf2-abschluss.v1",
     "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
     "lf3-netzmaske": "it-ausbildung.netzmaske.v1",
     "lf3-subnetting": "it-ausbildung.subnetting.v1"
@@ -92,6 +101,42 @@
       if (id === "lf2-technische-daten") {
         var tech = state.answers || {};
         return !!state.finish && !!state.checked && tech.q1 === "erweiterbar" && tech.q2 === "brisa" && tech.q3 === "typisch" && tech.q4 === "einsenden";
+      }
+      if (id === "lf2-varianten") {
+        var variants = state.answers || {};
+        return !!state.finish && !!state.checked && variants.q1 === "pflicht" && variants.q2 === "verschraubt" && variants.q3 === "c43" && variants.q4 === "vento" && variants.q5 === "offen";
+      }
+      if (id === "lf2-energie") {
+        var energy = state.answers || {};
+        return !!state.finish && !!state.checked && energy.q1 === "formel" && energy.q2 === "k0116" && energy.q3 === "k3124" && energy.q4 === "diff1672" && energy.q5 === "annahmen";
+      }
+      if (id === "lf2-angebote") {
+        var offers = state.answers || {};
+        return !!state.finish && !!state.checked && offers.q1 === "ergaenzen" && offers.q2 === "s960" && offers.q3 === "p38" && offers.q4 === "bvorn" && offers.q5 === "empfehlung";
+      }
+      if (id === "lf2-angebot") {
+        var quote = state.answers || {};
+        return !!state.finish && !!state.checked && quote.q1 === "n2850" && quote.q2 === "z19950" && quote.q3 === "g15248" && quote.q4 === "e320198" && quote.q5 === "pruefen";
+      }
+      if (id === "lf2-beschaffung") {
+        var procure = state.answers || {};
+        return !!state.finish && !!state.checked && procure.q1 === "ablegen" && procure.q2 === "abgleich" && procure.q3 === "mittwoch" && procure.q4 === "fehlt" && procure.q5 === "sachlich" && procure.q6 === "melden";
+      }
+      if (id === "lf2-einrichten") {
+        var setup = state.answers || {};
+        return !!state.finish && !!state.checked && setup.q1 === "vorbereiten" && setup.q2 === "melden" && setup.q3 === "stoppen" && setup.q4 === "kabel" && setup.q5 === "eintrag" && setup.q6 === "nichtfrei";
+      }
+      if (id === "lf2-uebergabe") {
+        var handover = state.answers || {};
+        return !!state.finish && !!state.checked && handover.q1 === "nachweis" && handover.q2 === "zurueckgestellt" && handover.q3 === "mangeltext" && handover.q4 === "ehrlich" && handover.q5 === "nachpruefen" && handover.q6 === "einweisung";
+      }
+      if (id === "lf2-auswertung") {
+        var review = state.answers || {};
+        return !!state.finish && !!state.checked && review.q1 === "kriterium" && review.q2 === "fakten" && review.q3 === "massnahme" && review.q4 === "einordnen" && review.q5 === "pruefen";
+      }
+      if (id === "lf2-abschluss") {
+        var integrated = state.answers || {};
+        return !!state.finish && !!state.checked && integrated.q1 === "anforderung" && integrated.q2 === "pflicht" && integrated.q3 === "gesamt" && integrated.q4 === "melden" && integrated.q5 === "pruefen" && integrated.q6 === "massnahme";
       }
       if (id === "lf1-abschluss") {
         var finalAnswers = state.answers || {};

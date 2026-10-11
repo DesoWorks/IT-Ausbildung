@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.0-alpha.1
+- LF2.5–LF2.12 und integrierte unbenotete Abschlussaufgabe als zusammenhängende fiktive Erstfassung ergänzt.
+- Angebote, Energieannahmen, Zuschlagsrechnung, Beschaffungs-/Wareneingangsablauf, simulierte Einrichtung, Übergabe und Auftragsauswertung mit stabilen Fortschritts-IDs versehen.
+- Vollständige LF2-Themenzuordnung und offene Rechts-/Browserprüfgrenzen in Planungsunterlagen dokumentiert.
+
+
 ## 0.12.0-alpha.1
 - LF1.6–LF1.10 als kleine, einzeln verlinkte Orientierungseinheiten zu Handlungsspielraum, Weiterbildung, Präsentation, Qualität und Reflexion ergänzt.
 - LF1.3–LF1.10 erhalten eigene stabile Fortschritts-IDs; Abschlussstatus wird aus den vorhandenen Lernantworten abgeleitet.

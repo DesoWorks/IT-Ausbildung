@@ -42,7 +42,7 @@ assert(!/https?:\/\/(?!www\.w3)/.test(h.replace(/<link[^>]*>/g, "")), "keine ext
 const catalog = fs.readFileSync(path.join(root, "js/module-daten.js"), "utf8");
 assert(catalog.includes('page: "lf2-technische-daten", status: "verfuegbar", datei: "module/lf2-technische-daten.html"'));
 assert.equal((catalog.match(/id: "lf2-technische-daten"/g) || []).length, 1, "stabile ID genau einmal");
-assert.equal((catalog.match(/id: "lf2-varianten"[^}]*status: "in-kuerze"/g) || []).length, 1, "LF2.5 bleibt geplant");
+assert.equal((catalog.match(/id: "lf2-auswertung"[^}]*status: "verfuegbar"/g) || []).length, 1, "LF2.12 ist umgesetzt");
 
 const fp = fs.readFileSync(path.join(root, "js/fortschritt.js"), "utf8");
 assert(fp.includes('"lf2-technische-daten": "it-ausbildung.lf2-technische-daten.v1"'));
