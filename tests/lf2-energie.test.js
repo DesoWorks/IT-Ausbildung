@@ -15,6 +15,11 @@ for (const q of m.QUESTIONS) {
   assert(q.options.every(o => /^[a-z][a-z0-9]{2,}$/.test(o.id)), q.id + ": sprechende IDs statt Positionen");
   assert(q.options.every(o => o.feedback.length > 20), q.id + ": Erklärfeedback");
 }
+for (const q of m.QUESTIONS) {
+  const rightLen = q.options.find(o => o.id === q.correct).label.length;
+  const maxWrong = Math.max(...q.options.filter(o => o.id !== q.correct).map(o => o.label.length));
+  assert(rightLen <= maxWrong * 1.35, q.id + ": richtige Antwort nicht auffällig länger (" + rightLen + " vs " + maxWrong + ")");
+}
 const pos = m.QUESTIONS.map(q => q.options.findIndex(o => o.id === q.correct));
 assert(new Set(pos).size === 3, "richtige Positionen verteilt: " + pos);
 assert(pos[0] !== 0, "erste Aufgabe: Position 1 ist nicht richtig");

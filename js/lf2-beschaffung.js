@@ -40,16 +40,16 @@
     { id: "q1", correct: "ablegen",
       prompt: "Die Praxis am Park schreibt (fiktive Nachricht): „Wir nehmen Ihr Angebot an.“ Was tust du als Nächstes im Ablauf?",
       options: [
-        { id: "sofort", label: "Sofort alle Waren beim Lieferanten bestellen, damit keine Zeit verloren geht.", feedback: "Zu früh. Vor der Bestellung kommt noch die interne Freigabe. Erst wenn eine zuständige Person Positionen, Mengen und Preise geprüft hat, wird bestellt." },
-        { id: "ablegen", label: "Die Nachricht mit Datum und Bezug zum Angebot ablegen und die Bestellung vorbereiten, aber noch nicht abschicken.", feedback: "Richtig. Die Annahme wird nachvollziehbar festgehalten: wer, wann, auf welches Angebot. Danach wird die Bestellung vorbereitet und zur Freigabe vorgelegt." },
-        { id: "merken", label: "Nichts ablegen. Alle im Team wissen ja, dass die Praxis zugesagt hat.", feedback: "Gemeinsames Wissen im Kopf reicht nicht. Wenn später jemand nachfragt, braucht das Team einen Beleg mit Datum und Bezug zum Angebot." }
+        { id: "sofort", label: "Sofort alle Waren beim Lieferanten bestellen, damit keine Zeit verloren geht und die Lieferung früher kommt.", feedback: "Zu früh. Vor der Bestellung kommt noch die interne Freigabe. Erst wenn eine zuständige Person Positionen, Mengen und Preise geprüft hat, wird bestellt." },
+        { id: "ablegen", label: "Die Nachricht mit Datum und Bezug ablegen und die Bestellung vorbereiten, noch nicht abschicken.", feedback: "Richtig. Die Annahme wird nachvollziehbar festgehalten: wer, wann, auf welches Angebot. Danach wird die Bestellung vorbereitet und zur Freigabe vorgelegt." },
+        { id: "merken", label: "Nichts ablegen. Alle im Team wissen ja, dass die Praxis zugesagt hat, das genügt als Beleg.", feedback: "Gemeinsames Wissen im Kopf reicht nicht. Wenn später jemand nachfragt, braucht das Team einen Beleg mit Datum und Bezug zum Angebot." }
       ] },
     { id: "q2", correct: "abgleich",
       prompt: "Die Bestellung ist vorbereitet: je 3 Rechner, Bildschirme, Filter und Tastatur-Maus-Sets. Was prüft die Freigabe durch die Teamleitung (fiktiv: Frau Brandt)?",
       options: [
-        { id: "sympathie", label: "Ob der Lieferant einen guten Eindruck macht.", feedback: "Das kann beim Vergleich eine Rolle gespielt haben. Die Freigabe prüft aber die Bestellung selbst, nicht die Sympathie." },
-        { id: "nurpreis", label: "Nur, ob der Gesamtpreis niedrig aussieht.", feedback: "Der Preis ist wichtig, aber nicht allein. Auch Mengen, Typen und Lieferzeit müssen stimmen, sonst wird das Falsche günstig bestellt." },
-        { id: "abgleich", label: "Ob Positionen, Mengen und Preise zum Angebot und zum Budget passen.", feedback: "Richtig. Die Freigabe ist ein zweiter Blick vor dem Abschicken. Sie vergleicht die Bestellung mit dem Angebot und dem vorgegebenen Budget." }
+        { id: "sympathie", label: "Ob der Lieferant im Vergleich einen guten Eindruck gemacht hat.", feedback: "Das kann beim Vergleich eine Rolle gespielt haben. Die Freigabe prüft aber die Bestellung selbst, nicht die Sympathie." },
+        { id: "nurpreis", label: "Nur, ob der Gesamtpreis der Bestellung niedrig genug aussieht.", feedback: "Der Preis ist wichtig, aber nicht allein. Auch Mengen, Typen und Lieferzeit müssen stimmen, sonst wird das Falsche günstig bestellt." },
+        { id: "abgleich", label: "Ob Positionen, Mengen und Preise zu Angebot und Budget passen.", feedback: "Richtig. Die Freigabe ist ein zweiter Blick vor dem Abschicken. Sie vergleicht die Bestellung mit dem Angebot und dem vorgegebenen Budget." }
       ] },
     { id: "q3", correct: "mittwoch",
       prompt: "Die Bestellung wird am Mittwoch abgeschickt (Tag 0, fiktiv). Laut Auftragsbestätigung beträgt die Lieferzeit 5 Werktage. Werktage sind hier Montag bis Freitag, Feiertage werden ignoriert. Wann ist die Lieferung zugesagt?",
@@ -69,14 +69,14 @@
       prompt: "Ein Bildschirm hat einen Kratzer am Gehäuse. Welcher Eintrag im Mängelbericht ist sachlich und brauchbar?",
       options: [
         { id: "vorwurf", label: "Der Lieferant hat wieder schlampig gepackt. Der Bildschirm ist Schrott, bitte sofort Ersatz oder Geld zurück.", feedback: "Das ist eine Wertung und eine Forderung, keine Beschreibung. Ein Mängelbericht hält fest, was zu sehen ist, und überlässt Entscheidungen der zuständigen Person." },
-        { id: "defekt", label: "Bildschirm 2 ist defekt und muss ausgetauscht werden.", feedback: "Ob der Bildschirm defekt ist, weißt du nicht, sichtbar ist ein Kratzer. Außerdem fehlen Ort, Zeitpunkt und Beleg. Der Austausch ist eine Entscheidung für später." },
-        { id: "sachlich", label: "Bildschirm 2 von 3, Seriennummer SN-F-0452 (fiktiv): Kratzer von etwa 8 cm am rechten Gehäuserand, beim Auspacken am Liefertag entdeckt, Foto 1 liegt bei.", feedback: "Richtig. Der Eintrag nennt, was genau, wo, wann und mit welchem Beleg. Er enthält keine Schuldzuweisung und keine Forderung." }
+        { id: "defekt", label: "Bildschirm 2 ist defekt, das Gehäuse ist beschädigt und der Bildschirm muss ausgetauscht werden.", feedback: "Ob der Bildschirm defekt ist, weißt du nicht, sichtbar ist ein Kratzer. Außerdem fehlen Ort, Zeitpunkt und Beleg. Der Austausch ist eine Entscheidung für später." },
+        { id: "sachlich", label: "Bildschirm 2 von 3, SN-F-0452 (fiktiv): Kratzer, etwa 8 cm, rechter Gehäuserand, beim Auspacken entdeckt, Foto 1.", feedback: "Richtig. Der Eintrag nennt, was genau, wo, wann und mit welchem Beleg. Er enthält keine Schuldzuweisung und keine Forderung." }
       ] },
     { id: "q6", correct: "melden",
       prompt: "Der Mängelbericht ist fertig. Was passiert als Nächstes?",
       options: [
-        { id: "melden", label: "Den Bericht an die zuständige Teamleitung geben und die betroffene Ware getrennt und unverändert aufbewahren.", feedback: "Richtig. Die zuständige Person entscheidet, wie es weitergeht. Die Ware bleibt unverändert, damit der Zustand nachvollziehbar bleibt." },
-        { id: "selbst", label: "Selbst beim Lieferanten Forderungen stellen und Fristen setzen.", feedback: "Das gehört nicht in deine Rolle. Welche Schritte möglich und sinnvoll sind, hängt von Regeln ab, die hier nicht behandelt werden. Das entscheidet die zuständige Person im Betrieb." },
+        { id: "melden", label: "Den Bericht an die Teamleitung geben und die betroffene Ware getrennt, unverändert aufbewahren.", feedback: "Richtig. Die zuständige Person entscheidet, wie es weitergeht. Die Ware bleibt unverändert, damit der Zustand nachvollziehbar bleibt." },
+        { id: "selbst", label: "Selbst beim Lieferanten Forderungen stellen und Fristen setzen, damit es schneller geht.", feedback: "Das gehört nicht in deine Rolle. Welche Schritte möglich und sinnvoll sind, hängt von Regeln ab, die hier nicht behandelt werden. Das entscheidet die zuständige Person im Betrieb." },
         { id: "verschweigen", label: "Den Bildschirm trotzdem einbauen und den Kratzer nicht erwähnen, damit es keinen Ärger gibt.", feedback: "Verschweigen ist keine Lösung. Wird der Mangel erst später entdeckt, ist unklar, wann und wodurch er entstanden ist. Zeitnah melden schützt alle Beteiligten." }
       ] }
   ];

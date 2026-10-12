@@ -57,9 +57,9 @@
     { id: "q1", correct: "ergaenzen",
       prompt: "Angebot C nennt 765 Euro, enthält aber weder Blickschutzfilter noch Einrichtung. Wie machst du es fair vergleichbar?",
       options: [
-        { id: "summe765", label: "Die 765 Euro übernehmen, denn das steht im Angebot.", feedback: "Dann wirkt C billiger, als es für die Praxis ist. Der Filter und die Einrichtung werden trotzdem gebraucht und kosten Geld, nur bei einer anderen Stelle." },
-        { id: "ergaenzen", label: "Fehlende Bestandteile als gekennzeichnete Schätzung ergänzen: 765 + 30 + 100 = 895 Euro.", feedback: "Richtig. Du rechnest alle sechs Bestandteile ein und sagst offen, dass 30 und 100 Euro Schätzungen sind. Erst dann sind die drei Angebote vergleichbar." },
-        { id: "ausschluss", label: "Angebot C sofort ausschließen, weil es nicht vollständig ist.", feedback: "Fehlende Teile sind kein Pflichtkriterium. Sie lassen sich ergänzen oder zukaufen. Ausgeschlossen wird nur, wer ein Pflichtkriterium wie die 1.200 Euro verfehlt." }
+        { id: "summe765", label: "Die 765 Euro aus dem Angebot übernehmen, weil nur Angebotszahlen zählen.", feedback: "Dann wirkt C billiger, als es für die Praxis ist. Der Filter und die Einrichtung werden trotzdem gebraucht und kosten Geld, nur bei einer anderen Stelle." },
+        { id: "ergaenzen", label: "Fehlendes als gekennzeichnete Schätzung ergänzen: 765 + 30 + 100 = 895 Euro.", feedback: "Richtig. Du rechnest alle sechs Bestandteile ein und sagst offen, dass 30 und 100 Euro Schätzungen sind. Erst dann sind die drei Angebote vergleichbar." },
+        { id: "ausschluss", label: "Angebot C ausschließen, weil ein unvollständiges Angebot nicht vergleichbar ist.", feedback: "Fehlende Teile sind kein Pflichtkriterium. Sie lassen sich ergänzen oder zukaufen. Ausgeschlossen wird nur, wer ein Pflichtkriterium wie die 1.200 Euro verfehlt." }
       ] },
     { id: "q2", correct: "s960",
       prompt: "Wie hoch sind die Gesamtkosten von Angebot B (Nordwind Systemhaus)? Rechnung: Rechner 610, Bildschirm 140, Filter 30, Tastatur und Maus 35, Versand 25, Einrichtung 120 Euro.",
@@ -85,9 +85,9 @@
     { id: "q5", correct: "empfehlung",
       prompt: "Nordlicht berichtet der Praxis das Ergebnis mit den ursprünglichen Gewichten (A 41, B 38, C 38 Punkte). Welche Rückmeldung ist am besten?",
       options: [
-        { id: "nurpreis", label: "C empfehlen, weil C mit 765 Euro am billigsten ist.", feedback: "Der Preis von 765 Euro ist unvollständig. Mit Filter und Einrichtung sind es etwa 895 Euro, und der Service ist schwach. Der günstigste Angebotspreis ist nicht automatisch das beste Angebot." },
-        { id: "empfehlung", label: "A empfehlen (41 Punkte) und offen sagen: B ist beim Service besser, C am schnellsten und mit Zukauf am günstigsten. Alle Werte sind Übungsdaten, die Praxis entscheidet.", feedback: "Richtig. Die Empfehlung ist begründet, die Stärken der anderen Angebote sind sichtbar, und die Entscheidung bleibt bei der Kundschaft." },
-        { id: "nurzahl", label: "Nur die Punkte nennen: A 41, B 38, C 38.", feedback: "Ohne Kriterien, Gewichte und Rechenweg kann die Praxis die Zahlen nicht prüfen. Der Vergleich gehört mit dazu." }
+        { id: "nurpreis", label: "C empfehlen, weil C mit 765 Euro am billigsten ist und das Budget der Praxis schont.", feedback: "Der Preis von 765 Euro ist unvollständig. Mit Filter und Einrichtung sind es etwa 895 Euro, und der Service ist schwach. Der günstigste Angebotspreis ist nicht automatisch das beste Angebot." },
+        { id: "empfehlung", label: "A empfehlen (41 Punkte), B als Servicestärke und C als schnellste Option nennen; die Praxis entscheidet.", feedback: "Richtig. Die Empfehlung ist begründet, die Stärken der anderen Angebote sind sichtbar, und die Entscheidung bleibt bei der Kundschaft." },
+        { id: "nurzahl", label: "Nur die Punkte nennen (A 41, B 38, C 38), weil Zahlen für sich sprechen und kurz sind.", feedback: "Ohne Kriterien, Gewichte und Rechenweg kann die Praxis die Zahlen nicht prüfen. Der Vergleich gehört mit dazu." }
       ] }
   ];
 

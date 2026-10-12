@@ -38,8 +38,8 @@
     { id: "q2", correct: "verschraubt",
       prompt: "Welche Angabe aus dem Datenblatt gehört zum Kriterium „Recycling und Reparierbarkeit“?",
       options: [
-        { id: "strom", label: "Typische Leistungsaufnahme 18 W.", feedback: "Die Leistungsaufnahme gehört zum eigenen Kriterium „Energie“. Sie sagt nichts darüber, wie gut sich das Gerät reparieren oder verwerten lässt." },
-        { id: "hoehe", label: "Bildschirm höhenverstellbar und drehbar.", feedback: "Das ist eine ergonomische Angabe. Sie beschreibt, wie gut der Platz zum Menschen passt, nicht wie sich das Gerät später verwerten lässt." },
+        { id: "strom", label: "Typische Leistungsaufnahme von 18 W im normalen Betrieb am Empfang.", feedback: "Die Leistungsaufnahme gehört zum eigenen Kriterium „Energie“. Sie sagt nichts darüber, wie gut sich das Gerät reparieren oder verwerten lässt." },
+        { id: "hoehe", label: "Bildschirm höhenverstellbar und drehbar, dazu ein ergonomisches Tastaturset.", feedback: "Das ist eine ergonomische Angabe. Sie beschreibt, wie gut der Platz zum Menschen passt, nicht wie sich das Gerät später verwerten lässt." },
         { id: "verschraubt", label: "Gehäuse verschraubt, Teile einzeln austauschbar, Rücknahme zugesagt.", feedback: "Richtig. Verschraubte Gehäuse und austauschbare Teile erleichtern Reparatur und Recycling. Eine zugesagte Rücknahme gehört ebenfalls dazu." }
       ] },
     { id: "q3", correct: "c43",
@@ -59,9 +59,9 @@
     { id: "q5", correct: "offen",
       prompt: "Mit den ursprünglichen Gewichten gewinnt Terra mit 45 zu 43 Punkten. Die Empfangskraft sitzt fast den ganzen Tag am Platz. Was ist die beste Rückmeldung an die Praxis?",
       options: [
-        { id: "nurzahl", label: "Terra empfehlen. Die höhere Zahl entscheidet, weitere Erklärung ist nicht nötig.", feedback: "Bei einem so knappen Abstand ist die Zahl allein zu wenig. Die Praxis sollte wissen, wo Terra schwächer ist und wie stark die Gewichte das Ergebnis beeinflussen." },
-        { id: "offen", label: "Terra empfehlen und offen sagen: Vento ist ergonomischer und sparsamer, Terra besser erweiterbar und recycelbar. Der Abstand ist klein, die Praxis prüft, ob die Gewichte stimmen.", feedback: "Richtig. So wird der Trade-off sichtbar: Wer mehr Ergonomie will, verzichtet auf Reserve und Recycling. Die Entscheidung bleibt bei der Kundschaft." },
-        { id: "vento", label: "Vento empfehlen, weil Ergonomie bei Ganztagsarbeit immer wichtiger ist als alle anderen Kriterien.", feedback: "Das widerspricht der vereinbarten Gewichtung. Wenn Ergonomie wichtiger sein soll, werden die Gewichte offen geändert und neu gerechnet, nicht das Ergebnis umgedeutet." }
+        { id: "nurzahl", label: "Terra empfehlen. Die höhere Zahl entscheidet, weitere Erklärung ist nicht nötig, und die Praxis muss die Gewichte nicht nachprüfen.", feedback: "Bei einem so knappen Abstand ist die Zahl allein zu wenig. Die Praxis sollte wissen, wo Terra schwächer ist und wie stark die Gewichte das Ergebnis beeinflussen." },
+        { id: "offen", label: "Terra empfehlen und offen sagen: Vento ist ergonomischer und sparsamer, Terra besser erweiterbar. Der Abstand ist klein, die Praxis prüft die Gewichte.", feedback: "Richtig. So wird der Trade-off sichtbar: Wer mehr Ergonomie will, verzichtet auf Reserve und Recycling. Die Entscheidung bleibt bei der Kundschaft." },
+        { id: "vento", label: "Vento empfehlen, weil Ergonomie bei Ganztagsarbeit immer wichtiger ist als alle anderen Kriterien, auch wenn die Gewichte etwas anderes sagen.", feedback: "Das widerspricht der vereinbarten Gewichtung. Wenn Ergonomie wichtiger sein soll, werden die Gewichte offen geändert und neu gerechnet, nicht das Ergebnis umgedeutet." }
       ] }
   ];
 

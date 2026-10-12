@@ -26,43 +26,43 @@
     { id: "q1", correct: "vorbereiten",
       prompt: "Du sollst den fiktiven Musterarbeitsplatz 3 einrichten. Was gehört zur Vorbereitung, bevor du etwas zusammensteckst?",
       options: [
-        { id: "losgehts", label: "Sofort alles auspacken und anschließen. Fehlendes fällt dann schon auf.", feedback: "Zu früh. Ohne Vergleich mit dem Auftrag merkst du Lücken erst spät und weißt nicht mehr, was vorher schon beschädigt oder unvollständig war." },
-        { id: "vorbereiten", label: "Auftrag und Wareneingangsbefund bereitlegen, Platz freiräumen und die Teile gegen die Komponentenliste abgleichen.", feedback: "Richtig. Du weißt, was verlangt ist und was geliefert wurde. Der Platz ist frei, und Abweichungen sind vor dem Aufbau bekannt." },
-        { id: "spaeter", label: "Erst aufbauen und die Liste hinterher aus dem Gedächtnis schreiben.", feedback: "Eine Liste aus dem Gedächtnis ist ein schwacher Beleg. Die Prüfpunkte gehören vorher festgelegt und werden beim Prüfen abgehakt." }
+        { id: "losgehts", label: "Sofort alles auspacken und anschließen, denn Fehlendes fällt beim Aufbau schon von selbst auf.", feedback: "Zu früh. Ohne Vergleich mit dem Auftrag merkst du Lücken erst spät und weißt nicht mehr, was vorher schon beschädigt oder unvollständig war." },
+        { id: "vorbereiten", label: "Auftrag und Befund bereitlegen, Platz freiräumen, Teile mit der Komponentenliste vergleichen.", feedback: "Richtig. Du weißt, was verlangt ist und was geliefert wurde. Der Platz ist frei, und Abweichungen sind vor dem Aufbau bekannt." },
+        { id: "spaeter", label: "Erst aufbauen und die Liste hinterher aus dem Gedächtnis schreiben, weil das schneller geht.", feedback: "Eine Liste aus dem Gedächtnis ist ein schwacher Beleg. Die Prüfpunkte gehören vorher festgelegt und werden beim Prüfen abgehakt." }
       ] },
     { id: "q2", correct: "melden",
       prompt: "Beim Aufbau von Platz 3 liegt kein Blickschutzfilter im Karton (siehe Wareneingang aus der vorigen Lektion). Wie gehst du vor?",
       options: [
-        { id: "umbauen", label: "Den Filter von Platz 2 abbauen und an Platz 3 anbringen. Dann fällt es erst später auf.", feedback: "Das verschiebt nur das Problem. Platz 2 ist dann unvollständig, und der Befund ist nicht mehr nachvollziehbar." },
+        { id: "umbauen", label: "Den Filter von Platz 2 abbauen und an Platz 3 anbringen, dann fällt die Lücke erst später auf.", feedback: "Das verschiebt nur das Problem. Platz 2 ist dann unvollständig, und der Befund ist nicht mehr nachvollziehbar." },
         { id: "abhaken", label: "Den Punkt „Komponenten vorhanden“ trotzdem abhaken, weil der Filter nur Zubehör ist.", feedback: "Der Auftrag verlangt den Filter. Eine Checkliste mit falschem Haken sagt etwas Falsches über den Platz." },
-        { id: "melden", label: "Den Punkt als offen eintragen, den Aufbau der übrigen Teile fortsetzen und die Abweichung der zuständigen Person melden.", feedback: "Richtig. Du bleibst ehrlich bei der Checkliste, arbeitest an dem, was möglich ist, und gibst die Abweichung weiter." }
+        { id: "melden", label: "Den Punkt als offen eintragen, übrige Teile weiter aufbauen und die Abweichung melden.", feedback: "Richtig. Du bleibst ehrlich bei der Checkliste, arbeitest an dem, was möglich ist, und gibst die Abweichung weiter." }
       ] },
     { id: "q3", correct: "stoppen",
       prompt: "Bei der Sichtprüfung siehst du am Netzkabel des Bildschirms (fiktiv) eine stark geknickte Stelle, an der die Isolierung aufgerissen ist. Was tust du?",
       options: [
-        { id: "stoppen", label: "Nicht anschließen und nicht einschalten, das Kabel kennzeichnen und getrennt weglegen und die zuständige Person informieren.", feedback: "Richtig. Ein sichtbar beschädigtes Kabel nimmst du nicht in Betrieb. Du sicherst den Befund und meldest ihn, die Entscheidung trifft die zuständige Person." },
-        { id: "klebeband", label: "Die Stelle mit Klebeband umwickeln und das Kabel dann normal verwenden.", feedback: "Eine Reparatur am Kabel gehört nicht zu deiner Aufgabe. Die Stelle bleibt ein Risiko, und der Mangel wird nicht dokumentiert." },
-        { id: "probieren", label: "Kurz einstecken und testen, ob der Bildschirm trotzdem angeht.", feedback: "Das ist genau das, was die Sichtprüfung vermeiden soll. Beschädigtes wird nicht zum Test in Betrieb genommen." }
+        { id: "stoppen", label: "Nicht anschließen, Kabel kennzeichnen und getrennt weglegen, zuständige Person informieren.", feedback: "Richtig. Ein sichtbar beschädigtes Kabel nimmst du nicht in Betrieb. Du sicherst den Befund und meldest ihn, die Entscheidung trifft die zuständige Person." },
+        { id: "klebeband", label: "Die Stelle mit Klebeband umwickeln und das Kabel danach ganz normal weiter verwenden.", feedback: "Eine Reparatur am Kabel gehört nicht zu deiner Aufgabe. Die Stelle bleibt ein Risiko, und der Mangel wird nicht dokumentiert." },
+        { id: "probieren", label: "Kurz einstecken und testen, ob der Bildschirm trotz des Schadens noch angeht, bevor man meldet.", feedback: "Das ist genau das, was die Sichtprüfung vermeiden soll. Beschädigtes wird nicht zum Test in Betrieb genommen." }
       ] },
     { id: "q4", correct: "kabel",
       prompt: "Bei der Funktionsprüfung bleibt der Bildschirm zuerst schwarz (simuliert). Was ist der sinnvolle nächste einfache Schritt?",
       options: [
-        { id: "defekt", label: "Den Bildschirm als defekt einstufen und sofort Ersatz beantragen.", feedback: "Zu voreilig. Viele schwarze Bildschirme haben eine einfache Ursache. Zuerst prüfst du das Naheliegende." },
-        { id: "kabel", label: "Prüfen, ob das Bildkabel an beiden Enden fest sitzt und der richtige Eingang am Bildschirm gewählt ist, und das Ergebnis notieren.", feedback: "Richtig. Du prüfst die einfachsten Ursachen zuerst und notierst, was du getan hast und was dabei herauskam." },
-        { id: "oeffnen", label: "Das Gehäuse des Bildschirms öffnen und nachsehen.", feedback: "Geräte zu öffnen gehört nicht zu dieser Aufgabe. Das ist Sache von dafür ausgebildeten Fachkräften." }
+        { id: "defekt", label: "Den Bildschirm sofort als defekt einstufen und für die Praxis Ersatz beantragen lassen.", feedback: "Zu voreilig. Viele schwarze Bildschirme haben eine einfache Ursache. Zuerst prüfst du das Naheliegende." },
+        { id: "kabel", label: "Festen Sitz des Bildkabels und den gewählten Eingang prüfen, Ergebnis notieren.", feedback: "Richtig. Du prüfst die einfachsten Ursachen zuerst und notierst, was du getan hast und was dabei herauskam." },
+        { id: "oeffnen", label: "Das Gehäuse des Bildschirms öffnen und von innen nachsehen, ob dort etwas locker ist.", feedback: "Geräte zu öffnen gehört nicht zu dieser Aufgabe. Das ist Sache von dafür ausgebildeten Fachkräften." }
       ] },
     { id: "q5", correct: "eintrag",
       prompt: "Welcher Checklisteneintrag zum fehlenden Blickschutzfilter ist brauchbar?",
       options: [
-        { id: "alleskla", label: "Komponenten: OK.", feedback: "Das ist kein Befund, sondern ein Haken ohne Prüfung. Es fehlen Soll, Ist und Hinweis auf die Abweichung." },
-        { id: "kommtnoch", label: "Komponenten: OK, der Filter kommt bestimmt noch.", feedback: "Eine Vermutung ersetzt keine Prüfung. Der Ist-Zustand ist: Der Filter fehlt jetzt, und das gehört in den Eintrag." },
-        { id: "eintrag", label: "Komponenten: offen. Soll: Rechner, Bildschirm, Filter, Tastatur und Maus. Ist: Filter fehlt, Fehlmenge 1. Gemeldet an Teamleitung (fiktiv: Frau Brandt).", feedback: "Richtig. Der Eintrag nennt Soll, Ist, Ergebnis und die Meldung. Wer ihn liest, versteht den Stand ohne Rückfrage." }
+        { id: "alleskla", label: "Komponenten: OK. Alles wie bestellt, keine weitere Bemerkung für die Übergabe nötig.", feedback: "Das ist kein Befund, sondern ein Haken ohne Prüfung. Es fehlen Soll, Ist und Hinweis auf die Abweichung." },
+        { id: "kommtnoch", label: "Komponenten: OK, der Filter kommt bestimmt noch. Gemeldet wird nichts, es wird später nachgetragen.", feedback: "Eine Vermutung ersetzt keine Prüfung. Der Ist-Zustand ist: Der Filter fehlt jetzt, und das gehört in den Eintrag." },
+        { id: "eintrag", label: "Komponenten: offen. Soll: Filter dabei. Ist: Filter fehlt, Menge 1. Gemeldet an Frau Brandt.", feedback: "Richtig. Der Eintrag nennt Soll, Ist, Ergebnis und die Meldung. Wer ihn liest, versteht den Stand ohne Rückfrage." }
       ] },
     { id: "q6", correct: "nichtfrei",
       prompt: "Alle Punkte außer „Komponenten vorhanden“ sind bestanden. Was gilt für Platz 3?",
       options: [
-        { id: "nichtfrei", label: "Der Platz ist noch nicht übergabefähig. Er wird als „nicht freigegeben“ geführt, bis die zuständige Person über den offenen Punkt entschieden hat.", feedback: "Richtig. Ein offener Punkt bleibt sichtbar. Erst wenn er behoben oder von der zuständigen Person entschieden ist, geht der Platz in die Übergabe." },
-        { id: "uebergeben", label: "Der Platz wird übergeben. Der Filter kann ja später nachgereicht werden.", feedback: "Das entscheidest nicht du. Ohne Abstimmung bekäme die Kundschaft einen Platz, der vom Auftrag abweicht, ohne es zu wissen." },
+        { id: "nichtfrei", label: "Noch nicht übergabefähig: Platz 3 gilt bis zur Entscheidung als „nicht freigegeben“.", feedback: "Richtig. Ein offener Punkt bleibt sichtbar. Erst wenn er behoben oder von der zuständigen Person entschieden ist, geht der Platz in die Übergabe." },
+        { id: "uebergeben", label: "Der Platz wird übergeben, der Filter kann ja später nachgereicht werden, das fällt kaum auf.", feedback: "Das entscheidest nicht du. Ohne Abstimmung bekäme die Kundschaft einen Platz, der vom Auftrag abweicht, ohne es zu wissen." },
         { id: "abwarten", label: "Der Platz wird erst übergeben, wenn die Praxis nachfragt. Bis dahin wird nichts gesagt.", feedback: "Verschweigen ist keine Lösung. Offene Punkte werden aktiv gemeldet, nicht erst auf Nachfrage." }
       ] }
   ];
@@ -121,6 +121,7 @@
   function clearFeedback() {
     var b = $("result");
     b.hidden = true; b.textContent = "";
+    $("done").textContent = "";
     Q.forEach(function (q) { var fb = $("fb-" + q.id); fb.hidden = true; fb.textContent = ""; });
   }
   function build() {

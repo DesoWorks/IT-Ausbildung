@@ -42,8 +42,8 @@
       prompt: "Terra Modular braucht laut Übungsdaten 142 Wh pro Tag. Das Nutzungsprofil gilt an 220 Tagen im Jahr. Wie hoch ist der Jahreswert?",
       options: [
         { id: "k3124", label: "31,24 kWh (142 Wh × 220 = 31.240 Wh, dann ÷ 1000)", feedback: "Richtig. 142 × 220 = 31.240 Wh. Geteilt durch 1000 sind das 31,24 kWh." },
-        { id: "k31240", label: "31.240 kWh", feedback: "Die Zahl 31.240 ist richtig, aber noch in Wattstunden. Für kWh musst du durch 1000 teilen: 31,24 kWh." },
-        { id: "k142", label: "142 kWh", feedback: "142 ist der Wert für einen Tag in Wh. Für das Jahr multiplizierst du mit den 220 Tagen und rechnest danach in kWh um." }
+        { id: "k31240", label: "31.240 kWh (142 Wh × 220 Tage, ohne Umrechnung)", feedback: "Die Zahl 31.240 ist richtig, aber noch in Wattstunden. Für kWh musst du durch 1000 teilen: 31,24 kWh." },
+        { id: "k142", label: "142 kWh (Tageswert unverändert übernommen)", feedback: "142 ist der Wert für einen Tag in Wh. Für das Jahr multiplizierst du mit den 220 Tagen und rechnest danach in kWh um." }
       ] },
     { id: "q4", correct: "diff1672",
       prompt: "Lumo Kompakt kommt auf 42,24 kWh im Jahr, Vento Allround auf 25,52 kWh. Wie groß ist der Unterschied unter diesen Annahmen?",
@@ -55,9 +55,9 @@
     { id: "q5", correct: "annahmen",
       prompt: "Du berichtest der Praxis das Ergebnis. Welche Darstellung ist am ehrlichsten?",
       options: [
-        { id: "real", label: "„Vento spart in der Praxis genau 16,72 kWh pro Jahr.“", feedback: "Das stellt Übungsdaten als reales Ergebnis dar. Echte Geräte und echte Nutzung weichen ab, deshalb ist „genau“ nicht belegbar." },
-        { id: "nurzahl", label: "Nur die Ergebnisse nennen: Vento 25,52 kWh, Terra 31,24 kWh, Lumo 42,24 kWh.", feedback: "Ohne Annahmen kann niemand die Zahlen prüfen oder auf die eigene Nutzung übertragen. Nutzungsprofil und Rechenweg gehören dazu." },
-        { id: "annahmen", label: "Leistungswerte, Nutzungsprofil (6 h Last, 2 h Leerlauf, 220 Tage) und Rechenweg zeigen und sagen: Übungsdaten, die reale Nutzung kann abweichen.", feedback: "Richtig. So kann die Praxis die Rechnung nachvollziehen, mit eigenen Zeiten wiederholen und weiß, wie belastbar sie ist." }
+        { id: "real", label: "„Vento spart in der Praxis genau 16,72 kWh pro Jahr, das gilt für jede Praxis.“", feedback: "Das stellt Übungsdaten als reales Ergebnis dar. Echte Geräte und echte Nutzung weichen ab, deshalb ist „genau“ nicht belegbar." },
+        { id: "nurzahl", label: "Nur die Ergebnisse nennen (Vento 25,52 kWh, Terra 31,24 kWh, Lumo 42,24 kWh), Rechenweg und Annahmen weglassen.", feedback: "Ohne Annahmen kann niemand die Zahlen prüfen oder auf die eigene Nutzung übertragen. Nutzungsprofil und Rechenweg gehören dazu." },
+        { id: "annahmen", label: "Leistungswerte, Nutzungsprofil (6 h Last, 2 h Leerlauf, 220 Tage) und Rechenweg zeigen; auf Übungsdaten hinweisen.", feedback: "Richtig. So kann die Praxis die Rechnung nachvollziehen, mit eigenen Zeiten wiederholen und weiß, wie belastbar sie ist." }
       ] }
   ];
 

@@ -54,14 +54,14 @@
       prompt: "Auf die Positionssumme von 2.850,00 Euro kommt ein Handlungskostenzuschlag von 7 % (fiktiver Satz). Wie hoch ist der Zuschlagsbetrag?",
       options: [
         { id: "z19950", label: "199,50 Euro (2.850,00 × 7 ÷ 100)", feedback: "Richtig. 7 Prozent bedeuten 7 von 100 Teilen: 2.850 × 7 = 19.950, geteilt durch 100 ergibt 199,50 Euro." },
-        { id: "z1995", label: "19,95 Euro", feedback: "Das Komma ist um eine Stelle verrutscht. Überschlag: 10 % von 2.850 Euro wären 285 Euro, 7 % liegen etwas darunter, also bei rund 200 Euro und nicht bei 19,95 Euro." },
-        { id: "z304950", label: "3.049,50 Euro", feedback: "Das ist nicht der Zuschlag, sondern schon die Summe aus Positionen und Zuschlag (2.850,00 + 199,50). Gefragt ist nur der Zuschlagsbetrag." }
+        { id: "z1995", label: "19,95 Euro (2.850,00 × 7 ÷ 1.000)", feedback: "Das Komma ist um eine Stelle verrutscht. Überschlag: 10 % von 2.850 Euro wären 285 Euro, 7 % liegen etwas darunter, also bei rund 200 Euro und nicht bei 19,95 Euro." },
+        { id: "z304950", label: "3.049,50 Euro (2.850,00 + 199,50)", feedback: "Das ist nicht der Zuschlag, sondern schon die Summe aus Positionen und Zuschlag (2.850,00 + 199,50). Gefragt ist nur der Zuschlagsbetrag." }
       ] },
     { id: "q3", correct: "g15248",
       prompt: "Die Selbstkosten betragen 3.049,50 Euro. Darauf wird ein Gewinnzuschlag von 5 % gerechnet (fiktiver Satz, Basis sind die Selbstkosten). Wie lautet der Zuschlagsbetrag, kaufmännisch auf volle Cent gerundet?",
       options: [
         { id: "g14250", label: "142,50 Euro (5 % von 2.850,00 Euro)", feedback: "Hier wurde die falsche Basis genommen. Im Übungsfall bezieht sich der Gewinnzuschlag auf die Selbstkosten, also auf 3.049,50 Euro, nicht auf die reine Positionssumme." },
-        { id: "g15248", label: "152,48 Euro (3.049,50 × 5 ÷ 100 = 152,475, aufgerundet)", feedback: "Richtig. 3.049,50 × 5 ÷ 100 = 152,475. Die dritte Nachkommastelle ist eine 5, deshalb wird kaufmännisch aufgerundet auf 152,48 Euro." },
+        { id: "g15248", label: "152,48 Euro (152,475 kaufmännisch gerundet)", feedback: "Richtig. 3.049,50 × 5 ÷ 100 = 152,475. Die dritte Nachkommastelle ist eine 5, deshalb wird kaufmännisch aufgerundet auf 152,48 Euro." },
         { id: "g15247", label: "152,47 Euro (152,475 abgeschnitten)", feedback: "Abschneiden ist keine kaufmännische Rundung. Bei einer 5 an der dritten Nachkommastelle wird aufgerundet, also 152,48 Euro." }
       ] },
     { id: "q4", correct: "e320198",
@@ -74,9 +74,9 @@
     { id: "q5", correct: "pruefen",
       prompt: "Eine Kollegin hat denselben Auftrag gerechnet und kommt auf 3.100,00 Euro statt 3.201,98 Euro. Was machst du?",
       options: [
-        { id: "angleichen", label: "Meinen Betrag auf 3.100,00 Euro ändern, damit beide Angebote gleich sind.", feedback: "Ein Betrag darf nicht angepasst werden, nur damit er passt. Erst muss klar sein, wo der Unterschied entsteht." },
-        { id: "pruefen", label: "Beide Rechenwege Schritt für Schritt vergleichen: Positionssumme, erster Zuschlag, Selbstkosten, zweiter Zuschlag, Rundung.", feedback: "Richtig. Ein sichtbarer Rechenweg macht den Fehler auffindbar, zum Beispiel eine fehlende Menge, eine falsche Basis oder eine abgeschnittene Rundung. Erst danach wird der richtige Betrag festgelegt." },
-        { id: "uebernehmen", label: "Den Betrag der Kollegin übernehmen, weil sie schneller fertig war.", feedback: "Schnelligkeit sagt nichts über Richtigkeit. Ohne Rechenweg weißt du nicht, welcher Betrag stimmt." }
+        { id: "angleichen", label: "Meinen Betrag auf 3.100,00 Euro ändern, damit beide Angebote gleich sind und es keine Rückfragen gibt.", feedback: "Ein Betrag darf nicht angepasst werden, nur damit er passt. Erst muss klar sein, wo der Unterschied entsteht." },
+        { id: "pruefen", label: "Beide Rechenwege Schritt für Schritt vergleichen: Positionssumme, Zuschläge, Selbstkosten, Rundung.", feedback: "Richtig. Ein sichtbarer Rechenweg macht den Fehler auffindbar, zum Beispiel eine fehlende Menge, eine falsche Basis oder eine abgeschnittene Rundung. Erst danach wird der richtige Betrag festgelegt." },
+        { id: "uebernehmen", label: "Den Betrag der Kollegin übernehmen, weil sie schneller fertig war und es keinen Streit gibt.", feedback: "Schnelligkeit sagt nichts über Richtigkeit. Ohne Rechenweg weißt du nicht, welcher Betrag stimmt." }
       ] }
   ];
 

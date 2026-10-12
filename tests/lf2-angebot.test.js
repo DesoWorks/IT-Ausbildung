@@ -19,6 +19,11 @@ for (const q of m.QUESTIONS) {
 const pos = m.QUESTIONS.map(q => q.options.findIndex(o => o.id === q.correct));
 assert(new Set(pos).size === 3, "richtige Positionen verteilt: " + pos);
 assert(pos[0] !== 0, "erste Aufgabe: Position 1 ist nicht richtig");
+for (const q of m.QUESTIONS) {
+  const right = q.options.find(o => o.id === q.correct).label.length;
+  const longestWrong = Math.max(...q.options.filter(o => o.id !== q.correct).map(o => o.label.length));
+  assert(right <= longestWrong * 1.35, q.id + ": richtige Antwort verrät sich nicht über die Länge (" + right + " gegen " + longestWrong + ")");
+}
 
 // Rechenmodell in ganzen Cent
 assert.deepEqual(m.ITEMS.map(i => m.lineTotal(i.id)), [192000, 45000, 9000, 12000, 0, 27000]);

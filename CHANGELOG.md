@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.1-alpha.1
+- LF2.5–LF2.12 und die integrierte Abschlussaufgabe gezielt nachgeprüft.
+- Antworttexte in den Übungen überarbeitet, damit die richtige Antwort nicht durch auffällige Länge verraten wird; LF2.10/LF2.11 löschen nun auch veralteten Abschlusstext nach Antwortänderung.
+- LF2-Abschlussaufgabe: Fallwert vervollständigt, Antwortpositionen verteilt und Glossarbezüge ergänzt.
+- Fokustests und 36 Testdateien bestanden; interaktive Browserprüfungen bleiben offen.
+
 ## 0.14.0-alpha.1
 - LF2.5–LF2.12 und integrierte unbenotete Abschlussaufgabe als zusammenhängende fiktive Erstfassung ergänzt.
 - Angebote, Energieannahmen, Zuschlagsrechnung, Beschaffungs-/Wareneingangsablauf, simulierte Einrichtung, Übergabe und Auftragsauswertung mit stabilen Fortschritts-IDs versehen.

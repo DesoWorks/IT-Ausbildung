@@ -5,29 +5,29 @@
   var STEPS = ["start", "case", "exercise", "finish"];
   var Q = [
     { id: "q1", correct: "kriterium", prompt: "Woran richtest du die Auswertung des fiktiven Auftrags zuerst aus?", options: [
-      { id: "gefuehl", label: "Nur daran, ob die beteiligte Person den Ablauf spontan gut fand.", feedback: "Eine Einschätzung ist nützlich, ersetzt aber kein vorher bekanntes Ziel. Benenne zuerst, was erreicht werden sollte." },
-      { id: "kriterium", label: "An vorher genannten Kriterien, etwa vollständiger Lieferung und dokumentierter Prüfung.", feedback: "Richtig. Vorab bekannte Kriterien machen sichtbar, woran der Auftrag gemessen wird." },
-      { id: "preis", label: "Ausschließlich am niedrigsten genannten Einzelpreis.", feedback: "Der Einzelpreis sagt nicht, ob alle Bestandteile geliefert und geprüft wurden. Nutze die Kriterien des gesamten Auftrags." }
+      { id: "gefuehl", label: "Nur daran, ob die beteiligte Person den Ablauf spontan gut fand und zufrieden wirkte.", feedback: "Eine Einschätzung ist nützlich, ersetzt aber kein vorher bekanntes Ziel. Benenne zuerst, was erreicht werden sollte." },
+      { id: "preis", label: "Ausschließlich am niedrigsten genannten Einzelpreis, weil er leicht zu vergleichen ist.", feedback: "Der Einzelpreis sagt nicht, ob alle Bestandteile geliefert und geprüft wurden. Nutze die Kriterien des gesamten Auftrags." },
+      { id: "kriterium", label: "An vorher genannten Kriterien, etwa vollständiger Lieferung und dokumentierter Prüfung.", feedback: "Richtig. Vorab bekannte Kriterien machen sichtbar, woran der Auftrag gemessen wird." }
     ] },
     { id: "q2", correct: "fakten", prompt: "Welche Aussage trennt den Befund am besten von einer Vermutung?", options: [
-      { id: "schuld", label: "Die Lieferung war sicher schlecht geplant.", feedback: "Das ist eine Vermutung über die Ursache. Die vorliegenden Angaben belegen sie nicht." },
-      { id: "fakten", label: "In der simulierten Checkliste war der Filter zunächst als fehlend dokumentiert; später wurde er nachgeprüft.", feedback: "Richtig. Das beschreibt die dokumentierten Schritte, ohne eine nicht belegte Ursache zu behaupten." },
-      { id: "immer", label: "Lieferungen sind grundsätzlich unzuverlässig.", feedback: "Eine einzelne Übungssituation erlaubt keine allgemeine Aussage über Lieferungen." }
+      { id: "schuld", label: "Die Lieferung war sicher schlecht geplant, deshalb fehlte der Filter zunächst.", feedback: "Das ist eine Vermutung über die Ursache. Die vorliegenden Angaben belegen sie nicht." },
+      { id: "immer", label: "Lieferungen sind grundsätzlich unzuverlässig, das zeigt dieser Fall deutlich.", feedback: "Eine einzelne Übungssituation erlaubt keine allgemeine Aussage über Lieferungen." },
+      { id: "fakten", label: "Laut Checkliste fehlte der Filter zunächst; die Nachprüfung ist dokumentiert.", feedback: "Richtig. Das beschreibt die dokumentierten Schritte, ohne eine nicht belegte Ursache zu behaupten." }
     ] },
     { id: "q3", correct: "massnahme", prompt: "Die fiktive Rückmeldung sagt, die Einrichtung dauerte länger als erwartet. Welche Maßnahme ist überprüfbar?", options: [
-      { id: "massnahme", label: "Vor dem nächsten Musteraufbau eine Material- und Schrittfolge vorbereiten und danach prüfen, ob sie vollständig war und die geplante Zeit eingehalten wurde.", feedback: "Richtig. Die Maßnahme nennt Handlung und später prüfbares Ergebnis." },
-      { id: "schneller", label: "Alle sollen sich einfach mehr beeilen.", feedback: "Das ist unklar und liefert kein überprüfbares Kriterium. Eine konkrete Vorbereitung ist besser prüfbar." },
-      { id: "ignorieren", label: "Die Rückmeldung ignorieren, weil alle Prüfpunkte bestanden waren.", feedback: "Ein bestandener Check schließt Verbesserungen am Ablauf nicht aus. Die Rückmeldung ist ein Hinweis, den du prüfen kannst." }
+      { id: "massnahme", label: "Vor dem nächsten Aufbau eine Schrittliste anlegen; danach Vollständigkeit und Zeit prüfen.", feedback: "Richtig. Die Maßnahme nennt Handlung und später prüfbares Ergebnis." },
+      { id: "schneller", label: "Beim nächsten Aufbau sollen sich alle deutlich mehr beeilen, dann passt die Zeit schon sicher.", feedback: "Das ist unklar und liefert kein überprüfbares Kriterium. Eine konkrete Vorbereitung ist besser prüfbar." },
+      { id: "ignorieren", label: "Die Rückmeldung nicht beachten, weil alle sechs Prüfpunkte bestanden waren und das genügt.", feedback: "Ein bestandener Check schließt Verbesserungen am Ablauf nicht aus. Die Rückmeldung ist ein Hinweis, den du prüfen kannst." }
     ] },
     { id: "q4", correct: "einordnen", prompt: "Was darfst du aus der einen fiktiven Rückmeldung schließen?", options: [
-      { id: "allgemein", label: "Alle Kundinnen und Kunden finden die Anmeldung verständlich.", feedback: "Eine einzelne Rückmeldung belegt nicht die Meinung aller Kundinnen und Kunden." },
-      { id: "einordnen", label: "Die Erklärung wurde in diesem Fall als hilfreich erlebt; weitere Fälle wären nötig, um ein Muster zu erkennen.", feedback: "Richtig. Du hältst den konkreten Hinweis fest und verallgemeinerst ihn nicht." },
-      { id: "gar nichts", label: "Die Rückmeldung ist wertlos und darf nicht berücksichtigt werden.", feedback: "Sie ist kein allgemeiner Beweis, kann aber einen Anlass für eine gezielte Prüfung liefern." }
+      { id: "allgemein", label: "Alle Kundinnen und Kunden finden die Anmeldung verständlich und brauchen keine Hilfe.", feedback: "Eine einzelne Rückmeldung belegt nicht die Meinung aller Kundinnen und Kunden." },
+      { id: "wertlos", label: "Die Rückmeldung ist wertlos, weil sie von nur einer Seite stammt, und wird nicht berücksichtigt.", feedback: "Sie ist kein allgemeiner Beweis, kann aber einen Anlass für eine gezielte Prüfung liefern." },
+      { id: "einordnen", label: "In diesem Fall wurde die Erklärung als hilfreich erlebt; für ein Muster fehlen weitere Fälle.", feedback: "Richtig. Du hältst den konkreten Hinweis fest und verallgemeinerst ihn nicht." }
     ] },
     { id: "q5", correct: "pruefen", prompt: "Wie erkennst du beim nächsten fiktiven Auftrag, ob die Maßnahme geholfen hat?", options: [
-      { id: "pruefen", label: "Die vorbereitete Liste anwenden und Vollständigkeit sowie benötigte Zeit mit den vorher festgelegten Kriterien vergleichen.", feedback: "Richtig. So wird die Maßnahme an beobachtbaren Kriterien überprüft." },
-      { id: "annahme", label: "Annehmen, dass es besser wird, weil die Liste neu ist.", feedback: "Eine neue Liste beweist noch keine Verbesserung. Prüfe die Ergebnisse." },
-      { id: "loeschen", label: "Frühere Prüfergebnisse löschen, damit nur der neue Eindruck zählt.", feedback: "Das verhindert einen nachvollziehbaren Vergleich. Bewahre die relevanten Übungsbefunde auf." }
+      { id: "annahme", label: "Annehmen, dass es besser wird, weil die Schrittliste neu ist und sorgfältig gestaltet wurde.", feedback: "Eine neue Liste beweist noch keine Verbesserung. Prüfe die Ergebnisse." },
+      { id: "pruefen", label: "Die Liste anwenden und Vollständigkeit sowie Zeit mit den festgelegten Kriterien vergleichen.", feedback: "Richtig. So wird die Maßnahme an beobachtbaren Kriterien überprüft." },
+      { id: "loeschen", label: "Frühere Prüfergebnisse löschen, damit nur der neue Eindruck zählt und nichts vergleichbar bleibt, auch später.", feedback: "Das verhindert einen nachvollziehbaren Vergleich. Bewahre die relevanten Übungsbefunde auf." }
     ] }
   ];
   function evaluate(a) {

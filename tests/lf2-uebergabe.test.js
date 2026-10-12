@@ -79,4 +79,16 @@ for (const b of ["Übergabeprotokoll", "Übergabestatus", "Nachprüfung", "Einwe
   assert(e, "Glossar: " + b);
   assert(h.includes("<summary>" + b + "</summary><p>" + e.erklaerung.replace(/&/g, "&amp;") + "</p>"), "Hinweis im Modul = Glossartext: " + b);
 }
+// Längenbalance: Die Länge darf die richtige Antwort nicht verraten (prüft nur Länge, nicht Plausibilität)
+let correctLongest = 0, correctShortest = 0;
+for (const q of m.QUESTIONS) {
+  const len = q.options.map(o => o.label.length), c = q.options.find(o => o.id === q.correct).label.length;
+  assert(Math.max(...len) / Math.min(...len) <= 1.3, q.id + ": Längenverhältnis höchstens 1,3: " + len);
+  if (c === Math.max(...len)) correctLongest++;
+  if (c === Math.min(...len)) correctShortest++;
+}
+assert(correctLongest <= 2, "richtige Antwort nicht systematisch die längste: " + correctLongest);
+assert(correctShortest <= 2, "richtige Antwort nicht systematisch die kürzeste: " + correctShortest);
+assert(js.includes('b.hidden = true; b.textContent = "";\n    $("done").textContent = "";'), "Antwortänderung leert den Abschlusstext");
+
 console.log("lf2-uebergabe.test.js: PASS — Status, Antwortlogik, Seite, Katalog, Fortschritt, Glossar");

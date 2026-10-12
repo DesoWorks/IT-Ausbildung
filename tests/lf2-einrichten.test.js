@@ -20,6 +20,16 @@ const pos = m.QUESTIONS.map(q => q.options.findIndex(o => o.id === q.correct));
 assert.deepEqual(new Set(pos), new Set([0, 1, 2]), "richtige Positionen verteilt: " + pos);
 assert(pos[0] !== 0, "erste Aufgabe: Position 1 ist nicht richtig");
 
+// Länge darf die richtige Antwort nicht verraten
+const rank = m.QUESTIONS.map(q => {
+  const len = q.options.map(o => o.label.length), c = q.options.find(o => o.id === q.correct).label.length;
+  assert(Math.max(...len) / Math.min(...len) <= 1.3, q.id + ": Optionslängen ähnlich: " + len);
+  assert(c < Math.max(...len), q.id + ": richtige Antwort ist nicht die längste");
+  return c === Math.min(...len) ? "min" : "mid";
+});
+assert(rank.filter(x => x === "min").length <= 2, "richtige Antwort nicht systematisch die kürzeste: " + rank);
+assert(!m.QUESTIONS.some(q => q.options.some(o => /Frau Brandt/.test(o.label) && o.id !== "eintrag")), "Namen nur in der richtigen Antwort wäre ein Hinweis");
+
 // Checkliste: 5 von 6 bestanden, genau ein Punkt offen -> nicht übergabefähig
 const sum = m.summarize();
 assert.deepEqual(sum, { total: 6, ok: 5, open: 1, openIds: ["komponenten"], ready: false });
@@ -53,6 +63,7 @@ for (const c of m.CHECKLIST) assert(h.includes(c.label), "Prüfpunkt im HTML: " 
 
 const js = fs.readFileSync(path.join(root, "js/lf2-einrichten.js"), "utf8");
 assert(js.includes("s.answers[q.id] = o.id; s.checked = false; clearFeedback();"), "Antwortänderung entfernt veraltetes Ergebnis");
+assert(/function clearFeedback\(\) \{[^}]*\$\("done"\)\.textContent = ""/.test(js), "Antwortänderung löscht veralteten Abschlusstext");
 assert(js.includes("function reset()") && js.includes('$("done").textContent = ""'), "Reset räumt Ergebnis und Abschlusstext");
 assert(js.includes('d.createElement("fieldset")') && js.includes('input.type = "radio"'), "Radio-Gruppen in Fieldsets");
 assert(!/Kaufvertrag|Gewährleistung|Mängelrecht|Rücktritt|Schadensersatz|DGUV|VDE|Prüffrist/.test(h + js), "keine Rechts-/Normbehauptungen");

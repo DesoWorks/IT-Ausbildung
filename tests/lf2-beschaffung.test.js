@@ -19,6 +19,14 @@ for (const q of m.QUESTIONS) {
 const pos = m.QUESTIONS.map(q => q.options.findIndex(o => o.id === q.correct));
 assert.deepEqual(new Set(pos), new Set([0, 1, 2]), "richtige Positionen verteilt: " + pos);
 assert(pos[0] !== 0, "erste Aufgabe: Position 1 ist nicht richtig");
+// Keine Antwortlängen-Hinweise: Die richtige Antwort ist nie deutlich länger als die falschen und nie deutlich kürzer.
+// Geprüft wird nur die Labellänge, nicht die inhaltliche Plausibilität der Falschantworten.
+for (const q of m.QUESTIONS) {
+  const c = q.options.find(o => o.id === q.correct).label.length;
+  const w = q.options.filter(o => o.id !== q.correct).map(o => o.label.length);
+  assert(c <= Math.max(...w) * 1.2, q.id + ": richtige Antwort nicht auffällig länger (" + c + " gegen " + w + ")");
+  assert(c >= Math.min(...w) * 0.8, q.id + ": richtige Antwort nicht auffällig kürzer (" + c + " gegen " + w + ")");
+}
 
 // Lieferzeit: Mittwoch + 5 Werktage = Mittwoch der Folgewoche; Montag + 5 = Montag der Folgewoche
 assert.deepEqual(m.deliveryDay(2, 5), { index: 2, day: "Mittwoch", nextWeek: true, weeks: 1 });

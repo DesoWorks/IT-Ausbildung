@@ -18,6 +18,11 @@ for (const q of m.QUESTIONS) {
 const pos = m.QUESTIONS.map(q => q.options.findIndex(o => o.id === q.correct));
 assert(new Set(pos).size === 3, "richtige Positionen verteilt: " + pos);
 assert(pos[0] !== 0, "erste Aufgabe: Position 1 ist nicht richtig");
+for (const q of m.QUESTIONS) {
+  const lens = q.options.filter(o => o.id !== q.correct).map(o => o.label.length);
+  const right = q.options.find(o => o.id === q.correct).label.length;
+  assert(right <= Math.max(...lens) * 1.35, q.id + ": richtige Antwort nicht auffällig länger (" + right + " gegen " + lens + ")");
+}
 
 // Gesamtkosten nachvollziehbar
 assert.deepEqual(m.OFFERS.map(o => m.offerSum(o.id)), [950, 960, 765]);

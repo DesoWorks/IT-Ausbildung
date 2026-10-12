@@ -33,44 +33,44 @@
     { id: "q1", correct: "nachweis",
       prompt: "Wozu dient das Übergabeprotokoll für Platz 3?",
       options: [
-        { id: "formular", label: "Es ist nur ein Formular, das irgendwann ausgefüllt wird, damit die Akte vollständig aussieht.", feedback: "Zu schwach gedacht. Ein Protokoll, das nur der Form dient, hilft später niemandem. Es soll tatsächlich belegen, was übergeben wurde." },
-        { id: "nachweis", label: "Es hält fest, was geprüft wurde, in welchem Zustand der Platz ist und was noch offen ist. So können beide Seiten es später nachvollziehen.", feedback: "Richtig. Das Protokoll ist ein gemeinsamer Nachweis über den Stand. Dazu gehören Prüfergebnisse, offene Punkte und die Bestätigung." },
-        { id: "werbung", label: "Es soll die Praxis beeindrucken. Offene Punkte lässt man deshalb besser weg.", feedback: "Das wäre irreführend. Ein Protokoll lebt davon, dass es den wahren Stand zeigt, auch wenn dieser nicht perfekt ist." }
+        { id: "formular", label: "Es ist vor allem ein Formular, das irgendwann ausgefüllt wird, damit die Akte vollständig aussieht und abgelegt werden kann.", feedback: "Zu schwach gedacht. Ein Protokoll, das nur der Form dient, hilft später niemandem. Es soll tatsächlich belegen, was übergeben wurde." },
+        { id: "nachweis", label: "Es hält fest, was geprüft wurde, in welchem Zustand der Platz ist und was offen ist. So bleibt es nachvollziehbar.", feedback: "Richtig. Das Protokoll ist ein gemeinsamer Nachweis über den Stand. Dazu gehören Prüfergebnisse, offene Punkte und die Bestätigung." },
+        { id: "werbung", label: "Es soll die Praxis beeindrucken, daher lässt man offene Punkte besser weg, damit alles gut aussieht.", feedback: "Das wäre irreführend. Ein Protokoll lebt davon, dass es den wahren Stand zeigt, auch wenn dieser nicht perfekt ist." }
       ] },
     { id: "q2", correct: "zurueckgestellt",
       prompt: "Die Prüfung ergab 5 von 6 Punkten bestanden, der Blickschutzfilter fehlt. Welchen Status trägst du im Protokoll für Platz 3 ein?",
       options: [
-        { id: "uebergeben", label: "„Übergeben“, weil fast alles bestanden ist und der Platz sonst funktioniert.", feedback: "Fast ist nicht vollständig. Der Auftrag verlangt den Filter. Ein Status „übergeben“ würde der Praxis etwas Falsches zusagen." },
-        { id: "mitvorbehalt", label: "„Erfolgreich übergeben mit kleinem Hinweis“, damit es positiv klingt.", feedback: "Das Wort „erfolgreich“ passt nicht, solange ein Auftragsbestandteil fehlt. Der Status soll den Stand nüchtern benennen." },
-        { id: "zurueckgestellt", label: "„Übergabe zurückgestellt: 1 Punkt offen (Blickschutzfilter fehlt)“. Die Übergabe wird erst abgeschlossen, wenn der Punkt behoben und nachgeprüft ist.", feedback: "Richtig. Der Status nennt den Grund und macht klar, was noch passieren muss. Erst danach wird die Übergabe abgeschlossen." }
+        { id: "uebergeben", label: "„Übergeben“, weil fast alles bestanden ist und der Platz in den geprüften Punkten sonst funktioniert.", feedback: "Fast ist nicht vollständig. Der Auftrag verlangt den Filter. Ein Status „übergeben“ würde der Praxis etwas Falsches zusagen." },
+        { id: "mitvorbehalt", label: "„Erfolgreich übergeben mit kleinem Hinweis“, damit der Status für die Praxis möglichst positiv klingt.", feedback: "Das Wort „erfolgreich“ passt nicht, solange ein Auftragsbestandteil fehlt. Der Status soll den Stand nüchtern benennen." },
+        { id: "zurueckgestellt", label: "„Übergabe zurückgestellt: 1 Punkt offen (Blickschutzfilter fehlt)“, bis behoben und nachgeprüft.", feedback: "Richtig. Der Status nennt den Grund und macht klar, was noch passieren muss. Erst danach wird die Übergabe abgeschlossen." }
       ] },
     { id: "q3", correct: "mangeltext",
       prompt: "Wie trägst du den offenen Mangel im Protokoll ein?",
       options: [
-        { id: "mangeltext", label: "Mit Prüfpunkt, Soll, Ist und Hinweis: „Komponenten: offen. Soll: Filter vorhanden. Ist: Filter fehlt, Fehlmenge 1. Gemeldet an Frau Brandt (fiktiv).“", feedback: "Richtig. Der Eintrag ist sachlich und vollständig. Wer ihn liest, versteht Stand und Zuständigkeit ohne Rückfrage." },
-        { id: "kurz", label: "Nur „Filter“ in die Bemerkungsspalte schreiben.", feedback: "Das ist zu knapp. Es fehlt, ob der Filter fehlt, defekt ist oder nur noch nicht angebracht wurde, und wer informiert ist." },
-        { id: "schuld", label: "„Der Lieferant hat wieder geschlampt.“", feedback: "Eine Schuldzuweisung gehört nicht ins Protokoll. Es zählen überprüfbare Tatsachen, nicht Bewertungen." }
+        { id: "mangeltext", label: "Mit Prüfpunkt, Soll und Ist: „Komponenten: offen. Soll: Filter vorhanden. Ist: Filter fehlt. Gemeldet an Frau Brandt.“", feedback: "Richtig. Der Eintrag ist sachlich und vollständig. Wer ihn liest, versteht Stand und Zuständigkeit ohne Rückfrage." },
+        { id: "kurz", label: "Nur „Filter“ in die Bemerkungsspalte schreiben, weil die Tabelle dort wenig Platz für längere Texte bietet.", feedback: "Das ist zu knapp. Es fehlt, ob der Filter fehlt, defekt ist oder nur noch nicht angebracht wurde, und wer informiert ist." },
+        { id: "schuld", label: "„Der Lieferant hat wieder geschlampt, deshalb fehlt der Filter und die Übergabe verzögert sich, das ist nicht unser Fehler.“", feedback: "Eine Schuldzuweisung gehört nicht ins Protokoll. Es zählen überprüfbare Tatsachen, nicht Bewertungen." }
       ] },
     { id: "q4", correct: "ehrlich",
       prompt: "Frau Keller von der Praxis am Park (fiktiv) fragt, ob sie Platz 3 schon nutzen kann. Was antwortest du?",
       options: [
-        { id: "zusage", label: "„Ja, alles fertig.“ Der Filter lässt sich ja später nachrüsten.", feedback: "Das entscheidest nicht du, und es stimmt so nicht. Die Praxis würde einen Platz nutzen, ohne zu wissen, dass ein Teil fehlt." },
-        { id: "ehrlich", label: "Du erklärst sachlich: Der Platz funktioniert in den geprüften Punkten, aber der Blickschutzfilter fehlt noch. Die Übergabe ist deshalb zurückgestellt. Über das weitere Vorgehen informiert die Teamleitung.", feedback: "Richtig. Du sagst, was geprüft wurde und was fehlt, ohne etwas zuzusagen, das du nicht entscheiden darfst." },
-        { id: "schweigen", label: "Du sagst nichts zum Filter und hoffst, dass es nicht auffällt, bis er geliefert wird.", feedback: "Verschweigen ist keine Lösung. Gerade bei Blickschutz kann das für die Praxis wichtig sein, und das Vertrauen leidet, wenn es später herauskommt." }
+        { id: "zusage", label: "„Ja, alles fertig, Sie können den Platz nutzen.“ Der Filter lässt sich ja später einfach nachrüsten. Das merkt kaum jemand.", feedback: "Das entscheidest nicht du, und es stimmt so nicht. Die Praxis würde einen Platz nutzen, ohne zu wissen, dass ein Teil fehlt." },
+        { id: "ehrlich", label: "Du sagst sachlich: Geprüfte Punkte laufen, der Filter fehlt, die Übergabe ist zurückgestellt. Weiteres klärt die Teamleitung.", feedback: "Richtig. Du sagst, was geprüft wurde und was fehlt, ohne etwas zuzusagen, das du nicht entscheiden darfst." },
+        { id: "schweigen", label: "Du sagst nichts zum Filter und hoffst, dass es nicht auffällt, bis er geliefert und angebracht wird.", feedback: "Verschweigen ist keine Lösung. Gerade bei Blickschutz kann das für die Praxis wichtig sein, und das Vertrauen leidet, wenn es später herauskommt." }
       ] },
     { id: "q5", correct: "nachpruefen",
       prompt: "Der Filter wird nachgeliefert und angebracht (simuliert). Wie geht es weiter?",
       options: [
-        { id: "haken", label: "Den alten Eintrag löschen und alles auf „bestanden“ setzen, ohne weitere Angaben.", feedback: "Damit verschwindet die Spur. Später ist nicht mehr zu erkennen, dass etwas fehlte und wann es behoben wurde." },
-        { id: "neu", label: "Das ganze Protokoll verwerfen und von vorn beginnen, ohne die Vorgeschichte zu nennen.", feedback: "Zu aufwendig und intransparent. Es reicht, den betroffenen Punkt neu zu prüfen und die Änderung nachvollziehbar zu ergänzen." },
-        { id: "nachpruefen", label: "Den offenen Punkt erneut prüfen, das Ergebnis mit Datum ergänzen (der frühere Eintrag bleibt erkennbar), den Status aktualisieren und dann die Übergabe abschließen.", feedback: "Richtig. Nachprüfung, Datum und sichtbare Vorgeschichte machen die Änderung nachvollziehbar. Erst jetzt ist die Übergabe möglich." }
+        { id: "haken", label: "Den alten Eintrag löschen und alles auf „bestanden“ setzen, ohne Angaben zu Datum, Nachprüfung oder Vorgeschichte.", feedback: "Damit verschwindet die Spur. Später ist nicht mehr zu erkennen, dass etwas fehlte und wann es behoben wurde." },
+        { id: "neu", label: "Das ganze Protokoll verwerfen und von vorn beginnen, ohne die Vorgeschichte des Mangels zu nennen.", feedback: "Zu aufwendig und intransparent. Es reicht, den betroffenen Punkt neu zu prüfen und die Änderung nachvollziehbar zu ergänzen." },
+        { id: "nachpruefen", label: "Punkt erneut prüfen, Ergebnis mit Datum ergänzen (früherer Eintrag bleibt erkennbar), Status aktualisieren.", feedback: "Richtig. Nachprüfung, Datum und sichtbare Vorgeschichte machen die Änderung nachvollziehbar. Erst jetzt ist die Übergabe möglich." }
       ] },
     { id: "q6", correct: "einweisung",
       prompt: "Alle Punkte sind bestanden. Was gehört zur eigentlichen Übergabe an die Praxis dazu?",
       options: [
-        { id: "einweisung", label: "Eine kurze Einweisung in die wichtigsten Funktionen, ein Hinweis auf die Ansprechperson und die Bestätigung des Protokolls durch beide Seiten.", feedback: "Richtig. Die Kundschaft soll wissen, wie sie den Platz nutzt, wen sie bei Fragen erreicht, und den Stand mit bestätigen." },
-        { id: "schluessel", label: "Nur den Platz stehen lassen. Wer ihn braucht, findet ihn schon.", feedback: "Eine Übergabe ist mehr als Abstellen. Ohne Hinweise und Bestätigung bleibt offen, ob der Platz wirklich angenommen wurde." },
-        { id: "daten", label: "Persönliche Zugangsdaten der Mitarbeitenden im Protokoll auflisten.", feedback: "Zugangsdaten gehören nie in ein Protokoll. Sie werden getrennt und geschützt weitergegeben, und hier nutzt du ohnehin nur Übungsdaten." }
+        { id: "einweisung", label: "Eine kurze Einweisung, ein Hinweis auf die Ansprechperson und die Bestätigung des Protokolls durch beide Seiten.", feedback: "Richtig. Die Kundschaft soll wissen, wie sie den Platz nutzt, wen sie bei Fragen erreicht, und den Stand mit bestätigen." },
+        { id: "schluessel", label: "Nur den Platz stehen lassen und kurz Bescheid geben. Wer ihn braucht, findet sich schon zurecht.", feedback: "Eine Übergabe ist mehr als Abstellen. Ohne Hinweise und Bestätigung bleibt offen, ob der Platz wirklich angenommen wurde." },
+        { id: "daten", label: "Persönliche Zugangsdaten der Mitarbeitenden im Protokoll auflisten, damit alles an einer Stelle steht und niemand sucht.", feedback: "Zugangsdaten gehören nie in ein Protokoll. Sie werden getrennt und geschützt weitergegeben, und hier nutzt du ohnehin nur Übungsdaten." }
       ] }
   ];
 
@@ -128,6 +128,7 @@
   function clearFeedback() {
     var b = $("result");
     b.hidden = true; b.textContent = "";
+    $("done").textContent = "";
     Q.forEach(function (q) { var fb = $("fb-" + q.id); fb.hidden = true; fb.textContent = ""; });
   }
   function build() {
