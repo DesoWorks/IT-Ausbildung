@@ -1,7 +1,7 @@
 /* Zusatzgestaltung der Startseite; nutzt die Variablen aus styles.css. */
 /* main stellt bereits den Inhaltsabstand bereit; keine zweite zentrierte
    Maximalbreite innerhalb von main (sonst rücken Titel und Karten ein). */
-.startseite { max-width: none; margin: 0; padding: 1rem 2rem; }
+.startseite { max-width: none; margin: 0; padding: 1rem 0; }
 
 .jahr { margin: 2rem 0; }
 .jahr h2 { margin-bottom: 0.75rem; }
@@ -90,7 +90,7 @@
 .overview-fields { padding: 0 .9rem .9rem; }
 .overview-field { margin: .55rem 0; border: 1px solid var(--farbe-rahmen); border-radius: calc(var(--radius) * .75); }
 .overview-field-summary { min-height: 2.75rem; font-size: .96em; }
-.overview-field-title { flex: 1 1 18rem; min-width: 0; overflow-wrap: anywhere; }
+.overview-field-title { flex: 1 1 18rem; min-width: 0; overflow-wrap: break-word; hyphens: manual; }
 .overview-field-count { flex: 1 1 12rem; color: var(--farbe-text-leise); font-size: .86em; font-weight: 500; }
 .overview-lessons { list-style: none; display: grid; gap: .45rem; margin: 0; padding: .2rem .75rem .75rem 2.15rem; }
 .overview-lesson { min-width: 0; border-radius: .55rem; }

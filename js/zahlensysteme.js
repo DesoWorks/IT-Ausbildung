@@ -29,8 +29,14 @@
   function width(value) { var w = 8; while (value >= Math.pow(2, w)) w += 8; return w; }
   function binary(value, w) { var b = value.toString(2); while (b.length < (w || width(value))) b = "0" + b; return b; }
   function groupBinary(value) { return binary(value).replace(/(.{4})(?=.)/g, "$1 "); }
-  function hex(value) { return value.toString(16).toUpperCase(); }
-  function all(value) { return { dec: String(value), bin: groupBinary(value), hex: "0x" + hex(value), width: width(value) }; }
+  function hexDigits(value) {
+    var digits = value.toString(16).toUpperCase();
+    var nibbles = Math.ceil(width(value) / 4);
+    while (digits.length < nibbles) digits = "0" + digits;
+    return digits;
+  }
+  function hex(value) { return hexDigits(value); }
+  function all(value) { return { dec: String(value), bin: groupBinary(value), hex: "0x" + hexDigits(value), width: width(value) }; }
 
   /* Stellenwerttabelle: pro Bit Exponent, Wert und Bit, höchstes Bit zuerst. */
   function placeTable(value) {
@@ -63,7 +69,7 @@
     var padded = bin.padStart(Math.ceil(bin.length / 4) * 4, "0");
     var groups = padded.match(/.{4}/g) || ["0000"];
     var hexGroups = groups.map(function (group) { return parseInt(group, 2).toString(16).toUpperCase(); });
-    lines.push("Hex aus Binär: " + groups.join(" ") + " → " + groups.map(function (group, index) { return group + " = " + hexGroups[index]; }).join("; ") + " → 0x" + hexGroups.join(""));
+    lines.push("Hex aus Binär: " + groups.join(" ") + " → " + groups.map(function (group, index) { return group + " = " + hexGroups[index]; }).join("; ") + " → 0x" + hexDigits(value));
     return lines;
   }
 

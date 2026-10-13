@@ -30,6 +30,9 @@
     if (fertig && !mark) a.appendChild(window.LERNFORTSCHRITT.abschlusszeichen());
     else if (!fertig && mark) mark.remove();
   }
+  function softBreak(text) {
+    return String(text).replace(/([\p{L}\p{N}])([^\p{L}\p{N}])/gu, "$1\u200b$2");
+  }
   function markGroupSummary(summary, details, label) {
     function update() {
       summary.setAttribute("aria-expanded", String(details.open));
@@ -49,7 +52,7 @@
     details.open = (yearData.module || []).some(function (m) {
       return m.page === page || (m.unterthemen || []).some(function (u) { return u.page === page; });
     });
-    var summary = document.createElement("summary"); summary.textContent = yearData.titel; markGroupSummary(summary, details, yearData.titel); details.appendChild(summary);
+    var summary = document.createElement("summary"); summary.textContent = softBreak(yearData.titel); markGroupSummary(summary, details, yearData.titel); details.appendChild(summary);
     var sub = document.createElement("ul");
     (yearData.module || []).forEach(function (m) {
       if (m.id === "computer-grundlagen") return;
@@ -58,8 +61,10 @@
       field.open = m.page === page || (m.unterthemen || []).some(function (u) { return u.page === page; });
       field.setAttribute("data-learning-field", m.id);
       var heading = document.createElement("summary"); heading.className = "nav-learning-field";
-      heading.textContent = (m.lernfeld ? m.lernfeld + " · " : "") + m.titel;
-      markGroupSummary(heading, field, heading.textContent);
+      var label = document.createElement("span"); label.className = "nav-learning-field-label";
+      label.textContent = softBreak((m.lernfeld ? m.lernfeld + " · " : "") + m.titel);
+      heading.appendChild(label);
+      markGroupSummary(heading, field, label.textContent);
       field.appendChild(heading);
       if (m.unterthemen && m.unterthemen.length) {
         var topics = document.createElement("ul");
@@ -96,7 +101,11 @@
   var glossaryEntry = item({ id: "glossary", label: "Wörter & Begriffe", href: base + "glossar.html", page: "glossary" });
   list.appendChild(glossaryEntry); nav.appendChild(list);
   var optionsHost = document.createElement("div"); optionsHost.className = "nav-options"; optionsHost.id = "nav-options"; nav.appendChild(optionsHost);
-  host.append(toggle, nav); body.insertBefore(host, body.firstChild);
+  host.append(toggle, nav);
+  var header = body.querySelector("header.kopf");
+  if (header && header.nextSibling) body.insertBefore(host, header.nextSibling);
+  else if (header) body.appendChild(host);
+  else body.insertBefore(host, body.firstChild);
   function closeMenu() { nav.classList.remove("is-open"); toggle.setAttribute("aria-expanded", "false"); }
   toggle.addEventListener("click", function () {
     var open = toggle.getAttribute("aria-expanded") !== "true";

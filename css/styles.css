@@ -335,6 +335,7 @@ main:focus { outline: none; }
 
 /* Quiz */
 .quiz-liste { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem; }
+.quiz-frage + .quiz-frage { margin-top: 1.2rem; }
 .quiz-frage {
   border: 2px solid var(--farbe-rahmen);
   border-radius: var(--radius);
@@ -449,7 +450,8 @@ html.mehr-abstand p, html.mehr-abstand li, html.mehr-abstand dd { margin-bottom:
 html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 .bewegung-label { display: flex; align-items: center; gap: .6rem; font-weight: 700; }
 .bewegung-label input { width: 1.25rem; height: 1.25rem; accent-color: var(--farbe-akzent); }
-.leseoptionen, .glossar { max-width: 860px; margin: 1rem auto; padding: 0 1rem; }
+.leseoptionen { max-width: 860px; margin: 1rem auto; padding: 0 1rem; }
+.glossar { max-width: none; margin: 1rem 0; padding: 0 1rem; }
 .leseoptionen summary, .glossar-eintrag summary { cursor: pointer; min-height: 44px; padding: 0.5rem 0.7rem; font-weight: 700; }
 .leseoptionen summary { background: var(--farbe-kontroll-flaeche); border: 2px solid var(--farbe-rahmen); border-radius: 8px; color: var(--farbe-kontroll-text); }
 .leseoptionen-inhalt { display: grid; gap: 0.7rem; padding: 1rem; background: var(--farbe-flaeche); border: 1px solid var(--farbe-rahmen); }
@@ -475,10 +477,15 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 .site-nav details ul { list-style: none; padding: .25rem 0 0 .75rem; margin: 0; }
 .site-nav .nav-tools { border-top: 1px solid var(--farbe-rahmen); margin-top: .8rem !important; padding-top: .4rem; }
 .site-nav details li a { min-height: 40px; }
-.site-nav summary { cursor: pointer; }
-.site-nav summary::after { content: "▸ öffnen"; margin-left: auto; font-size: .78em; color: var(--farbe-text-leise); }
-.site-nav details[open] > summary::after { content: "▾ schließen"; }
-.site-nav summary[aria-expanded="true"]::after { content: "▾ schließen"; }
+.site-nav summary { cursor: pointer; min-width: 0; display: grid; grid-template-columns: 1em minmax(0, 1fr); align-items: start; column-gap: .45rem; row-gap: .1rem; }
+.site-nav summary > span, .site-nav .nav-learning-field-label { min-width: 0; overflow-wrap: normal; word-break: normal; hyphens: manual; }
+/* Einheitliche Zeile für Jahr, Lernfeld und Tools: Pfeil links (::before), Titel, "öffnen"/"schließen" an fester rechter Kante (::after). */
+.site-nav summary::before { content: "▸"; grid-column: 1; grid-row: 1; width: 1em; margin-right: 0; }
+.site-nav details[open] > summary::before, .site-nav summary[aria-expanded="true"]::before { content: "▾"; }
+.site-nav summary::after { content: "öffnen"; grid-column: 2; grid-row: 2; margin-left: 0; text-align: left; font-size: .78em; font-weight: 600; color: var(--farbe-text-leise); white-space: nowrap; }
+.site-nav details[open] > summary::after { content: "schließen"; }
+.site-nav summary[aria-expanded="true"]::after { content: "schließen"; }
+.site-nav summary .abschlusszeichen { margin-left: .5rem; }
 .nav-planned { padding: .4rem .75rem; color: var(--farbe-geplant-tekst); background: var(--farbe-geplant-flaeche); border-radius: 6px; }
 .nav-category { border-top: 1px solid var(--farbe-rahmen); margin-top: .8rem !important; padding-top: .4rem; }
 .nav-category > details > summary { font-weight: 700; }
@@ -488,21 +495,34 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 .nav-options .leseoptionen { max-width: none; margin: 0; padding: 0; }
 .nav-options .leseoptionen-inhalt { max-width: 36rem; }
 .glossar-liste { margin-top: 1rem; }
-.glossar-liste .glossar-eintrag { border-top: 1px solid var(--farbe-rahmen); }
+.glossar-liste .glossar-eintrag { border-top: 1px solid var(--farbe-rahmen); break-inside: avoid; }
+/* Eine Spalte unter 1100px. Drei ab Desktop, vier nur wenn die Erklärungen noch lesbar bleiben. */
+@media (min-width: 1100px) {
+  .glossar-liste { columns: 3; column-gap: 1.75rem; }
+}
+@media (min-width: 1600px) {
+  .glossar-liste { columns: 4; column-gap: 1.5rem; }
+}
+/* Klarer Abstand zwischen Testfragen der Lektionen; Antwortoptionen bleiben enger. */
+#questions > .question, #questions > fieldset { margin: 0 0 1.5rem; }
+#questions > .question:last-child, #questions > fieldset:last-child { margin-bottom: 0; }
 #glossar-suche { display: block; width: 100%; max-width: 36rem; min-height: 48px; margin-top: .4rem; padding: .6rem; font: inherit; color: var(--farbe-text); background: var(--farbe-flaeche); border: 2px solid var(--farbe-rahmen); border-radius: 6px; }
 @media (min-width: 1100px) {
-  /* Vollbreiter Header oben; Navigation und Inhalt teilen erst darunter die Breite. */
-  body { display: grid; grid-template-columns: 17rem minmax(0, 1fr); grid-template-rows: auto repeat(4, auto) 1fr; align-content: start; }
-  .kopf { grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: minmax(17rem, 1fr) minmax(0, 2fr); align-items: center; gap: clamp(1.5rem, 4vw, 4rem); padding: 1.5rem clamp(1.5rem, 3vw, 3rem); }
+  /* Header über die volle Fensterbreite. Navigation beginnt erst in der Zeile darunter. */
+  body { display: grid; grid-template-columns: minmax(17rem, 17rem) minmax(0, 1fr); grid-template-rows: auto auto repeat(4, auto) 1fr; align-content: start; }
+  .kopf { grid-column: 1 / -1; grid-row: 1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 1.5rem; width: 100%; box-sizing: border-box; padding: 1.5rem clamp(1.5rem, 3vw, 3rem); }
   .kopf-logo { width: min(18rem, 100%); }
-  .kopf-inhalt { grid-column: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding-left: 0; padding-right: 0; }
-  .site-navigation { grid-column: 1; grid-row: 2 / span 6; position: relative; width: 17rem; min-width: 0; align-self: stretch; border-right: 1px solid var(--farbe-rahmen); background: var(--farbe-flaeche); }
-  .site-nav { position: sticky; top: 0; max-height: none; overflow: visible; border: 0; }
+  .kopf-inhalt { flex: 1 1 18rem; width: auto; max-width: none; margin: 0; }
+  .site-navigation { grid-column: 1; grid-row: 2 / span 6; position: relative; width: 17rem; min-width: 17rem; align-self: stretch; border-right: 1px solid var(--farbe-rahmen); background: var(--farbe-flaeche); }
+  /* Eigene, sichtbare Scrollleiste: die Navigation scrollt unabhängig vom Seiteninhalt. */
+  .site-nav { position: sticky; top: 0; max-height: 100vh; max-height: 100dvh; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-gutter: stable; scroll-padding-block: 3rem; padding-bottom: 2rem; border: 0; }
+  /* Häkchen bleibt vor dem rechtsbündigen "öffnen", nicht selbst an der Kante. */
+  .site-nav .abschlusszeichen { margin-left: .5rem; }
   .site-nav > ul { display: block; }
   .site-nav > ul > li { margin: .2rem 0; }
   .site-nav-title, .nav-options { padding: 0 .4rem; }
   .site-nav details ul { padding-left: .5rem; }
-  main, .fuss, .schritte, .rueckzeile { grid-column: 2; width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 2rem; padding-right: 2rem; }
+  main, .fuss, .schritte, .rueckzeile { grid-column: 2; grid-row: auto; justify-self: center; width: min(100% - 2rem, 72rem); max-width: 72rem; margin-left: auto; margin-right: auto; box-sizing: border-box; padding-left: 1.5rem; padding-right: 2rem; }
   main { grid-row: auto; }
   .fuss { text-align: left; }
 }
@@ -525,8 +545,9 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 }
 
 /* Lange Texte bei schmaler Ansicht und Vergrößerung vollständig umbrechen. */
-.kopf h1, .kopf-dauer, .site-nav a, .nav-planned, .modul-titel,
-.modul-beschreibung, .unterthema-titel { overflow-wrap: anywhere; }
+.site-nav a, .nav-planned { overflow-wrap: normal; word-break: normal; hyphens: manual; }
+.kopf-dauer, .modul-beschreibung { overflow-wrap: anywhere; }
+.modul-titel, .unterthema-titel, .kopf h1, .abschnitt h2, .abschnitt h3 { overflow-wrap: break-word; hyphens: manual; }
 .modul-titelzeile { display: flex; align-items: flex-start; gap: .5rem; }
 .abschlusszeichen {
   display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center;
@@ -546,9 +567,7 @@ html.ruhige-ansicht *, html.bewegung-reduziert * { animation: none !important; t
 .unterthema-gesperrt .modul-status { color: var(--farbe-geplant-tekst); }
 
 /* Lernfelder lassen sich unabhängig öffnen; natives details/summary bietet Tastaturbedienung. */
-.site-nav summary.nav-learning-field { justify-content: flex-start; gap: .45rem; }
-.site-nav summary.nav-learning-field::before { content: "▸"; display: inline-block; width: 1em; transition: transform .12s ease; }
-.site-nav details[open] > summary.nav-learning-field::before { content: "▾"; }
+.site-nav summary.nav-learning-field > .nav-learning-field-label { grid-column: 2; grid-row: 1; display: block; }
 .site-nav summary.nav-learning-field:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
 .site-nav .nav-learning-details > ul { padding-left: 1rem; }
 
