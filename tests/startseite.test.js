@@ -48,6 +48,7 @@ assert.deepStrictEqual(lf3.unterthemen.map(u => u.titel), [
   "DNS: Namen und IP-Adressen unterscheiden",
   "Verbindung systematisch eingrenzen",
   "Typische Client-Fehlerbilder dokumentieren und übergeben",
+  "Lernfeld 3: Zusammenfassung und Abschlussaufgabe",
   "IPv4",
   "Netzmaske und Netz-/Geräteanteil",
   "Subnetting: /24 in zwei /25-Netze teilen"

@@ -34,6 +34,7 @@
     "lf3-dns": "it-ausbildung.lf3-dns.v1",
     "lf3-verbindung-eingrenzen": "it-ausbildung.lf3-verbindung-eingrenzen.v1",
     "lf3-fehlerbild-protokoll": "it-ausbildung.lf3-fehlerbild-protokoll.v1",
+    "lf3-abschluss": "it-ausbildung.lf3-abschluss.v1",
     "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
     "lf3-netzmaske": "it-ausbildung.netzmaske.v1",
     "lf3-subnetting": "it-ausbildung.subnetting.v1"
@@ -171,6 +172,10 @@
       if (id === "lf3-fehlerbild-protokoll") {
         var protokoll = state.answers || {};
         return !!state.finish && !!state.checked && protokoll.q1 === "link" && protokoll.q2 === "schritt" && protokoll.q3 === "getrennt" && protokoll.q4 === "frist";
+      }
+      if (id === "lf3-abschluss") {
+        var zusammen = state.answers || {};
+        return !!state.finish && !!state.checked && zusammen.q1 === "oktett" && zusammen.q2 === "passt" && zusammen.q3 === "dienst" && zusammen.q4 === "zuordnung" && zusammen.q5 === "naechste" && zusammen.q6 === "getrennt";
       }
       if (id === "lf3-ipv4") {
         var questions = ["anzahl", "wertebereich", "gueltig"];

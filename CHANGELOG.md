@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.1-alpha.1
+- Lernfeld 3 hat eine unbenotete Zusammenfassung und Abschlussaufgabe. Sie verbindet Adresse, Netzanteil, automatische Vergabe, Namenszuordnung und Protokoll an einem fiktiven Client.
+- Fortschritt nennt Schritte statt Prozent. Leere, falsche und richtige Prüfung im lokalen Browser gelesen. Screenreader und echter Zoom bleiben offen.
+
 ## 0.15.0-alpha.1
 - Sechs kleine Lektionen in Lernfeld 3 ergänzt: Client-Anbindung, IPv4-Konfiguration lesen, DHCP, DNS, Verbindung eingrenzen, Fehlerbild dokumentieren. Lernfeld 3 selbst bleibt „kommt bald“.
 - Sichtkorrekturen: „öffnen“ und „schließen“ an derselben Kante, Abstand zwischen Übungsfragen, eigene Navigationsleiste, alphabetisches Glossar in drei bzw. vier Spalten, Textgröße ab 80 Prozent.
