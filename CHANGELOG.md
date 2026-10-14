@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.9-alpha.1
+- Lernfeld 5 hat die kleine Lektion „Einen Testfall formulieren“. Ausgangslage, Handlung, erwartetes Ergebnis und Abweichung werden an einer fiktiven Übungskarte getrennt. Kein ausführbarer Code.
+- Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.
+
 ## 0.15.8-alpha.1
 - Lernfeld 5 hat die kleine Lektion „Daten vor dem Speichern einordnen“. Sie folgt dem Rahmenlehrplan-Punkt Herkunft, Art, Datenschutz, Datensicherheit und Speicherbedarf, nur an einem fiktiven Beispiel.
 - Die Lücke steht in docs/plan-lf5-luecke.md. Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.

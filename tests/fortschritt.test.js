@@ -135,6 +135,10 @@ values.set("it-ausbildung.lf5-einordnen.v1",JSON.stringify({finish:true,checked:
 assert.equal(api.abgeschlossen("lf5-einordnen"),true,"LF5 Einordnen derives completion from its own checked answers");
 values.set("it-ausbildung.lf5-einordnen.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"text",q2:"text",q3:"schutz",q4:"speicher"}}));
 assert.equal(api.abgeschlossen("lf5-einordnen"),false,"LF5 Einordnen stays unmarked with a wrong answer");
+values.set("it-ausbildung.lf5-testfall.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"lage",q2:"handlung",q3:"erwartet",q4:"abweichung"}}));
+assert.equal(api.abgeschlossen("lf5-testfall"),true,"LF5 Testfall derives completion from its own checked answers");
+values.set("it-ausbildung.lf5-testfall.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"handlung",q2:"handlung",q3:"erwartet",q4:"abweichung"}}));
+assert.equal(api.abgeschlossen("lf5-testfall"),false,"LF5 Testfall stays unmarked with a wrong answer");
 values.set("it-ausbildung.lf5-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"anweisung",q2:"zahl",q3:"stoppen",q4:"gleiche",q5:"name",q6:"nachfragen"}}));
 assert.equal(api.abgeschlossen("lf5-abschluss"),true,"LF5 Abschluss derives completion from its own checked answers");
 values.set("it-ausbildung.lf5-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"zahl",q2:"zahl",q3:"stoppen",q4:"gleiche",q5:"name",q6:"nachfragen"}}));
