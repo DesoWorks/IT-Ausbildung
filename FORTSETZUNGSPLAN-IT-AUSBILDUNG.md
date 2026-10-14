@@ -1,3 +1,8 @@
+## Etappe 14.10.2026 – Lernfeld 5, Datenformat
+
+- Version 0.16.1-alpha.1. Kleine Lektion `lf5-format`. Node-Test bestanden, nicht im Browser gesehen.
+- Offen: den Arbeitsprozess bewerten. Kein Lernfeld 6, kein Spreadshirt, kein Merge.
+
 ## Etappe 14.10.2026 – Lernfeld 5, Dokumentation
 
 - Version 0.16.0-alpha.1. Kleine Lektion `lf5-doku`. Node-Test bestanden, nicht im Browser gesehen.

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.1-alpha.1
+- Lernfeld 5 hat die kleine Lektion „Ein Datenformat wählen“. Text, ganze Zahl und eine kleine Tabelle werden an einer fiktiven Übungskarte getrennt. Keine Datenbank.
+- Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.
+
 ## 0.16.0-alpha.1
 - Lernfeld 5 hat die kleine Lektion „Eine kurze Dokumentation lesen“. Zweck, Eingabe, Prüfung und offener Punkt werden an einer fiktiven Notiz getrennt.
 - Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.

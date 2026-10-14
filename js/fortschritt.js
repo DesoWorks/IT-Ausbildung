@@ -53,6 +53,7 @@
     "lf5-einordnen": "it-ausbildung.lf5-einordnen.v1",
     "lf5-testfall": "it-ausbildung.lf5-testfall.v1",
     "lf5-doku": "it-ausbildung.lf5-doku.v1",
+    "lf5-format": "it-ausbildung.lf5-format.v1",
     "lf5-abschluss": "it-ausbildung.lf5-abschluss.v1"
   };
 
@@ -268,6 +269,10 @@
       if (id === "lf5-doku") {
         var doku = state.answers || {};
         return !!state.finish && !!state.checked && doku.q1 === "zweck" && doku.q2 === "eingabe" && doku.q3 === "pruefung" && doku.q4 === "offen";
+      }
+      if (id === "lf5-format") {
+        var format = state.answers || {};
+        return !!state.finish && !!state.checked && format.q1 === "felder" && format.q2 === "tabelle" && format.q3 === "getrennt" && format.q4 === "keinebank";
       }
       if (id === "lf5-abschluss") {
         var lf5abschluss = state.answers || {};
