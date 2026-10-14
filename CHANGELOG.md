@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.8-alpha.1
+- Lernfeld 5 hat die kleine Lektion „Daten vor dem Speichern einordnen“. Sie folgt dem Rahmenlehrplan-Punkt Herkunft, Art, Datenschutz, Datensicherheit und Speicherbedarf, nur an einem fiktiven Beispiel.
+- Die Lücke steht in docs/plan-lf5-luecke.md. Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.
+
 ## 0.15.7-alpha.1
 - Lernfeld 5 hat die unbenotete Abschlussaufgabe und steht im Katalog als verfügbar. Die fünf kleinen Lektionen bleiben. Das ist eine erste Inhaltsfassung, kein vollständiger Abgleich mit dem Rahmenlehrplan.
 - Node-Tests bestanden. Die Abschlussseite wurde nicht im Browser gesehen.

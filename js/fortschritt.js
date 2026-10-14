@@ -50,6 +50,7 @@
     "lf5-ablauf": "it-ausbildung.lf5-ablauf.v1",
     "lf5-wiederholung": "it-ausbildung.lf5-wiederholung.v1",
     "lf5-ablage": "it-ausbildung.lf5-ablage.v1",
+    "lf5-einordnen": "it-ausbildung.lf5-einordnen.v1",
     "lf5-abschluss": "it-ausbildung.lf5-abschluss.v1"
   };
 
@@ -253,6 +254,10 @@
       if (id === "lf5-ablage") {
         var ablage = state.answers || {};
         return !!state.finish && !!state.checked && ablage.q1 === "name" && ablage.q2 === "inhalt" && ablage.q3 === "nichtloeschen" && ablage.q4 === "nachfragen";
+      }
+      if (id === "lf5-einordnen") {
+        var einordnen = state.answers || {};
+        return !!state.finish && !!state.checked && einordnen.q1 === "herkunft" && einordnen.q2 === "text" && einordnen.q3 === "schutz" && einordnen.q4 === "speicher";
       }
       if (id === "lf5-abschluss") {
         var lf5abschluss = state.answers || {};

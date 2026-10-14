@@ -1,3 +1,8 @@
+## Etappe 14.10.2026 – Lernfeld 5, Daten einordnen
+
+- Version 0.15.8-alpha.1. Rahmenlehrplan-Abschnitt Lernfeld 5 gelesen. Lücke in docs/plan-lf5-luecke.md. Neue Lektion `lf5-einordnen`. Node-Test bestanden, nicht im Browser gesehen.
+- Offen: Datenformat wählen, Testfall formulieren, Softwaredokumentation, Prozess bewerten. Kein Lernfeld 6, kein Spreadshirt, kein Merge.
+
 ## Etappe 14.10.2026 – Lernfeld-5-Abschluss
 
 - Version 0.15.7-alpha.1. Unbenotete Abschlussaufgabe angehängt. Lernfeld 5 steht als erste Inhaltsfassung im Katalog. Der Rahmenlehrplan wurde in diesem Lauf nicht gelesen. Browseransicht nicht geprüft.

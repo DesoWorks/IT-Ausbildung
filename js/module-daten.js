@@ -85,6 +85,7 @@
             { id: "lf5-ablauf", typ: "lektion", titel: "Reihenfolge und Entscheidung lesen", beschreibung: "Einen fiktiven Ablaufzettel in Reihenfolge und Entscheidung lesen.", page: "lf5-ablauf", status: "verfuegbar", datei: "module/lf5-ablauf.html" },
             { id: "lf5-wiederholung", typ: "lektion", titel: "Eine Wiederholung erkennen", beschreibung: "Dieselbe Prüfung an mehreren fiktiven Karten als Wiederholung erkennen.", page: "lf5-wiederholung", status: "verfuegbar", datei: "module/lf5-wiederholung.html" },
             { id: "lf5-ablage", typ: "lektion", titel: "Daten ablegen und wiederfinden", beschreibung: "Eine fiktive Datei an einem vereinbarten Namen ablegen und wiederfinden.", page: "lf5-ablage", status: "verfuegbar", datei: "module/lf5-ablage.html" },
+            { id: "lf5-einordnen", typ: "lektion", titel: "Daten vor dem Speichern einordnen", beschreibung: "Herkunft, Art, Schutz und Speicherbedarf an einem fiktiven Gerätenamen unterscheiden.", page: "lf5-einordnen", status: "verfuegbar", datei: "module/lf5-einordnen.html" },
             { id: "lf5-abschluss", typ: "lektion", titel: "Lernfeld 5: Zusammenfassung und Abschlussaufgabe", beschreibung: "Anweisung, Wert, Entscheidung, Wiederholung und Ablage an einem fiktiven Zettel verbinden. Unbenotete Selbstprüfung.", page: "lf5-abschluss", status: "verfuegbar", datei: "module/lf5-abschluss.html" }
           ] }
       ]
