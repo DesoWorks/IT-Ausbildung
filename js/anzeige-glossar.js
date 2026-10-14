@@ -3,13 +3,21 @@
   "use strict";
   var KEY = "it-ausbildung.anzeige.v1";
   var defaults = { text: 100, spacing: false, theme: "hell", ruhig: false };
+  var TEXT_MIN = 80, TEXT_MAX = 150, TEXT_STEP = 10;
   var current = load();
   var systemReduceMotion = false;
-
+  function clampText(v) {
+    var n = Number(v);
+    if (!isFinite(n)) return defaults.text;
+    n = Math.round(n / TEXT_STEP) * TEXT_STEP;
+    return Math.min(TEXT_MAX, Math.max(TEXT_MIN, n));
+  }
   function load() {
     try {
       var saved = JSON.parse(localStorage.getItem(KEY) || "null");
-      return Object.assign({}, defaults, saved || {});
+      var merged = Object.assign({}, defaults, saved || {});
+      merged.text = clampText(merged.text);
+      return merged;
     } catch (e) { return Object.assign({}, defaults); }
   }
   function save() {
@@ -17,7 +25,9 @@
     try { localStorage.setItem(KEY, JSON.stringify(current)); } catch (e) { /* App bleibt nutzbar. */ }
   }
   function apply() {
-    document.documentElement.style.setProperty("--text-scale", String(current.text / 100));
+    var scale = current.text / 100;
+    if (!isFinite(scale) || scale <= 0) scale = 1;
+    document.documentElement.style.setProperty("--text-scale", String(scale));
     document.documentElement.dataset.theme = current.theme;
     document.documentElement.classList.toggle("mehr-abstand", !!current.spacing);
     document.documentElement.classList.toggle("ruhige-ansicht", !!current.ruhig || systemReduceMotion);
@@ -35,7 +45,7 @@
     sizeLabel.htmlFor = "textgroesse";
     sizeLabel.textContent = "Textgröße";
     var size = document.createElement("input");
-    size.id = "textgroesse"; size.type = "range"; size.min = "100"; size.max = "150"; size.step = "10";
+    size.id = "textgroesse"; size.type = "range"; size.min = String(TEXT_MIN); size.max = String(TEXT_MAX); size.step = String(TEXT_STEP);
     size.value = String(current.text);
     size.setAttribute("aria-describedby", "textgroesse-wert");
     var value = document.createElement("output"); value.id = "textgroesse-wert"; value.textContent = current.text + "%";

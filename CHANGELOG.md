@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.15.0-alpha.1
+- Sechs kleine Lektionen in Lernfeld 3 ergänzt: Client-Anbindung, IPv4-Konfiguration lesen, DHCP, DNS, Verbindung eingrenzen, Fehlerbild dokumentieren. Lernfeld 3 selbst bleibt „kommt bald“.
+- Sichtkorrekturen: „öffnen“ und „schließen“ an derselben Kante, Abstand zwischen Übungsfragen, eigene Navigationsleiste, alphabetisches Glossar in drei bzw. vier Spalten, Textgröße ab 80 Prozent.
+- Fortschrittstexte in den Lernfeld-2-Übungen nennen Schritte statt Prozent. Automatisierte Tests bestanden; interaktive Prüfung der neuen Lektionen bleibt offen.
+
 ## 0.14.1-alpha.1
 - LF2.5–LF2.12 und die integrierte Abschlussaufgabe gezielt nachgeprüft.
 - Antworttexte in den Übungen überarbeitet, damit die richtige Antwort nicht durch auffällige Länge verraten wird; LF2.10/LF2.11 löschen nun auch veralteten Abschlusstext nach Antwortänderung.

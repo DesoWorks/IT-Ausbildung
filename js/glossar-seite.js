@@ -11,7 +11,8 @@
   if (candidate && from !== "index.html") candidate = "module/" + from;
   back.href = candidate || "index.html";
   back.textContent = candidate && from !== "index.html" ? "← Zur vorherigen Lernseite" : "← Zur Themenübersicht";
-  var entries = window.GLOSSAR || [];
+  /* Alphabetisch beim Rendern; die Quelldatei bleibt unverändert. */
+  var entries = (window.GLOSSAR || []).slice().sort(function (a, b) { return a.begriff.localeCompare(b.begriff, "de", { sensitivity: "base" }); });
   function render() {
     var query = search.value.trim().toLocaleLowerCase("de");
     list.textContent = "";

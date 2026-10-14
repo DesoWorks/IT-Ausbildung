@@ -15,3 +15,18 @@ require(path.join(root,"js/glossar-daten.js"));
 for(const w of ["Pflichtkriterium","Wunschkriterium","Wareneingang","Gesamtkosten","Befund","Wirkungsprüfung"]){assert(global.GLOSSAR.some(x=>x.begriff===w),"Glossarbegriff vorhanden: "+w);assert(h.includes("<summary>"+w)||h.includes("Befund und Wirkungsprüfung"),"Seite erklärt "+w);}
 assert(h.includes("../glossar.html?von=lf2-abschluss.html"),"Glossarlink");
 console.log("lf2-abschluss.test.js: PASS — integrierter Auftrag, Antwortlogik, Katalog, Fortschritt und Glossar");
+
+/* Abnahme: leerer Check und Fortschrittstext */
+{
+  const N = m.QUESTIONS.length;
+  const leer = m.evaluate({});
+  assert.equal(leer.empty, N);
+  assert.equal(leer.correct, 0);
+  assert(leer.results.every(function (r) { return r.status === "empty" && r.optionId === ""; }), "leerer Check wählt keine Option");
+  assert.equal(m.progress({ checked: true, finish: false, answers: {} }), 0);
+  const alle = {}; m.QUESTIONS.forEach(function (q) { alle[q.id] = q.correct; });
+  assert.equal(m.progressText({ checked: true, finish: false, answers: alle }), "Fortschritt: " + N + " von " + (N + 1) + " Schritten \u00b7 Abschluss noch nicht ge\u00f6ffnet");
+  assert.equal(m.progressText({ checked: true, finish: true, answers: alle }), "Fortschritt: " + (N + 1) + " von " + (N + 1) + " Schritten \u00b7 Abschluss ge\u00f6ffnet");
+  assert.equal(m.progressText({ checked: true, finish: false, answers: {} }), "Fortschritt: 0 von " + (N + 1) + " Schritten \u00b7 Abschluss noch nicht ge\u00f6ffnet");
+  assert(!/%/.test(m.progressText({ checked: true, finish: false, answers: alle })), "Text zeigt keine Prozentzahl");
+}

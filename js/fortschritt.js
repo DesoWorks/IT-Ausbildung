@@ -28,6 +28,12 @@
     "lf2-uebergabe": "it-ausbildung.lf2-uebergabe.v1",
     "lf2-auswertung": "it-ausbildung.lf2-auswertung.v1",
     "lf2-abschluss": "it-ausbildung.lf2-abschluss.v1",
+    "lf3-client-anbindung": "it-ausbildung.lf3-client-anbindung.v1",
+    "lf3-ipv4-konfiguration": "it-ausbildung.lf3-ipv4-konfiguration.v1",
+    "lf3-dhcp": "it-ausbildung.lf3-dhcp.v1",
+    "lf3-dns": "it-ausbildung.lf3-dns.v1",
+    "lf3-verbindung-eingrenzen": "it-ausbildung.lf3-verbindung-eingrenzen.v1",
+    "lf3-fehlerbild-protokoll": "it-ausbildung.lf3-fehlerbild-protokoll.v1",
     "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
     "lf3-netzmaske": "it-ausbildung.netzmaske.v1",
     "lf3-subnetting": "it-ausbildung.subnetting.v1"
@@ -141,6 +147,30 @@
       if (id === "lf1-abschluss") {
         var finalAnswers = state.answers || {};
         return !!state.finish && !!state.checked && ["q1", "q2", "q3", "q4"].every(function (q) { return finalAnswers[q] === "yes"; });
+      }
+      if (id === "lf3-client-anbindung") {
+        var client = state.answers || {};
+        return !!state.finish && !!state.checked && client.q1 === "mira" && client.q2 === "switch" && client.q3 === "folge" && client.q4 === "fiktiv";
+      }
+      if (id === "lf3-ipv4-konfiguration") {
+        var shown = state.answers || {};
+        return !!state.finish && !!state.checked && shown.q1 === "adresse" && shown.q2 === "praefix" && shown.q3 === "gateway" && shown.q4 === "passt";
+      }
+      if (id === "lf3-dhcp") {
+        var dhcp = state.answers || {};
+        return !!state.finish && !!state.checked && dhcp.q1 === "automatisch" && dhcp.q2 === "adresse" && dhcp.q3 === "vier" && dhcp.q4 === "grenze";
+      }
+      if (id === "lf3-dns") {
+        var dns = state.answers || {};
+        return !!state.finish && !!state.checked && dns.q1 === "zuordnen" && dns.q2 === "wert" && dns.q3 === "dnsserver" && dns.q4 === "erreichbar";
+      }
+      if (id === "lf3-verbindung-eingrenzen") {
+        var eingrenzen = state.answers || {};
+        return !!state.finish && !!state.checked && eingrenzen.q1 === "adresse" && eingrenzen.q2 === "getrennt" && eingrenzen.q3 === "tabelle" && eingrenzen.q4 === "echt";
+      }
+      if (id === "lf3-fehlerbild-protokoll") {
+        var protokoll = state.answers || {};
+        return !!state.finish && !!state.checked && protokoll.q1 === "link" && protokoll.q2 === "schritt" && protokoll.q3 === "getrennt" && protokoll.q4 === "frist";
       }
       if (id === "lf3-ipv4") {
         var questions = ["anzahl", "wertebereich", "gueltig"];

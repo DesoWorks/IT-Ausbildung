@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Vorgegebene Beobachtungen zu einer fiktiven Verbindung ordnen und die nächste sinnvolle Beobachtung auswählen.">
+  <title>Verbindung systematisch eingrenzen · Lernfeld 3</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+    .skizze{padding:1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);font-family:monospace;white-space:pre-wrap;line-height:1.7}
+  </style>
+</head>
+<body data-page="lf3-verbindung-eingrenzen" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 3</p>
+      <h1>Verbindung systematisch eingrenzen</h1>
+      <p class="kopf-dauer">Fiktive Beobachtungsliste · keine Befehle an echte Geräte</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Beobachtungen</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 %</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du lernst</h2>
+      <ul>
+        <li>Vorgegebene Beobachtungen lesen und nach ihrer Aussage ordnen.</li>
+        <li>Namensauflösung und IP-Erreichbarkeit als verschiedene Beobachtungen unterscheiden.</li>
+        <li>Die nächste sinnvolle, risikoarme Beobachtung auswählen.</li>
+      </ul>
+      <details class="fachwort-hinweis"><summary>Eingrenzung</summary><p>Eingrenzen heißt, Beobachtungen zu ordnen und daraus die nächste sinnvolle Beobachtung zu wählen. In dieser Übung arbeitest du nur mit einer vorgegebenen, fiktiven Liste. Befehle an echte Geräte gehören nicht dazu.</p><a href="../glossar.html?von=lf3-verbindung-eingrenzen.html">Wörter &amp; Begriffe ansehen</a></details>
+      <aside class="hinweis-box"><strong>Fiktiver Hinweis:</strong> Mira-01, das Lernnetz, die Testadresse 192.168.10.40 und der Name wiki.lernnetz.test sind erfunden. Die Übung verlangt keine Änderung an einem Gerät, keine Einstellung und keinen Zugriff auf ein echtes Netz.</aside>
+      <p>Wie ein Name einem Antwortwert zugeordnet wird, steht in <a href="lf3-dns.html">DNS: Namen und IP-Adressen unterscheiden</a>. Die Adressen des Clients liest du in <a href="lf3-ipv4-konfiguration.html">IPv4-Konfiguration eines Clients lesen</a>.</p>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zu den Beobachtungen</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Der Fall: Mira-01 erreicht die Adresse, aber nicht den Namen</h2>
+      <p>Im isolierten Übungsnetz „Lernnetz“ ist für den Laptop <strong>Mira-01</strong> eine Beobachtungsliste vorbereitet. Sie ist kein Mitschnitt und keine Anleitung. Du sollst nur lesen, was sie sagt und was nicht.</p>
+      <h3>Vorgegebene Beobachtungen (fiktiv)</h3>
+      <div class="skizze" role="img" aria-label="Fiktive Beobachtungsliste: Mira-01 hat die Adresse 192.168.10.25, die Testadresse 192.168.10.40 antwortet in der Simulation, der Name wiki.lernnetz.test liefert keine Antwort, der Antwortwert in der Übungstabelle ist noch nicht angesehen">1. Mira-01 zeigt die Adresse 192.168.10.25 an.
+2. Die Testadresse 192.168.10.40 antwortet in der Simulation.
+3. Der Name wiki.lernnetz.test liefert in der Simulation keine Antwort.
+4. Der Antwortwert der Übungstabelle zum Namen ist noch nicht angesehen.</div>
+      <table class="netz-tabelle"><caption>Beobachtungen zu Mira-01 (fiktiv)</caption><thead><tr><th scope="col">Nr.</th><th scope="col">Beobachtung</th><th scope="col">Stand in der Simulation</th></tr></thead><tbody>
+        <tr><td>1</td><td>Adresse von Mira-01</td><td>192.168.10.25 wird angezeigt</td></tr>
+        <tr><td>2</td><td>Testadresse 192.168.10.40</td><td>antwortet</td></tr>
+        <tr><td>3</td><td>Name wiki.lernnetz.test</td><td>keine Antwort</td></tr>
+        <tr><td>4</td><td>Antwortwert in der Übungstabelle</td><td>noch nicht angesehen</td></tr>
+      </tbody></table>
+      <div class="steps">
+        <article class="step"><h3>Lesen</h3><p>Zuerst halten die Beobachtungen fest, was schon bekannt ist. Hier: Die Adresse antwortet, der Name nicht.</p></article>
+        <article class="step"><h3>Trennen</h3><p>Eine Antwort der Adresse und die Auflösung eines Namens sind zwei verschiedene Beobachtungen. Die eine ersetzt die andere nicht.</p></article>
+        <article class="step"><h3>Auswählen</h3><p>Als Nächstes folgt eine Beobachtung, die nichts verändert. Hier ist das der Blick in die Übungstabelle.</p></article>
+      </div>
+      <p>Bewusst nicht Teil der Übung: Befehle an echte Geräte, Konfigurationsänderungen und pauschale Aussagen über eine Firewall.</p>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Übung: Beobachtungen ordnen</h2>
+      <p>Wähle pro Aufgabe eine Antwort. Alle Fälle beziehen sich nur auf die fiktive Beobachtungsliste.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zu den Beobachtungen</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du mit</h2>
+      <ul>
+        <li>In der Simulation antwortet die Testadresse 192.168.10.40, der Name wiki.lernnetz.test liefert keine Antwort.</li>
+        <li>Namensauflösung und IP-Erreichbarkeit sind verschiedene Beobachtungen.</li>
+        <li>Die nächste sinnvolle Beobachtung ist hier der Antwortwert in der Übungstabelle, nicht ein Kabeltausch und keine pauschale Vermutung über die Firewall.</li>
+      </ul>
+      <p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 3 · Lernorientierung · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf3-verbindung-eingrenzen.js"></script>
+</body>
+</html>

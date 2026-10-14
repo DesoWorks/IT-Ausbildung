@@ -41,7 +41,17 @@ assert.strictEqual(daten[1].module.length, 4, "Jahr 2: vier Bereiche");
 assert.strictEqual(daten[2].module.length, 3, "Jahr 3: drei Bereiche");
 
 const lf3 = j1.find(m => m.id === "lf3");
-assert.deepStrictEqual(lf3.unterthemen.map(u => u.titel), ["IPv4", "Netzmaske und Netz-/Geräteanteil", "Subnetting: /24 in zwei /25-Netze teilen"]);
+assert.deepStrictEqual(lf3.unterthemen.map(u => u.titel), [
+  "Client-Anbindung: vom Anschluss bis zur Verbindung",
+  "IPv4-Konfiguration eines Clients lesen",
+  "DHCP: automatische Konfiguration nachvollziehen",
+  "DNS: Namen und IP-Adressen unterscheiden",
+  "Verbindung systematisch eingrenzen",
+  "Typische Client-Fehlerbilder dokumentieren und übergeben",
+  "IPv4",
+  "Netzmaske und Netz-/Geräteanteil",
+  "Subnetting: /24 in zwei /25-Netze teilen"
+]);
 const zahlensysteme = global.MODULE_TOOLS.find(u => u.id === "lf3-zahlensysteme");
 assert(zahlensysteme.status === "verfuegbar" && zahlensysteme.datei === "module/zahlensysteme.html", "Zahlensystemrechner: verfügbar mit Moduldatei");
 assert(fs.existsSync(path.join(wurzel, zahlensysteme.datei)), "Zahlensystem-Moduldatei existiert");

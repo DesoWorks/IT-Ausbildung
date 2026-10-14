@@ -87,7 +87,13 @@
     return Math.round(((s.checked ? evaluate(s.answers).correct : 0) + (s.finish ? 1 : 0)) / (Q.length + 1) * 100);
   }
 
-  var api = { ID: ID, KEY: KEY, STEPS: STEPS, CHECKLIST: CHECKLIST, QUESTIONS: Q, summarize: summarize, evaluate: evaluate, progress: progress };
+  function progressText(s) {
+    s = s || {};
+    var done = (s.checked ? evaluate(s.answers).correct : 0) + (s.finish ? 1 : 0);
+    return "Fortschritt: " + done + " von " + (Q.length + 1) + " Schritten \u00b7 Abschluss " + (s.finish ? "ge\u00f6ffnet" : "noch nicht ge\u00f6ffnet");
+  }
+
+  var api = { ID: ID, KEY: KEY, STEPS: STEPS, CHECKLIST: CHECKLIST, QUESTIONS: Q, summarize: summarize, evaluate: evaluate, progress: progress, progressText: progressText };
   g.LF2_EINRICHTEN = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   if (!g.document) return;
@@ -101,7 +107,7 @@
   function update() {
     var n = progress(s);
     $("bar").style.width = n + "%";
-    $("pct").textContent = "Fortschritt: " + n + " %";
+    $("pct").textContent = progressText(s);
   }
   function go(id) {
     STEPS.forEach(function (x) { $(x).hidden = x !== id; });

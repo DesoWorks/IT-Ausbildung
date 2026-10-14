@@ -11,3 +11,18 @@ for(const s of ["Nordlicht IT-Service","Praxis am Park","fiktiv","Textalternativ
 assert(!/checked(?:="checked")?/.test(html));assert(js.includes("s.checked=false;clear();"));assert(js.includes('d.createElement("fieldset")')&&js.includes('input.type="radio"'));assert(catalog.includes('page: "lf2-auswertung", status: "verfuegbar", datei: "module/lf2-auswertung.html"'));assert(fp.includes('"lf2-auswertung": "it-ausbildung.lf2-auswertung.v1"'));
 for(const word of ["Auftragsauswertung","Verbesserungsmaßnahme","Befund","Wirkungsprüfung"])assert(global.GLOSSAR.some(x=>x.begriff===word),word);
 console.log("lf2-auswertung.test.js: PASS — Antworten, Fortschritt, Seite, Katalog und Glossar");
+
+/* Abnahme: leerer Check und Fortschrittstext */
+{
+  const N = m.QUESTIONS.length;
+  const leer = m.evaluate({});
+  assert.equal(leer.empty, N);
+  assert.equal(leer.correct, 0);
+  assert(leer.results.every(function (r) { return r.status === "empty" && r.optionId === ""; }), "leerer Check wählt keine Option");
+  assert.equal(m.progress({ checked: true, finish: false, answers: {} }), 0);
+  const alle = {}; m.QUESTIONS.forEach(function (q) { alle[q.id] = q.correct; });
+  assert.equal(m.progressText({ checked: true, finish: false, answers: alle }), "Fortschritt: " + N + " von " + (N + 1) + " Schritten \u00b7 Abschluss noch nicht ge\u00f6ffnet");
+  assert.equal(m.progressText({ checked: true, finish: true, answers: alle }), "Fortschritt: " + (N + 1) + " von " + (N + 1) + " Schritten \u00b7 Abschluss ge\u00f6ffnet");
+  assert.equal(m.progressText({ checked: true, finish: false, answers: {} }), "Fortschritt: 0 von " + (N + 1) + " Schritten \u00b7 Abschluss noch nicht ge\u00f6ffnet");
+  assert(!/%/.test(m.progressText({ checked: true, finish: false, answers: alle })), "Text zeigt keine Prozentzahl");
+}

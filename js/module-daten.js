@@ -55,6 +55,12 @@
           ] },
         { id: "lf3", lernfeld: "Lernfeld 3", titel: "Netzwerkgrundlagen und Client-Anbindung", status: "kommt-bald",
           unterthemen: [
+            { id: "lf3-client-anbindung", typ: "lektion", titel: "Client-Anbindung: vom Anschluss bis zur Verbindung", beschreibung: "Bausteine einer fiktiven Client-Anbindung benennen und eine Verbindungsskizze lesen.", page: "lf3-client-anbindung", status: "verfuegbar", datei: "module/lf3-client-anbindung.html" },
+            { id: "lf3-ipv4-konfiguration", typ: "lektion", titel: "IPv4-Konfiguration eines Clients lesen", beschreibung: "Adresse, Präfix/Netzmaske und Gateway einer fiktiven Client-Anzeige lesen und mit einer Testnetz-Karte vergleichen.", page: "lf3-ipv4-konfiguration", status: "verfuegbar", datei: "module/lf3-ipv4-konfiguration.html" },
+            { id: "lf3-dhcp", typ: "lektion", titel: "DHCP: automatische Konfiguration nachvollziehen", beschreibung: "Zweck von DHCP und eine vereinfachte fiktive Adressvergabe in einem Ablaufbild lesen.", page: "lf3-dhcp", status: "verfuegbar", datei: "module/lf3-dhcp.html" },
+            { id: "lf3-dns", typ: "lektion", titel: "DNS: Namen und IP-Adressen unterscheiden", beschreibung: "Eine fiktive Namensauflösung in einer Übungstabelle lesen und Namen von IP-Adressen unterscheiden.", page: "lf3-dns", status: "verfuegbar", datei: "module/lf3-dns.html" },
+            { id: "lf3-verbindung-eingrenzen", typ: "lektion", titel: "Verbindung systematisch eingrenzen", beschreibung: "Vorgegebene Beobachtungen zu einer fiktiven Verbindung ordnen und die nächste sinnvolle Beobachtung auswählen.", page: "lf3-verbindung-eingrenzen", status: "verfuegbar", datei: "module/lf3-verbindung-eingrenzen.html" },
+            { id: "lf3-fehlerbild-protokoll", typ: "lektion", titel: "Typische Client-Fehlerbilder dokumentieren und übergeben", beschreibung: "Beobachtung, getesteten Schritt und Ergebnis in einem fiktiven Supportprotokoll trennen und geordnet übergeben.", page: "lf3-fehlerbild-protokoll", status: "verfuegbar", datei: "module/lf3-fehlerbild-protokoll.html" },
             { id: "lf3-ipv4", typ: "lektion", titel: "IPv4", beschreibung: "Lektion 1: IPv4-Adresse und vier Oktette.", page: "netzwerkgrundlagen",
               status: "verfuegbar", datei: "module/netzwerkgrundlagen.html" },
             { id: "lf3-netzmaske", typ: "lektion", titel: "Netzmaske und Netz-/Geräteanteil", beschreibung: "Lektion 2: Beispiel 192.168.1.20/24.",

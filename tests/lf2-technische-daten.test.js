@@ -50,3 +50,18 @@ assert(fp.includes('"lf2-technische-daten": "it-ausbildung.lf2-technische-daten.
 const gl = fs.readFileSync(path.join(root, "js/glossar-daten.js"), "utf8");
 for (const b of ["Datenblatt", "Leistungsaufnahme", "Kenngröße"]) assert(gl.includes('begriff: "' + b + '"'), "Glossar: " + b);
 console.log("lf2-technische-daten.test.js: PASS — Modell, Seite, Katalog, Fortschritt, Glossar");
+
+/* Abnahme: leerer Check und Fortschrittstext */
+{
+  const N = m.QUESTIONS.length;
+  const leer = m.evaluate({});
+  assert.equal(leer.empty, N);
+  assert.equal(leer.correct, 0);
+  assert(leer.results.every(function (r) { return r.status === "empty" && r.optionId === ""; }), "leerer Check wählt keine Option");
+  assert.equal(m.progress({ checked: true, finish: false, answers: {} }), 0);
+  const alle = {}; m.QUESTIONS.forEach(function (q) { alle[q.id] = q.correct; });
+  assert.equal(m.progressText({ checked: true, finish: false, answers: alle }), "Fortschritt: " + N + " von " + (N + 1) + " Schritten \u00b7 Abschluss noch nicht ge\u00f6ffnet");
+  assert.equal(m.progressText({ checked: true, finish: true, answers: alle }), "Fortschritt: " + (N + 1) + " von " + (N + 1) + " Schritten \u00b7 Abschluss ge\u00f6ffnet");
+  assert.equal(m.progressText({ checked: true, finish: false, answers: {} }), "Fortschritt: 0 von " + (N + 1) + " Schritten \u00b7 Abschluss noch nicht ge\u00f6ffnet");
+  assert(!/%/.test(m.progressText({ checked: true, finish: false, answers: alle })), "Text zeigt keine Prozentzahl");
+}
