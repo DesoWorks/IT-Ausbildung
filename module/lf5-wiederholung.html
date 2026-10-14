@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Eine Wiederholung auf einem fiktiven Zettel von drei verschiedenen Aufgaben unterscheiden.">
+  <title>Eine Wiederholung erkennen</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+  </style>
+</head>
+<body data-page="lf5-wiederholung" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 5</p>
+      <h1>Eine Wiederholung erkennen</h1>
+      <p class="kopf-dauer">Fiktive Gerätekarten · keine Programmiersprache nötig · keine echten Daten</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Zettel</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 von 5 Schritten · Abschluss noch nicht geöffnet</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du lernst</h2>
+      <ul>
+        <li>Eine Wiederholung erkennen: Dieselbe Prüfung wird mehrfach ausgeführt.</li>
+        <li>Die Anzahl der Durchgänge ablesen.</li>
+        <li>Eine Wiederholung von verschiedenen Aufgaben unterscheiden.</li>
+      </ul>
+      <aside class="hinweis-box"><strong>Fiktiver Hinweis:</strong> Nordlicht IT-Service und Samira sind erfunden. Du brauchst keine Programmiersprache.</aside>
+      <button class="knopf knopf-haupt" data-next="case">Weiter</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Samiras Zettel mit drei Karten</h2>
+      <p>Samira macht ihre Ausbildung bei <strong>Nordlicht IT-Service</strong>. Auf ihrem Zettel steht: Prüfe drei Gerätekarten nacheinander. Es ist dieselbe Prüfung, nicht drei verschiedene Aufgaben.</p>
+      <div class="steps">
+        <article class="step"><h3>Karte 1</h3><p>Gerätename: Mira-01</p></article>
+        <article class="step"><h3>Karte 2</h3><p>Gerätename: Mira-02</p></article>
+        <article class="step"><h3>Karte 3</h3><p>Gerätename: Mira-03</p></article>
+      </div>
+      <p>Samira führt auf jeder Karte dieselbe Prüfung aus. Bleibt etwas unklar, fragt sie nach.</p>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Übung: Wiederholung erkennen</h2>
+      <p>Wähle pro Aufgabe eine Antwort. Alle Fälle beziehen sich nur auf die drei fiktiven Gerätekarten.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zurück zum Zettel</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du mit</h2>
+      <ul><li>Bei einer Wiederholung ist die Prüfung immer dieselbe.</li><li>Hier läuft sie dreimal, einmal je Karte.</li><li>Drei verschiedene Aufgaben in einen Schritt zu schreiben ist keine Wiederholung.</li><li>Bei Unklarheit fragt Samira nach und erfindet keine vierte Karte.</li></ul>
+      <p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 5 · Programmiergrundlagen und Datenverwaltung · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf5-wiederholung.js"></script>
+</body>
+</html>

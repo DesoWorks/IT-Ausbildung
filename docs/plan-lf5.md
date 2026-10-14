@@ -8,12 +8,12 @@ Das KMK-PDF wurde in diesem Lauf nicht gelesen. Der Plan ist ein Arbeitsentwurf 
 ## Jetzt gebaut
 - `lf5-anweisung`: Anweisung und Daten unterscheiden.
 - `lf5-werte`: einfache Werte lesen (Text, ganze Zahl, Ja/Nein).
+- `lf5-ablauf`: Reihenfolge und Entscheidung lesen. Node-Test bestanden, nicht im Browser gesehen.
+- `lf5-wiederholung`: eine Wiederholung erkennen. Node-Test bestanden, nicht im Browser gesehen.
+- `lf5-ablage`: Daten ablegen und wiederfinden. Node-Test bestanden, nicht im Browser gesehen. Ein holpriger Feedbacksatz ist geglättet.
 
 ## Geplant, noch nicht gebaut
-- `lf5-ablauf`: Reihenfolge und Entscheidung lesen
-- Wiederholung
-- Daten ablegen und wiederfinden
-- Abschluss
+- Unbenotete Abschlussaufgabe
 
 ## Bewusst draußen
 - Echte Datenbanken

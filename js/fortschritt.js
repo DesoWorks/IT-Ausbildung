@@ -46,7 +46,10 @@
     "lf4-vorfall": "it-ausbildung.lf4-vorfall.v1",
     "lf4-abschluss": "it-ausbildung.lf4-abschluss.v1",
     "lf5-anweisung": "it-ausbildung.lf5-anweisung.v1",
-    "lf5-werte": "it-ausbildung.lf5-werte.v1"
+    "lf5-werte": "it-ausbildung.lf5-werte.v1",
+    "lf5-ablauf": "it-ausbildung.lf5-ablauf.v1",
+    "lf5-wiederholung": "it-ausbildung.lf5-wiederholung.v1",
+    "lf5-ablage": "it-ausbildung.lf5-ablage.v1"
   };
 
   function abgeschlossen(id) {
@@ -237,6 +240,18 @@
       if (id === "lf5-werte") {
         var werte = state.answers || {};
         return !!state.finish && !!state.checked && werte.q1 === "text" && werte.q2 === "zahl" && werte.q3 === "janein" && werte.q4 === "nichtrechnen";
+      }
+      if (id === "lf5-ablauf") {
+        var ablauf = state.answers || {};
+        return !!state.finish && !!state.checked && ablauf.q1 === "reihenfolge" && ablauf.q2 === "entscheidung" && ablauf.q3 === "stoppen" && ablauf.q4 === "nachfragen";
+      }
+      if (id === "lf5-wiederholung") {
+        var wiederholung = state.answers || {};
+        return !!state.finish && !!state.checked && wiederholung.q1 === "gleiche" && wiederholung.q2 === "anzahl" && wiederholung.q3 === "nichtmischen" && wiederholung.q4 === "nachfragen";
+      }
+      if (id === "lf5-ablage") {
+        var ablage = state.answers || {};
+        return !!state.finish && !!state.checked && ablage.q1 === "name" && ablage.q2 === "inhalt" && ablage.q3 === "nichtloeschen" && ablage.q4 === "nachfragen";
       }
     } catch (e) { return false; }
     return false;

@@ -119,6 +119,18 @@ values.set("it-ausbildung.lf5-werte.v1",JSON.stringify({finish:true,checked:true
 assert.equal(api.abgeschlossen("lf5-werte"),true,"LF5 Werte derives completion from its own checked answers");
 values.set("it-ausbildung.lf5-werte.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"zahl",q2:"zahl",q3:"janein",q4:"nichtrechnen"}}));
 assert.equal(api.abgeschlossen("lf5-werte"),false,"LF5 Werte stays unmarked with a wrong answer");
+values.set("it-ausbildung.lf5-ablauf.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"reihenfolge",q2:"entscheidung",q3:"stoppen",q4:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf5-ablauf"),true,"LF5 Ablauf derives completion from its own checked answers");
+values.set("it-ausbildung.lf5-ablauf.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"stoppen",q2:"entscheidung",q3:"stoppen",q4:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf5-ablauf"),false,"LF5 Ablauf stays unmarked with a wrong answer");
+values.set("it-ausbildung.lf5-wiederholung.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"gleiche",q2:"anzahl",q3:"nichtmischen",q4:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf5-wiederholung"),true,"LF5 Wiederholung derives completion from its own checked answers");
+values.set("it-ausbildung.lf5-wiederholung.v1",JSON.stringify({finish:false,checked:true,answers:{q1:"gleiche",q2:"anzahl",q3:"nichtmischen",q4:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf5-wiederholung"),false,"LF5 Wiederholung stays unmarked before the finish step");
+values.set("it-ausbildung.lf5-ablage.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"name",q2:"inhalt",q3:"nichtloeschen",q4:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf5-ablage"),true,"LF5 Ablage derives completion from its own checked answers");
+values.set("it-ausbildung.lf5-ablage.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"name",q2:"inhalt",q3:"name",q4:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf5-ablage"),false,"LF5 Ablage stays unmarked with a wrong answer");
 const marker=api.abschlusszeichen();
 assert.equal(marker.textContent,"✓"); assert.equal(marker.attrs["aria-label"],"Abgeschlossen");
 console.log("fortschritt.test.js: all assertions passed");
