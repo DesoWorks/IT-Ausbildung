@@ -40,7 +40,10 @@
     "lf3-subnetting": "it-ausbildung.subnetting.v1",
     "lf4-schutzbedarf": "it-ausbildung.lf4-schutzbedarf.v1",
     "lf4-schutzziele": "it-ausbildung.lf4-schutzziele.v1",
-    "lf4-risiken": "it-ausbildung.lf4-risiken.v1"
+    "lf4-risiken": "it-ausbildung.lf4-risiken.v1",
+    "lf4-handlungen": "it-ausbildung.lf4-handlungen.v1",
+    "lf4-zugang": "it-ausbildung.lf4-zugang.v1",
+    "lf4-vorfall": "it-ausbildung.lf4-vorfall.v1"
   };
 
   function abgeschlossen(id) {
@@ -207,6 +210,18 @@
       if (id === "lf4-risiken") {
         var risiken = state.answers || {};
         return !!state.finish && !!state.checked && risiken.q1 === "offen" && risiken.q2 === "melden" && risiken.q3 === "zettel" && risiken.q4 === "nichtprobieren";
+      }
+      if (id === "lf4-handlungen") {
+        var handlungen = state.answers || {};
+        return !!state.finish && !!state.checked && handlungen.q1 === "sperren" && handlungen.q2 === "liegenlassen" && handlungen.q3 === "fragen" && handlungen.q4 === "nichttesten";
+      }
+      if (id === "lf4-zugang") {
+        var zugang = state.answers || {};
+        return !!state.finish && !!state.checked && zugang.q1 === "eigen" && zugang.q2 === "nichtteilen" && zugang.q3 === "zettelweg" && zugang.q4 === "abstimmen";
+      }
+      if (id === "lf4-vorfall") {
+        var vorfall = state.answers || {};
+        return !!state.finish && !!state.checked && vorfall.q1 === "beobachten" && vorfall.q2 === "nichtvermuten" && vorfall.q3 === "melden" && vorfall.q4 === "nichtuntersuchen";
       }
     } catch (e) { return false; }
     return false;

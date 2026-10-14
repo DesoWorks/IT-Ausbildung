@@ -95,6 +95,18 @@ values.set("it-ausbildung.lf4-risiken.v1",JSON.stringify({finish:true,checked:tr
 assert.equal(api.abgeschlossen("lf4-risiken"),true,"LF4 Risiken derives completion from its own checked answers");
 values.set("it-ausbildung.lf4-risiken.v1",JSON.stringify({finish:false,checked:true,answers:{q1:"offen",q2:"melden",q3:"zettel",q4:"nichtprobieren"}}));
 assert.equal(api.abgeschlossen("lf4-risiken"),false,"LF4 Risiken stays unmarked before the finish step");
+values.set("it-ausbildung.lf4-handlungen.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"sperren",q2:"liegenlassen",q3:"fragen",q4:"nichttesten"}}));
+assert.equal(api.abgeschlossen("lf4-handlungen"),true,"LF4 Handlungen derives completion from its own checked answers");
+values.set("it-ausbildung.lf4-handlungen.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"liegenlassen",q2:"liegenlassen",q3:"fragen",q4:"nichttesten"}}));
+assert.equal(api.abgeschlossen("lf4-handlungen"),false,"LF4 Handlungen stays unmarked with a wrong answer");
+values.set("it-ausbildung.lf4-zugang.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"eigen",q2:"nichtteilen",q3:"zettelweg",q4:"abstimmen"}}));
+assert.equal(api.abgeschlossen("lf4-zugang"),true,"LF4 Zugang derives completion from its own checked answers");
+values.set("it-ausbildung.lf4-zugang.v1",JSON.stringify({finish:true,checked:false,answers:{q1:"eigen",q2:"nichtteilen",q3:"zettelweg",q4:"abstimmen"}}));
+assert.equal(api.abgeschlossen("lf4-zugang"),false,"LF4 Zugang stays unmarked before checking");
+values.set("it-ausbildung.lf4-vorfall.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"beobachten",q2:"nichtvermuten",q3:"melden",q4:"nichtuntersuchen"}}));
+assert.equal(api.abgeschlossen("lf4-vorfall"),true,"LF4 Vorfall derives completion from its own checked answers");
+values.set("it-ausbildung.lf4-vorfall.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"beobachten",q2:"melden",q3:"melden",q4:"nichtuntersuchen"}}));
+assert.equal(api.abgeschlossen("lf4-vorfall"),false,"LF4 Vorfall stays unmarked with a wrong answer");
 const marker=api.abschlusszeichen();
 assert.equal(marker.textContent,"✓"); assert.equal(marker.attrs["aria-label"],"Abgeschlossen");
 console.log("fortschritt.test.js: all assertions passed");

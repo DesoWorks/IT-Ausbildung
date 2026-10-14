@@ -8,9 +8,9 @@ Geplant:
 1. Schutzbedarf erkennen (lf4-schutzbedarf) – gebaut, Node-Test bestanden, nicht im Browser gesehen.
 2. Schutzziele unterscheiden (lf4-schutzziele) – gebaut, Node-Test bestanden, nicht im Browser gesehen.
 3. Einfache Risiken einordnen (lf4-risiken) – gebaut, Node-Test bestanden, nicht im Browser gesehen.
-4. Sichere und unsichere Handlungen unterscheiden – noch nicht gebaut.
-5. Zugangsgrundlagen ohne echte Passwörter – noch nicht gebaut.
-6. Vorfall beobachten und melden – noch nicht gebaut.
+4. Sichere und unsichere Handlungen unterscheiden (lf4-handlungen) – gebaut, Node-Test bestanden, nicht im Browser gesehen.
+5. Zugangsgrundlagen ohne echte Zugangswörter (lf4-zugang) – gebaut, Node-Test bestanden, nicht im Browser gesehen. Kein Beispielwort.
+6. Einen Vorfall beobachten und melden (lf4-vorfall) – gebaut, Node-Test bestanden, nicht im Browser gesehen.
 7. Unbenotete Abschlussaufgabe – noch nicht gebaut.
 
 Bewusst draußen: Rechtsberatung, echte Zugangsdaten, produktive Systeme, Angriffsanleitungen, Malware, Umgehung von Schutzmechanismen.

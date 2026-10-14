@@ -1,3 +1,10 @@
+## Etappe 14.10.2026 – Lernfeld 4, Lektionen 4 bis 6
+
+- Version 0.15.4-alpha.1. Neue Lektionen: lf4-handlungen, lf4-zugang, lf4-vorfall. Lernfeld 4 bleibt „kommt bald“, bis die unbenotete Abschlussaufgabe im Katalog steht.
+- Kein Beispiel-Zugangswort, keine Angriffsanleitung. Die Überschrift in der Zugangslektion heißt „Zugänge richtig nutzen“.
+- Node-Tests der drei Lektionen und der Fortschrittslogik bestanden. Browseransicht nicht geprüft. KMK-PDF in diesem Lauf nicht gelesen.
+- Nächster Schritt: unbenotete Abschlussaufgabe, danach Lernfeld 5, soweit das Kontingent reicht. Kein Lernfeld 6, kein Spreadshirt, kein Merge, kein Release.
+
 ## Etappe 14.10.2026 – erste Lernfeld-4-Lektion
 
 - Version 0.15.3-alpha.1. Drei kleine Lektionen: Schutzbedarf erkennen, Schutzziele unterscheiden, einfache Risiken einordnen. Lernfeld 4 bleibt „kommt bald“.
