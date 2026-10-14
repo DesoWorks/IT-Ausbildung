@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lernfeld 5 zusammenfassen: Anweisung, Wert, Entscheidung, Wiederholung und Ablage an einem fiktiven Ablaufzettel.">
+  <title>Lernfeld 5: Zusammenfassung und Abschlussaufgabe</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+    .nachbarn{display:flex;flex-wrap:wrap;gap:.6rem;padding:0;list-style:none}
+  </style>
+</head>
+<body data-page="lf5-abschluss" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 5</p>
+      <h1>Lernfeld 5: Zusammenfassung und Abschlussaufgabe</h1>
+      <p class="kopf-dauer">Fiktiver Ablaufzettel · unbenotet · keine Programmiersprache nötig · keine echten Daten</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Zettel</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Aufgabe</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 von 7 Schritten · Abschluss noch nicht geöffnet</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du wiederholst</h2>
+      <ul>
+        <li>Eine Anweisung sagt, was getan werden soll.</li>
+        <li>Ein Wert ist zum Beispiel eine ganze Zahl oder ein Name.</li>
+        <li>Eine Entscheidung wählt je nach Lage den Weg.</li>
+        <li>Eine Wiederholung führt dieselben Schritte mehrmals aus.</li>
+        <li>Ein vereinbarter Dateiname hilft, eine Datei wiederzufinden.</li>
+      </ul>
+      <aside class="hinweis-box"><strong>Fiktiver Hinweis:</strong> Nordlicht IT-Service und Samira sind erfunden. Die Aufgabe ist unbenotet. Du kannst sie beliebig oft wiederholen.</aside>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zum Zettel</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Samiras Ablaufzettel</h2>
+      <p>Samira macht ihre Ausbildung bei <strong>Nordlicht IT-Service</strong>. Sie bekommt einen Ablaufzettel mit sechs Angaben.</p>
+      <div class="steps">
+        <article class="step"><h3>Anweisung</h3><p>Zeige die Zahl.</p></article>
+        <article class="step"><h3>Zahl</h3><p>12</p></article>
+        <article class="step"><h3>Gerät</h3><p>Name: Mira-01</p></article>
+        <article class="step"><h3>Entscheidung</h3><p>Ist der Bildschirm gesperrt? Dann stoppen und nichts ändern.</p></article>
+        <article class="step"><h3>Wiederholung</h3><p>Dieselbe Prüfung für drei Karten.</p></article>
+        <article class="step"><h3>Ablage</h3><p>Datei: geraetekarten.txt im fiktiven Ordner Uebung-Nordlicht</p></article>
+      </div>
+      <p>Bleibt etwas unklar, fragt Samira die ausbildende Person.</p>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Aufgabe</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Abschlussaufgabe</h2>
+      <p>Wähle pro Frage eine Antwort. Alle Fragen beziehen sich nur auf den fiktiven Ablaufzettel.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zum Zettel</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du aus Lernfeld 5 mit</h2>
+      <ul>
+        <li>Die Anweisung „zeige die Zahl“ sagt, was Samira tut.</li>
+        <li>Die 12 ist eine ganze Zahl, Mira-01 ist Text.</li>
+        <li>Ist der Bildschirm gesperrt, stoppt Samira und ändert nichts.</li>
+        <li>Dieselbe Prüfung gilt für alle drei Karten.</li>
+        <li>Der vereinbarte Name geraetekarten.txt führt zur Datei zurück.</li>
+        <li>Bei Unklarheit fragt Samira nach, bevor sie eine zweite Datei anlegt.</li>
+      </ul>
+      <p id="done" aria-live="polite"></p>
+      <h3>Die Lektionen dieses Lernfelds</h3>
+      <ul class="nachbarn">
+        <li><a href="lf5-anweisung.html">Anweisung</a></li>
+        <li><a href="lf5-werte.html">Einfache Werte</a></li>
+        <li><a href="lf5-ablauf.html">Ablauf</a></li>
+        <li><a href="lf5-wiederholung.html">Wiederholung</a></li>
+        <li><a href="lf5-ablage.html">Ablage</a></li>
+      </ul>
+      <button class="knopf" data-next="exercise">Aufgabe wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 5 · Programmiergrundlagen und Datenverwaltung · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf5-abschluss.js"></script>
+</body>
+</html>

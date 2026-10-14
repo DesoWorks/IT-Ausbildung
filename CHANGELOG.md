@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.7-alpha.1
+- Lernfeld 5 hat die unbenotete Abschlussaufgabe und steht im Katalog als verfügbar. Die fünf kleinen Lektionen bleiben. Das ist eine erste Inhaltsfassung, kein vollständiger Abgleich mit dem Rahmenlehrplan.
+- Node-Tests bestanden. Die Abschlussseite wurde nicht im Browser gesehen.
+
 ## 0.15.6-alpha.1
 - Lernfeld 5 hat drei weitere kleine Lektionen: Reihenfolge und Entscheidung lesen, eine Wiederholung erkennen, Daten ablegen und wiederfinden. Das Lernfeld bleibt „kommt bald“, weil die unbenotete Abschlussaufgabe noch fehlt.
 - In der Ablage-Lektion ist ein holpriger Feedbacksatz geglättet. Node-Tests bestanden. Die neuen Seiten wurden nicht im Browser gesehen.

@@ -49,7 +49,8 @@
     "lf5-werte": "it-ausbildung.lf5-werte.v1",
     "lf5-ablauf": "it-ausbildung.lf5-ablauf.v1",
     "lf5-wiederholung": "it-ausbildung.lf5-wiederholung.v1",
-    "lf5-ablage": "it-ausbildung.lf5-ablage.v1"
+    "lf5-ablage": "it-ausbildung.lf5-ablage.v1",
+    "lf5-abschluss": "it-ausbildung.lf5-abschluss.v1"
   };
 
   function abgeschlossen(id) {
@@ -252,6 +253,10 @@
       if (id === "lf5-ablage") {
         var ablage = state.answers || {};
         return !!state.finish && !!state.checked && ablage.q1 === "name" && ablage.q2 === "inhalt" && ablage.q3 === "nichtloeschen" && ablage.q4 === "nachfragen";
+      }
+      if (id === "lf5-abschluss") {
+        var lf5abschluss = state.answers || {};
+        return !!state.finish && !!state.checked && lf5abschluss.q1 === "anweisung" && lf5abschluss.q2 === "zahl" && lf5abschluss.q3 === "stoppen" && lf5abschluss.q4 === "gleiche" && lf5abschluss.q5 === "name" && lf5abschluss.q6 === "nachfragen";
       }
     } catch (e) { return false; }
     return false;

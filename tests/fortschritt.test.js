@@ -131,6 +131,10 @@ values.set("it-ausbildung.lf5-ablage.v1",JSON.stringify({finish:true,checked:tru
 assert.equal(api.abgeschlossen("lf5-ablage"),true,"LF5 Ablage derives completion from its own checked answers");
 values.set("it-ausbildung.lf5-ablage.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"name",q2:"inhalt",q3:"name",q4:"nachfragen"}}));
 assert.equal(api.abgeschlossen("lf5-ablage"),false,"LF5 Ablage stays unmarked with a wrong answer");
+values.set("it-ausbildung.lf5-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"anweisung",q2:"zahl",q3:"stoppen",q4:"gleiche",q5:"name",q6:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf5-abschluss"),true,"LF5 Abschluss derives completion from its own checked answers");
+values.set("it-ausbildung.lf5-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"zahl",q2:"zahl",q3:"stoppen",q4:"gleiche",q5:"name",q6:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf5-abschluss"),false,"LF5 Abschluss stays unmarked with a wrong answer");
 const marker=api.abschlusszeichen();
 assert.equal(marker.textContent,"✓"); assert.equal(marker.attrs["aria-label"],"Abgeschlossen");
 console.log("fortschritt.test.js: all assertions passed");

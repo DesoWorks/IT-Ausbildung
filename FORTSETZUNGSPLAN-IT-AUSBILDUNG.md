@@ -1,3 +1,8 @@
+## Etappe 14.10.2026 – Lernfeld-5-Abschluss
+
+- Version 0.15.7-alpha.1. Unbenotete Abschlussaufgabe angehängt. Lernfeld 5 steht als erste Inhaltsfassung im Katalog. Der Rahmenlehrplan wurde in diesem Lauf nicht gelesen. Browseransicht nicht geprüft.
+- Kein Lernfeld 6, kein Spreadshirt, kein Merge, kein Release.
+
 ## Etappe 14.10.2026 – Lernfeld 5, Lektionen 3 bis 5
 
 - Version 0.15.6-alpha.1. Drei weitere kleine Lektionen: Reihenfolge und Entscheidung, Wiederholung, Daten ablegen und wiederfinden. Lernfeld 5 bleibt „kommt bald“, bis die unbenotete Abschlussaufgabe im Katalog steht.

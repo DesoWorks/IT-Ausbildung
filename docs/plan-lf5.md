@@ -1,6 +1,6 @@
 # Plan Lernfeld 5: Programmiergrundlagen und Datenverwaltung
 
-Stand: 14.10.2026. Katalog-ID `lf5` bleibt „kommt bald“.
+Stand: 14.10.2026. Katalog-ID `lf5` ist als erste Inhaltsfassung verfügbar. Das ist kein vollständiger Abgleich mit dem Rahmenlehrplan.
 
 ## Quelle
 Das KMK-PDF wurde in diesem Lauf nicht gelesen. Der Plan ist ein Arbeitsentwurf und noch nicht gegen den Rahmenlehrplan geprüft.
@@ -12,8 +12,11 @@ Das KMK-PDF wurde in diesem Lauf nicht gelesen. Der Plan ist ein Arbeitsentwurf 
 - `lf5-wiederholung`: eine Wiederholung erkennen. Node-Test bestanden, nicht im Browser gesehen.
 - `lf5-ablage`: Daten ablegen und wiederfinden. Node-Test bestanden, nicht im Browser gesehen. Ein holpriger Feedbacksatz ist geglättet.
 
+## Jetzt auch gebaut
+- `lf5-abschluss`: unbenotete Zusammenfassung. Node-Test bestanden, nicht im Browser gesehen.
+
 ## Geplant, noch nicht gebaut
-- Unbenotete Abschlussaufgabe
+- Weitere Themen erst nach Abgleich mit dem Rahmenlehrplan.
 
 ## Bewusst draußen
 - Echte Datenbanken

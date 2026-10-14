@@ -78,13 +78,14 @@
             { id: "lf4-vorfall", typ: "lektion", titel: "Einen Vorfall beobachten und melden", beschreibung: "Beobachtung, Meldung und offenen Stand trennen, ohne Ursache zu behaupten.", page: "lf4-vorfall", status: "verfuegbar", datei: "module/lf4-vorfall.html" },
             { id: "lf4-abschluss", typ: "lektion", titel: "Lernfeld 4: Zusammenfassung und Abschlussaufgabe", beschreibung: "Schutzbedarf, Handlung, Zugang und Meldung an einem fiktiven Fall verbinden. Unbenotete Selbstprüfung.", page: "lf4-abschluss", status: "verfuegbar", datei: "module/lf4-abschluss.html" }
           ] },
-        { id: "lf5", lernfeld: "Lernfeld 5", titel: "Programmiergrundlagen und Datenverwaltung", status: "kommt-bald",
+        { id: "lf5", lernfeld: "Lernfeld 5", titel: "Programmiergrundlagen und Datenverwaltung", status: "verfuegbar",
           unterthemen: [
             { id: "lf5-anweisung", typ: "lektion", titel: "Anweisung und Daten unterscheiden", beschreibung: "An einer fiktiven Übungskarte Anweisung und Daten trennen.", page: "lf5-anweisung", status: "verfuegbar", datei: "module/lf5-anweisung.html" },
             { id: "lf5-werte", typ: "lektion", titel: "Einfache Werte lesen", beschreibung: "Text, ganze Zahl und Ja oder Nein an einer fiktiven Karte unterscheiden.", page: "lf5-werte", status: "verfuegbar", datei: "module/lf5-werte.html" },
             { id: "lf5-ablauf", typ: "lektion", titel: "Reihenfolge und Entscheidung lesen", beschreibung: "Einen fiktiven Ablaufzettel in Reihenfolge und Entscheidung lesen.", page: "lf5-ablauf", status: "verfuegbar", datei: "module/lf5-ablauf.html" },
             { id: "lf5-wiederholung", typ: "lektion", titel: "Eine Wiederholung erkennen", beschreibung: "Dieselbe Prüfung an mehreren fiktiven Karten als Wiederholung erkennen.", page: "lf5-wiederholung", status: "verfuegbar", datei: "module/lf5-wiederholung.html" },
-            { id: "lf5-ablage", typ: "lektion", titel: "Daten ablegen und wiederfinden", beschreibung: "Eine fiktive Datei an einem vereinbarten Namen ablegen und wiederfinden.", page: "lf5-ablage", status: "verfuegbar", datei: "module/lf5-ablage.html" }
+            { id: "lf5-ablage", typ: "lektion", titel: "Daten ablegen und wiederfinden", beschreibung: "Eine fiktive Datei an einem vereinbarten Namen ablegen und wiederfinden.", page: "lf5-ablage", status: "verfuegbar", datei: "module/lf5-ablage.html" },
+            { id: "lf5-abschluss", typ: "lektion", titel: "Lernfeld 5: Zusammenfassung und Abschlussaufgabe", beschreibung: "Anweisung, Wert, Entscheidung, Wiederholung und Ablage an einem fiktiven Zettel verbinden. Unbenotete Selbstprüfung.", page: "lf5-abschluss", status: "verfuegbar", datei: "module/lf5-abschluss.html" }
           ] }
       ]
     },
