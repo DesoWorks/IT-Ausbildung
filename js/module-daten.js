@@ -68,7 +68,12 @@
               status: "verfuegbar", datei: "module/netzmaske.html", page: "netzmaske" },
             { id: "lf3-subnetting", typ: "lektion", titel: "Subnetting: /24 in zwei /25-Netze teilen", beschreibung: "Lektion 3: zwei gleich große Teilnetze Schritt für Schritt.", page: "subnetting", status: "verfuegbar", datei: "module/subnetting.html" }
           ] },
-        { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "kommt-bald" },
+        { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "kommt-bald",
+          unterthemen: [
+            { id: "lf4-schutzbedarf", typ: "lektion", titel: "Schutzbedarf erkennen", beschreibung: "Hohen, mittleren und niedrigen Schutzbedarf an fiktiven Beispielen unterscheiden.", page: "lf4-schutzbedarf", status: "verfuegbar", datei: "module/lf4-schutzbedarf.html" },
+            { id: "lf4-schutzziele", typ: "lektion", titel: "Schutzziele unterscheiden", beschreibung: "Vertraulichkeit, Integrität und Verfügbarkeit an fiktiven Beispielen unterscheiden.", page: "lf4-schutzziele", status: "verfuegbar", datei: "module/lf4-schutzziele.html" },
+            { id: "lf4-risiken", typ: "lektion", titel: "Einfache Risiken einordnen", beschreibung: "Erkennbare Risiken in einem fiktiven Arbeitsplatzfall benennen und die passende Meldung wählen.", page: "lf4-risiken", status: "verfuegbar", datei: "module/lf4-risiken.html" }
+          ] },
         { id: "lf5", lernfeld: "Lernfeld 5", titel: "Programmiergrundlagen und Datenverwaltung", status: "kommt-bald" }
       ]
     },

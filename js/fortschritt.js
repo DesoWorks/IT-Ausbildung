@@ -37,7 +37,10 @@
     "lf3-abschluss": "it-ausbildung.lf3-abschluss.v1",
     "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
     "lf3-netzmaske": "it-ausbildung.netzmaske.v1",
-    "lf3-subnetting": "it-ausbildung.subnetting.v1"
+    "lf3-subnetting": "it-ausbildung.subnetting.v1",
+    "lf4-schutzbedarf": "it-ausbildung.lf4-schutzbedarf.v1",
+    "lf4-schutzziele": "it-ausbildung.lf4-schutzziele.v1",
+    "lf4-risiken": "it-ausbildung.lf4-risiken.v1"
   };
 
   function abgeschlossen(id) {
@@ -192,6 +195,18 @@
         var subnetAnswers = state.answers || {};
         return !!state.finish && subnetAnswers.q1 === "true" && subnetAnswers.q2 === "true" &&
           subnetAnswers.net1 === "192.168.1.127" && subnetAnswers.net2 === "192.168.1.129";
+      }
+      if (id === "lf4-schutzbedarf") {
+        var schutzbedarf = state.answers || {};
+        return !!state.finish && !!state.checked && schutzbedarf.q1 === "hoch" && schutzbedarf.q2 === "mittel" && schutzbedarf.q3 === "niedrig" && schutzbedarf.q4 === "abstimmen";
+      }
+      if (id === "lf4-schutzziele") {
+        var schutzziele = state.answers || {};
+        return !!state.finish && !!state.checked && schutzziele.q1 === "vertraulichkeit" && schutzziele.q2 === "integritaet" && schutzziele.q3 === "verfuegbarkeit" && schutzziele.q4 === "abstimmen";
+      }
+      if (id === "lf4-risiken") {
+        var risiken = state.answers || {};
+        return !!state.finish && !!state.checked && risiken.q1 === "offen" && risiken.q2 === "melden" && risiken.q3 === "zettel" && risiken.q4 === "nichtprobieren";
       }
     } catch (e) { return false; }
     return false;

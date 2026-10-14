@@ -83,6 +83,18 @@ values.set("it-ausbildung.lf2-kriterien.v1",JSON.stringify({finish:true,checked:
 assert.equal(api.abgeschlossen("lf2-kriterien"),false,"LF2.2 not complete with a wrong answer");
 values.set("it-ausbildung.lf1-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"yes",q2:"yes",q3:"yes",q4:"yes"}}));
 assert.equal(api.abgeschlossen("lf1-abschluss"),true,"LF1 Abschluss completion derives from all self-check items");
+values.set("it-ausbildung.lf4-schutzbedarf.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"hoch",q2:"mittel",q3:"niedrig",q4:"abstimmen"}}));
+assert.equal(api.abgeschlossen("lf4-schutzbedarf"),true,"LF4 Schutzbedarf derives completion from its own checked answers");
+values.set("it-ausbildung.lf4-schutzbedarf.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"niedrig",q2:"mittel",q3:"niedrig",q4:"abstimmen"}}));
+assert.equal(api.abgeschlossen("lf4-schutzbedarf"),false,"LF4 Schutzbedarf stays unmarked with a wrong answer");
+values.set("it-ausbildung.lf4-schutzziele.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"vertraulichkeit",q2:"integritaet",q3:"verfuegbarkeit",q4:"abstimmen"}}));
+assert.equal(api.abgeschlossen("lf4-schutzziele"),true,"LF4 Schutzziele derives completion from its own checked answers");
+values.set("it-ausbildung.lf4-schutzziele.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"erreichbar",q2:"integritaet",q3:"verfuegbarkeit",q4:"abstimmen"}}));
+assert.equal(api.abgeschlossen("lf4-schutzziele"),false,"LF4 Schutzziele stays unmarked with a wrong answer");
+values.set("it-ausbildung.lf4-risiken.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"offen",q2:"melden",q3:"zettel",q4:"nichtprobieren"}}));
+assert.equal(api.abgeschlossen("lf4-risiken"),true,"LF4 Risiken derives completion from its own checked answers");
+values.set("it-ausbildung.lf4-risiken.v1",JSON.stringify({finish:false,checked:true,answers:{q1:"offen",q2:"melden",q3:"zettel",q4:"nichtprobieren"}}));
+assert.equal(api.abgeschlossen("lf4-risiken"),false,"LF4 Risiken stays unmarked before the finish step");
 const marker=api.abschlusszeichen();
 assert.equal(marker.textContent,"✓"); assert.equal(marker.attrs["aria-label"],"Abgeschlossen");
 console.log("fortschritt.test.js: all assertions passed");

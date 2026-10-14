@@ -1,3 +1,10 @@
+## Etappe 14.10.2026 – erste Lernfeld-4-Lektion
+
+- Version 0.15.3-alpha.1. Drei kleine Lektionen: Schutzbedarf erkennen, Schutzziele unterscheiden, einfache Risiken einordnen. Lernfeld 4 bleibt „kommt bald“.
+- Glossar enthält Schutzbedarf, Vertraulichkeit, Integrität und Verfügbarkeit. Abschluss nur bei geprüften richtigen Antworten und geöffnetem Abschluss.
+- Node-Tests der drei Lektionen sowie Fortschritt, Startseite, Navigation und Glossar bestanden. Browseransicht nicht geprüft. KMK-PDF in diesem Lauf nicht gelesen; das ist keine vollständige Lernfeldabbildung.
+- Nächste Lektionen: sichere und unsichere Handlungen, Zugangsgrundlagen ohne echte Passwörter, Vorfall beobachten und melden, danach die unbenotete Abschlussaufgabe. Kein Lernfeld 6, kein Spreadshirt, kein Merge, kein Release.
+
 ## Etappe 14.10.2026 – Hex-Erklärung und Start Lernfeld 4
 
 - Ungesicherte Zahlensystem-Erklärung committet als Version 0.15.2-alpha.1: Hex ohne 0x, Vierergruppen mit Stellenwerten 8, 4, 2, 1. Node-Test bestanden. Browseransicht dieser Änderung nicht gesehen.

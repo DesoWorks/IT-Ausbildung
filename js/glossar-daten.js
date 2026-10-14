@@ -104,5 +104,9 @@ window.GLOSSAR = [
   { begriff: "Auftragsauswertung", erklaerung: "Ein geordneter Rückblick darauf, was erreicht wurde, was offen blieb und was beim nächsten Mal verbessert werden kann." },
   { begriff: "Verbesserungsmaßnahme", erklaerung: "Ein konkreter nächster Schritt, der ein festgestelltes Problem verringern soll. Eine gute Maßnahme nennt, was getan und später woran der Erfolg geprüft wird." },
   { begriff: "Befund", erklaerung: "Eine nachvollziehbare Beobachtung oder ein dokumentiertes Prüfergebnis. Ein Befund ist von einer Vermutung über die Ursache zu unterscheiden." },
-  { begriff: "Wirkungsprüfung", erklaerung: "Eine spätere Prüfung, ob eine Maßnahme das gewünschte Ergebnis erreicht hat." }
+  { begriff: "Wirkungsprüfung", erklaerung: "Eine spätere Prüfung, ob eine Maßnahme das gewünschte Ergebnis erreicht hat." },
+  { begriff: "Schutzbedarf", erklaerung: "Die Einschätzung, wie gut Informationen oder Geräte geschützt werden müssen. Je größer der mögliche Schaden bei Verlust, Veränderung oder Weitergabe, desto höher der Schutzbedarf. Die Lernseite nutzt nur fiktive Beispiele." },
+  { begriff: "Vertraulichkeit", erklaerung: "Ein Schutzziel: Informationen sollen nur befugte Personen sehen. Die Lernseite erklärt das an einem fiktiven Beispiel, ohne einen echten Zugang zu zeigen." },
+  { begriff: "Integrität", erklaerung: "Ein Schutzziel: Informationen sollen nicht unbemerkt verändert werden. Die Lernseite bleibt bei einem fiktiven Beispiel." },
+  { begriff: "Verfügbarkeit", erklaerung: "Ein Schutzziel: berechtigte Personen sollen zur vereinbarten Zeit an die benötigten Informationen kommen. Die Lernseite bleibt bei einem fiktiven Beispiel." }
 ];

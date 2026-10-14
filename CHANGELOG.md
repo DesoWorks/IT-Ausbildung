@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.3-alpha.1
+- Lernfeld 4 beginnt mit drei kleinen Lektionen: Schutzbedarf erkennen, Schutzziele unterscheiden, einfache Risiken einordnen. Das Lernfeld selbst bleibt „kommt bald“.
+- Fortschritt zählt Schritte. Node-Tests für die drei Lektionen, Fortschritt, Startseite, Navigation und Glossar bestanden. Die Seiten wurden nicht im Browser gesehen. Die KMK-PDF wurde für diese Lektionen nicht erneut gelesen.
+
 ## 0.15.2-alpha.1
 - Der Zahlensystemrechner zeigt Hexziffern ohne 0x und erklärt jede Vierergruppe mit Stellenwerten 8, 4, 2 und 1. Der alte Kennzeichnungssatz ist weg. Node-Test bestanden. Die Seite selbst wurde nicht im Browser gesehen.
 
