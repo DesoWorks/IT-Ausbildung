@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.0-alpha.1
+- Lernfeld 5 hat die kleine Lektion „Eine kurze Dokumentation lesen“. Zweck, Eingabe, Prüfung und offener Punkt werden an einer fiktiven Notiz getrennt.
+- Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.
+
 ## 0.15.9-alpha.1
 - Lernfeld 5 hat die kleine Lektion „Einen Testfall formulieren“. Ausgangslage, Handlung, erwartetes Ergebnis und Abweichung werden an einer fiktiven Übungskarte getrennt. Kein ausführbarer Code.
 - Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.

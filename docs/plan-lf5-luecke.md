@@ -24,7 +24,7 @@ Noch nicht als eigene kleine Lektion da:
 1. Daten vor dem Speichern einordnen: als `lf5-einordnen` gebaut. Node-Test bestanden, nicht im Browser gesehen. Verfügbarkeit ist im Fall nur als „wird im Übungsordner gebraucht“ angerissen.
 2. Datenformat und Speicherlösung an einem fiktiven Beispiel wählen, ohne echte Datenbank.
 3. Einen Testfall formulieren: als `lf5-testfall` gebaut. Node-Test bestanden, nicht im Browser gesehen.
-4. Eine kurze Softwaredokumentation lesen und ergänzen.
+4. Eine kurze Dokumentation lesen: als `lf5-doku` gebaut. Node-Test bestanden, nicht im Browser gesehen. Ergänzen bleibt offen.
 5. Den Arbeitsprozess bewerten: was geplant, was geprüft, was offen blieb.
 
 Bewusst nicht in dieser Fassung: echte Datenbank, SQL, ausführbarer Code, Installation, produktives System, Angriff, Passwort.
