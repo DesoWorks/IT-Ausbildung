@@ -36,13 +36,35 @@
     return digits;
   }
   function hex(value) { return hexDigits(value); }
-  function all(value) { return { dec: String(value), bin: groupBinary(value), hex: "0x" + hexDigits(value), width: width(value) }; }
+  function all(value) { return { dec: String(value), bin: groupBinary(value), hex: hexDigits(value), width: width(value) }; }
 
   /* Stellenwerttabelle: pro Bit Exponent, Wert und Bit, höchstes Bit zuerst. */
   function placeTable(value) {
     var w = width(value), b = binary(value, w), rows = [];
     for (var i = 0; i < w; i++) { var exp = w - 1 - i; rows.push({ exp: exp, weight: Math.pow(2, exp), bit: b.charAt(i) }); }
     return rows;
+  }
+
+  var HEX_WORT = { "0": "null", "1": "eins", "2": "zwei", "3": "drei", "4": "vier", "5": "fünf", "6": "sechs", "7": "sieben", "8": "acht", "9": "neun", A: "zehn", B: "elf", C: "zwölf", D: "dreizehn", E: "vierzehn", F: "fünfzehn" };
+
+  /* Eine Vierergruppe: welche der Stellen 8, 4, 2, 1 gesetzt sind, und welcher Buchstabe daraus wird. */
+  function nibbleExplain(group) {
+    var weights = [8, 4, 2, 1];
+    var bits = group.split("");
+    var set = [];
+    for (var i = 0; i < 4; i++) if (bits[i] === "1") set.push(weights[i]);
+    var sum = set.reduce(function (a, b) { return a + b; }, 0);
+    var letter = sum.toString(16).toUpperCase();
+    var summe = set.length ? set.join(" + ") + " = " + sum : "keine Stelle gesetzt, Summe 0";
+    var name = HEX_WORT[letter];
+    var buchstabe = sum < 10
+      ? "Die Summe " + sum + " bleibt die Ziffer " + letter + "."
+      : "Die Summe " + sum + " ist größer als 9. Dafür gibt es keine Ziffer, deshalb steht der Buchstabe " + letter + " für " + name + ".";
+    return {
+      group: group,
+      letter: letter,
+      text: group + ": Stellen 8, 4, 2 und 1. Gesetzte Stellen: " + summe + ". " + buchstabe
+    };
   }
 
   /* Rechenweg als Textzeilen. Quelle bestimmt den Weg. */
@@ -69,7 +91,11 @@
     var padded = bin.padStart(Math.ceil(bin.length / 4) * 4, "0");
     var groups = padded.match(/.{4}/g) || ["0000"];
     var hexGroups = groups.map(function (group) { return parseInt(group, 2).toString(16).toUpperCase(); });
-    lines.push("Hex aus Binär: " + groups.join(" ") + " → " + groups.map(function (group, index) { return group + " = " + hexGroups[index]; }).join("; ") + " → 0x" + hexDigits(value));
+    lines.push("Von vier Binärziffern zu einer Hexziffer: Jede Vierergruppe hat die Stellen 8, 4, 2 und 1. Die gesetzten Stellen werden addiert. 0 bis 9 bleiben Ziffern. Ab 10 gibt es keine Ziffer mehr, deshalb stehen A bis F für zehn bis fünfzehn.");
+    groups.forEach(function (group) {
+      lines.push(nibbleExplain(group).text);
+    });
+    lines.push("Die Hexziffern von links nach rechts aneinander: " + hexDigits(value) + ".");
     return lines;
   }
 
@@ -126,7 +152,7 @@
     out.appendChild(make("h3", "", "Stellenwerte (Binär, " + res.results.width + " Bit)"));
     out.appendChild(renderTable(res.table));
     out.appendChild(make("p", "zs-bit-summe", "Summe der gesetzten Bits: " + res.bitSum));
-    out.appendChild(make("p", "klein", "0b kennzeichnet eine Binärzahl; 0x kennzeichnet eine Hexadezimalzahl."));
+    out.appendChild(make("p", "klein", "Vier Binärziffern werden eine Hexziffer: die Stellen 8, 4, 2 und 1 addieren. Ab 10 steht ein Buchstabe, zum Beispiel 1011 = 8 + 2 + 1 = 11, und 11 heißt B."));
     out.appendChild(make("h3", "", "Rechenweg (von " + NAMES[res.base] + ")"));
     var ol = make("ol", "zs-weg"); res.steps.forEach(function (l) { ol.appendChild(make("li", "", l)); }); out.appendChild(ol);
     out.hidden = false;

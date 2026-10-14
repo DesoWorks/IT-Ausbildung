@@ -24,7 +24,7 @@
     <section class="abschnitt" aria-labelledby="zs-titel">
       <h2 id="zs-titel">Zahl umrechnen</h2>
       <p class="gross">Computer rechnen mit <strong>Bits</strong>. Hier siehst du dieselbe Zahl in drei Schreibweisen, mit Stellenwerten und Rechenweg.</p>
-      <div class="hinweis-box"><p class="hinweis-titel">So geht es</p><p>Wähle das Zahlensystem deiner Eingabe, tippe die Zahl ein und wähle „Umrechnen“. Erlaubt sind ganze Zahlen von 0 bis 4.294.967.295 (32 Bit). Leerzeichen, Unterstriche sowie die Vorsilben <code>0b</code> und <code>0x</code> sind erlaubt. <code>0b</code> kennzeichnet Binärzahlen, <code>0x</code> Hexadezimalzahlen.</p></div>
+      <div class="hinweis-box"><p class="hinweis-titel">So geht es</p><p>Wähle das Zahlensystem deiner Eingabe, tippe die Zahl ein und wähle „Umrechnen“. Erlaubt sind ganze Zahlen von 0 bis 4.294.967.295 (32 Bit). Leerzeichen und Unterstriche sind erlaubt. Vor eine Binärzahl darfst du <code>0b</code> schreiben, vor eine Hexadezimalzahl <code>0x</code>. Das sind nur Hinweise für den Rechner, keine Ziffern. Im Ergebnis stehen sie nicht.</p></div>
       <form id="zs-form" class="zs-form" novalidate>
         <label for="zs-system">Zahlensystem der Eingabe</label>
         <select id="zs-system"><option value="10">Dezimal (0–9)</option><option value="2">Binär (0, 1)</option><option value="16">Hexadezimal (0–9, A–F)</option></select>
@@ -40,7 +40,8 @@
       <h2 id="zs-wissen">Kurz erklärt</h2>
       <ul>
         <li>Binär hat zwei Ziffern (0, 1). Jede Stelle ist eine Zweierpotenz: 1, 2, 4, 8, 16 …</li>
-        <li>Hexadezimal hat 16 Ziffern (0–9, A–F). Eine Hexziffer entspricht genau 4 Bit.</li>
+        <li>Hexadezimal hat 16 Zeichen: die Ziffern 0 bis 9 und danach die Buchstaben A bis F. A heißt zehn, B heißt elf, C zwölf, D dreizehn, E vierzehn, F fünfzehn.</li>
+        <li>Vier Binärziffern werden immer eine Hexziffer. Die vier Stellen heißen 8, 4, 2 und 1. Beispiel: 1011 bedeutet 8 + 2 + 1 = 11. Elf ist größer als 9, deshalb steht dort der Buchstabe B.</li>
         <li>Ein Oktett hat 8 Bit und reicht von 0 bis 255. So entstehen die Zahlen einer IPv4-Adresse.</li>
       </ul>
     </section>

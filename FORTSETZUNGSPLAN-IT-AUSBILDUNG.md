@@ -1,3 +1,10 @@
+## Etappe 14.10.2026 – Hex-Erklärung und Start Lernfeld 4
+
+- Ungesicherte Zahlensystem-Erklärung committet als Version 0.15.2-alpha.1: Hex ohne 0x, Vierergruppen mit Stellenwerten 8, 4, 2, 1. Node-Test bestanden. Browseransicht dieser Änderung nicht gesehen.
+- Lernfeld 1 und 2 sind als erste Inhaltsfassung vorhanden. Lernfeld 3 hat sieben Lektionen plus Abschluss, bleibt im Katalog aber „kommt bald“.
+- Nächste Arbeit: Lernfeld 4 „Schutzbedarf und Grundlagen der IT-Sicherheit“, danach Lernfeld 5. Kein Lernfeld 6, kein Spreadshirt, kein Merge, kein Release.
+- Offene Prüfungen bleiben offen: Screenreader, echter Zoom, Browser-Zurück, einige Lernfeld-3-Lektionen ohne frische Sichtprüfung.
+
 # Fortsetzungsplan – IT-Ausbildung
 
 ## Gesamtauftrag LF1/LF2 – aktueller Etappenstand (11.10.2026)

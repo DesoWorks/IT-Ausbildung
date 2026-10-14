@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.15.1-alpha.1
+## 0.15.2-alpha.1
+- Der Zahlensystemrechner zeigt Hexziffern ohne 0x und erklärt jede Vierergruppe mit Stellenwerten 8, 4, 2 und 1. Der alte Kennzeichnungssatz ist weg. Node-Test bestanden. Die Seite selbst wurde nicht im Browser gesehen.
+
 - Lernfeld 3 hat eine unbenotete Zusammenfassung und Abschlussaufgabe. Sie verbindet Adresse, Netzanteil, automatische Vergabe, Namenszuordnung und Protokoll an einem fiktiven Client.
 - Fortschritt nennt Schritte statt Prozent. Leere, falsche und richtige Prüfung im lokalen Browser gelesen. Screenreader und echter Zoom bleiben offen.
 
