@@ -147,6 +147,10 @@ values.set("it-ausbildung.lf5-format.v1",JSON.stringify({finish:true,checked:tru
 assert.equal(api.abgeschlossen("lf5-format"),true,"LF5 Format derives completion from its own checked answers");
 values.set("it-ausbildung.lf5-format.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"nurtext",q2:"tabelle",q3:"getrennt",q4:"keinebank"}}));
 assert.equal(api.abgeschlossen("lf5-format"),false,"LF5 Format stays unmarked with a wrong answer");
+values.set("it-ausbildung.lf5-prozess.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"geplant",q2:"geprueft",q3:"offen",q4:"ehrlich"}}));
+assert.equal(api.abgeschlossen("lf5-prozess"),true,"LF5 Prozess derives completion from its own checked answers");
+values.set("it-ausbildung.lf5-prozess.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"offen",q2:"geprueft",q3:"offen",q4:"ehrlich"}}));
+assert.equal(api.abgeschlossen("lf5-prozess"),false,"LF5 Prozess stays unmarked with a wrong answer");
 values.set("it-ausbildung.lf5-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"anweisung",q2:"zahl",q3:"stoppen",q4:"gleiche",q5:"name",q6:"nachfragen"}}));
 assert.equal(api.abgeschlossen("lf5-abschluss"),true,"LF5 Abschluss derives completion from its own checked answers");
 values.set("it-ausbildung.lf5-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"zahl",q2:"zahl",q3:"stoppen",q4:"gleiche",q5:"name",q6:"nachfragen"}}));

@@ -89,6 +89,7 @@
             { id: "lf5-testfall", typ: "lektion", titel: "Einen Testfall formulieren", beschreibung: "Ausgangslage, Handlung, erwartetes Ergebnis und Abweichung an einer fiktiven Übungskarte trennen.", page: "lf5-testfall", status: "verfuegbar", datei: "module/lf5-testfall.html" },
             { id: "lf5-doku", typ: "lektion", titel: "Eine kurze Dokumentation lesen", beschreibung: "Zweck, Eingabe, Prüfung und offenen Punkt in einer fiktiven Notiz unterscheiden.", page: "lf5-doku", status: "verfuegbar", datei: "module/lf5-doku.html" },
             { id: "lf5-format", typ: "lektion", titel: "Ein Datenformat wählen", beschreibung: "Text, ganze Zahl und eine kleine Tabelle an einer fiktiven Übungskarte unterscheiden.", page: "lf5-format", status: "verfuegbar", datei: "module/lf5-format.html" },
+            { id: "lf5-prozess", typ: "lektion", titel: "Den Arbeitsprozess bewerten", beschreibung: "Geplant, geprüft und offen an einem fiktiven Zettel unterscheiden.", page: "lf5-prozess", status: "verfuegbar", datei: "module/lf5-prozess.html" },
             { id: "lf5-abschluss", typ: "lektion", titel: "Lernfeld 5: Zusammenfassung und Abschlussaufgabe", beschreibung: "Anweisung, Wert, Entscheidung, Wiederholung und Ablage an einem fiktiven Zettel verbinden. Unbenotete Selbstprüfung.", page: "lf5-abschluss", status: "verfuegbar", datei: "module/lf5-abschluss.html" }
           ] }
       ]

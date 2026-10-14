@@ -1,3 +1,8 @@
+## Etappe 14.10.2026 – Lernfeld 5, Arbeitsprozess
+
+- Version 0.16.2-alpha.1. Kleine Lektion `lf5-prozess`. Node-Test bestanden, nicht im Browser gesehen.
+- Die fünf genannten Lücken aus `docs/plan-lf5-luecke.md` sind als kleine Lektionen gebaut. Ergänzen der Dokumentation bleibt ein offener Satz, keine eigene Lektion. Kein Lernfeld 6, kein Spreadshirt, kein Merge. Keine der neuen Seiten im Browser gesehen.
+
 ## Etappe 14.10.2026 – Lernfeld 5, Datenformat
 
 - Version 0.16.1-alpha.1. Kleine Lektion `lf5-format`. Node-Test bestanden, nicht im Browser gesehen.

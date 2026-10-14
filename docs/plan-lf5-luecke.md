@@ -25,6 +25,6 @@ Noch nicht als eigene kleine Lektion da:
 2. Datenformat und Speicherlösung an einem fiktiven Beispiel wählen: als `lf5-format` gebaut. Node-Test bestanden, nicht im Browser gesehen. Keine echte Datenbank.
 3. Einen Testfall formulieren: als `lf5-testfall` gebaut. Node-Test bestanden, nicht im Browser gesehen.
 4. Eine kurze Dokumentation lesen: als `lf5-doku` gebaut. Node-Test bestanden, nicht im Browser gesehen. Ergänzen bleibt offen.
-5. Den Arbeitsprozess bewerten: was geplant, was geprüft, was offen blieb.
+5. Den Arbeitsprozess bewerten: als `lf5-prozess` gebaut. Node-Test bestanden, nicht im Browser gesehen.
 
 Bewusst nicht in dieser Fassung: echte Datenbank, SQL, ausführbarer Code, Installation, produktives System, Angriff, Passwort.

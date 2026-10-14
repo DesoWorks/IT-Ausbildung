@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.2-alpha.1
+- Lernfeld 5 hat die kleine Lektion „Den Arbeitsprozess bewerten“. Geplant, geprüft und offen werden an einem fiktiven Zettel getrennt.
+- Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.
+
 ## 0.16.1-alpha.1
 - Lernfeld 5 hat die kleine Lektion „Ein Datenformat wählen“. Text, ganze Zahl und eine kleine Tabelle werden an einer fiktiven Übungskarte getrennt. Keine Datenbank.
 - Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.
