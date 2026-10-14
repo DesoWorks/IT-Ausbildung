@@ -68,16 +68,21 @@
               status: "verfuegbar", datei: "module/netzmaske.html", page: "netzmaske" },
             { id: "lf3-subnetting", typ: "lektion", titel: "Subnetting: /24 in zwei /25-Netze teilen", beschreibung: "Lektion 3: zwei gleich große Teilnetze Schritt für Schritt.", page: "subnetting", status: "verfuegbar", datei: "module/subnetting.html" }
           ] },
-        { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "kommt-bald",
+        { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "verfuegbar",
           unterthemen: [
             { id: "lf4-schutzbedarf", typ: "lektion", titel: "Schutzbedarf erkennen", beschreibung: "Hohen, mittleren und niedrigen Schutzbedarf an fiktiven Beispielen unterscheiden.", page: "lf4-schutzbedarf", status: "verfuegbar", datei: "module/lf4-schutzbedarf.html" },
             { id: "lf4-schutzziele", typ: "lektion", titel: "Schutzziele unterscheiden", beschreibung: "Vertraulichkeit, Integrität und Verfügbarkeit an fiktiven Beispielen unterscheiden.", page: "lf4-schutzziele", status: "verfuegbar", datei: "module/lf4-schutzziele.html" },
             { id: "lf4-risiken", typ: "lektion", titel: "Einfache Risiken einordnen", beschreibung: "Erkennbare Risiken in einem fiktiven Arbeitsplatzfall benennen und die passende Meldung wählen.", page: "lf4-risiken", status: "verfuegbar", datei: "module/lf4-risiken.html" },
             { id: "lf4-handlungen", typ: "lektion", titel: "Sichere und unsichere Handlungen unterscheiden", beschreibung: "Sichere und unsichere Handlungen an einem fiktiven Arbeitsplatz unterscheiden und bei Unklarheit nachfragen.", page: "lf4-handlungen", status: "verfuegbar", datei: "module/lf4-handlungen.html" },
             { id: "lf4-zugang", typ: "lektion", titel: "Zugangsgrundlagen ohne echte Zugangswörter", beschreibung: "Eigene Zugänge nutzen, Funde melden und keine Beispielwörter oder fremden Zugänge verwenden.", page: "lf4-zugang", status: "verfuegbar", datei: "module/lf4-zugang.html" },
-            { id: "lf4-vorfall", typ: "lektion", titel: "Einen Vorfall beobachten und melden", beschreibung: "Beobachtung, Meldung und offenen Stand trennen, ohne Ursache zu behaupten.", page: "lf4-vorfall", status: "verfuegbar", datei: "module/lf4-vorfall.html" }
+            { id: "lf4-vorfall", typ: "lektion", titel: "Einen Vorfall beobachten und melden", beschreibung: "Beobachtung, Meldung und offenen Stand trennen, ohne Ursache zu behaupten.", page: "lf4-vorfall", status: "verfuegbar", datei: "module/lf4-vorfall.html" },
+            { id: "lf4-abschluss", typ: "lektion", titel: "Lernfeld 4: Zusammenfassung und Abschlussaufgabe", beschreibung: "Schutzbedarf, Handlung, Zugang und Meldung an einem fiktiven Fall verbinden. Unbenotete Selbstprüfung.", page: "lf4-abschluss", status: "verfuegbar", datei: "module/lf4-abschluss.html" }
           ] },
-        { id: "lf5", lernfeld: "Lernfeld 5", titel: "Programmiergrundlagen und Datenverwaltung", status: "kommt-bald" }
+        { id: "lf5", lernfeld: "Lernfeld 5", titel: "Programmiergrundlagen und Datenverwaltung", status: "kommt-bald",
+          unterthemen: [
+            { id: "lf5-anweisung", typ: "lektion", titel: "Anweisung und Daten unterscheiden", beschreibung: "An einer fiktiven Übungskarte Anweisung und Daten trennen.", page: "lf5-anweisung", status: "verfuegbar", datei: "module/lf5-anweisung.html" },
+            { id: "lf5-werte", typ: "lektion", titel: "Einfache Werte lesen", beschreibung: "Text, ganze Zahl und Ja oder Nein an einer fiktiven Karte unterscheiden.", page: "lf5-werte", status: "verfuegbar", datei: "module/lf5-werte.html" }
+          ] }
       ]
     },
     {

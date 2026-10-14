@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.15.5-alpha.1
+- Lernfeld 4 hat die unbenotete Abschlussaufgabe und steht im Katalog als verfügbar. Die sechs kleinen Lektionen bleiben. Die Abschlussaufgabe verbindet Schutzbedarf, Handlung, Zugang und Meldung an einem fiktiven Fall.
+- Lernfeld 5 beginnt mit zwei kleinen Lektionen: Anweisung und Daten unterscheiden, einfache Werte lesen. Das Lernfeld selbst bleibt „kommt bald“. Der Rahmenlehrplan wurde in diesem Lauf nicht gelesen.
+- Node-Tests bestanden. Die neuen Seiten wurden nicht im Browser gesehen.
+
 ## 0.15.4-alpha.1
 - Lernfeld 4 hat drei weitere kleine Lektionen: sichere und unsichere Handlungen, Zugangsgrundlagen ohne echte Zugangswörter, einen Vorfall beobachten und melden. Das Lernfeld selbst bleibt „kommt bald“, weil die unbenotete Abschlussaufgabe noch fehlt.
 - Die Übungsüberschrift nennt „Zugänge richtig nutzen“, nicht „umgehen“. Node-Tests bestanden. Die Seiten wurden nicht im Browser gesehen.

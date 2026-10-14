@@ -1,3 +1,10 @@
+## Etappe 14.10.2026 – Lernfeld-4-Abschluss und Lernfeld-5-Anfang
+
+- Version 0.15.5-alpha.1. Commit folgt in dieser Etappe. Lernfeld 4 hat sechs kleine Lektionen plus unbenotete Abschlussaufgabe und ist im Katalog verfügbar. Das ist keine Aussage, dass der Rahmenlehrplan vollständig abgedeckt ist. Das KMK-PDF wurde in diesem Lauf nicht gelesen.
+- Lernfeld 5 hat die ersten beiden kleinen Lektionen: Anweisung und Daten, einfache Werte. Lernfeld 5 bleibt „kommt bald“. Kein ausführbarer Code, keine Angriffe, keine echten Datenbanken.
+- Node-Tests der neuen Dateien und der Fortschrittslogik sind in dieser Etappe zu bestätigen. Browseransicht nicht geprüft.
+- Nächster Schritt: Reihenfolge und Entscheidung, Wiederholung, Daten ablegen und wiederfinden, dann die unbenotete Abschlussaufgabe. Kein Lernfeld 6, kein Spreadshirt, kein Merge, kein Release.
+
 ## Etappe 14.10.2026 – Lernfeld 4, Lektionen 4 bis 6
 
 - Version 0.15.4-alpha.1. Neue Lektionen: lf4-handlungen, lf4-zugang, lf4-vorfall. Lernfeld 4 bleibt „kommt bald“, bis die unbenotete Abschlussaufgabe im Katalog steht.

@@ -43,7 +43,10 @@
     "lf4-risiken": "it-ausbildung.lf4-risiken.v1",
     "lf4-handlungen": "it-ausbildung.lf4-handlungen.v1",
     "lf4-zugang": "it-ausbildung.lf4-zugang.v1",
-    "lf4-vorfall": "it-ausbildung.lf4-vorfall.v1"
+    "lf4-vorfall": "it-ausbildung.lf4-vorfall.v1",
+    "lf4-abschluss": "it-ausbildung.lf4-abschluss.v1",
+    "lf5-anweisung": "it-ausbildung.lf5-anweisung.v1",
+    "lf5-werte": "it-ausbildung.lf5-werte.v1"
   };
 
   function abgeschlossen(id) {
@@ -222,6 +225,18 @@
       if (id === "lf4-vorfall") {
         var vorfall = state.answers || {};
         return !!state.finish && !!state.checked && vorfall.q1 === "beobachten" && vorfall.q2 === "nichtvermuten" && vorfall.q3 === "melden" && vorfall.q4 === "nichtuntersuchen";
+      }
+      if (id === "lf4-abschluss") {
+        var abschluss = state.answers || {};
+        return !!state.finish && !!state.checked && abschluss.q1 === "hoch" && abschluss.q2 === "sperren" && abschluss.q3 === "vertraulichkeit" && abschluss.q4 === "melden" && abschluss.q5 === "eigen" && abschluss.q6 === "nachfragen";
+      }
+      if (id === "lf5-anweisung") {
+        var anweisung = state.answers || {};
+        return !!state.finish && !!state.checked && anweisung.q1 === "anweisung" && anweisung.q2 === "daten" && anweisung.q3 === "nichtmischen" && anweisung.q4 === "nachfragen";
+      }
+      if (id === "lf5-werte") {
+        var werte = state.answers || {};
+        return !!state.finish && !!state.checked && werte.q1 === "text" && werte.q2 === "zahl" && werte.q3 === "janein" && werte.q4 === "nichtrechnen";
       }
     } catch (e) { return false; }
     return false;

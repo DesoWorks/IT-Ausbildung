@@ -107,6 +107,18 @@ values.set("it-ausbildung.lf4-vorfall.v1",JSON.stringify({finish:true,checked:tr
 assert.equal(api.abgeschlossen("lf4-vorfall"),true,"LF4 Vorfall derives completion from its own checked answers");
 values.set("it-ausbildung.lf4-vorfall.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"beobachten",q2:"melden",q3:"melden",q4:"nichtuntersuchen"}}));
 assert.equal(api.abgeschlossen("lf4-vorfall"),false,"LF4 Vorfall stays unmarked with a wrong answer");
+values.set("it-ausbildung.lf4-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"hoch",q2:"sperren",q3:"vertraulichkeit",q4:"melden",q5:"eigen",q6:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf4-abschluss"),true,"LF4 Abschluss derives completion from its own checked answers");
+values.set("it-ausbildung.lf4-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"hoch",q2:"sperren",q3:"vertraulichkeit",q4:"melden",q5:"eigen",q6:"weitergeben"}}));
+assert.equal(api.abgeschlossen("lf4-abschluss"),false,"LF4 Abschluss stays unmarked with a wrong answer");
+values.set("it-ausbildung.lf5-anweisung.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"anweisung",q2:"daten",q3:"nichtmischen",q4:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf5-anweisung"),true,"LF5 Anweisung derives completion from its own checked answers");
+values.set("it-ausbildung.lf5-anweisung.v1",JSON.stringify({finish:false,checked:true,answers:{q1:"anweisung",q2:"daten",q3:"nichtmischen",q4:"nachfragen"}}));
+assert.equal(api.abgeschlossen("lf5-anweisung"),false,"LF5 Anweisung stays unmarked before the finish step");
+values.set("it-ausbildung.lf5-werte.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"text",q2:"zahl",q3:"janein",q4:"nichtrechnen"}}));
+assert.equal(api.abgeschlossen("lf5-werte"),true,"LF5 Werte derives completion from its own checked answers");
+values.set("it-ausbildung.lf5-werte.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"zahl",q2:"zahl",q3:"janein",q4:"nichtrechnen"}}));
+assert.equal(api.abgeschlossen("lf5-werte"),false,"LF5 Werte stays unmarked with a wrong answer");
 const marker=api.abschlusszeichen();
 assert.equal(marker.textContent,"✓"); assert.equal(marker.attrs["aria-label"],"Abgeschlossen");
 console.log("fortschritt.test.js: all assertions passed");
