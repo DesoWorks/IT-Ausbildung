@@ -157,4 +157,30 @@ values.set("it-ausbildung.lf5-abschluss.v1",JSON.stringify({finish:true,checked:
 assert.equal(api.abgeschlossen("lf5-abschluss"),false,"LF5 Abschluss stays unmarked with a wrong answer");
 const marker=api.abschlusszeichen();
 assert.equal(marker.textContent,"✓"); assert.equal(marker.attrs["aria-label"],"Abgeschlossen");
+assert.equal(marker.className,"abschlusszeichen","completion marker uses the shared visual style");
+assert(css.includes(".abschlusszeichen") && css.includes("background: #176b32; color: #fff"),"completion marker is visibly green");
+
+// LF3 lesson pages expose a percentage that follows checked answers and the finish step.
+for (const file of [
+  "lf3-client-anbindung.js",
+  "lf3-ipv4-konfiguration.js",
+  "lf3-dhcp.js",
+  "lf3-dns.js",
+  "lf3-verbindung-eingrenzen.js"
+]) {
+  const lesson = require(path.join(root, "js", file));
+  assert.equal(lesson.ID, file.slice(0, -3), file + " exports its lesson id");
+  assert.equal(lesson.progressText({}), "Fortschritt: 0 %", file + " starts at zero percent");
+  const answers = Object.fromEntries(lesson.QUESTIONS.map(q => [q.id, q.correct]));
+  assert.equal(lesson.progressText({checked: true, answers}), "Fortschritt: 80 %", file + " reports checked-answer progress");
+  assert.equal(lesson.progressText({checked: true, answers, finish: true}), "Fortschritt: 100 %", file + " reaches one hundred percent at completion");
+  assert.equal(lesson.progressText({checked: true, answers: {}, finish: true}), "Fortschritt: 20 %", file + " does not award answer progress for empty answers");
+  values.set(lesson.KEY, JSON.stringify({checked: true, answers, finish: true}));
+  assert.equal(api.abgeschlossen(lesson.ID), true, file + " is recognized as complete for the green marker");
+  answers[lesson.QUESTIONS[0].id] = "wrong-answer";
+  values.set(lesson.KEY, JSON.stringify({checked: true, answers, finish: true}));
+  assert.equal(api.abgeschlossen(lesson.ID), false, file + " loses completion when a checked answer is wrong");
+  const html = fs.readFileSync(path.join(root, "module", file.replace(".js", ".html")), "utf8");
+  assert(html.includes('id="pct"') && html.includes("Fortschritt: 0 %"), file + " page contains its visible percentage readout");
+}
 console.log("fortschritt.test.js: all assertions passed");

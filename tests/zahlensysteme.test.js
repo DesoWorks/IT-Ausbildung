@@ -16,6 +16,17 @@ assert.equal(z.convert("c0", 16).value, 192); assert.equal(z.convert("0xFF", 16)
 assert.equal(z.convert("A", 16).results.hex, "0A", "Hex folgt der Bytebreite, nicht der gekürzten Schreibweise");
 assert.equal(z.convert("A", 16).steps.at(-1).endsWith("0A."), true, "Rechenweg und Ergebnis nennen dieselbe Hexzahl");
 assert.equal(z.convert("10", 16).value, 16, "Hex 10 ist 16, nicht die Dezimalzahl 10");
+assert.equal(z.convert("100", 16).value, 256, "Hex-Stelle 16^2: 100 ist 256");
+assert(z.convert("100", 16).steps.some(l => l.includes("Stelle 16^2: 1 (= 1) × 256 = 256")), "Rechenweg nennt die echte Hex-Stelle 16^2");
+assert.equal(z.convert("100", 16).steps.filter(l => l.startsWith("Stelle 16^")).length, 3, "aufgefüllte Anzeigestelle 16^3 gehört nicht zum Rechenweg");
+assert.equal(z.convert("A", 16).steps.filter(l => l.startsWith("Stelle")).length, 1, "eine eingegebene Hexziffer bleibt eine Stelle");
+assert.equal(z.convert("10", 8).value, 8, "Oktal 10 ist 8, nicht die Dezimalzahl 10");
+assert.equal(z.convert("0o10", 8).value, 8, "Vorsilbe 0o gehört zum Oktalsystem");
+assert.equal(z.convert("377", 8).value, 255, "Oktal 377 ist 255");
+assert(z.convert("10", 8).steps.some(l => l.includes("Stelle 8^1: 1 × 8 = 8")), "Rechenweg nennt die echte Oktalstelle");
+assert.equal(z.convert("10", 8).results.oct, "010", "Oktal folgt der Dreiergruppenbreite, nicht der gekürzten Schreibweise");
+assert.equal(z.convert("11000000", 2).value, 192, "Binär bleibt Basis 2");
+assert.equal(z.convert("256", 10).value, 256, "Dezimal bleibt Basis 10");
 assert.equal(z.convert("FF", 16).value, 255);
 assert.equal(z.convert("DEADBEEF", 16).results.hex, "DEADBEEF");
 assert.equal(z.convert("190", 10).results.hex, "BE", "190 ist BE, nicht 0xBE");
@@ -24,7 +35,7 @@ assert.equal(z.convert("0", 10).bitSum, "Kein Bit gesetzt; Summe: 0");
 assert.equal(z.convert("256", 10).bitSum, "256 = 256");
 assert.equal(z.convert("4294967295", 10).results.hex, "FFFFFFFF"); assert.equal(z.convert("256", 10).results.bin, "0000 0001 0000 0000");
 // Validierung
-for (const [t, b] of [["", 10], ["  ", 2], ["12", 2], ["xyz", 16], ["-5", 10], ["1.5", 10], ["4294967296", 10], ["1" + "0".repeat(32), 2], ["FFFFFFFFF", 16], ["0x", 16], ["2", 2], ["G", 16]]) {
+for (const [t, b] of [["", 10], ["  ", 2], ["12", 2], ["xyz", 16], ["-5", 10], ["1.5", 10], ["4294967296", 10], ["1" + "0".repeat(32), 2], ["FFFFFFFFF", 16], ["0x", 16], ["2", 2], ["G", 16], ["8", 8], ["0o", 8], ["1" + "0".repeat(11), 8]]) {
   const x = z.convert(t, b); assert.equal(x.ok, false, JSON.stringify([t, b])); assert(x.error && x.error.length > 5);
 }
 assert.equal(z.convert("0000000000000000000000000000000000001", 2).ok, true, "führende Nullen zählen nicht");
@@ -44,8 +55,10 @@ assert(z.steps(0, 10)[0].includes("0 : 2 = 0 Rest 0"));
 for (const s of ["navigation.js", "anzeige-glossar.js", "glossar-daten.js", "zahlensysteme.js", "module-daten.js"]) assert(html.includes(s), s);
 assert(html.includes('data-page="zahlensysteme"') && html.includes("skip-link") && html.includes('lang="de"'));
 assert(html.includes('for="zs-eingabe"') && html.includes('for="zs-system"') && html.includes('role="alert"') && html.includes('aria-live="polite"'));
+assert(html.includes('value="8"') && html.includes("Oktal"), "Oktal ist als Eingabesystem wählbar");
 assert(!js.includes("0b kennzeichnet eine Binärzahl; 0x kennzeichnet eine Hexadezimalzahl."), "alter Vorsilben-Satz steht nicht mehr im Ergebnis");
 assert(js.includes("1011 = 8 + 2 + 1 = 11") && js.includes("11 heißt B"), "Beispiel 1011 zu B steht im Ergebnis");
+assert(js.includes("0o kennzeichnet eine Oktalzahl."), "Oktalvorsilbe erklärt");
 assert(html.includes("1011 bedeutet 8 + 2 + 1 = 11") && html.includes("Buchstabe B"), "Kurz erklärt zeigt den Weg von 1011 nach B");
 assert(html.includes("keine Ziffern") && !html.includes("0b</code> kennzeichnet"), "Hilfetext nennt Vorsilben nur als Eingabehilfe");
 assert(js.includes('addEventListener("input", clearResult)') && js.includes('addEventListener("change", clearResult)'), "stale result wird gelöscht");

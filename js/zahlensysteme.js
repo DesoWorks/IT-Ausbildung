@@ -2,10 +2,10 @@
 (function (global) {
   "use strict";
   var MAX = 4294967295; /* 32 Bit ohne Vorzeichen */
-  var NAMES = { 2: "Binär", 10: "Dezimal", 16: "Hexadezimal" };
-  var PATTERN = { 2: /^[01]+$/, 10: /^[0-9]+$/, 16: /^[0-9a-f]+$/ };
-  var PREFIX = { 2: "0b", 10: "", 16: "0x" };
-  var MAXLEN = { 2: 32, 10: 10, 16: 8 };
+  var NAMES = { 2: "Binär", 8: "Oktal", 10: "Dezimal", 16: "Hexadezimal" };
+  var PATTERN = { 2: /^[01]+$/, 8: /^[0-7]+$/, 10: /^[0-9]+$/, 16: /^[0-9a-f]+$/ };
+  var PREFIX = { 2: "0b", 8: "0o", 10: "", 16: "0x" };
+  var MAXLEN = { 2: 32, 8: 11, 10: 10, 16: 8 };
 
   /* Prüft eine Eingabe und liefert { ok, value } oder { ok:false, error }. */
   function parse(text, base) {
@@ -16,14 +16,25 @@
     if (!s) return { ok: false, error: "Nach der Vorsilbe fehlen die Ziffern." };
     if (s.charAt(0) === "-" || s.charAt(0) === "+") return { ok: false, error: "Es sind nur ganze Zahlen ohne Vorzeichen möglich (0 bis 4.294.967.295)." };
     if (!PATTERN[base].test(s)) {
-      var allowed = base === 2 ? "0 und 1" : base === 10 ? "0 bis 9" : "0 bis 9 und A bis F";
+      var allowed = base === 2 ? "0 und 1" : base === 8 ? "0 bis 7" : base === 10 ? "0 bis 9" : "0 bis 9 und A bis F";
       return { ok: false, error: NAMES[base] + " erlaubt nur die Ziffern " + allowed + "." };
     }
     var sig = s.replace(/^0+/, "") || "0";
     if (sig.length > MAXLEN[base]) return { ok: false, error: "Die Zahl ist zu groß. Der Rechner unterstützt 32 Bit (0 bis 4.294.967.295)." };
-    var value = parseInt(sig, base);
-    if (value > MAX) return { ok: false, error: "Die Zahl ist zu groß. Der Rechner unterstützt 32 Bit (0 bis 4.294.967.295)." };
-    return { ok: true, value: value };
+    var value = fromDigits(sig, base);
+    if (value === null || value > MAX) return { ok: false, error: "Die Zahl ist zu groß. Der Rechner unterstützt 32 Bit (0 bis 4.294.967.295)." };
+    return { ok: true, value: value, digits: sig, base: base };
+  }
+
+  /* Wert aus den echten Ziffern. Jede Stelle zählt mit ihrer Basispotenz, nicht mit einer aufgefüllten Anzeige. */
+  function fromDigits(digits, base) {
+    var value = 0, i, d;
+    for (i = 0; i < digits.length; i++) {
+      d = parseInt(digits.charAt(i), base);
+      if (d !== d) return null;
+      value = value * base + d;
+    }
+    return value;
   }
 
   function width(value) { var w = 8; while (value >= Math.pow(2, w)) w += 8; return w; }
@@ -36,7 +47,14 @@
     return digits;
   }
   function hex(value) { return hexDigits(value); }
-  function all(value) { return { dec: String(value), bin: groupBinary(value), hex: hexDigits(value), width: width(value) }; }
+  function octalDigits(value) {
+    var digits = value.toString(8);
+    var groups = Math.ceil(width(value) / 3);
+    while (digits.length < groups) digits = "0" + digits;
+    return digits;
+  }
+  function groupOctal(value) { return octalDigits(value).replace(/(.{3})(?=.)/g, "$1 "); }
+  function all(value) { return { dec: String(value), bin: groupBinary(value), oct: octalDigits(value), hex: hexDigits(value), width: width(value) }; }
 
   /* Stellenwerttabelle: pro Bit Exponent, Wert und Bit, höchstes Bit zuerst. */
   function placeTable(value) {
@@ -68,17 +86,20 @@
   }
 
   /* Rechenweg als Textzeilen. Quelle bestimmt den Weg. */
-  function steps(value, base) {
+  function steps(value, base, digits) {
     var lines = [], i, total;
     if (base === 2) {
-      var b = binary(value), parts = [];
+      var b = String(digits || binary(value)).replace(/^0+/, "") || "0", parts = [];
       for (i = 0; i < b.length; i++) if (b.charAt(i) === "1") { var e = b.length - 1 - i; lines.push("Stelle 2^" + e + ": 1 × " + Math.pow(2, e) + " = " + Math.pow(2, e)); parts.push(Math.pow(2, e)); }
       lines.push(parts.length ? "Summe: " + parts.join(" + ") + " = " + value : "Alle Bits sind 0, die Summe ist 0.");
-    } else if (base === 16) {
-      var h = hex(value); total = [];
+    } else if (base === 8 || base === 16) {
+      var h = String(digits || (base === 8 ? value.toString(8) : hex(value))).toUpperCase();
+      h = h.replace(/^0+/, "") || "0";
+      total = [];
       for (i = 0; i < h.length; i++) {
-        var d = parseInt(h.charAt(i), 16), p = h.length - 1 - i, w16 = Math.pow(16, p);
-        lines.push("Stelle 16^" + p + ": " + h.charAt(i) + " (= " + d + ") × " + w16 + " = " + d * w16); total.push(d * w16);
+        var d = parseInt(h.charAt(i), base), p = h.length - 1 - i, weight = Math.pow(base, p);
+        var label = base === 16 ? h.charAt(i) + " (= " + d + ")" : String(d);
+        lines.push("Stelle " + base + "^" + p + ": " + label + " × " + weight + " = " + d * weight); total.push(d * weight);
       }
       lines.push("Summe: " + total.join(" + ") + " = " + value);
     } else {
@@ -107,7 +128,7 @@
   function convert(text, base) {
     var p = parse(text, base);
     if (!p.ok) return p;
-    return { ok: true, value: p.value, results: all(p.value), table: placeTable(p.value), bitSum: bitSum(p.value), steps: steps(p.value, base), base: base };
+    return { ok: true, value: p.value, results: all(p.value), table: placeTable(p.value), bitSum: bitSum(p.value), steps: steps(p.value, base, p.digits), base: base };
   }
 
   var api = { parse: parse, convert: convert, placeTable: placeTable, bitSum: bitSum, steps: steps, groupBinary: groupBinary, hex: hex, width: width, max: MAX, names: NAMES };
@@ -147,12 +168,12 @@
     clearResult();
     var out = el("zs-ergebnis"); out.appendChild(make("h3", "", "Ergebnis"));
     var dl = make("dl", "zs-werte");
-    [["Dezimal", res.results.dec], ["Binär", res.results.bin], ["Hexadezimal", res.results.hex]].forEach(function (x) { dl.appendChild(make("dt", "", x[0])); dl.appendChild(make("dd", "", x[1])); });
+    [["Dezimal", res.results.dec], ["Binär", res.results.bin], ["Oktal", res.results.oct], ["Hexadezimal", res.results.hex]].forEach(function (x) { dl.appendChild(make("dt", "", x[0])); dl.appendChild(make("dd", "", x[1])); });
     out.appendChild(dl);
     out.appendChild(make("h3", "", "Stellenwerte (Binär, " + res.results.width + " Bit)"));
     out.appendChild(renderTable(res.table));
     out.appendChild(make("p", "zs-bit-summe", "Summe der gesetzten Bits: " + res.bitSum));
-    out.appendChild(make("p", "klein", "Vier Binärziffern werden eine Hexziffer: die Stellen 8, 4, 2 und 1 addieren. Ab 10 steht ein Buchstabe, zum Beispiel 1011 = 8 + 2 + 1 = 11, und 11 heißt B."));
+    out.appendChild(make("p", "klein", "Vier Binärziffern werden eine Hexziffer: die Stellen 8, 4, 2 und 1 addieren. Ab 10 steht ein Buchstabe, zum Beispiel 1011 = 8 + 2 + 1 = 11, und 11 heißt B. 0o kennzeichnet eine Oktalzahl."));
     out.appendChild(make("h3", "", "Rechenweg (von " + NAMES[res.base] + ")"));
     var ol = make("ol", "zs-weg"); res.steps.forEach(function (l) { ol.appendChild(make("li", "", l)); }); out.appendChild(ol);
     out.hidden = false;

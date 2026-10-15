@@ -65,5 +65,5 @@ const iPrev = lf3.indexOf('id: "lf3-verbindung-eingrenzen"'), iNew = lf3.indexOf
 assert(iPrev > -1 && iNew > iPrev && iIpv4 > iNew, "Lektion steht nach Verbindung eingrenzen und vor IPv4");
 for (const id of ["lf3-client-anbindung", "lf3-ipv4-konfiguration", "lf3-dhcp", "lf3-dns", "lf3-verbindung-eingrenzen", "lf3-ipv4", "lf3-netzmaske", "lf3-subnetting"]) assert(lf3.includes('id: "' + id + '"'), id + " bleibt erhalten");
 assert.equal((lf3.match(/id: "lf3-fehlerbild-protokoll"/g) || []).length, 1);
-assert(catalog.includes('titel: "Netzwerkgrundlagen und Client-Anbindung", status: "kommt-bald"'));
+assert(catalog.includes('titel: "Netzwerkgrundlagen und Client-Anbindung", status: "verfuegbar"'));
 console.log("lf3-fehlerbild-protokoll.test.js: PASS — HTML, Fortschritt, leerer Check, richtige/falsche Antworten, Glossar und LF3-Katalog");

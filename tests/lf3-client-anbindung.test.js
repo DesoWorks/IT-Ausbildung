@@ -46,5 +46,5 @@ assert(!html.includes("von 5 Schritten"));
 const lf3 = catalog.slice(catalog.indexOf('{ id: "lf3"'), catalog.indexOf('{ id: "lf4"'));
 assert(lf3.includes('{ id: "lf3-client-anbindung", typ: "lektion", titel: "Client-Anbindung: vom Anschluss bis zur Verbindung"'));
 assert(lf3.includes('page: "lf3-client-anbindung", status: "verfuegbar", datei: "module/lf3-client-anbindung.html"'));
-assert(catalog.includes('titel: "Netzwerkgrundlagen und Client-Anbindung", status: "kommt-bald"'));
+assert(catalog.includes('titel: "Netzwerkgrundlagen und Client-Anbindung", status: "verfuegbar"'));
 console.log("lf3-client-anbindung.test.js: PASS — HTML, Fortschritt, leerer Check, richtige/falsche Antworten und LF3-Katalog");

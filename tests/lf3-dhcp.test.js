@@ -46,5 +46,5 @@ assert(lf3.includes('{ id: "lf3-dhcp", typ: "lektion", titel: "DHCP: automatisch
 assert(lf3.includes('page: "lf3-dhcp", status: "verfuegbar", datei: "module/lf3-dhcp.html"'));
 for (const id of ["lf3-client-anbindung", "lf3-ipv4-konfiguration", "lf3-ipv4", "lf3-netzmaske", "lf3-subnetting"]) assert(lf3.includes('id: "' + id + '"'), id + " bleibt erhalten");
 assert.equal((lf3.match(/id: "lf3-dhcp"/g) || []).length, 1);
-assert(catalog.includes('titel: "Netzwerkgrundlagen und Client-Anbindung", status: "kommt-bald"'));
+assert(catalog.includes('titel: "Netzwerkgrundlagen und Client-Anbindung", status: "verfuegbar"'));
 console.log("lf3-dhcp.test.js: PASS — HTML, Fortschritt, leerer Check, richtige/falsche Antworten, Glossar und LF3-Katalog");

@@ -49,5 +49,5 @@ assert(lf3.includes('{ id: "lf3-ipv4-konfiguration", typ: "lektion", titel: "IPv
 assert(lf3.includes('page: "lf3-ipv4-konfiguration", status: "verfuegbar", datei: "module/lf3-ipv4-konfiguration.html"'));
 for (const id of ["lf3-client-anbindung", "lf3-ipv4", "lf3-netzmaske", "lf3-subnetting"]) assert(lf3.includes('id: "' + id + '"'), id + " bleibt erhalten");
 assert.equal((lf3.match(/id: "lf3-ipv4-konfiguration"/g) || []).length, 1);
-assert(catalog.includes('titel: "Netzwerkgrundlagen und Client-Anbindung", status: "kommt-bald"'));
+assert(catalog.includes('titel: "Netzwerkgrundlagen und Client-Anbindung", status: "verfuegbar"'));
 console.log("lf3-ipv4-konfiguration.test.js: PASS — HTML, Fortschritt, leerer Check, richtige/falsche Antworten, Verknüpfungen und LF3-Katalog");

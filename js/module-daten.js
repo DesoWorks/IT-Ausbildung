@@ -53,7 +53,7 @@
             { id: "lf2-auswertung", typ: "lektion", titel: "Auftrag auswerten und verbessern", beschreibung: "Fiktiven Auftrag anhand von Kriterien auswerten und Verbesserungen ableiten.", page: "lf2-auswertung", status: "verfuegbar", datei: "module/lf2-auswertung.html" },
             { id: "lf2-abschluss", typ: "lektion", titel: "Lernfeld 2: Integrierte Abschlussaufgabe", beschreibung: "Einen fiktiven Kundenauftrag vom Bedarf bis zur Auswertung bearbeiten.", page: "lf2-abschluss", status: "verfuegbar", datei: "module/lf2-abschluss.html" }
           ] },
-        { id: "lf3", lernfeld: "Lernfeld 3", titel: "Netzwerkgrundlagen und Client-Anbindung", status: "kommt-bald",
+        { id: "lf3", lernfeld: "Lernfeld 3", titel: "Netzwerkgrundlagen und Client-Anbindung", status: "verfuegbar",
           unterthemen: [
             { id: "lf3-client-anbindung", typ: "lektion", titel: "Client-Anbindung: vom Anschluss bis zur Verbindung", beschreibung: "Bausteine einer fiktiven Client-Anbindung benennen und eine Verbindungsskizze lesen.", page: "lf3-client-anbindung", status: "verfuegbar", datei: "module/lf3-client-anbindung.html" },
             { id: "lf3-ipv4-konfiguration", typ: "lektion", titel: "IPv4-Konfiguration eines Clients lesen", beschreibung: "Adresse, Präfix/Netzmaske und Gateway einer fiktiven Client-Anzeige lesen und mit einer Testnetz-Karte vergleichen.", page: "lf3-ipv4-konfiguration", status: "verfuegbar", datei: "module/lf3-ipv4-konfiguration.html" },
