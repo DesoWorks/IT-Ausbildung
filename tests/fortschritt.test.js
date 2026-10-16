@@ -83,6 +83,10 @@ values.set("it-ausbildung.lf2-kriterien.v1",JSON.stringify({finish:true,checked:
 assert.equal(api.abgeschlossen("lf2-kriterien"),false,"LF2.2 not complete with a wrong answer");
 values.set("it-ausbildung.lf1-abschluss.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"yes",q2:"yes",q3:"yes",q4:"yes"}}));
 assert.equal(api.abgeschlossen("lf1-abschluss"),true,"LF1 Abschluss completion derives from all self-check items");
+values.set("it-ausbildung.lf3-lernziel.v1",JSON.stringify({finish:true,answers:{0:"a",1:"b",2:"a",3:"b",4:"b",5:"b",6:"b",7:"c",8:"a",9:"c",10:"c",11:"c",12:"a",13:"a",14:"a",15:"a",16:"a",17:"a",18:"a",19:"c",20:"a",21:"b",22:"b",23:"b"}}));
+assert.equal(api.abgeschlossen("lf3-lernziel"),true,"LF3 Lernzielkontrolle derives completion from all 24 correct answers");
+values.set("it-ausbildung.lf3-lernziel.v1",JSON.stringify({finish:true,answers:{0:"a",1:"b",2:"a",3:"c",4:"c",5:"b",6:"a",7:"c",8:"b",9:"a",10:"b",11:"c",12:"a",13:"c",14:"b",15:"c",16:"c",17:"b",18:"b",19:"a",20:"b",21:"c",22:"b",23:"c"}}));
+assert.equal(api.abgeschlossen("lf3-lernziel"),false,"LF3 Lernzielkontrolle stays unmarked with one wrong answer");
 values.set("it-ausbildung.lf4-schutzbedarf.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"hoch",q2:"mittel",q3:"niedrig",q4:"abstimmen"}}));
 assert.equal(api.abgeschlossen("lf4-schutzbedarf"),true,"LF4 Schutzbedarf derives completion from its own checked answers");
 values.set("it-ausbildung.lf4-schutzbedarf.v1",JSON.stringify({finish:true,checked:true,answers:{q1:"niedrig",q2:"mittel",q3:"niedrig",q4:"abstimmen"}}));

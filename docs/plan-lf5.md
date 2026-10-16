@@ -13,7 +13,7 @@ Das KMK-PDF wurde in diesem Lauf nicht gelesen. Der Plan ist ein Arbeitsentwurf 
 - `lf5-ablage`: Daten ablegen und wiederfinden. Node-Test bestanden, nicht im Browser gesehen. Ein holpriger Feedbacksatz ist geglättet.
 
 ## Jetzt auch gebaut
-- `lf5-abschluss`: unbenotete Zusammenfassung. Node-Test bestanden, nicht im Browser gesehen.
+- `lf5-abschluss`: am 16.10.2026 gelöscht. Die unbenotete Zusammenfassung steht nicht mehr im Katalog.
 
 ## Geplant, noch nicht gebaut
 - Weitere Themen erst nach Abgleich mit dem Rahmenlehrplan.

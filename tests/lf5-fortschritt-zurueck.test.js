@@ -14,8 +14,7 @@ const lessons = [
   "lf5-testfall",
   "lf5-doku",
   "lf5-format",
-  "lf5-prozess",
-  "lf5-abschluss"
+  "lf5-prozess"
 ];
 const values = new Map();
 const window = {

@@ -10,8 +10,7 @@ const lessons = [
   "lf4-risiken",
   "lf4-handlungen",
   "lf4-zugang",
-  "lf4-vorfall",
-  "lf4-abschluss"
+  "lf4-vorfall"
 ];
 const values = new Map();
 const window = {

@@ -29,6 +29,7 @@
     "lf2-uebergabe": "it-ausbildung.lf2-uebergabe.v1",
     "lf2-auswertung": "it-ausbildung.lf2-auswertung.v1",
     "lf2-abschluss": "it-ausbildung.lf2-abschluss.v1",
+    "lf2-lernziel": "it-ausbildung.lf2-lernziel.v1",
     "lf3-client-anbindung": "it-ausbildung.lf3-client-anbindung.v1",
     "lf3-ipv4-konfiguration": "it-ausbildung.lf3-ipv4-konfiguration.v1",
     "lf3-dhcp": "it-ausbildung.lf3-dhcp.v1",
@@ -36,9 +37,11 @@
     "lf3-verbindung-eingrenzen": "it-ausbildung.lf3-verbindung-eingrenzen.v1",
     "lf3-fehlerbild-protokoll": "it-ausbildung.lf3-fehlerbild-protokoll.v1",
     "lf3-abschluss": "it-ausbildung.lf3-abschluss.v1",
+    "lf3-lernziel": "it-ausbildung.lf3-lernziel.v1",
     "lf3-ipv4": "it-ausbildung.netzwerkgrundlagen.v1",
     "lf3-netzmaske": "it-ausbildung.netzmaske.v1",
     "lf3-subnetting": "it-ausbildung.subnetting.v1",
+    "lf4-lernziel": "it-ausbildung.lf4-lernziel.v1",
     "lf4-schutzbedarf": "it-ausbildung.lf4-schutzbedarf.v1",
     "lf4-schutzziele": "it-ausbildung.lf4-schutzziele.v1",
     "lf4-risiken": "it-ausbildung.lf4-risiken.v1",
@@ -56,7 +59,8 @@
     "lf5-doku": "it-ausbildung.lf5-doku.v1",
     "lf5-format": "it-ausbildung.lf5-format.v1",
     "lf5-prozess": "it-ausbildung.lf5-prozess.v1",
-    "lf5-abschluss": "it-ausbildung.lf5-abschluss.v1"
+    "lf5-abschluss": "it-ausbildung.lf5-abschluss.v1",
+    "lf5-lernziel": "it-ausbildung.lf5-lernziel.v1"
   };
 
   function abgeschlossen(id) {
@@ -168,9 +172,16 @@
         var finalAnswers = state.answers || {};
         return !!state.finish && !!state.checked && ["q1", "q2", "q3", "q4"].every(function (q) { return finalAnswers[q] === "yes"; });
       }
-      if (id === "lf1-lernziel") {
+      if (id === "lf1-lernziel" || id === "lf2-lernziel" || id === "lf3-lernziel" || id === "lf4-lernziel" || id === "lf5-lernziel") {
         var kontrolle = state.answers || {};
-        var soll = ["b", "b", "a", "c", "a", "b", "a", "c", "c", "a", "b", "a", "b", "c", "a", "c", "b", "a", "b", "b", "b", "a", "b", "b"];
+        var sollMap = {
+          "lf1-lernziel": ["b", "b", "a", "c", "a", "b", "a", "c", "c", "a", "b", "a", "b", "c", "a", "c", "b", "a", "b", "b", "b", "a", "b", "b"],
+          "lf2-lernziel": ["b", "b", "b", "b", "c", "b", "b", "b", "b", "b", "b", "c", "b", "b", "c", "c", "a", "c", "c", "c", "c", "c", "c", "c"],
+          "lf3-lernziel": ["a", "b", "a", "b", "b", "b", "b", "c", "a", "c", "c", "c", "a", "a", "a", "a", "a", "a", "a", "c", "a", "b", "b", "b"],
+          "lf4-lernziel": ["b", "b", "a", "b", "b", "a", "a", "c", "c", "c", "a", "c", "c", "a", "b", "b", "c", "b", "a", "b", "a", "a", "b", "a"],
+          "lf5-lernziel": ["b", "c", "c", "b", "c", "b", "b", "b", "b", "b", "c", "a", "a", "c", "a", "a", "c", "c", "c", "c", "a", "b", "b", "a"]
+        };
+        var soll = sollMap[id];
         return !!state.finish && soll.every(function (wert, index) { return kontrolle[index] === wert; });
       }
       if (id === "lf3-client-anbindung") {

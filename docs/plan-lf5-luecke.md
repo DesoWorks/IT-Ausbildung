@@ -15,7 +15,7 @@ Die Lernenden sollen Informationen mittels Daten abbilden, diese Daten verwalten
 - Reihenfolge und Entscheidung: `lf5-ablauf`
 - Dieselbe Prüfung mehrfach: `lf5-wiederholung`
 - Dateiname und Ablage: `lf5-ablage`
-- Unbenotete Verbindung dieser Punkte: `lf5-abschluss`
+- Unbenotete Verbindung dieser Punkte: `lf5-abschluss` war vorhanden und ist am 16.10.2026 gelöscht.
 
 ## Ehrliche Lücke
 

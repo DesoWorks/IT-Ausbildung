@@ -33,8 +33,17 @@ const startseitenScript = fs.readFileSync(path.join(wurzel, "js/startseite.js"),
 assert(startseitenScript.includes('field.typ !== "werkzeug"'), "Startseite schließt typisierte Werkzeuge defensiv aus");
 const lernfelder = j1.filter(m => m.lernfeld);
 assert.deepStrictEqual(lernfelder.map(m => [m.lernfeld, m.titel]), erwartetJahr1, "Jahr-1-Titel wörtlich");
+lernfelder.forEach((lernfeld, index) => {
+  const nummer = index + 1;
+  const themen = lernfeld.unterthemen;
+  assert(!themen.some(u => u.id === `lf${nummer}-abschluss` || u.page === `lf${nummer}-abschluss` || u.datei === `module/lf${nummer}-abschluss.html`), `LF${nummer}: alte Abschlussseite nicht mehr im Katalog`);
+  const kontrollen = themen.filter(u => u.typ === "lernzielkontrolle");
+  assert.strictEqual(kontrollen.length, 1, `LF${nummer}: genau eine Lernzielkontrolle`);
+  assert.strictEqual(kontrollen[0].titel, `LF${nummer} Lernzielkontrolle`, `LF${nummer}: einheitlicher Kontrolltitel`);
+  assert.strictEqual(themen[themen.length - 1], kontrollen[0], `LF${nummer}: Lernzielkontrolle steht am Ende`);
+});
 const lf1 = j1.find(m => m.id === "lf1");
-assert.equal(lf1.unterthemen.length, 11, "elf katalogisierte LF1-Themen, einschließlich Abschlussaufgabe");
+assert.equal(lf1.unterthemen.length, 11, "elf katalogisierte LF1-Themen, einschließlich Lernzielkontrolle und ohne alte Abschlussaufgabe");
 assert.equal(lf1.unterthemen[0].page, "lf1-ausbildungsbetrieb");
 assert(fs.existsSync(path.join(wurzel, lf1.unterthemen[0].datei)), "LF1-Lektion verlinkt auf vorhandene Datei");
 assert.strictEqual(daten[1].module.length, 4, "Jahr 2: vier Bereiche");
@@ -48,10 +57,10 @@ assert.deepStrictEqual(lf3.unterthemen.map(u => u.titel), [
   "DNS: Namen und IP-Adressen unterscheiden",
   "Verbindung systematisch eingrenzen",
   "Typische Client-Fehlerbilder dokumentieren und übergeben",
-  "Lernfeld 3: Zusammenfassung und Abschlussaufgabe",
   "IPv4",
   "Netzmaske und Netz-/Geräteanteil",
-  "Subnetting: /24 in zwei /25-Netze teilen"
+  "Subnetting: /24 in zwei /25-Netze teilen",
+  "LF3 Lernzielkontrolle"
 ]);
 const zahlensysteme = global.MODULE_TOOLS.find(u => u.id === "lf3-zahlensysteme");
 assert(zahlensysteme.status === "verfuegbar" && zahlensysteme.datei === "module/zahlensysteme.html", "Zahlensystemrechner: verfügbar mit Moduldatei");

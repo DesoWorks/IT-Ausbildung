@@ -682,6 +682,7 @@ Keine Codeänderung, kein Commit/Push/Merge oder Release in dieser Vorbereitungs
 
 
 ### Aktualisierung nach LF2.12 und integrierter Aufgabe
+- Stand 16.10.2026: `module/lf2-abschluss.html` und die übrigen vier Abschlussseiten sind gelöscht und stehen nicht mehr im Katalog. Die Fortschrittsschlüssel bleiben für alte Speicherstände. Der folgende Satz beschreibt den damaligen Stand.
 - LF2.12 „Auftrag auswerten und verbessern“ und `module/lf2-abschluss.html` sind jetzt lokal vorhanden; Modul-Katalog, Fortschrittsschlüssel und Glossar wurden ergänzt. Die zuvor sofort fehlgeschlagene Jarvis-Delegation blieb ohne Retry; diese Inhalte wurden in diesem Lauf lokal erstellt.
 - Gezielte Testdatei `tests/lf2-auswertung.test.js` prüft Antworten, stabile IDs, Feedbackmodelle, Fortschritt, Katalog und Glossar. Die Regressionstests für LF2.2/LF2.3 und frühere LF2-Module wurden auf den jetzt verfügbaren LF2.12-Status angepasst.
 - Noch nicht erfolgt: interaktive Browserprüfung, komplette integrierte Abschlussaufgabe Testdatei, Versionierung/Dokumentation vollständig verifizieren, commit/push/PR-Abgleich.

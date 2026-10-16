@@ -30,10 +30,10 @@ assert.equal(treffer.textContent, "4 Begriffe gefunden.");
 assert.deepEqual(terms, ["Zebra", "Äpfel", "bit", "Abteilung"], "Quelldaten werden nicht umsortiert");
 
 // CSS-Regeln (nur Textprüfung, kein Browserlauf).
-assert(css.includes("break-inside: avoid"));
-assert(/min-width: 1100px\)\s*\{[\s\S]*?\.glossar-liste \{ columns: 3/.test(css));
-assert(/min-width: 1600px\)\s*\{[\s\S]*?\.glossar-liste \{ columns: 4/.test(css));
-assert(!/\.glossar-liste \{ columns: 2/.test(css), "Zwei-Spalten-Stufe ist abgelöst");
+// Raster statt Spalten: ein aufgeklapptes Wort bleibt in seiner Spalte.
+assert(css.includes(".glossar-liste { display: grid; grid-template-columns: 1fr;"));
+assert(/min-width: 1100px\)\s*\{[\s\S]*?\.glossar-liste \{ grid-template-columns: repeat\(3, minmax\(0, 1fr\)\)/.test(css));
+assert(/min-width: 1600px\)\s*\{[\s\S]*?\.glossar-liste \{ grid-template-columns: repeat\(4, minmax\(0, 1fr\)\)/.test(css));
 assert(!/\.glossar \{ max-width: 860px/.test(css), "Glossar nutzt die Inhaltsbreite");
 assert(css.includes("#questions > .question") && css.includes("margin: 0 0 1.5rem"));
 assert(/\.site-nav \{[^}]*overflow-y: auto[^}]*overflow-x: hidden/.test(css));

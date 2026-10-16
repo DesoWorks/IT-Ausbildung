@@ -94,6 +94,7 @@
           state.answers[index] = input.value;
           speichern();
         });
+        label.className = "quiz-option";
         label.appendChild(input);
         label.appendChild(doc.createTextNode(" " + option));
         feld.appendChild(label);

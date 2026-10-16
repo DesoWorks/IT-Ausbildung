@@ -35,8 +35,7 @@
             { id: "lf1-praesentation", typ: "lektion", titel: "Arbeitsergebnisse verständlich präsentieren", beschreibung: "Einen fiktiven IT-Arbeitsstand strukturiert und adressatengerecht vorstellen.", page: "lf1-praesentation", status: "verfuegbar", datei: "module/lf1-praesentation.html" },
             { id: "lf1-qualitaet", typ: "lektion", titel: "Qualität prüfen und verbessern", beschreibung: "Eine fiktive Darstellung nach klaren Kriterien prüfen und Verbesserungsvorschläge ableiten.", page: "lf1-qualitaet", status: "verfuegbar", datei: "module/lf1-qualitaet.html" },
             { id: "lf1-reflexion", typ: "lektion", titel: "Rolle und eigenes Handeln reflektieren", beschreibung: "Eine fiktive berufliche Situation auswerten und einen nächsten Entwicklungsschritt benennen.", page: "lf1-reflexion", status: "verfuegbar", datei: "module/lf1-reflexion.html" },
-            { id: "lf1-abschluss", typ: "lektion", titel: "Zusammenfassung und Übungsaufgabe", beschreibung: "Übung: ein fiktives Unternehmen und die eigene Rolle zusammenhängend darstellen. Das ist nicht die Lernzielkontrolle.", page: "lf1-abschluss", status: "verfuegbar", datei: "module/lf1-abschluss.html" },
-            { id: "lf1-lernziel", typ: "lernzielkontrolle", titel: "Lernzielkontrolle", beschreibung: "24 Fragen zu den vorhandenen Lektionen. Nach der Abgabe gesperrt. Zurücksetzen nur mit dem Passwort der Lernzielkontrolle.", page: "lf1-lernziel", status: "verfuegbar", datei: "module/lf1-lernziel.html" }
+            { id: "lf1-lernziel", typ: "lernzielkontrolle", titel: "LF1 Lernzielkontrolle", beschreibung: "24 Fragen zu den vorhandenen Lektionen. Nach der Abgabe gesperrt. Zurücksetzen nur mit dem Passwort der Lernzielkontrolle.", page: "lf1-lernziel", status: "verfuegbar", datei: "module/lf1-lernziel.html" }
           ] },
         { id: "lf2", lernfeld: "Lernfeld 2", titel: "Arbeitsplätze nach Kundenwunsch ausstatten", status: "verfuegbar",
           unterthemen: [
@@ -52,7 +51,7 @@
             { id: "lf2-einrichten", typ: "lektion", titel: "Arbeitsplatz einrichten und prüfen", beschreibung: "Simulierte, sichere Einrichtung und Prüfung planen.", page: "lf2-einrichten", status: "verfuegbar", datei: "module/lf2-einrichten.html" },
             { id: "lf2-uebergabe", typ: "lektion", titel: "Arbeitsplatz übergeben und dokumentieren", beschreibung: "Prüfergebnisse in einem fiktiven Übergabeprotokoll festhalten.", page: "lf2-uebergabe", status: "verfuegbar", datei: "module/lf2-uebergabe.html" },
             { id: "lf2-auswertung", typ: "lektion", titel: "Auftrag auswerten und verbessern", beschreibung: "Fiktiven Auftrag anhand von Kriterien auswerten und Verbesserungen ableiten.", page: "lf2-auswertung", status: "verfuegbar", datei: "module/lf2-auswertung.html" },
-            { id: "lf2-abschluss", typ: "lektion", titel: "Lernfeld 2: Integrierte Abschlussaufgabe", beschreibung: "Einen fiktiven Kundenauftrag vom Bedarf bis zur Auswertung bearbeiten.", page: "lf2-abschluss", status: "verfuegbar", datei: "module/lf2-abschluss.html" }
+            { id: "lf2-lernziel", typ: "lernzielkontrolle", titel: "LF2 Lernzielkontrolle", beschreibung: "24 Fragen zu den vorhandenen Lektionen. Nach der Abgabe gesperrt. Zurücksetzen nur mit dem Passwort der Lernzielkontrolle.", page: "lf2-lernziel", status: "verfuegbar", datei: "module/lf2-lernziel.html" }
           ] },
         { id: "lf3", lernfeld: "Lernfeld 3", titel: "Netzwerkgrundlagen und Client-Anbindung", status: "verfuegbar",
           unterthemen: [
@@ -62,12 +61,12 @@
             { id: "lf3-dns", typ: "lektion", titel: "DNS: Namen und IP-Adressen unterscheiden", beschreibung: "Eine fiktive Namensauflösung in einer Übungstabelle lesen und Namen von IP-Adressen unterscheiden.", page: "lf3-dns", status: "verfuegbar", datei: "module/lf3-dns.html" },
             { id: "lf3-verbindung-eingrenzen", typ: "lektion", titel: "Verbindung systematisch eingrenzen", beschreibung: "Vorgegebene Beobachtungen zu einer fiktiven Verbindung ordnen und die nächste sinnvolle Beobachtung auswählen.", page: "lf3-verbindung-eingrenzen", status: "verfuegbar", datei: "module/lf3-verbindung-eingrenzen.html" },
             { id: "lf3-fehlerbild-protokoll", typ: "lektion", titel: "Typische Client-Fehlerbilder dokumentieren und übergeben", beschreibung: "Beobachtung, getesteten Schritt und Ergebnis in einem fiktiven Supportprotokoll trennen und geordnet übergeben.", page: "lf3-fehlerbild-protokoll", status: "verfuegbar", datei: "module/lf3-fehlerbild-protokoll.html" },
-            { id: "lf3-abschluss", typ: "lektion", titel: "Lernfeld 3: Zusammenfassung und Abschlussaufgabe", beschreibung: "Einen fiktiven Client von der Anzeige bis zum Protokoll lesen und die Beobachtungen verbinden.", page: "lf3-abschluss", status: "verfuegbar", datei: "module/lf3-abschluss.html" },
             { id: "lf3-ipv4", typ: "lektion", titel: "IPv4", beschreibung: "Lektion 1: IPv4-Adresse und vier Oktette.", page: "netzwerkgrundlagen",
               status: "verfuegbar", datei: "module/netzwerkgrundlagen.html" },
             { id: "lf3-netzmaske", typ: "lektion", titel: "Netzmaske und Netz-/Geräteanteil", beschreibung: "Lektion 2: Beispiel 192.168.1.20/24.",
               status: "verfuegbar", datei: "module/netzmaske.html", page: "netzmaske" },
-            { id: "lf3-subnetting", typ: "lektion", titel: "Subnetting: /24 in zwei /25-Netze teilen", beschreibung: "Lektion 3: zwei gleich große Teilnetze Schritt für Schritt.", page: "subnetting", status: "verfuegbar", datei: "module/subnetting.html" }
+            { id: "lf3-subnetting", typ: "lektion", titel: "Subnetting: /24 in zwei /25-Netze teilen", beschreibung: "Lektion 3: zwei gleich große Teilnetze Schritt für Schritt.", page: "subnetting", status: "verfuegbar", datei: "module/subnetting.html" },
+            { id: "lf3-lernziel", typ: "lernzielkontrolle", titel: "LF3 Lernzielkontrolle", beschreibung: "24 Fragen zu den vorhandenen Lektionen. Nach der Abgabe gesperrt. Zurücksetzen nur mit dem Passwort der Lernzielkontrolle.", page: "lf3-lernziel", status: "verfuegbar", datei: "module/lf3-lernziel.html" },
           ] },
         { id: "lf4", lernfeld: "Lernfeld 4", titel: "Schutzbedarf und Grundlagen der IT-Sicherheit", status: "verfuegbar",
           unterthemen: [
@@ -77,7 +76,7 @@
             { id: "lf4-handlungen", typ: "lektion", titel: "Sichere und unsichere Handlungen unterscheiden", beschreibung: "Sichere und unsichere Handlungen an einem fiktiven Arbeitsplatz unterscheiden und bei Unklarheit nachfragen.", page: "lf4-handlungen", status: "verfuegbar", datei: "module/lf4-handlungen.html" },
             { id: "lf4-zugang", typ: "lektion", titel: "Zugangsgrundlagen ohne echte Zugangswörter", beschreibung: "Eigene Zugänge nutzen, Funde melden und keine Beispielwörter oder fremden Zugänge verwenden.", page: "lf4-zugang", status: "verfuegbar", datei: "module/lf4-zugang.html" },
             { id: "lf4-vorfall", typ: "lektion", titel: "Einen Vorfall beobachten und melden", beschreibung: "Beobachtung, Meldung und offenen Stand trennen, ohne Ursache zu behaupten.", page: "lf4-vorfall", status: "verfuegbar", datei: "module/lf4-vorfall.html" },
-            { id: "lf4-abschluss", typ: "lektion", titel: "Lernfeld 4: Zusammenfassung und Abschlussaufgabe", beschreibung: "Schutzbedarf, Handlung, Zugang und Meldung an einem fiktiven Fall verbinden. Unbenotete Selbstprüfung.", page: "lf4-abschluss", status: "verfuegbar", datei: "module/lf4-abschluss.html" }
+            { id: "lf4-lernziel", typ: "lernzielkontrolle", titel: "LF4 Lernzielkontrolle", beschreibung: "24 Fragen zu den vorhandenen Lektionen. Nach der Abgabe gesperrt. Zurücksetzen nur mit dem Passwort der Lernzielkontrolle.", page: "lf4-lernziel", status: "verfuegbar", datei: "module/lf4-lernziel.html" }
           ] },
         { id: "lf5", lernfeld: "Lernfeld 5", titel: "Programmiergrundlagen und Datenverwaltung", status: "verfuegbar",
           unterthemen: [
@@ -91,7 +90,7 @@
             { id: "lf5-doku", typ: "lektion", titel: "Eine kurze Dokumentation lesen", beschreibung: "Zweck, Eingabe, Prüfung und offenen Punkt in einer fiktiven Notiz unterscheiden.", page: "lf5-doku", status: "verfuegbar", datei: "module/lf5-doku.html" },
             { id: "lf5-format", typ: "lektion", titel: "Ein Datenformat wählen", beschreibung: "Text, ganze Zahl und eine kleine Tabelle an einer fiktiven Übungskarte unterscheiden.", page: "lf5-format", status: "verfuegbar", datei: "module/lf5-format.html" },
             { id: "lf5-prozess", typ: "lektion", titel: "Den Arbeitsprozess bewerten", beschreibung: "Geplant, geprüft und offen an einem fiktiven Zettel unterscheiden.", page: "lf5-prozess", status: "verfuegbar", datei: "module/lf5-prozess.html" },
-            { id: "lf5-abschluss", typ: "lektion", titel: "Lernfeld 5: Zusammenfassung und Abschlussaufgabe", beschreibung: "Anweisung, Wert, Entscheidung, Wiederholung und Ablage an einem fiktiven Zettel verbinden. Unbenotete Selbstprüfung.", page: "lf5-abschluss", status: "verfuegbar", datei: "module/lf5-abschluss.html" }
+            { id: "lf5-lernziel", typ: "lernzielkontrolle", titel: "LF5 Lernzielkontrolle", beschreibung: "24 Fragen zu den vorhandenen Lektionen. Nach der Abgabe gesperrt. Zurücksetzen nur mit dem Passwort der Lernzielkontrolle.", page: "lf5-lernziel", status: "verfuegbar", datei: "module/lf5-lernziel.html" }
           ] }
       ]
     },

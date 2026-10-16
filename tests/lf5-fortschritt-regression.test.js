@@ -14,8 +14,7 @@ const lessons = [
   "lf5-testfall",
   "lf5-doku",
   "lf5-format",
-  "lf5-prozess",
-  "lf5-abschluss"
+  "lf5-prozess"
 ];
 const values = new Map();
 const window = {
@@ -226,22 +225,6 @@ for (const id of lessons) {
   reloaded.document.querySelectorAll("[data-step]").find((button) => button.dataset.step === "finish").click();
   reloaded.document.querySelectorAll("[data-step]").find((button) => button.dataset.step === "finish").click();
   assert.equal(reloaded.document.getElementById("pct").textContent, done, id + " opens the finish step once after a repeated click");
-  if (id === "lf5-abschluss") {
-    const openedOnce = storage.getItem(lesson.KEY);
-    const writes = storage.setItem;
-    let summaryWrites = 0;
-    storage.setItem = function (key, value) {
-      if (key === lesson.KEY) summaryWrites += 1;
-      return writes.call(storage, key, value);
-    };
-    const refreshedSummary = boot(id, html, storage, () => false);
-    storage.setItem = writes;
-    assert.equal(summaryWrites, 0, id + " does not write a second progress entry when the opened summary is reloaded");
-    assert.equal(storage.getItem(lesson.KEY), openedOnce, id + " keeps the same stored progress when the opened summary is reloaded");
-    assert.equal(refreshedSummary.document.getElementById("pct").textContent, done, id + " keeps one opened finish step after the summary is reloaded");
-    assert.equal(refreshedSummary.document.getElementById("finish").hidden, false, id + " restores the opened summary without counting it again");
-    assert.equal(refreshedSummary.notified || 0, 0, id + " does not notify progress again when the opened summary is reloaded");
-  }
   assert.equal(reloaded.document.getElementById("finish").hidden, false, id + " shows the finish step after the repeated click");
   assert.equal(stored(storage, lesson.KEY).finish, true, id + " stores the opened finish step");
   values.set(lesson.KEY, storage.getItem(lesson.KEY));

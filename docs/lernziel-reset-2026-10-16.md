@@ -1,6 +1,6 @@
 # Lernzielkontrolle zurücksetzen · 16.10.2026
 
-- Betrifft nur die fünf Abschlussseiten `module/lf1-abschluss.html` bis `module/lf5-abschluss.html`.
+- Stand am Abend des 16.10.2026: Die fünf Abschlussseiten `module/lf1-abschluss.html` bis `module/lf5-abschluss.html` und ihre Skripte sind gelöscht. Sie stehen nicht mehr im Katalog. Diese Notiz beschreibt den früheren Reset dieser Seiten und ist keine aktuelle Bedienungsanleitung.
 - Der Knopf „Fortschritt zurücksetzen“ (`reset-all`) fragt das Projektpasswort ab. Der Wortlaut liegt beim Commander und steht hier nicht.
 - Der SHA-256-Hash steht in `js/lernziel-reset.js`. Der Browser vergleicht die Eingabe über `crypto.subtle`. Groß- und Kleinschreibung zählt. Leer, falsch, Abbrechen oder fehlende Kryptografie lässt den Stand stehen.
 - Ein richtiges Passwort lässt nur den bestehenden Reset dieser einen Abschlussseite laufen. Andere Lektionen werden nicht geleert.
