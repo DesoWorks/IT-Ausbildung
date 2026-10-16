@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lektion 2: IPv4-Netzmaske, Netzanteil und Geräteanteil am Beispiel /24.">
+  <title>Netzwerkgrundlagen – Lektion 2: Netzmaske</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+</head>
+<body data-page="netzmaske" data-base="../">
+  <a class="skip-link" href="#hauptinhalt">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+    <p class="kopf-marke">IT-Ausbildung · Netzwerkgrundlagen</p>
+    <h1>Lektion 2: Netzmaske und Geräteanteil</h1>
+    <p class="kopf-dauer">Dauer: ungefähr 12 Minuten · kein Zeitdruck</p>
+  </div></header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button type="button" class="schritt-knopf" data-ziel="erklaerung" aria-current="true">1 · Erklärung</button></li>
+      <li><button type="button" class="schritt-knopf" data-ziel="schaubild">2 · Schaubild</button></li>
+      <li><button type="button" class="schritt-knopf" data-ziel="uebung">3 · Übung</button></li>
+      <li><button type="button" class="schritt-knopf" data-ziel="abschluss">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt"><div class="fortschritt-leiste"><div class="fortschritt-balken" id="fortschritt-balken" style="width:0%"></div></div><p class="fortschritt-text" id="fortschritt-text" aria-live="polite">Fortschritt: 0 %</p></div>
+  </nav>
+  <main id="hauptinhalt" tabindex="-1">
+    <section id="erklaerung" class="abschnitt" aria-labelledby="erklaerung-titel">
+      <h2 id="erklaerung-titel">Was sagt die Netzmaske?</h2>
+      <p class="gross">Eine IPv4-Adresse hat einen <strong>Netzanteil</strong> und einen <strong>Geräteanteil</strong>. Die Netzmaske zeigt, wo die Grenze liegt.</p>
+      <div class="hinweis-box"><p class="hinweis-titel">Lernziel</p><p>Du liest /24 und 255.255.255.0, trennst Netz- und Geräteanteil und erkennst Netz- und Broadcastadresse.</p></div>
+      <h3>Beispiel: 192.168.1.20/24</h3>
+      <p>Die Schreibweise <strong>/24</strong> bedeutet: Die ersten 24 Bits gehören zum Netzanteil. Bei diesem Beispiel entspricht das der Netzmaske <strong>255.255.255.0</strong>.</p>
+      <ul>
+        <li>Netzanteil: <strong>192.168.1</strong></li>
+        <li>Geräteanteil: <strong>20</strong></li>
+        <li>Netzadresse: <strong>192.168.1.0</strong> (alle Bits des Geräteanteils sind 0)</li>
+        <li>Broadcastadresse: <strong>192.168.1.255</strong> (alle Bits des Geräteanteils sind 1)</li>
+        <li>Im üblichen /24-Netz sind 192.168.1.1 bis 192.168.1.254 für Geräte nutzbar: <strong>254 Adressen</strong>.</li>
+      </ul>
+      <p>Wichtig: /24 liegt genau zwischen zwei Oktetten. Bei anderen Präfixen kann die Grenze mitten in einem Oktett liegen. Das rechnen wir in einer späteren Lektion. Hier geht es noch nicht um Subnetting.</p>
+      <h3>Fachwörter</h3><p class="klein">Wähle einen Begriff, um die kurze Erklärung zu öffnen. Das zentrale Glossar findest du unter „Wörter & Begriffe“.</p>
+      <div id="fachwoerter-liste"></div>
+      <div class="knopf-reihe"><button type="button" class="knopf knopf-haupt" data-weiter="schaubild">Weiter zum Schaubild</button></div>
+    </section>
+    <section id="schaubild" class="abschnitt" aria-labelledby="schaubild-titel" hidden>
+      <h2 id="schaubild-titel">Schaubild: die Grenze bei /24</h2>
+      <figure class="netz-schaubild">
+        <svg viewBox="0 0 720 210" role="img" aria-labelledby="maske-svg-titel maske-svg-desc">
+          <title id="maske-svg-titel">Netz- und Geräteanteil der Adresse 192.168.1.20/24</title>
+          <desc id="maske-svg-desc">Die ersten drei Oktette 192, 168 und 1 sind der Netzanteil. Das vierte Oktett 20 ist der Geräteanteil. Die Maske lautet 255.255.255.0.</desc>
+          <rect class="svg-netz-box" x="10" y="45" width="480" height="90" rx="10"/><rect class="svg-host-box" x="505" y="45" width="205" height="90" rx="10"/>
+          <text class="svg-label" x="250" y="32">Netzanteil</text><text class="svg-label" x="607" y="32">Geräteanteil</text>
+          <text class="svg-address" x="250" y="100">192.168.1</text><text class="svg-address" x="607" y="100">.20</text>
+          <text class="svg-label" x="360" y="180">Maske: 255.255.255.0 = /24</text>
+        </svg>
+        <figcaption>Bei /24 gehören die ersten drei Oktette zum Netz; das letzte bezeichnet das Gerät.</figcaption>
+      </figure>
+      <h3>Textalternative</h3><p>Die Maske 255.255.255.0 hält die ersten drei Zahlenblöcke als Netzanteil fest. Das letzte Zahlenfeld ist der Geräteanteil. Bei 192.168.1.20/24 sind das Netz 192.168.1 und Gerät 20.</p>
+      <table class="netz-tabelle"><caption>Beispielwerte für 192.168.1.20/24</caption><thead><tr><th scope="col">Bedeutung</th><th scope="col">Wert</th></tr></thead><tbody><tr><th scope="row">Netzmaske</th><td>255.255.255.0</td></tr><tr><th scope="row">Netzadresse</th><td>192.168.1.0</td></tr><tr><th scope="row">Geräteadresse</th><td>192.168.1.20</td></tr><tr><th scope="row">Broadcastadresse</th><td>192.168.1.255</td></tr><tr><th scope="row">Nutzbare Adressen</th><td>254</td></tr></tbody></table>
+      <div class="knopf-reihe"><button type="button" class="knopf" data-weiter="erklaerung">Zurück</button><button type="button" class="knopf knopf-haupt" data-weiter="uebung">Weiter zur Übung</button></div>
+    </section>
+    <section id="uebung" class="abschnitt" aria-labelledby="uebung-titel" hidden>
+      <h2 id="uebung-titel">Übung: ordne die Werte zu</h2><p>Arbeite in deinem Tempo. Du kannst Antworten ändern und die Erklärung erneut lesen.</p>
+      <fieldset class="quiz-frage"><legend>Was bedeutet /24 in diesem Beispiel?</legend><div class="quiz-optionen" id="quiz-optionen"></div><p id="quiz-feedback" class="quiz-erklaerung" aria-live="polite" hidden></p></fieldset>
+      <form id="werte-form" class="netz-eingabe-gruppe" novalidate>
+        <label for="netz-eingabe">Netzadresse für 192.168.1.20/24</label><input id="netz-eingabe" type="text" autocomplete="off" spellcheck="false" aria-describedby="werte-hilfe">
+        <label for="broadcast-eingabe">Broadcastadresse für dasselbe /24-Netz</label><input id="broadcast-eingabe" type="text" autocomplete="off" spellcheck="false" aria-describedby="werte-hilfe">
+        <p id="werte-hilfe" class="klein">Gib jeweils vier Zahlen mit Punkten ein. Beispiel für das Format: 192.168.1.0</p>
+        <button class="knopf knopf-haupt" type="submit">Antworten prüfen</button>
+      </form>
+      <div id="werte-feedback" class="feedback-box" aria-live="polite" aria-atomic="true"></div>
+      <div class="knopf-reihe"><button type="button" class="knopf" data-weiter="schaubild">Zurück</button><button type="button" class="knopf" id="uebung-reset">Übung neu starten</button><button type="button" class="knopf knopf-haupt" data-weiter="abschluss">Zum Abschluss</button></div>
+    </section>
+    <section id="abschluss" class="abschnitt" aria-labelledby="abschluss-titel" hidden>
+      <h2 id="abschluss-titel">Das hast du gelernt</h2>
+      <ul><li>/24 bedeutet 24 Netz-Bits; hier entspricht es 255.255.255.0.</li><li>Bei 192.168.1.20/24 ist 192.168.1 der Netzanteil und 20 der Geräteanteil.</li><li>Im üblichen /24-Netz sind .0 die Netzadresse und .255 die Broadcastadresse.</li></ul>
+      <p>Andere Präfixlängen können die Grenze innerhalb eines Oktetts setzen. Das ist Thema einer späteren Lektion. Subnetting wird hier noch nicht behandelt.</p>
+      <p id="abschluss-status" class="rueckmeldung" aria-live="polite"></p>
+      <div class="knopf-reihe"><button type="button" class="knopf" data-weiter="uebung">Zurück zur Übung</button><button type="button" class="knopf knopf-warn" id="reset-alles">Fortschritt zurücksetzen</button></div>
+    </section>
+  </main>
+  <footer class="fuss"><p>Netzwerkgrundlagen · Lektion 2 · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script><script src="../js/fortschritt.js"></script><script src="../js/navigation.js"></script><script src="../js/glossar-daten.js"></script><script src="../js/anzeige-glossar.js"></script><script src="../js/version.js"></script><script src="../js/netzmaske.js"></script>
+</body>
+</html>

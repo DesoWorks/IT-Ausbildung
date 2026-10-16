@@ -1,0 +1,26 @@
+"use strict";
+const assert=require("node:assert/strict"),fs=require("node:fs"),path=require("node:path"),vm=require("node:vm");
+const root=path.resolve(__dirname,"..");
+const html=fs.readFileSync(path.join(root,"module/netzmaske.html"),"utf8");
+const js=fs.readFileSync(path.join(root,"js/netzmaske.js"),"utf8");
+const css=fs.readFileSync(path.join(root,"css/styles.css"),"utf8")+fs.readFileSync(path.join(root,"css/startseite.css"),"utf8");
+assert(html.includes("192.168.1.20/24")&&html.includes("255.255.255.0"));
+assert(html.includes("192.168.1.0")&&html.includes("192.168.1.255")&&html.includes("254 Adressen"));
+assert(/<svg[^>]*role="img"[^>]*aria-labelledby="maske-svg-titel maske-svg-desc"/.test(html));
+assert(html.includes("<table")&&html.includes("scope=\"row\""));
+assert(html.includes("netzmaske.js")&&html.includes("anzeige-glossar.js")&&html.includes("glossar-daten.js"));
+assert(js.includes('it-ausbildung.netzmaske.v1')&&js.includes("function isComplete")&&js.includes("Richtig")&&js.includes("Noch nicht"));
+assert(html.includes('id="werte-feedback" class="feedback-box"')&&js.includes('Unbeantwortet:')&&js.includes('Teilweise richtig'));
+const ctx={window:{},module:{exports:{}},document:undefined}; vm.runInNewContext(js,ctx);
+const api=ctx.module.exports; assert.equal(api.key,"it-ausbildung.netzmaske.v1");
+assert.equal(api.progress(),0); assert.equal(api.isComplete(),false);
+const state=fs.readFileSync(path.join(root,"js/fortschritt.js"),"utf8");assert(state.includes('"lf3-netzmaske": "it-ausbildung.netzmaske.v1"'));
+assert(state.includes('answers[0] === true && answers[1] === true && answers[2] === true'));
+const data=fs.readFileSync(path.join(root,"js/module-daten.js"),"utf8");assert(data.includes('id: "lf3-netzmaske"')&&data.includes('datei: "module/netzmaske.html"'));
+assert(css.includes("html[data-theme=\"dunkel\"]")&&css.includes("html[data-theme=\"kontrast\"]"));
+assert(css.includes("--farbe-geplant-flaeche: #293643")&&css.includes("--farbe-geplant-tekst: #e2e9f0"));
+assert(css.includes("--farbe-geplant-flaeche: #fff")&&css.includes("--farbe-geplant-tekst: #111"));
+assert(css.includes(".modul-gesperrt .modul-inhalt")&&css.includes("var(--farbe-geplant-flaeche)"));
+assert(css.includes("--farbe-kontroll-flaeche")&&css.includes("--farbe-kontroll-text"));
+for(const t of ["Netzmaske","Präfixlänge","Netzanteil","Geräteanteil","Netzadresse","Broadcastadresse"]){assert(fs.readFileSync(path.join(root,"js/glossar-daten.js"),"utf8").includes('begriff: "'+t+'"'));}
+console.log("netzmaske.test.js: all assertions passed");

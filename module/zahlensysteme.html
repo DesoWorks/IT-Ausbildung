@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Werkzeug: Zahlen zwischen Binär, Oktal, Dezimal und Hexadezimal umrechnen, mit Stellenwerten und Rechenweg.">
+  <title>Werkzeug: Zahlensystemrechner</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/zahlensysteme.css">
+</head>
+<body data-page="zahlensysteme" data-base="../">
+  <a class="skip-link" href="#hauptinhalt">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+    <p class="kopf-marke">IT-Ausbildung · Werkzeuge</p>
+    <h1>Zahlensystemrechner</h1>
+    <p class="kopf-dauer">Binär, Oktal, Dezimal und Hexadezimal · kein Zeitdruck</p>
+  </div></header>
+  <main id="hauptinhalt" tabindex="-1">
+    <section class="abschnitt" aria-labelledby="zs-titel">
+      <h2 id="zs-titel">Zahl umrechnen</h2>
+      <p class="gross">Computer rechnen mit <strong>Bits</strong>. Hier siehst du dieselbe Zahl in vier Schreibweisen, mit Stellenwerten und Rechenweg.</p>
+      <div class="hinweis-box"><p class="hinweis-titel">So geht es</p><p>Wähle das Zahlensystem deiner Eingabe, tippe die Zahl ein und wähle „Umrechnen“. Erlaubt sind ganze Zahlen von 0 bis 4.294.967.295 (32 Bit). Leerzeichen und Unterstriche sind erlaubt. Vor eine Binärzahl darfst du <code>0b</code> schreiben, vor eine Oktalzahl <code>0o</code>, vor eine Hexadezimalzahl <code>0x</code>. Das sind nur Hinweise für den Rechner, keine Ziffern. Im Ergebnis stehen sie nicht.</p></div>
+      <form id="zs-form" class="zs-form" novalidate>
+        <label for="zs-system">Zahlensystem der Eingabe</label>
+        <select id="zs-system"><option value="10">Dezimal (0–9)</option><option value="2">Binär (0, 1)</option><option value="8">Oktal (0–7)</option><option value="16">Hexadezimal (0–9, A–F)</option></select>
+        <label for="zs-eingabe">Zahl</label>
+        <input id="zs-eingabe" type="text" autocomplete="off" spellcheck="false" inputmode="text" aria-describedby="zs-hilfe zs-fehler">
+        <p id="zs-hilfe" class="klein">Beispiele: 192 (dezimal), 1100 0000 (binär), 300 (oktal), C0 (hexadezimal).</p>
+        <div class="knopf-reihe"><button type="submit" class="knopf knopf-haupt">Umrechnen</button><button type="button" class="knopf" id="zs-beispiel">Beispiel: 192</button><button type="button" class="knopf" id="zs-leeren">Leeren</button></div>
+      </form>
+      <p id="zs-fehler" class="zs-fehler" role="alert" hidden></p>
+      <div id="zs-ergebnis" class="feedback-box" aria-live="polite" tabindex="-1" hidden></div>
+    </section>
+    <section class="abschnitt" aria-labelledby="zs-wissen">
+      <h2 id="zs-wissen">Kurz erklärt</h2>
+      <ul>
+        <li>Binär hat zwei Ziffern (0, 1). Jede Stelle ist eine Zweierpotenz: 1, 2, 4, 8, 16 …</li>
+        <li>Oktal hat acht Ziffern (0–7). Jede Stelle ist eine Achterpotenz: 1, 8, 64, 512 …</li>
+        <li>Hexadezimal hat 16 Zeichen: die Ziffern 0 bis 9 und danach die Buchstaben A bis F. A heißt zehn, B heißt elf, C zwölf, D dreizehn, E vierzehn, F fünfzehn.</li>
+        <li>Vier Binärziffern werden immer eine Hexziffer. Die vier Stellen heißen 8, 4, 2 und 1. Beispiel: 1011 bedeutet 8 + 2 + 1 = 11. Elf ist größer als 9, deshalb steht dort der Buchstabe B.</li>
+        <li>Ein Oktett hat 8 Bit und reicht von 0 bis 255. So entstehen die Zahlen einer IPv4-Adresse.</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="fuss"><p>Werkzeug · Zahlensysteme · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script><script src="../js/fortschritt.js"></script><script src="../js/navigation.js"></script><script src="../js/glossar-daten.js"></script><script src="../js/anzeige-glossar.js"></script><script src="../js/version.js"></script><script src="../js/zahlensysteme.js"></script>
+</body>
+</html>

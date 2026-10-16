@@ -1,0 +1,26 @@
+/* Einheitenrechner. Nutzt nur die gemeinsamen Farbvariablen (hell, dunkel, Kontrast). */
+.eh-form { display: grid; gap: .5rem; max-width: 32rem; }
+.eh-form label { font-weight: 700; }
+.eh-form select, .eh-form input {
+  font: inherit; padding: .6rem .7rem; min-height: 2.75rem;
+  border: 2px solid var(--farbe-rahmen); border-radius: 8px;
+  background: var(--farbe-kontroll-flaeche); color: var(--farbe-kontroll-text);
+}
+.eh-form input { font-family: ui-monospace, Consolas, monospace; }
+.eh-form select:focus-visible, .eh-form input:focus-visible, .eh-tabelle-wrap:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
+.eh-form input[aria-invalid="true"] { border-color: var(--farbe-fehler); }
+.eh-fehler { margin-top: .9rem; padding: .8rem 1rem; border: 3px solid var(--farbe-fehler); border-radius: var(--radius); background: var(--farbe-fehler-flaeche); color: var(--farbe-fehler); font-weight: 700; }
+.eh-fehler[hidden] { display: none; }
+.eh-fehler::before { content: "✗ Eingabe prüfen: "; }
+.eh-gross { font-size: 1.25rem; font-weight: 700; font-family: ui-monospace, Consolas, monospace; overflow-wrap: anywhere; }
+.eh-weg { padding-left: 1.6rem; font-family: ui-monospace, Consolas, monospace; overflow-wrap: anywhere; }
+.eh-weg li { margin-bottom: .3rem; }
+.eh-tabelle-wrap { overflow-x: auto; max-width: 100%; }
+.eh-tab { border-collapse: collapse; width: 100%; min-width: 30rem; text-align: left; }
+.eh-tab caption { text-align: left; font-weight: 700; padding-bottom: .3rem; }
+.eh-tab th, .eh-tab td { border: 1px solid var(--farbe-rahmen); padding: .4rem .5rem; color: var(--farbe-text); }
+.eh-tab thead th, .eh-tab tbody th { background: var(--farbe-geplant-flaeche); color: var(--farbe-geplant-tekst); }
+.eh-tab td:nth-child(n+3) { font-family: ui-monospace, Consolas, monospace; text-align: right; }
+
+/* Links im Fließtext: Themenfarbe statt Browser-Standard (Dunkelmodus-Kontrast). */
+main a:not(.knopf) { color: var(--farbe-akzent-dunkel); text-decoration: underline; }

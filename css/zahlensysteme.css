@@ -1,0 +1,29 @@
+/* Zahlensystemrechner. Nutzt nur die gemeinsamen Farbvariablen (hell, dunkel, Kontrast). */
+.zs-form { display: grid; gap: .5rem; max-width: 32rem; }
+.zs-form label { font-weight: 700; }
+.zs-form select, .zs-form input {
+  font: inherit; padding: .6rem .7rem; min-height: 2.75rem;
+  border: 2px solid var(--farbe-rahmen); border-radius: 8px;
+  background: var(--farbe-kontroll-flaeche); color: var(--farbe-kontroll-text);
+}
+.zs-form input { font-family: ui-monospace, Consolas, monospace; }
+.zs-form select:focus-visible, .zs-form input:focus-visible, .zs-tabelle-wrap:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
+.zs-form input[aria-invalid="true"] { border-color: var(--farbe-fehler); }
+.zs-fehler { margin-top: .9rem; padding: .8rem 1rem; border: 3px solid var(--farbe-fehler); border-radius: var(--radius); background: var(--farbe-fehler-flaeche); color: var(--farbe-fehler); font-weight: 700; }
+.zs-fehler[hidden] { display: none; }
+.zs-fehler::before { content: "✗ Eingabe prüfen: "; }
+.zs-werte { display: grid; grid-template-columns: max-content 1fr; gap: .3rem 1rem; margin: 0 0 1rem; }
+.zs-werte dt { font-weight: 700; }
+.zs-werte dd { margin: 0; font-family: ui-monospace, Consolas, monospace; overflow-wrap: anywhere; }
+.zs-bytes { display: grid; gap: .8rem; }
+.zs-tabelle-wrap { overflow-x: auto; max-width: 100%; }
+.zs-tabelle { border-collapse: collapse; width: 100%; min-width: 26rem; font-family: ui-monospace, Consolas, monospace; text-align: center; }
+.zs-tabelle caption { text-align: left; font-weight: 700; padding-bottom: .3rem; font-family: inherit; }
+.zs-tabelle th, .zs-tabelle td { border: 1px solid var(--farbe-rahmen); padding: .4rem .5rem; color: var(--farbe-text); }
+.zs-tabelle th { text-align: left; background: var(--farbe-geplant-flaeche); color: var(--farbe-geplant-tekst); }
+.zs-tabelle .zs-bit-an { background: var(--farbe-ok-flaeche); color: var(--farbe-ok); font-weight: 700; }
+.zs-tabelle .zs-bit-aus { color: var(--farbe-text-leise); }
+.zs-weg { padding-left: 1.6rem; font-family: ui-monospace, Consolas, monospace; overflow-wrap: anywhere; }
+.zs-weg li { margin-bottom: .3rem; }
+.zs-bit-summe { padding: .65rem .8rem; border-left: 4px solid var(--farbe-akzent); background: var(--farbe-hinweis-flaeche); font-weight: 700; overflow-wrap: anywhere; }
+@media (max-width: 480px) { .zs-werte { grid-template-columns: 1fr; } }

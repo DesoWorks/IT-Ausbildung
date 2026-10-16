@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Eine fiktive IPv4-Konfiguration eines Clients lesen und mit einer Testnetz-Karte vergleichen.">
+  <title>IPv4-Konfiguration eines Clients lesen · Lernfeld 3</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+    .karte{padding:1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);font-family:monospace;white-space:pre-wrap;line-height:1.7;overflow-wrap:anywhere}
+  </style>
+</head>
+<body data-page="lf3-ipv4-konfiguration" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 3</p>
+      <h1>IPv4-Konfiguration eines Clients lesen</h1>
+      <p class="kopf-dauer">Fiktiver Übungsfall · keine echte Netzwerkkonfiguration</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Auftrag</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 %</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du lernst</h2>
+      <ul>
+        <li>In einer vorgegebenen Client-Anzeige IPv4-Adresse, Präfix bzw. Netzmaske und Gateway-Angabe erkennen.</li>
+        <li>Die Anzeige mit einer bereitgestellten Testnetz-Karte vergleichen.</li>
+      </ul>
+      <p>Die Grundlagen stehen schon in den vorhandenen Lektionen: <a href="netzwerkgrundlagen.html">Lektion 1: Die IPv4-Adresse</a> und <a href="netzmaske.html">Lektion 2: Netzmaske und Geräteanteil</a>. Hier wird nichts davon neu erklärt, sondern in einer Client-Anzeige wiedergefunden.</p>
+      <details class="fachwort-hinweis"><summary>Gateway</summary><p>Die Adresse des Geräts, über das ein Client Verbindungen in andere Netze erreicht. In dieser Übung wird die Angabe nur gelesen.</p><a href="../glossar.html?von=lf3-ipv4-konfiguration.html">Wörter &amp; Begriffe ansehen</a></details>
+      <aside class="hinweis-box"><strong>Fiktiver Hinweis:</strong> Mira-01, das Lernnetz und alle Adressen sind erfunden. Die Übung verlangt keine Änderung an einem echten Gerät oder Netz.</aside>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zum Auftrag</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Der Übungsauftrag: Anzeige von Mira-01</h2>
+      <p>Für den fiktiven Übungs-Laptop <strong>Mira-01</strong> liegt eine Anzeige vor. Du liest sie und vergleichst sie mit der Testnetz-Karte des Lernnetzes.</p>
+      <h3>Client-Anzeige (vorgegeben)</h3>
+      <div class="karte" role="img" aria-label="Client-Anzeige von Mira-01: IPv4-Adresse 192.168.10.25, Präfix 24, Netzmaske 255.255.255.0, Gateway 192.168.10.1">Mira-01 (fiktiv)
+IPv4-Adresse: 192.168.10.25
+Präfix:       /24
+Netzmaske:    255.255.255.0
+Gateway:      192.168.10.1</div>
+      <h3>Testnetz-Karte „Lernnetz“ (vorgegeben)</h3>
+      <div class="karte" role="img" aria-label="Testnetz-Karte: Netz 192.168.10.0/24, Gateway 192.168.10.1">Netz:     192.168.10.0/24
+Gateway:  192.168.10.1</div>
+      <div class="steps">
+        <article class="step"><h3>Adresse</h3><p>Die vier Oktette der Client-Adresse: 192.168.10.25.</p></article>
+        <article class="step"><h3>Präfix / Maske</h3><p>/24 und 255.255.255.0 sind zwei Schreibweisen derselben Angabe (siehe <a href="netzmaske.html">Netzmaske</a>).</p></article>
+        <article class="step"><h3>Gateway</h3><p>Die Angabe 192.168.10.1 nennt den Übergang in andere Netze.</p></article>
+        <article class="step"><h3>Vergleich</h3><p>Stimmen Netz und Präfix der Karte mit der Anzeige überein?</p></article>
+      </div>
+      <p>Es geht ums Lesen und Vergleichen. Die Lektion enthält keine Anleitung, etwas einzustellen, und keine Empfehlung für einen echten Adressplan.</p>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Übung: Anzeige lesen und vergleichen</h2>
+      <p>Wähle pro Aufgabe eine Antwort. Alle Fälle beziehen sich nur auf die fiktive Anzeige und die Testnetz-Karte.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zur Anzeige</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du mit</h2>
+      <ul><li>Eine Client-Anzeige enthält Adresse, Präfix bzw. Netzmaske und Gateway als getrennte Angaben.</li><li>/24 und 255.255.255.0 beschreiben denselben Netzanteil.</li><li>Ein Vergleich mit der Netz-Karte prüft, ob die Adresse im angegebenen Netz liegt.</li></ul>
+      <p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 3 · Lernorientierung · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf3-ipv4-konfiguration.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Werkzeug: Bit, Byte und Datenmengen umrechnen, auch GB und GiB, mit nachvollziehbarem Rechenweg.">
+  <title>Werkzeug: Bit-/Byte- und Einheitenrechner</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/einheiten.css">
+</head>
+<body data-page="einheiten" data-base="../">
+  <a class="skip-link" href="#hauptinhalt">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+    <p class="kopf-marke">IT-Ausbildung · Werkzeuge</p>
+    <h1>Bit-/Byte- und Einheitenrechner</h1>
+    <p class="kopf-dauer">Bit, Byte, GB und GiB · kein Zeitdruck</p>
+  </div></header>
+  <main id="hauptinhalt" tabindex="-1">
+    <section class="abschnitt" aria-labelledby="eh-titel">
+      <h2 id="eh-titel">Datenmenge umrechnen</h2>
+      <p class="gross">Ein <strong>Byte</strong> besteht aus 8 <strong>Bit</strong>. Hier rechnest du Datenmengen von einer Einheit in eine andere um und siehst jeden Rechenschritt.</p>
+      <div class="hinweis-box"><p class="hinweis-titel">So geht es</p><p>Tippe die Zahl ein, wähle die Einheit der Eingabe und die Zieleinheit und wähle „Umrechnen“. Als Dezimalzeichen sind Komma und Punkt erlaubt. Tausendertrennzeichen sind nicht nötig. Das Ergebnis wird auf höchstens 6 Nachkommastellen gerundet.</p></div>
+      <form id="eh-form" class="eh-form" novalidate>
+        <label for="eh-eingabe">Zahl</label>
+        <input id="eh-eingabe" type="text" autocomplete="off" spellcheck="false" inputmode="decimal" aria-describedby="eh-hilfe eh-fehler">
+        <p id="eh-hilfe" class="klein">Beispiele: 250 oder 1,5.</p>
+        <label for="eh-von">Von Einheit</label>
+        <select id="eh-von"></select>
+        <label for="eh-nach">In Einheit</label>
+        <select id="eh-nach"></select>
+        <div class="knopf-reihe"><button type="submit" class="knopf knopf-haupt">Umrechnen</button><button type="button" class="knopf" id="eh-beispiel">Beispiel: 1 TB in GiB</button><button type="button" class="knopf" id="eh-leeren">Leeren</button></div>
+      </form>
+      <p id="eh-fehler" class="eh-fehler" role="alert" hidden></p>
+      <div id="eh-ergebnis" class="feedback-box" aria-live="polite" tabindex="-1" hidden></div>
+    </section>
+    <section class="abschnitt" aria-labelledby="eh-wissen">
+      <h2 id="eh-wissen">Kurz erklärt</h2>
+      <ul>
+        <li>1 Byte (B) = 8 Bit. Netzwerkgeschwindigkeiten werden oft in Bit pro Sekunde angegeben, Dateigrößen meist in Byte.</li>
+        <li><strong>Dezimal</strong> (kB, MB, GB, TB): jeder Schritt ist Faktor 1000. So geben Hersteller Speichergrößen an.</li>
+        <li><strong>Binär</strong> (KiB, MiB, GiB, TiB): jeder Schritt ist Faktor 1024. Diese Einheiten sind für Rechner natürlich, weil 1024 = 2<sup>10</sup>.</li>
+        <li>Darum ist 1 GiB größer als 1 GB. Manche Betriebssysteme zeigen GiB-Werte mit der Beschriftung „GB“ an. Dann wirkt eine Festplatte kleiner als auf der Verpackung angegeben.</li>
+      </ul>
+      <p class="klein">Lernbezug: Die Zahlensysteme siehst du im <a href="zahlensysteme.html">Zahlensystemrechner</a>.</p>
+    </section>
+    <section class="abschnitt" aria-labelledby="eh-uebersicht">
+      <div id="eh-tabelle" class="eh-tabelle-wrap" tabindex="0" role="region" aria-label="Tabelle der Einheiten"></div>
+    </section>
+  </main>
+  <footer class="fuss"><p>Werkzeug · Einheiten · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script><script src="../js/fortschritt.js"></script><script src="../js/navigation.js"></script><script src="../js/glossar-daten.js"></script><script src="../js/anzeige-glossar.js"></script><script src="../js/version.js"></script><script src="../js/einheiten.js"></script>
+</body>
+</html>

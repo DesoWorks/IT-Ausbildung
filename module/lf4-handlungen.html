@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sichere und unsichere Handlungen an fiktiven Beispielen unterscheiden.">
+  <title>Sichere und unsichere Handlungen unterscheiden</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+  </style>
+</head>
+<body data-page="lf4-handlungen" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 4</p>
+      <h1>Sichere und unsichere Handlungen unterscheiden</h1>
+      <p class="kopf-dauer">Fiktiver Übungsfall · keine echten Daten</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Auftrag</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 von 5 Schritten · Abschluss noch nicht geöffnet</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du lernst</h2>
+      <ul>
+        <li>Sichere und unsichere Handlungen an fiktiven Beispielen unterscheiden.</li>
+        <li>Erkennen, warum ein offener Bildschirm ein Risiko ist.</li>
+        <li>Bei Unsicherheit nachfragen, bevor etwas weitergegeben wird.</li>
+      </ul>
+      <details class="fachwort-hinweis"><summary>Sichere Handlung</summary><p>Eine sichere Handlung schützt Informationen und Geräte, zum Beispiel den Bildschirm sperren, bevor man den Platz verlässt. Eine unsichere Handlung macht Informationen für Personen sichtbar, die sie nicht sehen sollen.</p><a href="../glossar.html?von=lf4-handlungen.html">Wörter &amp; Begriffe ansehen</a></details>
+      <aside class="hinweis-box"><strong>Fiktiver Hinweis:</strong> Nordlicht IT-Service und Samira sind erfunden. Es kommen keine echten Kundendaten vor.</aside>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zum Auftrag</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Der Übungsauftrag: Samiras Arbeitsplatz</h2>
+      <p>Samira macht ihre Ausbildung bei <strong>Nordlicht IT-Service</strong>. Sie soll drei Alltagssituationen an ihrem Übungsplatz ansehen und überlegen, welche Handlung sicher ist. Alle Angaben sind erfunden.</p>
+      <div class="steps">
+        <article class="step"><h3>Situation 1: Platz verlassen</h3><p>Samira muss kurz zum Drucker. Auf ihrem Bildschirm ist der Übungsfall geöffnet.</p></article>
+        <article class="step"><h3>Situation 2: Offene Liste</h3><p>Eine fiktive Kundenliste ist auf einem Bildschirm sichtbar, an dem gerade niemand sitzt.</p></article>
+        <article class="step"><h3>Situation 3: Unklare Handlung</h3><p>Samira ist unsicher, ob sie eine Datei weitergeben darf. Sie überlegt, was sie zuerst tut.</p></article>
+      </div>
+      <p>Ein gesperrter Bildschirm und eine Frage vor dem Weitergeben sind sichere Handlungen. Einen fremden Zugang auszuprobieren gehört nicht dazu.</p>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Übung: Handlungen unterscheiden</h2>
+      <p>Wähle pro Aufgabe eine Antwort. Alle Fälle beziehen sich nur auf die fiktiven Situationen.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zu den Situationen</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du mit</h2>
+      <ul><li>Den Bildschirm sperren, bevor du den Platz verlässt.</li><li>Eine offene Kundenliste auf einem unbeaufsichtigten Bildschirm ist unsicher.</li><li>Bei Unsicherheit fragst du die ausbildende Person, bevor du eine Datei weitergibst.</li><li>Einen fremden Zugang probierst du nicht aus.</li></ul>
+      <p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 4 · Schutzbedarf und IT-Sicherheit · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf4-handlungen.js"></script>
+</body>
+</html>

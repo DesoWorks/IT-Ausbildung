@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Zweck von DHCP und eine vereinfachte fiktive Adressvergabe in einem Ablaufbild nachvollziehen.">
+  <title>DHCP: automatische Konfiguration nachvollziehen · Lernfeld 3</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+    .skizze{padding:1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);font-family:monospace;white-space:pre-wrap;line-height:1.7}
+  </style>
+</head>
+<body data-page="lf3-dhcp" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 3</p>
+      <h1>DHCP: automatische Konfiguration nachvollziehen</h1>
+      <p class="kopf-dauer">Fiktive Simulation · keine echte DHCP-Konfiguration</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Ablauf</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 %</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du lernst</h2>
+      <ul>
+        <li>Den Zweck von DHCP in einem einfachen Satz wiedergeben.</li>
+        <li>Eine vereinfachte fiktive Adressvergabe in einem Ablaufbild lesen.</li>
+        <li>Adresse, Präfix, Gateway und DNS-Server als gelieferte Angaben unterscheiden.</li>
+      </ul>
+      <details class="fachwort-hinweis"><summary>DHCP</summary><p>Dynamic Host Configuration Protocol: ein Dienst, der einem Client in einem Netz automatisch Konfigurationsangaben geben kann, zum Beispiel eine IPv4-Adresse. Diese Übung zeigt nur eine vereinfachte Simulation.</p><a href="../glossar.html?von=lf3-dhcp.html">Wörter &amp; Begriffe ansehen</a></details>
+      <aside class="hinweis-box"><strong>Fiktiver Hinweis:</strong> Mira-01 und das Lernnetz sind erfunden. Die Übung verlangt keine Installation, keine Reservierung und keine Änderung an einem echten DHCP-Server.</aside>
+      <p>Die angezeigte Adresse liest du in der Lektion <a href="lf3-ipv4-konfiguration.html">IPv4-Konfiguration eines Clients lesen</a>. Was eine IPv4-Adresse ist, steht in <a href="netzwerkgrundlagen.html">IPv4</a>.</p>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zum Ablauf</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Der Übungsablauf: Mira-01</h2>
+      <p>Im isolierten Übungsnetz „Lernnetz“ startet der Laptop <strong>Mira-01</strong> ohne fest eingetragene Adresse. Eine Simulation zeigt, welche Angaben ein DHCP-Dienst in diesem Übungsfall liefert. Das ist kein Protokollmitschnitt und kein Betriebsablauf.</p>
+      <h3>Vereinfachtes Ablaufbild</h3>
+      <div class="skizze" role="img" aria-label="Vereinfachtes Ablaufbild: Mira-01 fragt im Übungsnetz nach Konfiguration, der DHCP-Dienst antwortet mit Adresse, Präfix, Gateway und DNS-Server">1. Mira-01 startet ohne fest eingetragene Adresse.
+2. Mira-01 fragt im isolierten Übungsnetz nach einer Konfiguration.
+3. Der simulierte DHCP-Dienst antwortet mit diesen Übungsangaben:
+   · IPv4-Adresse   192.168.10.25
+   · Präfix         /24
+   · Gateway        192.168.10.1
+   · DNS-Server     192.168.10.2
+4. Mira-01 zeigt die Angaben in der simulierten Anzeige.
+   Die Übung endet hier. Es wird nichts installiert und nichts reserviert.</div>
+      <div class="steps">
+        <article class="step"><h3>Anfrage</h3><p>Der Client braucht eine Konfiguration und fragt danach. In der Übung ist das Mira-01.</p></article>
+        <article class="step"><h3>Antwort</h3><p>Der Dienst liefert in der Simulation mehrere Angaben auf einmal. Die Adresse allein ist nicht die ganze Antwort.</p></article>
+        <article class="step"><h3>Grenze</h3><p>Das Bild erklärt den Zweck. Es sagt nichts über Lease-Zeiten, Relay, Reservierungen oder die Sicherheit eines echten Servers.</p></article>
+      </div>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Übung: den Ablauf lesen</h2>
+      <p>Wähle pro Aufgabe eine Antwort. Alle Fälle beziehen sich nur auf die fiktive Simulation.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zum Ablauf</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du mit</h2>
+      <ul>
+        <li>DHCP kann einem Client automatisch Konfigurationsangaben geben.</li>
+        <li>In der Simulation sind das Adresse, Präfix, Gateway und DNS-Server, nicht nur die Adresse.</li>
+        <li>Ein Ablaufbild ersetzt keine Server-Installation und keine Sicherheitsbewertung.</li>
+      </ul>
+      <p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 3 · Lernorientierung · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf3-dhcp.js"></script>
+</body>
+</html>

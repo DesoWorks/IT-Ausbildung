@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Eine fiktive Namensauflösung in einer Übungstabelle lesen und Namen und IP-Adressen unterscheiden.">
+  <title>DNS: Namen und IP-Adressen unterscheiden · Lernfeld 3</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+    .skizze{padding:1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);font-family:monospace;white-space:pre-wrap;line-height:1.7}
+  </style>
+</head>
+<body data-page="lf3-dns" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 3</p>
+      <h1>DNS: Namen und IP-Adressen unterscheiden</h1>
+      <p class="kopf-dauer">Fiktive Übungstabelle · keine echte DNS-Konfiguration</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Tabelle</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 %</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du lernst</h2>
+      <ul>
+        <li>Einen Namen und eine IP-Adresse als zwei verschiedene Angaben unterscheiden.</li>
+        <li>Eine vorbereitete Namensauflösung in einer Übungstabelle erklären.</li>
+        <li>Eine einfache Anfrage-/Antwortdarstellung lesen.</li>
+      </ul>
+      <details class="fachwort-hinweis"><summary>DNS</summary><p>Domain Name System: ein Dienst, der Namen Antwortwerte zuordnen kann, zum Beispiel einer IPv4-Adresse. Diese Übung zeigt nur eine vereinfachte, fiktive Tabelle.</p><a href="../glossar.html?von=lf3-dns.html">Wörter &amp; Begriffe ansehen</a></details>
+      <aside class="hinweis-box"><strong>Fiktiver Hinweis:</strong> Mira-01, das Lernnetz und der Name wiki.lernnetz.test sind erfunden. Die Übung verlangt keine Änderung an einem echten DNS-Dienst und keine Einstellung an einem Gerät.</aside>
+      <p>Den DNS-Server 192.168.10.2 liefert die Simulation in der Lektion <a href="lf3-dhcp.html">DHCP: automatische Konfiguration nachvollziehen</a>. Die Adressen des Clients liest du in <a href="lf3-ipv4-konfiguration.html">IPv4-Konfiguration eines Clients lesen</a>.</p>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zur Tabelle</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Die Übungstabelle: Mira-01 fragt nach einem Namen</h2>
+      <p>Im isolierten Übungsnetz „Lernnetz“ soll der Laptop <strong>Mira-01</strong> den Namen <strong>wiki.lernnetz.test</strong> verwenden. Eine vorbereitete Tabelle zeigt, welchen Antwortwert der Übungs-DNS-Server dafür nennt. Das ist kein Mitschnitt und kein Betriebsablauf.</p>
+      <h3>Vereinfachte Anfrage und Antwort</h3>
+      <div class="skizze" role="img" aria-label="Vereinfachte Darstellung: Mira-01 fragt den DNS-Server 192.168.10.2 nach wiki.lernnetz.test, die Antwort lautet 192.168.10.40">1. Mira-01 (192.168.10.25) fragt den DNS-Server 192.168.10.2:
+   „Welcher Antwortwert gehört zu wiki.lernnetz.test?“
+2. Der simulierte DNS-Server schaut in seiner Übungstabelle nach.
+3. Antwort: wiki.lernnetz.test → 192.168.10.40
+   Die Übung endet hier. Es wird nichts eingestellt und nichts geprüft.</div>
+      <table class="netz-tabelle"><caption>Übungstabelle des fiktiven DNS-Servers</caption><thead><tr><th scope="col">Name</th><th scope="col">Antwortwert (fiktiv)</th></tr></thead><tbody><tr><td>wiki.lernnetz.test</td><td>192.168.10.40</td></tr></tbody></table>
+      <div class="steps">
+        <article class="step"><h3>Name</h3><p>wiki.lernnetz.test ist ein erfundener Übungsname, den sich Menschen merken können.</p></article>
+        <article class="step"><h3>Antwortwert</h3><p>192.168.10.40 ist die fiktive Adresse, die die Tabelle dem Namen zuordnet.</p></article>
+        <article class="step"><h3>Grenze</h3><p>Die Zuordnung beweist keine Erreichbarkeit. Ob unter der Adresse etwas antwortet, zeigt die Tabelle nicht.</p></article>
+      </div>
+      <p>Das Bild erklärt nur das Lesen einer Zuordnung. Öffentliche Domains, Änderungen an echten DNS-Diensten und die Einrichtung eines Resolvers gehören nicht dazu.</p>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Übung: die Tabelle lesen</h2>
+      <p>Wähle pro Aufgabe eine Antwort. Alle Fälle beziehen sich nur auf die fiktive Übungstabelle.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zur Tabelle</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du mit</h2>
+      <ul>
+        <li>Ein Name und eine IP-Adresse sind verschiedene Angaben. DNS kann sie einander zuordnen.</li>
+        <li>In der Übungstabelle gehört zu wiki.lernnetz.test der fiktive Antwortwert 192.168.10.40.</li>
+        <li>Eine Zuordnung beweist nicht, dass die Adresse erreichbar ist.</li>
+      </ul>
+      <p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 3 · Lernorientierung · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf3-dns.js"></script>
+</body>
+</html>

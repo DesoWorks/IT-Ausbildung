@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Beobachtung, getesteten Schritt und Ergebnis in einem fiktiven Supportprotokoll trennen und geordnet übergeben.">
+  <title>Typische Client-Fehlerbilder dokumentieren und übergeben · Lernfeld 3</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+    .skizze{padding:1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);font-family:monospace;white-space:pre-wrap;line-height:1.7}
+  </style>
+</head>
+<body data-page="lf3-fehlerbild-protokoll" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 3</p>
+      <h1>Typische Client-Fehlerbilder dokumentieren und übergeben</h1>
+      <p class="kopf-dauer">Fiktives Supportprotokoll · keine echten Nutzer- oder Gerätedaten</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Protokoll</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 %</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du lernst</h2>
+      <ul>
+        <li>Beobachtung, getesteten Schritt und Ergebnis in einem Protokoll voneinander trennen.</li>
+        <li>Eine Vermutung als Vermutung erkennbar lassen.</li>
+        <li>Einen Fall so aufschreiben, dass die nächste Person ohne Rückfrage weitermachen kann.</li>
+      </ul>
+      <details class="fachwort-hinweis"><summary>Befund</summary><p>Eine nachvollziehbare Beobachtung oder ein dokumentiertes Prüfergebnis. Ein Befund ist von einer Vermutung über die Ursache zu unterscheiden.</p><a href="../glossar.html?von=lf3-fehlerbild-protokoll.html">Wörter &amp; Begriffe ansehen</a></details>
+      <aside class="hinweis-box"><strong>Fiktiver Hinweis:</strong> Mira-01, das Lernnetz und alle Angaben im Protokoll sind erfunden. Die Übung enthält keine echten Nutzer- oder Gerätedaten und verlangt keine Änderung an einem Gerät oder Netz.</aside>
+      <p>Wie du Beobachtungen ordnest, steht in <a href="lf3-verbindung-eingrenzen.html">Verbindung systematisch eingrenzen</a>. Wie ein Name einem Antwortwert zugeordnet wird, steht in <a href="lf3-dns.html">DNS: Namen und IP-Adressen unterscheiden</a>.</p>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zum Protokoll</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Der Fall: Mira-01 meldet „kein Netzwerk“</h2>
+      <p>Für den fiktiven Laptop <strong>Mira-01</strong> liegt eine Meldung vor. Bereitgestellt sind nur drei Angaben aus einer Simulation: der Link-Status, eine simulierte IP-Anzeige und ein fehlgeschlagener Namensaufruf. Daraus entsteht ein Supportprotokoll.</p>
+      <h3>Vorgegebene Angaben (fiktiv)</h3>
+      <div class="skizze" role="img" aria-label="Fiktive Angaben: Meldung kein Netzwerk. Link-Status aktiv. Simulierte IP-Anzeige 192.168.10.25 mit Präfix 24 und Gateway 192.168.10.1. Namensaufruf wiki.lernnetz.test liefert in der Simulation keine Antwort.">Meldung:  „kein Netzwerk“
+Link:     in der Anzeige als aktiv angezeigt
+IP-Anzeige (simuliert): 192.168.10.25/24, Gateway 192.168.10.1
+Namensaufruf wiki.lernnetz.test: keine Antwort (Simulation)</div>
+      <table class="netz-tabelle"><caption>Supportprotokoll zu Mira-01 (fiktiv)</caption><thead><tr><th scope="col">Beobachtung</th><th scope="col">Getesteter Schritt</th><th scope="col">Ergebnis</th></tr></thead><tbody>
+        <tr><td>Link-Status wird als aktiv angezeigt</td><td>Anzeige angesehen, nichts verändert</td><td>Anzeige unverändert</td></tr>
+        <tr><td>Adresse 192.168.10.25/24, Gateway 192.168.10.1</td><td>Angaben mit der Testnetz-Karte verglichen</td><td>Angaben passen zum Lernnetz</td></tr>
+        <tr><td>Namensaufruf wiki.lernnetz.test ohne Antwort</td><td>Namensaufruf in der Simulation wiederholt</td><td>weiterhin keine Antwort</td></tr>
+      </tbody></table>
+      <h3>Übergabe an die nächste Person</h3>
+      <div class="steps">
+        <article class="step"><h3>Meldung</h3><p>Mira-01 meldet „kein Netzwerk“. So wurde es gemeldet, nicht gedeutet.</p></article>
+        <article class="step"><h3>Stand</h3><p>Link aktiv, Adresse passt zum Lernnetz, Namensaufruf liefert keine Antwort.</p></article>
+        <article class="step"><h3>Offen</h3><p>Der Antwortwert in der Übungstabelle ist noch nicht angesehen.</p></article>
+        <article class="step"><h3>Vorschlag</h3><p>Als Nächstes die Übungstabelle ansehen. Das ist ein Vorschlag, keine Feststellung.</p></article>
+      </div>
+      <p>Das Protokoll hält nur fest, was beobachtet und getestet wurde. Es nennt keine Schuldigen, keine Fristen und keine Zusagen.</p>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Übung: das Protokoll lesen und ordnen</h2>
+      <p>Wähle pro Aufgabe eine Antwort. Alle Fälle beziehen sich nur auf das fiktive Protokoll.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zum Protokoll</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du mit</h2>
+      <ul>
+        <li>Ein Protokoll trennt Beobachtung, getesteten Schritt und Ergebnis.</li>
+        <li>Eine Vermutung bleibt als Vermutung erkennbar und steht nicht als Tatsache im Protokoll.</li>
+        <li>Eine gute Übergabe nennt auch, was noch offen ist, ohne Schuldzuweisung und ohne Zusagen.</li>
+      </ul>
+      <p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 3 · Lernorientierung · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf3-fehlerbild-protokoll.js"></script>
+</body>
+</html>

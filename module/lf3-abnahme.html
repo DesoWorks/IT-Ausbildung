@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ausfüllbare Abnahme für vorhandene Lernfeld-3-Lektionen. Gleiche Kriterien wie die LF2-Abnahme, Ergebnis bleibt lokal im Browser.">
+  <title>Lernfeld 3: Lektionsabnahme · IT-Ausbildung</title>
+  <style>
+    :root {
+      --tinte: #142033;
+      --muted: #4d5d73;
+      --linie: #c5d2e4;
+      --flaeche: #fff;
+      --grund: #f4f7fb;
+      --primaer: #0754a6;
+      --ok: #1b7a3a;
+      --warn: #8a4b08;
+      --na: #5c6b80;
+      --fokus: #0754a6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 1.05rem/1.5 "Segoe UI", system-ui, sans-serif;
+      color: var(--tinte);
+      background: var(--grund);
+    }
+    a { color: var(--primaer); }
+    a:focus-visible, button:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible {
+      outline: 3px solid var(--fokus);
+      outline-offset: 2px;
+    }
+    .skip {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      background: #fff;
+      padding: .5rem 1rem;
+    }
+    .skip:focus { top: .5rem; z-index: 2; }
+    header, main, footer { max-width: 52rem; margin: 0 auto; padding: 1.25rem; }
+    header { padding-bottom: 0; }
+    h1 { font-size: 1.7rem; line-height: 1.2; margin: .2rem 0 .4rem; }
+    h2 { font-size: 1.2rem; margin: 0 0 .6rem; }
+    .marke { margin: 0; color: var(--muted); font-size: .95rem; }
+    .hinweis { color: var(--muted); }
+    .karte, .leiste {
+      background: var(--flaeche);
+      border: 2px solid var(--linie);
+      border-radius: .75rem;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    label { display: block; font-weight: 650; margin: .7rem 0 .25rem; }
+    select, input[type="date"], input[type="text"], textarea {
+      width: 100%;
+      font: inherit;
+      padding: .55rem .7rem;
+      border: 2px solid var(--linie);
+      border-radius: .5rem;
+      background: #fff;
+      color: inherit;
+    }
+    textarea { min-height: 6rem; resize: vertical; }
+    .zeile { display: grid; gap: .8rem; }
+    @media (min-width: 40rem) {
+      .zeile { grid-template-columns: 1fr 1fr; }
+    }
+    .anker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem .9rem;
+      margin: .4rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .stand {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin: .6rem 0 0;
+    }
+    .chip {
+      border-radius: 999px;
+      padding: .15rem .65rem;
+      background: #e8eef6;
+      font-size: .9rem;
+    }
+    .chip.ok { background: #e5f6ea; color: var(--ok); }
+    .chip.warn { background: #fff1df; color: var(--warn); }
+    .chip.offen { background: #e8eef6; }
+    fieldset {
+      border: 2px solid var(--linie);
+      border-radius: .75rem;
+      margin: 1rem 0;
+      padding: .4rem 1rem 1rem;
+      background: #fff;
+    }
+    legend { font-weight: 750; padding: 0 .3rem; }
+    .punkt { padding: .75rem 0; border-top: 1px solid var(--linie); }
+    .punkt:first-of-type { border-top: 0; }
+    .frage { margin: 0 0 .45rem; }
+    .wahl { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .wahl label {
+      font-weight: 600;
+      margin: 0;
+      border: 2px solid var(--linie);
+      border-radius: 999px;
+      padding: .25rem .7rem;
+      cursor: pointer;
+    }
+    .wahl input { margin-right: .3rem; }
+    .wahl label:has(input:checked) { border-color: var(--primaer); background: #eaf3fb; }
+    .befund { margin-top: .45rem; }
+    .knopf-reihe { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+    button {
+      font: inherit;
+      border: 2px solid var(--primaer);
+      background: var(--primaer);
+      color: #fff;
+      border-radius: .55rem;
+      padding: .5rem .85rem;
+      cursor: pointer;
+    }
+    button.neben { background: #fff; color: var(--primaer); }
+    button.gefahr { background: #fff; color: #8d1d1d; border-color: #8d1d1d; }
+    footer { color: var(--muted); font-size: .95rem; }
+    .gespeichert { min-height: 1.4rem; margin: .4rem 0 0; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#inhalt">Direkt zum Inhalt springen</a>
+  <header>
+    <p class="marke">IT-Ausbildung · Lernfeld 3 · lokale Abnahme</p>
+    <h1>Lektionsabnahme</h1>
+    <p class="hinweis">Dieselben Kriterien wie bei der LF2-Abnahme: Aufgabe, Eingabe, Feedback, Fortschritt, Navigation und Abschluss. Das Ergebnis bleibt in diesem Browser und wird nicht übertragen.</p>
+  </header>
+  <main id="inhalt" tabindex="-1">
+    <section class="karte" aria-labelledby="wahl-titel">
+      <h2 id="wahl-titel">Lektion</h2>
+      <label for="lektion">Vorhandene Lernfeld-3-Lektion</label>
+      <select id="lektion"></select>
+      <ul class="anker" id="anker"></ul>
+      <div class="stand" id="stand" aria-live="polite"></div>
+      <div class="zeile">
+        <div>
+          <label for="datum">Prüfdatum</label>
+          <input id="datum" type="date">
+        </div>
+        <div>
+          <label for="pruefer">Prüfung durch</label>
+          <input id="pruefer" type="text" autocomplete="name" maxlength="80">
+        </div>
+      </div>
+    </section>
+
+    <form id="form">
+      <fieldset>
+        <legend>Aufgabenverständlichkeit</legend>
+        <div class="punkt" data-id="ziel"></div>
+        <div class="punkt" data-id="erwartung"></div>
+        <div class="punkt" data-id="begriffe"></div>
+        <div class="punkt" data-id="reihenfolge"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Eingaben und Bedienung</legend>
+        <div class="punkt" data-id="eingabe"></div>
+        <div class="punkt" data-id="leer"></div>
+        <div class="punkt" data-id="gueltig"></div>
+        <div class="punkt" data-id="ungueltig"></div>
+        <div class="punkt" data-id="doppelt"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Feedback</legend>
+        <div class="punkt" data-id="feedback"></div>
+        <div class="punkt" data-id="richtig"></div>
+        <div class="punkt" data-id="falsch"></div>
+        <div class="punkt" data-id="zuordnung"></div>
+        <div class="punkt" data-id="korrektur"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Fortschritt und Navigation</legend>
+        <div class="punkt" data-id="fortschritt"></div>
+        <div class="punkt" data-id="offen"></div>
+        <div class="punkt" data-id="zurueck"></div>
+        <div class="punkt" data-id="aktualisierung"></div>
+        <div class="punkt" data-id="zusammen"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Abschlussmarkierung</legend>
+        <div class="punkt" data-id="bedingung"></div>
+        <div class="punkt" data-id="sichtbar"></div>
+        <div class="punkt" data-id="konsistent"></div>
+        <div class="punkt" data-id="doppelklick"></div>
+        <div class="punkt" data-id="weiter"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Abnahmeentscheidung</legend>
+        <div class="punkt" data-id="bestanden"></div>
+        <div class="punkt" data-id="nacharbeit"></div>
+        <label for="befunde">Befunde und erforderliche Korrekturen</label>
+        <textarea id="befunde" maxlength="4000"></textarea>
+      </fieldset>
+      <div class="knopf-reihe">
+        <button type="submit">In diesem Browser speichern</button>
+        <button type="button" class="neben" id="kopie">Text kopieren</button>
+        <button type="button" class="neben" id="drucken">Drucken</button>
+        <button type="button" class="gefahr" id="loeschen">Diese Lektion zurücksetzen</button>
+      </div>
+      <p class="gespeichert" id="meldung" role="status"></p>
+    </form>
+  </main>
+  <footer>
+    <p>Gleiche Abnahmekriterien wie die LF2-Checkliste, angepasst an die vorhandenen Lernfeld-3-Seiten. Kein Server, kein Konto.</p>
+  </footer>
+  <script>
+    (function () {
+      "use strict";
+
+      var LEKTIONEN = [
+        {
+          id: "lf3-client-anbindung",
+          titel: "Client-Anbindung: vom Anschluss bis zur Verbindung",
+          datei: "lf3-client-anbindung.html",
+          glossar: "../glossar.html?von=lf3-client-anbindung.html",
+          schritte: "Überblick, Fall, Übung, Abschluss",
+          pruefen: "Leiste #pct, Übung #questions, leere Abgabe über #check, Zurück über data-next"
+        },
+        {
+          id: "lf3-ipv4-konfiguration",
+          titel: "IPv4-Konfiguration eines Clients lesen",
+          datei: "lf3-ipv4-konfiguration.html",
+          glossar: "../glossar.html?von=lf3-ipv4-konfiguration.html",
+          schritte: "Überblick, Fall, Übung, Abschluss",
+          pruefen: "Leiste #pct, Übung #questions, leere Abgabe über #check, Zurück über data-next"
+        },
+        {
+          id: "lf3-dhcp",
+          titel: "DHCP: automatische Konfiguration nachvollziehen",
+          datei: "lf3-dhcp.html",
+          glossar: "../glossar.html?von=lf3-dhcp.html",
+          schritte: "Überblick, Ablauf, Übung, Abschluss",
+          pruefen: "Leiste #pct, Übung #questions, leere Abgabe über #check, Zurück über data-next"
+        },
+        {
+          id: "lf3-dns",
+          titel: "DNS: Namen und IP-Adressen unterscheiden",
+          datei: "lf3-dns.html",
+          glossar: "../glossar.html?von=lf3-dns.html",
+          schritte: "Überblick, Fall, Übung, Abschluss",
+          pruefen: "Leiste #pct, Übung #questions, leere Abgabe über #check, Zurück über data-next"
+        },
+        {
+          id: "lf3-verbindung-eingrenzen",
+          titel: "Verbindung systematisch eingrenzen",
+          datei: "lf3-verbindung-eingrenzen.html",
+          glossar: "../glossar.html?von=lf3-verbindung-eingrenzen.html",
+          schritte: "Überblick, Fall, Übung, Abschluss",
+          pruefen: "Leiste #pct, Übung #questions, leere Abgabe über #check, Zurück über data-next"
+        },
+        {
+          id: "lf3-fehlerbild-protokoll",
+          titel: "Typische Client-Fehlerbilder dokumentieren und übergeben",
+          datei: "lf3-fehlerbild-protokoll.html",
+          glossar: "../glossar.html?von=lf3-fehlerbild-protokoll.html",
+          schritte: "Überblick, Fall, Übung, Abschluss",
+          pruefen: "Leiste #pct, Übung #questions, leere Abgabe über #check, Zurück über data-next"
+        },
+        {
+          id: "netzwerkgrundlagen",
+          titel: "IPv4",
+          datei: "netzwerkgrundlagen.html",
+          glossar: "../glossar.html",
+          schritte: "Erklärung, Schaubild, Übung, Abschluss",
+          pruefen: "Text #fortschritt-text, Fragen #netz-fragen, eigene Eingabe #eigene-eingabe, Zurück über die Lernschritte"
+        },
+        {
+          id: "netzmaske",
+          titel: "Netzmaske und Netz-/Geräteanteil",
+          datei: "netzmaske.html",
+          glossar: "../glossar.html",
+          schritte: "Erklärung, Schaubild, Übung, Abschluss",
+          pruefen: "Text #fortschritt-text, Quiz #quiz-optionen, leere Werte über #werte-form, Zurück über die Lernschritte"
+        },
+        {
+          id: "subnetting",
+          titel: "Subnetting: /24 in zwei /25-Netze teilen",
+          datei: "subnetting.html",
+          glossar: "../glossar.html",
+          schritte: "Erklärung, Beispiel, Übung, Abschluss",
+          pruefen: "Text #fortschritt-text, Formular #subnet-form, leere Abgabe dort, Zurück über die Lernschritte"
+        }
+      ];
+
+      var PUNKTE = [
+        ["ziel", "Lernziel und Arbeitsauftrag sind verständlich und passen zur Lektion."],
+        ["erwartung", "Es ist klar, was die lernende Person tun und welche Antwort erwartet wird."],
+        ["begriffe", "Fachbegriffe sind erklärt oder über den Glossar-Link dieser Lektion auffindbar."],
+        ["reihenfolge", "Die Aufgabe braucht keine unausgesprochenen Annahmen. Die Reihenfolge der Lernschritte ist klar."],
+        ["eingabe", "Jede vorgesehene Eingabe ist erreichbar, beschriftet und nimmt die erwartete Antwortform an."],
+        ["leer", "Eine leere Abgabe wird sinnvoll behandelt und nicht als richtige Lösung gewertet."],
+        ["gueltig", "Eine gültige Antwort lässt sich absenden und bleibt der richtigen Aufgabe zugeordnet."],
+        ["ungueltig", "Eine ungültige oder unvollständige Eingabe führt zu einer verständlichen Korrektur, nicht zu einem stillen Fehler."],
+        ["doppelt", "Mehrfaches schnelles Absenden erzeugt keine doppelte Bewertung und keinen widersprüchlichen Zustand."],
+        ["feedback", "Nach dem Absenden erscheint erkennbares Feedback."],
+        ["richtig", "Eine richtige Antwort wird nachvollziehbar bestätigt."],
+        ["falsch", "Eine falsche Antwort benennt den Denkfehler oder gibt einen hilfreichen Hinweis."],
+        ["zuordnung", "Das Feedback gehört zur richtigen Frage und bleibt lesbar."],
+        ["korrektur", "Nach einer Korrektur ist der neue Zustand eindeutig. Altes Feedback widerspricht ihm nicht."],
+        ["fortschritt", "Die Fortschrittsanzeige stimmt vor Beginn, während der Bearbeitung und nach jeder Antwort."],
+        ["offen", "Offene Aufgaben gelten nicht als abgeschlossen. Erledigte Aufgaben werden nicht erneut als offen gezählt."],
+        ["zurueck", "Der Zurück-Button mitten in der Bearbeitung lässt den Fortschritt nicht unbemerkt verfälschen."],
+        ["aktualisierung", "Nach einer Aktualisierung mitten in der Bearbeitung ist klar, ob Antworten erhalten blieben."],
+        ["zusammen", "Nach Zurück, Vor und Aktualisierung stimmen Antwort, Feedback und Fortschritt zusammen."],
+        ["bedingung", "Die Lektion wird erst nach den vorgesehenen Abschlussbedingungen als abgeschlossen markiert."],
+        ["sichtbar", "Die Abschlussmarkierung ist sichtbar und von „in Bearbeitung“ unterscheidbar."],
+        ["konsistent", "Nach dem Abschluss bleiben Ergebnis und Fortschritt auch nach Aktualisierung und erneutem Öffnen konsistent."],
+        ["doppelklick", "Ein erneuter Abschluss oder Doppelklick erzeugt keine doppelte Markierung und setzt nichts zurück."],
+        ["weiter", "Der Abschluss führt zur vorgesehenen nächsten Lektion oder zurück zur passenden Übersicht."],
+        ["bestanden", "Bestanden: alle anwendbaren Prüfpunkte sind erfüllt."],
+        ["nacharbeit", "Nacharbeit erforderlich: offene Befunde stehen im Feld darunter."]
+      ];
+
+      var SCHLUESSEL = "it-ausbildung-lf3-abnahme-v1";
+      var lektion = document.getElementById("lektion");
+      var anker = document.getElementById("anker");
+      var stand = document.getElementById("stand");
+      var form = document.getElementById("form");
+      var meldung = document.getElementById("meldung");
+      var speichert = false;
+
+      function speicherLesen() {
+        try {
+          return JSON.parse(localStorage.getItem(SCHLUESSEL) || "{}");
+        } catch (fehler) {
+          return {};
+        }
+      }
+
+      function speicherSchreiben(daten) {
+        localStorage.setItem(SCHLUESSEL, JSON.stringify(daten));
+      }
+
+      function aktuelleId() {
+        return lektion.value;
+      }
+
+      function lektionNachId(id) {
+        return LEKTIONEN.filter(function (eintrag) { return eintrag.id === id; })[0];
+      }
+
+      function punkteBauen() {
+        PUNKTE.forEach(function (paar) {
+          var id = paar[0];
+          var text = paar[1];
+          var box = document.querySelector('[data-id="' + id + '"]');
+          var name = "punkt-" + id;
+          box.innerHTML =
+            '<p class="frage" id="frage-' + id + '">' + text + '</p>' +
+            '<div class="wahl" role="radiogroup" aria-labelledby="frage-' + id + '">' +
+              wahl(name, "bestanden", "Bestanden") +
+              wahl(name, "nacharbeit", "Nacharbeit") +
+              wahl(name, "na", "N. a.") +
+            '</div>' +
+            '<label class="befund" for="notiz-' + id + '">Befund, falls Nacharbeit</label>' +
+            '<textarea id="notiz-' + id + '" maxlength="500"></textarea>';
+        });
+      }
+
+      function wahl(name, wert, label) {
+        return '<label><input type="radio" name="' + name + '" value="' + wert + '"> ' + label + '</label>';
+      }
+
+      function lektionenFuellen() {
+        LEKTIONEN.forEach(function (eintrag) {
+          var option = document.createElement("option");
+          option.value = eintrag.id;
+          option.textContent = eintrag.titel;
+          lektion.appendChild(option);
+        });
+      }
+
+      function ankerSetzen() {
+        var eintrag = lektionNachId(aktuelleId());
+        anker.innerHTML = "";
+        [
+          [eintrag.datei, "Lektion öffnen"],
+          [eintrag.glossar, "Glossar dieser Lektion"],
+          ["../index.html", "Zur Übersicht"]
+        ].forEach(function (link) {
+          var item = document.createElement("li");
+          var a = document.createElement("a");
+          a.href = link[0];
+          a.textContent = link[1];
+          a.target = "_blank";
+          a.rel = "noopener";
+          item.appendChild(a);
+          anker.appendChild(item);
+        });
+        var hinweis = document.createElement("li");
+        hinweis.textContent = eintrag.schritte + ". " + eintrag.pruefen;
+        anker.appendChild(hinweis);
+      }
+
+      function standSetzen() {
+        var daten = speicherLesen();
+        stand.innerHTML = "";
+        var geprueft = 0;
+        LEKTIONEN.forEach(function (eintrag) {
+          var satz = daten[eintrag.id];
+          var chip = document.createElement("span");
+          chip.className = "chip";
+          if (satz && satz.gespeichert) {
+            geprueft += 1;
+            var ergebnis = ergebnisVon(satz);
+            chip.textContent = kurz(eintrag.titel) + ": " + ergebnis;
+            chip.className += ergebnis === "Bestanden" ? " ok" : (ergebnis === "Offen" ? " offen" : " warn");
+          } else {
+            chip.textContent = kurz(eintrag.titel) + ": offen";
+            chip.className += " offen";
+          }
+          stand.appendChild(chip);
+        });
+        var summe = document.createElement("span");
+        summe.className = "chip";
+        summe.textContent = geprueft + " von " + LEKTIONEN.length + " gespeichert";
+        stand.appendChild(summe);
+      }
+
+      function kurz(titel) {
+        return titel.length > 28 ? titel.slice(0, 27) + "…" : titel;
+      }
+
+      function ergebnisVon(satz) {
+        if (satz.punkte && satz.punkte.bestanden === "bestanden" && satz.punkte.nacharbeit !== "bestanden") {
+          return "Bestanden";
+        }
+        if (satz.punkte && satz.punkte.nacharbeit === "bestanden") return "Nacharbeit";
+        var werte = satz.punkte ? Object.keys(satz.punkte).map(function (key) { return satz.punkte[key]; }) : [];
+        if (werte.indexOf("nacharbeit") !== -1) return "Nacharbeit";
+        if (werte.indexOf("bestanden") !== -1 && werte.indexOf("") === -1) return "Bestanden";
+        return "Offen";
+      }
+
+      function formularLeeren() {
+        form.reset();
+        document.getElementById("datum").value = "";
+        document.getElementById("pruefer").value = "";
+        document.getElementById("befunde").value = "";
+      }
+
+      function laden() {
+        speichert = true;
+        formularLeeren();
+        var satz = speicherLesen()[aktuelleId()] || {};
+        document.getElementById("datum").value = satz.datum || heute();
+        document.getElementById("pruefer").value = satz.pruefer || "";
+        document.getElementById("befunde").value = satz.befunde || "";
+        PUNKTE.forEach(function (paar) {
+          var wert = satz.punkte && satz.punkte[paar[0]];
+          if (wert) {
+            var feld = form.querySelector('input[name="punkt-' + paar[0] + '"][value="' + wert + '"]');
+            if (feld) feld.checked = true;
+          }
+          document.getElementById("notiz-" + paar[0]).value = (satz.notizen && satz.notizen[paar[0]]) || "";
+        });
+        ankerSetzen();
+        standSetzen();
+        meldung.textContent = satz.gespeichert ? "Gespeicherter Stand von " + (satz.wann || "diesem Browser") + " geladen." : "Für diese Lektion ist noch nichts gespeichert.";
+        speichert = false;
+      }
+
+      function heute() {
+        var jetzt = new Date();
+        var monat = String(jetzt.getMonth() + 1).padStart(2, "0");
+        var tag = String(jetzt.getDate()).padStart(2, "0");
+        return jetzt.getFullYear() + "-" + monat + "-" + tag;
+      }
+
+      function sammeln() {
+        var punkte = {};
+        var notizen = {};
+        PUNKTE.forEach(function (paar) {
+          var gewaehlt = form.querySelector('input[name="punkt-' + paar[0] + '"]:checked');
+          punkte[paar[0]] = gewaehlt ? gewaehlt.value : "";
+          notizen[paar[0]] = document.getElementById("notiz-" + paar[0]).value.trim();
+        });
+        return {
+          datum: document.getElementById("datum").value,
+          pruefer: document.getElementById("pruefer").value.trim(),
+          befunde: document.getElementById("befunde").value.trim(),
+          punkte: punkte,
+          notizen: notizen,
+          gespeichert: true,
+          wann: new Date().toLocaleString("de-DE")
+        };
+      }
+
+      function speichern() {
+        var daten = speicherLesen();
+        daten[aktuelleId()] = sammeln();
+        speicherSchreiben(daten);
+        standSetzen();
+        meldung.textContent = "Gespeichert, nur in diesem Browser.";
+      }
+
+      function textBauen() {
+        var eintrag = lektionNachId(aktuelleId());
+        var satz = sammeln();
+        var zeilen = [
+          "LF3-Lektionsabnahme",
+          eintrag.titel,
+          "Datei: module/" + eintrag.datei,
+          "Datum: " + (satz.datum || "—"),
+          "Prüfung durch: " + (satz.pruefer || "—"),
+          ""
+        ];
+        PUNKTE.forEach(function (paar) {
+          var wert = satz.punkte[paar[0]] || "offen";
+          var notiz = satz.notizen[paar[0]] ? " — " + satz.notizen[paar[0]] : "";
+          zeilen.push(wert + ": " + paar[1] + notiz);
+        });
+        zeilen.push("");
+        zeilen.push("Befunde: " + (satz.befunde || "—"));
+        return zeilen.join("\n");
+      }
+
+      punkteBauen();
+      lektionenFuellen();
+      lektion.addEventListener("change", laden);
+      form.addEventListener("submit", function (ereignis) {
+        ereignis.preventDefault();
+        speichern();
+      });
+      form.addEventListener("change", function () {
+        if (!speichert) speichern();
+      });
+      document.getElementById("kopie").addEventListener("click", function () {
+        var text = textBauen();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            meldung.textContent = "Abnahmetext kopiert.";
+          }, function () {
+            meldung.textContent = "Kopieren hat der Browser abgelehnt.";
+          });
+        } else {
+          meldung.textContent = "Kopieren ist in diesem Browser nicht verfügbar.";
+        }
+      });
+      document.getElementById("drucken").addEventListener("click", function () {
+        window.print();
+      });
+      document.getElementById("loeschen").addEventListener("click", function () {
+        var eintrag = lektionNachId(aktuelleId());
+        if (!window.confirm("Gespeicherten Stand für „" + eintrag.titel + "“ löschen?")) return;
+        var daten = speicherLesen();
+        delete daten[aktuelleId()];
+        speicherSchreiben(daten);
+        laden();
+        meldung.textContent = "Stand dieser Lektion gelöscht.";
+      });
+      laden();
+    }());
+  </script>
+</body>
+</html>

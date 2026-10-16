@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Eine Datei mit vereinbartem Namen in einem fiktiven Ordner ablegen und wiederfinden.">
+  <title>Daten ablegen und wiederfinden</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+  </style>
+</head>
+<body data-page="lf5-ablage" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 5</p>
+      <h1>Daten ablegen und wiederfinden</h1>
+      <p class="kopf-dauer">Fiktiver Ordner · kein echter Speicherort · keine echten Daten</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Ablage</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 von 5 Schritten · Abschluss noch nicht geöffnet</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du lernst</h2>
+      <ul>
+        <li>Eine Datei über ihren vereinbarten Namen wiederfinden.</li>
+        <li>Wissen, was in der Datei steht und was nicht.</li>
+        <li>Bei Unklarheit nachfragen, statt eine zweite Datei anzulegen.</li>
+      </ul>
+      <aside class="hinweis-box"><strong>Fiktiver Hinweis:</strong> Nordlicht IT-Service und Samira sind erfunden. Du brauchst keine Programmiersprache.</aside>
+      <button class="knopf knopf-haupt" data-next="case">Weiter</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Samiras Ablage</h2>
+      <p>Samira macht ihre Ausbildung bei <strong>Nordlicht IT-Service</strong>. Sie legt eine kleine Übungsdatei ab. Es gibt keinen echten Speicherort und keine echten Daten.</p>
+      <div class="steps">
+        <article class="step"><h3>Ordner</h3><p>Uebung-Nordlicht</p></article>
+        <article class="step"><h3>Dateiname</h3><p>geraetekarten.txt</p></article>
+        <article class="step"><h3>Inhalt</h3><p>Nur der Gerätename Mira-01</p></article>
+      </div>
+      <p>Samira nutzt den vereinbarten Namen. Bleibt er unklar, fragt sie nach.</p>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Übung: Ablage verstehen</h2>
+      <p>Wähle pro Aufgabe eine Antwort. Alle Fälle beziehen sich nur auf den fiktiven Ordner.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zurück zum Zettel</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du mit</h2>
+      <ul><li>Die Datei geraetekarten.txt findet Samira am vereinbarten Namen wieder.</li><li>In der Datei steht nur der Gerätename Mira-01.</li><li>Samira löscht die Datei nicht, um zu sehen, ob sie fehlt.</li><li>Ist der Name unklar, fragt sie die ausbildende Person, bevor sie eine zweite Datei anlegt.</li></ul>
+      <p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 5 · Programmiergrundlagen und Datenverwaltung · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf5-ablage.js"></script>
+</body>
+</html>
