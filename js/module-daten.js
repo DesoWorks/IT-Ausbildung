@@ -35,7 +35,8 @@
             { id: "lf1-praesentation", typ: "lektion", titel: "Arbeitsergebnisse verständlich präsentieren", beschreibung: "Einen fiktiven IT-Arbeitsstand strukturiert und adressatengerecht vorstellen.", page: "lf1-praesentation", status: "verfuegbar", datei: "module/lf1-praesentation.html" },
             { id: "lf1-qualitaet", typ: "lektion", titel: "Qualität prüfen und verbessern", beschreibung: "Eine fiktive Darstellung nach klaren Kriterien prüfen und Verbesserungsvorschläge ableiten.", page: "lf1-qualitaet", status: "verfuegbar", datei: "module/lf1-qualitaet.html" },
             { id: "lf1-reflexion", typ: "lektion", titel: "Rolle und eigenes Handeln reflektieren", beschreibung: "Eine fiktive berufliche Situation auswerten und einen nächsten Entwicklungsschritt benennen.", page: "lf1-reflexion", status: "verfuegbar", datei: "module/lf1-reflexion.html" },
-            { id: "lf1-abschluss", typ: "lektion", titel: "Lernfeld 1: Zusammenfassung und Abschlussaufgabe", beschreibung: "Ein fiktives Unternehmen und die eigene berufliche Rolle zusammenhängend darstellen.", page: "lf1-abschluss", status: "verfuegbar", datei: "module/lf1-abschluss.html" }
+            { id: "lf1-abschluss", typ: "lektion", titel: "Zusammenfassung und Übungsaufgabe", beschreibung: "Übung: ein fiktives Unternehmen und die eigene Rolle zusammenhängend darstellen. Das ist nicht die Lernzielkontrolle.", page: "lf1-abschluss", status: "verfuegbar", datei: "module/lf1-abschluss.html" },
+            { id: "lf1-lernziel", typ: "lernzielkontrolle", titel: "Lernzielkontrolle", beschreibung: "24 Fragen zu den vorhandenen Lektionen. Nach der Abgabe gesperrt. Zurücksetzen nur mit dem Passwort der Lernzielkontrolle.", page: "lf1-lernziel", status: "verfuegbar", datei: "module/lf1-lernziel.html" }
           ] },
         { id: "lf2", lernfeld: "Lernfeld 2", titel: "Arbeitsplätze nach Kundenwunsch ausstatten", status: "verfuegbar",
           unterthemen: [

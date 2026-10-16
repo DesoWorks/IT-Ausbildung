@@ -15,6 +15,7 @@
     "lf1-qualitaet": "it-ausbildung.lf1-qualitaet.v1",
     "lf1-reflexion": "it-ausbildung.lf1-reflexion.v1",
     "lf1-abschluss": "it-ausbildung.lf1-abschluss.v1",
+    "lf1-lernziel": "it-ausbildung.lf1-lernziel.v1",
     "lf2-kundenbedarf": "it-ausbildung.lf2-kundenbedarf.v1",
     "lf2-kriterien": "it-ausbildung.lf2-kriterien.v1",
     "lf2-sichere-auswahl": "it-ausbildung.lf2-sichere-auswahl.v1",
@@ -166,6 +167,11 @@
       if (id === "lf1-abschluss") {
         var finalAnswers = state.answers || {};
         return !!state.finish && !!state.checked && ["q1", "q2", "q3", "q4"].every(function (q) { return finalAnswers[q] === "yes"; });
+      }
+      if (id === "lf1-lernziel") {
+        var kontrolle = state.answers || {};
+        var soll = ["b", "b", "a", "c", "a", "b", "a", "c", "c", "a", "b", "a", "b", "c", "a", "c", "b", "a", "b", "b", "b", "a", "b", "b"];
+        return !!state.finish && soll.every(function (wert, index) { return kontrolle[index] === wert; });
       }
       if (id === "lf3-client-anbindung") {
         var client = state.answers || {};

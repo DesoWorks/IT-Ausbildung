@@ -48,15 +48,18 @@
   g.LF5_EINORDNEN = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   if (!g.document) return;
-  var d = g.document, s = { answers: {}, checked: false, finish: false };
+  var d = g.document, s = { answers: {}, checked: false, finish: false, step: "start" };
   function $(id) { return d.getElementById(id); }
   function load() { try { var x = JSON.parse(g.localStorage.getItem(KEY) || "null"); if (x) s = x; } catch (e) { /* Speicher kann gesperrt sein. */ } }
   function save() { try { g.localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) { /* Lektion bleibt ohne Speicherung bedienbar. */ } if (g.LERNFORTSCHRITT) g.LERNFORTSCHRITT.benachrichtigen(); }
   function update() { $("bar").style.width = barWidth(s) + "%"; $("pct").textContent = progressText(s); }
-  function go(id) {
+  function go(id, fromHistory) {
+    if (STEPS.indexOf(id) < 0) id = "start";
     STEPS.forEach(function (x) { $(x).hidden = x !== id; });
     d.querySelectorAll("[data-step]").forEach(function (b) { if (b.dataset.step === id) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current"); });
-    if (id === "finish") { s.finish = true; save(); $("done").textContent = s.checked && evaluate(s.answers).allCorrect ? "Lektion abgeschlossen. Du kannst sie jederzeit wiederholen." : "Du kannst die Karte noch einmal ansehen und die Übung später bearbeiten."; }
+    s.step = id;
+    if (!fromHistory && g.history && g.history.pushState) g.history.pushState({ lf5Step: id }, "", "");
+    if (id === "finish" && !s.finish) { s.finish = true; save(); $("done").textContent = s.checked && evaluate(s.answers).allCorrect ? "Lektion abgeschlossen. Du kannst sie jederzeit wiederholen." : "Du kannst die Karte noch einmal ansehen und die Übung später bearbeiten."; }
     update(); $("main").focus(); g.scrollTo(0, 0);
   }
   function hide() { var b = $("result"); b.hidden = true; b.textContent = ""; }
@@ -88,14 +91,21 @@
     s.checked = true; render(); save(); update();
   }
   function reset() {
-    s = { answers: {}, checked: false, finish: false }; d.querySelectorAll('#questions input[type="radio"]').forEach(function (input) { input.checked = false; }); hide();
+    s = { answers: {}, checked: false, finish: false, step: s.step || "start" }; d.querySelectorAll('#questions input[type="radio"]').forEach(function (input) { input.checked = false; }); hide();
     Q.forEach(function (q) { $("fb-" + q.id).hidden = true; $("fb-" + q.id).textContent = ""; }); $("done").textContent = ""; save(); update();
   }
   d.querySelectorAll("[data-step]").forEach(function (b) { b.addEventListener("click", function () { go(b.dataset.step); }); });
   d.querySelectorAll("[data-next]").forEach(function (b) { b.addEventListener("click", function () { go(b.dataset.next); }); });
+  if (g.addEventListener) g.addEventListener("popstate", function (event) {
+    var back = event && event.state ? event.state.lf5Step : "start";
+    go(back, true);
+  });
   $("check").addEventListener("click", check); $("reset").addEventListener("click", reset);
   $("reset-all").addEventListener("click", function () { if (g.confirm("Gespeicherten Lernfortschritt dieser Lektion zurücksetzen?")) { reset(); go("start"); } });
   load(); build();
+  if (STEPS.indexOf(s.step) < 0) s.step = "start";
   Q.forEach(function (q) { var option = q.options.find(function (o) { return o.id === s.answers[q.id]; }); if (option) { var input = d.querySelector('input[name="' + q.id + '"][value="' + option.id + '"]'); if (input) input.checked = true; } });
-  if (s.checked) render(); update();
+  if (s.checked) render();
+  go(s.step, true);
+  if (g.history && g.history.replaceState) g.history.replaceState({ lf5Step: s.step }, "", "");
 })(typeof window !== "undefined" ? window : globalThis);
