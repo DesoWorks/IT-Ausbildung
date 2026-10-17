@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Wer ist im Beispiel als Empfänger der Umsätze festgelegt?", correct: "leitung", options: [
-        { id: "leitung", label: "Die Caféleitung.", feedback: "Richtig. Der Auftrag legt die Caféleitung als Empfänger fest. Andere Personen bekommen die Umsätze nicht nur wegen Erreichbarkeit." },
-        { id: "alle", label: "Jede Person, die die Datei technisch öffnen könnte, weil Erreichbarkeit schon die Erlaubnis ersetzt.", feedback: "Erreichbar ist nicht berechtigt. Die Leseberechtigung bleibt im Beispiel auf die Caféleitung begrenzt." },
-        { id: "gaeste", label: "Die Gäste an der Theke, weil ein Umsatz ohne weitere Prüfung öffentlich zur Speisekarte gehört.", feedback: "Gäste sind nicht die Empfänger des Auftrags. Umsätze gehören nicht in eine öffentliche Ansicht." },
+        { id: "leitung", label: "Die Caféleitung laut vereinbartem Übersichtsauftrag.", feedback: "Richtig. Das ist der festgelegte Empfänger im Modell, keine allgemeine rechtliche Erlaubnis." },
+        { id: "alle", label: "Das Kassenteam mit technischem Zugriff auf den Export.", feedback: "Technischer Zugriff erweitert den Empfängerkreis des Auftrags nicht auf das gesamte Kassenteam." },
+        { id: "gaeste", label: "Die Gäste als Empfänger einer anonymen Umsatzstatistik.", feedback: "Eine öffentliche Statistik ist nicht beauftragt. Die Übersicht richtet sich an die Caféleitung." },
       ] },
       { id: "q2", prompt: "Warum behandelt das Beispiel Namen in der Schichttabelle vorsichtig?", correct: "person", options: [
-        { id: "zahl", label: "Weil eine Zahl in der Tabelle automatisch ein Personenbezug ist und ein Name keiner.", feedback: "Eine Zahl ist nicht automatisch personenbezogen, ein Name echter Menschen kann es sein. Die Namensspalte ist der heikle Punkt." },
-        { id: "person", label: "Im echten Betrieb wären sie personenbezogen.", feedback: "Richtig. Namen echter Mitarbeitender wären personenbezogene Angaben. Die erfundenen Namen gehören zu keiner realen Person, werden aber wie echte behandelt und nicht öffentlich gezeigt." },
-        { id: "format", label: "Weil ein Tabellenblatt grundsätzlich verboten ist, unabhängig davon, welche Spalten es enthält.", feedback: "Das Format allein ist nicht das Problem. Der mögliche Personenbezug der Namensspalte ist die Grenze." },
+        { id: "zahl", label: "Weil jede Zeile mit einer Personenzahl personenbezogen ist.", feedback: "Eine bloße Anzahl ist nicht automatisch personenbezogen. Die mögliche Identifizierbarkeit ist maßgeblich." },
+        { id: "person", label: "Weil echte Mitarbeiternamen Menschen identifizierbar machen.", feedback: "Richtig. Die erfundenen Namen gehören niemandem, werden zum Lernen aber wie echte Angaben behandelt." },
+        { id: "format", label: "Weil personenbezogene Angaben nur in Datenbanken erlaubt sind.", feedback: "Dateiformat oder Tabellenblatt entscheiden nicht über die Zulässigkeit personenbezogener Verarbeitung." },
       ] },
       { id: "q3", prompt: "Wohin gehören die Namen im Beispiel nicht?", correct: "gaeste", options: [
-        { id: "plan", label: "In die interne Schichtplanung, obwohl der Auftrag genau diese Planung für die Leitung vorsieht.", feedback: "Die interne Planung ist der genannte Zweck. Die Grenze betrifft die öffentliche Ansicht." },
-        { id: "notiz", label: "In Samiras interne Notiz zum Zweck, solange die Notiz nicht zur Gästeansicht wird.", feedback: "Eine interne Notiz zum Zweck ist erlaubt. Öffentlich werden die Namen dadurch nicht." },
-        { id: "gaeste", label: "In eine öffentliche Gästeansicht.", feedback: "Richtig. Namen aus der Schichtplanung gehören nicht auf eine Seite, die Gäste sehen." },
+        { id: "plan", label: "In die vereinbarte interne Planung für die Leitung.", feedback: "Im Modell ist diese interne Planung der vorgesehene Zweck. Gefragt ist die öffentliche Grenze." },
+        { id: "notiz", label: "In die zweckgebundene interne Arbeitsnotiz des Modells.", feedback: "Eine zweckgebundene interne Arbeitsnotiz ist im Modell vorgesehen, keine öffentliche Anzeige." },
+        { id: "gaeste", label: "In die öffentlich lesbare Tagesansicht für Cafébesucher.", feedback: "Richtig. Öffentlichkeit ist nicht der vereinbarte Zweck der internen Schichtnamen im Beispiel." },
       ] },
       { id: "q4", prompt: "Was tut Samira, wenn die Rechtsgrundlage fehlt?", correct: "fragen", options: [
-        { id: "fragen", label: "Sie fragt und erfindet keine.", feedback: "Richtig. Eine fehlende Grundlage bleibt offen. Der Auftrag der Caféleitung ersetzt die rechtliche Prüfung nicht, und Samira erfindet keine Erlaubnis." },
-        { id: "erfinden", label: "Sie schreibt eine beliebige Rechtsgrundlage in die Notiz, damit die Übersicht vollständig aussieht.", feedback: "Eine erfundene Grundlage wäre eine falsche Angabe. Die Lücke bleibt sichtbar." },
-        { id: "teilen", label: "Sie gibt die Umsätze trotzdem an alle weiter, weil eine offene Frage die Weitergabe nicht aufhält.", feedback: "Ohne geklärten Zweck und ohne Empfänger gibt es keine Weitergabe. Die Frage stoppt diesen Schritt." },
+        { id: "fragen", label: "Sie hält die Verarbeitung an und lässt die Grundlage klären.", feedback: "Richtig. Auftrag und Berechtigung ersetzen keine fehlende rechtliche Grundlage der Verarbeitung." },
+        { id: "erfinden", label: "Sie übernimmt die Rechtsgrundlage eines ähnlichen Projekts.", feedback: "Eine fremde Rechtsgrundlage passt nicht automatisch zum konkreten Zweck und muss geprüft werden." },
+        { id: "teilen", label: "Sie startet intern und klärt die Grundlage vor Veröffentlichung.", feedback: "Auch interne personenbezogene Verarbeitung braucht eine geklärte Grundlage, nicht erst Veröffentlichung." },
       ] },
     ]
   });

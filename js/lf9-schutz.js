@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Welche Datenschutzfrage stellt Samira?", correct: "erheben", options: [
-        { id: "erheben", label: "Welche personenbezogenen Angaben fallen an?", feedback: "Richtig. Im Beispiel ist keine Namensliste geplant. Technisch anfallende Daten wie IP-Adressen oder Protokolle sind vor der Umsetzung trotzdem zu prüfen." },
-        { id: "farbe", label: "Welche Farbe das Gästenetz hat, weil die Farbe über den Personenbezug entscheidet.", feedback: "Die Farbe sagt nichts über personenbezogene Angaben. Die Frage zielt auf Erhebung, nicht auf Gestaltung." },
-        { id: "marke", label: "Welche Routermarke den Datenschutz automatisch erfüllt, ohne die Erhebung zu prüfen.", feedback: "Eine Marke ersetzt die Prüfung nicht. Entscheidend ist, ob Personendaten erhoben werden." },
+        { id: "erheben", label: "Welche Daten einschließlich IP-Adressen und Protokollen fallen an?", feedback: "Richtig. Auch ohne Namensliste sind technisch anfallende Daten und mögliche Personenbezüge zu prüfen." },
+        { id: "farbe", label: "Welche Verschlüsselung schützt den Funkzugang vor Mitlesen?", feedback: "Das ist zunächst eine Sicherheitsmaßnahme. Die Datenarten und Zwecke der Verarbeitung bleiben zu klären." },
+        { id: "marke", label: "Welche Firewallregel sperrt die Kasse aus dem Gästenetz?", feedback: "Die Regel betrifft Zugriffsschutz. Sie beantwortet nicht, welche personenbezogenen Daten verarbeitet werden." },
       ] },
       { id: "q2", prompt: "Was legt Samira für den Gästezugang nicht an?", correct: "liste", options: [
-        { id: "grenze", label: "Die Grenze zur Kasse, obwohl die Trennung zum Schutz gehört.", feedback: "Die Grenze bleibt. Eine unnötige Namensliste entfällt; Authentisierung und Verschlüsselung werden dadurch nicht ausgeschlossen." },
-        { id: "liste", label: "Eine Namensliste der Gäste.", feedback: "Richtig. Eine Gästeliste wäre eine unnötige Erhebung. Der Auftrag verlangt sie nicht." },
-        { id: "notiz", label: "Die Notiz, dass keine Namensliste geplant ist.", feedback: "Genau diese Notiz gehört dazu. Sie ist keine Gästeliste und kein Passwort." },
+        { id: "grenze", label: "Die geplante Zugriffsgrenze zum Kassensystem.", feedback: "Diese Grenze bleibt erforderlich. Verzicht auf Namenslisten hebt nötige Schutzmaßnahmen nicht auf." },
+        { id: "liste", label: "Eine zusätzliche Liste der Gästenamen ohne benötigten Zweck.", feedback: "Richtig. Für den Auftrag wird keine Namensliste benötigt; technische Daten sind gesondert zu prüfen." },
+        { id: "notiz", label: "Eine Notiz zu anfallenden technischen Daten und offenen Fragen.", feedback: "Diese Dokumentation ist sinnvoll und keine unnötige Gästeliste. Die offenen Datenschutzfragen bleiben sichtbar." },
       ] },
       { id: "q3", prompt: "Wann besteht der Gästezugang den Schutz nicht?", correct: "sichtbar", options: [
-        { id: "papier", label: "Sobald er nur auf Papier beschrieben ist, weil Schutz eine Installation voraussetzt.", feedback: "Die Beschreibung ist der Arbeitsstand. Nicht bestanden ist eine Planung, die die Kasse sichtbar macht." },
-        { id: "zehn", label: "Sobald zehn gleichzeitige Endgeräte genannt sind, weil eine Zahl den Schutz automatisch verletzt.", feedback: "Die Mindestkapazität ist eine Anforderung, keine Verletzung. Die Verletzung wäre ein Weg zur Kasse." },
-        { id: "sichtbar", label: "Wenn er die Kasse sichtbar macht.", feedback: "Richtig. Funktion für Gäste ersetzt die Grenze nicht. Sichtbare Kasse bedeutet nicht bestanden." },
+        { id: "papier", label: "Wenn der Entwurf die Trennung beschreibt, aber noch nicht installiert ist.", feedback: "Ein Plan ist noch kein Installationsnachweis. Sein Schutzkriterium ist dadurch aber nicht schon verletzt." },
+        { id: "zehn", label: "Wenn der Pool mehr als zehn gleichzeitige Endgeräte zulässt.", feedback: "Zehn ist eine Mindestkapazität, keine harte Obergrenze. Mehr Kapazität beweist keinen Schutzfehler." },
+        { id: "sichtbar", label: "Wenn Gäste das Kassensystem trotz funktionierender Verbindung erreichen.", feedback: "Richtig. Die Gästeverbindung muss funktionieren und zugleich die vereinbarte Zugriffsgrenze einhalten." },
       ] },
       { id: "q4", prompt: "Was tut Samira, wenn eine Rechtsgrundlage fehlt?", correct: "nicht", options: [
-        { id: "nicht", label: "Sie erfindet keine.", feedback: "Richtig. Eine fehlende Grundlage bleibt offen. Samira schreibt keine erfundene Erlaubnis in die Notiz." },
-        { id: "erfinden", label: "Sie setzt eine beliebige Grundlage ein, damit die Schutzseite vollständig aussieht.", feedback: "Eine erfundene Grundlage wäre eine falsche Angabe. Die Lücke bleibt sichtbar." },
-        { id: "liste", label: "Sie legt vorsorglich eine Gästeliste an, weil fehlende Grundlagen durch mehr Daten geheilt werden.", feedback: "Mehr Daten heilen keine fehlende Grundlage. Die Liste wird nicht angelegt." },
+        { id: "nicht", label: "Sie lässt die Grundlage vor der betroffenen Verarbeitung klären.", feedback: "Richtig. Eine offene rechtliche Voraussetzung bleibt ein offener Punkt und wird nicht erfunden." },
+        { id: "erfinden", label: "Sie übernimmt die Standardklausel eines anderen Gästeportals.", feedback: "Eine fremde Standardklausel belegt keine passende Rechtsgrundlage für den eigenen Verarbeitungszweck." },
+        { id: "liste", label: "Sie erhebt zunächst nur Namen und prüft die Grundlage später.", feedback: "Auch eine kleine Namensliste ist Verarbeitung. Weniger Daten ersetzen keine notwendige Grundlage." },
       ] },
     ]
   });

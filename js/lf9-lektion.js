@@ -23,11 +23,20 @@
       if (STEPS.indexOf(raw.step) !== -1) s.step = raw.step;
       return s;
     }
-    var api = { ID: config.id, KEY: KEY, STEPS: STEPS, QUESTIONS: Q, CONFIG: config, evaluate: evaluate, progress: progress, barWidth: barWidth, progressText: progressText, normalize: normalize };
+    /* Nur die sichtbare Reihenfolge wird gemischt (Fisher-Yates, einmal je Seitenbesuch).
+   * Werte, IDs, Speicher und Arrayreihenfolge bleiben unverändert. */
+    function mischen(n, rnd) {
+      var order = [], i, j, t, r = rnd || (typeof g.LF9_ZUFALL === "function" ? g.LF9_ZUFALL : Math.random);
+      for (i = 0; i < n; i++) order.push(i);
+      for (i = n - 1; i > 0; i--) { j = Math.min(i, Math.floor(r() * (i + 1))); t = order[i]; order[i] = order[j]; order[j] = t; }
+      return order;
+    }
+    var api = { mischen: mischen, ID: config.id, KEY: KEY, STEPS: STEPS, QUESTIONS: Q, CONFIG: config, evaluate: evaluate, progress: progress, barWidth: barWidth, progressText: progressText, normalize: normalize };
     g.LF9_INHALTE = g.LF9_INHALTE || {};
     g.LF9_INHALTE[config.id] = api;
     if (!g.document || g.document.body.dataset.page !== config.id) return api;
     var d = g.document, s = normalize();
+    var order = {}; Q.forEach(function (q) { order[q.id] = mischen(q.options.length); });
     function $(id) { return d.getElementById(id); }
     function text(tag, value, parent) { var element = d.createElement(tag); element.textContent = value; parent.appendChild(element); return element; }
     function notify() { if (g.LERNFORTSCHRITT && g.LERNFORTSCHRITT.benachrichtigen) g.LERNFORTSCHRITT.benachrichtigen(); }
@@ -68,7 +77,8 @@
       var field = text("fieldset", "", $("questions")); field.className = "frage";
       text("legend", (index + 1) + ". " + q.prompt, field);
       var group = text("div", "", field); group.className = "opts";
-      q.options.forEach(function (option) {
+      order[q.id].forEach(function (pos) {
+        var option = q.options[pos];
         var label = text("label", "", group); label.className = "opt";
         var input = d.createElement("input"); input.type = "radio"; input.name = q.id; input.value = option.id;
         label.appendChild(input); label.appendChild(d.createTextNode(" " + option.label));

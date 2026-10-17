@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Was übergibt Samira in dieser Lektion?", correct: "notiz", options: [
-        { id: "notiz", label: "Die nachvollziehbare Notiz.", feedback: "Richtig. Quellen, Zweck, Regeln und Lücken stehen in der Notiz. Eine echte Seite wird nicht übergeben." },
-        { id: "seite", label: "Eine bereits freigegebene Produktivseite, weil eine Notiz ohne Live-System keine Übergabe ist.", feedback: "Eine Produktivseite gibt es nicht. Die Übergabe betrifft den dokumentierten Stand, nicht einen Betrieb." },
-        { id: "passwort", label: "Ein Passwort für die Kasse, damit die nächste Person sofort echte Umsätze laden kann.", feedback: "Zugangsdaten gehören nicht in die Übung und nicht in die Übergabe. Es gibt kein echtes Konto." },
+        { id: "notiz", label: "Den dokumentierten Konzeptstand mit Quellen, Regeln und Lücken.", feedback: "Richtig. Die Übergabe beschreibt den erreichten Konzeptstand, ohne einen Produktivbetrieb vorzutäuschen." },
+        { id: "seite", label: "Eine Betriebsfreigabe auf Grundlage der gezeichneten Übersicht.", feedback: "Die Skizze und ihre Notiz sind kein Nachweis einer geprüften produktiven Umsetzung oder Freigabe." },
+        { id: "passwort", label: "Eine Einrichtungsvorgabe ohne die noch offenen Quellenfragen.", feedback: "Offene Quellenfragen müssen sichtbar übergeben werden, statt bereits eine fertige Vorgabe zu behaupten." },
       ] },
       { id: "q2", prompt: "Welche Grenze muss die Notiz nennen?", correct: "nicht", options: [
-        { id: "fertig", label: "Dass der Betrieb die Übersicht bereits nutzt, auch wenn nichts eingerichtet wurde.", feedback: "Eine Nutzung vorzutäuschen wäre falsch. Die Notiz sagt, dass nichts eingerichtet wurde." },
-        { id: "nicht", label: "Nichts eingerichtet, keine Freigabe.", feedback: "Richtig. Stand, Bearbeiterin und die Grenze gehören in die Notiz, sonst wirkt die Skizze wie ein Betrieb." },
-        { id: "geheim", label: "Dass offene Fragen absichtlich verschwiegen werden, damit die Übergabe kürzer wirkt.", feedback: "Offene Fragen bleiben sichtbar. Kürze ist kein Grund, eine Lücke zu verdecken." },
+        { id: "fertig", label: "Die Konzeptprüfung gilt gleichzeitig als Freigabe des Betriebs.", feedback: "Konzeptstand und Betriebsfreigabe sind verschiedene Dinge. Die Notiz darf sie nicht gleichsetzen." },
+        { id: "nicht", label: "Konzept beschrieben, aber kein Produktivsystem eingerichtet oder freigegeben.", feedback: "Richtig. Die Notiz benennt erreichte Arbeit und die Grenze zum echten Betrieb ausdrücklich." },
+        { id: "geheim", label: "Ungeklärte Angaben werden erst nach der Übergabe nachgetragen.", feedback: "Die Übergabe muss bereits erkennen lassen, welche Angaben offen sind und deshalb noch nicht nutzbar sind." },
       ] },
       { id: "q3", prompt: "Wann setzt Samira kein Erledigt?", correct: "offen", options: [
-        { id: "immer", label: "Niemals, auch wenn jede offene Frage beantwortet und die Notiz geprüft ist.", feedback: "Eine beantwortete und geprüfte Notiz kann später als Stand festgehalten werden. Hier fehlt noch die Antwort." },
-        { id: "nie", label: "Nur wenn die Seite schon öffentlich ist, unabhängig von offenen Fragen in der Notiz.", feedback: "Öffentlichkeit ist nicht das Kriterium. Eine offene Frage verbietet das Häkchen schon vorher." },
-        { id: "offen", label: "Solange eine Frage offen ist.", feedback: "Richtig. Die fehlende Währung bleibt offen. Erledigt wäre eine falsche Aussage." },
+        { id: "immer", label: "Solange die Leitung noch keine öffentliche Tagesseite sehen kann.", feedback: "Öffentlichkeit ist nicht beauftragt. Entscheidend sind die vereinbarten Arbeitsergebnisse und offenen Fragen." },
+        { id: "nie", label: "Solange die Notiz weniger als eine volle Seite umfasst.", feedback: "Die Seitenzahl ist kein Abschlusskriterium. Eine kurze vollständige Notiz kann ausreichen." },
+        { id: "offen", label: "Solange eine für die Nutzung nötige Angabe ungeklärt ist.", feedback: "Richtig. Eine fehlende Währung oder Berechtigung darf nicht unter einem Erledigt-Häkchen verschwinden." },
       ] },
       { id: "q4", prompt: "Was heißt übergabefähig hier?", correct: "klar", options: [
-        { id: "klar", label: "Nachvollziehbar, nicht fertig im Betrieb.", feedback: "Richtig. Eine andere Person versteht Quellen, Regeln und Lücken. Der Cafébetrieb nutzt die Übersicht noch nicht." },
-        { id: "live", label: "Dass Gäste die Umsätze bereits sehen und die Notiz deshalb entfallen kann.", feedback: "Gäste sind nicht Empfänger. Eine fehlende Notiz macht die Übergabe schlechter, nicht kürzer." },
-        { id: "muendlich", label: "Dass Samira alles nur mündlich sagt und nichts aufschreibt.", feedback: "Mündlich allein ist nicht prüfbar. Die Notiz muss ohne mündliche Ergänzung verständlich sein." },
+        { id: "klar", label: "Der Stand ist ohne Rückfrage verständlich, ohne Betriebsreife zu behaupten.", feedback: "Richtig. Nachvollziehbarkeit umfasst Regeln und Lücken; sie ist keine produktive Freigabe." },
+        { id: "live", label: "Die Datenansicht ist veröffentlicht; Dokumentation kann später folgen.", feedback: "Veröffentlichung ersetzt keine verständliche Übergabe und ist für die interne Übersicht nicht beauftragt." },
+        { id: "muendlich", label: "Eine mündliche Erläuterung reicht, wenn die Quellen selbst beigelegt sind.", feedback: "Quellen allein erklären Auswahl, Regeln und offene Punkte nicht. Diese müssen dokumentiert übergeben werden." },
       ] },
     ]
   });

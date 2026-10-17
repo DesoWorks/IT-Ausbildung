@@ -13,24 +13,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Welchen Dienst leitet Samira aus dem Auftrag ab?", correct: "gast", options: [
-        { id: "gast", label: "Einen Gästezugang.", feedback: "Richtig. Der Auftrag verlangt eine Verbindung für Gäste im Besprechungsraum, getrennt von der Kasse." },
-        { id: "druck", label: "Einen Druckdienst, weil jedes Café automatisch einen Drucker im Netz haben muss.", feedback: "Ein Druckdienst steht nicht im Auftrag. Gewohnheit ersetzt die Anforderung nicht." },
-        { id: "kasse", label: "Einen öffentlichen Kassenzugriff, damit Gäste die Preise selbst an der Kasse ändern können.", feedback: "Die Kasse soll unerreichbar bleiben. Ein öffentlicher Zugriff widerspricht der Anforderung." },
+        { id: "gast", label: "Einen Gästezugang mit geeigneter Adressbereitstellung.", feedback: "Richtig. Die Gäste benötigen eine Verbindung; das Modell konkretisiert die Adressbereitstellung mit DHCP." },
+        { id: "druck", label: "Einen gemeinsamen Druckdienst für Besprechungsteilnehmer.", feedback: "Ein Druckdienst wäre möglich, ist aber aus dem konkreten Verbindungsauftrag nicht abgeleitet." },
+        { id: "kasse", label: "Einen lesenden Informationsdienst auf dem Kassensystem.", feedback: "Ein Dienst auf der Kasse für Gäste würde deren geforderte Unerreichbarkeit nicht einhalten." },
       ] },
       { id: "q2", prompt: "Warum plant Samira für die Kasse keinen neuen Dienst?", correct: "getrennt", options: [
-        { id: "kaputt", label: "Weil die Kasse im Beispiel defekt ist und deshalb keinen Dienst mehr brauchen kann.", feedback: "Die Kasse ist nicht als defekt beschrieben. Sie bleibt getrennt, nicht reparaturbedürftig." },
-        { id: "getrennt", label: "Der Auftrag verlangt dort keinen.", feedback: "Richtig. Ohne Bedarf wird kein Dienst geplant. Dass die Kasse unerreichbar bleibt, ist eine eigene Anforderung und wird durch Trennung und Zugriffsregeln erfüllt, nicht dadurch, dass dort kein Dienst steht." },
-        { id: "teuer", label: "Weil jeder Dienst an einer Kasse grundsätzlich zu teuer für eine Planung ist.", feedback: "Der Preis ist hier nicht der Grund. Der Grund ist, dass der Auftrag dort keinen Dienst verlangt." },
+        { id: "kaputt", label: "Ein zusätzlicher Dienst würde das Gerät technisch unerreichbar machen.", feedback: "Dienstbetrieb und Erreichbarkeit sind getrennt. Unerreichbarkeit folgt aus Trennung und Zugriffsregeln." },
+        { id: "getrennt", label: "Für die Kasse ist kein zusätzlicher Dienstbedarf beauftragt.", feedback: "Richtig. Ein Dienst wird aus Bedarf abgeleitet. Die Zugriffssperre zur Kasse ist ein eigenes Kriterium." },
+        { id: "teuer", label: "Der Aufwand für einen Dienst wurde bereits als zu hoch nachgewiesen.", feedback: "Ein solcher Aufwandsnachweis liegt nicht vor. Entscheidend ist hier der fehlende beauftragte Dienstbedarf." },
       ] },
       { id: "q3", prompt: "Was ist der Zugangsdienst in dieser Lektion nicht?", correct: "geraet", options: [
-        { id: "zweck", label: "Eine Beschreibung, was Gäste dürfen, obwohl genau das aus dem Auftrag folgt.", feedback: "Die Beschreibung des Zwecks ist der Dienst. Ein Gerät ist er noch nicht." },
-        { id: "grenze", label: "Die Grenze zur Kasse, obwohl die Trennung Teil des Auftrags ist.", feedback: "Die Trennung gehört zum Auftrag. Sie wird nicht durch ein Gerät ersetzt." },
-        { id: "geraet", label: "Ein konkretes Gerät.", feedback: "Richtig. Der Dienst nennt noch kein Gerät, kein Passwort und keine echte Adresse." },
+        { id: "zweck", label: "Eine funktionale Beschreibung der benötigten Gästeverbindung.", feedback: "Der Dienstbedarf beschreibt eine Funktion. Das ist noch keine Entscheidung für ein bestimmtes Gerät." },
+        { id: "grenze", label: "Ein Zugang mit der geforderten Grenze zum Kassensystem.", feedback: "Die Gästeverbindung muss diese Randbedingung einhalten; ihre Beschreibung legt noch keine Hardware fest." },
+        { id: "geraet", label: "Eine Festlegung auf ein bestimmtes Routermodell.", feedback: "Richtig. Die Funktion eines Dienstes ist von der später gewählten Hardware zu unterscheiden." },
       ] },
       { id: "q4", prompt: "Welcher Dienst fällt heraus?", correct: "datei", options: [
-        { id: "datei", label: "Ein Dateiserver ohne Auftrag.", feedback: "Richtig. Ein Dateiserver steht nicht in der Anforderung. Ohne Bedarf wird er nicht dazugeplant." },
-        { id: "gast", label: "Der Gästezugang, obwohl die Caféleitung genau diese Verbindung verlangt hat.", feedback: "Der Gästezugang ist abgeleitet und bleibt. Heraus fällt nur, was niemand gefordert hat." },
-        { id: "trennung", label: "Die Trennung von der Kasse, weil ein Dienst keine Grenze enthalten darf.", feedback: "Die Trennung ist Teil des Auftrags. Ein Dienst ohne diese Grenze wäre der falsche Dienst." },
+        { id: "datei", label: "Eine gemeinsame Dateiablage ohne genannten Nutzungsbedarf.", feedback: "Richtig. Eine Dateiablage wäre ein zusätzlicher Dienst, der aus dem Auftrag nicht hervorgeht." },
+        { id: "gast", label: "Die Gästeverbindung für den vereinbarten Besprechungsraum.", feedback: "Diese Verbindung ist der beauftragte Nutzen und bleibt deshalb Teil der Planung." },
+        { id: "trennung", label: "Die Adressbereitstellung für den geplanten Gästezugang.", feedback: "Eine passende Adressbereitstellung unterstützt den beauftragten Zugang und ist im Modell konkretisiert." },
       ] },
     ]
   });

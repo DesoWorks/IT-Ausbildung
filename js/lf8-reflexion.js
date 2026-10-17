@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Welches Werkzeug passt zu dieser Skizze?", correct: "papier", options: [
-        { id: "papier", label: "Papier und die erfundenen Beispielzeilen.", feedback: "Richtig. Die Aufgabe ist eine nachvollziehbare Skizze. Ein Server würde eine Einrichtung vortäuschen." },
-        { id: "server", label: "Ein Datenbankserver, weil jede Datenaufgabe unabhängig vom Umfang einen Server braucht.", feedback: "Die wenigen erfundenen Zeilen brauchen keinen Server. Die Wahl folgt der Aufgabe, nicht der Gewohnheit." },
-        { id: "konto", label: "Ein echtes Kassenkonto, weil ohne Anmeldung keine Übung möglich ist.", feedback: "Ein echtes Konto ist ausgeschlossen. Die Beispielzeilen sind erfunden und reichen für die Skizze." },
+        { id: "papier", label: "Die fiktiven Beispielzeilen und eine nachvollziehbare Skizze.", feedback: "Richtig. Für den Konzeptschritt reichen diese Mittel. Das zusätzliche Labor setzt die Bereitstellung separat um." },
+        { id: "server", label: "Eine neue Serverdatenbank mit eingerichteter Importautomatik.", feedback: "Für die reine Skizze wäre diese Einrichtung unnötig und würde den vorgesehenen Arbeitsschritt überschreiten." },
+        { id: "konto", label: "Ein lesendes Kassenkonto zum Abgleich echter Geschäftsdaten.", feedback: "Echte Geschäftsdaten sind nicht erforderlich. Die Skizze soll mit den fiktiven Beispielzeilen entstehen." },
       ] },
       { id: "q2", prompt: "Woran erkennt Samira eine brauchbare Notiz?", correct: "andere", options: [
-        { id: "huebsch", label: "An der Schriftfarbe, weil eine lesbare Farbe jede fehlende Quelle ersetzt.", feedback: "Aussehen ersetzt keine Quelle. Eine andere Person muss Regeln und Lücken verstehen." },
-        { id: "andere", label: "Eine andere Person versteht sie.", feedback: "Richtig. Quelle, Stand, Regel und offene Frage müssen ohne mündliche Nachfrage klar sein." },
-        { id: "kurz", label: "Daran, dass sie nur das Wort fertig enthält und deshalb keine Rückfrage erzeugt.", feedback: "Das Wort fertig verdeckt Lücken. Kürze ohne Inhalt ist keine Qualität." },
+        { id: "huebsch", label: "Die Notiz verwendet ein einheitliches Layout und dieselbe Schrift.", feedback: "Layout hilft beim Lesen, beweist aber nicht, dass eine andere Person Quellen, Regeln und Lücken versteht." },
+        { id: "andere", label: "Eine zweite Rolle kann Quellen, Regeln und Lücken ohne Rückfrage erklären.", feedback: "Richtig. Das prüft tatsächliche Nachvollziehbarkeit statt nur die äußere Form der Dokumentation." },
+        { id: "kurz", label: "Die Notiz enthält alle Dateinamen und einen abschließenden Status.", feedback: "Dateinamen und Status allein erklären keine Auswahl- oder Aufbereitungsregeln und reichen nicht aus." },
       ] },
       { id: "q3", prompt: "Was prüft die Reflexion an der Lieferantenliste?", correct: "grund", options: [
-        { id: "kauf", label: "Ob die Liste nachträglich gekauft werden sollte, obwohl der Auftrag sie nicht verlangt.", feedback: "Ein Kauf ist nicht die Reflexion. Geprüft wird, ob der Ablehnungsgrund nachvollziehbar ist." },
-        { id: "namen", label: "Ob alle Lieferantennamen öffentlich gemacht wurden, damit die Notiz vollständiger wirkt.", feedback: "Nicht gewählte personenbezogene Angaben werden nicht veröffentlicht. Die Ablehnung bleibt die richtige Entscheidung." },
-        { id: "grund", label: "Ob der Ablehnungsgrund ohne Nachfrage klar ist.", feedback: "Richtig. Die Notiz muss sagen, dass der Auftrag keine Lieferdaten verlangt." },
+        { id: "kauf", label: "Ob sich die Lieferantenliste mit weniger Aufwand importieren ließe.", feedback: "Technisch leichterer Import ändert nichts am fehlenden Auftrag. Hier wird die Auswahlbegründung geprüft." },
+        { id: "namen", label: "Ob alle Datensätze der abgelehnten Liste in der Anlage stehen.", feedback: "Eine vollständige Datenkopie ist für die begründete Ablehnung nicht erforderlich und nicht beauftragt." },
+        { id: "grund", label: "Ob der fehlende Bezug zum Auftrag nachvollziehbar begründet wurde.", feedback: "Richtig. Eine zweite Person muss verstehen, warum die verfügbare Quelle bewusst ausgeschlossen wurde." },
       ] },
       { id: "q4", prompt: "Was ist diese Reflexion nicht?", correct: "abnahme", options: [
-        { id: "abnahme", label: "Eine Freigabe des Lernfelds.", feedback: "Richtig. Die Reflexion bewertet die eigene Notiz. Das Feld bleibt auf In Kürze, bis es geprüft ist." },
-        { id: "blick", label: "Ein Blick auf die eigene Notiz, obwohl genau das der Zweck dieser Lektion ist.", feedback: "Der Blick auf die Notiz ist der Zweck. Er ersetzt nur nicht die Prüfung des ganzen Felds." },
-        { id: "luecke", label: "Das Sichtbarmachen einer Lücke, weil Lücken in einer Reflexion verboten sind.", feedback: "Lücken sichtbar zu machen gehört zur Qualität. Verboten ist, sie als erledigt zu markieren." },
+        { id: "abnahme", label: "Eine Entscheidung, das gesperrte Lernfeld im Katalog freizugeben.", feedback: "Richtig. Selbstreflexion ersetzt Dennis' ausdrückliche Freigabeentscheidung nicht." },
+        { id: "blick", label: "Eine Prüfung, ob die eigene Auswahlbegründung verständlich ist.", feedback: "Das gehört genau zur Reflexion und ist noch keine Freigabe des gesamten Lernfelds." },
+        { id: "luecke", label: "Eine Dokumentation der noch offenen Angaben und Verbesserungen.", feedback: "Offene Angaben sichtbar zu machen ist ein sinnvoller Teil der Reflexion, kein Freigabeschritt." },
       ] },
     ]
   });

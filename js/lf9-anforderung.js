@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Was ist im Beispiel eine Anforderung?", correct: "trennung", options: [
-        { id: "trennung", label: "Gästenetz und Kasse getrennt.", feedback: "Richtig. Die Trennung ist gefordert. Ein Gerätetyp oder ein Kauf ist noch keine Anforderung." },
-        { id: "kabel", label: "Eine bestimmte Kabelmarke, weil jede Anforderung schon die spätere Verlegung festlegen muss.", feedback: "Die Marke ist eine spätere Auswahl. Die Anforderung nennt Trennung und Zweck, nicht das Kabel." },
-        { id: "kauf", label: "Sofort einen Router kaufen, damit die Anforderung erst aus dem Karton abgelesen werden kann.", feedback: "Der Kauf folgt der geklärten Anforderung. In dieser Lektion wird nichts gekauft." },
+        { id: "trennung", label: "Gästezugang ermöglichen und den Zugriff zur Kasse verhindern.", feedback: "Richtig. Das beschreibt den geforderten Nutzen und die Grenze, ohne schon ein Produkt festzulegen." },
+        { id: "kabel", label: "Den Gästezugang über einen zusätzlichen Access Point lösen.", feedback: "Ein Access Point wäre eine mögliche Lösungswahl. Die Anforderung beschreibt zunächst Nutzen und Grenze." },
+        { id: "kauf", label: "Einen Router mit separatem Gästeanschluss beschaffen.", feedback: "Das ist eine Beschaffungs- bzw. Lösungsvorgabe, nicht die hier zunächst zu klärende Kundenanforderung." },
       ] },
       { id: "q2", prompt: "Welche Kapazität nennt das Beispiel für das Gästenetz?", correct: "zehn", options: [
-        { id: "unbegrenzt", label: "Beliebig viele, weil eine nicht genannte Zahl automatisch unbegrenzt bedeutet.", feedback: "Eine fehlende Zahl wäre eine Lücke. Im Beispiel ist die Zahl genannt: zehn gleichzeitige Endgeräte als Mindestkapazität." },
-        { id: "zehn", label: "Mindestens zehn gleichzeitige Endgeräte.", feedback: "Richtig. Die Caféleitung nennt zehn gleichzeitige Endgeräte als Planungskapazität. Das ist keine harte Sperre für das elfte Gerät." },
-        { id: "einer", label: "Genau ein Gast, weil ein Besprechungsraum nur eine Person versorgen darf.", feedback: "Der Raum begrenzt die Personenzahl nicht auf eins. Vereinbart sind mindestens zehn gleichzeitige Endgeräte als Planungskapazität." },
+        { id: "unbegrenzt", label: "Zehn Gäste pro Tag, unabhängig von ihren Endgeräten.", feedback: "Tagesbesucherzahl ist nicht gleichzeitige Gerätekapazität. Eine Person kann mehrere Geräte verwenden." },
+        { id: "zehn", label: "Mindestens zehn Endgeräte sollen gleichzeitig nutzbar sein.", feedback: "Richtig. Das ist die Planungskapazität, keine verbindliche Sperre für ein elftes Gerät." },
+        { id: "einer", label: "Genau zehn Leases; eine elfte Verbindung muss gesperrt werden.", feedback: "Eine harte Obergrenze ist nicht beauftragt. Geplant werden mindestens zehn gleichzeitige Endgeräte." },
       ] },
       { id: "q3", prompt: "Darf die Kasse vom Gästenetz aus erreichbar sein?", correct: "nein", options: [
-        { id: "ja", label: "Ja, weil Gäste sonst keine Preise sehen und die Kasse deshalb offen sein muss.", feedback: "Preise stehen nicht in der Kasse des Beispiels zur öffentlichen Ansicht. Die Kasse bleibt unerreichbar." },
-        { id: "egal", label: "Das ist egal, weil eine Anforderung keine Grenze für die Kasse enthalten kann.", feedback: "Die Grenze ist Teil der Anforderung. Erreichbarkeit der Kasse ist ausdrücklich nicht erlaubt." },
-        { id: "nein", label: "Nein, sie bleibt unerreichbar.", feedback: "Richtig. Die Caféleitung verlangt die Trennung. Die Kasse ist vom Gästenetz aus nicht erreichbar." },
+        { id: "ja", label: "Lesender Zugriff ist erlaubt, solange keine Umsätze geändert werden.", feedback: "Auch ein nur lesender Zugriff würde die geforderte Unerreichbarkeit der Kasse verletzen." },
+        { id: "egal", label: "Der Zugriff darf nach erfolgreicher Gästeanmeldung möglich sein.", feedback: "Eine Gästeanmeldung ändert nichts an der vereinbarten Grenze zum Kassensystem." },
+        { id: "nein", label: "Nein, die Kasse muss vom Gästenetz aus unerreichbar bleiben.", feedback: "Richtig. Diese Grenze gilt unabhängig davon, ob Gäste angemeldet sind oder nur lesen wollten." },
       ] },
       { id: "q4", prompt: "Was tut Samira in dieser Lektion nicht?", correct: "an", options: [
-        { id: "an", label: "Ein Gerät anschließen.", feedback: "Richtig. Sie schreibt Anforderungen auf. Anschließen, Passwort und Änderung eines Netzes gehören nicht dazu." },
-        { id: "fragen", label: "Die Caféleitung nach der gleichzeitigen Endgerätezahl fragen, obwohl genau das die Klärung ist.", feedback: "Fragen gehört zur Klärung. Nicht dazu gehört, die Antwort durch einen Anschluss zu ersetzen." },
-        { id: "notiz", label: "Die genannte Grenze zur Kasse in der Notiz festhalten.", feedback: "Die Grenze gehört in die Notiz. Sie wird nicht durch eine Installation ersetzt." },
+        { id: "an", label: "Den Gästeanschluss bereits am vorhandenen Router aktivieren.", feedback: "Richtig. Diese Lektion klärt Anforderungen. Eine reale Aktivierung gehört noch nicht dazu." },
+        { id: "fragen", label: "Gleichzeitige Endgerätezahl und gewünschte Nutzungsorte klären.", feedback: "Diese Fragen konkretisieren den Bedarf und gehören deshalb zur Anforderungsklärung." },
+        { id: "notiz", label: "Die Zugriffsgrenze zur Kasse als Abnahmekriterium festhalten.", feedback: "Die Grenze wird dokumentiert, damit spätere Lösungswahl und Prüfung am Auftrag messbar bleiben." },
       ] },
     ]
   });

@@ -13,24 +13,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Welche Aufbereitung bleibt zulässig?", correct: "format", options: [
-        { id: "format", label: "1.234,50 Euro, nur anders geschrieben.", feedback: "Richtig. 1234,5 als 1.234,50 Euro ist nur Formatierung. Der Wert bleibt gleich. Gerundet würde erst, wenn Stellen wegfallen, und das müsste als Regel genannt sein." },
-        { id: "null", label: "Einen fehlenden Tag als 0 Euro einsetzen, damit die Übersicht keine Lücken mehr zeigt.", feedback: "Null ist eine neue Aussage. Ein fehlender Wert bleibt fehlend und wird nicht erfunden." },
-        { id: "doppelt", label: "Den Umsatz verdoppeln, weil eine Übersicht grundsätzlich gerundete Schätzungen zeigen muss.", feedback: "Eine Schätzung ohne Quelle verfälscht den Tagesumsatz. Der Betrag bleibt der belegte Wert." },
+        { id: "format", label: "1234,5 EUR als 1.234,50 EUR anzeigen, ohne den Wert zu ändern.", feedback: "Richtig. Zwei Nachkommastellen anzuzeigen ist hier Formatierung, keine Änderung des belegten Betrags." },
+        { id: "null", label: "Leere Umsatzfelder mit 0,00 EUR für eine vollständige Anzeige füllen.", feedback: "Ein leeres Feld belegt keinen Nullumsatz. Eine 0 würde eine nicht gelieferte Angabe erfinden." },
+        { id: "doppelt", label: "1234,5 EUR für die Tagesübersicht auf volle Euro vereinheitlichen.", feedback: "Das wäre eine Wertänderung durch Rundung. Ohne vereinbarte Rundungsregel ist sie nicht zulässig." },
       ] },
       { id: "q2", prompt: "Was passiert mit einem fehlenden Tag?", correct: "leer", options: [
-        { id: "schaetzen", label: "Samira schätzt den Umsatz aus dem Vortag, weil eine Lücke die Übersicht unbrauchbar macht.", feedback: "Eine Schätzung ist keine Quelle. Der fehlende Tag darf nicht wie ein gemessener Umsatz aussehen." },
-        { id: "leer", label: "Das Feld bleibt leer und fehlend.", feedback: "Richtig. Der 14.10.2026 bleibt leer und wird als fehlend markiert. Eine 0 wäre eine Aussage der Kasse, wie sie am 13.10.2026 vorliegt." },
-        { id: "loeschen", label: "Sie löscht alle anderen Tage, weil ein fehlender Wert die ganze Liste ungültig macht.", feedback: "Die vorhandenen Tage bleiben gültig. Nur der fehlende Tag wird markiert." },
+        { id: "schaetzen", label: "Der Vortageswert wird als Ersatzwert ohne Zusatz übernommen.", feedback: "Ein Ersatzwert ohne Kennzeichnung sähe wie eine Messung aus. Er ist kein belegter Tagesumsatz." },
+        { id: "leer", label: "Der Tag bleibt enthalten, der Umsatz wird als fehlend markiert.", feedback: "Richtig. Das erhält den Tag und unterscheidet fehlende Angaben von einem ausdrücklich belegten Nullwert." },
+        { id: "loeschen", label: "Der betroffene Tag wird aus der gemeinsamen Übersicht entfernt.", feedback: "So gingen auch vorhandene Schichtdaten verloren. Der Tag bleibt erhalten und seine Umsatzlücke sichtbar." },
       ] },
       { id: "q3", prompt: "Wie stehen Umsatz und Schicht auf der Übersicht?", correct: "neben", options: [
-        { id: "summe", label: "Als eine Summe aus Euro und Schichtname, weil jede Übersicht genau eine Kennzahl haben muss.", feedback: "Euro und Schichtname lassen sich nicht sinnvoll addieren, die Einheiten passen nicht. Eine unerklärte Summe verfälscht beide Quellen." },
-        { id: "ersetzen", label: "Die Schicht ersetzt den Umsatz, sobald beide am selben Datum stehen.", feedback: "Keine Quelle ersetzt die andere. Der Auftrag will beide nebeneinander, auch wenn ein Datum mehrere Schichtzeilen hat." },
-        { id: "neben", label: "Nebeneinander zum selben Datum.", feedback: "Richtig. Gleiches Datum, getrennte Felder, alle Schichtzeilen des Tages bleiben sichtbar. Keine vermischte Kennzahl ohne benannte Regel." },
+        { id: "summe", label: "Als Umsatz je Schicht; alle Zeilen werden später zum Tagesumsatz addiert.", feedback: "Den Tagesumsatz pro Schicht zu wiederholen und dann zu summieren würde ihn mehrfach zählen." },
+        { id: "ersetzen", label: "Als Tagesumsatz mit nur der ersten gefundenen Schichtzeile.", feedback: "Ein Datum kann mehrere Schichten haben. Nur die erste zu verwenden würde weitere Einsätze verlieren." },
+        { id: "neben", label: "Als Tagesumsatz mit allen zugehörigen Schichten zum gleichen Datum.", feedback: "Richtig. Ein Umsatz je Datum bleibt neben sämtlichen Schichten erhalten, ohne Mehrfachzählung." },
       ] },
       { id: "q4", prompt: "Wann wäre eine Summe erlaubt?", correct: "regel", options: [
-        { id: "regel", label: "Bei benannter Regel und gleicher Einheit.", feedback: "Richtig. Eine Summe braucht eine benannte Regel, belegte Werte und passende Einheiten, etwa Personen-Schichten je Tag. Sonst ist sie eine Verfälschung." },
-        { id: "huebsch", label: "Sobald die Seite sonst zu lang wirkt, auch ohne zu sagen, was addiert wird.", feedback: "Optik ist kein Rechengrund. Unerklärte Summen bleiben draußen." },
-        { id: "immer", label: "Immer, weil Zusammenführen automatisch jede Rechnung erlaubt.", feedback: "Zusammenführen heißt hier nebeneinanderstellen. Rechnen ist ein eigener, begründeter Schritt." },
+        { id: "regel", label: "Wenn die Rechenregel feststeht und belegte Werte mit passender Einheit vorliegen.", feedback: "Richtig. Eine ausgewiesene Summe braucht einen definierten Sinn und darf fehlende Werte nicht erfinden." },
+        { id: "huebsch", label: "Wenn alle sichtbaren Zahlen im Bericht in eine Summenzeile übernommen werden.", feedback: "Sichtbare Zahlen können verschiedene Einheiten haben. Eine Summenzeile begründet die Addition nicht." },
+        { id: "immer", label: "Wenn fehlende Beträge vorher als Nullwerte in die Tagesliste übernommen werden.", feedback: "Ein fehlender Betrag ist keine Null. Eine Summe darf ihre Ausgangsdaten nicht still vervollständigen." },
       ] },
     ]
   });

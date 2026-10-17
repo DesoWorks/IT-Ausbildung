@@ -8,28 +8,28 @@
     theory: [
       ["Zufriedenheit", "Die Caféleitung ist im Beispiel zufrieden, wenn Gäste im Besprechungsraum ankommen, die Kasse getrennt bleibt und die Notiz das nachvollziehbar sagt. Ein zusätzliches Gerät, das niemand gefordert hat, erhöht die Zufriedenheit nicht."],
       ["Zukunft", "Zukunftsfähig heißt hier: die Grenze und die Mindestkapazität sind so notiert, dass eine spätere Änderung sichtbar wird. Es heißt nicht, schon heute Geräte für hundert Gäste einzuplanen. Zehn gleichzeitige Endgeräte bleiben die vereinbarte Planungskapazität."],
-      ["Keine Abnahme", "Diese Beurteilung gibt das Lernfeld nicht frei. Lernfeld 9 bleibt im Katalog auf In Kürze, bis das ganze Feld sichtbar geprüft ist. Die Planung ist eine Übung, kein beauftragter Umbau."],
+      ["Keine Abnahme", "Diese Beurteilung gibt das Lernfeld nicht frei. Lernfeld 9 bleibt im Katalog auf In Kürze, bis Dennis es ausdrücklich freigibt. Die Planung ist eine Übung, kein beauftragter Umbau."],
     ],
     questions: [
       { id: "q1", prompt: "Wann gilt die Caféleitung im Beispiel als zufrieden?", correct: "drei", options: [
-        { id: "drei", label: "Grenze, Gäste und klare Notiz.", feedback: "Richtig. Ankommen im Besprechungsraum, getrennte Kasse und eine nachvollziehbare Notiz erfüllen den Auftrag." },
-        { id: "mehr", label: "Sobald mehr Geräte als gefordert im Plan stehen, auch wenn die Grenze fehlt.", feedback: "Mehr Geräte ersetzen die Anforderung nicht. Ohne Grenze ist die Leitung nicht zufrieden." },
-        { id: "live", label: "Erst wenn das echte Café bereits umgebaut ist und Gäste die Kasse sehen.", feedback: "Ein Umbau findet nicht statt. Zufriedenheit wird an der erfüllten Papierplanung gemessen." },
+        { id: "drei", label: "Gästezugang, Kassentrennung und nachvollziehbare Übergabe erfüllen den Auftrag.", feedback: "Richtig. Die Zufriedenheit wird im Modell an vereinbarten Ergebnissen gemessen, nicht an Zusatzgeräten." },
+        { id: "mehr", label: "Die vorgesehene Gerätezahl übersteigt die Anforderung und belegt damit die Qualität.", feedback: "Zusätzliche Geräte beweisen weder Zugriffsschutz noch eine verständliche Übergabe der Planung." },
+        { id: "live", label: "Die Verbindung funktioniert; die Prüfung der Kasse kann in den Betrieb verschoben werden.", feedback: "Die Grenze zur Kasse ist Bestandteil der Anforderungen und darf nicht als spätere Nebensache entfallen." },
       ] },
       { id: "q2", prompt: "Was heißt zukunftsfähig in dieser Übung?", correct: "sichtbar", options: [
-        { id: "hundert", label: "Schon heute für hundert Gäste planen, obwohl nur zehn vereinbart sind.", feedback: "Die vereinbarte Zahl bleibt zehn. Ein unnötiger Ausbau ist keine Zukunftsfähigkeit." },
-        { id: "sichtbar", label: "Änderungen bleiben in der Notiz sichtbar.", feedback: "Richtig. Grenze und Mindestkapazität sind so notiert, dass eine spätere Änderung auffällt. Es wird nichts vorgebaut." },
-        { id: "weg", label: "Die Grenze weglassen, damit spätere Wünsche nicht an einer alten Regel hängen.", feedback: "Die Grenze ist die Regel. Sie wegzulassen macht die Planung schlechter, nicht zukunftsfähiger." },
+        { id: "hundert", label: "Unbestätigte Reserven für hundert Endgeräte sofort beschaffen.", feedback: "Unbegründete Vorratsbeschaffung ist keine nachgewiesene Zukunftsfähigkeit. Erweiterungen brauchen Bedarf." },
+        { id: "sichtbar", label: "Kapazität und Schutzgrenze so dokumentieren, dass Änderungen prüfbar bleiben.", feedback: "Richtig. Ein geänderter Bedarf kann dann gegen die nachvollziehbaren Annahmen und Grenzen geprüft werden." },
+        { id: "weg", label: "Die Schutzgrenze bei Erweiterungen ohne neue Prüfung aufheben.", feedback: "Eine Kapazitätserweiterung hebt den Zugriffsschutz nicht auf. Änderungen sind erneut gegen den Auftrag zu prüfen." },
       ] },
       { id: "q3", prompt: "Was erhöht die Zufriedenheit hier nicht?", correct: "extra", options: [
-        { id: "notiz", label: "Eine Notiz, die Grenze und Mindestkapazität ohne mündliche Nachfrage verständlich macht.", feedback: "Genau diese Notiz gehört zur Zufriedenheit. Überflüssig ist nur, was niemand gefordert hat." },
-        { id: "trennung", label: "Die eingehaltene Trennung von Gästenetz und Kasse.", feedback: "Die Trennung ist der Kern des Auftrags. Sie erhöht die Passung, statt sie zu stören." },
-        { id: "extra", label: "Ein Gerät, das niemand gefordert hat.", feedback: "Richtig. Zusätzliche Geräte ohne Auftrag erfüllen keine Anforderung und täuschen Vollständigkeit vor." },
+        { id: "notiz", label: "Eine verständliche Notiz mit Schutzgrenze und Gerätekapazität.", feedback: "Diese Notiz macht die Planung nachvollziehbar und unterstützt die vereinbarte Übergabe." },
+        { id: "trennung", label: "Ein Gästezugang ohne Zugriffsmöglichkeit auf das Kassensystem.", feedback: "Die Zugriffssperre erfüllt eine ausdrückliche Anforderung und verbessert damit die Passung." },
+        { id: "extra", label: "Zusatzhardware ohne belegten Nutzen für die vereinbarten Anforderungen.", feedback: "Richtig. Mehr Hardware an sich erfüllt keinen zusätzlichen Kundenbedarf und ist kein Qualitätsnachweis." },
       ] },
       { id: "q4", prompt: "Was ist diese Beurteilung nicht?", correct: "frei", options: [
-        { id: "frei", label: "Eine Freigabe des Lernfelds.", feedback: "Richtig. Die Übung bewertet die Planung. Das Feld bleibt auf In Kürze, bis es sichtbar geprüft ist." },
-        { id: "blick", label: "Ein Blick auf Grenze und Mindestkapazität, obwohl genau das die Beurteilung trägt.", feedback: "Der Blick auf die erfüllte Anforderung ist der Zweck. Er ersetzt nur nicht die Prüfung des Felds." },
-        { id: "uebung", label: "Eine Übung auf Papier, weil eine Beurteilung immer ein beauftragter Umbau ist.", feedback: "Die Beurteilung bleibt eine Übung. Ein Umbau ist nicht beauftragt und findet nicht statt." },
+        { id: "frei", label: "Eine Freigabeentscheidung für die gesperrten Lernfeldseiten.", feedback: "Richtig. Die Planungsbeurteilung ersetzt Dennis' ausdrückliche Freigabe des Lernfelds nicht." },
+        { id: "blick", label: "Ein Abgleich der Planung mit Schutzgrenze und Mindestkapazität.", feedback: "Dieser Abgleich ist der Zweck der Beurteilung, keine produktive oder didaktische Freigabe." },
+        { id: "uebung", label: "Eine Reflexion des fiktiven Auftrags ohne reale Kundenabnahme.", feedback: "Die Reflexion ist als Übung vorgesehen. Eine wirkliche Kundenabnahme wird damit nicht behauptet." },
       ] },
     ]
   });

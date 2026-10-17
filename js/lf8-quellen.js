@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Welche Quelle liefert im Beispiel die Tagesumsätze?", correct: "kasse", options: [
-        { id: "kasse", label: "Die fiktive Kasse.", feedback: "Richtig. Die Kasse ist im Beispiel die Quelle für Tagesumsätze. Die Schichttabelle enthält keine Umsätze." },
-        { id: "tabelle", label: "Die Schichttabelle, weil jede Tabelle im Betrieb automatisch auch die Tagesumsätze enthält.", feedback: "Die Schichttabelle nennt geplante Schichten. Umsätze kommen im Beispiel aus der Kasse, nicht aus der Tabelle." },
-        { id: "seite", label: "Die noch nicht gebaute Übersichtsseite, weil eine leere Seite die Umsätze schon erzeugt.", feedback: "Eine Übersichtsseite zeigt Daten. Sie ist im Beispiel nicht die Quelle der Umsätze." },
+        { id: "kasse", label: "Der Tagesexport der Kasse.", feedback: "Richtig. Die Kasse liefert die Tagesumsätze; ihr Export ist hier die passende Ursprungsquelle." },
+        { id: "tabelle", label: "Die Planung der Schichten.", feedback: "Die Schichtplanung enthält Einsatzzeiten, aber keine belegten Tagesumsätze aus der Kasse." },
+        { id: "seite", label: "Die geplante Tagesübersicht.", feedback: "Die Tagesübersicht ist das Ausgabeziel. Sie benötigt die Umsatzdaten erst aus einer Quelle." },
       ] },
       { id: "q2", prompt: "Wofür braucht der Auftrag beide Quellen?", correct: "neben", options: [
-        { id: "alles", label: "Damit jede vorhandene Datei im Café ungeprüft auf der Übersicht erscheint.", feedback: "Vorhanden sein reicht nicht. Der Auftrag nennt Tagesumsatz und geplante Schichten, nicht jede Datei." },
-        { id: "neben", label: "Umsatz und Schichten nebeneinander.", feedback: "Richtig. Der Auftrag will beides nebeneinander sehen, nur für die Caféleitung." },
-        { id: "ersetzen", label: "Damit die Schichttabelle die Kasse ersetzt und keine Umsatzquelle mehr nötig ist.", feedback: "Die Tabelle ersetzt die Kasse nicht. Beide Quellen haben im Auftrag einen eigenen Zweck." },
+        { id: "alles", label: "Um Lieferkosten und Umsätze täglich zu verrechnen.", feedback: "Eine Kostenrechnung wäre eine andere Aufgabe. Der Auftrag nennt Umsätze und geplante Schichten." },
+        { id: "neben", label: "Um Tagesumsatz und geplante Schichten gemeinsam anzuzeigen.", feedback: "Richtig. Beide Quellen liefern unterschiedliche Angaben für dieselbe Tagesübersicht der Leitung." },
+        { id: "ersetzen", label: "Um aus der Personalplanung die Umsätze zu schätzen.", feedback: "Die Schichtplanung ersetzt keine Messung der Umsätze. Dafür bleibt die Kasse die Quelle." },
       ] },
       { id: "q3", prompt: "Was tut Samira in dieser Lektion mit den Quellen?", correct: "beschreiben", options: [
-        { id: "konto", label: "Sie legt ein echtes Benutzerkonto an der Kasse an, damit die Übung echte Umsätze laden kann.", feedback: "Ein echtes Konto gehört nicht zur Übung. Es gibt keine Zugangsdaten und kein Produktivsystem." },
-        { id: "kopie", label: "Sie kopiert echte Tagesumsätze in eine Produktivdatenbank, weil eine Beschreibung ohne Kopie wertlos ist.", feedback: "Echte Daten und eine Produktivdatenbank sind außerhalb des Beispiels. Samira arbeitet nur mit dem erfundenen Modell." },
-        { id: "beschreiben", label: "Sie beschreibt sie.", feedback: "Richtig. Samira benennt Quelle und Zweck auf Papier. Sie verbindet nichts und kopiert keine echten Daten." },
+        { id: "konto", label: "Sie richtet bereits den lesenden Kassenzugang ein.", feedback: "Die Zugriffsplanung ist noch keine Kontoeinrichtung. Hier werden Quelle und Zweck beschrieben." },
+        { id: "kopie", label: "Sie importiert schon einen vollständigen Umsatzexport.", feedback: "Ein Import ist ein späterer Umsetzungsschritt. Diese Lektion dient zunächst der Quellenbeschreibung." },
+        { id: "beschreiben", label: "Sie hält Quelle, Inhalt und Verwendungszweck fest.", feedback: "Richtig. Die Quellen werden beschrieben, bevor eine Verbindung oder ein Import geplant wird." },
       ] },
       { id: "q4", prompt: "Welche Quelle gehört nicht auf die Übersicht?", correct: "ohne", options: [
-        { id: "ohne", label: "Eine Quelle ohne Zweck.", feedback: "Richtig. Nur was der Auftrag braucht, kommt auf die Übersicht. Eine Quelle ohne Zweck bleibt draußen." },
-        { id: "kasse", label: "Die Kasse, obwohl der Auftrag ausdrücklich die Tagesumsätze daraus sehen will.", feedback: "Die Kasse hat einen genannten Zweck. Sie bleibt die Umsatzquelle und fällt nicht weg." },
-        { id: "beide", label: "Beide beauftragten Quellen, weil eine Übersicht grundsätzlich nur eine einzige Quelle haben darf.", feedback: "Der Auftrag nennt zwei Quellen. Eine künstliche Ein-Quellen-Regel widerspricht dem Beispiel." },
+        { id: "ohne", label: "Die Lieferantenliste ohne Bezug zum Übersichtsauftrag.", feedback: "Richtig. Lieferdaten werden nicht benötigt. Vorhandensein allein rechtfertigt ihre Übernahme nicht." },
+        { id: "kasse", label: "Der Tagesexport mit den geforderten Umsatzwerten.", feedback: "Der Tagesexport ist gerade für den geforderten Umsatz vorgesehen und gehört zur Auswahl." },
+        { id: "beide", label: "Die Schichtquelle mit den geplanten Einsätzen.", feedback: "Die geplanten Einsätze gehören laut Auftrag neben die Umsätze; diese Quelle wird benötigt." },
       ] },
     ]
   });

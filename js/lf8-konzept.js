@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Wer ist der Empfänger im Papierkonzept?", correct: "leitung", options: [
-        { id: "leitung", label: "Die Caféleitung.", feedback: "Richtig. Das Konzept nennt die Caféleitung. Gäste und beliebige Kollegen sind nicht Empfänger." },
-        { id: "alle", label: "Alle Personen mit Internetzugang, weil eine Übersicht grundsätzlich öffentlich sein muss.", feedback: "Öffentlichkeit widerspricht dem Schutzbedarf. Der Empfänger bleibt die Caféleitung." },
-        { id: "gaeste", label: "Die Gäste, weil Umsatzzahlen zur Bewirtung automatisch mit ausgehängt werden.", feedback: "Gäste sehen im Beispiel weder Umsätze noch Schichtnamen. Das Konzept sagt das ausdrücklich." },
+        { id: "leitung", label: "Die Caféleitung für ihre interne Tagesübersicht.", feedback: "Richtig. Das Konzept nennt diese interne Zielgruppe, nicht alle Beschäftigten oder Besucher." },
+        { id: "alle", label: "Alle Beschäftigten für ihre eigene Schichtauswertung.", feedback: "Das wäre ein erweiterter Empfängerkreis. Beauftragt ist hier die Tagesübersicht für die Leitung." },
+        { id: "gaeste", label: "Die Gäste für eine öffentlich lesbare Tagesstatistik.", feedback: "Eine öffentliche Tagesstatistik ist nicht vereinbart und entspricht nicht dem genannten Schutzbedarf." },
       ] },
       { id: "q2", prompt: "Wie oft soll die Übersicht im Konzept aktualisiert werden?", correct: "ende", options: [
-        { id: "live", label: "Ständig und live, obwohl der Auftrag nur den Stand am Tagesende verlangt.", feedback: "Live ist nicht vereinbart. Ein häufigerer Takt wäre eine andere Anforderung." },
-        { id: "ende", label: "Einmal am Tagesende.", feedback: "Richtig. Das Konzept sieht eine Aktualisierung am Tagesende vor, nicht eine dauerhafte Verbindung." },
-        { id: "nie", label: "Nie, weil eine einmal gezeichnete Skizze alle späteren Tage automatisch enthält.", feedback: "Die Skizze beschreibt den Takt. Sie enthält nicht von selbst die Umsätze späterer Tage." },
+        { id: "live", label: "Nach jedem neuen Kassenumsatz.", feedback: "Echtzeitaktualisierung wäre eine zusätzliche Anforderung und nicht der vereinbarte Tagesendstand." },
+        { id: "ende", label: "Täglich nach Ende des Geschäftstags.", feedback: "Richtig. Das Konzept sieht einen Tagesendstand vor, keine dauerhafte Live-Verbindung." },
+        { id: "nie", label: "Einmalig beim Erstellen der Übersicht.", feedback: "Eine einmalige Aktualisierung würde spätere Tage nicht abbilden und verfehlt den vorgesehenen Takt." },
       ] },
       { id: "q3", prompt: "Welche Schutzziele notiert Samira getrennt?", correct: "drei", options: [
-        { id: "farbe", label: "Nur die Farbe der Seite, weil Gestaltung alle Schutzziele gleichzeitig erfüllt.", feedback: "Gestaltung ist kein Schutzziel. Vertraulichkeit, Integrität und Verfügbarkeit bleiben getrennt." },
-        { id: "einwort", label: "Ein einzelnes Wort Sicherheit, das alle drei Ziele ersetzt und keine Lücke mehr zeigt.", feedback: "Ein Sammelwort verdeckt, welches Ziel gemeint ist. Die drei Ziele werden einzeln notiert." },
-        { id: "drei", label: "Vertraulichkeit, Integrität, Verfügbarkeit.", feedback: "Richtig. Umsätze bleiben vertraulich, kommen unverändert an und sind an Werktagen für die Leitung verfügbar." },
+        { id: "farbe", label: "Authentisierung, Verschlüsselung und Datensicherung.", feedback: "Das sind mögliche Maßnahmen. Gefragt sind die Ziele, denen die Maßnahmen dienen sollen." },
+        { id: "einwort", label: "Benutzerfreundlichkeit, Tempo und geringer Speicherbedarf.", feedback: "Das sind Qualitätsaspekte, aber nicht die drei hier getrennt betrachteten Informationsschutzziele." },
+        { id: "drei", label: "Vertraulichkeit, Integrität und Verfügbarkeit der Daten.", feedback: "Richtig. Nur die Leitung soll lesen, Werte sollen unverändert und im vereinbarten Zeitraum verfügbar sein." },
       ] },
       { id: "q4", prompt: "Was ist das Konzept in dieser Lektion nicht?", correct: "live", options: [
-        { id: "live", label: "Eine eingerichtete Seite.", feedback: "Richtig. Die Skizze richtet nichts ein. Kein Konto, kein Passwort, keine Freigabe." },
-        { id: "skizze", label: "Eine Skizze auf Papier, obwohl genau das der vereinbarte Arbeitsstand ist.", feedback: "Die Skizze ist der Arbeitsstand. Sie ist nicht schon die fertige Einrichtung." },
-        { id: "notiz", label: "Eine Notiz zu Empfänger und Schutzbedarf, weil solche Angaben in einem Konzept verboten sind.", feedback: "Empfänger und Schutzbedarf gehören in das Konzept. Verboten ist nur, die Einrichtung vorzutäuschen." },
+        { id: "live", label: "Eine bereits eingerichtete produktive Übersichtsseite.", feedback: "Richtig. Das Konzept beschreibt den Sollzustand, ohne dessen Umsetzung oder Freigabe nachzuweisen." },
+        { id: "skizze", label: "Eine Skizze der vorgesehenen Datenanzeige.", feedback: "Die Skizze ist ein zulässiges Konzeptprodukt; sie beschreibt, was später dargestellt werden soll." },
+        { id: "notiz", label: "Eine Beschreibung der Empfänger und Schutzziele.", feedback: "Empfänger und Schutzziele gehören zum Konzept und sind noch kein Nachweis eines laufenden Systems." },
       ] },
     ]
   });

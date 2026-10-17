@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Warum fällt die Lieferantenliste heraus?", correct: "auftrag", options: [
-        { id: "auftrag", label: "Der Auftrag verlangt sie nicht.", feedback: "Richtig. Gewohnheit und leichte Öffnung sind kein Auswahlgrund. Der Auftrag nennt sie nicht." },
-        { id: "kaputt", label: "Weil jede Liste, die nicht die Kasse ist, technisch unlesbar sein muss.", feedback: "Die Liste wäre lesbar. Sie fällt wegen des fehlenden Auftragsteils heraus, nicht wegen der Technik." },
-        { id: "namen", label: "Weil eine Lieferantenliste immer personenbezogen ist und deshalb nie beschrieben werden darf.", feedback: "Personenbezug wäre eine eigene Prüfung. Hier fehlt schon der Zweck im Auftrag." },
+        { id: "auftrag", label: "Lieferdaten beantworten keine Frage dieses Übersichtsauftrags.", feedback: "Richtig. Die Quelle ist nicht wegen ihrer Technik, sondern wegen des fehlenden Zwecks ausgeschlossen." },
+        { id: "kaputt", label: "Eine dritte Datenquelle würde das Zusammenführen verhindern.", feedback: "Mehrere Quellen sind technisch möglich. Entscheidend ist ihr Bezug zum konkreten Auftrag." },
+        { id: "namen", label: "Eine Liste mit Firmenkontakten darf nie als Quelle dienen.", feedback: "Kontaktlisten sind nicht grundsätzlich ausgeschlossen. Zweck, Berechtigung und Rechtslage entscheiden." },
       ] },
       { id: "q2", prompt: "Wann passt eine Quelle zu diesem Auftrag?", correct: "drei", options: [
-        { id: "da", label: "Sobald sie im Ordner liegt, unabhängig von Feld, Format und erlaubtem Zugriff.", feedback: "Vorhandensein ist kein Passungskriterium. Feld, Format und Zugriff müssen zum Auftrag passen." },
-        { id: "drei", label: "Feld, Format und Zugriff passen.", feedback: "Richtig. Alle drei müssen zum Auftrag passen. Fehlt eines, ist die Quelle für diesen Auftrag nicht gewählt." },
-        { id: "neu", label: "Nur wenn sie neu gekauft wurde, auch wenn die vorhandenen Quellen die Felder schon liefern.", feedback: "Ein Kauf gehört nicht zur Übung. Vorhandene passende Quellen werden nicht durch Neuanschaffung ersetzt." },
+        { id: "da", label: "Die Felder passen, und die Datei lässt sich technisch öffnen.", feedback: "Technische Öffnung belegt keine erlaubte Nutzung. Format und Zugriffszweck müssen ebenfalls passen." },
+        { id: "drei", label: "Benötigte Felder, nutzbares Format und erlaubter Zugriff passen.", feedback: "Richtig. Fachlicher Inhalt, technische Nutzbarkeit und erlaubter Zweck werden gemeinsam geprüft." },
+        { id: "neu", label: "Das Format passt, und der Export ist der neueste im Ordner.", feedback: "Ein aktuelles Datum reicht nicht: Die geforderten Felder und die Nutzungserlaubnis fehlen als Prüfung." },
       ] },
       { id: "q3", prompt: "Was gehört zur abgelehnten Lieferantenliste?", correct: "grund", options: [
-        { id: "leer", label: "Gar nichts, weil eine nicht gewählte Quelle in der Notiz unsichtbar bleiben muss.", feedback: "Ohne Notiz wirkt die Ablehnung später wie ein Versehen. Der Grund gehört dazu." },
-        { id: "kopie", label: "Eine vollständige Kopie aller Lieferdaten, obwohl die Liste nicht gewählt wird.", feedback: "Nicht gewählte Daten werden nicht kopiert. Notiert wird nur die Ablehnung mit Grund." },
-        { id: "grund", label: "Der Ablehnungsgrund.", feedback: "Richtig. Samira notiert, dass der Auftrag keine Lieferdaten verlangt. So bleibt die Entscheidung nachvollziehbar." },
+        { id: "leer", label: "Nur ihr Dateiname in der Liste der geprüften Quellen.", feedback: "Der Dateiname zeigt nicht, warum die Quelle abgelehnt wurde. Der fachliche Grund gehört dazu." },
+        { id: "kopie", label: "Ein Datenexport als Beleg für die erfolgte Sichtung.", feedback: "Eine Datenkopie ist für diese Ablehnung unnötig. Die Entscheidung wird mit dem Grund dokumentiert." },
+        { id: "grund", label: "Die Entscheidung mit dem fehlenden Bezug zum Auftrag.", feedback: "Richtig. Eine andere Person kann nachvollziehen, warum die vorhandene Quelle nicht verwendet wird." },
       ] },
       { id: "q4", prompt: "Was ist kein Auswahlgrund?", correct: "gewohnt", options: [
-        { id: "gewohnt", label: "Dass die Datei gewohnt ist.", feedback: "Richtig. Gewohnheit ersetzt den Auftrag nicht. Die Lieferantenliste bleibt draußen." },
-        { id: "feld", label: "Dass die Quelle ein im Auftrag gefordertes Feld wirklich liefert.", feedback: "Ein gefordertes Feld ist ein echter Passungsgrund. Gewohnheit ist es nicht." },
-        { id: "zugriff", label: "Dass der vorgesehene Zugriff zum genannten Zweck passt.", feedback: "Passender Zugriff gehört zur Auswahl. Er ist kein Ersatz für den Auftrag, aber auch kein Scheingrund." },
+        { id: "gewohnt", label: "Die Datei wurde im letzten Projekt ebenfalls benutzt.", feedback: "Richtig. Frühere Verwendung belegt nicht ihre Eignung für die Anforderungen dieses Projekts." },
+        { id: "feld", label: "Die Quelle enthält das geforderte Tagesumsatzfeld.", feedback: "Ein tatsächlich benötigtes Feld ist ein fachlicher Auswahlgrund; Gewohnheit dagegen nicht." },
+        { id: "zugriff", label: "Die erlaubte Nutzung entspricht dem vereinbarten Zweck.", feedback: "Der passende Zugriffszweck ist ein echtes Kriterium und muss neben Inhalt und Format geprüft werden." },
       ] },
     ]
   });

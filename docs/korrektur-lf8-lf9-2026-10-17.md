@@ -62,3 +62,35 @@ Neue isolierte Speicherung: `it-ausbildung.lf8-praxis.v1` und `it-ausbildung.lf9
 - `node tests/lf8-lf9-praxis-browser.test.js`: bestanden. Leere/falsche/richtige Eingaben, Änderung→Ergebnis veraltet, Browser-Zurück, Reload/Eingabenerhalt, CSV-Blob-Inhalt/Markieren, Modellkonfiguration anwenden, DHCP aus/Pool klein/Sperre fehlt, 10→15 Endgeräte/Poolkorrektur, Kostenanzeige, keine Browser-Ausnahmen oder fehlenden Ressourcen, 320/390px ohne Überbreite.
 - Erster Browser-Testlauf scheiterte an Top-level-await in der CDP-Prüfexpression (nicht am Labor). Implementation und Test gelesen; Expression als async-IIFE repariert, exakt denselben Test erfolgreich wiederholt.
 - Screenshots `.output/lf89-praxis/lf8-datenwerkstatt-{320,390}.png` und `lf9-netzlabor-{320,390}.png`. Terminus hat die 320px-LF8- und 390px-LF9-Aufnahmen direkt angesehen: lesbare, einspaltige Abschnitte ohne horizontales Abschneiden. GLaDOS-Nutzerprüfung folgt erst nach Paket 3.
+
+## Paket 3: Antwortreihenfolge, Distraktoren, Tests (Jarvis)
+
+Ausgangsbasis war die gesicherte, ungeprüfte Teilumsetzung der 18 Dateien (Stand `61be195` plus Arbeitsstand). Bisherige Belege oben bleiben unverändert.
+
+**Fachliche Durchsicht der Antworttexte (nur Paketbereich)**
+- `lf9-ist` q3: "Was misst Samira nicht?" traf auf alle drei Optionen zu. Nur der Fragetext wurde geändert ("Was gehört in dieser Lektion nicht zu Samiras Aufgabe?"); IDs, Optionen und richtige ID blieben.
+- Kontrollen: In 18 von 24 Fragen je Lernfeld war die richtige Antwort die längste, teils um bis zu 23 Zeichen. In 33 Distraktoren (LF8 18, LF9 15) wurde der falsche Ansatz fachlich ausgebaut, nicht aufgefüllt. Danach ist die richtige Antwort in LF8 10/24 und LF9 14/24 die längste, kein Abstand liegt mehr bei 8 Zeichen oder darüber. Reihenfolge, Buchstaben und Hinweistexte blieben unverändert.
+- `lf9-infrastruktur`: Der Satz "Diese Lektion endet auf dem Papier" unterscheidet jetzt Skizzenschritt und zusätzliches Modelllabor. `lf9-zukunft`: Die Freigabe liegt ausdrücklich bei Dennis.
+
+**Entkopplung der Anzeigereihenfolge** (`lf8-lektion.js`, `lf9-lektion.js`, `lf8-kontrolle.js`, `lf9-kontrolle.js`)
+- Fisher-Yates (`mischen`) einmal je Seitenbesuch und Frage. Kein Neumischen bei Klick, Prüfen, Abgabe oder Reset.
+- Lektionen: `input.value` bleibt die semantische Options-ID. Kontrollen: `input.value`, `id` und Speicherwert bleiben a/b/c nach Originalposition.
+- Unverändert: FRAGEN-/optionen-Arrayreihenfolge, Speicherschlüssel, `normalize`, `evaluate`, Hashes, `fortschritt.js`. Keine neue Speicherung, keine Migration.
+- Testhaken: `LF8_ZUFALL`/`LF9_ZUFALL` (optional) oder `mischen(n, rnd)`.
+
+**Tests**
+- Entfernt: Längen- und Positionsregeln in `tests/lf8-inhalte.test.js` und `tests/lf9-inhalte.test.js` (richtige Antwort nicht längste, Positionswechsel, `i % 3`-Muster).
+- Neu: `tests/lf8-lf9-reihenfolge.test.js` mit `tests/fixtures/lf8-lf9-vor-paket3.json` (aus `git show 61be195`): Modul-, Frage- und Options-IDs, Arrayreihenfolge, richtige IDs, Schlüssel, Kontrollquellen, a/b/c-Lösungen und Hashes gleich; alte vollständige, falsche, teilweise und abgegebene Stände werden wie vorher bewertet; Mischung ist eine gültige Permutation, mit festem Seed deterministisch, alle 6 Anordnungen kommen vor; Legacy-Lösungen in `fortschritt.js` unverändert.
+- Neu: `tests/lf8-lf9-reihenfolge-browser.test.js` (eigenes Chrome-Profil, Stichprobe `lf8-quellen`, `lf9-anforderung`, beide Kontrollen): alter Speicherstand wählt die richtige ID und gilt weiter als richtig; Anordnung bleibt nach Klick, Prüfen, unvollständiger und vollständiger Abgabe stabil; sie wechselt zwischen Besuchen (8 Anordnungen in 8 Besuchen); sichtbare Positionen der richtigen Antwort sind nicht starr a-b-c; Label und Eingabefeld gehören zusammen; keine Browserausnahmen.
+
+**Ergebnisse (tatsächlich ausgeführt)**: `lf8-inhalte`, `lf9-inhalte`, `lf8-lf9-reihenfolge`, `lf8-lf9-praxis`, `fortschritt`, `fortschritt-ablauf`, `lf8-lf9-browser` (18 Seiten + Katalog) und `lf8-lf9-reihenfolge-browser` bestanden; `git diff --check` ohne Befund.
+
+**Grenzen**: Die Browserprüfung der Reihenfolge ist eine Stichprobe (2 Lektionen, 2 Kontrollen), keine Nutzerabnahme. Die unabhängige Nutzerprüfung durch GLaDOS steht aus. Kein Commit, kein Push; Commit liegt bei Terminus. LF8/LF9 bleiben kommt-bald, Freigabe bleibt bei Dennis.
+
+### Übernahme und zusätzlicher Kompatibilitätsbeleg (Terminus)
+
+Nach der Kontingentunterbrechung wurden Jarvis' abgeschlossener Lauf und die tatsächlichen Diffs abgeglichen; sein Testbericht oben wird nicht als erneut ausgeführter Terminus-Test ausgegeben. Terminus hat die 64 Lektionsfragen und 48 Kontrollfragen des Antwortpakets mit Optionen gelesen, die vier Darstellungsänderungen geprüft und keine neue fachliche Mehrdeutigkeit im gelesenen Paket festgestellt. Plausibilität und vergleichbare sprachliche Granularität sind der Maßstab, nicht eine Längenquote.
+
+Zusätzlich tatsächlich ausgeführt: zwei schreibfreie Node-Abgleiche mit `git show`. Die Fixture stimmt direkt mit `61be195` überein. Derselbe ID-/Schlüssel-/Lösungsbestand wurde bis `26769f7` vor allen drei Korrekturpaketen zurückverfolgt (16 Lektionen und beide Kontrollen). Kontrollfunktionen `normalize`/`evaluate` und die gesamte Datei `js/fortschritt.js` sind gegenüber `61be195` unverändert. Ergebnis jeweils PASS. Der Dateiumfang enthält keine Jahr-1-/LF6-/LF7- oder Katalogänderungen. Bereits belegte Browser-/Funktionstests wurden dafür nicht nochmals ausgeführt.
+
+Die historischen Offen-Listen oben beschreiben den damaligen Zwischenstand. Pakete 1–3 sind inzwischen umgesetzt. Die anschließende unabhängige Nutzerprüfung durch GLaDOS wird getrennt protokolliert; eine menschliche Freigabe oder vollständige KMK-Kompetenzabdeckung folgt daraus nicht.

@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Was beschreibt die Struktur der Kassenliste?", correct: "felder", options: [
-        { id: "farbe", label: "Die Farbe der Kasse, weil das Gehäuse die Bedeutung von Datum und Umsatz festlegt.", feedback: "Die Gehäusefarbe sagt nichts über Felder. Struktur meint hier Datum und Umsatz." },
-        { id: "felder", label: "Datum und Umsatz.", feedback: "Richtig. Die Struktur nennt die Felder der Liste. Format und Zugriff sind davon getrennt." },
-        { id: "recht", label: "Nur, wer die Liste öffnen darf, ohne die Felder selbst zu benennen.", feedback: "Wer öffnen darf, ist der Zugriff. Die Struktur benennt die Felder." },
+        { id: "farbe", label: "Kommas und Zeilenumbrüche der Datei.", feedback: "Das beschreibt die Serialisierung bzw. das Format, nicht die inhaltlichen Felder der Struktur." },
+        { id: "felder", label: "Felder wie Datum und Tagesumsatz.", feedback: "Richtig. Die Struktur benennt die Datenfelder; Format und Zugriffsrecht sind getrennte Angaben." },
+        { id: "recht", label: "Leseberechtigung der Caféleitung.", feedback: "Die Leseberechtigung beschreibt Zugriff, nicht die Felder, die eine Zeile der Quelle enthält." },
       ] },
       { id: "q2", prompt: "Welches Format hat die Kassenliste im Beispiel?", correct: "liste", options: [
-        { id: "bild", label: "Ein Foto der Theke, weil jedes Bild automatisch Datum und Umsatz als Felder enthält.", feedback: "Ein Foto ist kein Datenformat für Datum und Umsatz. Im Beispiel ist es eine kommagetrennte Liste." },
-        { id: "seite", label: "Die Übersichtsseite selbst, obwohl sie die Liste erst anzeigen und nicht erzeugen soll.", feedback: "Die Seite ist das Ziel der Anzeige. Das Format der Quelle ist die kommagetrennte Liste." },
-        { id: "liste", label: "Eine kommagetrennte Liste.", feedback: "Richtig. Datum und Umsatz stehen im Beispiel als kommagetrennte Liste, nicht als Bild und nicht als Seite." },
+        { id: "bild", label: "Ein JSON-Array mit benannten Feldern.", feedback: "JSON wird im Labor für die Schichten verwendet. Die Kassenliste ist im Beispiel CSV." },
+        { id: "seite", label: "Eine HTML-Tabelle mit Tageszeilen.", feedback: "HTML kann das Anzeigeziel darstellen, ist hier aber nicht das Format der Kassenquelle." },
+        { id: "liste", label: "Eine CSV-Datei mit kommagetrennten Feldern.", feedback: "Richtig. Die Kassenquelle ist kommagetrennt; Struktur, Format und Anzeigeziel sind zu unterscheiden." },
       ] },
       { id: "q3", prompt: "Welcher Zugriff ist im Papierplan vorgesehen?", correct: "lesen", options: [
-        { id: "schreiben", label: "Jede Person im Café darf die Umsatzliste ändern, weil Lesen und Schreiben dasselbe sind.", feedback: "Ändern ist nicht vorgesehen. Der Plan erlaubt nur lesenden Zugriff für die Caféleitung." },
-        { id: "lesen", label: "Nur lesen, nur die Caféleitung.", feedback: "Richtig. Der Papierplan sieht lesenden Zugriff nur für die Caféleitung vor. Das ist noch keine echte Freigabe." },
-        { id: "offen", label: "Die Liste liegt ohne jede Einschränkung offen, weil ein Papierplan keinen Zugriff beschreiben kann.", feedback: "Der Plan beschreibt den Zugriff ausdrücklich. Offen für alle ist nicht die vorgesehene Regel." },
+        { id: "schreiben", label: "Die Leitung darf Umsatzwerte in der Quelle berichtigen.", feedback: "Eine Schreibberechtigung ist nicht vorgesehen. Der Papierplan nennt nur lesenden Zugriff." },
+        { id: "lesen", label: "Die Caféleitung erhält ausschließlich lesenden Zugriff.", feedback: "Richtig. Das ist die geplante Leseregel, noch keine tatsächlich eingerichtete Berechtigung." },
+        { id: "offen", label: "Alle Beschäftigten erhalten lesenden Zugriff auf die Liste.", feedback: "Lesen allein reicht als Einschränkung nicht: Als Empfänger ist nur die Caféleitung festgelegt." },
       ] },
       { id: "q4", prompt: "Was tut Samira, wenn die Währung fehlt?", correct: "luecke", options: [
-        { id: "luecke", label: "Sie notiert die Lücke.", feedback: "Richtig. Eine fehlende Angabe bleibt sichtbar. Samira erfindet keine Währung, damit die Liste vollständig wirkt." },
-        { id: "euro", label: "Sie setzt Euro ein, weil jede Kasse in diesem Lernmodell automatisch Euro führen muss.", feedback: "Die Währung ist nicht belegt. Sie zu erfinden würde die Quelle verfälschen." },
-        { id: "loeschen", label: "Sie löscht die ganze Liste, weil eine einzige fehlende Angabe alle anderen Felder ungültig macht.", feedback: "Die übrigen Felder bleiben beschreibbar. Nur die fehlende Angabe wird als Lücke markiert." },
+        { id: "luecke", label: "Sie markiert die fehlende Einheit und klärt sie vor Nutzung.", feedback: "Richtig. Ohne belegte Währung darf der Zahlenwert nicht still als Euro interpretiert werden." },
+        { id: "euro", label: "Sie übernimmt EUR aus den Spracheinstellungen des Rechners.", feedback: "Die Rechnersprache belegt keine Währung der Quelldaten. Die Einheit muss geklärt werden." },
+        { id: "loeschen", label: "Sie entfernt die Einheit und zeigt den Betrag ohne Hinweis.", feedback: "Dadurch verschwindet die Lücke nur optisch. Die Einheit und die offene Frage bleiben nötig." },
       ] },
     ]
   });

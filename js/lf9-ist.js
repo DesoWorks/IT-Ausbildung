@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Was ist am Besprechungsraum belegt?", correct: "ohne", options: [
-        { id: "ohne", label: "Kein eigener Anschluss belegt.", feedback: "Richtig. Belegt ist nur, dass kein eigener Anschluss beschrieben ist. Eine Leitung dazwischen ist unbekannt." },
-        { id: "leitung", label: "Eine fertige Leitung zur Kasse, weil jeder Besprechungsraum eine haben muss.", feedback: "Die Leitung ist nicht belegt. Samira erfindet sie nicht, nur weil der Raum existiert." },
-        { id: "wlan", label: "Ein bereits eingerichtetes Gästenetz, weil der Wunsch danach den Ist-Zustand ersetzt.", feedback: "Der Wunsch ist Soll. Im Ist ist kein Gästenetz beschrieben." },
+        { id: "ohne", label: "Ein eigener Anschluss ist in der Beschreibung nicht belegt.", feedback: "Richtig. Fehlende Beschreibung bedeutet nicht, dass sicher kein Kabel existiert; der Anschluss bleibt ungeklärt." },
+        { id: "leitung", label: "Eine nutzbare Leitung zur Theke ist aus dem Grundriss ableitbar.", feedback: "Räumliche Nähe oder ein Grundriss belegen keine nutzbare Leitung; dafür fehlen konkrete Angaben." },
+        { id: "wlan", label: "Ein vorhandenes Gästenetz lässt sich aus dem Anschlusswunsch ableiten.", feedback: "Der Wunsch beschreibt den Sollzustand und beweist nicht, dass schon ein Gästenetz vorhanden ist." },
       ] },
       { id: "q2", prompt: "Wie geht Samira mit der unbekannten Leitung um?", correct: "luecke", options: [
-        { id: "erfunden", label: "Sie zeichnet die Leitung ein, damit der Plan vollständig aussieht.", feedback: "Eine erfundene Leitung wäre eine falsche Ist-Angabe. Die Lücke bleibt sichtbar." },
-        { id: "luecke", label: "Sie schreibt unbekannt.", feedback: "Richtig. Nicht belegt bleibt unbekannt. Der Plan wird dadurch ehrlicher, nicht leerer." },
-        { id: "messen", label: "Sie scannt das echte Netz der Theke, weil eine Übung ohne Scan keinen Ist-Zustand hat.", feedback: "Ein Scan echter Geräte ist ausgeschlossen. Der Ist-Zustand kommt aus der Auftragsbeschreibung." },
+        { id: "erfunden", label: "Sie übernimmt die vermutete Verbindung als vorhandene Leitung.", feedback: "Eine plausible Vermutung ist kein Bestandsbeleg. Sie darf nicht ungekennzeichnet ins Ist gelangen." },
+        { id: "luecke", label: "Sie kennzeichnet den Leitungsbestand als noch ungeklärt.", feedback: "Richtig. Die Lücke bleibt sichtbar, bis eine passende Erhebung den tatsächlichen Bestand belegt." },
+        { id: "messen", label: "Sie prüft ohne weiteren Auftrag das reale Netz per Scan.", feedback: "Die Übung erlaubt keine Prüfung realer Systeme. Zuerst wäre die Erhebung ausdrücklich abzugrenzen." },
       ] },
-      { id: "q3", prompt: "Was misst Samira in dieser Lektion nicht?", correct: "adresse", options: [
-        { id: "spalten", label: "Die Trennung von Ist und Soll, obwohl genau das die Aufgabe der Notiz ist.", feedback: "Die Trennung der Spalten ist die Aufgabe. Gemessen werden keine echten Adressen." },
-        { id: "notiz", label: "Die sichtbare Kasse an der Theke, soweit der Auftrag sie beschreibt.", feedback: "Die beschriebene Kasse darf in der Ist-Spalte stehen. Eine Messung am Gerät findet nicht statt." },
-        { id: "adresse", label: "Echte Adressen.", feedback: "Richtig. Sie liest keine echten Adressen ab, öffnet keinen Schrank und scannt kein Netz." },
+      { id: "q3", prompt: "Was gehört in dieser Lektion nicht zu Samiras Aufgabe?", correct: "adresse", options: [
+        { id: "spalten", label: "Die Zuordnung der beschriebenen Fakten zu Ist oder Soll.", feedback: "Die Zuordnung ist Teil der Dokumentationsarbeit, keine Messung am realen Gerät." },
+        { id: "notiz", label: "Den Standort der Kasse anhand der Auftragsbeschreibung.", feedback: "Dieser Standort kann aus der Beschreibung übernommen werden, ohne ein echtes Gerät zu untersuchen." },
+        { id: "adresse", label: "Die tatsächlichen IP-Adressen produktiver Endgeräte.", feedback: "Richtig. Hier wird kein reales Netz untersucht; die Angaben stammen nur aus dem fiktiven Auftrag." },
       ] },
       { id: "q4", prompt: "Wohin gehört die gewünschte Trennung?", correct: "soll", options: [
-        { id: "soll", label: "In die Soll-Spalte.", feedback: "Richtig. Gewünscht ist nicht vorhanden. Die Trennung bleibt Soll, bis sie belegt wäre." },
-        { id: "ist", label: "In die Ist-Spalte, weil ein Kundenwunsch den vorhandenen Zustand automatisch verändert.", feedback: "Ein Wunsch ändert den Ist-Zustand nicht. Beide Spalten bleiben getrennt." },
-        { id: "weg", label: "In keine Spalte, weil eine gewünschte Trennung in einer Planung nicht vorkommen darf.", feedback: "Die Trennung ist der Auftrag. Sie gehört in die Soll-Spalte, nicht ins Ist." },
+        { id: "soll", label: "Zum Sollzustand mit einem später zu prüfenden Abnahmekriterium.", feedback: "Richtig. Die gewünschte Trennung ist noch kein belegter Bestand, sondern eine Zielanforderung." },
+        { id: "ist", label: "Zum Istzustand, sobald die Leitung den Wunsch bestätigt hat.", feedback: "Eine bestätigte Anforderung ist weiterhin Soll. Die Umsetzung muss getrennt nachgewiesen werden." },
+        { id: "weg", label: "Nur zur Maßnahmenliste, ohne sie als Zielzustand zu beschreiben.", feedback: "Maßnahmen müssen sich an einem beschriebenen Sollzustand messen lassen. Die Trennung gehört dorthin." },
       ] },
     ]
   });

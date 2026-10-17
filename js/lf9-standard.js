@@ -12,24 +12,24 @@
     ],
     questions: [
       { id: "q1", prompt: "Was gilt im Beispiel als Standard?", correct: "regel", options: [
-        { id: "regel", label: "Eine öffentlich beschriebene Spezifikation, etwa DHCP nach RFC 2131.", feedback: "Richtig. Ein technischer Standard ist eine öffentlich beschriebene Spezifikation. Die Kundenregel zur Trennung ist ein Abnahmekriterium, und ein Markenname ersetzt beides nicht." },
-        { id: "marke", label: "Der Name eines Routerherstellers, weil ein Standard immer eine Marke sein muss.", feedback: "Die Marke ist weder Spezifikation noch Kundenanforderung. Ein Standard ist öffentlich beschrieben, die Trennung zur Kasse ist ein Abnahmekriterium." },
-        { id: "kabel", label: "Eine Kabelmarke, weil ohne Markennamen keine Prüfung möglich ist.", feedback: "Die Prüfung braucht die vereinbarte Regel, nicht eine Kabelmarke." },
+        { id: "regel", label: "DHCP nach der öffentlich beschriebenen Spezifikation RFC 2131.", feedback: "Richtig. Das ist eine konkrete technische Spezifikation; Kundenanforderung und Standard sind zu trennen." },
+        { id: "marke", label: "Die Kundenforderung, Gästezugang und Kasse zu trennen.", feedback: "Das ist eine Kundenanforderung und ein Abnahmekriterium, keine technische Protokollspezifikation." },
+        { id: "kabel", label: "Die interne Vorgabe, nur ein bestimmtes Routermodell zu kaufen.", feedback: "Eine interne Produktauswahl ist kein technischer Standard zur Funktionsweise eines Protokolls." },
       ] },
       { id: "q2", prompt: "Welche Frage gehört in die Funktionsprüfung?", correct: "kasse", options: [
-        { id: "farbe", label: "Welche Farbe der Router hat, weil die Farbe die Trennung automatisch belegt.", feedback: "Die Farbe belegt keine Trennung. Geprüft wird, ob die Kasse unerreichbar bleibt." },
-        { id: "kasse", label: "Bleibt die Kasse unerreichbar?", feedback: "Richtig. Die Prüfung fragt Grenze, Nutzungsort und Mindestkapazität. Ein Messgerät wird nicht angeschlossen." },
-        { id: "preis", label: "Ob der Router im Angebot der günstigste ist, auch ohne belegten Preis.", feedback: "Der Preis ist eine andere Frage und hier nicht belegt. Die Funktionsprüfung prüft die Regel." },
+        { id: "farbe", label: "Ist der Router eines bereits vertrauten Herstellers?", feedback: "Herstellerkenntnis beweist keine Funktion oder Zugriffssperre. Die Prüfung braucht beobachtbare Kriterien." },
+        { id: "kasse", label: "Ist die Kasse aus dem funktionsfähigen Gästenetz unerreichbar?", feedback: "Richtig. Das prüft die geforderte Grenze, ohne eine fehlende Gästeverbindung als Schutzbeleg zu missverstehen." },
+        { id: "preis", label: "Liegt der Anschaffungspreis unter dem geplanten Budget?", feedback: "Das ist ein wirtschaftliches Kriterium, aber kein Funktionstest für die Netztrennung." },
       ] },
       { id: "q3", prompt: "Wann ist die Planung nicht bestanden?", correct: "weg", options: [
-        { id: "gaeste", label: "Sobald Gäste überhaupt eine Verbindung bekommen, unabhängig von der Grenze zur Kasse.", feedback: "Eine Gästeverbindung ist gewollt. Nicht bestanden ist sie nur, wenn dabei die Grenze fällt." },
-        { id: "papier", label: "Sobald die Prüfung auf Papier steht, weil eine schriftliche Prüfung immer ein Fehlschlag ist.", feedback: "Die schriftliche Prüfung ist das Mittel. Ein Fehlschlag ist eine verletzte Regel, nicht das Papier." },
-        { id: "weg", label: "Wenn ein Weg zur Kasse bliebe.", feedback: "Richtig. Ein funktionierendes Gästenetz besteht nicht, wenn die Kasse vom Gästenetz aus erreichbar wäre." },
+        { id: "gaeste", label: "Wenn der DHCP-Pool elf statt zehn Geräte versorgen kann.", feedback: "Zehn Geräte sind die Mindestkapazität. Eine größere Kapazität verletzt die Anforderung nicht." },
+        { id: "papier", label: "Wenn die Zugangsfunktion zusätzlich als Modell protokolliert wird.", feedback: "Ein klar als Modell markiertes Protokoll ist kein Fehler, ersetzt aber keine echte Installationsprüfung." },
+        { id: "weg", label: "Wenn Gäste die Kasse trotz funktionierender Verbindung erreichen können.", feedback: "Richtig. Funktion und Schutz müssen gemeinsam erfüllt sein. Ein Zugriffspfad zur Kasse verletzt den Auftrag." },
       ] },
-      { id: "q4", prompt: "Was wird in dieser Lektion nicht angeschlossen?", correct: "mess", options: [
-        { id: "mess", label: "Ein echtes Messgerät.", feedback: "Richtig. Die Prüfung ist eine Fragenliste auf Papier. Nichts wird gemessen, nichts wird konfiguriert." },
-        { id: "frage", label: "Die Frage nach der Mindestkapazität, obwohl die Anforderung genau diese Grenze enthält.", feedback: "Die Frage gehört in die Prüfung. Angeschlossen wird nur kein Gerät." },
-        { id: "grenze", label: "Die Prüfung der Trennung, weil eine Funktionsprüfung Grenzen auslassen muss.", feedback: "Die Trennung ist der Kern der Prüfung. Ohne sie wäre die Liste unvollständig." },
+      { id: "q4", prompt: "Was gehört noch nicht zur Papierprüfung dieser Lektion?", correct: "mess", options: [
+        { id: "mess", label: "Ein reales Messgerät an die vorhandene Infrastruktur anschließen.", feedback: "Richtig. Papierprüfung und Browsermodell sind keine Messung an echter Infrastruktur." },
+        { id: "frage", label: "Eine Prüfung der geforderten gleichzeitigen Endgerätezahl festlegen.", feedback: "Die Kapazitätsfrage gehört zum Kriterienkatalog. Ihre Festlegung ist noch keine reale Messung." },
+        { id: "grenze", label: "Die erwartete Zugriffssperre zur Kasse als Ergebnis beschreiben.", feedback: "Das erwartete Ergebnis gehört in die Prüfliste und wird nicht durch einen Geräteanschluss ersetzt." },
       ] },
     ]
   });
