@@ -38,3 +38,27 @@ Terminus hat die fachlichen Diffs und Speicherpfade selbst gelesen sowie beide I
 - Paket 3: erratbare Antwortmuster, Anzeigereihenfolge, Ersatz der Test-Assertions.
 - Nutzerprüfung durch GLaDOS nach Paket 3.
 - Freigabe und Katalogstatus bleiben bei Dennis.
+
+## Paket 2: praktische Lernaktivitäten (Terminus)
+
+Jarvis hatte in diesem Paket nach zwei Leseaufrufen ein erschöpftes Werkzeugbudget gemeldet und keine Änderungen vorgenommen. Terminus hat das unveränderte Paket direkt übernommen; keine konkurrierenden Schreibvorgänge. Paket 1 ist lokal als `734027a` gesichert.
+
+| Ziel/Fundstelle | Konkrete Aktivität / überprüfbares Produkt | Grenze |
+| --- | --- | --- |
+| LF8 Quellen, Struktur, heterogene Formate | Sichtbare, editierbare CSV-Kasse und JSON-Schichten; Feldmapping Datum→tag; Validierung von Datum, Einheiten, Zahlen und Dubletten | Bewusst eingeschränkter CSV-Dialekt, 100 Zeilen/Quelle, nur EUR; keine Verbindung zu echter Kasse |
+| LF8 Aufbereitung/Bereitstellung | Ausführung der Transformation im Browser, eine Ergebniszeile je Tag, alle Schichten erhalten; Null/fehlend unterscheiden; tatsächlicher CSV-Blob-Download und kopierbare Ausgabe | Keine Datenbank/Server-API, keine erfundenen Summen oder Nullwerte, keine allgemeine Datenintegration |
+| LF8 Arbeitsteilung, Handhabung, Reflexion/Fremdsprache | Rollen A/B (auch nacheinander), DE/EN-Handhabung und offline RFC-4180-Auszug, Übergabenotiz und Peer-Kontrolle der Tage 13./14.10.; Reflexions-/Übergabeseiten verlinken Labor | Rollenleistung, freie Notiz und Sprachverständnis benötigen menschliche Beurteilung; Export allein enthält Notiz nicht |
+| LF9 Konfiguration/Dienstimplementierung | /24-Modellnetze, DHCP an/aus, Pool, Gateway und Sperrregel veränderbar; ausdrückliches Anwenden, danach Modelltests | Vereinfachte Browserimplementierung, kein DHCP-Nachrichtenaustausch und keine reale Geräteinstallation |
+| LF9 Standard/Prüfung/Fehlerbehebung | RFC-2131-Originalauszug mit DE-Auftrag; reproduzierbare Modellfehler (fehlender DHCP-Dienst, kleiner Pool, gleiche Netze, fehlende Sperre); Protokoll pro Endgerät mit DHCP/Gateway/Kasse | Keine Pakete/Scans, kein WLAN-/Internet-/Durchsatztest. Ohne Lease ist Kassensperre nicht prüfbar. Keine vollständige RFC-Konformität |
+| LF9 Wirtschaftlichkeit/Nachhaltigkeit/Zukunft | Berechenbare fiktive Varianten Kauf+Strom über Nutzungsdauer, offene Wartung/Entsorgung, Test 10→15 Endgeräte, begründete Übergabenotiz | Keine Preisangebote oder Ökobilanz, keine echte Kundenabnahme, billige aber unsichere Variante bleibt unzulässig |
+
+Neue isolierte Speicherung: `it-ausbildung.lf8-praxis.v1` und `it-ausbildung.lf9-praxis.v1`. Eingaben/Notizen werden gespeichert, Ergebnisse nach Änderungen oder Reload verworfen und erst nach erneutem Ausführen als aktuell gezeigt. Keine Änderung bestehender Antworten, Speicherschlüssel, Abschlüsse oder Fortschrittslogik; Wissensfragen-Abschlüsse sind ausdrücklich kein Praxisnachweis. Keine neue Lektion und keine Katalogfreigabe.
+
+### Prüfbelege Paket 2
+
+- `node --check js/lf8-praxis.js`, `node --check js/lf9-praxis.js`: bestanden.
+- `node tests/lf8-lf9-praxis.test.js`: echte Funktionen geprüft, Standarddaten, Null/fehlend, Mehrfachschichten, fehlende Schichten, Dubletten, ungültiges Datum/JSON/Einheit/Zahl, Mappingfehler, DHCP/Schutz-/Kapazitätsfehler, Kostenmodell bestanden.
+- `node tests/lf8-inhalte.test.js` und `node tests/lf9-inhalte.test.js`: bestanden. Der lokale Linkcheck überspringt nun ausdrücklich https-Quellenlinks statt sie als lokale Dateien aufzulösen.
+- `node tests/lf8-lf9-praxis-browser.test.js`: bestanden. Leere/falsche/richtige Eingaben, Änderung→Ergebnis veraltet, Browser-Zurück, Reload/Eingabenerhalt, CSV-Blob-Inhalt/Markieren, Modellkonfiguration anwenden, DHCP aus/Pool klein/Sperre fehlt, 10→15 Endgeräte/Poolkorrektur, Kostenanzeige, keine Browser-Ausnahmen oder fehlenden Ressourcen, 320/390px ohne Überbreite.
+- Erster Browser-Testlauf scheiterte an Top-level-await in der CDP-Prüfexpression (nicht am Labor). Implementation und Test gelesen; Expression als async-IIFE repariert, exakt denselben Test erfolgreich wiederholt.
+- Screenshots `.output/lf89-praxis/lf8-datenwerkstatt-{320,390}.png` und `lf9-netzlabor-{320,390}.png`. Terminus hat die 320px-LF8- und 390px-LF9-Aufnahmen direkt angesehen: lesbare, einspaltige Abschnitte ohne horizontales Abschneiden. GLaDOS-Nutzerprüfung folgt erst nach Paket 3.

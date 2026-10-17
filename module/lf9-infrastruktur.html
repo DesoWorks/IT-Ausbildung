@@ -10,6 +10,7 @@
   <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/netzwerk.css">
+  <link rel="stylesheet" href="../css/lf89-praxis.css">
   <style>
     .opts{display:grid;grid-template-columns:1fr;gap:.65rem}
     .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
@@ -40,7 +41,7 @@
     <noscript><p>Für die Lerninhalte und die Übung muss JavaScript aktiviert sein.</p></noscript>
     <section id="start" class="abschnitt" tabindex="-1">
       <h2>Was du lernst</h2><ul id="goals"></ul>
-      <aside class="hinweis-box"><strong>Fiktives Beispiel:</strong> Samira und Nordlicht IT-Service sind erfunden. Das Büro, der Besprechungsraum und die Theke des Hafenblick Cafés sind ein Lernmodell. Nichts wird installiert, nichts konfiguriert, kein echtes Gerät, keine Zugangsdaten, kein Produktivnetz.</aside>
+      <aside class="hinweis-box"><strong>Fiktives Beispiel:</strong> Samira und Nordlicht IT-Service sind erfunden. Zusätzlich zur Skizze konfigurierst du hier ein lokales Browsermodell. Kein echtes Gerät wird eingerichtet, keine Pakete werden gesendet. Kein Produktivnetz oder echte Zugangsdaten.</aside>
       <button class="knopf knopf-haupt" data-next="case">Weiter zum Beispiel</button>
     </section>
     <section id="case" class="abschnitt" tabindex="-1" hidden>
@@ -49,6 +50,34 @@
     </section>
     <section id="exercise" class="abschnitt" tabindex="-1" hidden>
       <h2>Übung: Vier Fragen zum Beispiel</h2><p>Wähle je Frage eine Antwort. Alle Fragen beziehen sich nur auf diese Lektion. Du kannst die Übung frei wiederholen.</p>
+      <section id="lf9-praxis" class="praxis" aria-labelledby="netz-titel">
+        <h3 id="netz-titel">Netz- und Dienstlabor: konfigurieren, anwenden, Modelltests ausführen</h3>
+        <p>Du implementierst eine vereinfachte Gästekonfiguration im Browsermodell. Ein Dienst ist nicht dasselbe wie eine Zugriffsregel. Das Modell braucht getrennte /24-Netze und eine Sperrregel zur Kasse. Fehlende DHCP-Leases beweisen keine sichere Trennung. Keine echte Installation, kein Scan, keine WLAN-, Durchsatz- oder Internetmessung und kein vollständiger RFC-DHCP-Stack. Die angezeigten Adressen sind reine Dokumentationsdaten aus TEST-NET (<a href="https://www.rfc-editor.org/rfc/rfc5737.html">RFC 5737</a>); niemals unverändert in einem echten Netz verwenden.</p>
+        <ol><li>Person A konfiguriert das Modell. Person B prüft unabhängig Anforderungen und Protokoll. Allein wechselst du die Rolle.</li><li>Schalte DHCP aus, verkleinere den Pool, verwende gleiche Netzpräfixe oder erlaube den Weg zur Kasse. Welche Modellprüfung scheitert jeweils?</li><li>Repariere die Konfiguration und prüfe mindestens zehn gleichzeitige Endgeräte. Teste danach 15: Welche Kapazitätsänderung wäre nötig? Eine harte Sperre für das elfte Gerät war nicht beauftragt.</li></ol>
+        <blockquote lang="en">DHCP provides a mechanism through which computers using TCP/IP can obtain protocol configuration parameters automatically through the network.</blockquote>
+        <p>Quelle: <a href="https://www.rfc-editor.org/rfc/rfc2131.html">RFC 2131, Einleitung</a>. Der Auszug bleibt offline lesbar. Erkläre auf Deutsch, warum ein DHCP-Dienst mehr ist als ein Routername und warum eine DHCP-Adresse allein den Zugriffsschutz nicht nachweist. Das Modell vergibt nur vereinfachte Leases und prüft eine vereinfachte Regel, es bildet keinen DHCP-Nachrichtenaustausch ab.</p>
+        <label for="netz-guest">Gästenetz-Präfix (/24; drei Oktette)</label><input id="netz-guest" maxlength="11" value="192.0.2">
+        <label for="netz-cash">Kassennetz-Präfix (/24; drei Oktette)</label><input id="netz-cash" maxlength="11" value="198.51.100">
+        <label for="netz-gateway">Gateway des Gästenetzes (im Modell immer .1)</label><input id="netz-gateway" maxlength="15" value="192.0.2.1">
+        <label for="netz-start">DHCP-Pool: letztes Oktett von</label><input id="netz-start" type="number" min="1" max="254" value="20">
+        <label for="netz-end">DHCP-Pool: letztes Oktett bis</label><input id="netz-end" type="number" min="1" max="254" value="29">
+        <label><input id="netz-dhcp" type="checkbox" checked> DHCP-Dienst einschalten</label>
+        <label><input id="netz-block" type="checkbox" checked> Gast → Kasse sperren</label>
+        <button id="netz-anwenden" type="button" class="knopf knopf-haupt">Modellkonfiguration anwenden</button> <button id="netz-beispiel" type="button" class="knopf">Beispielkonfiguration laden</button>
+        <label for="netz-count">Gleichzeitige Endgeräte im Modelltest (1–50)</label><input id="netz-count" type="number" min="1" max="50" value="10">
+        <button id="netz-testen" type="button" class="knopf knopf-haupt">Modelltests starten</button>
+        <p id="netz-status" class="praxis-status" role="status">Noch keine Konfiguration angewendet und kein Modelltest ausgeführt.</p><p id="netz-speicher" role="status"></p>
+        <div id="netz-ergebnis" hidden><table><caption>Simulierte Dienst- und Erreichbarkeitsprüfung</caption><thead><tr><th>Gerät</th><th>DHCP-Adresse</th><th>Gateway</th><th>Kasse</th></tr></thead><tbody id="netz-zeilen"></tbody></table>
+          <label for="netz-protokoll">Modellprotokoll zum Übergeben</label><textarea id="netz-protokoll" readonly></textarea><button id="netz-kopieren" type="button" class="knopf">Protokoll zum Kopieren markieren</button></div>
+        <h4>Fiktive Varianten wirtschaftlich und nachhaltig prüfen</h4>
+        <p>Alle Zahlen sind erfundene Übungsannahmen, keine Angebote: A kostet 180 EUR, benötigt 8 W und erfüllt Trennung/Kapazität; B kostet 120 EUR, benötigt 20 W, sieht aber keinen Zugriffsschutz für die Kasse vor. Beide rechnen mit Dauerbetrieb. Energie = W ÷ 1000 × 24 × 365 × Jahre; Vergleich = Kauf + kWh × Strompreis. Unbekannte Wartungszeit, Ersatzteile und Entsorgung bleiben als Lücke sichtbar; weniger Watt allein beweist keine gesamte Nachhaltigkeit.</p>
+        <label for="netz-rate">Angenommener Strompreis (EUR/kWh; 0–2)</label><input id="netz-rate" type="number" min="0" max="2" step="0.01" value="0.30">
+        <label for="netz-years">Angenommene Nutzungsdauer (1–10 Jahre)</label><input id="netz-years" type="number" min="1" max="10" value="3">
+        <button id="netz-rechnen" type="button" class="knopf">Kosten und Energie vergleichen</button><p id="netz-kosten" role="status">Noch nicht berechnet.</p>
+        <label for="netz-notiz">Prüf-/Übergabenotiz ohne echte Daten: Fehlerursachen, gewählte Variante und Begründung, offene Wartungs-/Datenschutzfragen, Bedarf bei 15 Geräten, Rückmeldung der zweiten Rolle</label><textarea id="netz-notiz" maxlength="5000"></textarea>
+        <p lang="en">Apply the model configuration, then run the tests. Record failed checks and explain your fix. A simulated pass is not proof of a secure real network.</p>
+        <p>Die Notiz bleibt lokal und muss getrennt vom Protokoll kopiert werden. Ihre fachliche Abnahme erfolgt durch eine Ausbildungsperson; das Modell vergibt keine automatische Team- oder Kundenabnahme. Bisherige Wissensfragen-Abschlüsse bleiben unverändert und sind kein Praxisnachweis.</p>
+      </section>
       <div id="questions"></div><button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
       <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
       <div class="knopf-reihe"><button class="knopf" data-next="case">Zum Beispiel</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
@@ -79,5 +108,6 @@
   <script src="../js/version.js"></script>
   <script src="../js/lf9-lektion.js"></script>
   <script src="../js/lf9-infrastruktur.js"></script>
+  <script src="../js/lf9-praxis.js"></script>
 </body>
 </html>

@@ -1,0 +1,47 @@
+/* Reale Funktionsprüfung der beiden abgegrenzten Browsermodelle. */
+const assert = require('node:assert/strict');
+const lf8 = require('../js/lf8-praxis.js');
+const lf9 = require('../js/lf9-praxis.js');
+const json = JSON.stringify(lf8.SHIFTS);
+const rows = lf8.transform(lf8.CSV, json, 'tag');
+assert.equal(rows.length, 4);
+assert.equal(rows[0].umsatz, 1234.5);
+assert.equal(rows[0].schichten.length, 2);
+assert.equal(rows[1].umsatz, 0);
+assert.equal(rows[1].status, 'belegt');
+assert.equal(rows[2].umsatz, null);
+assert.equal(rows[2].status, 'fehlend');
+assert.equal(rows[2].schichten.reduce((n, r) => n + r.personen, 0), 4);
+assert.equal(lf8.csvOutput(rows).split('\r\n').length, 5, 'ein Tagesumsatz je Datum, kein Umsatzduplikat pro Schicht');
+assert.match(lf8.csvOutput(rows), /"0.00","EUR","belegt"/);
+assert.match(lf8.csvOutput(rows), /"2026-10-14","","EUR","fehlend"/);
+for (const bad of ['', 'datum,umsatz,waehrung', lf8.CSV + '\n2026-10-12,5,EUR', lf8.CSV.replace('EUR', 'USD'), lf8.CSV.replace('2026-10-12', '2026-02-30'), lf8.CSV.replace('1234.5', '1234.567'), lf8.CSV.replace('1234.5', 'NaN')]) {
+  assert.throws(() => lf8.transform(bad, json, 'tag'));
+}
+assert.throws(() => lf8.transform(lf8.CSV, '{', 'tag'));
+assert.throws(() => lf8.transform(lf8.CSV, json, 'personen'));
+assert.throws(() => lf8.transform(lf8.CSV, JSON.stringify([...lf8.SHIFTS, lf8.SHIFTS[0]]), 'tag'));
+assert.throws(() => lf8.transform(lf8.CSV, JSON.stringify([{ tag: '2026-10-12', schicht: 'Früh', personen: '2' }]), 'tag'));
+const missingShift = lf8.transform(lf8.CSV, JSON.stringify(lf8.SHIFTS.slice(2)), 'tag');
+assert.equal(missingShift[0].schichtstatus, 'fehlend');
+const extraShift = lf8.transform(lf8.CSV, JSON.stringify([...lf8.SHIFTS, { tag: '2026-10-16', schicht: 'Früh', personen: 2 }]), 'tag');
+assert.equal(extraShift[4].umsatz, null);
+const cfg = lf9.configure(lf9.DEFAULT);
+assert.equal(lf9.simulate(cfg, 10).pass, true);
+assert.equal(lf9.simulate(cfg, 10).leases, 10);
+assert.equal(lf9.simulate(cfg, 15).pass, false);
+assert.equal(lf9.simulate(cfg, 15).leases, 10);
+const noDHCP = lf9.simulate({ ...cfg, dhcp: false }, 10);
+assert.equal(noDHCP.pass, false);
+assert.equal(noDHCP.clients[0].kasseErreichbar, null, 'ohne Lease keine fälschliche Sicherheitsbestätigung');
+assert.equal(lf9.simulate({ ...cfg, block: false }, 10).clients[0].kasseErreichbar, true);
+assert.equal(lf9.simulate({ ...cfg, cash: cfg.guest }, 10).pass, false);
+assert.equal(lf9.simulate({ ...cfg, end: 34 }, 15).pass, true);
+for (const bad of [{ ...cfg, gateway: '192.0.2.255' }, { ...cfg, start: 1 }, { ...cfg, end: 256 }, { ...cfg, start: '2e1' }, { ...cfg, guest: '999.0.2' }, { ...cfg, start: 40 }]) assert.throws(() => lf9.configure(bad));
+assert.throws(() => lf9.simulate(cfg, 0));
+assert.throws(() => lf9.simulate(cfg, 1.5));
+assert.equal(lf9.cost(8, 180, 3, 0.3).kwh, 210.24);
+assert.ok(Math.abs(lf9.cost(8, 180, 3, 0.3).total - 243.072) < 0.00001);
+assert.throws(() => lf9.cost(8, 180, 0, 0.3));
+assert.throws(() => lf9.cost(8, 180, 3, NaN));
+console.log('LF8/LF9 Praxis: Transformation, Null/fehlend, Mehrfachschichten, Eingabefehler, Dienstmodell, Schutzfehler, Kapazität und Kosten bestanden.');

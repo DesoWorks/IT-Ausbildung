@@ -24,6 +24,7 @@ function checkPage(id, title) {
   for (const favicon of ["favicon.svg", "favicon-32.png", "favicon.ico"]) assert.ok(html.includes("../assets/desoworks/" + favicon));
   assert.ok(!html.includes("Zusammenfassung und Übungsaufgabe"));
   for (const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
+    if (/^https:\/\//.test(match[1])) continue; // Quellenlinks sind keine lokalen Dateien.
     assert.ok(fs.existsSync(path.resolve(root, "module", match[1])), id + " Ziel existiert: " + match[1]);
   }
   assert.ok(html.includes("[hidden]{display:none!important}"));
