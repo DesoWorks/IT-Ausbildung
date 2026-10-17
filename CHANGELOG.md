@@ -1,5 +1,10 @@
 # Changelog
 
+## Unveröffentlicht – 17.10.2026
+- LF8/LF9: reproduzierbare Chromium-Prüfung für alle 18 Seiten ergänzt; Fortschritt, Abgabe, Wiederladen, Browser-Zurück, Reset-Schutz und mobile Überbreite geprüft. Keine Katalogfreigabe.
+- Übersichts-Regressionstest berücksichtigt den bereits vorhandenen Freigabestatus des Lernfelds statt einer veralteten Funktionssignatur.
+- Übergabe und Übernahme mit Prüfgrenzen unter `docs/uebergabe-an-terminus-2026-10-17.md` und `docs/uebernahme-terminus-2026-10-17.md` gesichert. Keine Versionsanhebung, kein Push.
+
 ## 0.16.2-alpha.1
 - Lernfeld 5 hat die kleine Lektion „Den Arbeitsprozess bewerten“. Geplant, geprüft und offen werden an einem fiktiven Zettel getrennt.
 - Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.
