@@ -6,9 +6,9 @@
     id: "lf9-eignung", title: "Technische, wirtschaftliche und nachhaltige Eignung vergleichen",
     goals: ["Drei Eignungsfragen getrennt beantworten.", "Eine Variante ablehnen, die die Grenze verletzt."],
     theory: [
-      ["Zwei Varianten auf Papier", "Variante A trennt Gästenetz und Kasse und reicht für höchstens zehn Gäste. Variante B lässt Gäste und Kasse im selben Netz, weil das weniger Geräte brauchte. Weniger Geräte ist noch kein Vorteil, wenn die Anforderung bricht."],
-      ["Drei Fragen", "Technisch: hält die Variante die Trennung und die Gästezahl? Wirtschaftlich: ist der Aufwand für zehn Gäste nachvollziehbar, ohne einen Preis zu erfinden? Nachhaltig: wird nichts beschafft, was der Auftrag nicht braucht?"],
-      ["Entscheidung", "Samira wählt A, weil B die Kasse erreichbar machen würde. Den Preis lässt sie offen, wenn er nicht belegt ist. Eine Entscheidung ohne diesen Grund wäre nur Geschmack."],
+      ["Zwei Varianten auf Papier", "Variante A trennt Gästenetz und Kasse und trägt mindestens zehn gleichzeitige Endgeräte. Variante B lässt Gäste und Kasse im selben Netz ohne Zugriffsschutz für die Kasse, weil das weniger Geräte brauchte. Weniger Geräte ist noch kein Vorteil, wenn die Anforderung bricht."],
+      ["Drei Fragen", "Technisch: hält die Variante die Trennung und die Mindestkapazität von zehn Endgeräten? Wirtschaftlich: ist der Aufwand für diese Kapazität nachvollziehbar, ohne einen Preis zu erfinden? Nachhaltig: wird nichts beschafft, was der Auftrag nicht braucht?"],
+      ["Entscheidung", "Samira wählt A, weil B keinen Zugriffsschutz für die Kasse vorsieht und damit die geforderte Trennung nicht erfüllt. Den Preis lässt sie offen, wenn er nicht belegt ist. Eine Entscheidung ohne diesen Grund wäre nur Geschmack."],
     ],
     questions: [
       { id: "q1", prompt: "Warum fällt Variante B heraus?", correct: "grenze", options: [
@@ -27,7 +27,7 @@
         { id: "nur", label: "Nichts beschaffen, was der Auftrag nicht braucht.", feedback: "Richtig. Die Frage prüft unnötige Beschaffung. Sie ist kein Freibrief und kein Kauf." },
       ] },
       { id: "q4", prompt: "Warum wählt Samira Variante A?", correct: "grund", options: [
-        { id: "grund", label: "Weil sie die Grenze hält.", feedback: "Richtig. A hält die Trennung und reicht für zehn Gäste. Der Grund steht in der Notiz, nicht nur der Buchstabe." },
+        { id: "grund", label: "Weil sie die Grenze hält.", feedback: "Richtig. A hält die Trennung und trägt die geplanten zehn gleichzeitigen Endgeräte. Der Grund steht in der Notiz, nicht nur der Buchstabe." },
         { id: "geschmack", label: "Weil ihr der Buchstabe besser gefällt und ein Grund die Tabelle nur verlängert.", feedback: "Geschmack ist kein Eignungsgrund. Ohne die Grenze wäre die Wahl nicht nachvollziehbar." },
         { id: "kauf", label: "Weil sie die Geräte dafür bereits bestellt hat und die Wahl nur noch nachzieht.", feedback: "Es wird nichts bestellt. Die Wahl ist eine Papierentscheidung mit Begründung." },
       ] },

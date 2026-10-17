@@ -101,4 +101,8 @@ const allSource = ids.concat("lf9-kontrolle", "lf9-lektion").map(id => read("js/
 assert.ok(!/fetch\s*\(|XMLHttpRequest|WebSocket/i.test(allSource), "kein Netzwerkzugriff");
 assert.ok(!/FiSi-Jahr1/.test(allSource), "Passwort nicht im Klartext");
 assert.match(read("docs/plan-lf9.md"), /nichts installiert/);
+const lf9Text = ids.concat("lf9-kontrolle").map(id => read("js/" + id + ".js")).join("\n");
+assert.ok(/mindestens zehn/i.test(lf9Text) && !/höchstens zehn/i.test(lf9Text), "F7: Mindestkapazität statt harter Obergrenze");
+assert.ok(/RFC 2131/.test(lf9Text), "F4: konkrete Spezifikation genannt");
+assert.ok(!/keine Personendaten erhoben/.test(lf9Text), "F3: keine pauschale Kein-Personenbezug-Aussage");
 console.log("LF9 Inhalte: 8 Lektionen, 32 Übungsfragen, 24 Kontrollfragen, Schlüssel, Auswertung und Seiten bestanden.");

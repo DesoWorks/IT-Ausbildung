@@ -6,15 +6,15 @@
     id: "lf8-reflexion", title: "Werkzeug und Dokumentationsqualität beurteilen",
     goals: ["Ein Werkzeug an der Aufgabe messen, nicht an der Gewohnheit.", "Eine Notiz auf Nachvollziehbarkeit prüfen."],
     theory: [
-      ["Werkzeug", "Für diese Skizze reichen Papier und die fiktiven Beispieldateien. Ein Datenbankserver wäre für acht erfundene Zeilen unnötig und würde eine Einrichtung vortäuschen. Samira begründet die Wahl mit der Aufgabe, nicht mit dem, was sie zuletzt benutzt hat."],
+      ["Werkzeug", "Für diese Skizze reichen Papier und die erfundenen Beispielzeilen aus der Lektion zum Aufbereiten. Ein Datenbankserver wäre für diese wenigen Zeilen unnötig und würde eine Einrichtung vortäuschen. Samira begründet die Wahl mit der Aufgabe, nicht mit dem, was sie zuletzt benutzt hat."],
       ["Qualität der Notiz", "Eine gute Notiz nennt Quelle, Stand, Regel und offene Frage. Eine schlechte Notiz sagt nur fertig oder sieht gut aus. Samira prüft, ob eine andere Person die Ablehnung der Lieferantenliste ohne Nachfrage versteht."],
       ["Was die Reflexion nicht ist", "Die Reflexion ist keine Abnahme des Felds und keine Freigabe. Sie zeigt, was an der eigenen Notiz noch fehlt. Lernfeld 8 bleibt im Katalog auf In Kürze, bis das ganze Feld geprüft ist."],
     ],
     questions: [
       { id: "q1", prompt: "Welches Werkzeug passt zu dieser Skizze?", correct: "papier", options: [
-        { id: "papier", label: "Papier und die Beispieldateien.", feedback: "Richtig. Die Aufgabe ist eine nachvollziehbare Skizze. Ein Server würde eine Einrichtung vortäuschen." },
-        { id: "server", label: "Ein Datenbankserver, weil jede Datenaufgabe unabhängig vom Umfang einen Server braucht.", feedback: "Acht erfundene Zeilen brauchen keinen Server. Die Wahl folgt der Aufgabe, nicht der Gewohnheit." },
-        { id: "konto", label: "Ein echtes Kassenkonto, weil ohne Anmeldung keine Übung möglich ist.", feedback: "Ein echtes Konto ist ausgeschlossen. Die Beispieldateien sind erfunden und reichen für die Skizze." },
+        { id: "papier", label: "Papier und die erfundenen Beispielzeilen.", feedback: "Richtig. Die Aufgabe ist eine nachvollziehbare Skizze. Ein Server würde eine Einrichtung vortäuschen." },
+        { id: "server", label: "Ein Datenbankserver, weil jede Datenaufgabe unabhängig vom Umfang einen Server braucht.", feedback: "Die wenigen erfundenen Zeilen brauchen keinen Server. Die Wahl folgt der Aufgabe, nicht der Gewohnheit." },
+        { id: "konto", label: "Ein echtes Kassenkonto, weil ohne Anmeldung keine Übung möglich ist.", feedback: "Ein echtes Konto ist ausgeschlossen. Die Beispielzeilen sind erfunden und reichen für die Skizze." },
       ] },
       { id: "q2", prompt: "Woran erkennt Samira eine brauchbare Notiz?", correct: "andere", options: [
         { id: "huebsch", label: "An der Schriftfarbe, weil eine lesbare Farbe jede fehlende Quelle ersetzt.", feedback: "Aussehen ersetzt keine Quelle. Eine andere Person muss Regeln und Lücken verstehen." },
