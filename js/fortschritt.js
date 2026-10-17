@@ -72,7 +72,16 @@
     "lf6-loesung": "it-ausbildung.lf6-loesung.v1",
     "lf6-gespraech": "it-ausbildung.lf6-gespraech.v1",
     "lf6-qualitaet": "it-ausbildung.lf6-qualitaet.v1",
-    "lf6-kontrolle": "it-ausbildung.lf6-kontrolle.v1"
+    "lf6-kontrolle": "it-ausbildung.lf6-kontrolle.v1",
+    "lf7-system": "it-ausbildung.lf7-system.v1",
+    "lf7-schnittstelle": "it-ausbildung.lf7-schnittstelle.v1",
+    "lf7-fluesse": "it-ausbildung.lf7-fluesse.v1",
+    "lf7-auswahl": "it-ausbildung.lf7-auswahl.v1",
+    "lf7-unterlage": "it-ausbildung.lf7-unterlage.v1",
+    "lf7-zusammenfuehren": "it-ausbildung.lf7-zusammenfuehren.v1",
+    "lf7-pruefung": "it-ausbildung.lf7-pruefung.v1",
+    "lf7-sicherheit": "it-ausbildung.lf7-sicherheit.v1",
+    "lf7-kontrolle": "it-ausbildung.lf7-kontrolle.v1"
   };
 
   function abgeschlossen(id) {
@@ -184,7 +193,7 @@
         var finalAnswers = state.answers || {};
         return !!state.finish && !!state.checked && ["q1", "q2", "q3", "q4"].every(function (q) { return finalAnswers[q] === "yes"; });
       }
-      if (id === "lf1-lernziel" || id === "lf2-lernziel" || id === "lf3-lernziel" || id === "lf4-lernziel" || id === "lf5-lernziel" || id === "lf6-kontrolle") {
+      if (id === "lf1-lernziel" || id === "lf2-lernziel" || id === "lf3-lernziel" || id === "lf4-lernziel" || id === "lf5-lernziel" || id === "lf6-kontrolle" || id === "lf7-kontrolle") {
         var kontrolle = state.answers || {};
         var sollMap = {
           "lf1-lernziel": ["b", "b", "a", "c", "a", "b", "a", "c", "c", "a", "b", "a", "b", "c", "a", "c", "b", "a", "b", "b", "b", "a", "b", "b"],
@@ -192,7 +201,8 @@
           "lf3-lernziel": ["a", "b", "a", "b", "b", "b", "b", "c", "a", "c", "c", "c", "a", "a", "a", "a", "a", "a", "a", "c", "a", "b", "b", "b"],
           "lf4-lernziel": ["b", "b", "a", "b", "b", "a", "a", "c", "c", "c", "a", "c", "c", "a", "b", "b", "c", "b", "a", "b", "a", "a", "b", "a"],
           "lf5-lernziel": ["b", "c", "c", "b", "c", "b", "b", "b", "b", "b", "c", "a", "a", "c", "a", "a", "c", "c", "c", "c", "a", "b", "b", "a"],
-          "lf6-kontrolle": ["a", "c", "b", "b", "a", "c", "c", "b", "a", "a", "c", "b", "b", "a", "c", "c", "b", "a", "a", "c", "b", "b", "a", "c"]
+          "lf6-kontrolle": ["a", "c", "b", "b", "a", "c", "c", "b", "a", "a", "c", "b", "b", "a", "c", "c", "b", "a", "a", "c", "b", "b", "a", "c"],
+          "lf7-kontrolle": ["a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c"]
         };
         var soll = sollMap[id];
         return !!state.finish && soll.every(function (wert, index) { return kontrolle[index] === wert; });
@@ -356,6 +366,38 @@
       if (id === "lf6-qualitaet") {
         var v_qualitaet = state.answers || {};
         return !!state.finish && !!state.checked && v_qualitaet.q1 === "rueckblick" && v_qualitaet.q2 === "liste" && v_qualitaet.q3 === "pruefbar" && v_qualitaet.q4 === "offen";
+      }
+      if (id === "lf7-system") {
+        var v_system = state.answers || {};
+        return !!state.finish && !!state.checked && v_system.q1 === "sensor" && v_system.q2 === "steuerung" && v_system.q3 === "leuchte" && v_system.q4 === "ziel";
+      }
+      if (id === "lf7-schnittstelle") {
+        var v_schnitt = state.answers || {};
+        return !!state.finish && !!state.checked && v_schnitt.q1 === "kontext" && v_schnitt.q2 === "uebergang" && v_schnitt.q3 === "format" && v_schnitt.q4 === "alt";
+      }
+      if (id === "lf7-fluesse") {
+        var v_fluss = state.answers || {};
+        return !!state.finish && !!state.checked && v_fluss.q1 === "energie" && v_fluss.q2 === "information" && v_fluss.q3 === "kein" && v_fluss.q4 === "trennen";
+      }
+      if (id === "lf7-auswahl") {
+        var v_auswahl = state.answers || {};
+        return !!state.finish && !!state.checked && v_auswahl.q1 === "passung" && v_auswahl.q2 === "aufloesung" && v_auswahl.q3 === "kompatibel" && v_auswahl.q4 === "liste";
+      }
+      if (id === "lf7-unterlage") {
+        var v_unterlage = state.answers || {};
+        return !!state.finish && !!state.checked && v_unterlage.q1 === "genauigkeit" && v_unterlage.q2 === "ja" && v_unterlage.q3 === "schritte" && v_unterlage.q4 === "offen";
+      }
+      if (id === "lf7-zusammenfuehren") {
+        var v_zusammen = state.answers || {};
+        return !!state.finish && !!state.checked && v_zusammen.q1 === "sensor" && v_zusammen.q2 === "steuerung" && v_zusammen.q3 === "stoerung" && v_zusammen.q4 === "funktionsplan";
+      }
+      if (id === "lf7-pruefung") {
+        var v_pruef = state.answers || {};
+        return !!state.finish && !!state.checked && v_pruef.q1 === "abweichung" && v_pruef.q2 === "ein" && v_pruef.q3 === "zehn" && v_pruef.q4 === "protokoll";
+      }
+      if (id === "lf7-sicherheit") {
+        var v_sicher = state.answers || {};
+        return !!state.finish && !!state.checked && v_sicher.q1 === "versorgung" && v_sicher.q2 === "integritaet" && v_sicher.q3 === "sicher" && v_sicher.q4 === "noetig";
       }
     } catch (e) { return false; }
     return false;
