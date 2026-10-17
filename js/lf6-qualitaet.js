@@ -1,0 +1,125 @@
+/* Lernfeld 6: Den Bearbeitungsprozess reflektieren und eine Maßnahme zur Qualität vorschlagen. Kein echtes Ticketsystem. */
+(function (g) {
+  "use strict";
+  var ID = "lf6-qualitaet";
+  var KEY = "it-ausbildung.lf6-qualitaet.v1";
+  var STEPS = ["start", "case", "exercise", "finish"];
+  var Q = [
+    { id: "q1", prompt: "Samira schaut auf den erledigten Fall zurück. Was gehört in den Rückblick?", correct: "rueckblick", options: [
+      { id: "schuld", label: "Wer den Fall verzögert hat, mit Namen, damit die Person künftig vorsichtiger arbeitet.", feedback: "Ein Rückblick sucht keine Schuldigen. Er sucht, was am Ablauf verbessert werden kann." },
+      { id: "rueckblick", label: "Was gut lief und was gefehlt hat.", feedback: "Richtig. Beides gehört zu einem ehrlichen Rückblick: das Gelungene und die Lücke." },
+      { id: "perfekt", label: "Dass alles perfekt war, damit der Bericht gut aussieht und niemand Fragen stellt.", feedback: "Ein Rückblick ohne Lücken ist selten ehrlich. Er nennt auch, was gefehlt hat." }
+    ] },
+    { id: "q2", prompt: "Der Beginn der Störung wurde erst spät erfragt. Welche Maßnahme passt dazu?", correct: "liste", options: [
+      { id: "umbau", label: "Das gesamte Ticketsystem des Betriebs durch ein neues ersetzen, damit solche Fälle nie wieder vorkommen.", feedback: "Das ist viel zu groß für diese Lücke und nicht von Samira zu entscheiden. Passender ist eine kleine Liste." },
+      { id: "besser", label: "Künftig einfach besser aufpassen, ohne dafür etwas festzulegen oder aufzuschreiben.", feedback: "„Besser aufpassen“ ist nicht konkret. Eine Maßnahme braucht einen festen, nachprüfbaren Schritt." },
+      { id: "liste", label: "Eine kurze Liste der Standardfragen am Telefon.", feedback: "Richtig. Die Maßnahme ist klein, konkret und trifft genau die beobachtete Lücke." }
+    ] },
+    { id: "q3", prompt: "Woran erkennt Samira, dass eine Maßnahme gut formuliert ist?", correct: "pruefbar", options: [
+      { id: "pruefbar", label: "Man kann später nachsehen, ob sie umgesetzt wurde.", feedback: "Richtig. Eine prüfbare Maßnahme nennt einen Schritt, den man später im Fall nachsehen kann." },
+      { id: "lang", label: "Sie ist lang und enthält viele Wörter, die wichtig klingen und alles abdecken wollen.", feedback: "Die Länge sagt nichts über die Qualität. Wichtig ist, dass man die Umsetzung später prüfen kann." },
+      { id: "allgemein", label: "Sie ist so allgemein, dass sie auf jeden denkbaren Fall im ganzen Betrieb passt.", feedback: "Zu allgemeine Maßnahmen lassen sich nicht prüfen. Gut ist ein konkreter Schritt für eine konkrete Lücke." }
+    ] },
+    { id: "q4", prompt: "Samira hat die Maßnahme gerade erst eingeführt. Was darf sie über die Wirkung sagen?", correct: "offen", options: [
+      { id: "wirkt", label: "Dass sie sicher wirkt, weil sie sich beim Aufschreiben schon gut angefühlt hat.", feedback: "Ein gutes Gefühl ist kein Nachweis. Die Wirkung zeigt sich erst in den folgenden Fällen." },
+      { id: "offen", label: "Ob sie wirkt, prüft sie nach mehreren Fällen.", feedback: "Richtig. Erst die spätere Prüfung zeigt die Wirkung. Bis dahin bleibt die Wirkung offen." },
+      { id: "nutzlos", label: "Dass sie nutzlos ist, weil ein einzelner Fall nie etwas über den Betrieb aussagen kann.", feedback: "Das wäre ein Urteil ohne Prüfung. Samira lässt die Wirkung offen, bis mehrere Fälle vorliegen." }
+    ] }
+  ];
+  function evaluate(a) {
+    a = a || {};
+    var results = Q.map(function (q) {
+      var o = q.options.find(function (x) { return x.id === a[q.id]; });
+      return { id: q.id, status: !o ? "empty" : o.id === q.correct ? "correct" : "wrong", optionId: o ? o.id : "", feedback: o ? o.feedback : "" };
+    });
+    return {
+      results: results,
+      correct: results.filter(function (x) { return x.status === "correct"; }).length,
+      wrong: results.filter(function (x) { return x.status === "wrong"; }).length,
+      empty: results.filter(function (x) { return x.status === "empty"; }).length,
+      allCorrect: results.every(function (x) { return x.status === "correct"; })
+    };
+  }
+  function total() { return Q.length + 1; }
+  function progress(s) { s = s || {}; return (s.checked ? evaluate(s.answers).correct : 0) + (s.finish ? 1 : 0); }
+  function barWidth(s) { return Math.round(progress(s) / total() * 100); }
+  function progressText(s) { s = s || {}; return "Fortschritt: " + progress(s) + " von " + total() + " Schritten · Abschluss " + (s.finish ? "geöffnet" : "noch nicht geöffnet"); }
+  var api = { ID: ID, KEY: KEY, STEPS: STEPS, QUESTIONS: Q, evaluate: evaluate, progress: progress, barWidth: barWidth, progressText: progressText };
+  g.LF6_QUALITAET = api;
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
+  if (!g.document) return;
+  var d = g.document, s = { answers: {}, checked: false, finish: false, step: "start" };
+  function $(id) { return d.getElementById(id); }
+  function load() { try { var x = JSON.parse(g.localStorage.getItem(KEY) || "null"); if (x) s = x; } catch (e) { /* Speicher kann gesperrt sein. */ } }
+  function save() { try { g.localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) { /* Lektion bleibt ohne Speicherung bedienbar. */ } if (g.LERNFORTSCHRITT) g.LERNFORTSCHRITT.benachrichtigen(); }
+  function update() { $("bar").style.width = barWidth(s) + "%"; $("pct").textContent = progressText(s); }
+  function go(id, fromHistory) {
+    if (STEPS.indexOf(id) < 0) id = "start";
+    STEPS.forEach(function (x) { $(x).hidden = x !== id; });
+    d.querySelectorAll("[data-step]").forEach(function (b) { if (b.dataset.step === id) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current"); });
+    if (fromHistory) {
+      update();
+      var zurueck = $(id);
+      if (zurueck && zurueck.focus) zurueck.focus();
+      return;
+    }
+    s.step = id;
+    if (id === "finish" && !s.finish) {
+      s.finish = true;
+      save();
+      $("done").textContent = s.checked && evaluate(s.answers).allCorrect ? "Lektion abgeschlossen. Du kannst sie jederzeit wiederholen." : "Du kannst das Beispiel noch einmal ansehen und die Übung später bearbeiten.";
+    }
+    if (id !== "start" || s.checked || s.finish) save();
+    update();
+    if (g.history && g.history.pushState) g.history.pushState({ lf6Step: id }, "", "");
+    var ziel = $(id);
+    if (ziel && ziel.focus) ziel.focus();
+  }
+  function hide() { var box = $("result"); if (box) { box.hidden = true; box.textContent = ""; } }
+  function build() {
+    Q.forEach(function (q, index) {
+      var field = d.createElement("fieldset"), legend = d.createElement("legend"), group = d.createElement("div"), feedback = d.createElement("p");
+      field.className = "frage"; legend.textContent = (index + 1) + ". " + q.prompt; field.appendChild(legend); group.className = "opts";
+      q.options.forEach(function (o) {
+        var label = d.createElement("label"), input = d.createElement("input");
+        label.className = "opt"; input.type = "radio"; input.name = q.id; input.value = o.id; label.appendChild(input); label.appendChild(d.createTextNode(" " + o.label));
+        input.addEventListener("change", function () { s.answers[q.id] = o.id; s.checked = false; hide(); save(); update(); }); group.appendChild(label);
+      });
+      field.appendChild(group); feedback.id = "fb-" + q.id; feedback.hidden = true; feedback.setAttribute("aria-live", "polite"); field.appendChild(feedback); $("questions").appendChild(field);
+    });
+  }
+  function render() {
+    var ev = evaluate(s.answers), box = $("result"), heading = d.createElement("h3"); box.textContent = "";
+    heading.textContent = ev.allCorrect ? "Alle Antworten richtig" : ev.correct ? "Teilweise richtig" : ev.empty === Q.length ? "Noch keine Antwort gewählt" : "Noch nicht richtig"; box.appendChild(heading);
+    ev.results.forEach(function (r, index) {
+      var q = Q[index], option = q.options.find(function (x) { return x.id === r.optionId; }), p = d.createElement("p");
+      p.textContent = (r.status === "correct" ? "✓ Richtig: " : r.status === "wrong" ? "✗ Noch nicht richtig: " : "○ Nicht beantwortet: ") + "Aufgabe " + (index + 1) + " – " + q.prompt + " " + (option ? "Deine Antwort: " + option.label + " " : "") + (option ? option.feedback : "Noch nicht beantwortet. Wähle eine Antwort und prüfe erneut."); box.appendChild(p);
+      var fb = $("fb-" + q.id); fb.textContent = option ? option.feedback : "Noch nicht beantwortet. Wähle eine Antwort und prüfe erneut."; fb.hidden = false;
+    });
+    var summary = d.createElement("p"); summary.textContent = ev.empty ? ev.empty + " Aufgabe(n) sind unbeantwortet." : ev.allCorrect ? "Du hast zurückgeschaut, eine prüfbare Maßnahme vorgeschlagen und ihre Wirkung offen gelassen, bis mehrere Fälle vorliegen." : "Lies die Erklärungen und versuche es erneut. Kein Zeitdruck."; box.appendChild(summary); box.hidden = false;
+  }
+  function check() {
+    s.answers = {};
+    Q.forEach(function (q) { var input = d.querySelector('input[name="' + q.id + '"]:checked'); if (input) s.answers[q.id] = input.value; });
+    s.checked = true; render(); save(); update();
+  }
+  function reset() {
+    s = { answers: {}, checked: false, finish: false, step: s.step || "start" }; d.querySelectorAll('#questions input[type="radio"]').forEach(function (input) { input.checked = false; }); hide();
+    Q.forEach(function (q) { $("fb-" + q.id).hidden = true; $("fb-" + q.id).textContent = ""; }); $("done").textContent = ""; save(); update();
+  }
+  d.querySelectorAll("[data-step]").forEach(function (b) { b.addEventListener("click", function () { go(b.dataset.step); }); });
+  d.querySelectorAll("[data-next]").forEach(function (b) { b.addEventListener("click", function () { go(b.dataset.next); }); });
+  if (g.addEventListener) g.addEventListener("popstate", function (event) {
+    var back = event && event.state ? event.state.lf6Step : "start";
+    go(back, true);
+  });
+  $("check").addEventListener("click", check); $("reset").addEventListener("click", reset);
+  $("reset-all").addEventListener("click", function () { if (g.confirm("Gespeicherten Lernfortschritt dieser Lektion zurücksetzen?")) { reset(); go("start"); } });
+  load(); build();
+  if (STEPS.indexOf(s.step) < 0) s.step = "start";
+  Q.forEach(function (q) { var option = q.options.find(function (o) { return o.id === s.answers[q.id]; }); if (option) { var input = d.querySelector('input[name="' + q.id + '"][value="' + option.id + '"]'); if (input) input.checked = true; } });
+  if (s.checked) render();
+  if (s.finish) $("done").textContent = s.checked && evaluate(s.answers).allCorrect ? "Lektion abgeschlossen. Du kannst sie jederzeit wiederholen." : "Du kannst das Beispiel noch einmal ansehen und die Übung später bearbeiten.";
+  go(s.step, true);
+  if (g.history && g.history.replaceState) g.history.replaceState({ lf6Step: s.step }, "", "");
+})(typeof window !== "undefined" ? window : globalThis);
