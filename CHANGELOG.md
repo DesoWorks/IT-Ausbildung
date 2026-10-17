@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unveröffentlicht – 17.10.2026
+- LF8/LF9 direkt mit dem KMK-Original abgeglichen und fachlich geprüft; Kompetenzmatrix, Korrekturbefunde und Quellen dokumentiert. Feldpläne aktualisiert. Beide Felder bleiben auf Dennis' Entscheidung gesperrt; keine Inhalts- oder Katalogänderung.
 - LF8/LF9: reproduzierbare Chromium-Prüfung für alle 18 Seiten ergänzt; Fortschritt, Abgabe, Wiederladen, Browser-Zurück, Reset-Schutz und mobile Überbreite geprüft. Keine Katalogfreigabe.
 - Übersichts-Regressionstest berücksichtigt den bereits vorhandenen Freigabestatus des Lernfelds statt einer veralteten Funktionssignatur.
 - Übergabe und Übernahme mit Prüfgrenzen unter `docs/uebergabe-an-terminus-2026-10-17.md` und `docs/uebernahme-terminus-2026-10-17.md` gesichert. Keine Versionsanhebung, kein Push.
