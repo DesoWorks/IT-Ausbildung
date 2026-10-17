@@ -296,4 +296,69 @@ for (const id of lessons) {
   assert.equal(visibleStep(reloaded.document), "finish", id + " does not jump away when the lesson reset button is used");
   assert.equal(reloaded.document.getElementById("pct").textContent, start, id + " returns the step count to zero after reset");
 }
+
+{
+  const id = "lf5-lernziel";
+  const key = "it-ausbildung.lf5-lernziel.v1";
+  const html = fs.readFileSync(path.join(root, "module", id + ".html"), "utf8");
+  const source = fs.readFileSync(path.join(root, "js", id + "-rest.js"), "utf8");
+  const fragenHost = { window: {}, document: undefined };
+  fragenHost.window = fragenHost;
+  vm.runInNewContext(fs.readFileSync(path.join(root, "js", id + ".js"), "utf8"), fragenHost, { filename: id + ".js" });
+  assert.equal(fragenHost.__LF5_FRAGEN.length, 24, id + " keeps the twenty-four question self-check");
+  assert(source.includes('addEventListener("pageshow"'), id + " restores the self-check when the browser returns");
+  assert(!source.includes("lf5-abschluss"), id + " does not rebuild the removed summary page");
+  const partial = { answers: { 0: "b" }, finish: false };
+  const storage = {
+    getItem(itemKey) { return Object.prototype.hasOwnProperty.call(storage.values, itemKey) ? storage.values[itemKey] : null; },
+    setItem(itemKey, value) { storage.writes = (storage.writes || 0) + 1; storage.values[itemKey] = String(value); },
+    removeItem(itemKey) { delete storage.values[itemKey]; },
+    values: { [key]: JSON.stringify(partial) }
+  };
+  const saved = storage.getItem(key);
+  const host = {
+    localStorage: storage,
+    document: {
+      getElementById(elementId) {
+        if (elementId === "lernziel-form") return { addEventListener() {}, querySelectorAll() { return []; } };
+        if (elementId === "lernziel-fragen") return { textContent: "", appendChild() {} };
+        if (elementId === "reset-dialog") return { close() {} };
+        if (elementId === "lernziel-status") return { textContent: "", focus() {} };
+        return { textContent: "", hidden: false, value: "", focus() {}, addEventListener() {} };
+      },
+      createElement() {
+        return { setAttribute() {}, appendChild() {}, addEventListener() {}, className: "" };
+      },
+      createTextNode() { return { textContent: "" }; }
+    },
+    crypto: { subtle: { digest() { return Promise.resolve(new Uint8Array(32).buffer); } } },
+    TextEncoder: class { encode(value) { return Buffer.from(String(value)); } },
+    listeners: {},
+    addEventListener(type, handler) {
+      host.listeners[type] = host.listeners[type] || [];
+      host.listeners[type].push(handler);
+    },
+    LERNFORTSCHRITT: { benachrichtigen() { host.notified = (host.notified || 0) + 1; } }
+  };
+  host.window = host;
+  vm.runInNewContext(fs.readFileSync(path.join(root, "js", id + ".js"), "utf8"), host, { filename: id + ".js" });
+  vm.runInNewContext(fs.readFileSync(path.join(root, "js", id + "-rest.js"), "utf8"), host, { filename: id + "-rest.js" });
+  assert.equal(storage.getItem(key), saved, id + " does not rewrite the stored answer while restoring");
+  assert.equal(storage.writes || 0, 0, id + " does not count the restored answer a second time");
+  assert.equal(host.notified || 0, 0, id + " does not notify the overview while restoring");
+  assert.equal(JSON.parse(storage.getItem(key)).answers[0], "b", id + " keeps the one stored answer");
+  assert.equal(JSON.parse(storage.getItem(key)).finish, false, id + " stays unfinished while partly answered");
+  const shown = host.document.getElementById("lernziel-status").textContent;
+  (host.listeners.pageshow || []).forEach((handler) => handler({ persisted: false }));
+  assert.equal(storage.getItem(key), saved, id + " leaves storage alone when the page is not restored from cache");
+  (host.listeners.pageshow || []).forEach((handler) => handler({ persisted: true }));
+  assert.equal(storage.getItem(key), saved, id + " does not store the same answer again on browser back");
+  assert.equal(storage.writes || 0, 0, id + " does not write progress on browser back");
+  assert.equal(host.notified || 0, 0, id + " does not mark the overview again after browser back");
+  assert.equal(host.document.getElementById("lernziel-status").textContent, shown, id + " keeps the same open-answer count");
+  assert.equal(html.includes("Lernzielkontrolle abgeben"), true, id + " still submits only through its own button");
+  values.set(key, storage.getItem(key));
+  assert.equal(completion.abgeschlossen(id), false, id + " stays unmarked after returning to a partial self-check");
+  values.delete(key);
+}
 console.log("lf5-fortschritt-zurueck.test.js: PASS");

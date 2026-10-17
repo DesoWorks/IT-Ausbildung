@@ -153,6 +153,23 @@
       if (resetHinweis) resetHinweis.textContent = "Prüfung nicht möglich. Der Stand bleibt erhalten.";
     });
   });
+  if (global.addEventListener) global.addEventListener("pageshow", function (event) {
+    if (!event || !event.persisted) return;
+    var wieder = { answers: {}, finish: false };
+    var lesbar = false;
+    try {
+      var roh = global.localStorage.getItem(key);
+      if (roh !== null) {
+        var gespeichert = JSON.parse(roh);
+        if (!gespeichert || typeof gespeichert.answers !== "object" || gespeichert.answers === null || Array.isArray(gespeichert.answers) || typeof gespeichert.finish !== "boolean") throw new Error("ungültig");
+        wieder = { answers: gespeichert.answers, finish: gespeichert.finish };
+        lesbar = true;
+      }
+    } catch (e) { lesbar = false; }
+    if (!lesbar) return;
+    state = wieder;
+    zeichnen();
+  });
   zeichnen();
   if (lesefehler && speicherhinweis) speicherhinweis.textContent = "Der gespeicherte Stand ließ sich nicht lesen. Die Kontrolle startet ohne diesen Stand.";
 })(typeof window !== "undefined" ? window : globalThis);

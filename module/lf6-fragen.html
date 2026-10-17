@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Eine fiktive Serviceanfrage durch sichere Rückfragen zu Beginn, Umfang und sichtbaren Beobachtungen eingrenzen. Keine Reparatur.">
+  <title>Die Störung enger fassen</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+  </style>
+</head>
+<body data-page="lf6-fragen" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 6 · 2. Ausbildungsjahr</p>
+      <h1>Die Störung enger fassen</h1>
+      <p class="kopf-dauer">Fiktive Serviceanfrage · gezielt nachfragen · keine Reparatur</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Beispiel</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 von 5 Schritten · Abschluss noch nicht geöffnet</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du lernst</h2>
+      <ul>
+        <li>Nach einer aufgenommenen Anfrage die nächste sichere Frage wählen.</li>
+        <li>Beginn und Umfang der Störung erfragen.</li>
+        <li>Sichtbare Beobachtungen genauer beschreiben lassen.</li>
+        <li>Eine Beobachtung von einer noch unbewiesenen Ursache trennen.</li>
+      </ul>
+      <aside class="hinweis-box"><strong>Nur eine fiktive Übung:</strong> Nordlicht IT-Service, Samira und Herr Berger sind erfunden. Du greifst auf kein echtes System zu. Hier geht es weder um Reparaturen noch um Angriffe. Es werden keine Passwörter benötigt oder abgefragt.</aside>
+      <p>Einordnung: KMK-Rahmenlehrplan Fachinformatiker, Seite 17, Lernfeld 6 „Serviceanfragen bearbeiten“, 2. Ausbildungsjahr, 40 Stunden. Diese kleine Lektion übt nur das engere Fragen nach der Aufnahme einer Anfrage.</p>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zum Beispiel</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Der Monitor am Empfang</h2>
+      <p>Samira macht ihre Ausbildung bei <strong>Nordlicht IT-Service</strong>. Herr Berger vom Empfang hat eine Störung gemeldet. Samira hat bereits notiert: <strong>„Der Monitor bleibt schwarz.“</strong> Die Anfrage ist aufgenommen, aber die Ursache ist noch unbekannt.</p>
+      <div class="steps">
+        <article class="step"><h3>Beginn</h3><p>„Seit wann bleibt der Monitor schwarz?“ Die Antwort grenzt den Zeitraum ein.</p></article>
+        <article class="step"><h3>Umfang</h3><p>„Bleibt nur dieser eine Monitor schwarz?“ Die Antwort beschreibt, was betroffen ist.</p></article>
+        <article class="step"><h3>Beobachtung</h3><p>„Leuchtet eine Lampe am Monitor?“ Herr Berger beschreibt nur, was er sieht; er soll nichts verändern.</p></article>
+        <article class="step"><h3>Genauer fragen</h3><p>„Leuchtet die Lampe dauerhaft oder blinkt sie?“ Eine ungenaue Angabe wird konkreter, ohne eine Ursache festzulegen.</p></article>
+      </div>
+      <p>Samira wählt die nächste Frage nach dem, was noch fehlt. Sind Beginn oder Umfang bereits bekannt, fragt sie nicht einfach dieselbe Angabe erneut ab. Keine einzelne Antwort beweist schon die Ursache.</p>
+      <aside class="hinweis-box"><strong>Nicht vorschnell handeln:</strong> Sofort ein neues Gerät bestellen, das Passwort des Empfangs verlangen oder „Netzwerk tot“ als Ursache festlegen hilft hier nicht. Samira sammelt erst Beobachtungen. Die Reparatur ist nicht Teil dieser Lektion.</aside>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Übung: Die nächste sichere Frage</h2>
+      <p>Wähle pro Aufgabe eine Antwort. Der Fall wird schrittweise genauer. Entscheide jeweils anhand der bereits bekannten Angaben; du sollst nur fragen, nicht reparieren.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zum Beispiel</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du mit</h2>
+      <ul>
+        <li>„Seit wann?“ grenzt die Störung zeitlich ein.</li>
+        <li>„Nur dieser eine Monitor?“ klärt den Umfang.</li>
+        <li>Eine Frage zur sichtbaren Lampe sammelt eine Beobachtung, keine Diagnose.</li>
+        <li>Eine ungenaue Antwort lässt sich durch eine weitere sichere Frage präzisieren.</li>
+        <li>Die Ursache bleibt offen. Keine Reparatur, keine Bestellung und keine Passwortabfrage.</li>
+      </ul>
+      <p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+      <nav aria-label="Zur Themenübersicht"><p><a href="../index.html">Zur Themenübersicht</a></p></nav>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 6 · Serviceanfragen bearbeiten · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf6-fragen.js"></script>
+</body>
+</html>

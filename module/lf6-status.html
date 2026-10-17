@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Den Status einer fiktiven Serviceanfrage unterscheiden: neu, in Bearbeitung, wartet auf Rückmeldung, erledigt.">
+  <title>Den Status einer Anfrage unterscheiden</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem}
+    .step{border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;padding:1rem;background:var(--flaeche,#fff)}
+    .opts{display:grid;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    .result[hidden]{display:none}
+  </style>
+</head>
+<body data-page="lf6-status" data-base="../">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 6 · 2. Ausbildungsjahr</p>
+      <h1>Den Status einer Anfrage unterscheiden</h1>
+      <p class="kopf-dauer">Fiktiver Status · kein Ticketsystem · kein Login</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte">
+    <ol>
+      <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+      <li><button class="schritt-knopf" data-step="case">2 · Beispiel</button></li>
+      <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+      <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+    </ol>
+    <div class="fortschritt">
+      <div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div>
+      <p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 von 5 Schritten · Abschluss noch nicht geöffnet</p>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1">
+    <section id="start" class="abschnitt">
+      <h2>Was du lernst</h2>
+      <ul>
+        <li>Neu, in Bearbeitung, wartet auf Rückmeldung und erledigt unterscheiden.</li>
+        <li>Den Status nur ändern, wenn der Schritt wirklich passiert ist.</li>
+        <li>Eine Anfrage, die auf die Kundin wartet, nicht als erledigt markieren.</li>
+        <li>Einen erledigten Fall nachvollziehbar lassen, statt ihn unsichtbar zu machen.</li>
+      </ul>
+      <aside class="hinweis-box"><strong>Fiktiver Hinweis:</strong> Nordlicht IT-Service, Samira und Herr Berger sind erfunden. Es gibt kein echtes Ticket-System, kein Login und kein produktives System.</aside>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zum Beispiel</button>
+    </section>
+    <section id="case" class="abschnitt" hidden>
+      <h2>Vier Stände, ein Fall</h2>
+      <p>Samira macht ihre Ausbildung bei <strong>Nordlicht IT-Service</strong>. Herr Berger vom Empfang hat gemeldet: Der Monitor bleibt schwarz.</p>
+      <div class="steps">
+        <article class="step"><h3>Neu</h3><p>Die Anfrage ist notiert. Noch niemand bearbeitet sie.</p></article>
+        <article class="step"><h3>In Bearbeitung</h3><p>Samira grenzt die Störung gerade ein.</p></article>
+        <article class="step"><h3>Wartet</h3><p>Sie hat Herrn Berger um eine Angabe gebeten.</p></article>
+        <article class="step"><h3>Erledigt</h3><p>Der Monitor geht wieder. Die Notiz bleibt sichtbar.</p></article>
+      </div>
+      <p>Samira setzt den Status erst, wenn der Schritt passiert ist. Ein Fall, der auf eine Antwort wartet, bleibt offen. Ein erledigter Fall wird nicht gelöscht.</p>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" hidden>
+      <h2>Übung: Den Status unterscheiden</h2>
+      <p>Wähle pro Aufgabe eine Antwort. Alle Fragen beziehen sich nur auf die fiktive Anfrage.</p>
+      <div id="questions"></div>
+      <button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zum Beispiel</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" hidden>
+      <h2>Das nimmst du mit</h2>
+      <ul>
+        <li>Neu heißt: notiert, noch nicht bearbeitet.</li>
+        <li>In Bearbeitung folgt einem echten Arbeitsschritt.</li>
+        <li>Warten auf Rückmeldung ist nicht erledigt.</li>
+        <li>Erledigt bleibt nachvollziehbar.</li>
+      </ul>
+      <p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button>
+      <button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+      <p>Diese Seite verlinkt keine andere Lernfeld-6-Lektion. Lernfeld 6 steht im Katalog noch auf „In Kürze“.</p>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 6 · Serviceanfragen bearbeiten · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf6-status.js"></script>
+</body>
+</html>

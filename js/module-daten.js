@@ -98,7 +98,15 @@
       jahr: 2,
       titel: "2. Ausbildungsjahr",
       module: [
-        { id: "lf6", lernfeld: "Lernfeld 6", titel: "Support und Bearbeitung von Servicefällen", status: "kommt-bald" },
+        { id: "lf6", lernfeld: "Lernfeld 6", titel: "Support und Bearbeitung von Servicefällen", status: "verfuegbar",
+          unterthemen: [
+            { id: "lf6-anfrage", typ: "lektion", titel: "Eine Serviceanfrage einordnen", beschreibung: "Eine fiktive Anfrage notieren, ohne die Ursache festzulegen.", page: "lf6-anfrage", status: "verfuegbar", datei: "module/lf6-anfrage.html" },
+            { id: "lf6-fragen", typ: "lektion", titel: "Die Störung enger fassen", beschreibung: "Eine fiktive Serviceanfrage durch sichere Rückfragen eingrenzen.", page: "lf6-fragen", status: "verfuegbar", datei: "module/lf6-fragen.html" },
+            { id: "lf6-level", typ: "lektion", titel: "Das Support-Level einordnen", beschreibung: "First-Level und Second-Level an einer fiktiven Anfrage unterscheiden.", page: "lf6-level", status: "verfuegbar", datei: "module/lf6-level.html" },
+            { id: "lf6-notiz", typ: "lektion", titel: "Den Bearbeitungsstand notieren", beschreibung: "Beobachteten Stand, nächsten Schritt und informierte Person notieren.", page: "lf6-notiz", status: "verfuegbar", datei: "module/lf6-notiz.html" },
+            { id: "lf6-sla", typ: "lektion", titel: "Die vertragliche Grundlage prüfen", beschreibung: "An einem fiktiven SLA Reaktionszeit, Leistungsumfang und Ausschlüsse prüfen.", page: "lf6-sla", status: "verfuegbar", datei: "module/lf6-sla.html" },
+            { id: "lf6-status", typ: "lektion", titel: "Den Status einer Anfrage unterscheiden", beschreibung: "Neu, in Bearbeitung, wartet auf Rückmeldung und erledigt unterscheiden.", page: "lf6-status", status: "verfuegbar", datei: "module/lf6-status.html" }
+          ] },
         { id: "lf7", lernfeld: "Lernfeld 7", titel: "Vernetzte Geräte und cyber-physische Systeme", status: "kommt-bald" },
         { id: "lf8", lernfeld: "Lernfeld 8", titel: "Datenaustausch zwischen Systemen", status: "kommt-bald" },
         { id: "lf9", lernfeld: "Lernfeld 9", titel: "Planung und Einrichtung von Netzwerken und Diensten", status: "kommt-bald" }
