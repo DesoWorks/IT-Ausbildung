@@ -76,7 +76,10 @@ assert(subnetting.status === "verfuegbar" && subnetting.datei === "module/subnet
 assert(fs.existsSync(path.join(wurzel, subnetting.datei)), "Subnetting-Moduldatei existiert");
 
 const alle = daten.flatMap(j => j.module);
-assert.equal(global.MODULE_TOOLS.length, 3, "alle drei Werkzeuge bleiben im zentralen Werkzeugkatalog");
+assert.equal(global.MODULE_TOOLS.length, 4, "vier Werkzeuge im zentralen Werkzeugkatalog, einschließlich BWL-Werkstatt");
+const bwl = global.MODULE_TOOLS.find(u => u.id === "bwl-werkstatt");
+assert(bwl && bwl.status === "verfuegbar" && bwl.datei === "module/bwl-werkstatt.html" && bwl.typ === "werkzeug", "BWL-Werkstatt: eigenes Werkzeug, nicht in einer Lektion");
+assert(fs.existsSync(path.join(wurzel, bwl.datei)), "BWL-Werkstatt-Datei existiert");
 assert(global.MODULE_TOOLS.every(t => t.typ === "werkzeug" && t.datei), "Tools typisiert und mit Zielseiten");
 assert(!lf3.unterthemen.some(u => global.MODULE_TOOLS.some(t => t.id === u.id)), "Werkzeuge erscheinen nicht in den Lernlektionen");
 const alleVerfuegbar = alle.concat(einstieg);

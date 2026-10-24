@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Werkzeug: Angebots-, Gewinn-, Rabatt- und Netto-Brutto-Rechnung mit sichtbarem Rechenweg. Übungsannahmen, keine Steuerberatung.">
+  <title>Werkzeug: BWL-Werkstatt</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/bwl-werkstatt.css">
+</head>
+<body data-page="bwl-werkstatt" data-base="../">
+  <a class="skip-link" href="#hauptinhalt">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Werkzeuge</p>
+      <h1>BWL-Werkstatt</h1>
+      <p class="kopf-dauer">Freier Rechner und Lernmodus · Angebot, Gewinn, Rabatt, Netto und Brutto · kein Zeitdruck</p>
+    </div>
+  </header>
+  <main id="hauptinhalt" tabindex="-1">
+    <section class="abschnitt" aria-labelledby="bwl-modus-titel">
+      <h2 id="bwl-modus-titel">Was möchtest du tun?</h2>
+      <div class="bwl-modus" role="group" aria-labelledby="bwl-modus-titel">
+        <button type="button" class="knopf" id="modus-frei" aria-pressed="true" data-bwl-modus="frei">Freier Rechner</button>
+        <button type="button" class="knopf" id="modus-lern" aria-pressed="false" data-bwl-modus="lern">Lernmodus</button>
+      </div>
+      <p id="bwl-modus-status" class="klein" role="status">Freier Rechner ist aktiv. Du rechnest mit deinen eigenen Zahlen.</p>
+    </section>
+    <div id="bwl-frei" class="bwl-bereich">
+    <section class="abschnitt" aria-labelledby="bwl-titel">
+      <h2 id="bwl-titel">Rechnung wählen</h2>
+      <p class="gross">Vier getrennte Rechnungen. Jede nennt ihre Basis, rundet kaufmännisch auf volle Cent und zeigt den Rechenweg.</p>
+      <div class="hinweis-box">
+        <p class="hinweis-titel">Übungsannahme</p>
+        <p>Die Beispielzahlen sind frei gewählt und nicht aus dem Unterricht übernommen. Sie sind keine Steuerberatung, keine Rechtsberatung und keine Vorgabe für ein echtes Angebot.</p>
+      </div>
+      <div id="bwl-tabs" class="bwl-tabs" role="tablist" aria-label="Rechnungsart">
+        <button type="button" class="knopf" id="tab-angebot" role="tab" aria-selected="true" aria-controls="panel-angebot" data-bwl-tab="panel-angebot">Angebot</button>
+        <button type="button" class="knopf" id="tab-gewinn" role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-gewinn" data-bwl-tab="panel-gewinn">Gewinn</button>
+        <button type="button" class="knopf" id="tab-rabatt" role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-rabatt" data-bwl-tab="panel-rabatt">Rabatt</button>
+        <button type="button" class="knopf" id="tab-steuer" role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-steuer" data-bwl-tab="panel-steuer">Netto und Brutto</button>
+      </div>
+      <form id="bwl-form" class="bwl-form" novalidate>
+        <div id="panel-angebot" class="bwl-panel" role="tabpanel" aria-labelledby="tab-angebot" data-rechner="angebot">
+          <p id="bwl-hilfe-angebot">Ungenutzte Zeilen bleiben leer. Du kannst bis zu 6 Artikel hinzufügen. Menge und Einzelpreis netto. Der Handlungskostenzuschlag bezieht sich auf die Positionssumme, der Gewinnzuschlag auf die Selbstkosten.</p>
+          <div class="bwl-positionen">
+            <div class="bwl-zeile" data-position role="group" aria-label="Position 1"><div class="bwl-zeile-kopf"><h3 class="bwl-artikel-titel" data-titel>Artikel 1</h3></div><div class="bwl-feld bwl-feld-name"><label for="p1-name">Artikelname (optional)</label><input id="p1-name" data-name maxlength="80" autocomplete="off"></div><div class="bwl-feld"><label for="p1-menge" data-label-menge>Menge 1</label><input id="p1-menge" data-menge inputmode="decimal" autocomplete="off"></div><div class="bwl-feld"><label for="p1-preis" data-label-preis>Einzelpreis 1 in Euro</label><input id="p1-preis" data-preis inputmode="decimal" autocomplete="off" aria-describedby="bwl-hilfe-angebot"></div></div>
+            <div class="bwl-zeile" data-position role="group" aria-label="Position 2" hidden><div class="bwl-zeile-kopf"><h3 class="bwl-artikel-titel" data-titel>Artikel 2</h3><button type="button" class="knopf bwl-entfernen" data-entfernen aria-label="Artikel 2 entfernen">Entfernen</button></div><div class="bwl-feld bwl-feld-name"><label for="p2-name">Artikelname (optional)</label><input id="p2-name" data-name maxlength="80" autocomplete="off"></div><div class="bwl-feld"><label for="p2-menge" data-label-menge>Menge 2</label><input id="p2-menge" data-menge inputmode="decimal" autocomplete="off"></div><div class="bwl-feld"><label for="p2-preis" data-label-preis>Einzelpreis 2 in Euro</label><input id="p2-preis" data-preis inputmode="decimal" autocomplete="off"></div></div>
+            <div class="bwl-zeile" data-position role="group" aria-label="Position 3" hidden><div class="bwl-zeile-kopf"><h3 class="bwl-artikel-titel" data-titel>Artikel 3</h3><button type="button" class="knopf bwl-entfernen" data-entfernen aria-label="Artikel 3 entfernen">Entfernen</button></div><div class="bwl-feld bwl-feld-name"><label for="p3-name">Artikelname (optional)</label><input id="p3-name" data-name maxlength="80" autocomplete="off"></div><div class="bwl-feld"><label for="p3-menge" data-label-menge>Menge 3</label><input id="p3-menge" data-menge inputmode="decimal" autocomplete="off"></div><div class="bwl-feld"><label for="p3-preis" data-label-preis>Einzelpreis 3 in Euro</label><input id="p3-preis" data-preis inputmode="decimal" autocomplete="off"></div></div>
+            <div class="bwl-zeile" data-position role="group" aria-label="Position 4" hidden><div class="bwl-zeile-kopf"><h3 class="bwl-artikel-titel" data-titel>Artikel 4</h3><button type="button" class="knopf bwl-entfernen" data-entfernen aria-label="Artikel 4 entfernen">Entfernen</button></div><div class="bwl-feld bwl-feld-name"><label for="p4-name">Artikelname (optional)</label><input id="p4-name" data-name maxlength="80" autocomplete="off"></div><div class="bwl-feld"><label for="p4-menge" data-label-menge>Menge 4</label><input id="p4-menge" data-menge inputmode="decimal" autocomplete="off"></div><div class="bwl-feld"><label for="p4-preis" data-label-preis>Einzelpreis 4 in Euro</label><input id="p4-preis" data-preis inputmode="decimal" autocomplete="off"></div></div>
+            <div class="bwl-zeile" data-position role="group" aria-label="Position 5" hidden><div class="bwl-zeile-kopf"><h3 class="bwl-artikel-titel" data-titel>Artikel 5</h3><button type="button" class="knopf bwl-entfernen" data-entfernen aria-label="Artikel 5 entfernen">Entfernen</button></div><div class="bwl-feld bwl-feld-name"><label for="p5-name">Artikelname (optional)</label><input id="p5-name" data-name maxlength="80" autocomplete="off"></div><div class="bwl-feld"><label for="p5-menge" data-label-menge>Menge 5</label><input id="p5-menge" data-menge inputmode="decimal" autocomplete="off"></div><div class="bwl-feld"><label for="p5-preis" data-label-preis>Einzelpreis 5 in Euro</label><input id="p5-preis" data-preis inputmode="decimal" autocomplete="off"></div></div>
+            <div class="bwl-zeile" data-position role="group" aria-label="Position 6" hidden><div class="bwl-zeile-kopf"><h3 class="bwl-artikel-titel" data-titel>Artikel 6</h3><button type="button" class="knopf bwl-entfernen" data-entfernen aria-label="Artikel 6 entfernen">Entfernen</button></div><div class="bwl-feld bwl-feld-name"><label for="p6-name">Artikelname (optional)</label><input id="p6-name" data-name maxlength="80" autocomplete="off"></div><div class="bwl-feld"><label for="p6-menge" data-label-menge>Menge 6</label><input id="p6-menge" data-menge inputmode="decimal" autocomplete="off"></div><div class="bwl-feld"><label for="p6-preis" data-label-preis>Einzelpreis 6 in Euro</label><input id="p6-preis" data-preis inputmode="decimal" autocomplete="off"></div></div>
+          </div>
+          <div class="bwl-position-aktionen"><button type="button" class="knopf" id="bwl-artikel-plus">Weiteren Artikel hinzufügen</button><p id="bwl-artikel-max" class="klein" hidden>Du kannst bis zu 6 Artikel hinzufügen.</p></div>
+          <p id="bwl-position-status" class="klein" role="status"></p>
+          <label for="an-hk">Handlungskostenzuschlag in Prozent, Basis Positionssumme</label>
+          <input id="an-hk" data-hk inputmode="decimal" autocomplete="off">
+          <label for="an-gw">Gewinnzuschlag in Prozent, Basis Selbstkosten</label>
+          <input id="an-gw" data-gw inputmode="decimal" autocomplete="off">
+        </div>
+        <div id="panel-gewinn" class="bwl-panel" role="tabpanel" aria-labelledby="tab-gewinn" data-rechner="gewinn" hidden>
+          <fieldset>
+            <legend>Weg der Gewinnberechnung</legend>
+            <label class="bwl-wahl"><input type="radio" name="gewinn-weg" value="zuschlag" checked> Zuschlag auf eine benannte Basis</label>
+            <label class="bwl-wahl"><input type="radio" name="gewinn-weg" value="differenz"> Differenz aus Erlös und Kosten</label>
+          </fieldset>
+          <div id="gw-zuschlag-felder">
+            <label for="gw-basis">Basis in Euro</label>
+            <input id="gw-basis" inputmode="decimal" autocomplete="off" aria-describedby="bwl-hilfe-gewinn">
+            <p id="bwl-hilfe-gewinn" class="klein">Der Zuschlag gilt nur für diesen Betrag. Er wird nicht still auf eine andere Summe gerechnet.</p>
+            <label for="gw-satz">Gewinnzuschlag in Prozent</label>
+            <input id="gw-satz" inputmode="decimal" autocomplete="off">
+          </div>
+          <div id="gw-differenz-felder" hidden>
+            <label for="gw-erloes">Erlös in Euro</label>
+            <input id="gw-erloes" inputmode="decimal" autocomplete="off">
+            <label for="gw-kosten">Kosten in Euro</label>
+            <input id="gw-kosten" inputmode="decimal" autocomplete="off">
+          </div>
+        </div>
+        <div id="panel-rabatt" class="bwl-panel" role="tabpanel" aria-labelledby="tab-rabatt" data-rechner="rabatt" hidden>
+          <label for="rb-basis">Basis in Euro</label>
+          <input id="rb-basis" inputmode="decimal" autocomplete="off" aria-describedby="bwl-hilfe-rabatt">
+          <p id="bwl-hilfe-rabatt" class="klein">Der Rabatt wird nur von dieser Basis abgezogen. Er wird nicht mit einem Zuschlag verrechnet.</p>
+          <fieldset>
+            <legend>Art des Rabatts</legend>
+            <label class="bwl-wahl"><input type="radio" name="rabatt-art" value="prozent" checked> Prozentsatz</label>
+            <label class="bwl-wahl"><input type="radio" name="rabatt-art" value="betrag"> Fester Betrag</label>
+          </fieldset>
+          <div id="rb-satz-feld"><label for="rb-satz">Rabattsatz in Prozent</label><input id="rb-satz" inputmode="decimal" autocomplete="off"></div>
+          <div id="rb-betrag-feld" hidden><label for="rb-betrag">Rabattbetrag in Euro</label><input id="rb-betrag" inputmode="decimal" autocomplete="off"></div>
+        </div>
+        <div id="panel-steuer" class="bwl-panel" role="tabpanel" aria-labelledby="tab-steuer" data-rechner="steuer" hidden>
+          <fieldset>
+            <legend>Richtung</legend>
+            <label class="bwl-wahl"><input type="radio" name="steuer-richtung" value="netto-zu-brutto" checked> Von Netto nach Brutto</label>
+            <label class="bwl-wahl"><input type="radio" name="steuer-richtung" value="brutto-zu-netto"> Von Brutto nach Netto</label>
+          </fieldset>
+          <label for="st-betrag">Betrag in Euro</label>
+          <input id="st-betrag" inputmode="decimal" autocomplete="off" aria-describedby="bwl-hilfe-steuer">
+          <p id="bwl-hilfe-steuer" class="klein">Der Steuersatz ist frei wählbar. 19 ist nur ein Beispiel, kein eingebauter Satz.</p>
+          <label for="st-satz">Steuersatz in Prozent</label>
+          <input id="st-satz" inputmode="decimal" autocomplete="off">
+        </div>
+        <div class="knopf-reihe">
+          <button type="submit" class="knopf knopf-haupt">Berechnen</button>
+          <button type="button" class="knopf" id="bwl-beispiel">Übungsbeispiel laden</button>
+          <button type="button" class="knopf" id="bwl-leeren">Leeren</button>
+        </div>
+      </form>
+      <p id="bwl-fehler" class="bwl-fehler" role="alert" tabindex="-1" hidden></p>
+      <div id="bwl-ergebnis" class="feedback-box" aria-live="polite" tabindex="-1" hidden></div>
+    </section>
+    </div>
+
+    <section id="bwl-lern" class="abschnitt bwl-bereich" aria-labelledby="bwl-lern-ueberschrift" hidden>
+      <h2 id="bwl-lern-ueberschrift">Lernmodus</h2>
+      <div class="hinweis-box">
+        <p class="hinweis-titel">Status der Aufgaben: Entwurf</p>
+        <p>Diese drei Aufgaben sind erfunden. Sie sind fachlich noch nicht geprüft und nicht freigegeben. Alle Beträge sind netto. Es wird keine Steuer berechnet.</p>
+      </div>
+      <p class="gross">Du löst jede Aufgabe in drei Schritten. Den nächsten Schritt siehst du erst, wenn der Schritt davor richtig ist. Du darfst so oft versuchen, wie du willst.</p>
+      <p id="bwl-taschenrechner-hinweis" class="bwl-lern-box">Du darfst einen Taschenrechner benutzen. Wichtig ist, dass du den Rechenweg verstehst.</p>
+      <details class="bwl-woerter">
+        <summary>Wörter einfach erklärt</summary>
+        <ul>
+          <li><strong>Netto:</strong> Der Betrag ohne Steuer.</li>
+          <li><strong>Position:</strong> Eine einzelne Ware oder Leistung im Angebot.</li>
+          <li><strong>Positionssumme:</strong> Die Summe aller Positionen vor den Handlungskosten.</li>
+          <li><strong>Handlungskosten:</strong> Zusätzliche Kosten des Betriebs, zum Beispiel für Verwaltung. Hier ist es ein vorgegebener Prozentsatz.</li>
+          <li><strong>Selbstkosten:</strong> Positionssumme plus Handlungskosten.</li>
+          <li><strong>Gewinn:</strong> Der Betrag, den das Unternehmen zusätzlich verdienen möchte.</li>
+          <li><strong>Rabatt:</strong> Ein Preisnachlass. Er wird vom Warenwert abgezogen.</li>
+          <li><strong>Kaufmännisch runden:</strong> Auf zwei Nachkommastellen runden. Ab einer 5 an der dritten Stelle wird aufgerundet.</li>
+        </ul>
+      </details>
+      <div class="bwl-modus" role="group" aria-label="Aufgabe wählen">
+        <button type="button" class="knopf" aria-pressed="true" data-bwl-aufgabe="0">Aufgabe 1: Arbeitsplätze</button>
+        <button type="button" class="knopf" aria-pressed="false" data-bwl-aufgabe="1">Aufgabe 2: Wartungspaket</button>
+        <button type="button" class="knopf" aria-pressed="false" data-bwl-aufgabe="2">Aufgabe 3: Mengenrabatt</button>
+      </div>
+      <div class="knopf-reihe">
+        <button type="button" class="knopf" id="bwl-lern-neu">Diese Aufgabe neu starten</button>
+      </div>
+      <p id="bwl-lern-status" class="bwl-lern-status" role="status" aria-live="polite"></p>
+      <div id="bwl-lern-aufgabe"></div>
+    </section>
+
+    <section class="abschnitt" aria-labelledby="bwl-wissen">
+      <h2 id="bwl-wissen">Kurz erklärt</h2>
+      <ul>
+        <li><strong>Positionssumme:</strong> alle Mengen mal Einzelpreis, danach addiert.</li>
+        <li><strong>Selbstkosten:</strong> Positionssumme plus Handlungskostenzuschlag. Die Basis des Zuschlags steht im Rechenweg.</li>
+        <li><strong>Nettoangebotspreis:</strong> Selbstkosten plus Gewinnzuschlag. Der Gewinnzuschlag bezieht sich hier auf die Selbstkosten, nicht auf die Positionssumme.</li>
+        <li><strong>Rabatt:</strong> Abzug von einer benannten Basis, entweder als Prozentsatz oder als Betrag.</li>
+        <li><strong>Netto, Steuerbetrag, Brutto:</strong> drei getrennte Beträge. Der Satz bleibt sichtbar.</li>
+        <li><strong>Rundung:</strong> kaufmännisch auf volle Cent. Bei genau einem halben Cent wird aufgerundet. Die Regel steht in <code>js/bwl-werkstatt.js</code>.</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="fuss"><p>Werkzeug · BWL-Werkstatt · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/bwl-werkstatt.js"></script>
+</body>
+</html>

@@ -9,7 +9,8 @@
   global.MODULE_TOOLS = [
     { id: "lf3-zahlensysteme", typ: "werkzeug", titel: "Zahlensystemrechner", beschreibung: "Binär, Dezimal und Hexadezimal umrechnen, mit Stellenwerten und Rechenweg.", page: "zahlensysteme", status: "verfuegbar", datei: "module/zahlensysteme.html" },
     { id: "lf3-einheiten", typ: "werkzeug", titel: "Bit-/Byte- und Einheitenrechner", beschreibung: "Bit, Byte, GB und GiB umrechnen, mit nachvollziehbarem Rechenweg.", page: "einheiten", status: "verfuegbar", datei: "module/einheiten.html" },
-    { id: "lf3-ipv4-rechner", typ: "werkzeug", titel: "IPv4-Subnetzrechner", beschreibung: "Präfix oder Netzmaske, Adressgrenzen und Rechenweg nachvollziehen.", page: "ipv4-rechner", status: "verfuegbar", datei: "module/ipv4-rechner.html" }
+    { id: "lf3-ipv4-rechner", typ: "werkzeug", titel: "IPv4-Subnetzrechner", beschreibung: "Präfix oder Netzmaske, Adressgrenzen und Rechenweg nachvollziehen.", page: "ipv4-rechner", status: "verfuegbar", datei: "module/ipv4-rechner.html" },
+    { id: "bwl-werkstatt", typ: "werkzeug", titel: "BWL-Werkstatt", beschreibung: "Angebot, Gewinn, Rabatt sowie Netto und Brutto centgenau rechnen, mit sichtbarem Rechenweg.", page: "bwl-werkstatt", status: "verfuegbar", datei: "module/bwl-werkstatt.html" }
   ];
 
   global.MODULE_EINSTIEG = [
