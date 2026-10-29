@@ -1,8 +1,9 @@
 /* Minimaler CDP-Client über WebSocket (ohne Abhängigkeiten) für headless Chrome auf :9223. */
 const net = require('node:net'), crypto = require('node:crypto'), http = require('node:http');
 
-function getJson(p) {
-  return new Promise((resolve, reject) => http.get('http://127.0.0.1:9223' + p, r => {
+/* Optionaler Port (z. B. dynamisch vergeben); ohne Angabe bleibt es bei 9223 für die übrigen Tests. */
+function getJson(p, port = 9223) {
+  return new Promise((resolve, reject) => http.get('http://127.0.0.1:' + port + p, r => {
     let s = ''; r.on('data', x => s += x); r.on('end', () => resolve(JSON.parse(s)));
   }).on('error', reject));
 }
