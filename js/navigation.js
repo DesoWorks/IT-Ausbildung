@@ -126,4 +126,42 @@
       aktualisiereMarkierung(a, a.getAttribute("data-progress-id"));
     });
   });
+
+  /* Scrollposition der Navigation ueber Dokumentwechsel erhalten.
+     Jede Themenseite ist ein eigenes HTML-Dokument; die Navigation wird neu aufgebaut. */
+  var SCROLL_KEY = "it-ausbildung.nav-scroll.v1";
+  var userTouched = false, savedTarget = 0;
+  function scrollStore() { try { return window.sessionStorage; } catch (e) { return null; } }
+  function scrollbar() { return nav.scrollHeight > nav.clientHeight; }
+  function saveScroll() {
+    var s = scrollStore();
+    /* Schmale Ansicht: Navigation ist verborgen (Hoehe 0) -> gespeicherten Wert nicht ueberschreiben. */
+    if (!s || !scrollbar()) return;
+    try { s.setItem(SCROLL_KEY, String(Math.round(nav.scrollTop))); } catch (e) {}
+  }
+  function keepActiveVisible() {
+    var current = nav.querySelector('a[aria-current="page"]');
+    if (!current || !scrollbar()) return;
+    var n = nav.getBoundingClientRect(), c = current.getBoundingClientRect();
+    if (c.top < n.top) nav.scrollTop -= (n.top - c.top) + 48;
+    else if (c.bottom > n.bottom) nav.scrollTop += (c.bottom - n.bottom) + 48;
+  }
+  function restoreScroll() {
+    var s = scrollStore(), value = NaN;
+    if (s) { try { value = parseInt(s.getItem(SCROLL_KEY), 10); } catch (e) {} }
+    if (scrollbar()) {
+      if (isFinite(value) && value > 0) { savedTarget = value; nav.scrollTop = value; }
+      keepActiveVisible();
+    }
+  }
+  ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (name) {
+    nav.addEventListener(name, function () { userTouched = true; }, { passive: true });
+  });
+  nav.addEventListener("click", function (event) { if (event.target.closest("a")) saveScroll(); }, true);
+  window.addEventListener("pagehide", saveScroll);
+  restoreScroll();
+  /* Spaeter ergaenzte Bereiche (z. B. Anzeigeoptionen) veraendern die Hoehe: einmal nachziehen. */
+  window.addEventListener("load", function () {
+    if (!userTouched && savedTarget > 0 && nav.scrollTop !== savedTarget) { nav.scrollTop = savedTarget; keepActiveVisible(); }
+  });
 })();
