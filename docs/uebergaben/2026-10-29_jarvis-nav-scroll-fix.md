@@ -2,39 +2,45 @@
 
 **Projekt:** `/home/starnet/projects/IT-Ausbildung`
 **Branch:** `fix/navigation-scrollposition-2026-11-02` (abgezweigt von `review/bwl-werkstatt-2026-10-24`, HEAD `17fd7fd`)
-**Auftrag:** Operation Montagsstart, Priorität 1. Kein Push, kein Deployment.
+**Stand:** Fix-Commit `2445309` plus Folgecommit "Operation Letzte Meile" (Testhärtung, siehe unten).
+**Auftrag:** Operation Montagsstart, Priorität 1, dann Operation Letzte Meile. Kein Push, kein Deployment.
 
 ## Ursache
 Jede Themenseite ist ein eigenes HTML-Dokument. `js/navigation.js` baut die Navigation bei jedem Laden neu auf. `.site-nav.scrollTop` wurde nirgends gesichert oder wiederhergestellt, daher startete die Navigation immer bei 0. Im Test gegen den Originalstand: `scrollTop` 516 vor dem Klick, 0 danach.
 
-## Änderung
+## Änderung am Fix (Commit 2445309, unverändert)
 Nur `js/navigation.js` (+38 Zeilen, nichts entfernt):
-- Beim Klick auf einen Navigationslink und bei `pagehide` wird `scrollTop` in `sessionStorage` gesichert (Schlüssel `it-ausbildung.nav-scroll.v1`). Zugriff und Schreiben sind per try/catch abgesichert.
+- Beim Klick auf einen Navigationslink und bei `pagehide` wird `scrollTop` in `sessionStorage` gesichert (Schlüssel `it-ausbildung.nav-scroll.v1`), mit try/catch abgesichert.
 - Nach dem Aufbau wird der Wert wiederhergestellt. Ein ungültiger Wert wird ignoriert.
-- `keepActiveVisible()` bringt das aktive Thema in den sichtbaren Bereich. Das gilt auch beim direkten Seitenaufruf ohne gespeicherten Wert. Gescrollt wird nur `.site-nav`, nicht die Seite.
-- Beim `load`-Ereignis wird einmal nachgezogen, falls später ergänzte Bereiche (Anzeigeoptionen) die Höhe ändern. Das geschieht nicht, wenn die Nutzerin die Navigation schon bedient hat.
-- In der schmalen Ansicht ist die Navigation verborgen (`display:none`). Dort wird nichts gespeichert und der gespeicherte Wert nicht überschrieben.
+- `keepActiveVisible()` bringt das aktive Thema in den sichtbaren Bereich, auch bei direktem Aufruf. Gescrollt wird nur `.site-nav`.
+- In der schmalen Ansicht (Navigation `display:none`) wird nichts gespeichert.
 
-**Nicht angefasst:** `js/fortschritt.js` und die Fortschrittshaken. Der Firefox-Fehler ist nicht reproduziert.
+**Nicht angefasst:** `js/navigation.js` (im Folgecommit unverändert, per `git diff` belegt), `js/fortschritt.js` und die Fortschrittshaken.
 
-## Neuer Test
-`tests/browser-nav-scroll-cdp.js` startet eigenen headless Chrome (Port 9223, temporäres Profil) und einen eigenen HTTP-Server. Aufruf: `node tests/browser-nav-scroll-cdp.js`
-Er prüft:
-- A: Klick nach tiefem Scroll, Wert bleibt (±60 px), aktives Thema sichtbar.
-- B: Tastatur (Fokus + Enter), Wert bleibt.
-- C: direkter Aufruf ohne Speicherwert, aktives Thema sichtbar, Seite selbst springt nicht.
-- D: ungültiger Speicherwert ist harmlos.
-- E: Fenster 1100×500 und 320×700 (Navigation verborgen, kein horizontaler Überlauf, Menü öffnet).
+## Folgecommit: Freigabehindernisse aus der GLaDOS-Bewertung
+1. **Port-Kollision:** Der Test startet Chrome mit `--remote-debugging-port=0` und liest den echten Port aus `<profil>/DevToolsActivePort`. Der HTTP-Server nutzt ebenfalls Port 0. `tests/cdp-helper.js`: `getJson(path, port = 9223)` hat jetzt einen optionalen Port. Der Standard 9223 bleibt, damit die übrigen CDP-Tests unverändert laufen.
+2. **Cleanup:** Chrome läuft in eigener Prozessgruppe (`detached`), Aufräumen beendet die ganze Gruppe, schließt den Server und löscht das Profil mit Wiederholung. Es läuft bei Erfolg, Testfehler, `uncaughtException`, `unhandledRejection`, SIGINT/SIGTERM/SIGHUP und im `exit`-Handler. Es ist idempotent.
+   - Belegt: Nach Erfolgslauf keine Chrome-Reste und keine `/tmp/nav-scroll-*`-Profile. Nach SIGTERM mitten im Lauf (Exit 130, vorher 11 Chrome-Prozesse und ein Profil): danach keine Prozesse, kein Profil. Ein fremder Chrome auf Port 9224 blieb unberührt.
+3. **Sichtbare Prüfung / aufblitzen:**
+   - Neu: Bildweise Probe (`requestAnimationFrame`, ca. 800 ms nach jedem Dokumentstart, via `Page.addScriptToEvaluateOnNewDocument`). Sie misst `scrollTop` der Navigation pro Bild für Klick (A) und Tastatur (B) und verlangt, dass kein Bild mehr als 60 px vom Ausgangswert abweicht. Im Lauf gemessen: 42 bzw. 36 Bilder (headless), kein Ausreißer.
+   - Neu: `NAV_VISIBLE=1 node tests/browser-nav-scroll-cdp.js` startet ein sichtbares Chrome-Fenster mit Pausen (`NAV_PAUSE`, Standard 1500 ms) zum Zuschauen.
+   - **Auf dieser Maschine nicht möglich:** Es gibt weder `DISPLAY`/`WAYLAND_DISPLAY` noch Xvfb. Der sichtbare Modus bricht dort mit klarer Meldung ab (Exit 1, keine Reste). Der sichtbare Modus wurde daher nie erfolgreich ausgeführt. Ein Mensch muss ihn auf einem Rechner mit Bildschirm laufen lassen.
+   - Die Probe misst per `requestAnimationFrame` den DOM-Zustand, nicht echte Bildschirmpixel. Sie ersetzt keinen Blick mit eigenen Augen.
 
-## Testergebnisse
-- Neuer Browsertest mit Fix: Exit 0.
-- Rot-Beleg: derselbe Test gegen `HEAD:js/navigation.js` gibt Exit 1 (`top` 516 auf 0).
-- Node-Suite `tests/*.test.js`: 65 bestanden, 1 fehlgeschlagen.
-- Der Fehlschlag `branding-assets.test.js` (`module/lf3-abnahme.html: SVG favicon`) tritt identisch auf unverändertem HEAD auf. Er ist vorbestehend und unabhängig von dieser Änderung.
+## Testergebnisse (nach dem Folgecommit)
+- Browsertest `tests/browser-nav-scroll-cdp.js` headless Chrome: PASS, Exit 0, wiederholt (dynamische Ports 38163 und 43913).
+- Rot-Beleg: derselbe Test gegen `17fd7fd:js/navigation.js` scheitert, Exit 1 (`top` 516 auf 0 in Prüfung A). Danach `navigation.js` wiederhergestellt, `git diff` leer. Ob die neue Bildprobe allein ebenfalls rot würde, ist nicht gesondert belegt, weil die frühere Prüfung zuerst abbricht.
+- Node-Suite `tests/*.test.js` (jede Datei einzeln mit `node`, es gibt keine `package.json`): 65 bestanden, 1 fehlgeschlagen.
+- Der Fehlschlag `branding-assets.test.js` (`module/lf3-abnahme.html: SVG favicon`) ist vorbestehend und tritt identisch auf unverändertem HEAD auf. Er ist nicht Teil dieses Auftrags (Favicon-Thema zurückgestellt).
+- Die übrigen CDP-Tests (`browser-*-cdp.js`) wurden nicht erneut ausgeführt. Sie benötigen einen Chrome auf 9223. Der Helfer-Standard ist unverändert, aber das ist nur durch Code-Durchsicht belegt, nicht durch Läufe.
+
+## In echten Browsern
+- **Ausgeführt:** Google Chrome 154, nur headless (`--headless=new`), Linux, per CDP.
+- **Nicht ausgeführt:** sichtbares (nicht-headless) Chrome, Firefox, Brave, Safari, mobile Browser, 200 % Zoom, Screenreader, `file://`-Start, private Fenster, gesperrter Storage.
 
 ## Verbleibende Risiken / bitte prüfen
-- Echter Lauf nur in Chrome 154 (headless). Brave und Firefox sind nicht getestet.
-- Nicht geprüft: 200 % Zoom, Screenreader, `file://`-Start (dort sollte `sessionStorage` je nach Browser funktionieren, ist aber unbelegt), private Fenster, gesperrter Storage.
-- Die ±60-px-Toleranz im Test erlaubt, dass `keepActiveVisible()` bei einem außerhalb liegenden Thema nachjustiert.
-- Die Wiederherstellung ist ein sofortiger Sprung ohne Animation. Ein kurzes Aufblitzen bei 0 ist nicht auszuschließen und im Headless-Test nicht messbar. Bitte im sichtbaren Browser ansehen.
-- Der Test ist von Chrome auf `/usr/bin/google-chrome` und Port 9223 abhängig.
+- Sichtbares Aufblitzen ist nur über die DOM-Probe abgesichert. Bitte auf einem Rechner mit Bildschirm `NAV_VISIBLE=1` laufen lassen oder von Hand ansehen.
+- Die Wiederherstellung ist ein sofortiger Sprung ohne Animation.
+- Die ±60-px-Toleranz erlaubt, dass `keepActiveVisible()` bei einem außerhalb liegenden Thema nachjustiert.
+- Der Test setzt Chrome unter `google-chrome` voraus (überschreibbar mit `CHROME_BIN`).
+- Fünf bis sechs fremde, unversionierte Berichte in `docs/uebergaben/` sind unverändert und nicht Teil des Commits.
