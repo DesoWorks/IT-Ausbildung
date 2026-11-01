@@ -1,0 +1,247 @@
+/* Windows-Werkzeugkiste: Lerninhalte.
+   Quelle: docs/inhalte/windows-werkzeugkiste.json (Lieferung C-3PO, 01.11.2026).
+   Die Rohdaten stehen unten unverändert in ROH und werden einmalig auf den
+   Laufzeitvertrag der Spezifikation (docs/uebergaben/2026-11-01_terminus-windows-spec.md,
+   Abschnitt 3) normalisiert. Reine Lerntexte: Nichts hiervon wird ausgeführt.
+   Keine Funktionen in den Ergebnisdaten, kein HTML, keine erfundenen Quellen. */
+(function () {
+  "use strict";
+
+  var ROH = {
+    karten: [
+      { id: "win-l", art: "shortcut", eingabe: "Win+L", titel: "Sitzung sperren",
+        zweck: "Win+L sperrt die Sitzung. Zum Weiterarbeiten muss man sich wieder anmelden.",
+        situation: "Du gehst kurz vom Ausbildungs-PC weg. Du sperrst die Sitzung, damit niemand an deinem offenen Arbeitsplatz weiterarbeitet.",
+        sicherheit: "Sperre die Sitzung, bevor du den Platz verlässt.", edition: null,
+        fachwort: "Sitzung: deine gerade geöffnete und angemeldete Arbeit am PC." },
+      { id: "win-r", art: "shortcut", eingabe: "Win+R", titel: "Ausführen-Dialog öffnen",
+        zweck: "Win+R öffnet den Dialog Ausführen. Dort kann ein Befehl eingegeben werden.",
+        situation: "Du sollst im Unterricht den Befehl ncpa.cpl eingeben. Du öffnest zuerst mit Win+R den Dialog Ausführen.",
+        sicherheit: "Gib nur Befehle ein, die in der Aufgabe genannt sind. Dieses Lernmodul führt nichts automatisch aus.", edition: null,
+        fachwort: "Dialog: ein kleines Fenster, in dem du eine Eingabe machst." },
+      { id: "win-e", art: "shortcut", eingabe: "Win+E", titel: "Datei-Explorer öffnen",
+        zweck: "Win+E öffnet den Datei-Explorer. Dort kannst du Dateien und Ordner ansehen.",
+        situation: "Du sollst im ersten Ausbildungsjahr einen bereitgestellten Ordner suchen. Du öffnest den Datei-Explorer mit Win+E.",
+        sicherheit: null, edition: null,
+        fachwort: "Datei-Explorer: Windows-Anwendung zum Anzeigen von Dateien und Ordnern." },
+      { id: "win-i", art: "shortcut", eingabe: "Win+I", titel: "Einstellungen öffnen",
+        zweck: "Win+I öffnet die Windows-Einstellungen.",
+        situation: "Die Ausbilderin zeigt, wo die Windows-Einstellungen geöffnet werden. Du öffnest sie mit Win+I.",
+        sicherheit: "Nur ansehen, wenn die Aufgabe das verlangt. Ändere keine Einstellung ohne Auftrag.", edition: null,
+        fachwort: null },
+      { id: "win-d", art: "shortcut", eingabe: "Win+D", titel: "Desktop anzeigen",
+        zweck: "Win+D zeigt den Desktop an. Geöffnete Fenster werden dafür ausgeblendet.",
+        situation: "Du hast mehrere Fenster geöffnet und möchtest den Desktop sehen. Du drückst Win+D.",
+        sicherheit: null, edition: null,
+        fachwort: "Desktop: die Arbeitsfläche, die Windows hinter den Fenstern anzeigt." },
+      { id: "win-x", art: "shortcut", eingabe: "Win+X", titel: "Schnellzugriff öffnen",
+        zweck: "Win+X öffnet das Schnellzugriffsmenü von Windows.",
+        situation: "Im Unterricht sollst du das Schnellzugriffsmenü öffnen. Du verwendest Win+X.",
+        sicherheit: "Das Menü kann Werkzeuge enthalten. Öffne oder ändere nichts ohne passenden Auftrag.", edition: null,
+        fachwort: "Schnellzugriffsmenü: ein Windows-Menü mit direkten Verknüpfungen." },
+      { id: "strg-umschalt-esc", art: "shortcut", eingabe: "Strg+Umschalt+Esc", titel: "Task-Manager öffnen",
+        zweck: "Strg+Umschalt+Esc öffnet den Task-Manager.",
+        situation: "Die Ausbilderin bittet dich, den Task-Manager zu öffnen. Du drückst Strg+Umschalt+Esc.",
+        sicherheit: "Beende keine Aufgaben oder Prozesse ohne Auftrag.", edition: null,
+        fachwort: "Task-Manager: Windows-Werkzeug zur Anzeige von Aufgaben und Prozessen." },
+      { id: "ncpa-cpl", art: "befehl", eingabe: "Win+R, dann ncpa.cpl", titel: "Netzwerkverbindungen",
+        zweck: "Gib ncpa.cpl im Dialog Ausführen ein, um Netzwerkverbindungen zu öffnen.",
+        situation: "Du sollst im Unterricht die Netzwerkverbindungen ansehen. Öffne mit Win+R den Dialog und gib ncpa.cpl ein.",
+        sicherheit: "Nur ansehen. Ändere keine Verbindung ohne Auftrag. Das Modul führt den Befehl nicht aus.", edition: null,
+        fachwort: "Netzwerkverbindung: Verbindung eines Computers mit einem Netzwerk." },
+      { id: "sysdm-cpl", art: "befehl", eingabe: "Win+R, dann sysdm.cpl", titel: "Systemeigenschaften",
+        zweck: "Gib sysdm.cpl im Dialog Ausführen ein, um die Systemeigenschaften zu öffnen.",
+        situation: "Die Ausbilderin nennt Systemeigenschaften als Lernziel. Du öffnest den Dialog Ausführen und gibst sysdm.cpl ein.",
+        sicherheit: "Nur ansehen. Ändere keine Systemeigenschaft ohne Auftrag. Das Modul führt den Befehl nicht aus.", edition: null,
+        fachwort: "Systemeigenschaften: Angaben und Einstellungen zu Windows und dem Computer." },
+      { id: "powercfg-cpl", art: "befehl", eingabe: "Win+R, dann powercfg.cpl", titel: "Energieoptionen",
+        zweck: "Gib powercfg.cpl im Dialog Ausführen ein, um die Energieoptionen zu öffnen.",
+        situation: "Im Unterricht sollst du die Energieoptionen finden. Öffne Ausführen mit Win+R und gib powercfg.cpl ein.",
+        sicherheit: "Nur ansehen. Ändere keine Energieoption ohne Auftrag. Das Modul führt den Befehl nicht aus.",
+        edition: "Die Darstellung kann je nach Windows-Version unterschiedlich sein.",
+        fachwort: "Energieoptionen: Windows-Bereich für Einstellungen zur Energieversorgung." },
+      { id: "compmgmt-msc", art: "befehl", eingabe: "Win+R, dann compmgmt.msc", titel: "Computerverwaltung",
+        zweck: "Gib compmgmt.msc im Dialog Ausführen ein, um die Computerverwaltung zu öffnen.",
+        situation: "Du sollst den Namen des Befehls für die Computerverwaltung erkennen. Die Endung lautet .msc, nicht .msd.",
+        sicherheit: "Werkzeuge nur im Auftrag öffnen und nichts verändern. Das Modul führt den Befehl nicht aus.", edition: null,
+        fachwort: "Endung: die letzten Zeichen eines Dateinamens nach dem Punkt." },
+      { id: "secpol-msc", art: "befehl", eingabe: "Win+R, dann secpol.msc", titel: "Lokale Sicherheitsrichtlinie",
+        zweck: "Gib secpol.msc im Dialog Ausführen ein, um die Lokale Sicherheitsrichtlinie zu öffnen.",
+        situation: "Die Ausbilderin erklärt, dass die Lokale Sicherheitsrichtlinie ein Windows-Werkzeug ist. Du lernst den Namen, ohne Einstellungen zu ändern.",
+        sicherheit: "Nur erklären und ansehen. Sicherheitsregeln niemals ohne klaren Auftrag ändern. Das Modul führt den Befehl nicht aus.",
+        edition: "Nicht in jeder Windows-Edition verfügbar.",
+        fachwort: "Sicherheitsrichtlinie: Regeln, die sicherheitsbezogenes Verhalten festlegen." },
+      { id: "devmgmt-msc", art: "befehl", eingabe: "Win+R, dann devmgmt.msc", titel: "Geräte-Manager",
+        zweck: "Gib devmgmt.msc im Dialog Ausführen ein, um den Geräte-Manager zu öffnen.",
+        situation: "Im Unterricht sollst du den Namen des Werkzeugs für Geräte erkennen. Öffne Ausführen und gib devmgmt.msc ein.",
+        sicherheit: "Nur ansehen. Ändere keine Geräteeinstellung ohne Auftrag. Das Modul führt den Befehl nicht aus.", edition: null,
+        fachwort: "Geräte-Manager: Windows-Werkzeug zur Anzeige von Geräten des Computers." },
+      { id: "services-msc", art: "befehl", eingabe: "Win+R, dann services.msc", titel: "Dienste",
+        zweck: "Gib services.msc im Dialog Ausführen ein, um die Dienste zu öffnen.",
+        situation: "Die Ausbilderin erklärt, dass es ein Windows-Werkzeug namens Dienste gibt. Du lernst den Namen, ohne etwas zu konfigurieren.",
+        sicherheit: "Dienste nur erklären und ansehen. Nichts starten, stoppen oder ändern. Das Modul führt den Befehl nicht aus.", edition: null,
+        fachwort: "Dienst: ein Windows-Bestandteil, der eine Aufgabe im Hintergrund übernimmt." },
+      { id: "gpedit-msc", art: "befehl", eingabe: "Win+R, dann gpedit.msc", titel: "Lokaler Gruppenrichtlinien-Editor",
+        zweck: "Der Editor zeigt lokale Gruppenrichtlinien an, mit denen Windows-Einstellungen verwaltet werden.",
+        situation: "Die Ausbilderin fragt, mit welchem Befehl der Lokale Gruppenrichtlinien-Editor geöffnet wird. Du nennst gpedit.msc. Du öffnest ihn nicht und änderst keine Richtlinie.",
+        sicherheit: "Gruppenrichtlinien nicht ohne konkreten Auftrag verändern. Das Lernmodul führt den Befehl nicht aus.",
+        edition: "Unter Windows 11 Home ist der Editor normalerweise nicht verfügbar.",
+        fachwort: "Gruppenrichtlinie: Eine Regel, mit der Einstellungen für Windows oder Benutzer verwaltet werden." },
+      { id: "msconfig", art: "befehl", eingabe: "Win+R, dann msconfig", titel: "Systemkonfiguration",
+        zweck: "Das Werkzeug hilft dabei, den Start und die Diagnose von Windows zu untersuchen. Eine wichtige Anwendung ist der abgesicherte Modus. Das Werkzeug ist auch unter Windows 11 verfügbar.",
+        situation: "Ein Ausbildungs-PC startet auffällig. Die Ausbilderin nennt die Systemkonfiguration, weil dort der abgesicherte Modus eingestellt werden kann. Du lernst den Befehl msconfig und änderst nichts.",
+        sicherheit: "Systemeinstellungen nicht ohne konkreten Auftrag ändern. Die Option „Abgesicherter Start“ kann bei weiteren Neustarts wirksam bleiben, bis sie wieder deaktiviert wird. Das Lernmodul führt den Befehl nicht aus.",
+        edition: "Das Werkzeug ist auch unter Windows 11 verfügbar.",
+        fachwort: "Abgesicherter Modus: Ein Windows-Start mit einer begrenzten Auswahl an Treibern und Diensten zur Fehlersuche." }
+    ],
+    uebungen: [
+      { id: "uebung-1", situation: "Du musst kurz vom Ausbildungs-PC weg. Welche Karte hilft dir, die Sitzung zu sperren?",
+        richtigeAntwort: "win-l", rueckmeldungRichtig: "Richtig. Win+L sperrt die Sitzung.",
+        rueckmeldungFalsch: "Noch nicht. Suche die Karte zum Sperren der Sitzung." },
+      { id: "uebung-2", situation: "Du sollst im Unterricht Netzwerkverbindungen ansehen. Welchen Eintrag nutzt du nach Win+R?",
+        richtigeAntwort: "ncpa-cpl", rueckmeldungRichtig: "Richtig. ncpa.cpl öffnet Netzwerkverbindungen.",
+        rueckmeldungFalsch: "Noch nicht. Suche den Befehl für Netzwerkverbindungen." },
+      { id: "uebung-3", situation: "Du möchtest den Datei-Explorer öffnen. Welche Karte passt?",
+        richtigeAntwort: "win-e", rueckmeldungRichtig: "Richtig. Win+E öffnet den Datei-Explorer.",
+        rueckmeldungFalsch: "Noch nicht. Suche die Tastenkombination für den Datei-Explorer." },
+      { id: "uebung-4", situation: "Du sollst die Systemeigenschaften finden. Welchen Befehl gibst du über Win+R ein?",
+        richtigeAntwort: "sysdm-cpl", rueckmeldungRichtig: "Richtig. sysdm.cpl öffnet die Systemeigenschaften.",
+        rueckmeldungFalsch: "Noch nicht. Suche die Karte Systemeigenschaften." },
+      { id: "uebung-5", situation: "Du suchst die Energieoptionen. Welcher Eintrag ist richtig?",
+        richtigeAntwort: "powercfg-cpl", rueckmeldungRichtig: "Richtig. powercfg.cpl öffnet die Energieoptionen.",
+        rueckmeldungFalsch: "Noch nicht. Suche den Befehl für Energieoptionen." },
+      { id: "uebung-6", situation: "Du sollst den Namen des Werkzeugs für lokale Sicherheitsregeln lernen. Welche Karte erklärt es? Ändere nichts.",
+        richtigeAntwort: "secpol-msc", rueckmeldungRichtig: "Richtig. secpol.msc steht für Lokale Sicherheitsrichtlinie. Es ist nicht in jeder Edition verfügbar.",
+        rueckmeldungFalsch: "Noch nicht. Suche die Karte zur Lokalen Sicherheitsrichtlinie." },
+      { id: "uebung-7", situation: "Im Unterricht wird der Geräte-Manager gesucht. Welchen Befehl gibst du über Win+R ein?",
+        richtigeAntwort: "devmgmt-msc", rueckmeldungRichtig: "Richtig. devmgmt.msc öffnet den Geräte-Manager.",
+        rueckmeldungFalsch: "Noch nicht. Suche den Befehl für den Geräte-Manager." },
+      { id: "uebung-8", situation: "Du sollst den Befehl für den Lokalen Gruppenrichtlinien-Editor nennen und nichts verändern. Welche Karte passt?",
+        richtigeAntwort: "gpedit-msc", rueckmeldungRichtig: "Richtig. gpedit.msc öffnet den Lokalen Gruppenrichtlinien-Editor. Unter Windows 11 Home ist er normalerweise nicht verfügbar.",
+        rueckmeldungFalsch: "Noch nicht. Suche die Karte zum Lokalen Gruppenrichtlinien-Editor." },
+      { id: "uebung-9", situation: "Ein PC startet auffällig. Welches Werkzeug kann den abgesicherten Modus betreffen und ist auch unter Windows 11 verfügbar? Ändere nichts.",
+        richtigeAntwort: "msconfig", rueckmeldungRichtig: "Richtig. msconfig ist die Systemkonfiguration. Die Option „Abgesicherter Start“ kann bei weiteren Neustarts wirksam bleiben.",
+        rueckmeldungFalsch: "Noch nicht. Suche die Karte zur Systemkonfiguration." }
+    ],
+    quiz: [
+      { id: "quiz-1", frage: "Welche Tastenkombination sperrt die Sitzung?", optionen: ["Win+L", "Win+E", "Win+D"], richtigeAntwort: 0,
+        rueckmeldungRichtig: "Richtig. Win+L sperrt die Sitzung.", rueckmeldungFalsch: "Nicht ganz. Win+L sperrt die Sitzung." },
+      { id: "quiz-2", frage: "Was öffnet Win+R?", optionen: ["Den Datei-Explorer", "Den Dialog Ausführen", "Den Task-Manager"], richtigeAntwort: 1,
+        rueckmeldungRichtig: "Richtig. Win+R öffnet Ausführen.", rueckmeldungFalsch: "Nicht ganz. Win+R öffnet den Dialog Ausführen." },
+      { id: "quiz-3", frage: "Welche Tastenkombination öffnet den Datei-Explorer?", optionen: ["Win+I", "Win+X", "Win+E"], richtigeAntwort: 2,
+        rueckmeldungRichtig: "Richtig. Win+E öffnet den Datei-Explorer.", rueckmeldungFalsch: "Nicht ganz. Win+E öffnet den Datei-Explorer." },
+      { id: "quiz-4", frage: "Welcher Befehl öffnet die Systemeigenschaften?", optionen: ["sysdm.cpl", "ncpa.cpl", "powercfg.cpl"], richtigeAntwort: 0,
+        rueckmeldungRichtig: "Richtig. sysdm.cpl öffnet die Systemeigenschaften.", rueckmeldungFalsch: "Nicht ganz. Der Befehl lautet sysdm.cpl." },
+      { id: "quiz-5", frage: "Was öffnet powercfg.cpl?", optionen: ["Netzwerkverbindungen", "Energieoptionen", "Computerverwaltung"], richtigeAntwort: 1,
+        rueckmeldungRichtig: "Richtig. powercfg.cpl öffnet die Energieoptionen.", rueckmeldungFalsch: "Nicht ganz. powercfg.cpl öffnet die Energieoptionen." },
+      { id: "quiz-6", frage: "Welche Endung hat der Befehl für die Computerverwaltung?", optionen: [".msd", ".cpl", ".msc"], richtigeAntwort: 2,
+        rueckmeldungRichtig: "Richtig. Die Endung ist .msc.", rueckmeldungFalsch: "Nicht ganz. compmgmt.msc endet auf .msc, nicht auf .msd." },
+      { id: "quiz-7", frage: "Welche Aussage zu secpol.msc stimmt?",
+        optionen: ["Es ist nicht in jeder Windows-Edition verfügbar.", "Es öffnet Energieoptionen.", "Es ist eine Tastenkombination."], richtigeAntwort: 0,
+        rueckmeldungRichtig: "Richtig. secpol.msc ist nicht in jeder Windows-Edition verfügbar.", rueckmeldungFalsch: "Nicht ganz. secpol.msc ist nicht in jeder Windows-Edition verfügbar." },
+      { id: "quiz-8", frage: "Welche Tastenkombination öffnet den Task-Manager?", optionen: ["Win+D", "Strg+Umschalt+Esc", "Win+I"], richtigeAntwort: 1,
+        rueckmeldungRichtig: "Richtig. Strg+Umschalt+Esc öffnet den Task-Manager.", rueckmeldungFalsch: "Nicht ganz. Strg+Umschalt+Esc öffnet den Task-Manager." },
+      { id: "quiz-9", frage: "Wie öffnet man in dieser Übung die Netzwerkverbindungen?",
+        optionen: ["Win+R, dann ncpa.cpl", "Win+E, dann ncpa.cpl", "Win+L, dann ncpa.cpl"], richtigeAntwort: 0,
+        rueckmeldungRichtig: "Richtig. Öffne Ausführen mit Win+R und gib ncpa.cpl ein.", rueckmeldungFalsch: "Nicht ganz. Nutze Win+R und gib ncpa.cpl ein." },
+      { id: "quiz-10", frage: "Was gilt für die Darstellung der Energieoptionen?",
+        optionen: ["Sie ist immer gleich.", "Sie kann je nach Windows-Version unterschiedlich sein.", "Sie ist in jeder Edition nicht verfügbar."], richtigeAntwort: 1,
+        rueckmeldungRichtig: "Richtig. Die Darstellung kann je nach Windows-Version unterschiedlich sein.", rueckmeldungFalsch: "Nicht ganz. Die Darstellung kann je nach Windows-Version unterschiedlich sein." },
+      { id: "quiz-11", frage: "Welche Aussage zum Lokalen Gruppenrichtlinien-Editor unter Windows 11 Home ist richtig?",
+        optionen: ["Er ist dort normalerweise nicht verfügbar.", "Er ist dort immer verfügbar.", "Er wird durch diese Lernkarte automatisch installiert."], richtigeAntwort: 0,
+        rueckmeldungRichtig: "Richtig. Unter Windows 11 Home ist der Editor normalerweise nicht verfügbar.", rueckmeldungFalsch: "Nicht ganz. Unter Windows 11 Home ist der Editor normalerweise nicht verfügbar." },
+      { id: "quiz-12", frage: "Was ist bei der Option „Abgesicherter Start“ in msconfig wichtig?",
+        optionen: ["Sie kann bei weiteren Neustarts wirksam bleiben, bis sie wieder deaktiviert wird.", "Sie wird durch das Lernmodul automatisch eingeschaltet.", "Sie gilt nur für den aktuellen Start und wird immer automatisch zurückgesetzt."], richtigeAntwort: 0,
+        rueckmeldungRichtig: "Richtig. Die Option kann bei weiteren Neustarts wirksam bleiben, bis sie wieder deaktiviert wird.", rueckmeldungFalsch: "Nicht ganz. Die Option kann bei weiteren Neustarts wirksam bleiben, bis sie wieder deaktiviert wird." }
+    ],
+    hinweise: {
+      editionen: "secpol.msc ist nicht in jeder Windows-Edition verfügbar. Die Darstellung von powercfg.cpl kann je nach Windows-Version unterschiedlich sein. Der Lokale Gruppenrichtlinien-Editor ist unter Windows 11 Home normalerweise nicht verfügbar. Die Systemkonfiguration ist auch unter Windows 11 verfügbar.",
+      rechte: "Zum Ansehen können je nach Werkzeug und Umgebung unterschiedliche Berechtigungen gelten. Ändere nichts ohne klaren Auftrag.",
+      sicherheit: "Befehle werden nur als Lerninhalt gezeigt. Das Modul führt keine Windows-Befehle aus und ändert keine Systemeinstellungen. Sicherheitsrichtlinie und Dienste werden nur erklärt, nicht konfiguriert. Wiederholung ist unbegrenzt; es gibt keine Punkte-Sperre. Gruppenrichtlinien und die Option „Abgesicherter Start“ nicht ohne konkreten Auftrag ändern."
+    }
+  };
+
+  /* Zuordnung Quizfrage -> Karte. Das Thema der Frage entscheidet, nicht der Antworttext. */
+  var QUIZ_KARTE = {
+    "quiz-1": "win-l", "quiz-2": "win-r", "quiz-3": "win-e", "quiz-4": "sysdm-cpl",
+    "quiz-5": "powercfg-cpl", "quiz-6": "compmgmt-msc", "quiz-7": "secpol-msc",
+    "quiz-8": "strg-umschalt-esc", "quiz-9": "ncpa-cpl", "quiz-10": "powercfg-cpl",
+    "quiz-11": "gpedit-msc", "quiz-12": "msconfig"
+  };
+
+  function nichtLeer(t) { return typeof t === "string" && t.trim() !== ""; }
+
+  function normalisiereKarte(k) {
+    var hinweise = [];
+    var begriffe = [];
+    if (nichtLeer(k.sicherheit)) { hinweise.push("Sicherheit: " + k.sicherheit); }
+    if (nichtLeer(k.edition)) { hinweise.push("Windows-Edition: " + k.edition); }
+    if (nichtLeer(k.fachwort)) {
+      var pos = k.fachwort.indexOf(":");
+      var begriff = pos > 0 ? k.fachwort.slice(0, pos).trim() : "";
+      var erkl = pos > 0 ? k.fachwort.slice(pos + 1).trim() : "";
+      if (begriff && erkl) { begriffe.push({ begriff: begriff, erklaerung: erkl }); }
+      else { hinweise.push("Fachwort: " + k.fachwort); }
+    }
+    return {
+      id: k.id, art: k.art, titel: k.titel, eingabe: k.eingabe,
+      erklaerung: k.zweck, praxis: k.situation,
+      hinweise: hinweise, begriffe: begriffe,
+      quellen: Array.isArray(k.quellen) ? k.quellen.map(function (q) { return { titel: q.titel, url: q.url }; }) : []
+    };
+  }
+
+  function kartePerId(karten, id) {
+    for (var i = 0; i < karten.length; i += 1) { if (karten[i].id === id) { return karten[i]; } }
+    return null;
+  }
+
+  function baueUebung(u, karten) {
+    var karte = kartePerId(karten, u.richtigeAntwort);
+    var art = karte ? karte.art : "";
+    var optionen = karten.filter(function (c) { return c.art === art; })
+      .map(function (c) { return { id: c.id, text: c.eingabe }; });
+    var a = {
+      id: u.id, art: art, frage: u.situation, optionen: optionen,
+      loesungId: u.richtigeAntwort, erklaerung: karte ? karte.erklaerung : "",
+      kartenIds: karte ? [karte.id] : []
+    };
+    if (nichtLeer(u.rueckmeldungRichtig)) { a.rueckmeldungRichtig = u.rueckmeldungRichtig; }
+    if (nichtLeer(u.rueckmeldungFalsch)) { a.rueckmeldungFalsch = u.rueckmeldungFalsch; }
+    return a;
+  }
+
+  function baueQuiz(q, karten) {
+    var karte = kartePerId(karten, QUIZ_KARTE[q.id]);
+    var optionen = (q.optionen || []).map(function (t, i) { return { id: "option-" + i, text: t }; });
+    var ok = Number.isInteger(q.richtigeAntwort) && q.richtigeAntwort >= 0 && q.richtigeAntwort < optionen.length;
+    var a = {
+      id: q.id, art: karte ? karte.art : "", frage: q.frage, optionen: optionen,
+      loesungId: ok ? optionen[q.richtigeAntwort].id : "",
+      erklaerung: karte ? karte.erklaerung : "",
+      kartenIds: karte ? [karte.id] : []
+    };
+    if (nichtLeer(q.rueckmeldungRichtig)) { a.rueckmeldungRichtig = q.rueckmeldungRichtig; }
+    if (nichtLeer(q.rueckmeldungFalsch)) { a.rueckmeldungFalsch = q.rueckmeldungFalsch; }
+    return a;
+  }
+
+  function normalisiere(roh) {
+    var karten = roh.karten.map(normalisiereKarte);
+    return {
+      karten: karten,
+      uebungen: roh.uebungen.map(function (u) { return baueUebung(u, karten); }),
+      quiz: roh.quiz.map(function (q) { return baueQuiz(q, karten); }),
+      allgemeineHinweise: [
+        { titel: "Windows-Editionen", text: roh.hinweise.editionen },
+        { titel: "Berechtigungen", text: roh.hinweise.rechte },
+        { titel: "Sicherheit", text: roh.hinweise.sicherheit }
+      ]
+    };
+  }
+
+  var DATEN = normalisiere(ROH);
+  var root = typeof globalThis !== "undefined" ? globalThis : (typeof window !== "undefined" ? window : this);
+  root.WINDOWS_WERKZEUGKISTE_DATEN = DATEN;
+  if (typeof module !== "undefined" && module.exports) { module.exports = DATEN; }
+}());
