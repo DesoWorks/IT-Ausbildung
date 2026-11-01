@@ -77,7 +77,7 @@ assert(subnetting.status === "verfuegbar" && subnetting.datei === "module/subnet
 assert(fs.existsSync(path.join(wurzel, subnetting.datei)), "Subnetting-Moduldatei existiert");
 
 const alle = daten.flatMap(j => j.module);
-assert.equal(global.MODULE_TOOLS.length, 4, "vier Werkzeuge: die drei der Basis plus Windows-Werkzeugkiste");
+assert.equal(global.MODULE_TOOLS.length, 5, "fünf Werkzeuge: Basis, Windows-Werkzeugkiste und BWL-Werkstatt");
 const windowsTools = global.MODULE_TOOLS.filter(u => u.id === "windows-werkzeugkiste");
 assert.strictEqual(windowsTools.length, 1, "Windows-Werkzeugkiste genau einmal im Werkzeugkatalog");
 assert.deepStrictEqual(windowsTools[0], {
@@ -87,7 +87,10 @@ assert.deepStrictEqual(windowsTools[0], {
 });
 assert(fs.existsSync(path.join(wurzel, windowsTools[0].datei)), "Windows-Werkzeugkiste-Datei existiert");
 assert(!alle.concat(alle.flatMap(m => m.unterthemen || []), einstieg).some(m => m.id === "windows-werkzeugkiste"), "Windows-Werkzeugkiste nicht als Lektion oder Einstieg dupliziert");
-assert(!global.MODULE_TOOLS.some(t => t.id === "bwl-werkstatt"), "BWL-Werkstatt gehört nicht zu dieser Basis");
+const bwl = global.MODULE_TOOLS.find(u => u.id === "bwl-werkstatt");
+assert(bwl && bwl.status === "verfuegbar" && bwl.datei === "module/bwl-werkstatt.html" && bwl.typ === "werkzeug", "BWL-Werkstatt: eigenes Werkzeug, nicht in einer Lektion");
+assert(fs.existsSync(path.join(wurzel, bwl.datei)), "BWL-Werkstatt-Datei existiert");
+assert(!alle.concat(alle.flatMap(m => m.unterthemen || []), einstieg).some(m => m.id === "bwl-werkstatt"), "BWL-Werkstatt nicht als Lektion oder Einstieg dupliziert");
 assert(global.MODULE_TOOLS.every(t => t.typ === "werkzeug" && t.datei), "Tools typisiert und mit Zielseiten");
 assert(!lf3.unterthemen.some(u => global.MODULE_TOOLS.some(t => t.id === u.id)), "Werkzeuge erscheinen nicht in den Lernlektionen");
 const alleVerfuegbar = alle.concat(einstieg);
@@ -133,7 +136,7 @@ assert.strictEqual(toolsSection.children[0].id, "tools-titel");
 assert.strictEqual(toolsSection.children[0].textContent, "Tools & Nachschlagen");
 const toolCards = toolsSection.children[1];
 assert.strictEqual(toolCards.tagName, "ul");
-assert.strictEqual(toolCards.children.length, 4, "die vier Werkzeuge dieser Basis sind gerendert");
+assert.strictEqual(toolCards.children.length, 5, "die fünf Werkzeuge dieser Basis sind gerendert");
 toolCards.children.forEach((card, index) => {
   const tool = global.MODULE_TOOLS[index];
   assert.strictEqual(card.className, "modul modul-verfuegbar", "vorhandenes Kartenmuster");

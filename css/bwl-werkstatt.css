@@ -1,0 +1,77 @@
+/* BWL-Werkstatt. Nutzt nur die gemeinsamen Farbvariablen. Keine Animationen. */
+.bwl-bereich[hidden] { display: none; }
+.bwl-modus { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.bwl-modus .knopf[aria-pressed="true"] { background: var(--farbe-akzent); color: var(--farbe-aktiv-tekst); }
+.bwl-tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.bwl-tabs .knopf[aria-selected="true"] { background: var(--farbe-akzent); color: var(--farbe-aktiv-tekst); }
+.bwl-form { display: grid; gap: .55rem; max-width: 42rem; }
+.bwl-form label { font-weight: 700; }
+.bwl-form input[type="text"], .bwl-form input:not([type]) {
+  font: inherit; padding: .6rem .7rem; min-height: 2.75rem;
+  border: 2px solid var(--farbe-rahmen); border-radius: 8px;
+  background: var(--farbe-kontroll-flaeche); color: var(--farbe-kontroll-text);
+}
+.bwl-form input:focus-visible, .bwl-tabs .knopf:focus-visible, .bwl-modus .knopf:focus-visible,
+.bwl-form .knopf:focus-visible, .bwl-lern-aufgabe-box .knopf:focus-visible,
+.bwl-woerter summary:focus-visible, .bwl-tabelle-wrap:focus-visible,
+#bwl-lern-aufgabe [tabindex="-1"]:focus-visible, #bwl-ergebnis:focus-visible, .bwl-fehler:focus-visible {
+  outline: 3px solid var(--farbe-akzent); outline-offset: 2px;
+}
+.bwl-panel, .bwl-panel > div:not([hidden]) { display: grid; gap: .55rem; }
+.bwl-positionen { display: grid; gap: .9rem; }
+.bwl-panel > label { display: block; min-width: 0; overflow-wrap: normal; }
+.bwl-panel > input { display: block; width: 100%; min-width: 0; }
+.bwl-zeile {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: .5rem .75rem; padding-bottom: .8rem; border-bottom: 1px solid var(--farbe-rahmen);
+}
+.bwl-feld { display: grid; grid-template-rows: auto auto; gap: .4rem; min-width: 0; align-content: start; }
+.bwl-feld > label { min-width: 0; overflow-wrap: normal; }
+.bwl-feld > input { display: block; width: 100%; min-width: 0; }
+.bwl-feld-name { grid-column: 1 / -1; }
+.bwl-wahl { font-weight: 600; display: flex; gap: .45rem; align-items: center; min-height: 2.75rem; }
+.bwl-fehler { margin-top: .9rem; padding: .8rem 1rem; border: 3px solid var(--farbe-fehler); border-radius: var(--radius); background: var(--farbe-fehler-flaeche); color: var(--farbe-fehler); font-weight: 700; }
+.bwl-fehler[hidden], .bwl-panel[hidden] { display: none; }
+.bwl-fehler::before { content: "Eingabe prüfen: "; }
+
+/* Ergebnistabellen */
+.bwl-tabelle-wrap { overflow-x: auto; margin: .8rem 0; max-width: 100%; }
+.bwl-tabelle { border-collapse: collapse; width: 100%; min-width: 26rem; }
+.bwl-tabelle caption { text-align: left; font-weight: 700; padding: .3rem 0; }
+.bwl-tabelle th, .bwl-tabelle td { border: 1px solid var(--farbe-rahmen); padding: .5rem .65rem; text-align: left; vertical-align: top; }
+.bwl-tabelle thead th { background: var(--farbe-leiste); }
+.bwl-tabelle tbody th { font-weight: 600; }
+.bwl-tabelle .bwl-zahl { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Lernmodus */
+.bwl-woerter { margin: .8rem 0; padding: .6rem .9rem; border: 1px solid var(--farbe-rahmen); border-radius: var(--radius); background: var(--farbe-erklaerung-flaeche); }
+.bwl-woerter summary { cursor: pointer; font-weight: 700; min-height: 2.75rem; display: flex; align-items: center; }
+.bwl-lern-status { margin: .8rem 0 0; font-weight: 700; min-height: 1.5rem; }
+.bwl-fortschritt { font-weight: 700; }
+.bwl-phasen { list-style: none; margin: 1rem 0; padding: 0; display: grid; gap: .9rem; }
+.bwl-phase { padding: .9rem 1rem; border: 2px solid var(--farbe-rahmen); border-radius: var(--radius); background: var(--farbe-flaeche); }
+.bwl-phase-aktiv { border-color: var(--farbe-akzent); border-width: 3px; }
+.bwl-phase-fertig { border-color: var(--farbe-ok); background: var(--farbe-ok-flaeche); }
+.bwl-phase-gesperrt { background: var(--farbe-geplant-flaeche); color: var(--farbe-geplant-tekst); }
+.bwl-phase h4 { margin: 0 0 .4rem; }
+.bwl-feld-meldung { margin: 0; font-weight: 700; }
+.bwl-feld-meldung[hidden] { display: none; }
+.bwl-nok { color: var(--farbe-fehler); }
+.bwl-ok { color: var(--farbe-ok); }
+.bwl-lern-form input[aria-invalid="true"] { border-color: var(--farbe-fehler); border-width: 3px; }
+.bwl-lern-box { margin: .8rem 0; padding: .8rem 1rem; border-left: 6px solid var(--farbe-akzent); background: var(--farbe-hinweis-flaeche); border-radius: 8px; }
+.bwl-lern-box p { margin: .3rem 0; }
+.bwl-lern-fertig { margin: 1rem 0; padding: 1rem; border: 3px solid var(--farbe-ok); border-radius: var(--radius); background: var(--farbe-ok-flaeche); }
+
+@media (max-width: 640px) {
+  .bwl-zeile { grid-template-columns: minmax(0, 1fr); }
+  .bwl-feld-name { grid-column: 1; }
+  .bwl-tabelle { min-width: 22rem; }
+}
+
+/* Angebotspositionen hinzufügen und entfernen */
+.bwl-zeile[hidden] { display: none; }
+.bwl-zeile-kopf { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; }
+.bwl-artikel-titel { margin: 0; font-size: 1.1rem; }
+.bwl-panel > .bwl-position-aktionen { justify-items: start; align-items: center; }
+.bwl-position-aktionen p { margin: 0; }
