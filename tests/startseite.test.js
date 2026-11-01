@@ -1,12 +1,13 @@
 /* Datentest für die modulare Startseite (js/module-daten.js).
  *
- * Prüft nur die Daten, nicht die Darstellung im Browser.
+ * Prüft Daten und Werkzeugdarstellung mit einem minimalen DOM, nicht das Browserlayout.
  * Aufruf:  node tests/startseite.test.js
  */
 "use strict";
 const fs = require("fs");
 const path = require("path");
 const assert = require("assert");
+const vm = require("vm");
 
 const wurzel = path.join(__dirname, "..");
 global.window = global;
@@ -76,7 +77,17 @@ assert(subnetting.status === "verfuegbar" && subnetting.datei === "module/subnet
 assert(fs.existsSync(path.join(wurzel, subnetting.datei)), "Subnetting-Moduldatei existiert");
 
 const alle = daten.flatMap(j => j.module);
-assert.equal(global.MODULE_TOOLS.length, 3, "alle drei Werkzeuge bleiben im zentralen Werkzeugkatalog");
+assert.equal(global.MODULE_TOOLS.length, 4, "vier Werkzeuge: die drei der Basis plus Windows-Werkzeugkiste");
+const windowsTools = global.MODULE_TOOLS.filter(u => u.id === "windows-werkzeugkiste");
+assert.strictEqual(windowsTools.length, 1, "Windows-Werkzeugkiste genau einmal im Werkzeugkatalog");
+assert.deepStrictEqual(windowsTools[0], {
+  id: "windows-werkzeugkiste", typ: "werkzeug", titel: "Windows-Werkzeugkiste",
+  beschreibung: "Windows-Tastenkombinationen und Systemwerkzeuge lernen, üben und testen.",
+  page: "windows-werkzeugkiste", status: "verfuegbar", datei: "module/windows-werkzeugkiste.html"
+});
+assert(fs.existsSync(path.join(wurzel, windowsTools[0].datei)), "Windows-Werkzeugkiste-Datei existiert");
+assert(!alle.concat(alle.flatMap(m => m.unterthemen || []), einstieg).some(m => m.id === "windows-werkzeugkiste"), "Windows-Werkzeugkiste nicht als Lektion oder Einstieg dupliziert");
+assert(!global.MODULE_TOOLS.some(t => t.id === "bwl-werkstatt"), "BWL-Werkstatt gehört nicht zu dieser Basis");
 assert(global.MODULE_TOOLS.every(t => t.typ === "werkzeug" && t.datei), "Tools typisiert und mit Zielseiten");
 assert(!lf3.unterthemen.some(u => global.MODULE_TOOLS.some(t => t.id === u.id)), "Werkzeuge erscheinen nicht in den Lernlektionen");
 const alleVerfuegbar = alle.concat(einstieg);
@@ -90,5 +101,47 @@ verfuegbar.forEach(m => {
     assert(fs.existsSync(path.join(wurzel, u.datei)), "Lektionsdatei fehlt: " + u.datei));
 });
 alle.filter(m => m.status !== "verfuegbar").forEach(m => assert(!m.datei, m.id + " ohne Datei"));
+
+function element(tag) {
+  return {
+    tagName: tag, children: [], dataset: {}, attributes: {}, textContent: "",
+    classList: { add() {} },
+    appendChild(child) { this.children.push(child); return child; },
+    setAttribute(name, value) { this.attributes[name] = value; },
+    addEventListener() {},
+    querySelector() { return null; }
+  };
+}
+function renderStartseite(tools) {
+  const target = element("div");
+  const window = { MODULE_DATEN: daten, MODULE_EINSTIEG: einstieg };
+  if (tools !== undefined) window.MODULE_TOOLS = tools;
+  const storage = { getItem() { return null; }, setItem() {}, removeItem() {} };
+  vm.runInNewContext(startseitenScript, {
+    window, localStorage: storage, sessionStorage: storage,
+    document: { readyState: "complete", createElement: element, getElementById(id) { return id === "jahre" ? target : null; } }
+  });
+  return target;
+}
+const rendered = renderStartseite(global.MODULE_TOOLS);
+assert.strictEqual(rendered.children.length, 5, "Einstieg, drei Ausbildungsjahre und Werkzeugsektion");
+assert.deepStrictEqual(rendered.children.slice(1, 4).map(e => e.dataset.yearId), ["1", "2", "3"], "Ausbildungsjahre bleiben vor den Werkzeugen");
+const toolsSection = rendered.children[4];
+assert.strictEqual(toolsSection.tagName, "section");
+assert.strictEqual(toolsSection.attributes["aria-labelledby"], "tools-titel", "Werkzeugsektion ist beschriftet");
+assert.strictEqual(toolsSection.children[0].id, "tools-titel");
+assert.strictEqual(toolsSection.children[0].textContent, "Tools & Nachschlagen");
+const toolCards = toolsSection.children[1];
+assert.strictEqual(toolCards.tagName, "ul");
+assert.strictEqual(toolCards.children.length, 4, "die vier Werkzeuge dieser Basis sind gerendert");
+toolCards.children.forEach((card, index) => {
+  const tool = global.MODULE_TOOLS[index];
+  assert.strictEqual(card.className, "modul modul-verfuegbar", "vorhandenes Kartenmuster");
+  assert.strictEqual(card.children[0].href, tool.datei, "Werkzeugkarte verlinkt Katalogziel");
+  assert.strictEqual(card.children[0].children[0].textContent, tool.titel, "Werkzeugtitel aus dem Katalog");
+  assert.strictEqual(card.children[0].children[1].textContent, tool.beschreibung, "Beschreibung aus dem Katalog");
+});
+assert.strictEqual(renderStartseite().children.length, 4, "fehlender Werkzeugkatalog bleibt fehlerfrei");
+assert.strictEqual(renderStartseite([]).children.length, 4, "leerer Werkzeugkatalog erzeugt keine leere Sektion");
 
 console.log("startseite.test.js: alle Prüfungen bestanden");
