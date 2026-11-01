@@ -1,0 +1,3 @@
+# Absichtliche Markdown-Zeilenumbrüche (zwei Leerzeichen) in Übergaben nicht als blank-at-eol werten.
+# Andere Whitespace-Prüfungen und alle übrigen Pfade bleiben unverändert.
+docs/uebergaben/*.md whitespace=-blank-at-eol
