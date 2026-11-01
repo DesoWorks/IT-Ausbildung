@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="PC-Explorer Desktop: Bauteile eines Desktop-PCs anklicken oder per Tastatur wählen und ihre Funktion, ihren Einbauort und ihr Zusammenspiel kennenlernen.">
-  <title>PC-Explorer: Desktop-PC (Entwurf)</title>
+  <meta name="description" content="PC-Explorer: Bauteile eines Desktop-PCs und eines Notebooks anklicken oder per Tastatur wählen und ihre Funktion, ihren Einbauort und ihr Zusammenspiel kennenlernen.">
+  <title>PC-Explorer: Desktop-PC und Notebook (Entwurf)</title>
   <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
@@ -17,14 +17,19 @@
     <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
     <div class="kopf-inhalt">
     <p class="kopf-marke">IT-Ausbildung · Werkzeuge · Entwurf</p>
-    <h1>PC-Explorer: Der Desktop-PC von innen</h1>
+    <h1 id="pe-titel">PC-Explorer: Der Desktop-PC von innen</h1>
     <p class="kopf-dauer">Bauteile entdecken · kein Zeitdruck</p>
   </div></header>
   <main id="hauptinhalt" tabindex="-1">
     <section class="abschnitt" aria-labelledby="pe-start">
       <h2 id="pe-start">Bauteil wählen</h2>
       <p class="gross">Wähle ein Bauteil. Du erfährst, <strong>was es tut</strong>, <strong>wo es sitzt</strong> und <strong>mit wem es zusammenarbeitet</strong>.</p>
-      <div class="hinweis-box"><p class="hinweis-titel">So bedienst du den Explorer</p><p>Mit der Maus klickst du ein Bauteil in der Zeichnung oder in der Liste an. Mit der Tastatur springst du mit der Tab-Taste in die Liste, wechselst mit den Pfeiltasten zwischen den Einträgen und wählst mit Enter oder der Leertaste. Die Zeichnung ist eine schematische Skizze und nicht maßstäblich.</p></div>
+      <div class="hinweis-box"><p class="hinweis-titel">So bedienst du den Explorer</p><p>Mit den Knöpfen „Desktop“ und „Notebook“ wechselst du die Ansicht. Mit der Maus klickst du ein Bauteil in der Zeichnung oder in der Liste an. Mit der Tastatur springst du mit der Tab-Taste in die Liste, wechselst mit den Pfeiltasten zwischen den Einträgen und wählst mit Enter oder der Leertaste. Die Zeichnung ist eine schematische Skizze und nicht maßstäblich.</p></div>
+      <div id="pe-ansichten" class="pe-gruppe pe-gruppe-reihe pe-ansichten" role="group" aria-label="Ansicht wählen">
+        <button type="button" data-ansicht="desktop" aria-pressed="true">Desktop</button>
+        <button type="button" data-ansicht="notebook" aria-pressed="false">Notebook</button>
+      </div>
+      <p id="pe-einleitung" class="klein"></p>
       <div class="pe-raster">
         <div class="pe-zeichnung" aria-hidden="true"><svg id="pe-svg" viewBox="0 0 640 400" focusable="false"></svg></div>
         <div>
@@ -33,13 +38,13 @@
       </div>
       <div id="pe-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
     </section>
-    <section class="abschnitt" aria-labelledby="pe-sockel">
+    <section id="pe-abschnitt-sockel" class="abschnitt" aria-labelledby="pe-sockel">
       <h2 id="pe-sockel">CPU-Bauformen: PGA, LGA und BGA</h2>
       <p>Die Bauform legt fest, <strong>wo die Kontakte sitzen</strong>: an der CPU, am Mainboard oder als feste Lötverbindung.</p>
       <div id="pe-sockel-wahl" class="pe-gruppe pe-gruppe-reihe" role="group" aria-label="CPU-Bauformen"></div>
       <div id="pe-sockel-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
     </section>
-    <section class="abschnitt" aria-labelledby="pe-formfaktor">
+    <section id="pe-abschnitt-form" class="abschnitt" aria-labelledby="pe-formfaktor">
       <h2 id="pe-formfaktor">Mainboard-Formfaktoren: ATX, microATX und Mini-ITX</h2>
       <p>Der Formfaktor beschreibt unter anderem Größe und Lage der Befestigungslöcher. Er bestimmt, ob ein Mainboard in ein Gehäuse passt.</p>
       <div id="pe-form-wahl" class="pe-gruppe pe-gruppe-reihe" role="group" aria-label="Mainboard-Formfaktoren"></div>
@@ -47,7 +52,7 @@
     </section>
     <section class="abschnitt" aria-labelledby="pe-quellen">
       <h2 id="pe-quellen">Quellen und Grenzen</h2>
-      <p class="klein">Dieser Entwurf ist nicht fachlich freigegeben. Maße und Jahreszahlen stehen nur dort, wo eine Quelle sie nennt. Die übrigen Erklärtexte sind bewusst einfach gehalten und enthalten keine Messwerte.</p>
+      <p class="klein">Dieser Entwurf ist nicht fachlich freigegeben. Maße und Jahreszahlen stehen nur dort, wo eine Quelle sie nennt. Die übrigen Erklärtexte sind bewusst einfach gehalten und enthalten keine Messwerte. Angaben aus Wikipedia sind vorläufig und keine Norm. Der vollständige JEDEC-Standard JESD318 wurde nicht geöffnet; die CAMM2-Aussagen stammen aus der JEDEC-Pressemitteilung. Beim Notebook hängen Aufbau und Austauschbarkeit vom Modell ab.</p>
       <ul id="pe-quellenliste"></ul>
     </section>
   </main>

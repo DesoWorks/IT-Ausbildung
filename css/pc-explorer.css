@@ -1,13 +1,16 @@
-/* PC-Explorer. Nutzt nur die gemeinsamen Farbvariablen (hell, dunkel, Kontrast). */
+/* PC-Explorer. Nutzt nur die gemeinsamen Farbvariablen (hell, dunkel, Kontrast). Keine Animationen. */
 .pe-raster { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1rem; align-items: start; }
 @media (max-width: 800px) { .pe-raster { grid-template-columns: 1fr; } }
+main section[hidden] { display: none; }
 .pe-zeichnung { border: 1px solid var(--farbe-rahmen); border-radius: var(--radius); background: var(--farbe-flaeche); padding: .5rem; }
 .pe-zeichnung svg { width: 100%; height: auto; display: block; }
-.pe-platine { fill: var(--farbe-geplant-flaeche); stroke: var(--farbe-rahmen); stroke-width: 2; }
 .pe-teil rect { fill: var(--farbe-kontroll-flaeche); stroke: var(--farbe-rahmen); stroke-width: 2; cursor: pointer; }
 .pe-teil text { fill: var(--farbe-kontroll-text); font-size: 14px; pointer-events: none; }
+/* Hintergrundflächen (Gehäuse, Mainboard): zuerst gezeichnet, Teile liegen darüber. */
+.pe-teil.pe-grund rect { fill: var(--farbe-geplant-flaeche); }
+.pe-teil.pe-grund text { fill: var(--farbe-text-leise); }
+.pe-teil[data-id="gehaeuse"] rect { fill: var(--farbe-flaeche); stroke-width: 3; }
 .pe-teil.pe-aktiv rect { stroke: var(--farbe-akzent); stroke-width: 4; }
-.pe-beschriftung { fill: var(--farbe-text-leise); font-size: 14px; }
 .pe-gruppe { display: grid; gap: .5rem; }
 .pe-gruppe-reihe { grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); margin-bottom: .8rem; }
 .pe-gruppe button {
@@ -17,12 +20,16 @@
 }
 .pe-gruppe button[aria-pressed="true"] { border-color: var(--farbe-akzent); border-width: 4px; font-weight: 700; }
 .pe-gruppe button:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
-.pe-detail { margin-top: 1rem; }
+.pe-detail { margin-top: 1rem; overflow-wrap: anywhere; }
 .pe-detail h3 { margin-top: 0; }
 .pe-detail dt { font-weight: 700; margin-top: .6rem; }
 .pe-detail dd { margin: 0; }
+.pe-detail dd ul { margin: .2rem 0 .4rem; }
 .pe-merk { margin-top: .8rem; padding: .5rem .8rem; border: 1px solid var(--farbe-rahmen); border-radius: var(--radius); background: var(--farbe-hinweis-flaeche); }
 .pe-quelle { font-size: .9rem; color: var(--farbe-text-leise); }
+.pe-mehr { margin-top: .8rem; }
+.pe-mehr summary { cursor: pointer; font-weight: 700; min-height: 2.75rem; display: flex; align-items: center; }
+.pe-mehr summary:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
 .pe-detail:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
 
 /* Links im Fließtext: Themenfarbe statt Browser-Standard (Dunkelmodus-Kontrast). */
