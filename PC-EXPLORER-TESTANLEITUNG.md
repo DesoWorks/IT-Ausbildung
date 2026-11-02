@@ -1,16 +1,16 @@
 # PC-Explorer auf Windows prüfen
 
-Dies ist ein **nicht fachlich freigegebener Teststand**. Er liegt auf dem Branch `feature/pc-explorer-2026-11-01`, nicht auf `main` und nicht auf `dev`.
+Dies ist ein **nicht fachlich freigegebener Teststand**. Er liegt auf dem Branch `feature/pc-explorer-navigation-2026-11-02`, nicht auf `main` und nicht auf `dev`.
 
 ## Herunterladen
 
 ZIP dieses Branches:
 
-https://github.com/DesoWorks/IT-Ausbildung/archive/refs/heads/feature/pc-explorer-2026-11-01.zip
+https://github.com/DesoWorks/IT-Ausbildung/archive/refs/heads/feature/pc-explorer-navigation-2026-11-02.zip
 
-Nach dem Entpacken heißt der Ordner ungefähr `IT-Ausbildung-feature-pc-explorer-2026-11-01`. Nicht die ZIP von `main` oder `dev` nehmen.
+Nach dem Entpacken heißt der Ordner ungefähr `IT-Ausbildung-feature-pc-explorer-navigation-2026-11-02`. Nicht die ZIP von `main`, `dev` oder `feature/pc-explorer-2026-11-01` nehmen.
 
-Dieser Branch enthält den PC-Explorer und den Projektstand bis `909c5e2`. Die späteren Commits auf `origin/dev` (Navigationsfix und BWL-Werkstatt) sind hier nicht enthalten. Für die Prüfung des PC-Explorers werden sie nicht gebraucht.
+Dieser Branch enthält den PC-Explorer und den Navigations-Scrollfix. Die BWL-Werkstatt ist nicht dabei. Die alten Commits von `origin/dev` sind keine Vorfahren; der Scrollfix wurde gezielt übernommen.
 
 ## Starten
 
@@ -24,6 +24,8 @@ Die Datei öffnet `module\pc-explorer.html` im Standardbrowser. Edge oder Chrome
 Alternativ die Datei direkt öffnen:
 
 `module\pc-explorer.html`
+
+Über die Plattform: `index.html` öffnen. Unter **Tools & Nachschlagen** steht **PC-Explorer**. Die linke Navigation merkt sich die Scrollposition beim Wechsel der Themenseite. Der Explorer bleibt als Entwurf gekennzeichnet.
 
 ## Was du prüfen kannst
 

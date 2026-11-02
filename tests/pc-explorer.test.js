@@ -120,7 +120,7 @@ const echt = gctx.window.GLOSSAR;
 assert(Array.isArray(echt) && echt.length > 0);
 alle.forEach(x => assert.equal(e.glossarVorhanden(echt, x.glossar), echt.some(g => g.begriff === x.glossar)));
 
-// Seite: Container, die das Skript erwartet, Zugänglichkeit, kein Einhängen in Katalog
+// Seite: Container, die das Skript erwartet, Zugänglichkeit, Einhängen nur über den Werkzeugkatalog
 ["pe-svg", "pe-teile", "pe-detail", "pe-sockel-wahl", "pe-sockel-detail", "pe-form-wahl", "pe-form-detail", "pe-quellenliste",
   "pe-ansichten", "pe-titel", "pe-einleitung", "pe-abschnitt-sockel", "pe-abschnitt-form"].forEach(id => assert(html.includes('id="' + id + '"'), "HTML ohne " + id));
 assert(html.includes('lang="de"') && html.includes("skip-link") && html.includes('aria-live="polite"'));
@@ -135,10 +135,10 @@ assert(css.includes(":focus-visible") && css.includes("min-height"));
 assert(!/animation|transition|@keyframes/.test(css), "Keine Animationen");
 assert(!/https?:\/\//.test(js.replace(/(?:url|lizenzUrl|commonsUrl): "https:\/\/[^"]+"/g, "").replace('var NS = "http://www.w3.org/2000/svg";', "")), "Keine Laufzeit-Abfrage externer Adressen (SVG-Namespace-Kennung ausgenommen)");
 assert(!/fetch\(|XMLHttpRequest|import\(/.test(js), "Läuft offline");
-for (const f of ["js/module-daten.js", "index.html"]) {
-  const p = path.join(root, f);
-  if (fs.existsSync(p)) assert(!fs.readFileSync(p, "utf8").includes("pc-explorer"), "PC-Explorer ist in " + f + " eingehängt");
-}
+const katalog = fs.readFileSync(path.join(root, "js/module-daten.js"), "utf8");
+assert(katalog.includes('id: "pc-explorer"') && katalog.includes('page: "pc-explorer"') && katalog.includes("module/pc-explorer.html"), "PC-Explorer ist im Werkzeugkatalog");
+assert.equal((katalog.match(/id: "pc-explorer"/g) || []).length, 1, "PC-Explorer genau einmal im Katalog");
+assert(!fs.readFileSync(path.join(root, "index.html"), "utf8").includes("pc-explorer"), "Startseite hängt den Explorer nicht fest ein");
 
 // Echte Commons-Fotos: unveränderte Dateien, Pflichtangaben in den Daten, sichtbar gerendert
 const crypto = require("node:crypto");
