@@ -546,7 +546,8 @@
     rueckseite: {
       name: "Rückseite", titel: "PC-Explorer: Die Rückseite eines Desktop-PCs", gruppe: "Anschlüsse auf der Rückseite (Beispiel)",
       einleitung: "Rückseiten-Ansicht: Die gezeigten Anschlüsse sind ein Beispiel. Nicht jeder PC hat sie, und Anzahl, Anordnung und Standards unterscheiden sich je nach Mainboard und Grafikkarte. " +
-        "Unterschieden wird zwischen den Anschlüssen des Mainboards (Mainboard-I/O) und den Anschlüssen einer Erweiterungskarte, zum Beispiel einer Grafikkarte.",
+        "Unterschieden wird zwischen den Anschlüssen des Mainboards (Mainboard-I/O) und den Anschlüssen einer Erweiterungskarte, zum Beispiel einer Grafikkarte. " +
+        "USB-A und USB-C sind Steckerformen. USB 2.0, USB 3.2 und USB4 sind Standardnamen und hier keine eigenen Buchsenformen. Die Formen sind eine didaktische Näherung, kein Normmaß.",
       teile: RUECK_TEILE, sockel: [], formen: []
     },
     mainboard: {
@@ -558,7 +559,8 @@
     },
     historisch: {
       name: "Ältere Anschlüsse", titel: "PC-Explorer: Ältere Anschlüsse und Steckplätze", gruppe: "Historische Technik",
-      einleitung: "Dieser Bereich zeigt ältere Technik zum Vergleich. Diese Anschlüsse gehören nicht zur typischen Ausstattung aktueller Mainboards.",
+      einleitung: "Dieser Bereich zeigt ältere Technik zum Vergleich. Diese Anschlüsse gehören nicht zur typischen Ausstattung aktueller Mainboards. " +
+        "IDE/PATA erkennst du an der breiten zweireihigen Kontaktleiste. PCI und AGP sind Steckplätze mit unterschiedlicher Kerbe. Eine Farbe wäre nur eine didaktische Konvention, keine belegte Normfarbe.",
       teile: HIST_TEILE, sockel: [], formen: []
     },
     server: null /* reservierter Daten-Slot, kein auswählbarer Zustand */
@@ -777,21 +779,122 @@ var aktuelleAnsicht = "desktop";
       svgKreis(g, x + w - 14, y + 14, 4, "pe-led");
     }
   }
-  /* Anschlussansichten (Rückseite, Mainboard, historisch): schematisches Rechteck mit Kurzbeschriftung im Teil.
-     Die Gruppe bestimmt Füllung und Kontur; die Beschriftung bleibt auch ohne Farbe lesbar. */
+  /* Anschlussansichten: erkennbare Formen statt Rechtecke. Didaktische Näherung, keine Normmaße, keine Pinbelegung. */
   var IO_KLASSE = { "mainboard-io": "pe-io-mb", "erweiterungskarte": "pe-io-karte", "mainboard": "pe-io-intern", "historisch": "pe-io-alt" };
-  /* Beschriftung im Teil, wenn sie waagerecht passt; sonst gedreht, wenn das Teil hoch genug ist; sonst unter dem Teil. */
+  function ioKlasse(t) { return IO_KLASSE[t.gruppe] || "pe-io-intern"; }
+  function buchseUsbA(g, x, y, w, h, cls) {
+   var bw = Math.max(16, Math.min(w - 6, 34)), bh = Math.max(8, Math.min(h - 8, 14));
+    var bx = x + (w - bw) / 2, by = y + Math.max(2, (h - bh) / 2 - 4);
+    svgRect(g, bx, by, bw, bh, "pe-haupt " + cls, 1);
+    svgRect(g, bx + 3, by + 3, bw - 6, Math.max(3, bh * 0.4), "pe-zunge", 1);
+  }
+  function buchseUsbC(g, x, y, w, h, cls) {
+    var bw = Math.max(12, Math.min(w - 8, 22)), bh = Math.max(7, Math.min(h - 10, 10));
+   var bx = x + (w - bw) / 2, by = y + (h - bh) / 2;
+    svgRect(g, bx, by, bw, bh, "pe-haupt " + cls, bh / 2);
+  }
+  function buchseRj45(g, x, y, w, h, cls) {
+    var bw = Math.max(20, Math.min(w - 6, 40)), bh = Math.max(14, Math.min(h - 8, 26));
+   var bx = x + (w - bw) / 2, by = y + (h - bh) / 2;
+   svgRect(g, bx, by + 5, bw, bh - 5, "pe-haupt " + cls, 1);
+   svgRect(g, bx + bw * 0.28, by, bw * 0.44, 6, cls, 1);
+  }
+  function buchseKlinke(g, x, y, w, h, cls) {
+   var n = w >= 70 ? 3 : 1, r = Math.max(5, Math.min(8, h * 0.22)), cy = y + h * 0.4;
+   for (var i = 0; i < n; i++) {
+     var cx = x + w * ((i + 1) / (n + 1));
+     svgKreis(g, cx, cy, r, (i === 0 ? "pe-haupt " : "") + cls);
+     svgKreis(g, cx, cy, r * 0.35, "pe-zunge");
+   }
+  }
+  function buchseHdmi(g, x, y, w, h, cls) {
+   var bw = Math.max(18, Math.min(w - 8, 38)), bh = Math.max(9, Math.min(h - 8, 15));
+   var bx = x + (w - bw) / 2, by = y + (h - bh) / 2, inset = bw * 0.14;
+   svgForm(g, "polygon", { points: [bx + inset, by, bx + bw - inset, by, bx + bw, by + bh, bx, by + bh].join(" ") }, "pe-haupt " + cls);
+  }
+  function buchseDisplayPort(g, x, y, w, h, cls) {
+   var bw = Math.max(16, Math.min(w - 8, 32)), bh = Math.max(9, Math.min(h - 8, 14));
+   var bx = x + (w - bw) / 2, by = y + (h - bh) / 2, cut = Math.min(6, bh * 0.45);
+   svgForm(g, "polygon", { points: [bx, by, bx + bw - cut, by, bx + bw, by + cut, bx + bw, by + bh, bx, by + bh].join(" ") }, "pe-haupt " + cls);
+  }
+  function buchsePs2(g, x, y, w, h, cls) {
+   var r = Math.max(7, Math.min(w, h) * 0.28), cx = x + w / 2, cy = y + h / 2;
+   svgKreis(g, cx, cy, r, "pe-haupt " + cls);
+   svgRect(g, cx - 2, cy - r - 2, 4, 4, cls, 0);
+  }
+  function buchseAntenne(g, x, y, w, h, cls) {
+   var r = Math.max(4, Math.min(8, h * 0.18)), cy = y + h * 0.4;
+   svgKreis(g, x + w * 0.32, cy, r, "pe-haupt " + cls);
+   svgKreis(g, x + w * 0.68, cy, r, cls);
+  }
+  function steckplatzPcie(g, x, y, w, h, cls, kerbe) {
+   var bh = Math.max(7, Math.min(h - 4, 14)), by = y + (h - bh) / 2;
+   svgRect(g, x + 2, by, w - 4, bh, "pe-haupt " + cls, 1);
+   svgRect(g, x + 2 + (kerbe || 0.18) * (w - 12), by - 2, 8, bh + 4, "pe-kerbe", 0);
+  }
+  function leisteIde(g, x, y, w, h, cls) {
+   svgRect(g, x + 2, y + 2, w - 4, h - 4, "pe-haupt " + cls, 1);
+   var cols = 20;
+   for (var row = 0; row < 2; row++) {
+     for (var col = 0; col < cols; col++) {
+       svgRect(g, x + 6 + col * ((w - 12) / cols), y + 5 + row * ((h - 10) / 2), 2, 2, "pe-pin", 0);
+     }
+   }
+  }
+  function kopfZweireihig(g, x, y, w, h, cls) {
+   var vertical = h > w * 1.3;
+   svgRect(g, x + 1, y + 1, Math.max(8, w - 2), Math.max(8, h - 2), "pe-haupt " + cls, 1);
+   var n = vertical ? 10 : 5;
+   for (var i = 0; i < n; i++) {
+     if (vertical) {
+       var yy = y + 4 + i * ((h - 8) / n);
+       svgRect(g, x + 4, yy, 3, 2, "pe-pin", 0);
+       svgRect(g, x + w - 7, yy, 3, 2, "pe-pin", 0);
+     } else {
+       var xx = x + 4 + i * ((w - 8) / n);
+       svgRect(g, xx, y + 3, 2, 3, "pe-pin", 0);
+       svgRect(g, xx, y + h - 6, 2, 3, "pe-pin", 0);
+     }
+   }
+  }
+  function schlitzeRam(g, x, y, w, h, cls) {
+   var sw = Math.max(6, (w - 10) / 4);
+   for (var i = 0; i < 4; i++) {
+     svgRect(g, x + 3 + i * (sw + 2), y + 2, sw, h - 4, (i === 0 ? "pe-haupt " : "") + cls, 1);
+   }
+  }
+  function sataL(g, x, y, w, h, cls) {
+   var x1 = x + 4, y1 = y + 4, ww = Math.max(20, w - 8), hh = Math.max(10, h - 8);
+   svgForm(g, "path", { d: "M " + x1 + " " + y1 + " h " + (ww * 0.62) + " v " + (hh * 0.42) + " h " + (ww * 0.28) + " v " + (hh * 0.4) + " h -" + (ww * 0.18) + " v -" + (hh * 0.22) + " h -" + (ww * 0.72) + " z" }, "pe-haupt " + cls);
+  }
+  function m2Schlitz(g, x, y, w, h, cls) {
+   svgRect(g, x + 2, y + h * 0.28, w * 0.7, Math.max(6, h * 0.4), "pe-haupt " + cls, 1);
+   svgKreis(g, x + w * 0.84, y + h * 0.48, Math.min(4, h * 0.22), cls);
+  }
+  function beschrifteAnschluss(g, t, x, y, w, h) {
+   var ty = h >= 56 ? y + h - 4 : y - 3;
+   svgText(g, x + w / 2, ty, t.kurz, "pe-io-text pe-io-aussen");
+  }
   function zeichneAnschlussTeil(t, g) {
-    var r = t.layout, x = r[0], y = r[1], w = r[2], h = r[3];
-    var cx = x + w / 2, cy = y + h / 2, bw = t.kurz.length * 7.8 + 12;
-    svgRect(g, x, y, w, h, "pe-haupt " + (IO_KLASSE[t.gruppe] || "pe-io-intern"), 5);
-    if (w >= bw && h >= 20) {
-      svgText(g, cx, cy + 5, t.kurz, "pe-io-text");
-    } else if (h >= bw && w >= 20) {
-      g.appendChild(svgEl("text", { x: cx, y: cy + 5, "text-anchor": "middle", "class": "pe-io-text", transform: "rotate(-90 " + cx + " " + cy + ")" }, t.kurz));
-    } else {
-      svgText(g, cx, y + h + 16, t.kurz, "pe-io-text pe-io-aussen");
-    }
+   var r = t.layout, x = r[0], y = r[1], w = r[2], h = r[3], cls = ioKlasse(t), id = t.id;
+   if (id === "usb-a" || id === "usb2" || id === "usb3" || id === "usb4") buchseUsbA(g, x, y, w, h, cls);
+   else if (id === "usb-c") buchseUsbC(g, x, y, w, h, cls);
+   else if (id === "rj45") buchseRj45(g, x, y, w, h, cls);
+   else if (id === "audio") buchseKlinke(g, x, y, w, h, cls);
+   else if (id === "hdmi-mb" || id === "hdmi-gpu") buchseHdmi(g, x, y, w, h, cls);
+   else if (id === "dp-mb" || id === "dp-gpu") buchseDisplayPort(g, x, y, w, h, cls);
+   else if (id === "ps2") buchsePs2(g, x, y, w, h, cls);
+   else if (id === "wlan") buchseAntenne(g, x, y, w, h, cls);
+   else if (id === "pcie-lang") steckplatzPcie(g, x, y, w, h, cls, 0.12);
+   else if (id === "pcie-kurz") steckplatzPcie(g, x, y, w, h, cls, 0.4);
+   else if (id === "pci") steckplatzPcie(g, x, y, w, h, cls, 0.2);
+   else if (id === "agp") steckplatzPcie(g, x, y, w, h, cls, 0.68);
+   else if (id === "ramslot") schlitzeRam(g, x, y, w, h, cls);
+   else if (id === "m2") m2Schlitz(g, x, y, w, h, cls);
+   else if (id === "sata") sataL(g, x, y, w, h, cls);
+   else if (id === "ide") leisteIde(g, x, y, w, h, cls);
+   else kopfZweireihig(g, x, y, w, h, cls);
+   beschrifteAnschluss(g, t, x, y, w, h);
   }
   function istAnschlussAnsicht(key) { return key === "rueckseite" || key === "mainboard" || key === "historisch"; }
   function zeichneDeko(key) {
@@ -811,11 +914,15 @@ var aktuelleAnsicht = "desktop";
     if (key === "mainboard") {
       deko.appendChild(svgEl("rect", { x: 40, y: 30, width: 700, height: 424, rx: 10, "class": "pe-bereich pe-bereich-platine" }));
       deko.appendChild(svgEl("text", { x: 390, y: 21, "text-anchor": "middle", "class": "pe-bereichstext" }, "Beispiel-Mainboard (schematisch, kein bestimmtes Modell)"));
+      deko.appendChild(svgEl("rect", { x: 220, y: 108, width: 150, height: 150, rx: 6, "class": "pe-sockel-deko" }));
+      deko.appendChild(svgEl("rect", { x: 236, y: 124, width: 118, height: 118, rx: 4, "class": "pe-sockel-rahmen" }));
+      deko.appendChild(svgEl("text", { x: 295, y: 190, "text-anchor": "middle", "class": "pe-bereichstext" }, "Sockel"));
     }
     if (key === "historisch") {
       deko.appendChild(svgEl("text", { x: 390, y: 120, "text-anchor": "middle", "class": "pe-bereichstext" }, "Historische Technik zum Vergleich, nicht auf aktuellen Mainboards"));
     }
-    deko.appendChild(svgEl("text", { x: 8, y: 474, "class": "pe-hinweistext" }, "Beispiel, nicht maßstäblich"));
+    var anschlussHinweis = key === "rueckseite" || key === "mainboard" || key === "historisch";
+    deko.appendChild(svgEl("text", { x: 8, y: 474, "class": "pe-hinweistext" }, anschlussHinweis ? "Beispiel, didaktische Näherung, nicht maßstäblich" : "Beispiel, nicht maßstäblich"));
     return deko;
   }
   /* Kabel: nur Dekoration über den Bauteilen, nicht anklickbar und nicht fokussierbar. Verlegt, ohne Beschriftung oder Bauteile zu verdecken. */

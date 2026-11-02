@@ -289,6 +289,12 @@ assert(js.includes("pe-kaefig") && js.includes("pe-abdeckung"), "Käfig und Küh
   assert(js.includes("a.teile[0].id") && !js.includes('gruppeTeile.waehle("cpu")'), "Erste Auswahl nicht fest cpu");
   ["pe-io-mb", "pe-io-karte", "pe-io-intern", "pe-io-alt"].forEach(k => assert(css.includes(k), "CSS " + k));
   assert(/pe-io-mb\s*\{[^}]*stroke-width:\s*2/.test(css), "2px Kontur");
+  ["function buchseUsbA", "function buchseUsbC", "function buchseRj45", "function buchseKlinke", "function buchseHdmi", "function buchseDisplayPort", "function buchsePs2", "function buchseAntenne", "function steckplatzPcie", "function leisteIde", "function kopfZweireihig"].forEach(fn => assert(js.includes(fn), fn));
+  assert(js.includes("didaktische Näherung"), "Näherung ist im Modul benannt");
+  assert(/USB-A und USB-C sind Steckerformen/.test(D.ansichten.rueckseite.einleitung));
+  assert(/keine eigenen Buchsenformen/.test(D.ansichten.rueckseite.einleitung));
+  assert(/didaktische Konvention, keine belegte Normfarbe/.test(D.ansichten.historisch.einleitung));
+  assert(!/function zeichneAnschlussTeil[\s\S]{0,400}svgRect\(g, x, y, w, h, "pe-haupt/.test(js), "Anschlussteile sind keine Einheitsrechtecke mehr");
 }
 
 console.log("pc-explorer: alle Prüfungen bestanden");

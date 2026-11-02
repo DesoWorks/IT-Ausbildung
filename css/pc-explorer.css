@@ -197,3 +197,14 @@ main a:not(.knopf) { color: var(--farbe-akzent-dunkel); text-decoration: underli
 .pe-bereich-karte { stroke: #6b3f00; stroke-dasharray: 8 4; fill: rgba(246, 217, 168, .25); }
 .pe-bereich-platine { stroke: #17512b; fill: rgba(205, 236, 207, .3); }
 .pe-bereichstext { fill: #111; font-size: 13px; font-family: sans-serif; font-weight: 600; }
+.pe-zeichnung .pe-teil .pe-io-mb { fill: #cfe3f7; stroke: #1c3d63; stroke-width: 2; }
+.pe-zeichnung .pe-teil .pe-io-karte { fill: #f6d9a8; stroke: #6b3f00; stroke-width: 2; }
+.pe-zeichnung .pe-teil .pe-io-intern { fill: #cdeccf; stroke: #17512b; stroke-width: 2; }
+.pe-zeichnung .pe-teil .pe-io-alt { fill: #e4e0e8; stroke: #4a3f5a; stroke-width: 2; }
+.pe-zeichnung .pe-teil .pe-zunge,
+.pe-zeichnung .pe-teil .pe-pin { fill: #1c2633; stroke: none; }
+.pe-zeichnung .pe-teil .pe-kerbe { fill: #111; stroke: none; }
+.pe-sockel-deko { fill: none; stroke: #17512b; stroke-width: 2; }
+.pe-sockel-rahmen { fill: none; stroke: #1c2633; stroke-width: 3; }
+.pe-zeichnung .pe-teil.pe-aktiv .pe-haupt,
+.pe-zeichnung .pe-teil:focus-visible .pe-haupt { stroke: #111; stroke-width: 4; }
