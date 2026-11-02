@@ -133,10 +133,36 @@ assert(!/data-ansicht="server"/i.test(html) && !/<button[^>]*>\s*Server/i.test(h
 assert(/<script src="\.\.\/js\/glossar-daten\.js"><\/script>[\s\S]*pc-explorer\.js/.test(html), "Glossar wird vor dem Explorer geladen");
 assert(css.includes(":focus-visible") && css.includes("min-height"));
 assert(!/animation|transition|@keyframes/.test(css), "Keine Animationen");
-assert(!/https?:\/\//.test(js.replace(/url: "https:\/\/[^"]+"/g, "").replace('var NS = "http://www.w3.org/2000/svg";', "")), "Keine Laufzeit-Abfrage externer Adressen (SVG-Namespace-Kennung ausgenommen)");
+assert(!/https?:\/\//.test(js.replace(/(?:url|lizenzUrl|commonsUrl): "https:\/\/[^"]+"/g, "").replace('var NS = "http://www.w3.org/2000/svg";', "")), "Keine Laufzeit-Abfrage externer Adressen (SVG-Namespace-Kennung ausgenommen)");
 assert(!/fetch\(|XMLHttpRequest|import\(/.test(js), "Läuft offline");
 for (const f of ["js/module-daten.js", "index.html"]) {
   const p = path.join(root, f);
   if (fs.existsSync(p)) assert(!fs.readFileSync(p, "utf8").includes("pc-explorer"), "PC-Explorer ist in " + f + " eingehängt");
 }
+
+// Echte Commons-Fotos: unveränderte Dateien, Pflichtangaben in den Daten, sichtbar gerendert
+const crypto = require("node:crypto");
+const FOTOS = {
+  pga: { sha1: "00d6c8a69c0f158069f20b50a70c0ff72b6b3435", datei: "Pentium_4_Underside_Demonstrating_PGA_Socket.JPG", urheber: "Liam McSherry", lizenz: "CC BY-SA 3.0", liz: "https://creativecommons.org/licenses/by-sa/3.0", satz: "Echtes Foto der Unterseite eines Pentium 4 von 2001" },
+  lga: { sha1: "3778212eeefb306283b8ee64769d2beb2d0b5e86", datei: "LGA_1155_socket-6510.jpg", urheber: "Raimond Spekking", lizenz: "CC BY-SA 4.0", liz: "https://creativecommons.org/licenses/by-sa/4.0", satz: "Echtes Foto eines konkreten LGA-1155-Sockels" },
+  bga: { sha1: "b72874d4e9ab150756fb52fa2e123625a21b461c", datei: "Solder_ball_grid.jpg", urheber: "Janke", lizenz: "CC BY-SA 3.0", liz: "https://creativecommons.org/licenses/by-sa/3.0", satz: "nicht die Unterseite einer vollständigen CPU" }
+};
+Object.keys(FOTOS).forEach(id => {
+  const w = FOTOS[id], f = e.finde(D.sockel, id).foto;
+  assert(f, id + " ohne foto");
+  const abs = path.resolve(root, "module", f.pfad);
+  assert(fs.existsSync(abs), id + ": Foto fehlt");
+  assert.equal(crypto.createHash("sha1").update(fs.readFileSync(abs)).digest("hex"), w.sha1, id + ": Foto verändert");
+  assert.equal(path.basename(abs), w.datei);
+  assert.equal(f.urheber, w.urheber); assert.equal(f.lizenz, w.lizenz); assert.equal(f.lizenzUrl, w.liz);
+  assert.equal(f.commonsUrl, "https://commons.wikimedia.org/wiki/File:" + w.datei);
+  assert(f.alt.length > 10, id + ": Alt-Text");
+  assert(f.unterschrift.includes(w.satz), id + ": Pflichtsatz");
+  assert(f.unterschrift.includes(w.urheber) && f.unterschrift.includes(w.lizenz), id + ": Namensnennung in Unterschrift");
+});
+assert(e.finde(D.sockel, "lga").foto.unterschrift.includes("©"));
+D.ansichten.notebook.teile.forEach(t => assert(!t.foto, "Notebook hat kein freigegebenes Bild"));
+assert(/baueFoto/.test(js) && /figcaption/.test(js) && /pe-bildhinweis/.test(html));
+assert(/object-fit:\s*contain/.test(css) && /max-width:\s*100%/.test(css));
+assert(!/konzept|hardware-konzept/i.test(js + html), "Konzeptgrafik nicht eingebunden");
 console.log("pc-explorer: alle Prüfungen bestanden");

@@ -34,3 +34,8 @@ main section[hidden] { display: none; }
 
 /* Links im Fließtext: Themenfarbe statt Browser-Standard (Dunkelmodus-Kontrast). */
 main a:not(.knopf) { color: var(--farbe-akzent-dunkel); text-decoration: underline; }
+
+.pe-foto { margin: 1rem 0 0; }
+.pe-foto img { display: block; max-width: 100%; height: auto; max-height: 20rem; object-fit: contain; }
+.pe-foto figcaption { margin-top: .4rem; font-size: .9rem; overflow-wrap: anywhere; }
+.pe-foto a { display: inline-block; min-height: 1.5rem; }

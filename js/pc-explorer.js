@@ -102,21 +102,36 @@
       zusammen: "Der Sockel hat für jeden Stift einen Metallkontakt und ist oft so geformt, dass die CPU nur richtig herum passt.",
       bauformen: "PGA, LGA und BGA beschreiben, wo die Kontakte sitzen. Sie sagen nicht allein, ob eine CPU zu einem Mainboard passt.",
       praxis: "Ausbildungsbeispiel: Vor einem CPU-Tausch vergleichst du CPU und Sockel anhand der Herstellerangaben. Gleiche Bauform allein beweist keine Kompatibilität.",
-      merk: "PGA: Stifte an der CPU.", fakt: "", q: ["cpu-socket"] },
+      merk: "PGA: Stifte an der CPU.", fakt: "", q: ["cpu-socket"],
+      foto: { pfad: "../assets/pc-explorer/commons/Pentium_4_Underside_Demonstrating_PGA_Socket.JPG",
+        alt: "Unterseite eines Pentium-4-Prozessors mit dem dichten Feld goldfarbener Kontaktstifte (PGA).",
+        urheber: "Liam McSherry", lizenz: "CC BY-SA 3.0", lizenzUrl: "https://creativecommons.org/licenses/by-sa/3.0",
+        commonsUrl: "https://commons.wikimedia.org/wiki/File:Pentium_4_Underside_Demonstrating_PGA_Socket.JPG",
+        unterschrift: "Echtes Foto der Unterseite eines Pentium 4 von 2001. Foto: Liam McSherry, CC BY-SA 3.0 (via Wikimedia Commons)." } },
     { id: "lga", name: "LGA (Land Grid Array)", glossar: "CPU",
       funktion: "Die CPU hat flache Kontaktflächen, die Kontaktstifte sitzen im Sockel.",
       ort: "Die CPU wird in den Sockel gelegt, eine Halteplatte wird darüber geklappt und der Hebel verriegelt. Das drückt die Kontakte der CPU fest auf die Kontakte des Sockels.",
       zusammen: "Der Anpressdruck sorgt für guten Kontakt und mehr mechanische Stabilität.",
       bauformen: "Bei LGA sitzen die Kontaktstifte im Sockel, bei PGA an der CPU. Die Bauform nennt nur die Kontaktanordnung.",
       praxis: "Ausbildungsbeispiel: Beim Einbau legst du die CPU vorsichtig in den Sockel, schließt Halteplatte und Hebel und folgst dabei der Anleitung des Herstellers.",
-      merk: "LGA: Kontaktflächen an der CPU, Stifte im Sockel.", fakt: "", q: ["cpu-socket"] },
+      merk: "LGA: Kontaktflächen an der CPU, Stifte im Sockel.", fakt: "", q: ["cpu-socket"],
+      foto: { pfad: "../assets/pc-explorer/commons/LGA_1155_socket-6510.jpg",
+        alt: "Ein konkreter LGA-1155-Sockel mit den Kontaktstiften im Sockel.",
+        urheber: "Raimond Spekking", lizenz: "CC BY-SA 4.0", lizenzUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+        commonsUrl: "https://commons.wikimedia.org/wiki/File:LGA_1155_socket-6510.jpg",
+        unterschrift: "Echtes Foto eines konkreten LGA-1155-Sockels. © Raimond Spekking / CC BY-SA 4.0 (via Wikimedia Commons)." } },
     { id: "bga", name: "BGA (Ball Grid Array)", glossar: "CPU",
       funktion: "Die Kontakte sind Lötkugeln. Das Bauteil wird fest auf die Platine gelötet.",
       ort: "Direkt auf der Platine, ohne Sockel. Notebooks nutzen häufig aufgelötete CPUs, Desktop-Boards haben meist einen Sockel.",
       zusammen: "Die CPU lässt sich nicht ohne Löten tauschen. Dafür braucht sie weniger Platz auf dem Mainboard.",
       bauformen: "Ein BGA-Bauteil ist nicht regulär ohne Löt- und Spezialarbeiten austauschbar. Ob ein Gerät das zulässt, hängt vom Gerät ab.",
       praxis: "Ausbildungsbeispiel: Bei einem Notebook mit aufgelöteter CPU rechnest du nicht mit einem normalen CPU-Tausch, sondern klärst mit den Wartungsunterlagen, was möglich ist.",
-      merk: "BGA: festgelötet, kein Sockel, Tausch nur mit Spezialarbeit.", fakt: "", q: ["bga", "cpu-socket"] }
+      merk: "BGA: festgelötet, kein Sockel, Tausch nur mit Spezialarbeit.", fakt: "", q: ["bga", "cpu-socket"],
+      foto: { pfad: "../assets/pc-explorer/commons/Solder_ball_grid.jpg",
+        alt: "Lötkugeln in einem Raster auf einer Leiterplatte, nachdem der Chip entfernt wurde.",
+        urheber: "Janke", lizenz: "CC BY-SA 3.0", lizenzUrl: "https://creativecommons.org/licenses/by-sa/3.0",
+        commonsUrl: "https://commons.wikimedia.org/wiki/File:Solder_ball_grid.jpg",
+        unterschrift: "Lotkugeln auf der Leiterplatte nach Entfernung des Chips, nicht die Unterseite einer vollständigen CPU. Foto: Janke, CC BY-SA 3.0 (via Wikimedia Commons)." } }
   ];
 
   var FORMEN = [
@@ -234,6 +249,9 @@
     server: null /* reservierter Daten-Slot, kein auswählbarer Zustand */
   };
 
+  var BILDHINWEIS = "Die Zeichnung ist eine schematische Skizze. Echte Fotos gibt es bisher nur für PGA, LGA und BGA bei den CPU-Bauformen.";
+  var BILDHINWEIS_NOTEBOOK = " Für das Notebook liegt noch kein freigegebenes Komponentenbild vor, die Liste bleibt gleichwertig.";
+
   var DATEN = { ansichten: ANSICHTEN, teile: TEILE, sockel: SOCKEL, formen: FORMEN, quellen: QUELLEN };
 
   /* Pfeiltasten in einer Liste mit n Einträgen: neuer Index oder -1. */
@@ -291,6 +309,20 @@
     return ul;
   }
 
+  /* Echtes Foto unverändert (contain, kein Beschnitt) mit sichtbarer Pflichtunterschrift und echten Links. */
+  function baueFoto(f) {
+    var fig = el("figure", { "class": "pe-foto" });
+    fig.appendChild(el("img", { src: f.pfad, alt: f.alt, loading: "lazy" }));
+    var cap = el("figcaption");
+    cap.appendChild(el("span", {}, f.unterschrift));
+    cap.appendChild(document.createTextNode(" "));
+    cap.appendChild(el("a", { href: f.lizenzUrl, rel: "noopener" }, "Lizenz: " + f.lizenz));
+    cap.appendChild(document.createTextNode(" · "));
+    cap.appendChild(el("a", { href: f.commonsUrl, rel: "noopener" }, "Quelle: Wikimedia Commons"));
+    fig.appendChild(cap);
+    return fig;
+  }
+
   function zeigeDetail(box, eintrag) {
     box.textContent = "";
     box.appendChild(el("h3", {}, eintrag.name));
@@ -311,6 +343,7 @@
       dl.appendChild(el("dt", {}, p[0])); dl.appendChild(el("dd", {}, p[1]));
     });
     box.appendChild(dl);
+    if (eintrag.foto) box.appendChild(baueFoto(eintrag.foto));
     box.appendChild(el("p", { "class": "pe-merk" }, "Merksatz: " + eintrag.merk));
     if (glossarVorhanden(global.GLOSSAR, eintrag.glossar)) {
       var p = el("p");
@@ -367,6 +400,7 @@
     var sockelWahl = document.getElementById("pe-sockel-wahl"), sockelDetail = document.getElementById("pe-sockel-detail");
     var formWahl = document.getElementById("pe-form-wahl"), formDetail = document.getElementById("pe-form-detail");
     var abschnittSockel = document.getElementById("pe-abschnitt-sockel"), abschnittForm = document.getElementById("pe-abschnitt-form");
+    var hinweis = document.getElementById("pe-bildhinweis");
     var titel = document.getElementById("pe-titel"), einleitung = document.getElementById("pe-einleitung");
 
     function markiere(id) {
@@ -397,6 +431,7 @@
       });
       titel.textContent = a.titel;
       einleitung.textContent = a.einleitung;
+      if (hinweis) hinweis.textContent = BILDHINWEIS + (key === "notebook" ? BILDHINWEIS_NOTEBOOK : "");
       document.title = a.titel + " (Entwurf)";
       teileBox.setAttribute("aria-label", a.gruppe);
       var gruppeTeile = baueGruppe(teileBox, a.teile, function (t) { markiere(t.id); zeigeDetail(detail, t); });
