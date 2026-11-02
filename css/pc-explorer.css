@@ -1,6 +1,11 @@
 /* PC-Explorer. Nutzt nur die gemeinsamen Farbvariablen (hell, dunkel, Kontrast). Keine Animationen. */
-.pe-raster { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1rem; align-items: start; }
-@media (max-width: 800px) { .pe-raster { grid-template-columns: 1fr; } }
+.pe-arbeitsflaeche { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.8fr); grid-template-areas: "bild liste" "bild detail"; gap: 1rem; align-items: start; }
+.pe-zeichnung { grid-area: bild; }
+#pe-teile { grid-area: liste; }
+.pe-detail { grid-area: detail; }
+@media (max-width: 900px) {
+  .pe-arbeitsflaeche { grid-template-columns: 1fr; grid-template-areas: "bild" "liste" "detail"; }
+}
 main section[hidden] { display: none; }
 .pe-zeichnung { border: 1px solid var(--farbe-rahmen); border-radius: var(--radius); background: var(--farbe-flaeche); padding: .5rem; }
 .pe-zeichnung svg { width: 100%; height: auto; display: block; }
@@ -39,3 +44,80 @@ main a:not(.knopf) { color: var(--farbe-akzent-dunkel); text-decoration: underli
 .pe-foto img { display: block; max-width: 100%; height: auto; max-height: 20rem; object-fit: contain; }
 .pe-foto figcaption { margin-top: .4rem; font-size: .9rem; overflow-wrap: anywhere; }
 .pe-foto a { display: inline-block; min-height: 1.5rem; }
+
+.pe-zeichnung-werkzeug { display: flex; justify-content: flex-end; margin-bottom: .4rem; }
+.pe-fachknopf, #pe-kuehler {
+  font: inherit; min-height: 2.75rem; margin: .4rem .4rem 0 0; padding: .45rem .8rem;
+  border: 2px solid var(--farbe-rahmen); border-radius: 8px;
+  background: var(--farbe-kontroll-flaeche); color: var(--farbe-kontroll-text); cursor: pointer;
+}
+.pe-fachknopf:focus-visible, #pe-kuehler:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
+.pe-platte { fill: #e7eef6; }
+.pe-case { fill: #243044; stroke: #121820; stroke-width: 3; }
+.pe-front { fill: #121820; stroke: #0b1016; }
+.pe-io { fill: #9aa6b5; stroke: #1c2633; }
+.pe-pcb { fill: #1c7a43; stroke: #0d4a28; stroke-width: 2; }
+.pe-slot { fill: #d7dee8; stroke: #1c2633; }
+.pe-cpu { fill: #d7dee6; stroke: #3d4856; stroke-width: 2; }
+.pe-die { fill: #8d97a5; stroke: #2a3340; }
+.pe-cool { fill: #7d8b9c; stroke: #1c2633; stroke-width: 2; }
+.pe-blade { stroke: #1c2633; stroke-width: 3; pointer-events: none; }
+.pe-ram { fill: #17202b; stroke: #0b1016; stroke-width: 1.5; }
+.pe-gpu { fill: #1d4e80; stroke: #0e2c4c; stroke-width: 2; }
+.pe-fan { fill: #d7dee6; stroke: #1c2633; }
+.pe-ssd { fill: #111827; stroke: #000; }
+.pe-notch { fill: #d7dee6; stroke: #1c2633; }
+.pe-hdd { fill: #c5ced8; stroke: #3d4856; stroke-width: 2; }
+.pe-platter { fill: #eef2f6; stroke: #3d4856; }
+.pe-psu { fill: #4b5568; stroke: #1f2937; stroke-width: 2; }
+.pe-base { fill: #d7dee8; stroke: #1c2633; stroke-width: 3; }
+.pe-hinge { fill: #8b97a6; stroke: #1c2633; }
+.pe-heat { fill: #c2410c; stroke: #7c2d12; }
+.pe-fin { fill: #94a3b8; stroke: #1c2633; }
+.pe-sodimm { fill: #d7dee6; stroke: #1c2633; }
+.pe-akku { fill: #3f6212; stroke: #1a2e05; stroke-width: 2; }
+.pe-cell { fill: #4d7c0f; stroke: #1a2e05; }
+.pe-brick { fill: #374151; stroke: #111827; stroke-width: 2; }
+.pe-label-platte { fill: #fff; stroke: #1e3a5f; stroke-width: 1.5; }
+.pe-label { fill: #102033; font-size: 16px; font-family: sans-serif; pointer-events: none; }
+.pe-mini { font-size: 12px; fill: #102033; }
+.pe-leader { stroke: #1e3a5f; stroke-width: 1.5; pointer-events: none; }
+.pe-kabel { fill: none; stroke-width: 3; pointer-events: none; }
+.pe-kabel-a { stroke: #b45309; }
+.pe-kabel-b { stroke: #1d4e80; }
+.pe-lid { fill: #243044; stroke: #121820; }
+.pe-hinweistext { fill: #3d4856; font-size: 12px; font-family: sans-serif; }
+.pe-teil { cursor: pointer; }
+.pe-teil.pe-aktiv .pe-form { stroke: #111; stroke-width: 4; }
+.pe-teil:focus-visible .pe-form { stroke: #111; stroke-width: 4; }
+.pe-zeichnung.pe-kuehler-offen .pe-teil-cool .pe-form,
+.pe-zeichnung.pe-kuehler-offen .pe-teil-cool .pe-blade { opacity: .15; }
+
+/* Spezifischer als .pe-teil rect, sonst frisst die alte Flächenfarbe die Zeichnung. */
+.pe-zeichnung .pe-teil rect.pe-case { fill: #243044; stroke: #121820; stroke-width: 3; }
+.pe-zeichnung .pe-teil rect.pe-front { fill: #121820; stroke: #0b1016; }
+.pe-zeichnung .pe-teil rect.pe-io { fill: #9aa6b5; stroke: #1c2633; }
+.pe-zeichnung .pe-teil rect.pe-pcb { fill: #1c7a43; stroke: #0d4a28; stroke-width: 2; }
+.pe-zeichnung .pe-teil rect.pe-slot { fill: #d7dee8; stroke: #1c2633; }
+.pe-zeichnung .pe-teil rect.pe-cpu { fill: #d7dee6; stroke: #3d4856; stroke-width: 2; }
+.pe-zeichnung .pe-teil rect.pe-die { fill: #8d97a5; stroke: #2a3340; }
+.pe-zeichnung .pe-teil path.pe-cool { fill: #5c6b7c; stroke: #1c2633; stroke-width: 2; }
+.pe-zeichnung .pe-teil rect.pe-ram { fill: #17202b; stroke: #0b1016; }
+.pe-zeichnung .pe-teil rect.pe-gpu { fill: #1d4e80; stroke: #0e2c4c; stroke-width: 2; }
+.pe-zeichnung .pe-teil circle.pe-fan { fill: #d7dee6; stroke: #1c2633; }
+.pe-zeichnung .pe-teil rect.pe-ssd { fill: #111827; stroke: #000; }
+.pe-zeichnung .pe-teil rect.pe-notch { fill: #d7dee6; stroke: #1c2633; }
+.pe-zeichnung .pe-teil rect.pe-hdd { fill: #c5ced8; stroke: #3d4856; stroke-width: 2; }
+.pe-zeichnung .pe-teil circle.pe-platter { fill: #eef2f6; stroke: #3d4856; }
+.pe-zeichnung .pe-teil rect.pe-psu { fill: #4b5568; stroke: #1f2937; stroke-width: 2; }
+.pe-zeichnung .pe-teil rect.pe-base { fill: #d7dee8; stroke: #1c2633; stroke-width: 3; }
+.pe-zeichnung .pe-teil rect.pe-hinge { fill: #8b97a6; stroke: #1c2633; }
+.pe-zeichnung .pe-teil rect.pe-heat { fill: #c2410c; stroke: #7c2d12; }
+.pe-zeichnung .pe-teil rect.pe-fin { fill: #94a3b8; stroke: #1c2633; }
+.pe-zeichnung .pe-teil rect.pe-sodimm { fill: #d7dee6; stroke: #1c2633; }
+.pe-zeichnung .pe-teil rect.pe-akku { fill: #3f6212; stroke: #1a2e05; stroke-width: 2; }
+.pe-zeichnung .pe-teil rect.pe-cell { fill: #65a30d; stroke: #1a2e05; }
+.pe-zeichnung .pe-teil rect.pe-brick { fill: #374151; stroke: #111827; stroke-width: 2; }
+.pe-zeichnung .pe-teil rect.pe-label-platte { fill: #fff; stroke: #1e3a5f; stroke-width: 1.5; }
+.pe-zeichnung .pe-teil.pe-aktiv .pe-form { stroke: #111; stroke-width: 4; }
+.pe-zeichnung .pe-teil:focus-visible .pe-form { stroke: #111; stroke-width: 4; }

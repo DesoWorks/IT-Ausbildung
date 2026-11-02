@@ -14,13 +14,16 @@
     "nvme": { titel: "NVM Express: About", url: "https://nvmexpress.org/about/", abruf: "2026-11-01" },
     "sata-io": { titel: "SATA-IO: Home", url: "https://www.sata-io.org/", abruf: "2026-11-01" },
     "ibm-dimm": { titel: "IBM Think: Qu’est-ce qu’un module de mémoire double en ligne (DIMM) ?", url: "https://www.ibm.com/fr-fr/think/topics/dimm", abruf: "2026-11-01" },
-    "camm2": { titel: "JEDEC-Pressemitteilung zu CAMM2 (JESD318), 5. Dezember 2023", url: "https://www.jedec.org/news/pressreleases/jedec-publishes-new-camm2-memory-module-standard", abruf: "2026-11-01" }
+    "camm2": { titel: "JEDEC-Pressemitteilung zu CAMM2 (JESD318), 5. Dezember 2023", url: "https://www.jedec.org/news/pressreleases/jedec-publishes-new-camm2-memory-module-standard", abruf: "2026-11-01" },
+    "m2": { titel: "Wikipedia: M.2 (Einleitung, Features, Form factors and keying)", url: "https://en.wikipedia.org/wiki/M.2", abruf: "2026-11-02", vorlaeufig: true },
+    "btx": { titel: "Wikipedia: BTX (form factor)", url: "https://en.wikipedia.org/wiki/BTX_(form_factor)", abruf: "2026-11-02", vorlaeufig: true },
+    "msi-pz": { titel: "MSI: Project Zero Desktop, Back-Connect", url: "https://www.msi.com/Landing/project-zero/desktop", abruf: "2026-11-02" }
   };
 
   /* Pflicht-Texte je Bauteil: Funktion, Einbauort, Zusammenarbeit, Bauformen, Praxisbeispiel, Merksatz.
      "q" = Quellen-IDs, leer = reiner Lerntext ohne Zahl. "kurz" = kurze Beschriftung in der Zeichnung. */
   var TEILE = [
-    { id: "cpu", name: "Prozessor (CPU)", kurz: "Prozessor", glossar: "CPU", layout: [50, 60, 100, 90],
+    { id: "cpu", name: "Prozessor (CPU)", kurz: "CPU", glossar: "CPU", layout: [250, 70, 96, 96],
       funktion: "Führt Programmbefehle aus und steuert den Rechenablauf.",
       ort: "Im CPU-Sockel auf dem Mainboard. Darüber sitzt der Kühler.",
       zusammen: "Holt Daten aus dem Arbeitsspeicher. Das Mainboard liefert Strom und Anschlüsse.",
@@ -28,7 +31,7 @@
       praxis: "Ausbildungsbeispiel: Vor einem CPU-Tausch vergleichst du CPU und Sockel anhand der Herstellerangaben; gleiche Bauform allein beweist keine Kompatibilität.",
       merk: "Der Sockel entscheidet, welche CPU passt. Gleiche Größe heißt nicht gleich kompatibel.",
       fakt: "Ein Desktop-Mainboard hat einen Sockel, in den die CPU ohne Löten gesteckt oder aufgelegt wird.", q: ["cpu-socket"] },
-    { id: "cool", name: "Kühlung", kurz: "Kühlung", glossar: "Kühlung", layout: [170, 60, 100, 90],
+    { id: "cool", name: "Kühlung", kurz: "Kühlung", glossar: "Kühlung", layout: [214, 36, 168, 168],
       funktion: "Führt Wärme von CPU und Grafikkarte ab.",
       ort: "Der Kühler sitzt auf der CPU, Gehäuselüfter sitzen im Gehäuse.",
       zusammen: "Hält die CPU im zulässigen Temperaturbereich, damit sie nicht drosselt.",
@@ -36,7 +39,7 @@
       praxis: "Ausbildungsbeispiel: Bei einer Wartung prüfst du, ob der Kühler sicher befestigt ist und ob Lüfter nicht blockiert sind.",
       merk: "Kühlerbefestigung und CPU-Sockel sind getrennte Fragen.",
       fakt: "Moderne CPU-Sockel werden fast immer zusammen mit einem Befestigungssystem für den Kühler entworfen.", q: ["cpu-socket"] },
-    { id: "ram", name: "Arbeitsspeicher (RAM)", kurz: "Arbeitsspeicher", glossar: "RAM", layout: [300, 60, 120, 110],
+    { id: "ram", name: "Arbeitsspeicher (RAM)", kurz: "RAM", glossar: "RAM", layout: [470, 56, 130, 150],
       funktion: "Hält Programme und Daten, mit denen die CPU gerade arbeitet.",
       ort: "In den Speicher-Steckplätzen neben dem CPU-Sockel.",
       zusammen: "Die CPU spricht über ihren Speichercontroller mit dem RAM. Die Speichergeneration muss zu Board und CPU passen.",
@@ -44,36 +47,36 @@
       praxis: "Ausbildungsbeispiel: Vor einer Speichererweiterung vergleichst du Modulbauart und Systemangaben; ein Modul passt nicht allein deshalb, weil es RAM ist.",
       merk: "Bei neuen Bauformen zählt nicht nur der Name, sondern auch die Speichertechnik.",
       fakt: "CAMM2 gibt es in zwei Ausführungen (DDR5 und LPDDR5/5X) mit gleichem Stecker, aber anderer Pinbelegung und anderer Befestigung. Sie sind nicht austauschbar.", q: ["camm2", "ibm-dimm"] },
-    { id: "gpu", name: "Grafikkarte (GPU)", kurz: "Grafikkarte", glossar: "GPU", layout: [50, 230, 300, 44],
+    { id: "gpu", name: "Grafikkarte (GPU)", kurz: "GPU", glossar: "GPU", layout: [36, 230, 400, 110],
       funktion: "Berechnet Bilder und Grafik und gibt das Bild an den Monitor aus.",
       ort: "Im PCIe-Erweiterungssteckplatz des Mainboards.",
       zusammen: "Bekommt Daten von CPU und RAM. Das Netzteil versorgt sie mit Strom.",
       bauformen: "Grafik kann als eigenes Erweiterungsbauteil oder integriert in einem anderen Bauteil bereitgestellt werden. Konkrete Steckplatz- und Stromanforderungen hängen vom Gerät ab.",
       praxis: "Ausbildungsbeispiel: Du klärst, ob ein Arbeitsplatz eine eigene Grafikkarte benötigt und prüfst vor dem Einbau die Angaben von Mainboard, Gehäuse und Netzteil.",
       merk: "Integrierte Grafik sitzt in der CPU. Eine Grafikkarte ist ein eigenes Bauteil.", fakt: "", q: [] },
-    { id: "ssd", name: "SSD", kurz: "SSD", glossar: "SSD", layout: [50, 300, 140, 32],
+    { id: "ssd", name: "SSD", kurz: "SSD", glossar: "SSD", layout: [360, 188, 120, 28],
       funktion: "Speichert Daten dauerhaft ohne bewegte Teile.",
       ort: "Als M.2-Stick direkt auf dem Mainboard oder als Laufwerk im Gehäuse.",
       zusammen: "Das Betriebssystem wird von hier in den Arbeitsspeicher geladen.",
-      bauformen: "SATA ist eine Speicher-Schnittstelle, die laut SATA-IO unter anderem für SSDs und HDDs eingesetzt wird. NVMe ist ein offener Standard für Speicherzugriff; die NVMe-Spezifikation beschreibt ein Register-Interface und einen Befehlssatz für Speicher über PCI Express. M.2 bezeichnet nicht automatisch SATA oder NVMe.",
+      bauformen: "M.2 ist ein Standard für kompakte Erweiterungsmodule und deren Steckverbindung. Er umfasst Bauform, Stecker und Kontaktbelegung, aber nicht automatisch die Datenübertragung. Eine M.2-SSD kann zum Beispiel SATA oder PCIe nutzen. NVMe ist ein Protokoll für den Zugriff auf nichtflüchtigen Speicher und wird typischerweise über PCIe eingesetzt. M.2 ist nicht dasselbe wie SATA, PCIe oder NVMe. Vergleich: M.2 ist die Schublade, SATA oder PCIe der Weg, NVMe die Sprache auf dem PCIe-Weg. M.2 bezeichnet nicht automatisch SATA oder NVMe. Die übliche Laufwerksbezeichnung 2,5-Zoll ist kein M.2-Maß.",
       praxis: "Ausbildungsbeispiel: Vor dem Austausch einer SSD prüfst du Anschluss, unterstützte Schnittstelle und Bauform in den Geräteangaben.",
-      merk: "M.2 beschreibt die Bauform. SATA und NVMe sind Wege, wie die SSD angebunden ist.",
-      fakt: "NVMe ist die Schnittstellenspezifikation für Speicher, der über PCI Express angebunden ist.", q: ["nvme", "sata-io"] },
-    { id: "hdd", name: "Festplatte (HDD)", kurz: "Festplatte", glossar: "HDD", layout: [470, 60, 150, 90],
+      merk: "M.2 ist nicht dasselbe wie SATA, PCIe oder NVMe.",
+      fakt: "Wikipedia beschreibt M.2 als Spezifikation für interne Erweiterungsmodule. Genannt werden eine Breite von 22 mm und Längen von 30, 42, 60, 80 oder 110 mm. Vorläufig, kein gelesener PCI-SIG-Normtext.", q: ["nvme", "sata-io", "m2"] },
+    { id: "hdd", name: "Festplatte (HDD)", kurz: "HDD", glossar: "HDD", layout: [36, 360, 180, 86],
       funktion: "Speichert Daten magnetisch auf rotierenden Scheiben. Sie ist günstig und groß.",
       ort: "Im Laufwerksschacht des Gehäuses, per Datenkabel mit dem Mainboard verbunden.",
       zusammen: "Daten laufen über das Datenkabel zum Mainboard, Strom kommt vom Netzteil.",
       bauformen: "Festplatten gibt es in verschiedenen Gehäuse- und Anschlussvarianten. Konkrete Maße und Kompatibilität sind hier nicht festgelegt.",
       praxis: "Ausbildungsbeispiel: Bei einer Speichererweiterung prüfst du Laufwerksschacht, Anschluss und Gerätevorgaben, bevor du ein Laufwerk auswählst.",
       merk: "Sie enthält bewegte Teile und ist deshalb stoßempfindlicher als eine SSD.", fakt: "", q: [] },
-    { id: "psu", name: "Netzteil", kurz: "Netzteil", glossar: "Netzteil", layout: [470, 290, 150, 80],
+    { id: "psu", name: "Netzteil (PSU)", kurz: "Netzteil", glossar: "Netzteil", layout: [430, 350, 250, 96],
       funktion: "Wandelt die Netzspannung in niedrige Gleichspannungen für die Bauteile um.",
       ort: "Im Gehäuse, meist unten oder hinten.",
       zusammen: "Versorgt Mainboard, Grafikkarte und Laufwerke über Kabel.",
       bauformen: "Netzteile unterscheiden sich unter anderem durch Bauform, Anschlüsse und Leistungsdaten. Eine passende Auswahl muss anhand der konkreten Komponenten geprüft werden.",
       praxis: "Ausbildungsbeispiel: Bei einer PC-Planung prüfst du, ob die erforderlichen Stromanschlüsse vorhanden sind und ob das Netzteil laut Herstellerangaben zur Konfiguration passt.",
       merk: "Ein geöffnetes Netzteil nicht berühren: Es kann auch nach dem Ausschalten gefährlich sein.", fakt: "", q: [] },
-    { id: "board", name: "Mainboard und Verbindungen", kurz: "Mainboard", glossar: "Mainboard", layout: [20, 20, 420, 360], label: [30, 372], grund: true,
+    { id: "board", name: "Mainboard", kurz: "Mainboard", glossar: "Mainboard", layout: [200, 40, 460, 290], grund: true,
       funktion: "Verbindet alle Bauteile und verteilt Strom und Daten.",
       ort: "Im Gehäuse verschraubt. Die Bauform (Formfaktor) bestimmt, ob es ins Gehäuse passt.",
       zusammen: "Trägt CPU-Sockel, Speicher-Steckplätze, PCIe-Steckplätze, M.2- und SATA-Anschlüsse sowie die Stromanschlüsse vom Netzteil.",
@@ -81,7 +84,7 @@
       praxis: "Ausbildungsbeispiel: Bei der Zusammenstellung eines Rechners prüfst du in den Herstellerangaben, ob Mainboard-Bauform und Gehäuse zusammenpassen.",
       merk: "Wichtige Verbindungen: PCIe für Erweiterungskarten, M.2 und SATA für Laufwerke, Stromkabel vom Netzteil.",
       fakt: "Das Mainboard ist die zentrale Platine, an der die anderen Bauteile angeschlossen werden, und verteilt Strom an andere Platinen.", q: ["formfaktor"] },
-    { id: "gehaeuse", name: "Gehäuse und Anschlüsse", kurz: "Gehäuse", glossar: "Gehäuse", layout: [4, 4, 632, 392], label: [450, 388], grund: true,
+    { id: "gehaeuse", name: "Gehäuse und Anschlüsse", kurz: "Gehäuse", glossar: "Gehäuse", layout: [16, 12, 748, 452], grund: true,
       funktion: "Das Gehäuse umschließt die Bauteile. Es bietet Befestigungspunkte und Öffnungen für Kabel und Anschlüsse.",
       ort: "Die Bauteile werden im Inneren am Gehäuse befestigt. Anschlüsse an der Vorder- oder Rückseite sind von außen erreichbar.",
       zusammen: "Das Gehäuse muss Platz und Befestigung für Mainboard, Netzteil und Laufwerke bieten. Öffnungen und Lüfter unterstützen den Luftweg. Prüfe vor dem Einbau die Angaben der jeweiligen Geräte.",
@@ -137,14 +140,14 @@
   var FORMEN = [
     { id: "atx", name: "ATX", glossar: "Mainboard",
       funktion: "Der verbreitete Standard-Formfaktor für Desktop-Mainboards.",
-      ort: "Gehäuse für ATX. Größter der drei Formfaktoren hier: 12 × 9,6 Zoll.",
+      ort: "305 × 244 mm. Wikipedia nennt das als Größe eines ATX-Boards. Vorläufig, kein gelesener Intel-Normtext.",
       zusammen: "ATX löste 1995 den älteren AT-Standard ab. Kleinere Boards wurden passend zu ATX-Befestigungspunkten entworfen.",
-      bauformen: "ATX, microATX und Mini-ITX unterscheiden sich vor allem in Größe und Anzahl der Erweiterungsplätze. Die Angaben stammen aus Wikipedia und sind vorläufig, keine Normtexte.",
+      bauformen: "ATX, microATX und Mini-ITX unterscheiden sich vor allem in Größe und Anzahl der Erweiterungsplätze. E-ATX und BTX stehen extra. Die Angaben stammen aus Wikipedia und sind vorläufig, keine Normtexte.",
       praxis: "Ausbildungsbeispiel: Du prüfst in den Herstellerangaben, ob Mainboard-Formfaktor und Gehäuse zusammenpassen. Mechanisch passend heißt nicht vollständig kompatibel.",
       merk: "ATX ist der Maßstab, an dem sich die kleineren Formen ausrichten.", fakt: "", q: ["formfaktor", "microatx"] },
     { id: "microatx", name: "microATX", glossar: "Mainboard",
       funktion: "Eine kleinere Variante, die bewusst zu ATX rückwärtskompatibel ist.",
-      ort: "Höchstens 9,6 × 9,6 Zoll. Eingeführt im Dezember 1997. Es gibt auch kleinere Boards, die sich microATX nennen.",
+      ort: "Höchstens 244 × 244 mm. Eingeführt im Dezember 1997. Es gibt auch kleinere Boards, die sich microATX nennen.",
       zusammen: "Die Befestigungspunkte sind auf ATX-Gehäuse abgestimmt. Das Board passt daher in viele ATX-Gehäuse.",
       bauformen: "microATX ist kleiner als ATX und bewusst rückwärtskompatibel zu ATX-Befestigungen. Es gibt aber auch kleinere Boards, die sich microATX nennen.",
       praxis: "Ausbildungsbeispiel: Ein microATX-Board soll in ein ATX-Gehäuse. Du prüfst die Gehäuseangaben, bevor du es einbaust.",
@@ -155,11 +158,23 @@
       zusammen: "Es hat nur einen Erweiterungssteckplatz. Dadurch passt es oft auch in ATX- und microATX-Gehäuse.",
       bauformen: "Mini-ITX ist sehr klein und hat nur einen Erweiterungsplatz. Du brauchst weniger Platz, musst Erweiterungen aber sorgfältig wählen.",
       praxis: "Ausbildungsbeispiel: Für einen kompakten Arbeitsplatz-PC prüfst du, ob ein einziger Erweiterungsplatz für den Bedarf reicht.",
-      merk: "Mini-ITX: klein, ein Erweiterungsplatz.", fakt: "", q: ["mini-itx"] }
+      merk: "Mini-ITX: klein, ein Erweiterungsplatz.", fakt: "", q: ["mini-itx"] },
+    { id: "eatx", name: "Extended ATX (E-ATX)", glossar: "Mainboard",
+      funktion: "Eine Herstellerbezeichnung für Boards, die größer sind als ATX. Kein einzelner Standard mit festen Maßen.",
+      ort: "Größer als ATX. Es gibt keine einheitliche Größe. Manche Übersichten nennen 305 × 330 mm. Das gilt nicht für jedes Board mit der Bezeichnung E-ATX.",
+      zusammen: "Ob ein E-ATX-Board in ein Gehäuse passt, steht in den Angaben zu genau diesem Board und diesem Gehäuse.",
+      bauformen: "E-ATX ist kein Formfaktor mit einer einzigen Abmessung. Hersteller definieren die Bezeichnung unterschiedlich.",
+      praxis: "Ausbildungsbeispiel: Ein Gehäuse wirbt mit E-ATX. Du vergleichst die Maße des konkreten Boards mit der Gehäuseangabe, statt dich auf den Namen zu verlassen.",
+      merk: "E-ATX heißt nicht: alle diese Boards sind gleich groß.", fakt: "", q: ["formfaktor", "microatx"] },
+    { id: "btx", name: "BTX (Balanced Technology Extended)", glossar: "Mainboard",
+      funktion: "Historisches Format. Intel wollte damit ATX ersetzen. Die Weiterentwicklung für den Handel wurde 2006 eingestellt. Heute selten.",
+      ort: "Wikipedia nennt für BTX 325 × 267 mm. Vorläufig, kein gelesener Intel-Normtext.",
+      zusammen: "BTX ändert Anordnung und Befestigung gegenüber ATX. Es ist kein aktueller Standard für neue Arbeitsplatzrechner.",
+      bauformen: "BTX ist historisch und heute selten. Nicht mit ATX oder E-ATX verwechseln.",
+      praxis: "Ausbildungsbeispiel: In einem alten Gerät steht BTX. Du behandelst es als historisches Format und prüfst die Unterlagen, statt ein ATX-Board einzusetzen.",
+      merk: "BTX ist historisch und heute selten.", fakt: "", q: ["btx", "formfaktor"] }
   ];
 
-  /* Notebook: modellneutrales Schema. Alles, was vom Gerät abhängt, steht als Lerntext ohne Maß
-     und ohne Kompatibilitätszusage. Texte stammen aus docs/inhalte/2026-11-01-pc-explorer-inhalte.json. */
   var CAMM2_TEXT = "JEDEC hat am 5. Dezember 2023 den Standard JESD318 veröffentlicht: Compression Attached Memory Module, kurz CAMM2. " +
     "Er beschreibt DDR5-CAMM2 und LPDDR5/5X-CAMM2. DDR5-CAMM2 ist für leistungsstarke Notebooks und übliche Desktop-PCs gedacht, " +
     "LPDDR5/5X-CAMM2 für eine breitere Notebook-Spanne und manche Server. Beide nutzen dasselbe Steckerdesign, aber unterschiedliche Pinbelegung. " +
@@ -167,68 +182,68 @@
     "Der vollständige Standardtext wurde nicht geöffnet; die Aussage stammt aus der Pressemitteilung.";
 
   var NOTEBOOK_TEILE = [
-    { id: "board", name: "Systemplatine", kurz: "Systemplatine", glossar: "Mainboard", layout: [16, 16, 446, 356], label: [26, 364], grund: true,
+    { id: "board", name: "Mainboard", kurz: "Mainboard", glossar: "Mainboard", layout: [150, 70, 420, 230], grund: true,
       funktion: "Verbindet die Bauteile des Notebooks.",
       ort: "Im Inneren des Gehäuses. Lage und Aufbau hängen vom Modell ab.",
       zusammen: "Sie verbindet Prozessor, Speicher, Laufwerk, Anschlüsse und Stromversorgung.",
-      bauformen: "Auf der Systemplatine können Bauteile fest verlötet oder über Steckplätze angeschlossen sein. Das ist modellabhängig.",
+      bauformen: "Auf der Mainboard können Bauteile fest verlötet oder über Steckplätze angeschlossen sein. Das ist modellabhängig.",
       praxis: "Ausbildungsbeispiel: Vor einer Reparatur suchst du die Wartungsunterlagen des konkreten Modells.",
       merk: "Im Notebook ist vieles fest eingebaut. Prüfe immer das genaue Modell.", fakt: "", q: [] },
-    { id: "cpu", name: "Prozessor", kurz: "Prozessor", glossar: "CPU", layout: [36, 40, 100, 80],
+    { id: "cpu", name: "Prozessor (CPU)", kurz: "CPU", glossar: "CPU", layout: [230, 110, 80, 80],
       funktion: "Führt Befehle aus und steuert Rechenaufgaben.",
-      ort: "Auf oder an der Systemplatine, in der Nähe der Kühlung. Der genaue Aufbau hängt vom Modell ab.",
+      ort: "Auf oder an der Mainboard, in der Nähe der Kühlung. Der genaue Aufbau hängt vom Modell ab.",
       zusammen: "Arbeitet mit Arbeitsspeicher und Kühlung zusammen.",
       bauformen: "Kann je nach Gerät fest auf der Platine sitzen oder anders befestigt sein. Für das konkrete Gerät prüfen.",
       praxis: "Ausbildungsbeispiel: Bei einer Fehlerdiagnose prüfst du zuerst die Modellunterlagen, bevor du einen Austausch annimmst.",
       merk: "Nicht jede Notebook-CPU lässt sich tauschen. Prüfe das Modell.", fakt: "", q: [] },
-    { id: "cool", name: "Kühlung", kurz: "Kühlung", glossar: "Kühlung", layout: [156, 40, 130, 80],
+    { id: "cool", name: "Kühlung", kurz: "Kühlung", glossar: "Kühlung", layout: [180, 96, 280, 80],
       funktion: "Führt Wärme aus dem engen Geräteinneren ab.",
       ort: "Im Inneren des Gehäuses, nahe der Wärmequellen. Lüftungsöffnungen im Gehäuse bilden den Luftweg.",
       zusammen: "Lüfter und Kühlflächen müssen zum verfügbaren Platz und zum Luftweg passen.",
       bauformen: "Kühlteile sind Teil des modellabhängigen Innenaufbaus. Der knappe Platz begrenzt Anordnung und Luftweg; konkrete Aussagen sind vom Modell abhängig.",
       praxis: "Ausbildungsbeispiel: Bei einer Wartung kontrollierst du nach Herstelleranleitung, ob Lüftungsöffnungen frei sind.",
       merk: "Wenig Platz heißt wenig Luft: Lüftungsöffnungen müssen frei bleiben.", fakt: "", q: [] },
-    { id: "ram", name: "Arbeitsspeicher (RAM)", kurz: "Arbeitsspeicher", glossar: "RAM", layout: [306, 40, 140, 64],
+    { id: "ram", name: "Arbeitsspeicher (RAM)", kurz: "RAM", glossar: "RAM", layout: [500, 120, 56, 90],
       funktion: "Hält aktuell benötigte Daten und Programme bereit.",
-      ort: "Fest auf der Systemplatine verlötet oder in einem Steckplatz beziehungsweise Modulsystem. Das Modell entscheidet.",
+      ort: "Fest auf der Mainboard verlötet oder in einem Steckplatz beziehungsweise Modulsystem. Das Modell entscheidet.",
       zusammen: "Der Prozessor greift auf den Arbeitsspeicher zu.",
       bauformen: "Verlöteter RAM ist fest mit der Platine verbunden und nicht als gewöhnliches Steckmodul entnehmbar. Austauschbarer RAM sitzt in einem dafür vorgesehenen Steckplatz oder Modulsystem. Ob ein bestimmtes Notebook das unterstützt, muss in dessen Unterlagen geprüft werden. SO-DIMM ist laut IBM ein kompaktes Speichermodulformat, das häufig in Laptops verwendet wird. Neuere Bauform: CAMM2, ein JEDEC-Standard (JESD318). Die beiden CAMM2-Varianten sind nicht austauschbar. Die Namen allein belegen keine Kompatibilität.",
       praxis: "Ausbildungsbeispiel: Vor einer Speichererweiterung prüfst du die Wartungs- und Spezifikationsangaben des genauen Notebookmodells.",
       merk: "Verlötet oder steckbar: Das entscheidet das Modell, nicht der RAM-Name.",
       fakt: CAMM2_TEXT, q: ["camm2", "ibm-dimm"] },
-    { id: "gpu", name: "Grafik (GPU)", kurz: "Grafik", glossar: "GPU", layout: [306, 124, 140, 56],
+    { id: "gpu", name: "Grafikeinheit (GPU)", kurz: "GPU", glossar: "GPU", layout: [240, 200, 90, 40],
       funktion: "Berechnet Bilder und Grafik für den Bildschirm.",
       ort: "Je nach Modell in einem anderen Bauteil integriert oder als eigener Grafikchip vorhanden. Das steht in den Modellunterlagen.",
       zusammen: "Bekommt Daten von Prozessor und Arbeitsspeicher.",
       bauformen: "Grafik kann in einem anderen Bauteil integriert sein oder als eigener Grafikchip vorhanden sein. Das hängt vom Modell ab. Einen austauschbaren Steckplatz wie im Desktop solltest du nicht voraussetzen.",
       praxis: "Ausbildungsbeispiel: Eine Kundin wünscht mehr Grafikleistung. Du prüfst in den Modellunterlagen, welche Grafik das Gerät hat und ob sie überhaupt erweiterbar ist.",
       merk: "Grafik im Notebook ist modellabhängig: integriert oder als eigener Chip.", fakt: "", q: [] },
-    { id: "ssd", name: "SSD", kurz: "SSD", glossar: "SSD", layout: [36, 140, 130, 44],
+    { id: "ssd", name: "SSD", kurz: "SSD", glossar: "SSD", layout: [360, 210, 110, 24],
       funktion: "Speichert Betriebssystem und Dateien dauerhaft.",
       ort: "Im Inneren des Gehäuses, je nach Modell auf der Platine oder an einem Laufwerksplatz.",
       zusammen: "Beim Start werden benötigte Daten vom Speicher in den Arbeitsspeicher geladen.",
-      bauformen: "Ob eine SSD austauschbar ist, hängt vom Modell und seiner Bauweise ab. M.2 beschreibt die Bauform und bezeichnet nicht automatisch SATA oder NVMe. SATA ist laut SATA-IO eine Speicher-Schnittstelle unter anderem für SSDs und HDDs. NVMe beschreibt Speicher über PCI Express. Bauform und unterstützte Anbindung sind geräteabhängig.",
+      bauformen: "Ob eine SSD austauschbar ist, hängt vom Modell ab. M.2 ist ein Standard für kompakte Erweiterungsmodule und deren Steckverbindung, nicht automatisch die Datenübertragung. Eine M.2-SSD kann SATA oder PCIe nutzen. NVMe ist ein Protokoll und typischerweise über PCIe im Einsatz. M.2 ist nicht dasselbe wie SATA, PCIe oder NVMe. M.2 bezeichnet nicht automatisch SATA oder NVMe.",
       praxis: "Ausbildungsbeispiel: Du prüfst vor einem Tausch die Modellunterlagen und sicherst wichtige Daten nach Auftrag.",
-      merk: "M.2 ist die Bauform, nicht die Schnittstelle.",
-      fakt: "NVMe ist die Schnittstellenspezifikation für Speicher, der über PCI Express angebunden ist.", q: ["nvme", "sata-io"] },
-    { id: "akku", name: "Akku", kurz: "Akku", glossar: "Akku", layout: [36, 220, 410, 110],
+      merk: "M.2 ist nicht dasselbe wie SATA, PCIe oder NVMe.",
+      fakt: "Wikipedia beschreibt M.2 als Spezifikation für interne Erweiterungsmodule. Genannt werden eine Breite von 22 mm und Längen von 30, 42, 60, 80 oder 110 mm. Vorläufig, kein gelesener PCI-SIG-Normtext.", q: ["nvme", "sata-io", "m2"] },
+    { id: "akku", name: "Akku", kurz: "Akku", glossar: "Akku", layout: [40, 320, 280, 100],
       funktion: "Versorgt das Notebook unterwegs mit Energie.",
       ort: "Im Gehäuse. Ob er von außen oder nur nach dem Öffnen erreichbar ist, hängt vom Modell ab.",
       zusammen: "Der Akku arbeitet mit Ladeelektronik und Stromversorgung zusammen.",
       bauformen: "Austauschbarkeit und Wartungsweg sind modellabhängig.",
       praxis: "Ausbildungsbeispiel: Vor Wartung oder Ersatz beachtest du die Herstelleranleitung und Sicherheitsvorgaben.",
       merk: "Vor Arbeiten am Akku immer die Herstelleranleitung lesen.", fakt: "", q: [] },
-    { id: "netzteil", name: "Externes Netzteil", kurz: "Netzteil extern", glossar: "Netzteil", layout: [490, 290, 140, 70],
+    { id: "netzteil", name: "Externes Netzteil", kurz: "Netzteil", glossar: "Netzteil", layout: [560, 320, 190, 90],
       funktion: "Wandelt die Netzspannung in eine Spannung zum Laden und Betreiben des Notebooks um.",
       ort: "Außerhalb des Notebooks, über ein Kabel mit dem Gerät verbunden. Das ist modellabhängig.",
       zusammen: "Arbeitet mit Ladeelektronik und Akku zusammen.",
       bauformen: "Netzteile unterscheiden sich je nach Gerät. Welches Netzteil passt, steht in den Modellunterlagen; Anschlussform und Leistungsangaben werden hier nicht festgelegt.",
       praxis: "Ausbildungsbeispiel: Lädt ein Notebook nicht, prüfst du anhand der Modellunterlagen, welches Netzteil zum Gerät gehört, bevor du Teile tauschst.",
       merk: "Das Netzteil gehört zum Gerät. Ein anderes passt nicht automatisch.", fakt: "", q: [] },
-    { id: "gehaeuse", name: "Gehäuse und Anschlüsse", kurz: "Gehäuse", glossar: "Gehäuse", layout: [4, 4, 470, 392], label: [14, 390], grund: true,
+    { id: "gehaeuse", name: "Gehäuse und Anschlüsse", kurz: "Gehäuse", glossar: "Gehäuse", layout: [16, 36, 530, 420], grund: true,
       funktion: "Das Gehäuse hält die Bauteile des Notebooks zusammen und schützt sie. Anschlüsse und Lüftungsöffnungen sind modellabhängig.",
       ort: "Es umschließt alle Bauteile. Die Anschlüsse sitzen an den Seiten oder an der Rückseite, je nach Modell.",
-      zusammen: "Das Gehäuse gibt Platz und Befestigung für Systemplatine, Akku, Kühlung und Speicher vor. Lüftungsöffnungen bilden den Luftweg.",
+      zusammen: "Das Gehäuse gibt Platz und Befestigung für Mainboard, Akku, Kühlung und Speicher vor. Lüftungsöffnungen bilden den Luftweg.",
       bauformen: "Notebooks bündeln viele Funktionen in einem kleinen Gehäuse. Der knappe Innenraum begrenzt Anordnung, Erweiterung und Luftweg; konkrete Aussagen sind vom Modell abhängig. Eine Anschlussform wie USB-C sagt allein nicht, ob damit geladen oder ein Bild ausgegeben werden kann.",
       praxis: "Ausbildungsbeispiel: Vor dem Öffnen liest du die Wartungsanleitung des Modells und beachtest die Sicherheitsvorgaben.",
       merk: "Das Gehäuse ist eng: Platz und Luftweg setzen Grenzen.", fakt: "", q: [] }
@@ -249,8 +264,127 @@
     server: null /* reservierter Daten-Slot, kein auswählbarer Zustand */
   };
 
-  var BILDHINWEIS = "Die Zeichnung ist eine schematische Skizze. Echte Fotos gibt es bisher nur für PGA, LGA und BGA bei den CPU-Bauformen.";
-  var BILDHINWEIS_NOTEBOOK = " Für das Notebook liegt noch kein freigegebenes Komponentenbild vor, die Liste bleibt gleichwertig.";
+  var BILDHINWEIS = "Die Abbildung besteht aus einzeln auswählbaren Bauteilen. Sie ist ein farbiges Beispiel, nicht maßstäblich und kein Foto eines bestimmten Geräts. Echte Fotos gibt es bisher nur für PGA, LGA und BGA.";
+  var BILDHINWEIS_NOTEBOOK = " Die Notebook-Ansicht ist eine eigene Zeichnung, kein verkleinerter Desktop. Für das Notebook liegt noch kein freigegebenes Komponentenbild vor. Die Liste bleibt gleichwertig.";
+var aktuelleAnsicht = "desktop";
+  var LABELS = {
+    desktop: {
+      cool: [8, 52], cpu: [8, 96], gpu: [8, 228], hdd: [8, 328], gehaeuse: [8, 420],
+      ram: [662, 64], board: [662, 140], ssd: [662, 206], psu: [662, 378]
+    },
+    notebook: {
+      cool: [8, 70], cpu: [8, 118], ram: [8, 176], gpu: [8, 230], ssd: [8, 284],
+      board: [560, 80], akku: [560, 250], netzteil: [560, 340], gehaeuse: [560, 430]
+    }
+  };
+
+  function svgForm(g, tag, attrs, cls) {
+    attrs["class"] = "pe-form " + (cls || "");
+    g.appendChild(svgEl(tag, attrs));
+  }
+  function svgRect(g, x, y, w, h, cls, rx) {
+    svgForm(g, "rect", { x: x, y: y, width: w, height: h, rx: rx || 4 }, cls);
+  }
+  function callout(g, t) {
+    var r = t.layout;
+    var x = r[0] + 6;
+    var y = r[1] > 30 ? r[1] - 4 : r[1] + 18;
+    var w = Math.max(64, Math.min(118, (t.kurz || "").length * 8 + 16));
+    if (x + w > 760) x = 760 - w;
+    svgRect(g, x, y - 16, w, 24, "pe-label-platte", 6);
+    g.appendChild(svgEl("text", { x: x + 8, y: y + 1, "class": "pe-label" }, t.kurz));
+  }
+  function zeichneDesktopTeil(t, g) {
+    var r = t.layout, x = r[0], y = r[1], w = r[2], h = r[3];
+    if (t.id === "gehaeuse") {
+      svgRect(g, x, y, w, h, "pe-case", 18);
+      svgRect(g, x + 8, y + 16, 16, h - 32, "pe-front", 3);
+      svgRect(g, x + w - 22, y + 28, 12, 150, "pe-io", 2);
+    } else if (t.id === "board") {
+      svgRect(g, x, y, w, h, "pe-pcb", 6);
+      svgRect(g, x + w - 18, y + 16, 10, 120, "pe-slot", 1);
+    } else if (t.id === "cpu") {
+      svgRect(g, x, y, w, h, "pe-cpu", 4);
+      svgRect(g, x + 18, y + 18, w - 36, h - 36, "pe-die", 2);
+      g.appendChild(svgEl("text", { x: x + 22, y: y + h / 2 + 4, "class": "pe-label pe-mini" }, "CPU"));
+    } else if (t.id === "cool") {
+      var cx = x + w / 2, cy = y + h / 2, ro = w / 2 - 2, ri = 30;
+      svgForm(g, "path", {
+        d: "M " + cx + " " + (cy - ro) + " A " + ro + " " + ro + " 0 1 1 " + (cx - 0.1) + " " + (cy - ro) +
+          " Z M " + cx + " " + (cy - ri) + " A " + ri + " " + ri + " 0 1 0 " + (cx + 0.1) + " " + (cy - ri) + " Z",
+        "fill-rule": "evenodd"
+      }, "pe-cool");
+      [0, 90, 180, 270].forEach(function (deg) {
+        var a = deg * Math.PI / 180;
+        g.appendChild(svgEl("line", {
+          x1: cx + Math.cos(a) * (ri + 4), y1: cy + Math.sin(a) * (ri + 4),
+          x2: cx + Math.cos(a) * (ro - 6), y2: cy + Math.sin(a) * (ro - 6),
+          "class": "pe-blade"
+        }));
+      });
+    } else if (t.id === "ram") {
+      [0, 1, 2, 3].forEach(function (i) {
+        svgRect(g, x + 8 + i * 22, y + 8, 16, h - 16, "pe-ram", 2);
+      });
+    } else if (t.id === "gpu") {
+      svgRect(g, x, y, w, h, "pe-gpu", 6);
+      svgForm(g, "circle", { cx: x + 48, cy: y + h / 2, r: 18 }, "pe-fan");
+      svgForm(g, "circle", { cx: x + 96, cy: y + h / 2, r: 18 }, "pe-fan");
+    } else if (t.id === "ssd") {
+      svgRect(g, x, y, w, h, "pe-ssd", 2);
+      svgRect(g, x + w - 10, y + 4, 6, h - 8, "pe-notch", 1);
+    } else if (t.id === "hdd") {
+      svgRect(g, x, y, w, h, "pe-hdd", 6);
+      svgForm(g, "circle", { cx: x + 36, cy: y + h / 2, r: 16 }, "pe-platter");
+    } else if (t.id === "psu") {
+      svgRect(g, x, y, w, h, "pe-psu", 6);
+      svgForm(g, "circle", { cx: x + 36, cy: y + h / 2, r: 18 }, "pe-fan");
+    }
+    callout(g, t);
+  }
+  function zeichneNotebookTeil(t, g) {
+    var r = t.layout, x = r[0], y = r[1], w = r[2], h = r[3];
+    if (t.id === "gehaeuse") {
+      svgRect(g, x, y, w, h, "pe-base", 28);
+      svgRect(g, x + 24, y + 8, w - 48, 10, "pe-hinge", 3);
+    } else if (t.id === "board") {
+      svgRect(g, x, y, w, h, "pe-pcb", 8);
+    } else if (t.id === "cpu") {
+      svgRect(g, x, y, w, h, "pe-cpu", 4);
+      g.appendChild(svgEl("text", { x: x + 14, y: y + h / 2 + 4, "class": "pe-label pe-mini" }, "CPU"));
+    } else if (t.id === "cool") {
+      svgRect(g, x + 150, y + 8, 90, h - 16, "pe-fin", 3);
+      svgRect(g, x + 90, y + 8, 70, 12, "pe-heat", 6);
+    } else if (t.id === "ram") {
+      svgRect(g, x, y, w, h, "pe-ram", 3);
+      svgRect(g, x + 8, y + 10, w - 16, 8, "pe-sodimm", 2);
+    } else if (t.id === "gpu") {
+      svgRect(g, x, y, w, h, "pe-gpu", 4);
+    } else if (t.id === "ssd") {
+      svgRect(g, x, y, w, h, "pe-ssd", 2);
+    } else if (t.id === "akku") {
+      svgRect(g, x, y, w, h, "pe-akku", 12);
+      svgRect(g, x + 16, y + 16, w - 32, h - 32, "pe-cell", 8);
+    } else if (t.id === "netzteil") {
+      svgRect(g, x, y, w, h, "pe-brick", 8);
+      g.appendChild(svgEl("text", { x: x + 12, y: y + h / 2 + 4, "class": "pe-label pe-mini" }, "extern"));
+    }
+    callout(g, t);
+  }
+  function zeichneDeko(key) {
+    var deko = svgEl("g", { "class": "pe-deko", "aria-hidden": "true" });
+    deko.appendChild(svgEl("rect", { x: 0, y: 0, width: 780, height: 480, "class": "pe-platte" }));
+    if (key === "desktop") {
+      deko.appendChild(svgEl("path", { d: "M 470 390 C 430 340, 360 330, 340 300", "class": "pe-kabel pe-kabel-a" }));
+      deko.appendChild(svgEl("path", { d: "M 520 390 C 560 330, 520 280, 500 250", "class": "pe-kabel pe-kabel-b" }));
+    } else {
+      deko.appendChild(svgEl("rect", { x: 70, y: 8, width: 420, height: 22, rx: 6, "class": "pe-lid" }));
+      deko.appendChild(svgEl("path", { d: "M 560 340 C 520 360, 500 300, 500 250", "class": "pe-kabel pe-kabel-a" }));
+    }
+    deko.appendChild(svgEl("text", { x: 136, y: 470, "class": "pe-hinweistext" }, "Beispiel, nicht maßstäblich"));
+    return deko;
+  }
+
 
   var DATEN = { ansichten: ANSICHTEN, teile: TEILE, sockel: SOCKEL, formen: FORMEN, quellen: QUELLEN };
 
@@ -323,7 +457,25 @@
     return fig;
   }
 
+  function blendeFach() {
+    ["pe-abschnitt-sockel", "pe-abschnitt-form", "pe-abschnitt-rueck"].forEach(function (id) {
+      var n = document.getElementById(id);
+      if (n) n.hidden = true;
+    });
+  }
+  function fachKnopf(label, zielId) {
+    var b = el("button", { type: "button", "class": "pe-fachknopf" }, label);
+    b.addEventListener("click", function () {
+      var z = document.getElementById(zielId);
+      if (!z) return;
+      z.hidden = false;
+      var first = z.querySelector("button");
+      if (first) first.focus();
+    });
+    return b;
+  }
   function zeigeDetail(box, eintrag) {
+    blendeFach();
     box.textContent = "";
     box.appendChild(el("h3", {}, eintrag.name));
     var dl = el("dl");
@@ -343,6 +495,11 @@
       dl.appendChild(el("dt", {}, p[0])); dl.appendChild(el("dd", {}, p[1]));
     });
     box.appendChild(dl);
+    if (eintrag.id === "cpu") box.appendChild(fachKnopf("CPU-Bauformen anzeigen", "pe-abschnitt-sockel"));
+    if (eintrag.id === "board" && aktuelleAnsicht === "desktop") {
+      box.appendChild(fachKnopf("Formfaktoren anzeigen", "pe-abschnitt-form"));
+      box.appendChild(fachKnopf("Anschlüsse auf der Rückseite", "pe-abschnitt-rueck"));
+    }
     if (eintrag.foto) box.appendChild(baueFoto(eintrag.foto));
     box.appendChild(el("p", { "class": "pe-merk" }, "Merksatz: " + eintrag.merk));
     if (glossarVorhanden(global.GLOSSAR, eintrag.glossar)) {
@@ -403,21 +560,34 @@
     var hinweis = document.getElementById("pe-bildhinweis");
     var titel = document.getElementById("pe-titel"), einleitung = document.getElementById("pe-einleitung");
 
-    function markiere(id) {
+function markiere(id) {
       Array.prototype.forEach.call(svg.querySelectorAll(".pe-teil"), function (g) {
-        if (g.getAttribute("data-id") === id) g.classList.add("pe-aktiv"); else g.classList.remove("pe-aktiv");
+        var an = g.getAttribute("data-id") === id;
+        g.classList.toggle("pe-aktiv", an);
+        g.setAttribute("aria-pressed", an ? "true" : "false");
       });
     }
 
-    /* Zeichnet dieselbe schematische Zeichnung für jede Ansicht aus den layout-Daten. */
     function zeichne(ansicht, gruppeTeile) {
+      svg.setAttribute("viewBox", "0 0 780 480");
+      svg.appendChild(zeichneDeko(aktuelleAnsicht));
       zeichenReihenfolge(ansicht.teile).forEach(function (t) {
-        var r = t.layout;
-        var g = svgEl("g", { "class": "pe-teil" + (t.grund ? " pe-grund" : ""), "data-id": t.id });
-        g.appendChild(svgEl("rect", { x: r[0], y: r[1], width: r[2], height: r[3], rx: t.grund ? 12 : 6 }));
-        var pos = t.label || [r[0] + 8, r[1] + r[3] / 2 + 5];
-        g.appendChild(svgEl("text", { x: pos[0], y: pos[1] }, t.kurz || t.name));
+        var g = svgEl("g", {
+          "class": "pe-teil pe-teil-" + t.id + (t.grund ? " pe-grund" : ""),
+          "data-id": t.id, role: "button", tabindex: "0",
+          "aria-label": t.name, "aria-pressed": "false"
+        });
+        if (aktuelleAnsicht === "notebook") zeichneNotebookTeil(t, g); else zeichneDesktopTeil(t, g);
         g.addEventListener("click", function () { gruppeTeile.waehle(t.id); });
+        g.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); gruppeTeile.waehle(t.id); return; }
+          var parts = Array.prototype.slice.call(svg.querySelectorAll(".pe-teil"));
+          var i = parts.indexOf(g);
+          var n = naechsterIndex(i, e.key, parts.length);
+          if (n < 0) return;
+          e.preventDefault();
+          parts[n].focus();
+        });
         svg.appendChild(g);
       });
     }
@@ -425,6 +595,7 @@
     function zeigeAnsicht(key) {
       var a = ANSICHTEN[key];
       if (!a) return;
+      aktuelleAnsicht = key;
       [svg, teileBox, detail, sockelWahl, sockelDetail, formWahl, formDetail].forEach(function (n) { n.textContent = ""; });
       Array.prototype.forEach.call(ansichtBox.querySelectorAll("button"), function (b) {
         b.setAttribute("aria-pressed", b.getAttribute("data-ansicht") === key ? "true" : "false");
@@ -436,10 +607,12 @@
       teileBox.setAttribute("aria-label", a.gruppe);
       var gruppeTeile = baueGruppe(teileBox, a.teile, function (t) { markiere(t.id); zeigeDetail(detail, t); });
       zeichne(a, gruppeTeile);
-      abschnittSockel.hidden = !a.sockel.length;
-      abschnittForm.hidden = !a.formen.length;
-      if (a.sockel.length) { baueGruppe(sockelWahl, a.sockel, function (s) { zeigeDetail(sockelDetail, s); }); sockelDetail.textContent = "Wähle eine Bauform."; }
-      if (a.formen.length) { baueGruppe(formWahl, a.formen, function (f) { zeigeDetail(formDetail, f); }); formDetail.textContent = "Wähle einen Formfaktor."; }
+      abschnittSockel.hidden = true;
+      abschnittForm.hidden = true;
+      var rueck = document.getElementById("pe-abschnitt-rueck");
+      if (rueck) rueck.hidden = true;
+      if (SOCKEL.length) { baueGruppe(sockelWahl, SOCKEL, function (s) { zeigeDetail(sockelDetail, s); }); sockelDetail.textContent = "Wähle eine Bauform."; }
+      if (key === "desktop" && FORMEN.length) { baueGruppe(formWahl, FORMEN, function (f) { zeigeDetail(formDetail, f); }); formDetail.textContent = "Wähle einen Formfaktor."; }
       gruppeTeile.waehle("cpu");
     }
 
@@ -453,6 +626,14 @@
       li.appendChild(el("a", { href: q.url, rel: "noopener" }, q.titel));
       li.appendChild(document.createTextNode(" · abgerufen " + q.abruf + (q.vorlaeufig ? " · vorläufig, keine Norm" : "")));
       ul.appendChild(li);
+    });
+    var kuehler = document.getElementById("pe-kuehler");
+    if (kuehler) kuehler.addEventListener("click", function () {
+      var an = kuehler.getAttribute("aria-pressed") !== "true";
+      kuehler.setAttribute("aria-pressed", an ? "true" : "false");
+      kuehler.textContent = an ? "Kühlung wieder deckend" : "Kühlung durchsichtig";
+      var zeichnung = svg.parentNode;
+      if (zeichnung) zeichnung.classList.toggle("pe-kuehler-offen", an);
     });
     zeigeAnsicht("desktop");
   }

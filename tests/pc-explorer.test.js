@@ -13,7 +13,7 @@ const gleich = (a, b) => assert.equal(JSON.stringify(a), JSON.stringify(b));
 // Desktop: bisherige IDs plus gehaeuse
 gleich(D.teile.map(t => t.id), ["cpu", "cool", "ram", "gpu", "ssd", "hdd", "psu", "board", "gehaeuse"]);
 gleich(D.sockel.map(s => s.id), ["pga", "lga", "bga"]);
-gleich(D.formen.map(f => f.id), ["atx", "microatx", "miniitx"]);
+gleich(D.formen.map(f => f.id), ["atx", "microatx", "miniitx", "eatx", "btx"]);
 
 // Ansichten: Aliase zeigen auf dieselben Arrays, Notebook-IDs, Server nur als leerer Slot
 assert(D.ansichten.desktop.teile === D.teile && D.ansichten.desktop.sockel === D.sockel && D.ansichten.desktop.formen === D.formen, "Aliase sind Referenzen auf Desktop-Daten");
@@ -40,7 +40,7 @@ alle.forEach(x => {
   assert.equal(t.layout.length, 4, t.id);
   t.layout.forEach(n => assert(Number.isFinite(n), t.id));
   assert(t.layout[2] > 0 && t.layout[3] > 0 && t.layout[0] >= 0 && t.layout[1] >= 0, t.id + " Layout");
-  assert(t.layout[0] + t.layout[2] <= 640 && t.layout[1] + t.layout[3] <= 400, t.id + " liegt außerhalb der Zeichnung");
+  assert(t.layout[0] + t.layout[2] <= 780 && t.layout[1] + t.layout[3] <= 480, t.id + " liegt außerhalb der Zeichnung");
 }));
 
 // Zeichenreihenfolge: Gehäuse, dann Mainboard, dann der Rest
@@ -61,12 +61,22 @@ Object.values(D.quellen).filter(q => /wikipedia\.org/.test(q.url)).forEach(q => 
 // Maße nur dort, wo sie belegt sind: nur ATX, microATX, Mini-ITX dürfen Zahlen mit Einheit in ort enthalten
 const einheit = /\d\s*(mm|cm|Zoll|MHz|GHz|W\b|Watt|GB|TB|Gbit)/;
 const lernfelder = ["funktion", "ort", "zusammen", "bauformen", "praxis", "merk", "fakt"];
-D.teile.concat(D.sockel, D.ansichten.notebook.teile).forEach(x => lernfelder.forEach(k => assert(!einheit.test(x[k] || ""), x.id + "." + k + " enthält ein unbelegtes Maß")));
+D.teile.concat(D.sockel, D.ansichten.notebook.teile).forEach(x => lernfelder.forEach(k => {
+  if (x.id === "ssd" && k === "fakt") return;
+  const text = (x[k] || "").replaceAll("2,5-Zoll", "");
+  assert(!einheit.test(text), x.id + "." + k + " enthält ein unbelegtes Maß: " + text);
+}));
+assert(e.finde(D.teile, "ssd").fakt.includes("22 mm") && e.finde(D.teile, "ssd").fakt.includes("Vorläufig"));
 D.formen.forEach(x => ["funktion", "zusammen", "bauformen", "praxis", "merk", "fakt"].forEach(k => assert(!einheit.test(x[k] || ""), x.id + "." + k + " enthält ein Maß")));
 D.formen.forEach(x => assert(x.q.length > 0));
-assert(D.formen[1].ort.includes("9,6 × 9,6 Zoll") && D.formen[1].ort.includes("Dezember 1997"));
+assert(D.formen[1].ort.includes("244 × 244 mm") && D.formen[1].ort.includes("Dezember 1997"));
 assert(D.formen[2].ort.includes("170 × 170 mm") && D.formen[2].ort.includes("2001"));
-assert(D.formen[0].ort.includes("12 × 9,6 Zoll"));
+assert(D.formen[0].ort.includes("305 × 244 mm") && !/Zoll/.test(D.formen[0].ort));
+assert(e.finde(D.formen, "eatx").ort.includes("nicht für jedes Board"));
+assert(e.finde(D.formen, "btx").funktion.includes("2006") && e.finde(D.formen, "btx").merk.includes("historisch"));
+assert.equal(e.finde(D.teile, "psu").name, "Netzteil (PSU)");
+assert.equal(e.finde(D.ansichten.notebook.teile, "netzteil").name, "Externes Netzteil");
+assert(!/Systemplatine/.test(js));
 
 // Verbotene Angaben: Steckerhöhen der JEDEC-Pressemitteilung, IBM-Maße, Wattzahlen, Pinzahlen
 const alleTexte = JSON.stringify(D.ansichten) + JSON.stringify(D.quellen);
@@ -124,7 +134,13 @@ alle.forEach(x => assert.equal(e.glossarVorhanden(echt, x.glossar), echt.some(g 
 ["pe-svg", "pe-teile", "pe-detail", "pe-sockel-wahl", "pe-sockel-detail", "pe-form-wahl", "pe-form-detail", "pe-quellenliste",
   "pe-ansichten", "pe-titel", "pe-einleitung", "pe-abschnitt-sockel", "pe-abschnitt-form"].forEach(id => assert(html.includes('id="' + id + '"'), "HTML ohne " + id));
 assert(html.includes('lang="de"') && html.includes("skip-link") && html.includes('aria-live="polite"'));
-assert(html.includes('class="pe-zeichnung" aria-hidden="true"'), "Zeichnung ist nur Zusatz, Bedienung läuft über die Liste");
+assert(html.includes('id="pe-teile"') && html.includes('id="pe-svg"') && html.includes('id="pe-detail"'), "Liste, Abbildung und Erklärung bleiben nebeneinander");
+assert(!html.includes('aria-hidden="true"><svg id="pe-svg"'), "Abbildung ist bedienbar, nicht versteckt");
+assert(js.includes('role: "button"'), "Bauteile in der Abbildung sind Schaltflächen");
+assert(html.includes('id="pe-abschnitt-sockel" class="abschnitt" hidden'));
+assert(html.includes('id="pe-abschnitt-form" class="abschnitt" hidden'));
+assert(html.includes('id="pe-abschnitt-rueck"') && html.includes("kein Formfaktor") && html.includes("Project Zero"));
+assert(html.includes('id="pe-kuehler"'));
 assert(html.includes("../js/pc-explorer.js") && html.includes("../css/pc-explorer.css"));
 // Ansichtsbuttons: Desktop und Notebook, genau einer gedrückt, kein Server-Button
 assert(html.includes('data-ansicht="desktop" aria-pressed="true"') && html.includes('data-ansicht="notebook" aria-pressed="false"'));
