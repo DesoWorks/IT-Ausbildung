@@ -62,14 +62,14 @@
       praxis: "Ausbildungsbeispiel: Vor dem Austausch einer SSD prüfst du Anschluss, unterstützte Schnittstelle und Bauform in den Geräteangaben.",
       merk: "M.2 ist nicht dasselbe wie SATA, PCIe oder NVMe.",
       fakt: "Wikipedia beschreibt M.2 als Spezifikation für interne Erweiterungsmodule. Genannt werden eine Breite von 22 mm und Längen von 30, 42, 60, 80 oder 110 mm. Vorläufig, kein gelesener PCI-SIG-Normtext.", q: ["nvme", "sata-io", "m2"] },
-    { id: "hdd", name: "Festplatte (HDD)", kurz: "HDD", glossar: "HDD", layout: [180, 392, 176, 36],
+    { id: "hdd", name: "Festplatte (HDD)", kurz: "HDD", glossar: "HDD", layout: [446, 392, 176, 36],
       funktion: "Speichert Daten magnetisch auf rotierenden Scheiben. Sie ist günstig und groß.",
       ort: "Im Laufwerksschacht des Gehäuses, per Datenkabel mit dem Mainboard verbunden.",
       zusammen: "Daten laufen über das Datenkabel zum Mainboard, Strom kommt vom Netzteil.",
       bauformen: "Festplatten gibt es in verschiedenen Gehäuse- und Anschlussvarianten. Im Desktop sitzt sie typischerweise als 3,5-Zoll-Laufwerk in einem Laufwerksschacht. Konkrete Maße stehen hier nicht.",
       praxis: "Ausbildungsbeispiel: Bei einer Speichererweiterung prüfst du Laufwerksschacht, Anschluss und Gerätevorgaben, bevor du ein Laufwerk auswählst.",
       merk: "Sie enthält bewegte Teile und ist deshalb stoßempfindlicher als eine SSD.", fakt: "", q: [] },
-    { id: "psu", name: "Netzteil (PSU)", kurz: "Netzteil", glossar: "Netzteil", layout: [396, 384, 232, 70],
+    { id: "psu", name: "Netzteil (PSU)", kurz: "Netzteil", glossar: "Netzteil", layout: [176, 384, 232, 70],
       funktion: "Wandelt die Netzspannung in niedrige Gleichspannungen für die Bauteile um.",
       ort: "Im Gehäuse, meist unten oder hinten.",
       zusammen: "Versorgt Mainboard, Grafikkarte und Laufwerke über Kabel.",
@@ -271,8 +271,8 @@ var aktuelleAnsicht = "desktop";
      Alle Platten stehen außerhalb des Gehäuses, die Linien enden mit einem Punkt auf dem Bauteil. */
   var LABELS = {
     desktop: {
-      cool: [8, 32, 300, 76], cpu: [8, 88, 322, 126], gpu: [8, 262, 256, 282], hdd: [8, 398, 196, 410], gehaeuse: [8, 330, 146, 342],
-      ram: [650, 8, 510, 70], board: [650, 158, 580, 170], ssd: [650, 211, 416, 223], psu: [650, 408, 620, 420]
+      cool: [8, 32, 300, 76], cpu: [8, 88, 322, 126], gpu: [8, 262, 256, 282], psu: [8, 408, 230, 420], gehaeuse: [8, 330, 146, 342],
+      ram: [650, 8, 510, 70], board: [650, 158, 580, 170], ssd: [650, 211, 416, 223], hdd: [650, 362, 540, 410]
     },
     notebook: {
       ssd: [8, 110, 174, 121], cpu: [8, 160, 272, 148], gpu: [8, 215, 272, 226], ram: [650, 210, 432, 264], gehaeuse: [8, 330, 146, 342],
@@ -348,7 +348,7 @@ var aktuelleAnsicht = "desktop";
       svgRect(g, x, y, w, h, "pe-case pe-haupt", 18);
       svgRect(g, x + 8, y + 16, 16, h - 32, "pe-front", 3);
       [84, 160, 236].forEach(function (cy) { zeichneLuefter(g, x + 60, cy, 26, 5); });
-      svgRect(g, 388, 378, 246, 82, "pe-front", 4);                   /* Netzteilschacht unten hinten */
+      svgRect(g, 170, 378, 244, 82, "pe-front", 4);                   /* Netzteilschacht unten vorn */
       svgRect(g, x + w - 24, y + 28, 14, 110, "pe-io", 2);
       for (i = 0; i < 4; i++) svgRect(g, x + w - 22, y + 32 + i * 26, 10, 18, "pe-conn", 1);
     } else if (t.id === "board") {
@@ -492,10 +492,10 @@ var aktuelleAnsicht = "desktop";
     var k = svgEl("g", { "class": "pe-kabelschicht", "aria-hidden": "true" });
     function pfad(d, cls) { k.appendChild(svgEl("path", { d: d, "class": "pe-kabel " + cls })); }
     if (key === "desktop") {
-      pfad("M 592 386 C 606 356 604 300 604 260 C 604 200 574 190 574 142", "pe-kabel-a pe-kabel-dick");  /* Netzteil zum Mainboard */
-      pfad("M 556 386 C 556 356 536 344 536 318", "pe-kabel-a");                                          /* Netzteil zur Grafikkarte */
-      pfad("M 396 417 L 364 417", "pe-kabel-a");                                                          /* Netzteil zur Festplatte */
-      pfad("M 364 402 C 382 402 382 346 340 342 C 300 338 282 338 280 326", "pe-kabel-b pe-kabel-daten"); /* Festplatte zum Mainboard */
+      pfad("M 380 380 C 380 350 424 352 424 326 L 604 326 C 604 200 574 190 574 142", "pe-kabel-a pe-kabel-dick"); /* Netzteil zum Mainboard */
+      pfad("M 346 380 C 346 350 536 360 536 318", "pe-kabel-a");                                          /* Netzteil zur Grafikkarte */
+      pfad("M 408 430 C 440 454 610 454 626 436 C 630 430 630 424 630 418", "pe-kabel-a");                /* Netzteil zur Festplatte */
+      pfad("M 630 402 C 636 372 600 342 560 342 L 300 342 C 284 342 280 336 280 326", "pe-kabel-b pe-kabel-daten"); /* Festplatte zum Mainboard */
     } else {
       pfad("M 588 360 C 574 360 572 352 558 352", "pe-kabel-a pe-kabel-dick");                            /* externes Netzteil zur Ladebuchse */
       pfad("M 233 300 L 233 288", "pe-kabel-a");                                                          /* Akku zum Mainboard */

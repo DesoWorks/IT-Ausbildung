@@ -228,7 +228,7 @@ assert(nb("cpu").layout[0] >= ngh[0] && nb("cool").layout[0] + nb("cool").layout
   const innen = (l, o) => l[0] >= o[0] && l[1] >= o[1] && l[0] + l[2] <= o[0] + o[2] && l[1] + l[3] <= o[1] + o[3];
   assert(innen(hd.layout, gh) && innen(ps.layout, gh), "HDD und Netzteil liegen im Gehäuse");
   assert(hd.layout[1] >= gp.layout[1] + gp.layout[3], "HDD liegt unter der Grafikkarte");
-  assert(ps.layout[1] > bd[1] + bd[3] && ps.layout[0] > hd.layout[0], "Netzteil unten und weiter hinten als die HDD");
+  assert(ps.layout[1] > bd[1] + bd[3] && hd.layout[0] > ps.layout[0], "Netzteil unten im Gehäuse, HDD weiter hinten als das Netzteil");
   assert(hd.bauformen.includes("Laufwerksschacht") && hd.bauformen.includes("Konkrete Maße stehen hier nicht"));
 }
 
