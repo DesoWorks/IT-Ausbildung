@@ -36,29 +36,30 @@
             <button type="button" id="pe-kuehler" aria-pressed="false">Kühlung durchsichtig</button>
           </div>
           <svg id="pe-svg" viewBox="0 0 780 480" role="group" aria-label="Beispielansicht mit auswählbaren Bauteilen"></svg>
-          <p class="klein">Die Abbildung zeigt ein Beispiel. Aufbau und Anordnung können je nach Hersteller und Modell abweichen. Verdeckt die Kühlung den Prozessor, bleibt die Mitte auswählbar. Mit „Kühlung durchsichtig“ siehst du ihn vollständig.</p>
+          <p class="klein">Die Abbildung zeigt ein Beispiel. Aufbau und Anordnung können je nach Hersteller und Modell abweichen. Verdeckt die Kühlung den Prozessor, bleibt er auswählbar. Mit „Kühlung durchsichtig“ siehst du ihn vollständig. Auf schmalen Bildschirmen entfallen die Beschriftungen in der Abbildung; dann nutzt du die Liste.</p>
         </div>
         <div id="pe-teile" class="pe-gruppe" role="group" aria-label="Bauteile des Desktop-PCs"></div>
-        <div id="pe-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
+        <div class="pe-erklaerung">
+          <div id="pe-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
+          <section id="pe-abschnitt-sockel" class="abschnitt" hidden aria-labelledby="pe-sockel">
+            <h2 id="pe-sockel">CPU-Bauformen: PGA, LGA und BGA</h2>
+            <p>Die Bauform legt fest, <strong>wo die Kontakte sitzen</strong>: an der CPU, am Mainboard oder als feste Lötverbindung.</p>
+            <div id="pe-sockel-wahl" class="pe-gruppe pe-gruppe-reihe" role="group" aria-label="CPU-Bauformen"></div>
+            <div id="pe-sockel-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
+          </section>
+          <section id="pe-abschnitt-form" class="abschnitt" hidden aria-labelledby="pe-formfaktor">
+            <h2 id="pe-formfaktor">Mainboard-Formfaktoren</h2>
+            <p>Der Formfaktor beschreibt unter anderem Größe und Lage der Befestigungslöcher. Er bestimmt, ob ein Mainboard in ein Gehäuse passt.</p>
+            <div id="pe-form-wahl" class="pe-gruppe pe-gruppe-reihe" role="group" aria-label="Mainboard-Formfaktoren"></div>
+            <div id="pe-form-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
+          </section>
+          <section id="pe-abschnitt-rueck" class="abschnitt" hidden aria-labelledby="pe-rueck">
+            <h2 id="pe-rueck">Anschlüsse auf der Rückseite</h2>
+            <p>Das ist kein Formfaktor. Manche Mainboards verlegen Strom- und Lüfterstecker auf die Rückseite, damit die Vorderseite aufgeräumter aussieht. MSI nennt das bei Project Zero Back-Connect. Ob so ein Board in ein Gehäuse passt, steht in den Angaben zu genau diesem Board und Gehäuse.</p>
+          </section>
+        </div>
       </div>
       <p id="pe-bildhinweis" class="klein"></p>
-    </section>
-    <section id="pe-abschnitt-sockel" class="abschnitt" hidden aria-labelledby="pe-sockel">
-      <h2 id="pe-sockel">CPU-Bauformen: PGA, LGA und BGA</h2>
-      <p>Die Bauform legt fest, <strong>wo die Kontakte sitzen</strong>: an der CPU, am Mainboard oder als feste Lötverbindung.</p>
-      <div id="pe-sockel-wahl" class="pe-gruppe pe-gruppe-reihe" role="group" aria-label="CPU-Bauformen"></div>
-      <div id="pe-sockel-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
-    </section>
-    <section id="pe-abschnitt-form" class="abschnitt" hidden aria-labelledby="pe-formfaktor">
-      <h2 id="pe-formfaktor">Mainboard-Formfaktoren</h2>
-      <p>Der Formfaktor beschreibt unter anderem Größe und Lage der Befestigungslöcher. Er bestimmt, ob ein Mainboard in ein Gehäuse passt.</p>
-      <div id="pe-form-wahl" class="pe-gruppe pe-gruppe-reihe" role="group" aria-label="Mainboard-Formfaktoren"></div>
-      <div id="pe-form-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
-    </section>
-    <section id="pe-abschnitt-rueck" class="abschnitt" hidden aria-labelledby="pe-rueck">
-      <h2 id="pe-rueck">Anschlüsse auf der Rückseite</h2>
-      <p>Das ist kein Formfaktor. Manche Mainboards verlegen Strom- und Lüfterstecker auf die Rückseite, damit die Vorderseite aufgeräumter aussieht. MSI nennt das bei Project Zero Back-Connect. Ob so ein Board in ein Gehäuse passt, steht in den Angaben zu genau diesem Board und Gehäuse.</p>
-      <p class="klein">ASUS BTF und Gigabyte Project Stealth sind im Auftrag als weitere Beispiele genannt. Ihre Herstellerseiten waren in diesem Arbeitsstand nicht lesbar. Sie stehen deshalb hier nicht als geprüfte Produktbeschreibung.</p>
     </section>
     <section class="abschnitt" aria-labelledby="pe-quellen">
       <h2 id="pe-quellen">Quellen und Grenzen</h2>

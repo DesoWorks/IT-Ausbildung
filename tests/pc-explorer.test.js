@@ -187,4 +187,59 @@ assert(/\.pe-kabelschicht[^{]*\{\s*pointer-events:\s*none/.test(css), "Kabel nic
 assert(/\.pe-rahmen\.pe-aktiv\s*\{[^}]*stroke-dasharray/.test(css), "Auswahlrahmen gestrichelt, nicht nur Farbe");
 assert(/\.pe-etikett\.pe-aktiv \.pe-label-platte\s*\{[^}]*stroke-width:\s*4/.test(css), "Aktives Etikett mit dickerem Rahmen");
 assert(!/<img[^>]*pe-svg|background-image/.test(html + css), "Kein Hintergrundbild unter der Zeichnung");
+// Zusatzinfo-Zustand: je Ansicht und Bauteil gemerkt, nur der genannte Schlüssel wird umgeschaltet
+{
+  const sp = {};
+  assert.equal(e.fachOffen(sp, "desktop", "cpu", "pe-abschnitt-sockel"), false, "fehlend = zu");
+  assert.equal(e.fachUmschalten(sp, "desktop", "cpu", "pe-abschnitt-sockel"), true);
+  assert.equal(e.fachOffen(sp, "desktop", "cpu", "pe-abschnitt-sockel"), true);
+  assert.equal(e.fachOffen(sp, "desktop", "board", "pe-abschnitt-sockel"), false, "anderes Bauteil bleibt zu");
+  assert.equal(e.fachOffen(sp, "notebook", "cpu", "pe-abschnitt-sockel"), false, "andere Ansicht bleibt zu");
+  assert.equal(e.fachOffen(sp, "desktop", "cpu", "pe-abschnitt-form"), false, "anderer Abschnitt bleibt zu");
+  assert.equal(e.fachUmschalten(sp, "desktop", "board", "pe-abschnitt-form"), true);
+  assert.equal(e.fachOffen(sp, "desktop", "cpu", "pe-abschnitt-sockel"), true, "CPU-Zustand bleibt beim Wechsel erhalten");
+  assert.equal(e.fachOffen(sp, "desktop", "cpu", "pe-abschnitt-form"), false, "CPU öffnet keine Formfaktoren");
+  assert.equal(e.fachUmschalten(sp, "desktop", "cpu", "pe-abschnitt-sockel"), false, "zweites Umschalten schließt");
+  assert.equal(e.fachOffen(sp, "desktop", "board", "pe-abschnitt-form"), true, "Board-Zustand unberührt");
+  assert.equal(e.fachBeschriftung("Formfaktoren anzeigen", false), "Formfaktoren anzeigen");
+  assert.equal(e.fachBeschriftung("Formfaktoren anzeigen", true), "Formfaktoren ausblenden");
+  assert.equal(e.fachBeschriftung("anzeigen anzeigen", true), "anzeigen ausblenden", "nur das Wort am Ende wechselt");
+  assert.equal(e.fachBeschriftung("Text ohne Endung", true), "Text ohne Endung");
+}
+assert(/fachUmschalten\(/.test(js) && /aria-expanded/.test(js) && /aria-controls/.test(js), "Knopf nutzt Zustand und ARIA");
+assert(/Anschlüsse auf der Rückseite anzeigen/.test(js) && /Formfaktoren anzeigen/.test(js) && /CPU-Bauformen anzeigen/.test(js));
+
+// Notebook-Fachtexte
+const nbFelder = id => lernfelder.map(k => nb(id)[k]).join(" ");
+assert(nb("cpu").bauformen.includes("BGA") && nb("cpu").bauformen.includes("Ausnahme"), "Notebook-CPU: BGA und Ausnahme");
+assert(!nbFelder("cpu").includes("typische Notebook-Sockel"), "Desktop-Sockel nicht als Notebook-Sockel");
+assert(nb("gpu").bauformen.includes("Integrierte Grafik") && nb("gpu").bauformen.includes("separate Grafiklösung"), "Notebook-GPU: integriert und separat");
+assert(!/LPCAMM2/.test(js), "LPCAMM2 ist nicht belegt");
+const rl = nb("ram").layout;
+assert(rl[2] / rl[3] >= 1.8 && rl[2] / rl[3] <= 2.6, "Notebook-RAM-Layout: Breite zu Höhe zwischen 1,8 und 2,6");
+const ngh = e.finde(D.ansichten.notebook.teile, "gehaeuse").layout;
+const nbb = nb("board").layout;
+assert(rl[0] >= nbb[0] && rl[1] >= nbb[1] && rl[0] + rl[2] <= nbb[0] + nbb[2] && rl[1] + rl[3] <= nbb[1] + nbb[3], "Notebook-RAM liegt auf dem Mainboard");
+assert(nb("cpu").layout[0] >= ngh[0] && nb("cool").layout[0] + nb("cool").layout[2] <= ngh[0] + ngh[2], "Notebook-Kühlung liegt im Gehäuse");
+
+// Desktop-Anordnung: HDD im Laufwerkskäfig unter der Grafikkarte, Netzteil unten im Gehäuse
+{
+  const hd = e.finde(D.teile, "hdd"), gp = e.finde(D.teile, "gpu"), ps = e.finde(D.teile, "psu");
+  const innen = (l, o) => l[0] >= o[0] && l[1] >= o[1] && l[0] + l[2] <= o[0] + o[2] && l[1] + l[3] <= o[1] + o[3];
+  assert(innen(hd.layout, gh) && innen(ps.layout, gh), "HDD und Netzteil liegen im Gehäuse");
+  assert(hd.layout[1] >= gp.layout[1] + gp.layout[3], "HDD liegt unter der Grafikkarte");
+  assert(ps.layout[1] > bd[1] + bd[3] && ps.layout[0] > hd.layout[0], "Netzteil unten und weiter hinten als die HDD");
+  assert(hd.bauformen.includes("Laufwerksschacht") && hd.bauformen.includes("Konkrete Maße stehen hier nicht"));
+}
+
+// Seite und Stil
+assert(!html.includes("im Auftrag") && !html.includes("nicht lesbar"), "Kein Auftragsvermerk und keine Zugriffsnotiz im Lerntext");
+assert(!/ASUS|Gigabyte/.test(html), "ASUS und Gigabyte nicht als geprüfte Produkte genannt");
+assert(/<div class="pe-erklaerung">[\s\S]*id="pe-detail"[\s\S]*id="pe-abschnitt-sockel"[\s\S]*id="pe-abschnitt-form"[\s\S]*id="pe-abschnitt-rueck"/.test(html), "Erklärung samt Vertiefungen im Erklärungsbereich");
+assert(css.includes("grid-area: erklaerung"), "Erklärung über die volle Breite");
+assert(/\.pe-abdeckung\s*\{[^}]*pointer-events:\s*none/.test(css), "Kühlabdeckung fängt keine Klicks ab");
+assert(/\.pe-kuehler-offen \.pe-abdeckung\s*\{[^}]*opacity/.test(css), "Abdeckung wird mit der Kühlung durchsichtig");
+assert(/@media \(max-width: 600px\)[^}]*\{\s*\.pe-etiketten\s*\{\s*display:\s*none/.test(css), "Etiketten unter 600px ausgeblendet");
+assert(js.includes("pe-kaefig") && js.includes("pe-abdeckung"), "Käfig und Kühlabdeckung in der Zeichnung");
+
 console.log("pc-explorer: alle Prüfungen bestanden");

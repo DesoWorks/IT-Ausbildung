@@ -1,10 +1,21 @@
 /* PC-Explorer. Nutzt nur die gemeinsamen Farbvariablen (hell, dunkel, Kontrast). Keine Animationen. */
-.pe-arbeitsflaeche { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.8fr); grid-template-areas: "bild liste" "bild detail"; gap: 1rem; align-items: start; }
-.pe-zeichnung { grid-area: bild; }
-#pe-teile { grid-area: liste; }
-.pe-detail { grid-area: detail; }
+/* Layout: oben links Zeichnung, oben rechts Bauteilliste, darunter die Erklärung über die volle Breite. */
+.pe-arbeitsflaeche { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); grid-template-areas: "bild liste" "erklaerung erklaerung"; gap: 1rem; align-items: start; }
+.pe-zeichnung { grid-area: bild; min-width: 0; }
+#pe-teile { grid-area: liste; min-width: 0; }
+.pe-erklaerung { grid-area: erklaerung; min-width: 0; overflow-wrap: anywhere; }
+.pe-erklaerung section.abschnitt { margin-top: 1rem; }
+.pe-erklaerung section.abschnitt:focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 2px; }
 @media (max-width: 900px) {
-  .pe-arbeitsflaeche { grid-template-columns: 1fr; grid-template-areas: "bild" "liste" "detail"; }
+  .pe-arbeitsflaeche { grid-template-columns: minmax(0, 1fr); grid-template-areas: "bild" "liste" "erklaerung"; }
+}
+/* Unter 600px wäre die 19px-Schrift der SVG-Etiketten unlesbar klein: Liste und Beschriftungen der Bauteile bleiben die Bedienung. */
+@media (max-width: 600px) {
+  .pe-etiketten { display: none; }
+}
+@media (max-width: 420px) {
+  .pe-gruppe-reihe { grid-template-columns: minmax(0, 1fr); }
+  .pe-fachknopf, #pe-kuehler { max-width: 100%; }
 }
 main section[hidden] { display: none; }
 .pe-zeichnung { border: 1px solid var(--farbe-rahmen); border-radius: var(--radius); background: var(--farbe-flaeche); padding: .5rem; }
@@ -158,3 +169,13 @@ main a:not(.knopf) { color: var(--farbe-akzent-dunkel); text-decoration: underli
 .pe-rahmen-saum, .pe-rahmen { fill: none; stroke: none; }
 .pe-rahmen-saum.pe-aktiv { stroke: #fff; stroke-width: 7; }
 .pe-rahmen.pe-aktiv { stroke: #111; stroke-width: 3; stroke-dasharray: 9 5; }
+
+/* Desktop: Laufwerkskäfig mit Schächten für die Festplatte. */
+.pe-zeichnung .pe-teil rect.pe-kaefig { fill: #334155; stroke: #94a3b8; stroke-width: 2; }
+.pe-zeichnung .pe-teil rect.pe-schacht { fill: #0b1016; stroke: #475569; stroke-width: 1; }
+.pe-zeichnung .pe-teil rect.pe-aufkleber { fill: #eef2f6; stroke: #3d4856; stroke-width: 1; }
+
+/* Notebook-Kühlung: Wärmeverteiler und Heatpipes dürfen CPU und GPU überdecken, fangen aber keine Klicks ab. */
+.pe-zeichnung .pe-teil rect.pe-spreader { fill: #94a3b8; stroke: #1c2633; stroke-width: 2; }
+.pe-zeichnung .pe-teil .pe-abdeckung { pointer-events: none; }
+.pe-zeichnung.pe-kuehler-offen .pe-abdeckung { opacity: .15; }
