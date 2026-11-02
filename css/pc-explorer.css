@@ -179,3 +179,21 @@ main a:not(.knopf) { color: var(--farbe-akzent-dunkel); text-decoration: underli
 .pe-zeichnung .pe-teil rect.pe-spreader { fill: #94a3b8; stroke: #1c2633; stroke-width: 2; }
 .pe-zeichnung .pe-teil .pe-abdeckung { pointer-events: none; }
 .pe-zeichnung.pe-kuehler-offen .pe-abdeckung { opacity: .15; }
+
+/* Anschlussansichten: Füllung je Gruppe, 2px Kontur und Beschriftung im Teil, damit die Unterscheidung auch ohne Farbe möglich bleibt. */
+.pe-zeichnung .pe-teil rect.pe-io-mb { fill: #cfe3f7; stroke: #1c3d63; stroke-width: 2; }
+.pe-zeichnung .pe-teil rect.pe-io-karte { fill: #f6d9a8; stroke: #6b3f00; stroke-width: 2; stroke-dasharray: 6 3; }
+.pe-zeichnung .pe-teil rect.pe-io-intern { fill: #cdeccf; stroke: #17512b; stroke-width: 2; }
+.pe-zeichnung .pe-teil rect.pe-io-alt { fill: #e4e0e8; stroke: #4a3f5a; stroke-width: 2; stroke-dasharray: 2 3; }
+.pe-zeichnung .pe-teil text.pe-io-text { fill: #111; font-size: 13px; font-family: sans-serif; font-weight: 600; pointer-events: none; }
+.pe-zeichnung .pe-teil.pe-aktiv rect.pe-haupt,
+.pe-zeichnung .pe-teil:focus-visible rect.pe-haupt { stroke: #111; stroke-width: 4; }
+
+/* Bereichsrahmen und größere Beschriftung der Anschlussansichten. Die Bereiche tragen ihren Namen als Text, nicht nur als Farbe. */
+.pe-zeichnung .pe-teil text.pe-io-text { font-size: 14px; paint-order: stroke; stroke: #fff; stroke-width: 0; }
+.pe-zeichnung .pe-teil text.pe-io-aussen { stroke-width: 3px; stroke-linejoin: round; }
+.pe-bereich { fill: none; stroke-width: 2; }
+.pe-bereich-mb { stroke: #1c3d63; fill: rgba(207, 227, 247, .25); }
+.pe-bereich-karte { stroke: #6b3f00; stroke-dasharray: 8 4; fill: rgba(246, 217, 168, .25); }
+.pe-bereich-platine { stroke: #17512b; fill: rgba(205, 236, 207, .3); }
+.pe-bereichstext { fill: #111; font-size: 13px; font-family: sans-serif; font-weight: 600; }

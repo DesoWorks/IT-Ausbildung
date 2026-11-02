@@ -17,7 +17,17 @@
     "camm2": { titel: "JEDEC-Pressemitteilung zu CAMM2 (JESD318), 5. Dezember 2023", url: "https://www.jedec.org/news/pressreleases/jedec-publishes-new-camm2-memory-module-standard", abruf: "2026-11-01" },
     "m2": { titel: "Wikipedia: M.2 (Einleitung, Features, Form factors and keying)", url: "https://en.wikipedia.org/wiki/M.2", abruf: "2026-11-02", vorlaeufig: true },
     "btx": { titel: "Wikipedia: BTX (form factor)", url: "https://en.wikipedia.org/wiki/BTX_(form_factor)", abruf: "2026-11-02", vorlaeufig: true },
-    "msi-pz": { titel: "MSI: Project Zero Desktop, Back-Connect", url: "https://www.msi.com/Landing/project-zero/desktop", abruf: "2026-11-02" }
+    "msi-pz": { titel: "MSI: Project Zero Desktop, Back-Connect", url: "https://www.msi.com/Landing/project-zero/desktop", abruf: "2026-11-02" },
+    "usb-if": { titel: "USB Implementers Forum: Startseite (USB4, USB 3.2, USB 2.0 und USB Type-C als Themenbereiche)", url: "https://www.usb.org/", abruf: "2026-11-02" },
+    "hdmi-org": { titel: "HDMI Licensing Administrator: Startseite", url: "https://www.hdmi.org/", abruf: "2026-11-02" },
+    "displayport": { titel: "VESA: DisplayPort", url: "https://www.displayport.org/", abruf: "2026-11-02" },
+    "legrand-rj45": { titel: "Legrand: Tout savoir sur la prise RJ45 (französisch)", url: "https://www.legrand.fr/guides/tout-savoir-sur-la-prise-rj45", abruf: "2026-11-02" },
+    "ps2-wiki": { titel: "Wikipedia: PS/2 port", url: "https://en.wikipedia.org/wiki/PS/2_port", abruf: "2026-11-02", vorlaeufig: true },
+    "atx-wiki": { titel: "Wikipedia: ATX (Einleitung)", url: "https://en.wikipedia.org/wiki/ATX", abruf: "2026-11-02", vorlaeufig: true },
+    "pcie-wiki": { titel: "Wikipedia: PCI Express (Einleitung)", url: "https://en.wikipedia.org/wiki/Peripheral_Component_Interconnect_Express", abruf: "2026-11-02", vorlaeufig: true },
+    "pata-wiki": { titel: "Wikipedia: Parallel ATA", url: "https://en.wikipedia.org/wiki/Parallel_ATA", abruf: "2026-11-02", vorlaeufig: true },
+    "pci-wiki": { titel: "Wikipedia: Peripheral Component Interconnect", url: "https://en.wikipedia.org/wiki/Peripheral_Component_Interconnect", abruf: "2026-11-02", vorlaeufig: true },
+    "agp-wiki": { titel: "Wikipedia: Accelerated Graphics Port", url: "https://en.wikipedia.org/wiki/Accelerated_Graphics_Port", abruf: "2026-11-02", vorlaeufig: true }
   };
 
   /* Pflicht-Texte je Bauteil: Funktion, Einbauort, Zusammenarbeit, Bauformen, Praxisbeispiel, Merksatz.
@@ -249,6 +259,278 @@
       merk: "Das Gehäuse ist eng: Platz und Luftweg setzen Grenzen.", fakt: "", q: [] }
   ];
 
+  /* ---------- Anschlussansichten: Rückseite, Mainboard-Detail, historische Technik ----------
+     Jeder Eintrag trägt "gruppe" (mainboard-io, erweiterungskarte, mainboard, historisch), "layout" (Teil in der Zeichnung)
+     und "lab" = [x, y, Ausrichtung] der Beschriftung (fehlt, wenn der Text im Teil selbst steht).
+     Alle Einträge sind Beispiele und keine Ausstattungsliste. Quellengrenzen stehen in "fakt" und in der Quellenliste. */
+  var GRUPPEN = {
+    "mainboard-io": "Mainboard-I/O (fest am Mainboard)",
+    "erweiterungskarte": "Erweiterungskarte (dedizierte Grafikkarte)",
+    "mainboard": "Mainboard-Detail (Beispiel-Mainboard)",
+    "historisch": "Historisch, nicht typisch für aktuelle Mainboards"
+  };
+
+  var HDMI_FAKT = "Der HDMI Licensing Administrator führt die HDMI Specification als Spezifikation für das HDMI-Ökosystem und nennt „Approved Connectors“ als Ressource. Die Version eines konkreten PC-Anschlusses lässt sich daraus nicht ableiten.";
+  var DP_FAKT = "VESA nennt DisplayPort den de-facto-Standard für PC-Monitore und eingebettete Displays. Als Steckeroptionen werden der einrastende Standardstecker, Mini-DP und USB Type-C genannt. Daraus folgt nicht, dass jeder PC oder jeder USB-C-Port DisplayPort bietet.";
+  var PCIE_FAKT = "Wikipedia (vorläufig): PCI Express, abgekürzt PCIe, ist ein schneller Standard, um Hardwarekomponenten im Inneren von Computern zu verbinden. Genannt werden unter anderem Grafikkarten und Speichergeräte; die Seite zeigt unterschiedliche Steckplatz-Ausführungen. Eine Aussage über die Kompatibilität einzelner Karten mit einzelnen Steckplätzen macht sie nicht.";
+  var ATX_FAKT = "Wikipedia (vorläufig): ATX ist ein Mainboard-Standard, der unter anderem Maße, Befestigungspunkte, die Anschlussblende, die Lage der Erweiterungssteckplätze und Stromversorgungsanschlüsse festlegt. Der konkrete Stecker wird in diesem Artikel nicht belegt.";
+
+  var RUECK_TEILE = [
+    { id: "usb-a", name: "USB-A-Anschluss", kurz: "USB-A", glossar: "USB", gruppe: "mainboard-io", layout: [152, 80, 110, 50], lab: [207, 148, "middle"],
+      funktion: "Hier wird ein USB-Gerät angeschlossen.",
+      ort: "Beispiel: In der Anschlussblende des Mainboards auf der Rückseite. Anzahl und Anordnung sind je nach Board verschieden.",
+      zusammen: "Das Mainboard stellt den Anschluss bereit. Welcher USB-Standard dahintersteckt, sagt die Steckerform allein nicht.",
+      bauformen: "USB-A bezeichnet die Steckerform. Die Form des Steckers ist hier nicht durch eine USB-IF-Quelle belegt. USB 2.0, USB 3.2 und USB4 sind Standardnamen und keine Steckerformen.",
+      praxis: "Ausbildungsbeispiel: Eine Kundin fragt, wo sie ein USB-Gerät anstecken kann. Du zeigst ihr die Buchsen und liest in den Herstellerangaben nach, welchen Standard sie bieten.",
+      merk: "Steckerform und USB-Standard sind zwei verschiedene Fragen.", fakt: "", q: ["usb-if"] },
+    { id: "usb-c", name: "USB-C-Anschluss (USB Type-C)", kurz: "USB-C", glossar: "USB", gruppe: "mainboard-io", layout: [282, 80, 56, 50], lab: [310, 148, "middle"],
+      funktion: "Ein USB-Anschluss mit der Bezeichnung USB Type-C.",
+      ort: "Beispiel: In der Anschlussblende des Mainboards. Nicht jedes Board hat einen solchen Anschluss.",
+      zusammen: "Das Mainboard stellt den Anschluss bereit. Was darüber läuft, hängt vom Board und vom angeschlossenen Gerät ab.",
+      bauformen: "USB-C beschreibt hier den Anschluss, nicht automatisch einen bestimmten USB-Standard. Ob darüber nur Daten oder auch ein Bild laufen, ist eine eigene Frage. Ein USB-C-Anschluss bietet nicht automatisch DisplayPort.",
+      praxis: "Ausbildungsbeispiel: Ein Monitor soll an einen USB-C-Anschluss. Du prüfst in den Herstellerangaben, ob dieser Anschluss Bildausgabe unterstützt, bevor du ein Kabel kaufst.",
+      merk: "Gleicher Stecker heißt nicht gleiche Fähigkeiten.",
+      fakt: "Die USB-IF-Startseite führt USB Type-C als eigenen Themenbereich neben USB 2.0, USB 3.2 und USB4. Eine Beschreibung der Steckerform steht dort nicht. Laut VESA ist USB Type-C eine der Steckeroptionen für DisplayPort; daraus folgt nicht, dass jeder USB-C-Port DisplayPort kann.", q: ["usb-if", "displayport"] },
+    { id: "usb2", name: "USB 2.0 (Standardname)", kurz: "USB 2.0", glossar: "USB", gruppe: "mainboard-io", layout: [72, 204, 80, 30],
+      funktion: "USB 2.0 ist der Name eines USB-Standards.",
+      ort: "Die Plakette in der Zeichnung steht für den Standardnamen, nicht für eine bestimmte Buchse. Welche Buchse welchen Standard bietet, steht in den Angaben zum Board.",
+      zusammen: "Ein Anschluss wie USB-A oder USB-C kann zu unterschiedlichen Standards gehören. Das Board legt fest, zu welchem.",
+      bauformen: "Ein Standardname sagt nichts über die Steckerform. Er benennt die Technik, nicht den Stecker.",
+      praxis: "Ausbildungsbeispiel: Im Datenblatt eines Boards steht ein USB-Standard neben der Anzahl der Anschlüsse. Du ordnest ihn den Buchsen am Gerät zu.",
+      merk: "Nicht jeder USB-Port kann jeden USB-Standard.",
+      fakt: "Die USB-IF-Startseite führt USB 2.0 als eigenen Technologiebereich neben USB 3.2 und USB4.", q: ["usb-if"] },
+    { id: "usb3", name: "USB 3.x (hier USB 3.2, Standardname)", kurz: "USB 3.2", glossar: "USB", gruppe: "mainboard-io", layout: [172, 204, 80, 30],
+      funktion: "USB 3.x steht für eine Familie von USB-Standards. Die USB-IF-Startseite nennt USB 3.2.",
+      ort: "Die Plakette in der Zeichnung steht für den Standardnamen, nicht für eine bestimmte Buchse. Welche Buchse welchen Standard bietet, steht in den Angaben zum Board.",
+      zusammen: "Ein Anschluss wie USB-A oder USB-C kann zu unterschiedlichen Standards gehören. Das Board legt fest, zu welchem.",
+      bauformen: "Ein Standardname sagt nichts über die Steckerform. Er benennt die Technik, nicht den Stecker.",
+      praxis: "Ausbildungsbeispiel: Zwei Buchsen sehen gleich aus. Du liest im Handbuch nach, ob beide denselben Standard bieten.",
+      merk: "Ähnliche Buchsen können zu verschiedenen Standards gehören.",
+      fakt: "Die USB-IF-Startseite führt USB 3.2 als eigenen Technologiebereich neben USB 2.0 und USB4. Andere Versionen der USB-3-Familie werden hier nicht behandelt.", q: ["usb-if"] },
+    { id: "usb4", name: "USB4 (Standardname)", kurz: "USB4", glossar: "USB", gruppe: "mainboard-io", layout: [272, 204, 80, 30],
+      funktion: "USB4 ist der Name eines USB-Standards.",
+      ort: "Die Plakette in der Zeichnung steht für den Standardnamen, nicht für eine bestimmte Buchse. Nicht jedes Board bietet USB4.",
+      zusammen: "Ob und an welcher Buchse ein Board USB4 bietet, steht in den Angaben zum Board.",
+      bauformen: "Ein Standardname sagt nichts über die Steckerform. Er benennt die Technik, nicht den Stecker.",
+      praxis: "Ausbildungsbeispiel: Eine Kundin will ein Gerät mit USB4 betreiben. Du prüfst in den Boardangaben, ob und wo ein solcher Anschluss vorhanden ist.",
+      merk: "Der Name auf dem Datenblatt zählt, nicht die Annahme, dass jeder USB-Port das kann.",
+      fakt: "Die USB-IF-Startseite führt USB4 als eigenen Technologiebereich neben USB 3.2 und USB 2.0.", q: ["usb-if"] },
+    { id: "rj45", name: "RJ45-Netzwerkanschluss (Ethernet)", kurz: "RJ45", glossar: "Netzwerk", gruppe: "mainboard-io", layout: [358, 80, 100, 60], lab: [408, 158, "middle"],
+      funktion: "Hier wird ein Netzwerkkabel angeschlossen, um den Rechner mit einem Netzwerk zu verbinden.",
+      ort: "Beispiel: In der Anschlussblende des Mainboards. Anzahl und Lage sind je nach Board verschieden.",
+      zusammen: "Das Kabel führt zu einem Router, Switch oder einer Netzwerkdose. Die Netzwerkkarte im Mainboard wertet die Signale aus.",
+      bauformen: "RJ45 bezeichnet die Buchsenform. Geschwindigkeit und Kabelart sind eine andere Frage und stehen in den Angaben zu Gerät und Kabel.",
+      praxis: "Ausbildungsbeispiel: Ein Arbeitsplatz hat keine Netzwerkverbindung. Du prüfst, ob das Kabel in der richtigen Buchse steckt und ob an der Buchse eine Anzeige leuchtet.",
+      merk: "RJ45 ist die Buchse. Wie schnell sie arbeitet, sagt die Form allein nicht.",
+      fakt: "Legrand (französischsprachig) nennt die RJ45-Buchse auch „prise Ethernet“ und beschreibt sie als Anschlussstandard unter anderem für den Zugang zum Internet.", q: ["legrand-rj45"] },
+    { id: "audio", name: "Audioanschlüsse (Klinkenbuchsen)", kurz: "Audio", glossar: "Mainboard", gruppe: "mainboard-io", layout: [72, 262, 100, 50], lab: [122, 328, "middle"],
+      funktion: "Hier werden Lautsprecher, Kopfhörer oder ein Mikrofon angeschlossen.",
+      ort: "Beispiel: In der Anschlussblende des Mainboards. Anzahl, Beschriftung und Farben hängen vom Board ab.",
+      zusammen: "Ein Audiochip auf dem Mainboard liefert und verarbeitet die Signale. Welche Buchse welche Aufgabe hat, steht im Handbuch.",
+      bauformen: "Die Zeichnung zeigt ein Beispiel mit mehreren Buchsen. Bezeichnung und Belegung hängen vom Board ab und sind hier nicht belegt.",
+      praxis: "Ausbildungsbeispiel: Ein Headset bleibt stumm. Du prüfst, ob es in der Buchse steckt, die laut Handbuch dafür vorgesehen ist.",
+      merk: "Gleich aussehende Buchsen können unterschiedliche Aufgaben haben.", fakt: "", q: [] },
+    { id: "hdmi-mb", name: "HDMI-Anschluss am Mainboard", kurz: "HDMI", glossar: "HDMI", gruppe: "mainboard-io", layout: [192, 262, 90, 40], lab: [237, 318, "middle"],
+      funktion: "HDMI ist eine Bildschnittstelle im HDMI-Ökosystem. Hier wird ein Monitor angeschlossen.",
+      ort: "Beispiel: In der Anschlussblende des Mainboards. Ob ein Board Bildausgänge hat, steht in den Angaben zum Board.",
+      zusammen: "Die Ausgänge der Grafikkarte sind eine eigene Gruppe auf der rechten Seite der Zeichnung. Prüfe in den Herstellerangaben, welcher Ausgang für dein Gerät vorgesehen ist.",
+      bauformen: "Die Zeichnung ist schematisch. Sie sagt nichts über die HDMI-Version dieses Anschlusses.",
+      praxis: "Ausbildungsbeispiel: Der Monitor bleibt dunkel. Du prüfst, an welchen Ausgang das Kabel angeschlossen ist und ob dieser Ausgang laut Herstellerangaben aktiv ist.",
+      merk: "Ausgang am Mainboard und Ausgang an der Grafikkarte sind zwei verschiedene Anschlüsse.",
+      fakt: HDMI_FAKT, q: ["hdmi-org"] },
+    { id: "dp-mb", name: "DisplayPort am Mainboard", kurz: "DisplayPort", glossar: "DisplayPort", gruppe: "mainboard-io", layout: [302, 262, 110, 40], lab: [347, 318, "middle"],
+      funktion: "DisplayPort ist eine Bildschnittstelle. Hier wird ein Monitor angeschlossen.",
+      ort: "Beispiel: In der Anschlussblende des Mainboards. Ob ein Board einen solchen Ausgang hat, steht in den Angaben zum Board.",
+      zusammen: "Die Ausgänge der Grafikkarte sind eine eigene Gruppe auf der rechten Seite der Zeichnung.",
+      bauformen: "Die Zeichnung legt sich nicht auf Standardstecker, Mini-DP oder USB-C fest. Welche Ausführung ein Anschluss hat, steht in den Herstellerangaben.",
+      praxis: "Ausbildungsbeispiel: Ein Monitorkabel hat zwei verschiedene Enden. Du prüfst, welche Steckerform Gerät und Monitor tatsächlich haben.",
+      merk: "DisplayPort ist die Schnittstelle. Der Stecker kann unterschiedlich aussehen.",
+      fakt: DP_FAKT, q: ["displayport"] },
+    { id: "ps2", name: "PS/2-Anschluss (älteres Beispiel)", kurz: "PS/2", glossar: "Mainboard", gruppe: "mainboard-io", layout: [72, 80, 60, 50], lab: [102, 148, "middle"],
+      funktion: "Älterer Anschluss für Tastatur und Maus.",
+      ort: "Beispiel: In der Anschlussblende mancher Mainboards. Ob ein Board ihn hat, hängt vom Board ab.",
+      zusammen: "Wikipedia nennt USB als Nachfolger. Neuere Peripherie nutzt in der Regel USB.",
+      bauformen: "PS/2 ist ein Mini-DIN-Stecker. Er ist ein älterer Anschluss und keine Standardausstattung aktueller PCs.",
+      praxis: "Ausbildungsbeispiel: Ein sehr altes Gerät hat noch einen PS/2-Anschluss. Du erkennst ihn als ältere Technik und prüfst, ob das Board ihn überhaupt bietet.",
+      merk: "PS/2 ist älter als USB und kein Standard von heute.",
+      fakt: "Wikipedia (vorläufig): Der PS/2-Port ist ein Mini-DIN-Stecker für Tastaturen und Mäuse an PC-kompatiblen Systemen. Der Name stammt von der IBM-Reihe Personal System/2. Die Seite nennt USB als Nachfolger.", q: ["ps2-wiki"] },
+    { id: "wlan", name: "WLAN-Antennenanschluss (Beispiel)", kurz: "WLAN", glossar: "WLAN", gruppe: "mainboard-io", layout: [432, 262, 60, 60], lab: [440, 338, "middle"],
+      funktion: "Hier werden Antennen für ein WLAN-Modul des Mainboards angeschlossen.",
+      ort: "Beispiel: Nur bei Mainboards mit WLAN. Dieser Anschluss ist keine Standardausstattung.",
+      zusammen: "Das WLAN-Modul auf dem Mainboard empfängt und sendet über die angeschlossenen Antennen. Wie viele Antennen ein Board nutzt, hängt vom Board ab.",
+      bauformen: "Die Zeichnung zeigt ein Beispiel ohne belegte Antennenzahl. Form und Anzahl der Anschlüsse sind je nach Board verschieden.",
+      praxis: "Ausbildungsbeispiel: Das WLAN-Signal ist schwach. Du prüfst, ob die Antennen am Board angeschlossen sind.",
+      merk: "Antennenanschlüsse gibt es nur bei Boards mit WLAN.", fakt: "", q: [] },
+    { id: "hdmi-gpu", name: "HDMI-Ausgang der Grafikkarte", kurz: "HDMI (Karte)", glossar: "HDMI", gruppe: "erweiterungskarte", layout: [568, 110, 110, 36], lab: [623, 168, "middle"],
+      funktion: "HDMI ist eine Bildschnittstelle im HDMI-Ökosystem. Dieser Ausgang gehört zur Grafikkarte.",
+      ort: "Beispiel: An der Slotblende einer dedizierten Grafikkarte, die im PCIe-Steckplatz des Mainboards steckt. Er gehört zur Erweiterungskarte, nicht zum Mainboard-I/O.",
+      zusammen: "Die Grafikkarte berechnet das Bild und gibt es hier aus. Anzahl und Art der Ausgänge hängen von der Karte ab.",
+      bauformen: "Die Zeichnung ist schematisch. Sie sagt nichts über die HDMI-Version dieses Anschlusses.",
+      praxis: "Ausbildungsbeispiel: Ein Arbeitsplatz hat eine eigene Grafikkarte. Du steckst das Monitorkabel an einen Ausgang der Karte und nicht an die Blende des Mainboards, soweit die Herstellerangaben nichts anderes sagen.",
+      merk: "Dieser Ausgang gehört zur Karte und nicht zum Mainboard.",
+      fakt: HDMI_FAKT, q: ["hdmi-org"] },
+    { id: "dp-gpu", name: "DisplayPort-Ausgang der Grafikkarte", kurz: "DP (Karte)", glossar: "DisplayPort", gruppe: "erweiterungskarte", layout: [568, 200, 110, 36], lab: [623, 258, "middle"],
+      funktion: "DisplayPort ist eine Bildschnittstelle. Dieser Ausgang gehört zur Grafikkarte.",
+      ort: "Beispiel: An der Slotblende einer dedizierten Grafikkarte. Er gehört zur Erweiterungskarte, nicht zum Mainboard-I/O.",
+      zusammen: "Die Grafikkarte berechnet das Bild und gibt es hier aus. Anzahl und Art der Ausgänge hängen von der Karte ab.",
+      bauformen: "Die Zeichnung legt sich nicht auf Standardstecker, Mini-DP oder USB-C fest. Welche Ausführung ein Ausgang hat, steht in den Herstellerangaben der Karte.",
+      praxis: "Ausbildungsbeispiel: Ein Monitor soll an die Grafikkarte. Du prüfst die Steckerform am Monitorkabel und am Ausgang der Karte.",
+      merk: "Karten-Ausgänge und Mainboard-Ausgänge sind zwei Gruppen.",
+      fakt: DP_FAKT, q: ["displayport"] }
+  ];
+
+  var BEGRIFFE = [
+    { begriff: "Anschluss", text: "Sichtbare Buchse oder Kontaktstelle, an der Kabel oder Bauteile verbunden werden." },
+    { begriff: "Steckplatz", text: "Mechanisch passende Aufnahme auf einer Platine, in die ein Modul oder eine Karte gesetzt wird." },
+    { begriff: "Schnittstelle", text: "Vereinbarte Verbindung zwischen Komponenten. Sie kann elektrische und logische Merkmale umfassen." },
+    { begriff: "Protokoll", text: "Regeln, nach denen Geräte Daten austauschen." },
+    { begriff: "Bauform", text: "Größe und mechanische Gestalt eines Bauteils oder Moduls." }
+  ];
+
+  var MAINBOARD_TEILE = [
+    { id: "atx24", name: "24-Pin-ATX", kurz: "ATX-Strom", glossar: "Mainboard", gruppe: "mainboard", layout: [690, 90, 40, 200], lab: [698, 182, "end"],
+      funktion: "Stromanschluss des Mainboards: Hier kommt Strom vom Netzteil an.",
+      ort: "Beispiel: Am Rand des Mainboards. Lage und Stecker sind je nach Board verschieden.",
+      zusammen: "Das Netzteil liefert den Strom über ein Kabel, das Mainboard verteilt ihn an seine Bauteile.",
+      bauformen: "Die ATX-Seite bei Wikipedia nennt nur allgemein Stromversorgungsanschlüsse und belegt den konkreten Stecker nicht. Der Name steht hier, weil er im Alltag so verwendet wird. Einzelheiten zu Kontakten und Spannungen gehören in die Herstellerunterlagen.",
+      praxis: "Ausbildungsbeispiel: Beim Zusammenbau steckst du Netzteilkabel nur an, wenn Handbuch und Netzteilangaben dazu passen. Belegung und Spannungen prüfst du in den Herstellerunterlagen.",
+      merk: "Stromstecker nicht nach Gefühl, sondern nach Herstellerangaben anschließen.",
+      fakt: ATX_FAKT, q: ["atx-wiki"] },
+    { id: "eps", name: "4-/8-Pin-EPS", kurz: "EPS/CPU-Strom", glossar: "Mainboard", gruppe: "mainboard", layout: [60, 50, 130, 28], lab: [128, 82, "middle"],
+      funktion: "Zusätzliche Stromversorgung für den Bereich des Prozessors (CPU-Strom).",
+      ort: "Beispiel: Am Rand des Mainboards in der Nähe des CPU-Sockels. Ob und wie viele solcher Anschlüsse ein Board hat, hängt vom Board ab.",
+      zusammen: "Das Netzteil muss einen passenden Stecker haben. Das prüfst du in den Angaben von Board und Netzteil.",
+      bauformen: "Die Anzahl der Kontakte steht hier nur im Namen. Der ATX-Artikel bei Wikipedia führt eine EPS-Variante nur als verwandten Abschnitt. Einzelheiten zu diesem Stecker sind nicht belegt und werden hier nicht behauptet.",
+      praxis: "Ausbildungsbeispiel: Ein Board bleibt nach dem Einschalten dunkel. Du prüfst, ob alle Stromanschlüsse laut Handbuch belegt sind.",
+      merk: "CPU-Strom und Hauptstrom sind getrennte Anschlüsse. Welche das Board braucht, steht im Handbuch.",
+      fakt: "", q: ["atx-wiki"] },
+    { id: "pcie-lang", name: "PCI-Express-Steckplatz (lang)", kurz: "PCIe lang", glossar: "GPU", gruppe: "mainboard", layout: [200, 400, 420, 28], lab: [358, 342, "start"],
+      funktion: "Steckplatz für Erweiterungskarten, zum Beispiel eine Grafikkarte.",
+      ort: "Beispiel: Unterhalb des CPU-Sockels auf dem Mainboard. Anzahl und Lage sind je nach Board verschieden.",
+      zusammen: "Die Karte wird in den Steckplatz gesteckt und über PCIe mit dem Mainboard verbunden. Strom kann zusätzlich nötig sein.",
+      bauformen: "PCIe-Steckplätze gibt es in unterschiedlichen Längen. Die Länge allein sagt nicht, welche Karte läuft; das steht in den Angaben zu Board und Karte. Der Steckplatz ist die mechanische Aufnahme, PCIe der Standard der Verbindung.",
+      praxis: "Ausbildungsbeispiel: Du sollst eine Karte einbauen und vergleichst Steckplatz, Kartenangaben und Platz im Gehäuse, bevor du etwas bestellst.",
+      merk: "Steckplatz und Standard sind zwei Begriffe: der eine ist mechanisch, der andere beschreibt die Verbindung.",
+      fakt: PCIE_FAKT, q: ["pcie-wiki"] },
+    { id: "pcie-kurz", name: "PCI-Express-Steckplatz (kürzer)", kurz: "PCIe kurz", glossar: "Mainboard", gruppe: "mainboard", layout: [200, 360, 200, 28], lab: [208, 388, "start"],
+      funktion: "Kürzerer Steckplatz für Erweiterungskarten.",
+      ort: "Beispiel: Unter dem langen Steckplatz. Ob ein Board kürzere Steckplätze hat, hängt vom Board ab.",
+      zusammen: "Auch hier wird die Karte gesteckt und über PCIe mit dem Mainboard verbunden.",
+      bauformen: "Ein kürzerer Steckplatz ist ein eigener Steckplatz. Ob eine bestimmte Karte darin funktioniert, lässt sich nicht pauschal sagen; die Angaben von Board und Karte entscheiden.",
+      praxis: "Ausbildungsbeispiel: Eine Netzwerkkarte soll eingebaut werden. Du suchst im Handbuch, welche Steckplätze das Board dafür anbietet.",
+      merk: "Länge des Steckplatzes und Eignung der Karte sind zwei verschiedene Fragen.",
+      fakt: PCIE_FAKT, q: ["pcie-wiki"] },
+    { id: "m2", name: "M.2-Steckplatz", kurz: "M.2", glossar: "SSD", gruppe: "mainboard", layout: [60, 100, 130, 28], lab: [180, 276, "start"],
+      funktion: "Steckplatz für kompakte Erweiterungsmodule, zum Beispiel eine M.2-SSD.",
+      ort: "Beispiel: Direkt auf dem Mainboard, flach liegend. Anzahl und Lage hängen vom Board ab.",
+      zusammen: "Das Modul wird eingesteckt und befestigt. Welche Schnittstelle dahinter liegt, hängt von Board und Modul ab.",
+      bauformen: "M.2 beschreibt Bauform und Steckverbindung. M.2 ist nicht automatisch NVMe: Die unterstützten Schnittstellen hängen von Gerät und Board ab. NVMe ist ein Protokoll, das zum Beispiel über PCIe laufen kann.",
+      praxis: "Ausbildungsbeispiel: Vor dem Kauf einer M.2-SSD prüfst du im Handbuch, welche Schnittstellen der Steckplatz unterstützt.",
+      merk: "M.2 sagt, wie das Modul aussieht und steckt, nicht automatisch, wie es Daten überträgt.",
+      fakt: "NVM Express nennt M.2 als eine SSD-Bauform und beschreibt NVMe als Spezifikation, die über Transporte wie PCI Express laufen kann. Wikipedia (vorläufig): Die unterstützten Schnittstellen variieren je nach Gerät und Host-Umsetzung.", q: ["nvme", "m2"] },
+    { id: "sata", name: "SATA-Anschluss", kurz: "SATA", glossar: "SATA", gruppe: "mainboard", layout: [60, 150, 130, 28], lab: [528, 334, "middle"],
+      funktion: "Datenanschluss für Laufwerke wie Festplatten oder SSDs.",
+      ort: "Beispiel: Am Rand des Mainboards. Die Anzahl hängt vom Board ab.",
+      zusammen: "Das Datenkabel führt zum Laufwerk. Den Strom bekommt das Laufwerk getrennt vom Netzteil.",
+      bauformen: "SATA ist eine Schnittstelle für Speichergeräte. Ein M.2-Steckplatz kann ebenfalls SATA nutzen, muss es aber nicht.",
+      praxis: "Ausbildungsbeispiel: Eine zweite Festplatte soll eingebaut werden. Du prüfst, ob das Board einen freien SATA-Anschluss hat.",
+      merk: "SATA ist die Schnittstelle, nicht die Bauform des Laufwerks.",
+      fakt: "SATA-IO nennt SATA den de-facto-Standard für PC-Speicher und führt Festplatten, optische Laufwerke, SSDs und Hybrid-Festplatten als Einsatzbereiche auf.", q: ["sata-io"] },
+    { id: "ramslot", name: "RAM-Steckplätze (DIMM)", kurz: "RAM-Steckplätze", glossar: "RAM", gruppe: "mainboard", layout: [540, 90, 110, 200], lab: [412, 298, "middle"],
+      funktion: "Steckplätze für Arbeitsspeicher-Module.",
+      ort: "Beispiel: Neben dem CPU-Sockel. Die Anzahl der Steckplätze ist je nach Board verschieden.",
+      zusammen: "Die CPU spricht über ihren Speichercontroller mit dem RAM. Die Speichergeneration muss zu Board und CPU passen.",
+      bauformen: "DIMM ist ein Speichermodulformat, das laut IBM häufig in Desktop-PCs und Servern eingesetzt wird. Welche Module ein Board aufnimmt, steht in den Angaben zum Board.",
+      praxis: "Ausbildungsbeispiel: Vor einer Speichererweiterung vergleichst du Modulart und Boardangaben.",
+      merk: "Ein Modul passt nicht allein deshalb, weil es RAM ist.",
+      fakt: "Laut IBM ist DIMM ein Speichermodulformat, das häufig in Desktop-PCs und Servern verwendet wird.", q: ["ibm-dimm"] },
+    { id: "cpu-fan", name: "CPU_FAN (Lüfter-Header)", kurz: "CPU_FAN", glossar: "Kühlung", gruppe: "mainboard", layout: [210, 50, 100, 28], lab: [355, 82, "middle"],
+      funktion: "Anschluss für den Lüfter des CPU-Kühlers.",
+      ort: "Beispiel: In der Nähe des CPU-Sockels. Die Bezeichnung CPU_FAN ist ein Beispiel; Boards beschriften ihre Header unterschiedlich.",
+      zusammen: "Das Mainboard kann den Lüfter über diesen Header versorgen und überwachen. Was genau möglich ist, steht im Handbuch des Boards.",
+      bauformen: "Header sind interne Steckverbinder. Bezeichnung, Anzahl der Kontakte und Belegung hängen vom Board ab und sind hier nicht belegt.",
+      praxis: "Ausbildungsbeispiel: Du schließt einen CPU-Kühler an. Im Handbuch suchst du den Header, den das Board dafür vorsieht.",
+      merk: "Beschriftung auf dem Board und Handbuch zählen, nicht die Gewohnheit.", fakt: "", q: [] },
+    { id: "sys-fan", name: "SYS_FAN / CHA_FAN (Gehäuselüfter-Header)", kurz: "SYS_FAN", glossar: "Kühlung", gruppe: "mainboard", layout: [330, 50, 100, 28], lab: [585, 82, "middle"],
+      funktion: "Anschluss für Gehäuselüfter.",
+      ort: "Beispiel: Am Rand des Mainboards. Die Namen SYS_FAN und CHA_FAN sind Beispiele; Anzahl und Bezeichnung hängen vom Board ab.",
+      zusammen: "Gehäuselüfter bewegen die Luft durch das Gehäuse. Das Mainboard kann sie über diesen Header versorgen und überwachen, soweit das Board es vorsieht.",
+      bauformen: "Header sind interne Steckverbinder. Bezeichnung, Anzahl der Kontakte und Belegung hängen vom Board ab und sind hier nicht belegt.",
+      praxis: "Ausbildungsbeispiel: Ein Gehäuselüfter soll angeschlossen werden. Du suchst im Handbuch den Header, den das Board dafür vorsieht.",
+      merk: "Gleiche Lüfter können an unterschiedlich benannten Headern hängen.", fakt: "", q: [] },
+    { id: "aio", name: "AIO_PUMP / PUMP (Pumpen-Header, soweit vorhanden)", kurz: "AIO_PUMP", glossar: "Kühlung", gruppe: "mainboard", layout: [450, 50, 110, 28], lab: [665, 82, "middle"],
+      funktion: "Anschluss für die Pumpe einer Wasserkühlung (All-in-One), soweit das Board einen solchen Header hat.",
+      ort: "Beispiel: Am Rand des Mainboards. Nicht jedes Board hat einen eigenen Pumpen-Header.",
+      zusammen: "Die Pumpe fördert die Kühlflüssigkeit. Wie das Board sie versorgt, steht im Handbuch des Boards.",
+      bauformen: "Header sind interne Steckverbinder. Bezeichnung, Anzahl der Kontakte und Belegung hängen vom Board ab und sind hier nicht belegt.",
+      praxis: "Ausbildungsbeispiel: Eine Wasserkühlung wird eingebaut. Du liest im Handbuch von Board und Kühler, wo die Pumpe angeschlossen wird.",
+      merk: "Pumpe und Lüfter können unterschiedliche Header brauchen.", fakt: "", q: [] },
+    { id: "usb-header", name: "USB-Header (intern)", kurz: "USB-Header", glossar: "USB", gruppe: "mainboard", layout: [60, 200, 130, 28], lab: [630, 368, "middle"],
+      funktion: "Interner Anschluss, über den USB-Anschlüsse des Gehäuses mit dem Mainboard verbunden werden.",
+      ort: "Beispiel: Am Rand des Mainboards. Anzahl und Art hängen vom Board ab.",
+      zusammen: "Das Gehäusekabel verbindet die vordere USB-Buchse mit diesem Header. Welcher Standard dahintersteckt, steht im Handbuch.",
+      bauformen: "Ein interner Header ist keine USB-A- oder USB-C-Buchse. Bezeichnung, Anzahl der Kontakte, Standard und Belegung hängen vom Board ab und sind hier nicht belegt.",
+      praxis: "Ausbildungsbeispiel: Die vorderen USB-Buchsen funktionieren nicht. Du prüfst, ob das Gehäusekabel am richtigen Header steckt.",
+      merk: "Header und Buchse am Gehäuse sind zwei Teile einer Verbindung.", fakt: "", q: [] },
+    { id: "frontpanel", name: "Front-Panel-Anschlüsse (Power, Reset, LEDs)", kurz: "Front-Panel", glossar: "Mainboard", gruppe: "mainboard", layout: [60, 300, 130, 28], lab: [520, 438, "middle"],
+      funktion: "Anschlüsse für Einschalttaster, Reset-Taster und Leuchtanzeigen des Gehäuses.",
+      ort: "Beispiel: Am Rand des Mainboards. Lage und Aufbau sind je nach Board verschieden.",
+      zusammen: "Die dünnen Kabel des Gehäuses werden hier angeschlossen. Das Handbuch des Boards zeigt, welches Kabel wohin gehört.",
+      bauformen: "Die Kabel sind einzeln beschriftet. Lage und Belegung unterscheiden sich je nach Board und sind hier nicht belegt.",
+      praxis: "Ausbildungsbeispiel: Der Rechner startet nicht, wenn man den Taster drückt. Du prüfst anhand des Handbuchs, ob das Power-Kabel richtig steckt.",
+      merk: "Hier hilft nur das Handbuch, nicht das Raten.", fakt: "", q: [] },
+    { id: "front-audio", name: "Front-Audio-Header", kurz: "Front-Audio", glossar: "Mainboard", gruppe: "mainboard", layout: [60, 250, 130, 28], lab: [620, 438, "middle"],
+      funktion: "Interner Anschluss für die Audiobuchsen an der Gehäusefront.",
+      ort: "Beispiel: Am Rand des Mainboards. Nicht jedes Board und nicht jedes Gehäuse nutzt ihn gleich.",
+      zusammen: "Das Gehäusekabel verbindet die Frontbuchsen mit dem Audioteil des Mainboards.",
+      bauformen: "Bezeichnung, Anzahl der Kontakte und Belegung hängen vom Board ab und sind hier nicht belegt.",
+      praxis: "Ausbildungsbeispiel: Der Kopfhörer an der Gehäusefront bleibt stumm. Du prüfst, ob das Audiokabel am Front-Audio-Header steckt.",
+      merk: "Frontbuchse und Header gehören zusammen.", fakt: "", q: [] },
+    { id: "rgb", name: "RGB-Header (optional, Beispiel)", kurz: "RGB", glossar: "Mainboard", gruppe: "mainboard", layout: [560, 310, 70, 28], lab: [710, 352, "middle"],
+      funktion: "Optionaler Anschluss für Beleuchtung.",
+      ort: "Beispiel: Am Rand des Mainboards. Viele Boards haben ihn nicht.",
+      zusammen: "Beleuchtungsteile können hier angeschlossen werden, soweit das Board und das Teil zusammenpassen.",
+      bauformen: "Bezeichnung und Belegung hängen vom Board und von der Beleuchtung ab und sind hier nicht belegt.",
+      praxis: "Ausbildungsbeispiel: Ein Lichtstreifen soll angeschlossen werden. Du prüfst, welchen Anschluss das Teil braucht und welchen das Board bietet.",
+      merk: "Beleuchtungsanschlüsse sind optional und boardabhängig.", fakt: "", q: [] },
+    { id: "argb", name: "ARGB-Header (optional, Beispiel)", kurz: "ARGB", glossar: "Mainboard", gruppe: "mainboard", layout: [650, 310, 70, 28], lab: [710, 412, "middle"],
+      funktion: "Zweiter optionaler Anschluss für Beleuchtung.",
+      ort: "Beispiel: Am Rand des Mainboards. Viele Boards haben ihn nicht.",
+      zusammen: "Beleuchtungsteile können hier angeschlossen werden, soweit das Board und das Teil zusammenpassen.",
+      bauformen: "RGB und ARGB sind Bezeichnungen für Beleuchtungsanschlüsse. Ob ein Teil an einen RGB- oder ARGB-Header passt, lässt sich nicht pauschal sagen: Bezeichnung und Belegung hängen vom Board und von der Beleuchtung ab.",
+      praxis: "Ausbildungsbeispiel: Ein Lichtstreifen hat einen anderen Stecker als erwartet. Du liest die Angaben von Board und Teil, bevor du etwas anschließt.",
+      merk: "Ähnliche Namen heißen nicht, dass die Teile zueinander passen.", fakt: "", q: [] }
+  ];
+
+  var HIST_TEILE = [
+    { id: "ide", name: "IDE/PATA (historisch)", kurz: "IDE/PATA", glossar: "IDE/PATA", gruppe: "historisch", layout: [44, 160, 192, 56], lab: [140, 238, "middle"],
+      funktion: "Ältere Verbindung zwischen Mainboard und Speichergeräten (Parallel ATA).",
+      ort: "Historische Technik. Sie gehört nicht auf ein aktuelles Mainboard und wird hier getrennt gezeigt.",
+      zusammen: "Speichergeräte wurden darüber mit dem Mainboard verbunden. Als Nachfolger wird SATA genannt.",
+      bauformen: "Unterschied zu heute: Aktuelle Desktop-Boards bieten für Laufwerke zum Beispiel SATA oder M.2. IDE/PATA ist eine andere, ältere Schnittstelle.",
+      praxis: "Ausbildungsbeispiel: In einem sehr alten Rechner findest du einen Anschluss, der zu keinem heutigen Laufwerk passt. Du ordnest ihn als historische Technik ein und suchst in den Gerätedaten nach der Schnittstelle.",
+      merk: "IDE/PATA ist älter, SATA ist der Nachfolger.",
+      fakt: "Wikipedia (vorläufig) beschreibt PATA als Schnittstellenstandard für Computerspeicher, führt den Abschnitt „Primacy and obsolescence“ und ordnet Serial ATA als Nachfolger ein. Jahreszahlen werden aus dieser Quelle nicht übernommen.", q: ["pata-wiki"] },
+    { id: "pci", name: "PCI (historisch)", kurz: "PCI", glossar: "PCI", gruppe: "historisch", layout: [294, 160, 192, 28], lab: [390, 238, "middle"],
+      funktion: "Älterer Erweiterungsbus, an den Hardware-Steckkarten angeschlossen wurden.",
+      ort: "Historische Technik. Er gehört nicht zur typischen Ausstattung aktueller Mainboards und wird hier getrennt gezeigt.",
+      zusammen: "Laut Wikipedia gehörten zu den typischen Karten zum Beispiel Netzwerk- und Soundkarten. PCI Express wird als Nachfolger eingeordnet.",
+      bauformen: "Unterschied zu heute: PCI Express (PCIe) ist der heutige Standard für Erweiterungskarten. Der ähnliche Name bedeutet nicht, dass Karten für beide Standards zueinander passen.",
+      praxis: "Ausbildungsbeispiel: Ein älteres Gerät hat eine Steckkarte mit anderem Anschluss als heutige Karten. Du ordnest sie als PCI ein und prüfst, was der Nachfolger PCIe heute leistet.",
+      merk: "PCI ist der ältere Erweiterungsbus, PCIe der Nachfolger.",
+      fakt: "Wikipedia (vorläufig): Peripheral Component Interconnect (PCI) ist ein lokaler Computerbus, um Hardwaregeräte in einem Computer anzuschließen. Die Seite nennt Netzwerk- und Soundkarten als typische Karten und ordnet PCI Express als Nachfolger ein. Jahreszahlen werden nicht übernommen.", q: ["pci-wiki"] },
+    { id: "agp", name: "AGP (historisch)", kurz: "AGP", glossar: "AGP", gruppe: "historisch", layout: [544, 160, 192, 24], lab: [640, 238, "middle"],
+      funktion: "Veralteter Steckplatz für Grafikkarten.",
+      ort: "Historische Technik. Er gehört nicht zur typischen Ausstattung aktueller Mainboards und wird hier getrennt gezeigt.",
+      zusammen: "AGP wurde von Intel unabhängig von der PCI-SIG entworfen, um eine Grafikkarte anzuschließen. PCI Express hat AGP abgelöst.",
+      bauformen: "Unterschied zu heute: Aktuelle Grafikkarten stecken in PCI-Express-Steckplätzen. Ein AGP-Steckplatz gehört nicht zur typischen Ausstattung aktueller Mainboards.",
+      praxis: "Ausbildungsbeispiel: Ein sehr altes Mainboard hat einen Grafikkartensteckplatz, der zu heutigen Karten nicht passt. Du ordnest ihn als AGP ein.",
+      merk: "AGP ist veraltet, PCIe hat ihn abgelöst.",
+      fakt: "Wikipedia (vorläufig) nennt AGP einen veralteten parallelen Erweiterungskartenstandard, den Intel unabhängig von der PCI-SIG entworfen hat, um eine Grafikkarte an ein Computersystem anzuschließen. Eine allgemeine Jahreszahl wird nicht übernommen.", q: ["agp-wiki"] }
+  ];
+
+  var HINWEIS_SCHEMA = "Die Abbildung ist eine schematische Zeichnung aus einzeln auswählbaren Elementen, nicht maßstäblich und kein Foto eines bestimmten Geräts. Für diese Ansicht liegen keine Fotos vor. Die Liste enthält alle Einträge und ist der vollständige Weg zur Auswahl.";
+
   var ANSICHTEN = {
     desktop: {
       name: "Desktop-PC", titel: "PC-Explorer: Der Desktop-PC von innen", gruppe: "Bauteile des Desktop-PCs",
@@ -260,6 +542,24 @@
       einleitung: "Notebook-Ansicht: Wähle ein Bauteil des tragbaren Computers. Aufbau und Austauschbarkeit unterscheiden sich je nach Modell. " +
         "Notebooks bündeln viele Funktionen in einem kleinen Gehäuse. Der knappe Innenraum begrenzt Anordnung, Erweiterung und Luftweg; konkrete Aussagen sind vom Modell abhängig.",
       teile: NOTEBOOK_TEILE, sockel: [], formen: []
+    },
+    rueckseite: {
+      name: "Rückseite", titel: "PC-Explorer: Die Rückseite eines Desktop-PCs", gruppe: "Anschlüsse auf der Rückseite (Beispiel)",
+      einleitung: "Rückseiten-Ansicht: Die gezeigten Anschlüsse sind ein Beispiel. Nicht jeder PC hat sie, und Anzahl, Anordnung und Standards unterscheiden sich je nach Mainboard und Grafikkarte. " +
+        "Unterschieden wird zwischen den Anschlüssen des Mainboards (Mainboard-I/O) und den Anschlüssen einer Erweiterungskarte, zum Beispiel einer Grafikkarte.",
+      teile: RUECK_TEILE, sockel: [], formen: []
+    },
+    mainboard: {
+      name: "Mainboard", titel: "PC-Explorer: Das Mainboard im Detail", gruppe: "Anschlüsse und Steckplätze eines Mainboards (Beispiel)",
+      einleitung: "Mainboard-Ansicht: Die Zeichnung zeigt ein Beispiel, kein bestimmtes Board; Ausstattung, Pinbelegung und unterstützte Standards sind je nach Modell verschieden. " +
+        "Kurz erklärt: Ein Anschluss ist die Stelle, an der ein Stecker verbunden wird. Ein Steckplatz nimmt eine Karte oder ein Modul auf. " +
+        "Die Schnittstelle beschreibt, wie zwei Teile miteinander verbunden sind, das Protokoll die Regeln des Datenaustauschs. Die Bauform ist die äußere Gestalt und Größe.",
+      teile: MAINBOARD_TEILE, sockel: [], formen: []
+    },
+    historisch: {
+      name: "Ältere Anschlüsse", titel: "PC-Explorer: Ältere Anschlüsse und Steckplätze", gruppe: "Historische Technik",
+      einleitung: "Dieser Bereich zeigt ältere Technik zum Vergleich. Diese Anschlüsse gehören nicht zur typischen Ausstattung aktueller Mainboards.",
+      teile: HIST_TEILE, sockel: [], formen: []
     },
     server: null /* reservierter Daten-Slot, kein auswählbarer Zustand */
   };
@@ -477,12 +777,43 @@ var aktuelleAnsicht = "desktop";
       svgKreis(g, x + w - 14, y + 14, 4, "pe-led");
     }
   }
+  /* Anschlussansichten (Rückseite, Mainboard, historisch): schematisches Rechteck mit Kurzbeschriftung im Teil.
+     Die Gruppe bestimmt Füllung und Kontur; die Beschriftung bleibt auch ohne Farbe lesbar. */
+  var IO_KLASSE = { "mainboard-io": "pe-io-mb", "erweiterungskarte": "pe-io-karte", "mainboard": "pe-io-intern", "historisch": "pe-io-alt" };
+  /* Beschriftung im Teil, wenn sie waagerecht passt; sonst gedreht, wenn das Teil hoch genug ist; sonst unter dem Teil. */
+  function zeichneAnschlussTeil(t, g) {
+    var r = t.layout, x = r[0], y = r[1], w = r[2], h = r[3];
+    var cx = x + w / 2, cy = y + h / 2, bw = t.kurz.length * 7.8 + 12;
+    svgRect(g, x, y, w, h, "pe-haupt " + (IO_KLASSE[t.gruppe] || "pe-io-intern"), 5);
+    if (w >= bw && h >= 20) {
+      svgText(g, cx, cy + 5, t.kurz, "pe-io-text");
+    } else if (h >= bw && w >= 20) {
+      g.appendChild(svgEl("text", { x: cx, y: cy + 5, "text-anchor": "middle", "class": "pe-io-text", transform: "rotate(-90 " + cx + " " + cy + ")" }, t.kurz));
+    } else {
+      svgText(g, cx, y + h + 16, t.kurz, "pe-io-text pe-io-aussen");
+    }
+  }
+  function istAnschlussAnsicht(key) { return key === "rueckseite" || key === "mainboard" || key === "historisch"; }
   function zeichneDeko(key) {
     var deko = svgEl("g", { "class": "pe-deko", "aria-hidden": "true" });
     deko.appendChild(svgEl("rect", { x: 0, y: 0, width: 780, height: 480, "class": "pe-platte" }));
     if (key === "notebook") {
       deko.appendChild(svgEl("rect", { x: 156, y: 14, width: 388, height: 34, rx: 8, "class": "pe-lid" }));
       deko.appendChild(svgEl("text", { x: 350, y: 36, "text-anchor": "middle", "class": "pe-hinweistext-hell" }, "Display-Deckel (aufgeklappt, von hinten)"));
+    }
+    if (key === "rueckseite") {
+      deko.appendChild(svgEl("rect", { x: 52, y: 40, width: 460, height: 300, rx: 8, "class": "pe-bereich pe-bereich-mb" }));
+      deko.appendChild(svgEl("text", { x: 64, y: 60, "class": "pe-bereichstext" }, "Mainboard-I/O (fest am Mainboard)"));
+      deko.appendChild(svgEl("rect", { x: 524, y: 40, width: 244, height: 220, rx: 8, "class": "pe-bereich pe-bereich-karte" }));
+      deko.appendChild(svgEl("text", { x: 538, y: 60, "class": "pe-bereichstext" }, "Erweiterungskarte (Grafik)"));
+      deko.appendChild(svgEl("text", { x: 538, y: 250, "class": "pe-bereichstext" }, "Nur mit dedizierter Grafikkarte"));
+    }
+    if (key === "mainboard") {
+      deko.appendChild(svgEl("rect", { x: 40, y: 30, width: 700, height: 424, rx: 10, "class": "pe-bereich pe-bereich-platine" }));
+      deko.appendChild(svgEl("text", { x: 390, y: 21, "text-anchor": "middle", "class": "pe-bereichstext" }, "Beispiel-Mainboard (schematisch, kein bestimmtes Modell)"));
+    }
+    if (key === "historisch") {
+      deko.appendChild(svgEl("text", { x: 390, y: 120, "text-anchor": "middle", "class": "pe-bereichstext" }, "Historische Technik zum Vergleich, nicht auf aktuellen Mainboards"));
     }
     deko.appendChild(svgEl("text", { x: 8, y: 474, "class": "pe-hinweistext" }, "Beispiel, nicht maßstäblich"));
     return deko;
@@ -496,7 +827,7 @@ var aktuelleAnsicht = "desktop";
       pfad("M 346 380 C 346 350 536 360 536 318", "pe-kabel-a");                                          /* Netzteil zur Grafikkarte */
       pfad("M 408 430 C 440 454 610 454 626 436 C 630 430 630 424 630 418", "pe-kabel-a");                /* Netzteil zur Festplatte */
       pfad("M 630 402 C 636 372 600 342 560 342 L 300 342 C 284 342 280 336 280 326", "pe-kabel-b pe-kabel-daten"); /* Festplatte zum Mainboard */
-    } else {
+    } else if (key === "notebook") {
       pfad("M 588 360 C 574 360 572 352 558 352", "pe-kabel-a pe-kabel-dick");                            /* externes Netzteil zur Ladebuchse */
       pfad("M 233 300 L 233 288", "pe-kabel-a");                                                          /* Akku zum Mainboard */
     }
@@ -723,7 +1054,8 @@ function markiere(id) {
           "data-id": t.id, role: "button", tabindex: "0",
           "aria-label": t.name, "aria-pressed": "false"
         });
-        if (aktuelleAnsicht === "notebook") zeichneNotebookTeil(t, g); else zeichneDesktopTeil(t, g);
+        if (istAnschlussAnsicht(aktuelleAnsicht)) zeichneAnschlussTeil(t, g);
+        else if (aktuelleAnsicht === "notebook") zeichneNotebookTeil(t, g); else zeichneDesktopTeil(t, g);
         g.addEventListener("click", function () { gruppeTeile.waehle(t.id); });
         g.addEventListener("keydown", function (e) {
           if (e.key === "Enter" || e.key === " ") { e.preventDefault(); gruppeTeile.waehle(t.id); return; }
@@ -739,7 +1071,7 @@ function markiere(id) {
       });
       svg.appendChild(zeichneKabel(aktuelleAnsicht));
       zeichneRahmen(svg, ansicht.teile);
-      zeichneEtiketten(svg, ansicht.teile, aktuelleAnsicht, gruppeTeile.waehle);
+      if (!istAnschlussAnsicht(aktuelleAnsicht)) zeichneEtiketten(svg, ansicht.teile, aktuelleAnsicht, gruppeTeile.waehle);
     }
 
     function zeigeAnsicht(key) {
@@ -752,7 +1084,9 @@ function markiere(id) {
       });
       titel.textContent = a.titel;
       einleitung.textContent = a.einleitung;
-      if (hinweis) hinweis.textContent = BILDHINWEIS + (key === "notebook" ? BILDHINWEIS_NOTEBOOK : "");
+      if (hinweis) hinweis.textContent = istAnschlussAnsicht(key) ? HINWEIS_SCHEMA : BILDHINWEIS + (key === "notebook" ? BILDHINWEIS_NOTEBOOK : "");
+      var kuehlerKnopf = document.getElementById("pe-kuehler");
+      if (kuehlerKnopf) kuehlerKnopf.hidden = istAnschlussAnsicht(key);
       document.title = a.titel + " (Entwurf)";
       teileBox.setAttribute("aria-label", a.gruppe);
       var gruppeTeile = baueGruppe(teileBox, a.teile, function (t) { markiere(t.id); zeigeDetail(detail, t, true); });
@@ -763,7 +1097,7 @@ function markiere(id) {
       if (rueck) rueck.hidden = true;
       if (SOCKEL.length) { baueGruppe(sockelWahl, SOCKEL, function (s) { zeigeDetail(sockelDetail, s); }); sockelDetail.textContent = "Wähle eine Bauform."; }
       if (key === "desktop" && FORMEN.length) { baueGruppe(formWahl, FORMEN, function (f) { zeigeDetail(formDetail, f); }); formDetail.textContent = "Wähle einen Formfaktor."; }
-      gruppeTeile.waehle("cpu");
+      gruppeTeile.waehle(a.teile[0].id);
     }
 
     Array.prototype.forEach.call(ansichtBox.querySelectorAll("button"), function (b) {

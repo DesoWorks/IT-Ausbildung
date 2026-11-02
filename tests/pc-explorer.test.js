@@ -21,7 +21,7 @@ gleich(D.ansichten.notebook.teile.map(t => t.id), ["board", "cpu", "cool", "ram"
 gleich(D.ansichten.notebook.sockel, []);
 gleich(D.ansichten.notebook.formen, []);
 assert.equal(D.ansichten.server, null);
-gleich(Object.keys(D.ansichten), ["desktop", "notebook", "server"]);
+gleich(Object.keys(D.ansichten), ["desktop", "notebook", "rueckseite", "mainboard", "historisch", "server"]);
 
 const alle = [].concat(D.ansichten.desktop.teile, D.ansichten.desktop.sockel, D.ansichten.desktop.formen, D.ansichten.notebook.teile);
 const ids = l => l.map(x => x.id);
@@ -81,7 +81,10 @@ assert(!/Systemplatine/.test(js));
 // Verbotene Angaben: Steckerhöhen der JEDEC-Pressemitteilung, IBM-Maße, Wattzahlen, Pinzahlen
 const alleTexte = JSON.stringify(D.ansichten) + JSON.stringify(D.quellen);
 ["2,85 mm", "7,5 mm", "133,35", "67,6", "2.85", "7.5 mm"].forEach(s => assert(!alleTexte.includes(s), "verbotene Angabe: " + s));
-assert(!/\d+\s*-?\s*(Pin|Pins|polig)\b/i.test(alleTexte), "Pinzahl im Lerntext");
+// Erlaubt sind Pinzahlen nur in den Namen von atx24 und eps (Bezeichnung des Steckers), nirgends sonst.
+const ohneErlaubteNamen = alleTexte.replace('"name":"24-Pin-ATX"', '"name":"ATX"').replace('"name":"4-/8-Pin-EPS"', '"name":"EPS"');
+assert(!/\d+\s*-?\s*(Pin|Pins|polig)\b/i.test(ohneErlaubteNamen), "Pinzahl im Lerntext");
+assert(alleTexte.includes('"name":"24-Pin-ATX"') && alleTexte.includes('"name":"4-/8-Pin-EPS"'), "Namen atx24 und eps tragen die Pinbezeichnung");
 assert(!/\d+\s*(W|Watt)\b/.test(alleTexte), "Wattzahl im Lerntext");
 
 // Notebook: Lerntexte
@@ -144,7 +147,9 @@ assert(html.includes('id="pe-kuehler"'));
 assert(html.includes("../js/pc-explorer.js") && html.includes("../css/pc-explorer.css"));
 // Ansichtsbuttons: Desktop und Notebook, genau einer gedrückt, kein Server-Button
 assert(html.includes('data-ansicht="desktop" aria-pressed="true"') && html.includes('data-ansicht="notebook" aria-pressed="false"'));
-assert.equal((html.match(/data-ansicht="/g) || []).length, 2);
+assert.equal((html.match(/data-ansicht="/g) || []).length, 5);
+["rueckseite", "mainboard", "historisch"].forEach(k => assert(html.includes('data-ansicht="' + k + '" aria-pressed="false"'), "Knopf " + k));
+assert.equal((html.match(/aria-pressed="true"/g) || []).length, 1, "Nur der Desktop-Knopf ist anfangs gedrückt");
 assert(!/data-ansicht="server"/i.test(html) && !/<button[^>]*>\s*Server/i.test(html), "Kein Server-Button");
 assert(/<script src="\.\.\/js\/glossar-daten\.js"><\/script>[\s\S]*pc-explorer\.js/.test(html), "Glossar wird vor dem Explorer geladen");
 assert(css.includes(":focus-visible") && css.includes("min-height"));
@@ -241,5 +246,49 @@ assert(/\.pe-abdeckung\s*\{[^}]*pointer-events:\s*none/.test(css), "Kühlabdecku
 assert(/\.pe-kuehler-offen \.pe-abdeckung\s*\{[^}]*opacity/.test(css), "Abdeckung wird mit der Kühlung durchsichtig");
 assert(/@media \(max-width: 600px\)[^}]*\{\s*\.pe-etiketten\s*\{\s*display:\s*none/.test(css), "Etiketten unter 600px ausgeblendet");
 assert(js.includes("pe-kaefig") && js.includes("pe-abdeckung"), "Käfig und Kühlabdeckung in der Zeichnung");
+
+// Anschlussansichten: Rückseite, Mainboard, historische Technik
+{
+  const A = D.ansichten, R = A.rueckseite.teile, M = A.mainboard.teile, H = A.historisch.teile;
+  gleich(R.map(t => t.id), ["usb-a", "usb-c", "usb2", "usb3", "usb4", "rj45", "audio", "hdmi-mb", "dp-mb", "ps2", "wlan", "hdmi-gpu", "dp-gpu"]);
+  gleich(M.map(t => t.id), ["atx24", "eps", "pcie-lang", "pcie-kurz", "m2", "sata", "ramslot", "cpu-fan", "sys-fan", "aio", "usb-header", "frontpanel", "front-audio", "rgb", "argb"]);
+  gleich(H.map(t => t.id), ["ide", "pci", "agp"]);
+  H.forEach(t => assert.equal(t.gruppe, "historisch", t.id));
+  ["hdmi-gpu", "dp-gpu"].forEach(id => assert.equal(e.finde(R, id).gruppe, "erweiterungskarte", id));
+  assert.equal(e.finde(R, "usb-a").gruppe, "mainboard-io");
+  [R, M].forEach(l => l.forEach(t => assert(!H.some(h => h.id === t.id), t.id + " ist historisch und gehört nicht in aktuelle Ansichten")));
+  [R, M].forEach(l => l.forEach(t => assert.notEqual(t.gruppe, "historisch", t.id)));
+  ["rueckseite", "mainboard", "historisch"].forEach(k => {
+    const a = A[k];
+    ["name", "titel", "gruppe", "einleitung"].forEach(f => assert(typeof a[f] === "string" && a[f].length > 3, k + "." + f));
+    gleich(a.sockel, []); gleich(a.formen, []);
+    assert.equal(new Set(ids(a.teile)).size, a.teile.length, k + " IDs eindeutig");
+    a.teile.forEach(x => {
+      ["name", "kurz", "glossar"].forEach(f => assert(typeof x[f] === "string" && x[f].length >= 2, x.id + " fehlt " + f));
+      ["funktion", "ort", "zusammen", "bauformen", "praxis", "merk"].forEach(f => assert(typeof x[f] === "string" && x[f].length > 10, x.id + " fehlt " + f));
+      assert.equal(typeof x.fakt, "string");
+      assert(Array.isArray(x.q) || JSON.stringify(x.q)[0] === "[", x.id + ": q ist ein Array");
+      x.q.forEach(q => assert(D.quellen[q], x.id + " verweist auf unbekannte Quelle " + q));
+      if (x.fakt) assert(x.q.length > 0, x.id + ": Fakt ohne Quelle");
+      assert.equal(x.layout.length, 4, x.id);
+      x.layout.forEach(n => assert(Number.isFinite(n), x.id));
+      assert(x.layout[2] > 0 && x.layout[3] > 0 && x.layout[0] >= 0 && x.layout[1] >= 0, x.id + " Layout");
+      assert(x.layout[0] + x.layout[2] <= 780 && x.layout[1] + x.layout[3] <= 480, x.id + " liegt außerhalb der Zeichnung");
+    });
+  });
+  assert(/Beispiel/.test(A.rueckseite.einleitung) && /nicht jeder PC/i.test(A.rueckseite.einleitung), "Rückseite: Beispiel-Hinweis");
+  assert(/nicht zur typischen Ausstattung aktueller Mainboards/.test(A.historisch.einleitung), "Historisch: Abgrenzung");
+  ["Anschluss", "Steckplatz", "Schnittstelle", "Protokoll", "Bauform"].forEach(w => assert(A.mainboard.einleitung.includes(w), "Mainboard-Einleitung ohne " + w));
+  // Pinzahlen nur in den Namen von atx24 und eps, keine Voltwerte
+  const neuTexte = JSON.stringify(R.concat(M, H).map(t => { const c = Object.assign({}, t); if (t.id === "atx24" || t.id === "eps") delete c.name; return c; }));
+  assert(!/\d+\s*(?:-|\/)?\s*\d*\s*-?\s*(Pin|Pins|polig)\b/i.test(neuTexte), "Pinzahl außerhalb von atx24/eps-Namen");
+  assert(!/\d+([.,]\d+)?\s*(V|Volt)\b/.test(neuTexte), "Voltwert im Lerntext");
+  assert(!/passt immer|ist kompatibel|immer kompatibel|garantiert/i.test(neuTexte), "Kompatibilitätszusage");
+  // Verdrahtung in der Darstellung
+  assert(js.includes("zeichneAnschlussTeil") && js.includes("istAnschlussAnsicht"), "Anschlussteile werden eigens gezeichnet");
+  assert(js.includes("a.teile[0].id") && !js.includes('gruppeTeile.waehle("cpu")'), "Erste Auswahl nicht fest cpu");
+  ["pe-io-mb", "pe-io-karte", "pe-io-intern", "pe-io-alt"].forEach(k => assert(css.includes(k), "CSS " + k));
+  assert(/pe-io-mb\s*\{[^}]*stroke-width:\s*2/.test(css), "2px Kontur");
+}
 
 console.log("pc-explorer: alle Prüfungen bestanden");
