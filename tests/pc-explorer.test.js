@@ -181,4 +181,10 @@ D.ansichten.notebook.teile.forEach(t => assert(!t.foto, "Notebook hat kein freig
 assert(/baueFoto/.test(js) && /figcaption/.test(js) && /pe-bildhinweis/.test(html));
 assert(/object-fit:\s*contain/.test(css) && /max-width:\s*100%/.test(css));
 assert(!/konzept|hardware-konzept/i.test(js + html), "Konzeptgrafik nicht eingebunden");
+// Zeichnung: Kabel sind nur Deko (versteckt, nicht fokussierbar, nicht anklickbar); Auswahl ist ohne Farbe als Umrandung erkennbar
+assert(/pe-kabelschicht", "aria-hidden": "true"/.test(js), "Kabelschicht ist aria-hidden");
+assert(/\.pe-kabelschicht[^{]*\{\s*pointer-events:\s*none/.test(css), "Kabel nicht anklickbar");
+assert(/\.pe-rahmen\.pe-aktiv\s*\{[^}]*stroke-dasharray/.test(css), "Auswahlrahmen gestrichelt, nicht nur Farbe");
+assert(/\.pe-etikett\.pe-aktiv \.pe-label-platte\s*\{[^}]*stroke-width:\s*4/.test(css), "Aktives Etikett mit dickerem Rahmen");
+assert(!/<img[^>]*pe-svg|background-image/.test(html + css), "Kein Hintergrundbild unter der Zeichnung");
 console.log("pc-explorer: alle Prüfungen bestanden");

@@ -23,7 +23,7 @@
   /* Pflicht-Texte je Bauteil: Funktion, Einbauort, Zusammenarbeit, Bauformen, Praxisbeispiel, Merksatz.
      "q" = Quellen-IDs, leer = reiner Lerntext ohne Zahl. "kurz" = kurze Beschriftung in der Zeichnung. */
   var TEILE = [
-    { id: "cpu", name: "Prozessor (CPU)", kurz: "CPU", glossar: "CPU", layout: [250, 70, 96, 96],
+    { id: "cpu", name: "Prozessor (CPU)", kurz: "CPU", glossar: "CPU", layout: [308, 84, 84, 84],
       funktion: "Führt Programmbefehle aus und steuert den Rechenablauf.",
       ort: "Im CPU-Sockel auf dem Mainboard. Darüber sitzt der Kühler.",
       zusammen: "Holt Daten aus dem Arbeitsspeicher. Das Mainboard liefert Strom und Anschlüsse.",
@@ -31,7 +31,7 @@
       praxis: "Ausbildungsbeispiel: Vor einem CPU-Tausch vergleichst du CPU und Sockel anhand der Herstellerangaben; gleiche Bauform allein beweist keine Kompatibilität.",
       merk: "Der Sockel entscheidet, welche CPU passt. Gleiche Größe heißt nicht gleich kompatibel.",
       fakt: "Ein Desktop-Mainboard hat einen Sockel, in den die CPU ohne Löten gesteckt oder aufgelegt wird.", q: ["cpu-socket"] },
-    { id: "cool", name: "Kühlung", kurz: "Kühlung", glossar: "Kühlung", layout: [214, 36, 168, 168],
+    { id: "cool", name: "Kühlung", kurz: "Kühlung", glossar: "Kühlung", layout: [272, 48, 156, 156],
       funktion: "Führt Wärme von CPU und Grafikkarte ab.",
       ort: "Der Kühler sitzt auf der CPU, Gehäuselüfter sitzen im Gehäuse.",
       zusammen: "Hält die CPU im zulässigen Temperaturbereich, damit sie nicht drosselt.",
@@ -39,7 +39,7 @@
       praxis: "Ausbildungsbeispiel: Bei einer Wartung prüfst du, ob der Kühler sicher befestigt ist und ob Lüfter nicht blockiert sind.",
       merk: "Kühlerbefestigung und CPU-Sockel sind getrennte Fragen.",
       fakt: "Moderne CPU-Sockel werden fast immer zusammen mit einem Befestigungssystem für den Kühler entworfen.", q: ["cpu-socket"] },
-    { id: "ram", name: "Arbeitsspeicher (RAM)", kurz: "RAM", glossar: "RAM", layout: [470, 56, 130, 150],
+    { id: "ram", name: "Arbeitsspeicher (RAM)", kurz: "RAM", glossar: "RAM", layout: [456, 48, 104, 150],
       funktion: "Hält Programme und Daten, mit denen die CPU gerade arbeitet.",
       ort: "In den Speicher-Steckplätzen neben dem CPU-Sockel.",
       zusammen: "Die CPU spricht über ihren Speichercontroller mit dem RAM. Die Speichergeneration muss zu Board und CPU passen.",
@@ -47,14 +47,14 @@
       praxis: "Ausbildungsbeispiel: Vor einer Speichererweiterung vergleichst du Modulbauart und Systemangaben; ein Modul passt nicht allein deshalb, weil es RAM ist.",
       merk: "Bei neuen Bauformen zählt nicht nur der Name, sondern auch die Speichertechnik.",
       fakt: "CAMM2 gibt es in zwei Ausführungen (DDR5 und LPDDR5/5X) mit gleichem Stecker, aber anderer Pinbelegung und anderer Befestigung. Sie sind nicht austauschbar.", q: ["camm2", "ibm-dimm"] },
-    { id: "gpu", name: "Grafikkarte (GPU)", kurz: "GPU", glossar: "GPU", layout: [36, 230, 400, 110],
+    { id: "gpu", name: "Grafikkarte (GPU)", kurz: "GPU", glossar: "GPU", layout: [250, 248, 340, 64],
       funktion: "Berechnet Bilder und Grafik und gibt das Bild an den Monitor aus.",
       ort: "Im PCIe-Erweiterungssteckplatz des Mainboards.",
       zusammen: "Bekommt Daten von CPU und RAM. Das Netzteil versorgt sie mit Strom.",
       bauformen: "Grafik kann als eigenes Erweiterungsbauteil oder integriert in einem anderen Bauteil bereitgestellt werden. Konkrete Steckplatz- und Stromanforderungen hängen vom Gerät ab.",
       praxis: "Ausbildungsbeispiel: Du klärst, ob ein Arbeitsplatz eine eigene Grafikkarte benötigt und prüfst vor dem Einbau die Angaben von Mainboard, Gehäuse und Netzteil.",
       merk: "Integrierte Grafik sitzt in der CPU. Eine Grafikkarte ist ein eigenes Bauteil.", fakt: "", q: [] },
-    { id: "ssd", name: "SSD", kurz: "SSD", glossar: "SSD", layout: [360, 188, 120, 28],
+    { id: "ssd", name: "SSD", kurz: "SSD", glossar: "SSD", layout: [300, 212, 120, 22],
       funktion: "Speichert Daten dauerhaft ohne bewegte Teile.",
       ort: "Als M.2-Stick direkt auf dem Mainboard oder als Laufwerk im Gehäuse.",
       zusammen: "Das Betriebssystem wird von hier in den Arbeitsspeicher geladen.",
@@ -62,21 +62,21 @@
       praxis: "Ausbildungsbeispiel: Vor dem Austausch einer SSD prüfst du Anschluss, unterstützte Schnittstelle und Bauform in den Geräteangaben.",
       merk: "M.2 ist nicht dasselbe wie SATA, PCIe oder NVMe.",
       fakt: "Wikipedia beschreibt M.2 als Spezifikation für interne Erweiterungsmodule. Genannt werden eine Breite von 22 mm und Längen von 30, 42, 60, 80 oder 110 mm. Vorläufig, kein gelesener PCI-SIG-Normtext.", q: ["nvme", "sata-io", "m2"] },
-    { id: "hdd", name: "Festplatte (HDD)", kurz: "HDD", glossar: "HDD", layout: [36, 360, 180, 86],
+    { id: "hdd", name: "Festplatte (HDD)", kurz: "HDD", glossar: "HDD", layout: [172, 380, 190, 70],
       funktion: "Speichert Daten magnetisch auf rotierenden Scheiben. Sie ist günstig und groß.",
       ort: "Im Laufwerksschacht des Gehäuses, per Datenkabel mit dem Mainboard verbunden.",
       zusammen: "Daten laufen über das Datenkabel zum Mainboard, Strom kommt vom Netzteil.",
       bauformen: "Festplatten gibt es in verschiedenen Gehäuse- und Anschlussvarianten. Konkrete Maße und Kompatibilität sind hier nicht festgelegt.",
       praxis: "Ausbildungsbeispiel: Bei einer Speichererweiterung prüfst du Laufwerksschacht, Anschluss und Gerätevorgaben, bevor du ein Laufwerk auswählst.",
       merk: "Sie enthält bewegte Teile und ist deshalb stoßempfindlicher als eine SSD.", fakt: "", q: [] },
-    { id: "psu", name: "Netzteil (PSU)", kurz: "Netzteil", glossar: "Netzteil", layout: [430, 350, 250, 96],
+    { id: "psu", name: "Netzteil (PSU)", kurz: "Netzteil", glossar: "Netzteil", layout: [392, 380, 236, 78],
       funktion: "Wandelt die Netzspannung in niedrige Gleichspannungen für die Bauteile um.",
       ort: "Im Gehäuse, meist unten oder hinten.",
       zusammen: "Versorgt Mainboard, Grafikkarte und Laufwerke über Kabel.",
       bauformen: "Netzteile unterscheiden sich unter anderem durch Bauform, Anschlüsse und Leistungsdaten. Eine passende Auswahl muss anhand der konkreten Komponenten geprüft werden.",
       praxis: "Ausbildungsbeispiel: Bei einer PC-Planung prüfst du, ob die erforderlichen Stromanschlüsse vorhanden sind und ob das Netzteil laut Herstellerangaben zur Konfiguration passt.",
       merk: "Ein geöffnetes Netzteil nicht berühren: Es kann auch nach dem Ausschalten gefährlich sein.", fakt: "", q: [] },
-    { id: "board", name: "Mainboard", kurz: "Mainboard", glossar: "Mainboard", layout: [200, 40, 460, 290], grund: true,
+    { id: "board", name: "Mainboard", kurz: "Mainboard", glossar: "Mainboard", layout: [236, 32, 350, 300], grund: true,
       funktion: "Verbindet alle Bauteile und verteilt Strom und Daten.",
       ort: "Im Gehäuse verschraubt. Die Bauform (Formfaktor) bestimmt, ob es ins Gehäuse passt.",
       zusammen: "Trägt CPU-Sockel, Speicher-Steckplätze, PCIe-Steckplätze, M.2- und SATA-Anschlüsse sowie die Stromanschlüsse vom Netzteil.",
@@ -84,7 +84,7 @@
       praxis: "Ausbildungsbeispiel: Bei der Zusammenstellung eines Rechners prüfst du in den Herstellerangaben, ob Mainboard-Bauform und Gehäuse zusammenpassen.",
       merk: "Wichtige Verbindungen: PCIe für Erweiterungskarten, M.2 und SATA für Laufwerke, Stromkabel vom Netzteil.",
       fakt: "Das Mainboard ist die zentrale Platine, an der die anderen Bauteile angeschlossen werden, und verteilt Strom an andere Platinen.", q: ["formfaktor"] },
-    { id: "gehaeuse", name: "Gehäuse und Anschlüsse", kurz: "Gehäuse", glossar: "Gehäuse", layout: [16, 12, 748, 452], grund: true,
+    { id: "gehaeuse", name: "Gehäuse und Anschlüsse", kurz: "Gehäuse", glossar: "Gehäuse", layout: [140, 12, 500, 450], grund: true,
       funktion: "Das Gehäuse umschließt die Bauteile. Es bietet Befestigungspunkte und Öffnungen für Kabel und Anschlüsse.",
       ort: "Die Bauteile werden im Inneren am Gehäuse befestigt. Anschlüsse an der Vorder- oder Rückseite sind von außen erreichbar.",
       zusammen: "Das Gehäuse muss Platz und Befestigung für Mainboard, Netzteil und Laufwerke bieten. Öffnungen und Lüfter unterstützen den Luftweg. Prüfe vor dem Einbau die Angaben der jeweiligen Geräte.",
@@ -182,28 +182,28 @@
     "Der vollständige Standardtext wurde nicht geöffnet; die Aussage stammt aus der Pressemitteilung.";
 
   var NOTEBOOK_TEILE = [
-    { id: "board", name: "Mainboard", kurz: "Mainboard", glossar: "Mainboard", layout: [150, 70, 420, 230], grund: true,
+    { id: "board", name: "Mainboard", kurz: "Mainboard", glossar: "Mainboard", layout: [162, 84, 280, 206], grund: true,
       funktion: "Verbindet die Bauteile des Notebooks.",
       ort: "Im Inneren des Gehäuses. Lage und Aufbau hängen vom Modell ab.",
       zusammen: "Sie verbindet Prozessor, Speicher, Laufwerk, Anschlüsse und Stromversorgung.",
       bauformen: "Auf der Mainboard können Bauteile fest verlötet oder über Steckplätze angeschlossen sein. Das ist modellabhängig.",
       praxis: "Ausbildungsbeispiel: Vor einer Reparatur suchst du die Wartungsunterlagen des konkreten Modells.",
       merk: "Im Notebook ist vieles fest eingebaut. Prüfe immer das genaue Modell.", fakt: "", q: [] },
-    { id: "cpu", name: "Prozessor (CPU)", kurz: "CPU", glossar: "CPU", layout: [230, 110, 80, 80],
+    { id: "cpu", name: "Prozessor (CPU)", kurz: "CPU", glossar: "CPU", layout: [270, 118, 56, 56],
       funktion: "Führt Befehle aus und steuert Rechenaufgaben.",
       ort: "Auf oder an der Mainboard, in der Nähe der Kühlung. Der genaue Aufbau hängt vom Modell ab.",
       zusammen: "Arbeitet mit Arbeitsspeicher und Kühlung zusammen.",
       bauformen: "Kann je nach Gerät fest auf der Platine sitzen oder anders befestigt sein. Für das konkrete Gerät prüfen.",
       praxis: "Ausbildungsbeispiel: Bei einer Fehlerdiagnose prüfst du zuerst die Modellunterlagen, bevor du einen Austausch annimmst.",
       merk: "Nicht jede Notebook-CPU lässt sich tauschen. Prüfe das Modell.", fakt: "", q: [] },
-    { id: "cool", name: "Kühlung", kurz: "Kühlung", glossar: "Kühlung", layout: [180, 96, 280, 80],
+    { id: "cool", name: "Kühlung", kurz: "Kühlung", glossar: "Kühlung", layout: [326, 108, 166, 76],
       funktion: "Führt Wärme aus dem engen Geräteinneren ab.",
       ort: "Im Inneren des Gehäuses, nahe der Wärmequellen. Lüftungsöffnungen im Gehäuse bilden den Luftweg.",
       zusammen: "Lüfter und Kühlflächen müssen zum verfügbaren Platz und zum Luftweg passen.",
       bauformen: "Kühlteile sind Teil des modellabhängigen Innenaufbaus. Der knappe Platz begrenzt Anordnung und Luftweg; konkrete Aussagen sind vom Modell abhängig.",
       praxis: "Ausbildungsbeispiel: Bei einer Wartung kontrollierst du nach Herstelleranleitung, ob Lüftungsöffnungen frei sind.",
       merk: "Wenig Platz heißt wenig Luft: Lüftungsöffnungen müssen frei bleiben.", fakt: "", q: [] },
-    { id: "ram", name: "Arbeitsspeicher (RAM)", kurz: "RAM", glossar: "RAM", layout: [500, 120, 56, 90],
+    { id: "ram", name: "Arbeitsspeicher (RAM)", kurz: "RAM", glossar: "RAM", layout: [270, 262, 150, 22],
       funktion: "Hält aktuell benötigte Daten und Programme bereit.",
       ort: "Fest auf der Mainboard verlötet oder in einem Steckplatz beziehungsweise Modulsystem. Das Modell entscheidet.",
       zusammen: "Der Prozessor greift auf den Arbeitsspeicher zu.",
@@ -211,14 +211,14 @@
       praxis: "Ausbildungsbeispiel: Vor einer Speichererweiterung prüfst du die Wartungs- und Spezifikationsangaben des genauen Notebookmodells.",
       merk: "Verlötet oder steckbar: Das entscheidet das Modell, nicht der RAM-Name.",
       fakt: CAMM2_TEXT, q: ["camm2", "ibm-dimm"] },
-    { id: "gpu", name: "Grafikeinheit (GPU)", kurz: "GPU", glossar: "GPU", layout: [240, 200, 90, 40],
+    { id: "gpu", name: "Grafikeinheit (GPU)", kurz: "GPU", glossar: "GPU", layout: [270, 200, 64, 52],
       funktion: "Berechnet Bilder und Grafik für den Bildschirm.",
       ort: "Je nach Modell in einem anderen Bauteil integriert oder als eigener Grafikchip vorhanden. Das steht in den Modellunterlagen.",
       zusammen: "Bekommt Daten von Prozessor und Arbeitsspeicher.",
       bauformen: "Grafik kann in einem anderen Bauteil integriert sein oder als eigener Grafikchip vorhanden sein. Das hängt vom Modell ab. Einen austauschbaren Steckplatz wie im Desktop solltest du nicht voraussetzen.",
       praxis: "Ausbildungsbeispiel: Eine Kundin wünscht mehr Grafikleistung. Du prüfst in den Modellunterlagen, welche Grafik das Gerät hat und ob sie überhaupt erweiterbar ist.",
       merk: "Grafik im Notebook ist modellabhängig: integriert oder als eigener Chip.", fakt: "", q: [] },
-    { id: "ssd", name: "SSD", kurz: "SSD", glossar: "SSD", layout: [360, 210, 110, 24],
+    { id: "ssd", name: "SSD", kurz: "SSD", glossar: "SSD", layout: [172, 110, 82, 22],
       funktion: "Speichert Betriebssystem und Dateien dauerhaft.",
       ort: "Im Inneren des Gehäuses, je nach Modell auf der Platine oder an einem Laufwerksplatz.",
       zusammen: "Beim Start werden benötigte Daten vom Speicher in den Arbeitsspeicher geladen.",
@@ -226,21 +226,21 @@
       praxis: "Ausbildungsbeispiel: Du prüfst vor einem Tausch die Modellunterlagen und sicherst wichtige Daten nach Auftrag.",
       merk: "M.2 ist nicht dasselbe wie SATA, PCIe oder NVMe.",
       fakt: "Wikipedia beschreibt M.2 als Spezifikation für interne Erweiterungsmodule. Genannt werden eine Breite von 22 mm und Längen von 30, 42, 60, 80 oder 110 mm. Vorläufig, kein gelesener PCI-SIG-Normtext.", q: ["nvme", "sata-io", "m2"] },
-    { id: "akku", name: "Akku", kurz: "Akku", glossar: "Akku", layout: [40, 320, 280, 100],
+    { id: "akku", name: "Akku", kurz: "Akku", glossar: "Akku", layout: [176, 300, 330, 72],
       funktion: "Versorgt das Notebook unterwegs mit Energie.",
       ort: "Im Gehäuse. Ob er von außen oder nur nach dem Öffnen erreichbar ist, hängt vom Modell ab.",
       zusammen: "Der Akku arbeitet mit Ladeelektronik und Stromversorgung zusammen.",
       bauformen: "Austauschbarkeit und Wartungsweg sind modellabhängig.",
       praxis: "Ausbildungsbeispiel: Vor Wartung oder Ersatz beachtest du die Herstelleranleitung und Sicherheitsvorgaben.",
       merk: "Vor Arbeiten am Akku immer die Herstelleranleitung lesen.", fakt: "", q: [] },
-    { id: "netzteil", name: "Externes Netzteil", kurz: "Netzteil", glossar: "Netzteil", layout: [560, 320, 190, 90],
+    { id: "netzteil", name: "Externes Netzteil", kurz: "Netzteil", glossar: "Netzteil", layout: [588, 330, 130, 60],
       funktion: "Wandelt die Netzspannung in eine Spannung zum Laden und Betreiben des Notebooks um.",
       ort: "Außerhalb des Notebooks, über ein Kabel mit dem Gerät verbunden. Das ist modellabhängig.",
       zusammen: "Arbeitet mit Ladeelektronik und Akku zusammen.",
       bauformen: "Netzteile unterscheiden sich je nach Gerät. Welches Netzteil passt, steht in den Modellunterlagen; Anschlussform und Leistungsangaben werden hier nicht festgelegt.",
       praxis: "Ausbildungsbeispiel: Lädt ein Notebook nicht, prüfst du anhand der Modellunterlagen, welches Netzteil zum Gerät gehört, bevor du Teile tauschst.",
       merk: "Das Netzteil gehört zum Gerät. Ein anderes passt nicht automatisch.", fakt: "", q: [] },
-    { id: "gehaeuse", name: "Gehäuse und Anschlüsse", kurz: "Gehäuse", glossar: "Gehäuse", layout: [16, 36, 530, 420], grund: true,
+    { id: "gehaeuse", name: "Gehäuse und Anschlüsse", kurz: "Gehäuse", glossar: "Gehäuse", layout: [140, 60, 420, 330], grund: true,
       funktion: "Das Gehäuse hält die Bauteile des Notebooks zusammen und schützt sie. Anschlüsse und Lüftungsöffnungen sind modellabhängig.",
       ort: "Es umschließt alle Bauteile. Die Anschlüsse sitzen an den Seiten oder an der Rückseite, je nach Modell.",
       zusammen: "Das Gehäuse gibt Platz und Befestigung für Mainboard, Akku, Kühlung und Speicher vor. Lüftungsöffnungen bilden den Luftweg.",
@@ -267,14 +267,16 @@
   var BILDHINWEIS = "Die Abbildung besteht aus einzeln auswählbaren Bauteilen. Sie ist ein farbiges Beispiel, nicht maßstäblich und kein Foto eines bestimmten Geräts. Echte Fotos gibt es bisher nur für PGA, LGA und BGA.";
   var BILDHINWEIS_NOTEBOOK = " Die Notebook-Ansicht ist eine eigene Zeichnung, kein verkleinerter Desktop. Für das Notebook liegt noch kein freigegebenes Komponentenbild vor. Die Liste bleibt gleichwertig.";
 var aktuelleAnsicht = "desktop";
+  /* Beschriftungen: [Platte x, Platte y, Zielpunkt x, Zielpunkt y, optional "o" = Linie startet oben an der Platte].
+     Alle Platten stehen außerhalb des Gehäuses, die Linien enden mit einem Punkt auf dem Bauteil. */
   var LABELS = {
     desktop: {
-      cool: [8, 52], cpu: [8, 96], gpu: [8, 228], hdd: [8, 328], gehaeuse: [8, 420],
-      ram: [662, 64], board: [662, 140], ssd: [662, 206], psu: [662, 378]
+      cool: [8, 32, 300, 76], cpu: [8, 88, 322, 126], gpu: [8, 262, 256, 282], hdd: [8, 398, 176, 415], gehaeuse: [8, 330, 146, 342],
+      ram: [650, 8, 510, 70], board: [650, 158, 580, 170], ssd: [650, 211, 416, 223], psu: [650, 408, 620, 420]
     },
     notebook: {
-      cool: [8, 70], cpu: [8, 118], ram: [8, 176], gpu: [8, 230], ssd: [8, 284],
-      board: [560, 80], akku: [560, 250], netzteil: [560, 340], gehaeuse: [560, 430]
+      ssd: [8, 110, 174, 121], cpu: [8, 160, 272, 148], gpu: [8, 215, 272, 226], ram: [8, 262, 272, 273], gehaeuse: [8, 330, 146, 342],
+      board: [650, 56, 432, 92], cool: [650, 100, 488, 146], akku: [650, 292, 500, 336], netzteil: [588, 404, 640, 390, "o"]
     }
   };
 
@@ -285,104 +287,207 @@ var aktuelleAnsicht = "desktop";
   function svgRect(g, x, y, w, h, cls, rx) {
     svgForm(g, "rect", { x: x, y: y, width: w, height: h, rx: rx || 4 }, cls);
   }
-  function callout(g, t) {
-    var r = t.layout;
-    var x = r[0] + 6;
-    var y = r[1] > 30 ? r[1] - 4 : r[1] + 18;
-    var w = Math.max(64, Math.min(118, (t.kurz || "").length * 8 + 16));
-    if (x + w > 760) x = 760 - w;
-    svgRect(g, x, y - 16, w, 24, "pe-label-platte", 6);
-    g.appendChild(svgEl("text", { x: x + 8, y: y + 1, "class": "pe-label" }, t.kurz));
+  function svgKreis(g, cx, cy, r, cls) {
+    svgForm(g, "circle", { cx: cx, cy: cy, r: r }, cls);
   }
-  function zeichneDesktopTeil(t, g) {
-    var r = t.layout, x = r[0], y = r[1], w = r[2], h = r[3];
-    if (t.id === "gehaeuse") {
-      svgRect(g, x, y, w, h, "pe-case", 18);
-      svgRect(g, x + 8, y + 16, 16, h - 32, "pe-front", 3);
-      svgRect(g, x + w - 22, y + 28, 12, 150, "pe-io", 2);
-    } else if (t.id === "board") {
-      svgRect(g, x, y, w, h, "pe-pcb", 6);
-      svgRect(g, x + w - 18, y + 16, 10, 120, "pe-slot", 1);
-    } else if (t.id === "cpu") {
-      svgRect(g, x, y, w, h, "pe-cpu", 4);
-      svgRect(g, x + 18, y + 18, w - 36, h - 36, "pe-die", 2);
-      g.appendChild(svgEl("text", { x: x + 22, y: y + h / 2 + 4, "class": "pe-label pe-mini" }, "CPU"));
-    } else if (t.id === "cool") {
-      var cx = x + w / 2, cy = y + h / 2, ro = w / 2 - 2, ri = 30;
-      svgForm(g, "path", {
-        d: "M " + cx + " " + (cy - ro) + " A " + ro + " " + ro + " 0 1 1 " + (cx - 0.1) + " " + (cy - ro) +
-          " Z M " + cx + " " + (cy - ri) + " A " + ri + " " + ri + " 0 1 0 " + (cx + 0.1) + " " + (cy - ri) + " Z",
-        "fill-rule": "evenodd"
-      }, "pe-cool");
-      [0, 90, 180, 270].forEach(function (deg) {
-        var a = deg * Math.PI / 180;
-        g.appendChild(svgEl("line", {
-          x1: cx + Math.cos(a) * (ri + 4), y1: cy + Math.sin(a) * (ri + 4),
-          x2: cx + Math.cos(a) * (ro - 6), y2: cy + Math.sin(a) * (ro - 6),
-          "class": "pe-blade"
+  function svgText(g, x, y, text, cls) {
+    g.appendChild(svgEl("text", { x: x, y: y, "text-anchor": "middle", "class": cls }, text));
+  }
+  /* Lüfter: Rahmenring, Nabe und Flügel. Nur Dekoration innerhalb des Bauteils. */
+  function zeichneLuefter(g, cx, cy, r, fluegel) {
+    svgKreis(g, cx, cy, r, "pe-fan");
+    for (var i = 0; i < fluegel; i++) {
+      var a = i * 2 * Math.PI / fluegel;
+      g.appendChild(svgEl("line", {
+        x1: cx + Math.cos(a) * 5, y1: cy + Math.sin(a) * 5,
+        x2: cx + Math.cos(a) * (r - 4), y2: cy + Math.sin(a) * (r - 4), "class": "pe-blade"
+      }));
+    }
+    svgKreis(g, cx, cy, 5, "pe-hub");
+  }
+
+  /* Etikettenschicht: Platte außerhalb des Gehäuses plus Verbindungslinie mit hellem Saum (auch auf dunklem Gehäuse lesbar). */
+  function zeichneEtiketten(svg, teile, ansicht, waehle) {
+    var tabelle = LABELS[ansicht];
+    var schicht = svgEl("g", { "class": "pe-etiketten" });
+    teile.forEach(function (t) {
+      var p = tabelle[t.id];
+      if (!p) return;
+      var w = Math.max(70, Math.min(128, (t.kurz || "").length * 10.5 + 18));
+      var sx = p[4] === "o" ? p[0] + w / 2 : (p[0] < 400 ? p[0] + w : p[0]);
+      var sy = p[4] === "o" ? p[1] : p[1] + 14;
+      var g = svgEl("g", { "class": "pe-etikett", "data-id": t.id, "aria-hidden": "true" });
+      g.appendChild(svgEl("line", { x1: sx, y1: sy, x2: p[2], y2: p[3], "class": "pe-leader-saum" }));
+      g.appendChild(svgEl("line", { x1: sx, y1: sy, x2: p[2], y2: p[3], "class": "pe-leader" }));
+      g.appendChild(svgEl("circle", { cx: p[2], cy: p[3], r: 4, "class": "pe-punkt" }));
+      g.appendChild(svgEl("rect", { x: p[0], y: p[1], width: w, height: 28, rx: 6, "class": "pe-label-platte" }));
+      g.appendChild(svgEl("text", { x: p[0] + 8, y: p[1] + 20, "class": "pe-label" }, t.kurz));
+      g.addEventListener("click", function () { waehle(t.id); });
+      schicht.appendChild(g);
+    });
+    svg.appendChild(schicht);
+  }
+  /* Auswahlrahmen: liegt über allen Bauteilen, damit auch eine verdeckte CPU sichtbar umrandet wird. */
+  function zeichneRahmen(svg, teile) {
+    var schicht = svgEl("g", { "class": "pe-rahmenschicht", "aria-hidden": "true" });
+    teile.forEach(function (t) {
+      var r = t.layout;
+      ["pe-rahmen-saum", "pe-rahmen"].forEach(function (cls) {
+        schicht.appendChild(svgEl("rect", {
+          x: r[0] - 3, y: r[1] - 3, width: r[2] + 6, height: r[3] + 6, rx: 8, "data-id": t.id, "class": cls
         }));
       });
+    });
+    svg.appendChild(schicht);
+  }
+
+  function zeichneDesktopTeil(t, g) {
+    var r = t.layout, x = r[0], y = r[1], w = r[2], h = r[3];
+    var i;
+    if (t.id === "gehaeuse") {
+      svgRect(g, x, y, w, h, "pe-case pe-haupt", 18);
+      svgRect(g, x + 8, y + 16, 16, h - 32, "pe-front", 3);
+      [84, 160, 236].forEach(function (cy) { zeichneLuefter(g, x + 60, cy, 26, 5); });
+      svgRect(g, x + w - 24, y + 28, 14, 110, "pe-io", 2);
+      for (i = 0; i < 4; i++) svgRect(g, x + w - 22, y + 32 + i * 26, 10, 18, "pe-conn", 1);
+    } else if (t.id === "board") {
+      svgRect(g, x, y, w, h, "pe-pcb pe-haupt", 6);
+      svgRect(g, 298, 74, 104, 104, "pe-socket", 4);                 /* CPU-Sockel */
+      svgRect(g, 566, 50, 14, 90, "pe-conn", 2);                      /* Hauptstrom-Stecker */
+      svgRect(g, 288, 213, 12, 20, "pe-conn", 1);                     /* M.2-Steckplatz */
+      svgRect(g, 244, 236, 336, 10, "pe-slot", 2);                    /* PCIe-Steckplatz */
+      svgRect(g, 470, 212, 56, 22, "pe-chip", 3);                     /* Chipsatz-Kühlkörper */
+      for (i = 0; i < 3; i++) svgRect(g, 252 + i * 20, 318, 16, 8, "pe-conn", 1); /* SATA-Anschlüsse */
+    } else if (t.id === "cpu") {
+      svgRect(g, x, y, w, h, "pe-cpu pe-haupt", 6);
+      svgRect(g, x + 16, y + 16, w - 32, h - 32, "pe-die", 2);
+      svgText(g, x + w / 2, y + h / 2 + 4, "CPU", "pe-dunkel");
+    } else if (t.id === "cool") {
+      var cx = x + w / 2, cy = y + h / 2, ro = w / 2 - 2, ri = 34, k = 8;
+      svgForm(g, "path", {
+        d: "M " + (x + k) + " " + (y + k) + " H " + (x + w - k) + " V " + (y + h - k) + " H " + (x + k) + " Z" +
+          " M " + (cx - ri) + " " + cy + " a " + ri + " " + ri + " 0 1 0 " + (2 * ri) + " 0 a " + ri + " " + ri + " 0 1 0 " + (-2 * ri) + " 0 Z",
+        "fill-rule": "evenodd"
+      }, "pe-cool pe-haupt");
+      svgKreis(g, cx, cy, ro - 6, "pe-ringlinie");
+      for (i = 0; i < 8; i++) {
+        var a = i * Math.PI / 4;
+        g.appendChild(svgEl("line", {
+          x1: cx + Math.cos(a) * (ri + 5), y1: cy + Math.sin(a) * (ri + 5),
+          x2: cx + Math.cos(a) * (ro - 12), y2: cy + Math.sin(a) * (ro - 12), "class": "pe-blade"
+        }));
+      }
+      [[x + 14, y + 14], [x + w - 14, y + 14], [x + 14, y + h - 14], [x + w - 14, y + h - 14]].forEach(function (p) {
+        svgKreis(g, p[0], p[1], 4, "pe-screw");
+      });
     } else if (t.id === "ram") {
-      [0, 1, 2, 3].forEach(function (i) {
-        svgRect(g, x + 8 + i * 22, y + 8, 16, h - 16, "pe-ram", 2);
+      for (i = 0; i < 4; i++) svgRect(g, x + 4 + i * 25, y, 18, h, "pe-slotram", 3);
+      [1, 3].forEach(function (s) {
+        var sx = x + 4 + s * 25;
+        svgRect(g, sx + 3, y + 4, 12, h - 8, "pe-ram pe-haupt", 2);
+        for (var j = 0; j < 4; j++) svgRect(g, sx + 5, y + 14 + j * 31, 8, 22, "pe-chip", 1);
       });
     } else if (t.id === "gpu") {
-      svgRect(g, x, y, w, h, "pe-gpu", 6);
-      svgForm(g, "circle", { cx: x + 48, cy: y + h / 2, r: 18 }, "pe-fan");
-      svgForm(g, "circle", { cx: x + 96, cy: y + h / 2, r: 18 }, "pe-fan");
+      svgRect(g, x, y, w, h, "pe-gpu pe-haupt", 6);
+      svgRect(g, x + 20, y - 4, 200, 8, "pe-gold", 1);               /* Kontaktleiste im PCIe-Steckplatz */
+      zeichneLuefter(g, x + 100, y + 34, 24, 7);
+      zeichneLuefter(g, x + 210, y + 34, 24, 7);
+      svgRect(g, x + w - 72, y + h - 4, 34, 10, "pe-conn", 1);        /* Stromanschluss der Karte */
+      svgRect(g, x + w - 4, y - 6, 8, h + 12, "pe-io", 1);            /* Slotblende */
     } else if (t.id === "ssd") {
-      svgRect(g, x, y, w, h, "pe-ssd", 2);
-      svgRect(g, x + w - 10, y + 4, 6, h - 8, "pe-notch", 1);
+      svgRect(g, x, y, w, h, "pe-ssd pe-haupt", 2);
+      svgRect(g, x, y + 3, 8, h - 6, "pe-gold", 1);
+      svgRect(g, x + 22, y + 4, 36, h - 8, "pe-chip", 2);
+      svgRect(g, x + 64, y + 4, 36, h - 8, "pe-chip", 2);
+      svgKreis(g, x + w - 5, y + h / 2, 4, "pe-screw");
     } else if (t.id === "hdd") {
-      svgRect(g, x, y, w, h, "pe-hdd", 6);
-      svgForm(g, "circle", { cx: x + 36, cy: y + h / 2, r: 16 }, "pe-platter");
+      svgRect(g, x, y, w, h, "pe-hdd pe-haupt", 6);
+      svgKreis(g, x + 46, y + h / 2, 28, "pe-platter");
+      svgKreis(g, x + 46, y + h / 2, 6, "pe-hub");
+      svgForm(g, "line", { x1: x + 130, y1: y + 14, x2: x + 62, y2: y + h / 2 + 6 }, "pe-arm");
+      svgRect(g, x + w - 56, y - 5, 30, 8, "pe-conn", 1);             /* SATA-Datenanschluss */
     } else if (t.id === "psu") {
-      svgRect(g, x, y, w, h, "pe-psu", 6);
-      svgForm(g, "circle", { cx: x + 36, cy: y + h / 2, r: 18 }, "pe-fan");
+      svgRect(g, x, y, w, h, "pe-psu pe-haupt", 6);
+      zeichneLuefter(g, x + 60, y + h / 2, 28, 7);
+      svgKreis(g, x + 60, y + h / 2, 17, "pe-ringlinie");
+      svgRect(g, x + w - 56, y + 16, 38, 26, "pe-conn", 2);          /* Netzanschluss */
+      svgRect(g, x + w - 50, y + 50, 26, 10, "pe-chip", 2);          /* Schalter */
+      svgRect(g, x + 150, y - 5, 60, 8, "pe-conn", 1);               /* Kabelausgänge */
     }
-    callout(g, t);
   }
   function zeichneNotebookTeil(t, g) {
     var r = t.layout, x = r[0], y = r[1], w = r[2], h = r[3];
+    var i;
     if (t.id === "gehaeuse") {
-      svgRect(g, x, y, w, h, "pe-base", 28);
-      svgRect(g, x + 24, y + 8, w - 48, 10, "pe-hinge", 3);
+      svgRect(g, x, y, w, h, "pe-base pe-haupt", 26);
+      svgRect(g, x + 30, y + 2, w - 60, 10, "pe-hinge", 3);
+      for (i = 0; i < 3; i++) svgRect(g, x + w - 4, y + 130 + i * 24, 8, 16, "pe-conn", 1);   /* Seitenanschlüsse */
+      svgRect(g, x + w - 6, y + 286, 10, 14, "pe-conn", 1);                                    /* Ladebuchse */
     } else if (t.id === "board") {
-      svgRect(g, x, y, w, h, "pe-pcb", 8);
+      svgRect(g, x, y, w, h, "pe-pcb pe-haupt", 8);
+      svgRect(g, 264, 112, 68, 68, "pe-socket", 4);                   /* Platz der CPU */
+      svgRect(g, 252, 111, 8, 24, "pe-conn", 1);                      /* M.2-Anschluss */
+      svgRect(g, 264, 258, 162, 30, "pe-slotram", 3);                 /* SO-DIMM-Steckplatz */
+      svgRect(g, 262, 258, 4, 30, "pe-conn", 1);
+      svgRect(g, 424, 258, 4, 30, "pe-conn", 1);
+      svgRect(g, 430, 262, 10, 24, "pe-conn", 1);                     /* Akku-Anschluss */
     } else if (t.id === "cpu") {
-      svgRect(g, x, y, w, h, "pe-cpu", 4);
-      g.appendChild(svgEl("text", { x: x + 14, y: y + h / 2 + 4, "class": "pe-label pe-mini" }, "CPU"));
+      svgRect(g, x, y, w, h, "pe-cpu pe-haupt", 4);
+      svgRect(g, x + 12, y + 12, w - 24, h - 24, "pe-die", 2);
+      svgText(g, x + w / 2, y + h / 2 + 4, "CPU", "pe-dunkel");
     } else if (t.id === "cool") {
-      svgRect(g, x + 150, y + 8, 90, h - 16, "pe-fin", 3);
-      svgRect(g, x + 90, y + 8, 70, 12, "pe-heat", 6);
+      svgRect(g, x + 2, y + 32, 38, 12, "pe-heat pe-haupt", 6);       /* Heatpipe beginnt am CPU-Rand, nicht darüber */
+      svgRect(g, x + 36, y, 76, h, "pe-fanhouse", 8);
+      zeichneLuefter(g, x + 74, y + h / 2, 32, 6);
+      svgRect(g, x + 112, y, 52, h, "pe-fin", 3);
+      for (i = 1; i < 6; i++) {
+        g.appendChild(svgEl("line", { x1: x + 112 + i * 8.6, y1: y + 4, x2: x + 112 + i * 8.6, y2: y + h - 4, "class": "pe-blade" }));
+      }
     } else if (t.id === "ram") {
-      svgRect(g, x, y, w, h, "pe-ram", 3);
-      svgRect(g, x + 8, y + 10, w - 16, 8, "pe-sodimm", 2);
+      svgRect(g, x, y, w, h, "pe-sodimm pe-haupt", 2);
+      for (i = 0; i < 4; i++) svgRect(g, x + 14 + i * 34, y + 4, 24, h - 8, "pe-chip", 2);
     } else if (t.id === "gpu") {
-      svgRect(g, x, y, w, h, "pe-gpu", 4);
+      svgRect(g, x, y, w, h, "pe-gpu pe-haupt", 4);
+      svgRect(g, x + 14, y + 10, w - 28, h - 20, "pe-die", 2);
+      svgText(g, x + w / 2, y + h / 2 + 4, "GPU", "pe-dunkel");
     } else if (t.id === "ssd") {
-      svgRect(g, x, y, w, h, "pe-ssd", 2);
+      svgRect(g, x, y, w, h, "pe-ssd pe-haupt", 2);
+      svgRect(g, x + 8, y + 4, 28, h - 8, "pe-chip", 2);
+      svgRect(g, x + 42, y + 4, 22, h - 8, "pe-chip", 2);
+      svgRect(g, x + w - 8, y + 3, 8, h - 6, "pe-gold", 1);
     } else if (t.id === "akku") {
-      svgRect(g, x, y, w, h, "pe-akku", 12);
-      svgRect(g, x + 16, y + 16, w - 32, h - 32, "pe-cell", 8);
+      svgRect(g, x, y, w, h, "pe-akku pe-haupt", 12);
+      for (i = 0; i < 3; i++) svgRect(g, x + 14 + i * 104, y + 12, 96, h - 24, "pe-cell", 6);
     } else if (t.id === "netzteil") {
-      svgRect(g, x, y, w, h, "pe-brick", 8);
-      g.appendChild(svgEl("text", { x: x + 12, y: y + h / 2 + 4, "class": "pe-label pe-mini" }, "extern"));
+      svgRect(g, x, y, w, h, "pe-brick pe-haupt", 8);
+      svgText(g, x + w / 2, y + h / 2 + 4, "extern", "pe-hell");
+      svgKreis(g, x + w - 14, y + 14, 4, "pe-led");
     }
-    callout(g, t);
   }
   function zeichneDeko(key) {
     var deko = svgEl("g", { "class": "pe-deko", "aria-hidden": "true" });
     deko.appendChild(svgEl("rect", { x: 0, y: 0, width: 780, height: 480, "class": "pe-platte" }));
-    if (key === "desktop") {
-      deko.appendChild(svgEl("path", { d: "M 470 390 C 430 340, 360 330, 340 300", "class": "pe-kabel pe-kabel-a" }));
-      deko.appendChild(svgEl("path", { d: "M 520 390 C 560 330, 520 280, 500 250", "class": "pe-kabel pe-kabel-b" }));
-    } else {
-      deko.appendChild(svgEl("rect", { x: 70, y: 8, width: 420, height: 22, rx: 6, "class": "pe-lid" }));
-      deko.appendChild(svgEl("path", { d: "M 560 340 C 520 360, 500 300, 500 250", "class": "pe-kabel pe-kabel-a" }));
+    if (key === "notebook") {
+      deko.appendChild(svgEl("rect", { x: 156, y: 14, width: 388, height: 34, rx: 8, "class": "pe-lid" }));
+      deko.appendChild(svgEl("text", { x: 350, y: 36, "text-anchor": "middle", "class": "pe-hinweistext-hell" }, "Display-Deckel (aufgeklappt, von hinten)"));
     }
-    deko.appendChild(svgEl("text", { x: 136, y: 470, "class": "pe-hinweistext" }, "Beispiel, nicht maßstäblich"));
+    deko.appendChild(svgEl("text", { x: 8, y: 474, "class": "pe-hinweistext" }, "Beispiel, nicht maßstäblich"));
     return deko;
+  }
+  /* Kabel: nur Dekoration über den Bauteilen, nicht anklickbar und nicht fokussierbar. Verlegt, ohne Beschriftung oder Bauteile zu verdecken. */
+  function zeichneKabel(key) {
+    var k = svgEl("g", { "class": "pe-kabelschicht", "aria-hidden": "true" });
+    function pfad(d, cls) { k.appendChild(svgEl("path", { d: d, "class": "pe-kabel " + cls })); }
+    if (key === "desktop") {
+      pfad("M 592 376 C 606 350 604 300 604 260 C 604 200 574 190 574 142", "pe-kabel-a pe-kabel-dick");  /* Netzteil zum Mainboard */
+      pfad("M 556 376 C 556 350 536 340 536 318", "pe-kabel-a");                                          /* Netzteil zur Grafikkarte */
+      pfad("M 392 416 L 364 416", "pe-kabel-a");                                                          /* Netzteil zur Festplatte */
+      pfad("M 320 376 C 320 350 280 352 280 326", "pe-kabel-b pe-kabel-daten");                           /* Festplatte zum Mainboard */
+    } else {
+      pfad("M 588 360 C 574 360 572 352 558 352", "pe-kabel-a pe-kabel-dick");                            /* externes Netzteil zur Ladebuchse */
+      pfad("M 470 300 L 470 274 L 440 274", "pe-kabel-a");                                                /* Akku zum Mainboard */
+    }
+    return k;
   }
 
 
@@ -566,6 +671,9 @@ function markiere(id) {
         g.classList.toggle("pe-aktiv", an);
         g.setAttribute("aria-pressed", an ? "true" : "false");
       });
+      Array.prototype.forEach.call(svg.querySelectorAll(".pe-etikett, .pe-rahmen, .pe-rahmen-saum"), function (n) {
+        n.classList.toggle("pe-aktiv", n.getAttribute("data-id") === id);
+      });
     }
 
     function zeichne(ansicht, gruppeTeile) {
@@ -590,6 +698,9 @@ function markiere(id) {
         });
         svg.appendChild(g);
       });
+      svg.appendChild(zeichneKabel(aktuelleAnsicht));
+      zeichneRahmen(svg, ansicht.teile);
+      zeichneEtiketten(svg, ansicht.teile, aktuelleAnsicht, gruppeTeile.waehle);
     }
 
     function zeigeAnsicht(key) {
