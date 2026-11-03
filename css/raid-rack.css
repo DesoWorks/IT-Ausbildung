@@ -1,0 +1,20 @@
+/* Serverfront: Stahlgehäuse, Einschubgriffe und textlich beschriftete LEDs. */
+#raid-form [hidden] { display:none !important; }
+.raid-rack { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; padding:22px 26px; border:8px solid #505862; border-left:18px solid #383f47; border-right:18px solid #383f47; border-radius:8px; background:#171c22; box-shadow:inset 0 0 0 2px #06090c; margin:1rem 0; }
+.raid-bay { position:relative; display:flex; flex-direction:column; gap:5px; align-items:flex-start; min-width:0; min-height:132px; padding:10px; border:2px solid #7a8591; border-left:9px solid #687380; border-radius:4px; background:linear-gradient(#39434e,#232b34); color:#fff; text-align:left; font:inherit; cursor:pointer; }
+.raid-bay svg { width:100%; height:24px; color:#12171d; border-bottom:2px solid #7f8b98; }
+.raid-bay span { font-size:.86rem; overflow-wrap:anywhere; }
+.raid-bay-state { padding-left:18px; position:relative; }
+.raid-bay-state::before { content:''; position:absolute; width:10px; height:10px; left:0; top:.35em; border:1px solid #fff; border-radius:50%; background:#54db85; }
+.raid-bay[data-state=leer] { background:#10151b; border-style:dashed; color:#ccd1d7; }
+.raid-bay[data-state=leer] .raid-bay-state::before { background:#171c22; border-color:#89939d; }
+.raid-bay[data-state=failed] { border-color:#ff8989; }
+.raid-bay[data-state=failed] .raid-bay-state::before { background:#ff6666; }
+.raid-bay[data-state=rebuild] { border-color:#ffcf78; }
+.raid-bay[data-state=rebuild] .raid-bay-state::before { background:#ffb539; }
+body[data-page=raid-labor] .raid-bay:focus-visible { outline:4px solid #79d8ff; outline-offset:3px; z-index:1; }
+.raid-rack-row { min-width:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.7rem; border:1px solid var(--farbe-rahmen); margin:.7rem 0; padding:.8rem; }
+.raid-rack-row legend { max-width:100%; }
+#raid-rack-meldung { min-height:1.5em; }
+@media(max-width:600px) { .raid-rack {grid-template-columns:repeat(2,minmax(0,1fr));padding:12px 8px;gap:8px;border-width:7px;} .raid-bay {min-height:150px;padding:7px;border-left-width:5px;} .raid-rack-row {grid-template-columns:minmax(0,1fr);} }
+@media(forced-colors:active) { .raid-bay {border-color:ButtonText;background:ButtonFace;color:ButtonText;} .raid-bay-state::before {forced-color-adjust:none;} }

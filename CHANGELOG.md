@@ -1,5 +1,12 @@
 # Changelog
 
+## Integrations-Teststand 03.11.2026 – Unified Lab
+- BWL, PC-Explorer, Windows-Labor mit 32 Profilen, RAID und vorhandene Unterrichtsmodule in einem Feature-Stand zusammengeführt; bestehende Freigabesperren bleiben erhalten.
+- RAID nutzt die zentrale Navigation und gespeicherte Anzeigeoptionen statt einer isolierten Seite.
+- Interaktive 16-Schacht-Serverfront, freie Laufwerke, Kapazitäts- und Gruppenzuweisung sowie getrennte Ausfall-/Rebuildzustände ergänzt. Vollständige HTML-Bedienalternative bleibt verfügbar.
+- Bestehenden RAID-Kern wiederverwendet. Gruppenabhängige Ausfälle, gemischte Größen und symbolische Blockverteilung bleiben erklärt.
+- Windows-Startanleitung und reproduzierbare Regressionen ergänzt. Nexus-Referenzvergleich, echter Windows-Test und Assistenztechnikabnahme bleiben offen. Keine Produktionsfreigabe.
+
 
 
 ## Unveröffentlicht (Branch feature/pc-explorer-grafik-2026-11-02)

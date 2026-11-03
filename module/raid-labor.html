@@ -4,12 +4,15 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RAID-Lernlabor · IT-Ausbildung</title>
 <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
 <link rel="stylesheet" href="../css/styles.css"><link rel="stylesheet" href="../css/raid-labor.css">
-<script defer src="../js/raid-kern.js"></script><script defer src="../js/raid-labor.js"></script>
+<link rel="stylesheet" href="../css/raid-rack.css">
+
 </head>
 <body data-page="raid-labor" data-base="../">
 <a class="skip-link" href="#hauptinhalt">Direkt zum Inhalt springen</a>
-<header class="kopf"><div class="kopf-inhalt"><h1>RAID-Lernlabor</h1><p>Kapazität verstehen, Daten verteilen, Ausfälle untersuchen</p></div></header>
+<header class="kopf"><a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a><div class="kopf-inhalt"><h1>RAID-Lernlabor</h1><p>Kapazität verstehen, Daten verteilen, Ausfälle untersuchen</p></div></header>
 <main id="hauptinhalt" tabindex="-1">
 <p><a class="zurueck-link" href="../index.html">Zur Themenübersicht</a></p>
 <section class="abschnitt"><h2>Dein Speicherexperiment</h2>
@@ -34,7 +37,7 @@
 <dt>Spiegelung (RAID 1 / 10)</dt><dd>Mehrere Laufwerke halten denselben Inhalt. RAID 1 bedeutet hier ausdrücklich einen N-Wege-Spiegel über alle Platten. RAID 10 streift Daten über Zweier-Spiegelgruppen. Zwei ausgefallene Platten können über verschiedene Gruppen verteilt überlebbar sein; innerhalb derselben Zweiergruppe gehen die Daten dieser Gruppe verloren.</dd>
 <dt>Parität (RAID 5 / 6)</dt><dd>Ein P-Prüfblock wird aus den Daten eines Stripes errechnet, vereinfacht mit XOR. Beispiel mit einem Bit: 1 XOR 0 = 1; fehlt das erste Datenbit, ergibt 1 XOR 0 wieder 1. Das ist keine vollständige Kopie. RAID 6 ergänzt einen unabhängigen Q-Prüfwert mit anderer Algebra. Zwei identische P-Kopien würden nicht genügen, um zwei unbekannte Datenblöcke zu rekonstruieren. Das Labor veranschaulicht die Verteilung, berechnet aber keine echten P/Q-Nutzdaten.</dd>
 <dt>RAID 50 / 60</dt><dd>Ein Stripe über mehrere RAID-5- bzw. RAID-6-Gruppen. Jede Gruppe muss rekonstruierbar bleiben. Die Verteilung der Ausfälle ist entscheidend, nicht allein die Gesamtzahl.</dd></dl>
-<h3>Rebuild ist kein Zauberknopf</h3><p>Nach einem Ausfall wird ein geeignetes Ersatzlaufwerk eingebaut und aus den verbleibenden Daten rekonstruiert. Währenddessen sind Last und Risiko erhöht. Weitere Ausfälle oder nicht lesbare Sektoren können den Wiederaufbau verhindern. Die Schalter hier nehmen nur ein simuliertes Ausfallszenario zurück: Sie stellen keine Daten wieder her und simulieren keinen zeitlichen Rebuild.</p>
+<h3>Rebuild ist kein Zauberknopf</h3><p>Nach einem Ausfall wird ein geeignetes Ersatzlaufwerk eingebaut und aus den verbleibenden Daten rekonstruiert. Währenddessen sind Last und Risiko erhöht. Weitere Ausfälle oder nicht lesbare Sektoren können den Wiederaufbau verhindern. Im Labor bleibt ein Rebuild-Laufwerk bis zum ausdrücklich gewählten Abschluss nicht verfügbar. Es gibt keine Zeit- oder Erfolgsgarantie. Der separate Ausfallreset startet nur ein neues Szenario und stellt keine Daten wieder her. Die Front ist schematisch an typische Rackserver angelehnt, kein exaktes Herstellermodell.</p>
 <details><summary>Modellgrenzen und unterschiedliche Plattengrößen</summary><p id="raid-modell"></p><p>Gemischte Größen sind technisch nicht grundsätzlich ausgeschlossen. Im Lehrmodell bleibt jeder Anteil oberhalb der kleinsten Platte ungenutzt. Reale Controller können Konfigurationen begrenzen oder anders ausrichten; flexible Pools und andere Speichertechnologien benötigen eigene Regeln. Logische Nutzkapazität ist nicht gleich aktuell verfügbarer, fehlerfreier Speicher.</p></details>
 </section>
 <section class="abschnitt"><h2>Ausfälle gezielt untersuchen</h2><p>Wähle RAID 10 mit vier Platten. Lasse zuerst eine Platte je Gruppe ausfallen, dann beide Platten einer Gruppe. Vergleiche die Zustände. Wiederhole mit RAID 50: zwei Ausfälle verteilt oder in derselben Gruppe. Bei RAID 60 vergleiche zwei und drei Ausfälle innerhalb einer Gruppe.</p>
@@ -50,4 +53,7 @@
 <li><a href="https://www.synology.com/en-global/support/RAID_calculator">Synology: RAID-Rechner und Implementierungsgrenzen</a></li>
 </ul><p>Lehrmodell, keine Controllerkonfiguration oder Produktionsfreigabe. Ergebnisse sind keine Garantie gegen Datenverlust.</p></section>
 </main>
+<footer class="fuss"><p>Werkzeug · RAID-Lernlabor · Version <span data-version></span> · Lokale Lernsimulation</p></footer>
+<script src="../js/module-daten.js"></script><script src="../js/fortschritt.js"></script><script src="../js/navigation.js"></script><script src="../js/glossar-daten.js"></script><script src="../js/anzeige-glossar.js"></script><script src="../js/version.js"></script>
+<script src="../js/raid-kern.js"></script><script src="../js/raid-rack-modell.js"></script><script src="../js/raid-rack.js"></script>
 </body></html>
