@@ -31,3 +31,6 @@ KeineProduktions-/Fachfreigabe. dev/main/Pagesbleibenunangetastet.
 
 ## QA-Korrekturen
 GLaDOS reproduzierte zwei Darstellungsfehler. Das alte Gruppenzahlfeld war trotz hidden-Attribut sichtbar, weil die Formular-CSS-Regel display:block setzte. Der Rackstil stellt nun [hidden] mit display:none sicher. Bei einfachen RAID-Leveln erlaubt die HTML-Alternative nur frei oder Arraymitglied, keine Untergruppen 2–8; die Blockdarstellung heißt Gemeinsames Array. Der Levelwechsel normalisiert zugewiesene Mitglieder auf Gruppe 1. Die Browserregression prüft beide Regeln ausdrücklich, alle 42 Kombinationen nach Reparatur bestanden. Unabhängige gezielte Nachprüfung separat beauftragt.
+
+## Paketprüfung
+Produktcommit `45625b4a8ded3402c5e1779c80d1c6240fa3825b` als ZIP mit vollständigem Projekt exportiert, ZIP-Integrität und erforderliche Dateien geprüft (607 Archiveinträge). Danach frisch in `.output/windows-package-check/` entpackt: 24 Plattform-/Theme-Kombinationen und 42 Rackkombinationen direkt über file:// aus diesem entpackten Paket bestanden. Kein echter Windows-Test; dies belegt die statische Paketstruktur und den lokalen Chrome-Start unter Linux.
