@@ -77,7 +77,8 @@ assert(subnetting.status === "verfuegbar" && subnetting.datei === "module/subnet
 assert(fs.existsSync(path.join(wurzel, subnetting.datei)), "Subnetting-Moduldatei existiert");
 
 const alle = daten.flatMap(j => j.module);
-assert.equal(global.MODULE_TOOLS.length, 5, "fünf Werkzeuge im zentralen Werkzeugkatalog, einschließlich BWL-Werkstatt und Windows-Werkzeugkiste");
+assert.equal(global.MODULE_TOOLS.length, 6, "sechs Werkzeuge einschließlich RAID-Lernlabor im zentralen Werkzeugkatalog");
+assert.equal(global.MODULE_TOOLS.filter(t => t.id === 'raid-labor' && t.datei === 'module/raid-labor.html').length, 1, 'RAID-Labor genau einmal erreichbar');
 const windowsTools = global.MODULE_TOOLS.filter(u => u.id === "windows-werkzeugkiste");
 assert.strictEqual(windowsTools.length, 1, "Windows-Werkzeugkiste genau einmal im Werkzeugkatalog");
 assert.deepStrictEqual(windowsTools[0], {
@@ -136,7 +137,7 @@ assert.strictEqual(toolsSection.children[0].id, "tools-titel");
 assert.strictEqual(toolsSection.children[0].textContent, "Tools & Nachschlagen");
 const toolCards = toolsSection.children[1];
 assert.strictEqual(toolCards.tagName, "ul");
-assert.strictEqual(toolCards.children.length, 5, "alle fünf Werkzeuge gerendert");
+assert.strictEqual(toolCards.children.length, 6, "alle sechs Werkzeuge gerendert");
 toolCards.children.forEach((card, index) => {
   const tool = global.MODULE_TOOLS[index];
   assert.strictEqual(card.className, "modul modul-verfuegbar", "vorhandenes Kartenmuster");

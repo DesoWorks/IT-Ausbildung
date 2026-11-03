@@ -1,0 +1,30 @@
+body[data-page="raid-labor"] main { max-width: 1160px; }
+body[data-page="raid-labor"] .abschnitt { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+.raid-steuerung { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,260px),1fr)); gap: 1rem; }
+#raid-form label { display: block; font-weight: 600; }
+#raid-form input, #raid-form select { display: block; font: inherit; width: 100%; max-width: 100%; min-height: 44px; padding: .45rem; background: var(--farbe-kontroll-flaeche); color: var(--farbe-kontroll-text); border: 1px solid var(--farbe-rahmen); border-radius: 5px; }
+#raid-laufwerke { display: grid; gap: .8rem; margin-top: 1rem; }
+.raid-disk-form { display: grid; grid-template-columns: minmax(0,1fr) auto auto; gap: .7rem; align-items: end; border-bottom: 1px solid var(--farbe-rahmen); padding: .6rem 0; }
+#raid-form .raid-ausfall { display: flex; align-items: center; gap: .4rem; min-height: 44px; }
+#raid-form input[type="checkbox"] { width: 24px; height: 24px; min-height: 24px; }
+#raid-form button, #raid-grafik button { min-height: 44px; font: inherit; }
+body[data-page="raid-labor"] :is(input,select,button,summary,a):focus-visible { outline: 3px solid var(--farbe-akzent); outline-offset: 3px; }
+.raid-gruppe { border-left: 4px solid var(--farbe-akzent); padding: .6rem; margin: 1rem 0; }
+.raid-disks { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,145px),1fr)); gap: .65rem; }
+.raid-disk { border: 2px solid var(--farbe-rahmen); border-radius: 8px; padding: .65rem; min-width: 0; }
+.raid-disk[data-failed="true"] { border: 3px dashed var(--farbe-fehler); }
+.raid-block { border: 1px solid var(--farbe-akzent); border-left-width: 5px; padding: .35rem; margin: .35rem 0; background: var(--farbe-hinweis-flaeche); }
+.raid-block[data-kind="P"], .raid-block[data-kind="Q"] { border-color: var(--farbe-warn); background: var(--farbe-flaeche); }
+.raid-block[data-kind="M"] { border-style: double; }
+.raid-block[data-active="true"] { outline: 3px solid var(--farbe-akzent); outline-offset: 1px; font-weight: 700; }
+#raid-ergebnis dl { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: .4rem 1rem; }
+#raid-ergebnis dd { margin: 0; font-weight: 700; }
+#raid-quiz label { display: block; padding: .6rem 0; }
+#raid-quiz fieldset { min-width: 0; margin: 0 0 1rem; }
+#raid-quiz legend { max-width: 100%; }
+@media(max-width:540px) {
+  body[data-page="raid-labor"] .abschnitt { padding: .8rem; }
+  .raid-disk-form { grid-template-columns: minmax(0,1fr); }
+  body[data-page="raid-labor"] .knopf { width: 100%; padding: .6rem; }
+  #raid-ergebnis dl { grid-template-columns: 1fr; }
+}
