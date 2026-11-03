@@ -1,5 +1,11 @@
 # Changelog
 
+## Unveröffentlicht (Branch feature/pc-explorer-grafik-2026-11-02)
+- PC-Explorer: Der Erklärungstext unter der Zeichnung gilt jetzt je Ansicht. Der Hinweis auf „Kühlung durchsichtig“ erscheint nur bei Desktop und Notebook. Mainboard, Rückseite und ältere Anschlüsse haben eigene Texte.
+- PC-Explorer, Rückseite: USB-A und USB-C sind als Steckerformen gezeichnet. USB 2.0, USB 3.2 und USB4 stehen als gestrichelte Plaketten in einem eigenen, beschrifteten Bereich „USB-Standardnamen (keine Steckerformen)“. USB4 hat keine eigene Buchse, nutzt die Steckerform USB-C, aber nicht jedes USB-C kann USB4. Die Farbe einer Buchse beweist keine Geschwindigkeit. Neue Quelle: USB-IF-Seite zu USB4. IDs, Auswahl, Legende und Tastaturbedienung sind unverändert.
+- Prüfung: gezielte Node-Regression in tests/pc-explorer.test.js bestanden. Keine Browser-Sichtprüfung durch Jarvis, die Browser-QA liegt bei GLaDOS.
+- PC-Explorer: Bei Mainboard und Rückseite entfällt die rechte Bauteilliste. Die Zeichnung nutzt die volle Breite, die Auswahl steht als beschriftete Legende darunter (Mainboard mit denselben Nummern wie die Marken), die Erklärung darunter über die volle Breite. Desktop, Notebook und ältere Anschlüsse sind unverändert.
+
 ## 0.16.2-alpha.1
 - Lernfeld 5 hat die kleine Lektion „Den Arbeitsprozess bewerten“. Geplant, geprüft und offen werden an einem fiktiven Zettel getrennt.
 - Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.

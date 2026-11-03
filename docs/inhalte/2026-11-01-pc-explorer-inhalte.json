@@ -1,0 +1,67 @@
+{
+  "desktopErgaenzung": {
+    "gehaeuse": {
+      "name": "PC-Gehäuse",
+      "aufgabe": "Das Gehäuse umschließt die Bauteile. Es bietet Befestigungspunkte und Öffnungen für Kabel und Anschlüsse.",
+      "einbauort": "Die Bauteile werden im Inneren am Gehäuse befestigt. Anschlüsse an der Vorder- oder Rückseite sind von außen erreichbar.",
+      "zusammenarbeit": "Das Gehäuse muss Platz und Befestigung für Mainboard, Netzteil und Laufwerke bieten. Öffnungen und Lüfter unterstützen den Luftweg. Prüfe vor dem Einbau die Angaben der jeweiligen Geräte.",
+      "bauformenUnterschiede": "Gehäuse unterscheiden sich durch Größe, Innenaufteilung und unterstützte Mainboard-Bauformen. Die genaue Passung hängt vom konkreten Gehäuse und den Bauteilen ab.",
+      "anschluesse": [
+        {"funktion":"Stromversorgung des Rechners"},
+        {"funktion":"Bildausgabe zu einem Bildschirm"},
+        {"funktion":"Anschluss von USB-Geräten"},
+        {"funktion":"Verbindung mit einem Netzwerk"}
+      ],
+      "praxis": "Ausbildungsbeispiel: Bei einer Systemintegration prüfst du vor dem Einbau, ob Mainboard und Laufwerke befestigt werden können und ob die benötigten Anschlüsse zugänglich sind. Das Beispiel nennt keine konkrete Produktspezifikation."
+    },
+    "cpu": {"bauformen":"PGA: Stifte sitzen an der CPU. LGA: Kontaktstifte sitzen im Sockel. BGA: Das Bauteil wird fest auf die Platine gelötet. Diese Begriffe beschreiben die Kontaktanordnung, nicht allein die Kompatibilität.","praxis":"Ausbildungsbeispiel: Vor einem CPU-Tausch vergleichst du CPU und Sockel anhand der Herstellerangaben; gleiche Bauform allein beweist keine Kompatibilität."},
+    "cool": {"bauformen":"Es gibt unterschiedliche Kühler- und Lüfterbauarten. Die passende Befestigung hängt von CPU-Sockel und Kühler ab; konkrete Kompatibilität muss geprüft werden.","praxis":"Ausbildungsbeispiel: Bei einer Wartung prüfst du, ob der Kühler sicher befestigt ist und ob Lüfter nicht blockiert sind."},
+    "ram": {"bauformen":"DIMM ist ein Speichermodulformat, das laut IBM häufig in Desktop-PCs und Servern eingesetzt wird. SO-DIMM ist die kompaktere Modulbauart, die IBM für Laptops beschreibt. Die passenden Steckplätze müssen zum jeweiligen Modul passen.","praxis":"Ausbildungsbeispiel: Vor einer Speichererweiterung vergleichst du Modulbauart und Systemangaben; ein Modul passt nicht allein deshalb, weil es RAM ist.","unsicher":false},
+    "gpu": {"bauformen":"Grafik kann als eigenes Erweiterungsbauteil oder integriert in einem anderen Bauteil bereitgestellt werden. Konkrete Steckplatz- und Stromanforderungen hängen vom Gerät ab.","praxis":"Ausbildungsbeispiel: Du klärst, ob ein Arbeitsplatz eine eigene Grafikkarte benötigt und prüfst vor dem Einbau die Angaben von Mainboard, Gehäuse und Netzteil."},
+    "ssd": {"bauformen":"SATA ist eine Speicher-Schnittstelle, die laut SATA-IO unter anderem für SSDs und HDDs eingesetzt wird. NVMe ist ein offener Standard für Speicherzugriff; die NVMe-Spezifikation beschreibt ein Register-Interface und einen Befehlssatz für Speicher über PCI Express. M.2 bezeichnet nicht automatisch SATA oder NVMe.","praxis":"Ausbildungsbeispiel: Vor dem Austausch einer SSD prüfst du Anschluss, unterstützte Schnittstelle und Bauform in den Geräteangaben.","unsicher":false},
+    "hdd": {"bauformen":"Festplatten gibt es in verschiedenen Gehäuse- und Anschlussvarianten. Konkrete Maße und Kompatibilität sind hier nicht festgelegt.","praxis":"Ausbildungsbeispiel: Bei einer Speichererweiterung prüfst du Laufwerksschacht, Anschluss und Gerätevorgaben, bevor du ein Laufwerk auswählst."},
+    "psu": {"bauformen":"Netzteile unterscheiden sich unter anderem durch Bauform, Anschlüsse und Leistungsdaten. Eine passende Auswahl muss anhand der konkreten Komponenten geprüft werden.","praxis":"Ausbildungsbeispiel: Bei einer PC-Planung prüfst du, ob die erforderlichen Stromanschlüsse vorhanden sind und ob das Netzteil laut Herstellerangaben zur Konfiguration passt."},
+    "board": {"bauformen":"ATX, microATX und Mini-ITX sind Mainboard-Formfaktoren. Formfaktor und Gehäuse müssen zueinander passen. Die verfügbaren Ausführungen unterscheiden sich je nach Board; die hier vorliegenden Formfaktorquellen sind Wikipedia und keine Normtexte.","praxis":"Ausbildungsbeispiel: Bei der Zusammenstellung eines Rechners prüfst du in den Herstellerangaben, ob Mainboard-Bauform und Gehäuse zusammenpassen."}
+  },
+  "notebook": {
+    "umschaltung": {"desktop":"Desktop-Ansicht: Wähle ein Bauteil des Desktop-PCs.","notebook":"Notebook-Ansicht: Wähle ein Bauteil des tragbaren Computers. Aufbau und Austauschbarkeit unterscheiden sich je nach Modell."},
+    "bauteile": [
+      {"id":"notebook-board","name":"Systemplatine","aufgabe":"Verbindet die Bauteile des Notebooks.","integriertOderAustauschbar":"Auf der Systemplatine können Bauteile fest verlötet oder über Steckplätze angeschlossen sein. Das ist modellabhängig.","zusammenarbeit":"Sie verbindet Prozessor, Speicher, Laufwerk, Anschlüsse und Stromversorgung.","praxis":"Ausbildungsbeispiel: Vor einer Reparatur suchst du die Wartungsunterlagen des konkreten Modells."},
+      {"id":"notebook-cpu","name":"Prozessor","aufgabe":"Führt Befehle aus und steuert Rechenaufgaben.","integriertOderAustauschbar":"Kann je nach Gerät fest auf der Platine sitzen oder anders befestigt sein. Für das konkrete Gerät prüfen.","zusammenarbeit":"Arbeitet mit Arbeitsspeicher und Kühlung zusammen.","praxis":"Ausbildungsbeispiel: Bei einer Fehlerdiagnose prüfst du zuerst die Modellunterlagen, bevor du einen Austausch annimmst."},
+      {"id":"notebook-cooling","name":"Kühlung","aufgabe":"Führt Wärme aus dem engen Geräteinneren ab.","integriertOderAustauschbar":"Kühlteile sind Teil des modellabhängigen Innenaufbaus.","zusammenarbeit":"Lüfter und Kühlflächen müssen zum verfügbaren Platz und zum Luftweg passen.","praxis":"Ausbildungsbeispiel: Bei einer Wartung kontrollierst du nach Herstelleranleitung, ob Lüftungsöffnungen frei sind."},
+      {"id":"notebook-ram","name":"Arbeitsspeicher","aufgabe":"Hält aktuell benötigte Daten und Programme bereit.","integriertOderAustauschbar":"RAM kann verlötet oder als austauschbares Modul ausgeführt sein. Bei austauschbaren Modulen kommen unter anderem SO-DIMM oder CAMM2 in Frage. Das konkrete Gerät entscheidet; die Namen allein belegen keine Kompatibilität.","zusammenarbeit":"Der Prozessor greift auf den Arbeitsspeicher zu.","praxis":"Ausbildungsbeispiel: Vor einer Speichererweiterung prüfst du die Wartungs- und Spezifikationsangaben des genauen Notebookmodells."},
+      {"id":"notebook-storage","name":"SSD","aufgabe":"Speichert Betriebssystem und Dateien dauerhaft.","integriertOderAustauschbar":"Ob eine SSD austauschbar ist, hängt vom Modell und seiner Bauweise ab.","zusammenarbeit":"Beim Start werden benötigte Daten vom Speicher in den Arbeitsspeicher geladen.","praxis":"Ausbildungsbeispiel: Du prüfst vor einem Tausch die Modellunterlagen und sicherst wichtige Daten nach Auftrag."},
+      {"id":"notebook-battery","name":"Akku","aufgabe":"Versorgt das Notebook unterwegs mit Energie.","integriertOderAustauschbar":"Austauschbarkeit und Wartungsweg sind modellabhängig.","zusammenarbeit":"Der Akku arbeitet mit Ladeelektronik und Stromversorgung zusammen.","praxis":"Ausbildungsbeispiel: Vor Wartung oder Ersatz beachtest du die Herstelleranleitung und Sicherheitsvorgaben."}
+    ],
+    "platzUndKuehlung":"Notebooks bündeln viele Funktionen in einem kleinen Gehäuse. Der knappe Innenraum begrenzt Anordnung, Erweiterung und Luftweg; konkrete Aussagen sind vom Modell abhängig.",
+    "ramVergleich":{"verloetet":"Verlöteter RAM ist fest mit der Platine verbunden und nicht als gewöhnliches Steckmodul entnehmbar.","austauschbar":"Austauschbarer RAM sitzt in einem dafür vorgesehenen Steckplatz oder Modulsystem. Ob ein bestimmtes Notebook dies unterstützt, muss in dessen Unterlagen geprüft werden.","soDimm":"SO-DIMM ist laut IBM ein kompaktes Speichermodulformat, das häufig in Laptops verwendet wird.","camm2":"JEDEC beschreibt CAMM2 als Standard für DDR5- und LPDDR5/5X-Speichermodule. Beide Varianten nutzen laut Pressemitteilung ein gemeinsames Steckerdesign, unterscheiden sich aber in Pinbelegung und Befestigung; die Befestigungsvarianten verhindern die Montage in der jeweils unpassenden Ausführung. Die Varianten sind nicht austauschbar."}
+  },
+  "glossarEntwuerfe": [
+    {"begriff":"DIMM","erklaerung":"Speichermodulformat. IBM beschreibt DIMM als verbreitete modulare Speicherbauart für Desktop-PCs und Server."},
+    {"begriff":"SO-DIMM","erklaerung":"Kompakte Bauart eines Speichermoduls, die laut IBM häufig in Laptops eingesetzt wird."},
+    {"begriff":"NVMe","erklaerung":"Offene Spezifikationen für den Zugriff auf nichtflüchtigen Speicher; die NVMe-Spezifikation umfasst unter anderem Schnittstelle und Befehle für Speicher über PCI Express."},
+    {"begriff":"CAMM2","erklaerung":"Von JEDEC veröffentlichter Standard für Speichermodule in den Ausführungen DDR5 und LPDDR5/5X. Die beiden Ausführungen sind wegen unterschiedlicher Pinbelegung und Befestigung nicht austauschbar."}
+  ],
+  "quellen": [
+    {"url":"https://www.ibm.com/fr-fr/think/topics/dimm","titel":"IBM Think: Qu’est-ce qu’un module de mémoire double en ligne (DIMM) ?","abrufdatum":"2026-11-01","zitat":"Les ordinateurs personnels (PC) nécessitant généralement un DIMM ... et les ordinateurs portables un ... SO-DIMM.","verwendung":"DIMM und SO-DIMM; die Seite nennt außerdem 133,35 mm und 67,6 mm. Diese Maße werden hier nicht übernommen."},
+    {"url":"https://nvmexpress.org/about/","titel":"NVM Express: About","abrufdatum":"2026-11-01","zitat":"The NVM Express Specification – The register interface and command set for PCI Express technology attached storage.","verwendung":"NVMe und Speicherzugriff über PCI Express."},
+    {"url":"https://www.sata-io.org/","titel":"SATA-IO: Home","abrufdatum":"2026-11-01","zitat":"SATA has evolved into new applications spaces and now provides storage interface solutions for HDDs, ODDs, SSDs and Hybrid HDDs.","verwendung":"SATA als Speicher-Schnittstelle, unter anderem für SSD und HDD."},
+    {"url":"https://www.jedec.org/news/pressreleases/jedec-publishes-new-camm2-memory-module-standard","titel":"JEDEC: JEDEC Publishes New CAMM2 Memory Module Standard","abrufdatum":"2026-11-01","zitat":"While JESD318 CAMM2 defines a common connector design for both DDR5 and LPDDR5/X, it is crucial to note that the pinouts for each differ.","verwendung":"CAMM2-Ausführungen und unterschiedliche Pinbelegung/Befestigung; JESD318 wird in dieser Pressemitteilung beschrieben."},
+    {"url":"https://en.wikipedia.org/wiki/CPU_socket","titel":"Wikipedia: CPU socket","abrufdatum":"2026-11-01","zitat":"PGA ... pins ... on the CPU; LGA ... pins ... on the socket.","verwendung":"Vorläufige Erklärung von PGA und LGA; keine Normquelle."},
+    {"url":"https://en.wikipedia.org/wiki/Ball_grid_array","titel":"Wikipedia: Ball grid array","abrufdatum":"2026-11-01","zitat":"A ball grid array is a type of surface-mount packaging ... using an array of metal balls.","verwendung":"Vorläufige Erklärung von BGA; keine Normquelle."},
+    {"url":"https://en.wikipedia.org/wiki/Motherboard_form_factor","titel":"Wikipedia: Motherboard form factor","abrufdatum":"2026-11-01","zitat":"A motherboard form factor specifies its shape and size.","verwendung":"Vorläufige Beschreibung von Formfaktoren; keine Normquelle."},
+    {"url":"https://en.wikipedia.org/wiki/MicroATX","titel":"Wikipedia: microATX","abrufdatum":"2026-11-01","zitat":"microATX is a motherboard form factor ... backward compatible with ATX.","verwendung":"Vorläufige Einordnung microATX; keine Normquelle."},
+    {"url":"https://en.wikipedia.org/wiki/Mini-ITX","titel":"Wikipedia: Mini-ITX","abrufdatum":"2026-11-01","zitat":"Mini-ITX is a 17 × 17 cm motherboard form factor.","verwendung":"Vorläufige Einordnung Mini-ITX; keine Normquelle. Das Seitenzitat enthält ein Maß, im Lerntext ist kein Maß ergänzt."}
+  ],
+  "quellenStatus": {
+    "camm2":"JEDEC-Pressemitteilung vom 05.12.2023 wurde am 2026-11-01 gelesen. Sie nennt JESD318 und beschreibt die Varianten, Pinbelegung und Montageunterschiede. Der vollständige Standard JESD318 wurde in diesem Lauf nicht separat geöffnet; seine öffentliche Lesbarkeit und sein Volltext sind daher nicht unabhängig bestätigt.",
+    "dimms":"IBM-Seite gelesen; die dort genannten Maße wurden nicht in Lerntext übernommen.",
+    "sata":"SATA-IO-Seite gelesen; ausreichend für die allgemeine Aussage, dass SATA als Speicher-Schnittstelle für SSDs und HDDs angeboten wird.",
+    "server":"Offizielle Dell-Seiten waren für belastbare Einzelmerkmale nicht ausreichend lesbar. Serverplan nennt deshalb keine konkreten PowerEdge-R760-Eigenschaften als bestätigt."
+  },
+  "unsicherheiten": [
+    "PGA/LGA/BGA und ATX/microATX/Mini-ITX stützen sich hier vorläufig auf Wikipedia, nicht auf gelesene Normtexte. Keine Fachfreigabe.",
+    "Bei Bauformen, Praxisbeispielen und notebook-spezifischer Austauschbarkeit gelten keine universellen Kompatibilitätszusagen; konkrete Angaben müssen am jeweiligen Gerät geprüft werden.",
+    "Der vollständige JEDEC-Standard JESD318 wurde nicht separat gelesen; CAMM2-Aussagen im Lerntext beruhen ausschließlich auf der gelesenen JEDEC-Pressemitteilung."
+  ]
+}

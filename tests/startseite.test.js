@@ -77,7 +77,7 @@ assert(subnetting.status === "verfuegbar" && subnetting.datei === "module/subnet
 assert(fs.existsSync(path.join(wurzel, subnetting.datei)), "Subnetting-Moduldatei existiert");
 
 const alle = daten.flatMap(j => j.module);
-assert.equal(global.MODULE_TOOLS.length, 5, "fünf Werkzeuge: Basis, Windows-Werkzeugkiste und BWL-Werkstatt");
+assert.equal(global.MODULE_TOOLS.length, 6, "sechs Werkzeuge einschließlich BWL und PC-Explorer");
 const windowsTools = global.MODULE_TOOLS.filter(u => u.id === "windows-werkzeugkiste");
 assert.strictEqual(windowsTools.length, 1, "Windows-Werkzeugkiste genau einmal im Werkzeugkatalog");
 assert.deepStrictEqual(windowsTools[0], {
@@ -91,6 +91,16 @@ const bwl = global.MODULE_TOOLS.find(u => u.id === "bwl-werkstatt");
 assert(bwl && bwl.status === "verfuegbar" && bwl.datei === "module/bwl-werkstatt.html" && bwl.typ === "werkzeug", "BWL-Werkstatt: eigenes Werkzeug, nicht in einer Lektion");
 assert(fs.existsSync(path.join(wurzel, bwl.datei)), "BWL-Werkstatt-Datei existiert");
 assert(!alle.concat(alle.flatMap(m => m.unterthemen || []), einstieg).some(m => m.id === "bwl-werkstatt"), "BWL-Werkstatt nicht als Lektion oder Einstieg dupliziert");
+const pcTools = global.MODULE_TOOLS.filter(u => u.id === "pc-explorer");
+assert.strictEqual(pcTools.length, 1, "PC-Explorer genau einmal im Werkzeugkatalog");
+assert.deepStrictEqual(pcTools[0], {
+  id: "pc-explorer", typ: "werkzeug", titel: "PC-Explorer",
+  beschreibung: "Desktop und Notebook von innen: Bauteile wählen und Funktion, Einbauort und Zusammenspiel nachlesen. Entwurf, nicht fachlich freigegeben.",
+  page: "pc-explorer", status: "verfuegbar", datei: "module/pc-explorer.html"
+});
+assert(fs.existsSync(path.join(wurzel, pcTools[0].datei)), "PC-Explorer-Datei existiert");
+assert(!alle.concat(alle.flatMap(m => m.unterthemen || []), einstieg).some(m => m.id === "pc-explorer"), "PC-Explorer nicht als Lektion oder Einstieg dupliziert");
+
 assert(global.MODULE_TOOLS.every(t => t.typ === "werkzeug" && t.datei), "Tools typisiert und mit Zielseiten");
 assert(!lf3.unterthemen.some(u => global.MODULE_TOOLS.some(t => t.id === u.id)), "Werkzeuge erscheinen nicht in den Lernlektionen");
 const alleVerfuegbar = alle.concat(einstieg);
@@ -136,7 +146,7 @@ assert.strictEqual(toolsSection.children[0].id, "tools-titel");
 assert.strictEqual(toolsSection.children[0].textContent, "Tools & Nachschlagen");
 const toolCards = toolsSection.children[1];
 assert.strictEqual(toolCards.tagName, "ul");
-assert.strictEqual(toolCards.children.length, 5, "die fünf Werkzeuge dieser Basis sind gerendert");
+assert.strictEqual(toolCards.children.length, global.MODULE_TOOLS.length, "alle Werkzeuge des integrierten Katalogs sind gerendert");
 toolCards.children.forEach((card, index) => {
   const tool = global.MODULE_TOOLS[index];
   assert.strictEqual(card.className, "modul modul-verfuegbar", "vorhandenes Kartenmuster");

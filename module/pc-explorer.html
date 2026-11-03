@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PC-Explorer: Bauteile eines Desktop-PCs und eines Notebooks anklicken oder per Tastatur wählen und ihre Funktion, ihren Einbauort und ihr Zusammenspiel kennenlernen.">
+  <title>PC-Explorer: Desktop-PC und Notebook (Entwurf)</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/pc-explorer.css">
+</head>
+<body data-page="pc-explorer" data-base="../">
+  <a class="skip-link" href="#hauptinhalt">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+    <p class="kopf-marke">IT-Ausbildung · Werkzeuge · Entwurf</p>
+    <h1 id="pe-titel">PC-Explorer: Der Desktop-PC von innen</h1>
+    <p class="kopf-dauer">Bauteile entdecken · kein Zeitdruck</p>
+  </div></header>
+  <main id="hauptinhalt" tabindex="-1">
+    <section class="abschnitt" aria-labelledby="pe-start">
+      <h2 id="pe-start">Bauteil wählen</h2>
+      <p class="gross">Wähle ein Bauteil. Du erfährst, <strong>was es tut</strong>, <strong>wo es sitzt</strong> und <strong>mit wem es zusammenarbeitet</strong>.</p>
+      <div class="hinweis-box"><p class="hinweis-titel">So bedienst du den Explorer</p><p>Mit den Knöpfen „Desktop“ und „Notebook“ wechselst du die Ansicht. Wähle ein Bauteil in der Abbildung oder in der Liste. Mit der Tab-Taste springst du durch die Elemente, mit den Pfeiltasten wechselst du die Auswahl und mit Enter oder der Leertaste öffnest du die Erklärung. Die Abbildung ist ein Beispiel aus einzeln auswählbaren Bauteilen, nicht maßstäblich.</p></div>
+      <div id="pe-ansichten" class="pe-gruppe pe-gruppe-reihe pe-ansichten" role="group" aria-label="Ansicht wählen">
+        <button type="button" data-ansicht="desktop" aria-pressed="true">Desktop</button>
+        <button type="button" data-ansicht="notebook" aria-pressed="false">Notebook</button>
+        <button type="button" data-ansicht="rueckseite" aria-pressed="false">Rückseite</button>
+        <button type="button" data-ansicht="mainboard" aria-pressed="false">Mainboard</button>
+        <button type="button" data-ansicht="historisch" aria-pressed="false">Ältere Anschlüsse</button>
+      </div>
+      <p id="pe-einleitung" class="klein"></p>
+      <div class="pe-arbeitsflaeche">
+        <div class="pe-zeichnung">
+          <div class="pe-zeichnung-werkzeug">
+            <button type="button" id="pe-kuehler" aria-pressed="false">Kühlung durchsichtig</button>
+          </div>
+          <svg id="pe-svg" viewBox="0 0 780 480" role="group" aria-label="Beispielansicht mit auswählbaren Bauteilen"></svg>
+          <p id="pe-bildtext" class="klein">Die Abbildung zeigt ein Beispiel. Aufbau und Anordnung können je nach Hersteller und Modell abweichen.</p>
+        </div>
+        <div id="pe-teile" class="pe-gruppe" role="group" aria-label="Bauteile des Desktop-PCs"></div>
+        <div class="pe-erklaerung">
+          <div id="pe-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
+          <section id="pe-abschnitt-sockel" class="abschnitt" hidden aria-labelledby="pe-sockel">
+            <h2 id="pe-sockel">CPU-Bauformen: PGA, LGA und BGA</h2>
+            <p>Die Bauform legt fest, <strong>wo die Kontakte sitzen</strong>: an der CPU, am Mainboard oder als feste Lötverbindung.</p>
+            <div id="pe-sockel-wahl" class="pe-gruppe pe-gruppe-reihe" role="group" aria-label="CPU-Bauformen"></div>
+            <div id="pe-sockel-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
+          </section>
+          <section id="pe-abschnitt-form" class="abschnitt" hidden aria-labelledby="pe-formfaktor">
+            <h2 id="pe-formfaktor">Mainboard-Formfaktoren</h2>
+            <p>Der Formfaktor beschreibt unter anderem Größe und Lage der Befestigungslöcher. Er bestimmt, ob ein Mainboard in ein Gehäuse passt.</p>
+            <div id="pe-form-wahl" class="pe-gruppe pe-gruppe-reihe" role="group" aria-label="Mainboard-Formfaktoren"></div>
+            <div id="pe-form-detail" class="feedback-box pe-detail" aria-live="polite" tabindex="-1"></div>
+          </section>
+          <section id="pe-abschnitt-rueck" class="abschnitt" hidden aria-labelledby="pe-rueck">
+            <h2 id="pe-rueck">Anschlüsse auf der Rückseite</h2>
+            <p>Das ist kein Formfaktor. Manche Mainboards verlegen Strom- und Lüfterstecker auf die Rückseite, damit die Vorderseite aufgeräumter aussieht. MSI nennt das bei Project Zero Back-Connect. Ob so ein Board in ein Gehäuse passt, steht in den Angaben zu genau diesem Board und Gehäuse.</p>
+          </section>
+        </div>
+      </div>
+      <p id="pe-bildhinweis" class="klein"></p>
+    </section>
+    <section class="abschnitt" aria-labelledby="pe-quellen">
+      <h2 id="pe-quellen">Quellen und Grenzen</h2>
+      <p class="klein">Dieser Entwurf ist nicht fachlich freigegeben. Maße und Jahreszahlen stehen nur dort, wo eine Quelle sie nennt. Die übrigen Erklärtexte sind bewusst einfach gehalten und enthalten keine Messwerte. Angaben aus Wikipedia sind vorläufig und keine Norm. Der vollständige JEDEC-Standard JESD318 wurde nicht geöffnet; die CAMM2-Aussagen stammen aus der JEDEC-Pressemitteilung. Beim Notebook hängen Aufbau und Austauschbarkeit vom Modell ab.</p>
+      <ul id="pe-quellenliste"></ul>
+    </section>
+  </main>
+  <footer class="fuss"><p>Werkzeug · PC-Explorer (Entwurf) · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script><script src="../js/fortschritt.js"></script><script src="../js/navigation.js"></script><script src="../js/glossar-daten.js"></script><script src="../js/anzeige-glossar.js"></script><script src="../js/version.js"></script><script src="../js/pc-explorer.js"></script>
+</body>
+</html>
