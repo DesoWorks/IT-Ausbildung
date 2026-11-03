@@ -245,6 +245,7 @@ assert(css.includes("grid-area: erklaerung"), "Erklärung über die volle Breite
 assert(/\.pe-abdeckung\s*\{[^}]*pointer-events:\s*none/.test(css), "Kühlabdeckung fängt keine Klicks ab");
 assert(/\.pe-kuehler-offen \.pe-abdeckung\s*\{[^}]*opacity/.test(css), "Abdeckung wird mit der Kühlung durchsichtig");
 assert(/@media \(max-width: 600px\)[^}]*\{\s*\.pe-etiketten\s*\{\s*display:\s*none/.test(css), "Etiketten unter 600px ausgeblendet");
+assert(/@media \(max-width: 600px\)\s*\{\s*\.pe-breit \.pe-etiketten\s*\{\s*display:\s*(inline|block|initial)/.test(css), "Mainboard/Rückseite (pe-breit): nummerierte Marken bleiben unter 600px sichtbar");
 assert(js.includes("pe-kaefig") && js.includes("pe-abdeckung"), "Käfig und Kühlabdeckung in der Zeichnung");
 
 // Anschlussansichten: Rückseite, Mainboard, historische Technik
@@ -340,5 +341,14 @@ assert(js.includes("pe-kaefig") && js.includes("pe-abdeckung"), "Käfig und Küh
   assert(!/pe-c-(blau|rot)/.test(css) && !/USB 3\.[0-9]\s*=\s*blau/i.test(js), "keine feste Zuordnung USB-Standard = Farbe");
   assert(/\.pe-etikett\.pe-aktiv \.pe-badge/.test(css) && js.includes("zeichneMainboardLegende"), "Mainboard nutzt Marken mit Legende statt Linien quer über die Platine");
 }
+
+// Layout Mainboard/Rückseite: Auswahl als Legende unter der Zeichnung, volle Breite, keine zweite rechte Liste
+assert(/\.pe-arbeitsflaeche\.pe-breit\s*\{[^}]*grid-template-areas:\s*"bild" "liste" "erklaerung"/.test(css), "pe-breit stapelt Zeichnung, Legende, Erklärung");
+assert(/\.pe-breit #pe-teile\s*\{[^}]*display:\s*grid/.test(css), "Legende bleibt ein sichtbares Raster");
+assert(!/\.pe-breit[^{]*\{[^}]*display:\s*none/.test(css), "Legende wird nie ausgeblendet");
+assert(js.includes('key === "mainboard" || key === "rueckseite"') && js.includes('classList.toggle("pe-breit"'), "nur Mainboard und Rückseite sind breit");
+assert(js.includes('"0 0 420 480"') && !/x: 548, y: py/.test(js), "Mainboard-Zeichnung ohne SVG-Seitenlegende zugeschnitten");
+assert(/\(i \+ 1\) \+ ". " \+ a\.teile\[i\]\.name/.test(js), "Mainboard-Legende trägt dieselben Nummern wie die Marken");
+assert(/aria-label", breit \? "Legende: "/.test(js), "Legende ist beschriftet");
 
 console.log("pc-explorer: alle Prüfungen bestanden");

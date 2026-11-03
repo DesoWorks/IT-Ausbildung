@@ -30,16 +30,21 @@ Alternativ die Datei direkt öffnen:
 ## Was du prüfen kannst
 
 - Zwischen **Desktop**, **Notebook**, **Rückseite**, **Mainboard** und **Ältere Anschlüsse** wechseln (soweit die jeweilige Ansicht verfügbar ist).
-- Ein Bauteil in der Liste oder in der Skizze wählen.
+- In **Mainboard** und **Rückseite** gibt es keine separate rechte Bauteilliste: Die Grafik nutzt die volle Breite; die HTML-Auswahllegende steht darunter. Beim Mainboard bleiben die Nummern und Marken in der Grafik auch mobil sichtbar. Die Erklärung des gewählten Bauteils steht unter Grafik und Legende über die volle Breite.
+- In **Desktop** und **Notebook** bleiben Darstellung und Bauteilauswahl unverändert; bei schmalen Ansichten bleiben dort die SVG-Etiketten ausgeblendet. Auch **Ältere Anschlüsse** wurde für diese Layoutoptimierung nicht geändert.
+- Ein Bauteil direkt in der Grafik wählen (Maus/Touch) oder über die HTML-Auswahllegende darunter wählen. Beide Wege aktualisieren dieselbe Bauteilerklärung.
 - In **Rückseite** die Anschlüsse am Mainboard-I/O von den getrennten Grafikkarten-Ausgängen unterscheiden.
 - In **Mainboard** die schematische Platinenübersicht und die auswählbaren Anschlüsse ansehen. Sie ist keine maßstäbliche Herstellerzeichnung.
 - In **Ältere Anschlüsse** die getrennte Vergleichsansicht ansehen.
 - Weiter unten **PGA**, **LGA** und **BGA** wählen. Nur dort erscheinen echte Fotos.
 - Unter jedem Foto stehen Urheber, Lizenz und der Link zu Wikimedia Commons.
-- Mit der Tastatur: Tab in die Liste, Pfeiltasten, Enter oder Leertaste.
-- Das Fenster schmal ziehen. Die Seite soll nicht seitlich überlaufen.
+- Tastatur: Mit Tab zur HTML-Auswahllegende navigieren. Pfeiltasten wechseln die Auswahl; Home und End springen zum ersten beziehungsweise letzten Eintrag; Enter oder Leertaste aktivieren die Auswahl. Prüfen, dass Fokus sichtbar ist und die Erklärung passend aktualisiert wird. Die SVG-Auswahl bleibt ebenfalls per Tastatur erreichbar.
+- Maus: SVG-Bauteil oder Eintrag der HTML-Legende anklicken und prüfen, dass beide Wege dieselbe Erklärung anzeigen.
+- Touch: SVG-Bauteil und Einträge der HTML-Legende antippen. Eine Touch-Simulation im Browser ist nur ein technischer Hinweis und ersetzt keinen Test auf einem echten Mobilgerät.
+- Das Fenster bei **1440 px**, **768 px** und **320 px** prüfen. Es darf kein horizontaler Seitenüberlauf und kein abgeschnittener Inhalt auftreten. Bei Mainboard und Rückseite müssen Grafik, vollständige HTML-Auswahllegende und Erklärung darunter sichtbar und bedienbar bleiben. Bei Desktop und Notebook bleiben auf schmalen Ansichten die SVG-Etiketten ausgeblendet.
+- Beim Mainboard die nummerierten Marken auf der Grafik mit den Einträgen der Legende abgleichen, auch bei 320 px. Bei der Rückseite die Anschlussbeschriftungen und zugehörigen Auswahlknöpfe abgleichen. Kleine Maß- und Dekorationstexte können bei schmaler Darstellung unlesbar sein; die Bauteilauswahl und -erklärung müssen dennoch verfügbar bleiben.
 
-Bei der Browserprüfung durch Terminus am 2026-11-03 blieb die Seite bei 320 px ohne seitlichen Überlauf. Die Mainboardgrafik wird stark verkleinert; die Beschriftungslegende und nummerierten Marken werden unter 600 px ausgeblendet. Kleine Maß- und Dekorationstexte sind dann nicht sinnvoll lesbar. Nutze auf schmalen Bildschirmen die darunterstehende Bauteilliste und die ausführliche Beschreibung. Die Grafik ist dort eine Übersicht, keine lesbare Detailzeichnung.
+Terminus hat den Layoutstand bei 1440/768/320 px einschließlich simulierter Touch-Bedienung geprüft. GLaDOS hat unabhängig im gezielt geprüften Layoutumfang keine reproduzierbaren Fehler festgestellt; Umfang und Grenzen stehen in `docs/uebergaben/2026-11-03_glados-pc-explorer-layout-qa.md`. Dies ist keine vollständige oder fachliche Abnahme. Eine Touch-Simulation ersetzt keinen Test auf einem echten Mobilgerät.
 
 Die Lizenzlinks brauchen Internet, wenn du sie anklickst. Die Seite selbst nicht.
 
@@ -47,6 +52,6 @@ Die Lizenzlinks brauchen Internet, wenn du sie anklickst. Die Seite selbst nicht
 
 - Keine fachliche Freigabe.
 - Keine Server-Ansicht.
-- Keine echten Fotos für Desktop-Teile oder das Notebook. Die Liste bleibt die gleichwertige Bedienung.
+- Keine echten Fotos für Desktop-Teile oder das Notebook. Die auswählbare HTML-Legende ist die alternative Bedienung; bei Mainboard und Rückseite steht sie unter der Grafik.
 - Die drei Fotos sind unveränderte Wikimedia-Commons-Dateien. Das BGA-Foto zeigt Lotkugeln nach Entfernung des Chips, nicht eine vollständige CPU.
 - Wikipedia-Angaben im Modul sind vorläufig gekennzeichnet.

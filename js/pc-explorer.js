@@ -567,7 +567,7 @@
     server: null /* reservierter Daten-Slot, kein auswählbarer Zustand */
   };
 
-  var HINWEIS_MAINBOARD = "Die Platine ist im ATX-Höchstmaß gezeichnet: 244 mm breit und 305 mm hoch, die I/O-Blende liegt links (Beispiel, kein bestimmtes Modell). Anschlüsse und Bauteile sind vereinfacht und liegen nur ungefähr wie bei typischen Boards; Kühlkörper, Batterie und Chips sind Dekoration. Die Zeichnung besteht aus einzeln auswählbaren Elementen, ist kein Foto, und die Liste enthält alle Einträge.";
+  var HINWEIS_MAINBOARD = "Die Platine ist im ATX-Höchstmaß gezeichnet: 244 mm breit und 305 mm hoch, die I/O-Blende liegt links (Beispiel, kein bestimmtes Modell). Anschlüsse und Bauteile sind vereinfacht und liegen nur ungefähr wie bei typischen Boards; Kühlkörper, Batterie und Chips sind Dekoration. Die Zeichnung besteht aus einzeln auswählbaren Elementen, ist kein Foto, und die nummerierte Legende unter der Zeichnung enthält alle Einträge.";
   var BILDHINWEIS = "Die Abbildung besteht aus einzeln auswählbaren Bauteilen. Sie ist ein farbiges Beispiel, nicht maßstäblich und kein Foto eines bestimmten Geräts. Echte Fotos gibt es bisher nur für PGA, LGA und BGA.";
   var BILDHINWEIS_NOTEBOOK = " Die Notebook-Ansicht ist eine eigene Zeichnung, kein verkleinerter Desktop. Für das Notebook liegt noch kein freigegebenes Komponentenbild vor. Die Liste bleibt gleichwertig.";
 var aktuelleAnsicht = "desktop";
@@ -977,7 +977,7 @@ var aktuelleAnsicht = "desktop";
         deko.appendChild(svgEl("polygon", { points: pts.join(" "), "class": "pe-massspitze" }));
       });
     }
-    txt(390, 16, "Beispiel-Mainboard (schematisch, kein bestimmtes Modell)", "pe-bereichstext");
+    txt(210, 16, "Beispiel-Mainboard (schematisch, kein bestimmtes Modell)", "pe-bereichstext");
     pfeil(mbx(0), 33, mbx(244), 33);
     txt(mbx(122), 29, "244 mm", "pe-masstext");
     pfeil(385, mby(0), 385, mby(305));
@@ -1000,20 +1000,16 @@ var aktuelleAnsicht = "desktop";
     r(150, 170, 11, 9, "pe-chip-deko", 1);
     c(152, 172, 0.8, "pe-batterie-innen");
   }
-  /* Legende: nummerierte Marken auf der Platine, dieselben Nummern als Zeilen rechts. Keine Linien quer über die Platine. */
+  /* Marken: nummerierte Kreise auf der Platine. Die zugehörige Legende ist eine HTML-Liste unter der Zeichnung (Tastatur, Touch, Screenreader). Keine Linien quer über die Platine. */
   function zeichneMainboardLegende(svg, teile, waehle) {
     var schicht = svgEl("g", { "class": "pe-etiketten" });
     teile.forEach(function (t, i) {
       var m = MB_MARKE[t.id];
       if (!m) return;
-      var cx = m[0], cy = m[1], py = 52 + i * 24.5, nr = String(i + 1);
+      var cx = m[0], cy = m[1], nr = String(i + 1);
       var g = svgEl("g", { "class": "pe-etikett pe-legende", "data-id": t.id, "aria-hidden": "true" });
       g.appendChild(svgEl("circle", { cx: cx, cy: cy, r: 8, "class": "pe-badge" }));
       g.appendChild(svgEl("text", { x: cx, y: cy + 4, "text-anchor": "middle", "class": "pe-badge-zahl" }, nr));
-      g.appendChild(svgEl("rect", { x: 548, y: py, width: 222, height: 22, rx: 5, "class": "pe-label-platte" }));
-      g.appendChild(svgEl("circle", { cx: 563, cy: py + 11, r: 8, "class": "pe-badge" }));
-      g.appendChild(svgEl("text", { x: 563, y: py + 15, "text-anchor": "middle", "class": "pe-badge-zahl" }, nr));
-      g.appendChild(svgEl("text", { x: 578, y: py + 16, "class": "pe-label pe-label-klein" }, t.kurz));
       g.addEventListener("click", function () { waehle(t.id); });
       schicht.appendChild(g);
     });
@@ -1249,7 +1245,7 @@ var aktuelleAnsicht = "desktop";
 
   function start() {
     var svg = document.getElementById("pe-svg"), teileBox = document.getElementById("pe-teile"), detail = document.getElementById("pe-detail");
-    var ansichtBox = document.getElementById("pe-ansichten");
+    var ansichtBox = document.getElementById("pe-ansichten"), flaeche = document.querySelector(".pe-arbeitsflaeche");
     if (!svg || !teileBox || !detail || !ansichtBox) return;
     var sockelWahl = document.getElementById("pe-sockel-wahl"), sockelDetail = document.getElementById("pe-sockel-detail");
     var formWahl = document.getElementById("pe-form-wahl"), formDetail = document.getElementById("pe-form-detail");
@@ -1269,7 +1265,7 @@ function markiere(id) {
     }
 
     function zeichne(ansicht, gruppeTeile) {
-      svg.setAttribute("viewBox", "0 0 780 480");
+      svg.setAttribute("viewBox", aktuelleAnsicht === "mainboard" ? "0 0 420 480" : "0 0 780 480");
       svg.appendChild(zeichneDeko(aktuelleAnsicht));
       zeichenReihenfolge(ansicht.teile).forEach(function (t) {
         var g = svgEl("g", {
@@ -1312,8 +1308,14 @@ function markiere(id) {
       var kuehlerKnopf = document.getElementById("pe-kuehler");
       if (kuehlerKnopf) kuehlerKnopf.hidden = istAnschlussAnsicht(key);
       document.title = a.titel + " (Entwurf)";
-      teileBox.setAttribute("aria-label", a.gruppe);
+      /* Mainboard und Rückseite: Zeichnung in voller Breite, die Auswahl steht als Legende darunter. */
+      var breit = key === "mainboard" || key === "rueckseite";
+      if (flaeche) flaeche.classList.toggle("pe-breit", breit);
+      teileBox.setAttribute("aria-label", breit ? "Legende: " + a.gruppe : a.gruppe);
       var gruppeTeile = baueGruppe(teileBox, a.teile, function (t) { markiere(t.id); zeigeDetail(detail, t, true); });
+      if (key === "mainboard") {
+        Array.prototype.forEach.call(teileBox.querySelectorAll("button"), function (b, i) { b.textContent = (i + 1) + ". " + a.teile[i].name; });
+      }
       zeichne(a, gruppeTeile);
       abschnittSockel.hidden = true;
       abschnittForm.hidden = true;

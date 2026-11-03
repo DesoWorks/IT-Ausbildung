@@ -13,10 +13,19 @@
 @media (max-width: 600px) {
   .pe-etiketten { display: none; }
 }
+/* Mainboard und Rückseite (pe-breit): die nummerierten Marken bleiben sichtbar, damit die HTML-Legende ihre Zuordnung behält. Auf schmalen Bildschirmen dürfen die Kreise klein sein. */
+@media (max-width: 600px) {
+  .pe-breit .pe-etiketten { display: inline; }
+}
 @media (max-width: 420px) {
   .pe-gruppe-reihe { grid-template-columns: minmax(0, 1fr); }
   .pe-fachknopf, #pe-kuehler { max-width: 100%; }
 }
+/* Mainboard und Rückseite: Zeichnung über die volle Breite, Legende (= Auswahl) darunter, Erklärung darunter. Kein Beschnitt, die Legende wird nie ausgeblendet. */
+.pe-arbeitsflaeche.pe-breit { grid-template-columns: minmax(0, 1fr); grid-template-areas: "bild" "liste" "erklaerung"; }
+.pe-breit #pe-teile { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); }
+.pe-breit #pe-teile button { overflow-wrap: anywhere; }
+.pe-breit .pe-zeichnung svg { max-height: 85vh; }
 main section[hidden] { display: none; }
 .pe-zeichnung { border: 1px solid var(--farbe-rahmen); border-radius: var(--radius); background: var(--farbe-flaeche); padding: .5rem; }
 .pe-zeichnung svg { width: 100%; height: auto; display: block; }

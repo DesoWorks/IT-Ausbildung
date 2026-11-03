@@ -1,5 +1,8 @@
 # Changelog
 
+## Unveröffentlicht (Branch feature/pc-explorer-grafik-2026-11-02)
+- PC-Explorer: Bei Mainboard und Rückseite entfällt die rechte Bauteilliste. Die Zeichnung nutzt die volle Breite, die Auswahl steht als beschriftete Legende darunter (Mainboard mit denselben Nummern wie die Marken), die Erklärung darunter über die volle Breite. Desktop, Notebook und ältere Anschlüsse sind unverändert.
+
 ## 0.16.2-alpha.1
 - Lernfeld 5 hat die kleine Lektion „Den Arbeitsprozess bewerten“. Geplant, geprüft und offen werden an einem fiktiven Zettel getrennt.
 - Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.
