@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Daten für die Übersicht aufbereiten, ohne sie zu verfälschen. Fiktives Lernbeispiel, keine echte Umsetzung.">
+  <title>Daten für die Übersicht aufbereiten, ohne sie zu verfälschen</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <link rel="stylesheet" href="../css/lf89-praxis.css">
+  <style>
+    .opts{display:grid;grid-template-columns:1fr;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem;flex-shrink:0}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body data-page="lf8-aufbereiten" data-base="../" data-lernfeld="lf8">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 8 · 2. Ausbildungsjahr</p>
+      <h1>Daten für die Übersicht aufbereiten, ohne sie zu verfälschen</h1>
+      <p class="kopf-dauer">Fiktives Hafenblick Café · keine echte Datenbank · kein Produktivsystem</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte"><ol>
+    <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+    <li><button class="schritt-knopf" data-step="case">2 · Beispiel</button></li>
+    <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+    <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+  </ol><div class="fortschritt"><div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div><p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 von 5 Schritten · Abschluss noch nicht geöffnet</p></div></nav>
+  <main id="main" tabindex="-1">
+    <p id="storage-hint" role="status"></p>
+    <noscript><p>Für die Lerninhalte und die Übung muss JavaScript aktiviert sein.</p></noscript>
+    <section id="start" class="abschnitt" tabindex="-1">
+      <h2>Was du lernst</h2><ul id="goals"></ul>
+      <aside class="hinweis-box"><strong>Fiktives Beispiel:</strong> Samira und Nordlicht IT-Service sind erfunden. Das Hafenblick Café, die Kasse und die Schichttabelle sind nur ein Lernmodell. Es gibt keine echten Personen, keine echten Systeme, keine Zugangsdaten und kein Produktivnetz.</aside>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zum Beispiel</button>
+    </section>
+    <section id="case" class="abschnitt" tabindex="-1" hidden>
+      <h2>Aufbereiten ohne Verfälschen</h2><div id="theory"></div>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" tabindex="-1" hidden>
+      <h2>Übung: Vier Fragen zum Beispiel</h2><p>Wähle je Frage eine Antwort. Alle Fragen beziehen sich nur auf diese Lektion. Du kannst die Übung frei wiederholen.</p>
+      <section id="lf8-praxis" class="praxis" aria-labelledby="praxis-titel">
+        <h3 id="praxis-titel">Datenwerkstatt: zwei Quellen selbst zusammenführen</h3>
+        <p>Arbeite ausschließlich mit erfundenen Daten. Dieses lokale Lernprodukt ergänzt die vier Wissensfragen. Deren bisherige Abschlüsse bleiben erhalten; sie belegen nicht automatisch diese praktische Arbeit.</p>
+        <ol><li>Person A prüft CSV-Struktur, Währung und das Datumsfeld der JSON-Schichten. Person B prüft das Ergebnis und die Übergabe. Allein kannst du die Rollen nacheinander übernehmen.</li><li>Ordne das Datumsfeld zu und erzeuge ein Tagesergebnis. Ändere danach bewusst einen Wert und prüfe erneut.</li><li>Person B kontrolliert: 13.10. enthält 0 EUR, 14.10. enthält keinen Umsatz und zwei Schichten. Zähle den Tagesumsatz nicht je Schicht erneut.</li></ol>
+        <p>Vereinbartes Mini-Format: CSV mit Kommas, ISO-Datum und Dezimalpunkt, EUR, keine Anführungszeichen in den Eingaben. Das ist ein bewusst begrenzter Importer, kein allgemeines CSV-Werkzeug. JSON benennt das Datum anders: <code>tag</code>. Fehlende Schichtdaten bleiben ebenfalls als Lücke sichtbar. Höchstens 100 Zeilen je Quelle.</p>
+        <label for="praxis-kasse">Kassenquelle (CSV; datum,umsatz,waehrung)</label><textarea id="praxis-kasse" maxlength="50000" spellcheck="false"></textarea>
+        <label for="praxis-schichten">Schichtquelle (JSON; tag, schicht, personen)</label><textarea id="praxis-schichten" maxlength="50000" spellcheck="false"></textarea>
+        <label for="praxis-mapping">Welches Feld der Schichtquelle gehört zu datum?</label><select id="praxis-mapping"><option value="tag">tag</option><option value="schicht">schicht</option><option value="personen">personen</option></select>
+        <button id="praxis-erzeugen" class="knopf knopf-haupt" type="button">Daten zusammenführen</button> <button id="praxis-beispiel" class="knopf" type="button">Quellen auf Beispiel setzen</button>
+        <p id="praxis-status" class="praxis-status" role="status">Noch kein Ergebnis erzeugt.</p><p id="praxis-speicher" role="status"></p>
+        <div id="praxis-ergebnis" hidden>
+          <table><caption>Bereitgestelltes Tagesergebnis</caption><thead><tr><th>Datum</th><th>Tagesumsatz</th><th>Schichten</th></tr></thead><tbody id="praxis-zeilen"></tbody></table>
+          <label for="praxis-ausgabe">CSV-Endprodukt (ein Tagesumsatz pro Datum, Schichten zusammengefasst)</label><textarea id="praxis-ausgabe" readonly></textarea>
+          <button id="praxis-kopieren" type="button" class="knopf">CSV zum Kopieren markieren</button> <a id="praxis-download" class="knopf" download="hafenblick-tagesuebersicht.csv" hidden>CSV herunterladen</a>
+        </div>
+        <h4>Handhabung / Quick guide</h4>
+        <p>Quellen prüfen → Datumsfeld zuordnen → zusammenführen → Kontrolltage vergleichen → CSV an die nächste Übungsrolle übergeben. Nach Eingabeänderungen muss das Ergebnis neu erzeugt werden. Das Endprodukt bleibt eine lokale Übungsdatei, nicht öffentlich oder produktiv freigegeben. Im Export bedeuten leere Umsatzfelder fehlend, die Zahl 0 dagegen einen belegten Nullumsatz. Beträge bleiben EUR; die Darstellung auf zwei Stellen ist Formatierung.</p>
+        <p lang="en">Check both fictional sources. Map the shift date to the cash date. Generate the daily output. Keep missing revenue empty; zero is a recorded value. Review every shift before handing over the CSV file.</p>
+        <blockquote lang="en">Each field may or may not be enclosed in double quotes.</blockquote><p>Quelle: <a href="https://www.rfc-editor.org/rfc/rfc4180.html">RFC 4180, Abschnitt 2 Nr. 5</a>, Informationsdokument, kein Internetstandard. Erkläre Person B auf Deutsch, warum der Export Felder in Anführungszeichen setzt. Der kurze Quellenauszug ist auch offline lesbar.</p>
+        <label for="praxis-notiz">Übergabe und Reflexion (keine echten Namen): Wer übernimmt welche Rolle? Welche Regeln/Lücken und Kontrollwerte wurden geprüft? Warum reicht dieses Werkzeug? Was müsste ein Team für parallele Bearbeitung vereinbaren?</label><textarea id="praxis-notiz" maxlength="5000"></textarea>
+        <p>Die Notiz wird lokal gespeichert, aber nicht automatisch fachlich benotet. Person B bzw. die Ausbildungsperson prüft Verständlichkeit und Vollständigkeit. Kopiere sie zusammen mit dem Endprodukt; ein CSV-Export allein enthält diese Notiz nicht.</p>
+      </section>
+      <div id="questions"></div><button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zum Beispiel</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" tabindex="-1" hidden>
+      <h2>Das nimmst du mit</h2><ul id="takeaways"></ul><p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button><button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+      <p>Lernfeld 8 bleibt im Katalog bis zur Prüfung und Freigabe des ganzen Felds „In Kürze“.</p>
+      <nav aria-label="Lektionen in Lernfeld 8"><ul>
+        <li><a href="lf8-quellen.html">1 · Datenquellen und ihren Zweck unterscheiden</a></li>
+        <li><a href="lf8-struktur.html">2 · Struktur, Format und Zugriff einer Quelle beschreiben</a></li>
+        <li><a href="lf8-recht.html">3 · Rechtliche Grenze und Zugriffszweck klären</a></li>
+        <li><a href="lf8-auswahl.html">4 · Quellen nach Auftrag auswählen, nicht nach Gewohnheit</a></li>
+        <li><a href="lf8-konzept.html">5 · Ein Bereitstellungskonzept mit Schutzbedarf skizzieren</a></li>
+        <li><a href="lf8-aufbereiten.html">6 · Daten für die Übersicht aufbereiten, ohne sie zu verfälschen</a></li>
+        <li><a href="lf8-uebergabe.html">7 · Übergabe und Dokumentation vorbereiten</a></li>
+        <li><a href="lf8-reflexion.html">8 · Werkzeug und Dokumentationsqualität beurteilen</a></li>
+        <li><a href="lf8-kontrolle.html">9 · LF8 Lernzielkontrolle</a></li>
+      </ul></nav><p><a href="../index.html">Zur Themenübersicht</a></p>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 8 · Daten systemübergreifend bereitstellen · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf8-lektion.js"></script>
+  <script src="../js/lf8-aufbereiten.js"></script>
+  <script src="../js/lf8-praxis.js"></script>
+</body>
+</html>

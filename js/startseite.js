@@ -18,15 +18,16 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) { /* Übersicht bleibt bedienbar. */ }
   }
   function allLessons(field) { return (field.unterthemen || []).filter(function (x) { return x.typ !== "werkzeug"; }); }
-  function isAvailable(lesson) { return lesson.status === "verfuegbar" && !!lesson.datei; }
-  function completionCount(lessons) {
+  function fieldAvailable(field) { return !!field && field.status === "verfuegbar"; }
+  function isAvailable(lesson, field) { return fieldAvailable(field) && lesson.status === "verfuegbar" && !!lesson.datei; }
+  function completionCount(lessons, field) {
     return lessons.filter(function (lesson) {
-      return isAvailable(lesson) && window.LERNFORTSCHRITT && window.LERNFORTSCHRITT.abgeschlossen(lesson.id);
+      return isAvailable(lesson, field) && window.LERNFORTSCHRITT && window.LERNFORTSCHRITT.abgeschlossen(lesson.id);
     }).length;
   }
-  function makeLesson(lesson) {
-    var li = erzeuge("li", isAvailable(lesson) ? "overview-lesson available" : "overview-lesson planned");
-    if (isAvailable(lesson)) {
+  function makeLesson(lesson, field) {
+    var li = erzeuge("li", isAvailable(lesson, field) ? "overview-lesson available" : "overview-lesson planned");
+    if (isAvailable(lesson, field)) {
       var a = erzeuge("a", "overview-lesson-link");
       a.href = lesson.datei;
       a.setAttribute("data-progress-id", lesson.id);
@@ -65,10 +66,10 @@
     var title = erzeuge("span", "overview-field-title", (field.lernfeld ? field.lernfeld + " · " : "") + field.titel);
     summary.appendChild(title);
     var lessons = allLessons(field);
-    var available = lessons.filter(isAvailable).length;
+    var available = lessons.filter(function (lesson) { return isAvailable(lesson, field); }).length;
     var planned = lessons.length - available;
-    var completed = completionCount(lessons);
-    var status = lessons.length
+    var completed = completionCount(lessons, field);
+    var status = lessons.length && fieldAvailable(field)
       ? available + " verfügbar" + (planned ? " · " + planned + " In Kürze" : "") + " · " + completed + " abgeschlossen"
       : "In Kürze";
     summary.appendChild(erzeuge("span", "overview-field-count", status));
@@ -76,7 +77,7 @@
     if (lessons.length) {
       var list = erzeuge("ul", "overview-lessons");
       list.setAttribute("aria-label", "Lektionen: " + field.titel);
-      lessons.forEach(function (lesson) { list.appendChild(makeLesson(lesson)); });
+      lessons.forEach(function (lesson) { list.appendChild(makeLesson(lesson, field)); });
       details.appendChild(list);
     } else {
       var plannedBox = erzeuge("p", "overview-planned", "◷ In Kürze");

@@ -69,7 +69,7 @@
       if (m.unterthemen && m.unterthemen.length) {
         var topics = document.createElement("ul");
         m.unterthemen.forEach(function (u) {
-          var available = u.status === "verfuegbar" && u.datei;
+          var available = m.status === "verfuegbar" && u.status === "verfuegbar" && u.datei;
           if (available) {
             var entry = item({ id: u.id, label: u.titel, href: base + u.datei, page: u.page });
             entry.classList.add("nav-topic"); topics.appendChild(entry);

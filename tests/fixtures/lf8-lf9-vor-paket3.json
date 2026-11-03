@@ -1,0 +1,915 @@
+{
+ "commit": "61be195",
+ "lektionen": {
+  "lf8-aufbereiten": {
+   "key": "it-ausbildung.lf8-aufbereiten.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "format",
+     "optionen": [
+      "format",
+      "null",
+      "doppelt"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "leer",
+     "optionen": [
+      "schaetzen",
+      "leer",
+      "loeschen"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "neben",
+     "optionen": [
+      "summe",
+      "ersetzen",
+      "neben"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "regel",
+     "optionen": [
+      "regel",
+      "huebsch",
+      "immer"
+     ]
+    }
+   ]
+  },
+  "lf8-auswahl": {
+   "key": "it-ausbildung.lf8-auswahl.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "auftrag",
+     "optionen": [
+      "auftrag",
+      "kaputt",
+      "namen"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "drei",
+     "optionen": [
+      "da",
+      "drei",
+      "neu"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "grund",
+     "optionen": [
+      "leer",
+      "kopie",
+      "grund"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "gewohnt",
+     "optionen": [
+      "gewohnt",
+      "feld",
+      "zugriff"
+     ]
+    }
+   ]
+  },
+  "lf8-konzept": {
+   "key": "it-ausbildung.lf8-konzept.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "leitung",
+     "optionen": [
+      "leitung",
+      "alle",
+      "gaeste"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "ende",
+     "optionen": [
+      "live",
+      "ende",
+      "nie"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "drei",
+     "optionen": [
+      "farbe",
+      "einwort",
+      "drei"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "live",
+     "optionen": [
+      "live",
+      "skizze",
+      "notiz"
+     ]
+    }
+   ]
+  },
+  "lf8-quellen": {
+   "key": "it-ausbildung.lf8-quellen.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "kasse",
+     "optionen": [
+      "kasse",
+      "tabelle",
+      "seite"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "neben",
+     "optionen": [
+      "alles",
+      "neben",
+      "ersetzen"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "beschreiben",
+     "optionen": [
+      "konto",
+      "kopie",
+      "beschreiben"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "ohne",
+     "optionen": [
+      "ohne",
+      "kasse",
+      "beide"
+     ]
+    }
+   ]
+  },
+  "lf8-recht": {
+   "key": "it-ausbildung.lf8-recht.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "leitung",
+     "optionen": [
+      "leitung",
+      "alle",
+      "gaeste"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "person",
+     "optionen": [
+      "zahl",
+      "person",
+      "format"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "gaeste",
+     "optionen": [
+      "plan",
+      "notiz",
+      "gaeste"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "fragen",
+     "optionen": [
+      "fragen",
+      "erfinden",
+      "teilen"
+     ]
+    }
+   ]
+  },
+  "lf8-reflexion": {
+   "key": "it-ausbildung.lf8-reflexion.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "papier",
+     "optionen": [
+      "papier",
+      "server",
+      "konto"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "andere",
+     "optionen": [
+      "huebsch",
+      "andere",
+      "kurz"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "grund",
+     "optionen": [
+      "kauf",
+      "namen",
+      "grund"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "abnahme",
+     "optionen": [
+      "abnahme",
+      "blick",
+      "luecke"
+     ]
+    }
+   ]
+  },
+  "lf8-struktur": {
+   "key": "it-ausbildung.lf8-struktur.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "felder",
+     "optionen": [
+      "farbe",
+      "felder",
+      "recht"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "liste",
+     "optionen": [
+      "bild",
+      "seite",
+      "liste"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "lesen",
+     "optionen": [
+      "schreiben",
+      "lesen",
+      "offen"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "luecke",
+     "optionen": [
+      "luecke",
+      "euro",
+      "loeschen"
+     ]
+    }
+   ]
+  },
+  "lf8-uebergabe": {
+   "key": "it-ausbildung.lf8-uebergabe.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "notiz",
+     "optionen": [
+      "notiz",
+      "seite",
+      "passwort"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "nicht",
+     "optionen": [
+      "fertig",
+      "nicht",
+      "geheim"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "offen",
+     "optionen": [
+      "immer",
+      "nie",
+      "offen"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "klar",
+     "optionen": [
+      "klar",
+      "live",
+      "muendlich"
+     ]
+    }
+   ]
+  },
+  "lf9-anforderung": {
+   "key": "it-ausbildung.lf9-anforderung.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "trennung",
+     "optionen": [
+      "trennung",
+      "kabel",
+      "kauf"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "zehn",
+     "optionen": [
+      "unbegrenzt",
+      "zehn",
+      "einer"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "nein",
+     "optionen": [
+      "ja",
+      "egal",
+      "nein"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "an",
+     "optionen": [
+      "an",
+      "fragen",
+      "notiz"
+     ]
+    }
+   ]
+  },
+  "lf9-dienste": {
+   "key": "it-ausbildung.lf9-dienste.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "gast",
+     "optionen": [
+      "gast",
+      "druck",
+      "kasse"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "getrennt",
+     "optionen": [
+      "kaputt",
+      "getrennt",
+      "teuer"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "geraet",
+     "optionen": [
+      "zweck",
+      "grenze",
+      "geraet"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "datei",
+     "optionen": [
+      "datei",
+      "gast",
+      "trennung"
+     ]
+    }
+   ]
+  },
+  "lf9-eignung": {
+   "key": "it-ausbildung.lf9-eignung.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "grenze",
+     "optionen": [
+      "grenze",
+      "teuer",
+      "name"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "offen",
+     "optionen": [
+      "preis",
+      "offen",
+      "gratis"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "nur",
+     "optionen": [
+      "logo",
+      "mehr",
+      "nur"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "grund",
+     "optionen": [
+      "grund",
+      "geschmack",
+      "kauf"
+     ]
+    }
+   ]
+  },
+  "lf9-infrastruktur": {
+   "key": "it-ausbildung.lf9-infrastruktur.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "keinweg",
+     "optionen": [
+      "keinweg",
+      "farbe",
+      "offen"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "annahme",
+     "optionen": [
+      "bestand",
+      "annahme",
+      "weg"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "papier",
+     "optionen": [
+      "schrank",
+      "kauf",
+      "papier"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "live",
+     "optionen": [
+      "live",
+      "pruef",
+      "grenze"
+     ]
+    }
+   ]
+  },
+  "lf9-ist": {
+   "key": "it-ausbildung.lf9-ist.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "ohne",
+     "optionen": [
+      "ohne",
+      "leitung",
+      "wlan"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "luecke",
+     "optionen": [
+      "erfunden",
+      "luecke",
+      "messen"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "adresse",
+     "optionen": [
+      "spalten",
+      "notiz",
+      "adresse"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "soll",
+     "optionen": [
+      "soll",
+      "ist",
+      "weg"
+     ]
+    }
+   ]
+  },
+  "lf9-schutz": {
+   "key": "it-ausbildung.lf9-schutz.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "erheben",
+     "optionen": [
+      "erheben",
+      "farbe",
+      "marke"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "liste",
+     "optionen": [
+      "grenze",
+      "liste",
+      "notiz"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "sichtbar",
+     "optionen": [
+      "papier",
+      "zehn",
+      "sichtbar"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "nicht",
+     "optionen": [
+      "nicht",
+      "erfinden",
+      "liste"
+     ]
+    }
+   ]
+  },
+  "lf9-standard": {
+   "key": "it-ausbildung.lf9-standard.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "regel",
+     "optionen": [
+      "regel",
+      "marke",
+      "kabel"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "kasse",
+     "optionen": [
+      "farbe",
+      "kasse",
+      "preis"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "weg",
+     "optionen": [
+      "gaeste",
+      "papier",
+      "weg"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "mess",
+     "optionen": [
+      "mess",
+      "frage",
+      "grenze"
+     ]
+    }
+   ]
+  },
+  "lf9-zukunft": {
+   "key": "it-ausbildung.lf9-zukunft.v1",
+   "fragen": [
+    {
+     "id": "q1",
+     "correct": "drei",
+     "optionen": [
+      "drei",
+      "mehr",
+      "live"
+     ]
+    },
+    {
+     "id": "q2",
+     "correct": "sichtbar",
+     "optionen": [
+      "hundert",
+      "sichtbar",
+      "weg"
+     ]
+    },
+    {
+     "id": "q3",
+     "correct": "extra",
+     "optionen": [
+      "notiz",
+      "trennung",
+      "extra"
+     ]
+    },
+    {
+     "id": "q4",
+     "correct": "frei",
+     "optionen": [
+      "frei",
+      "blick",
+      "uebung"
+     ]
+    }
+   ]
+  }
+ },
+ "kontrollen": {
+  "lf8": {
+   "key": "it-ausbildung.lf8-kontrolle.v1",
+   "hash": "15fb2a9581621437953d399ad3e4eb44e51c9df2d10c19b9754dba7d432fcd84",
+   "fragen": [
+    {
+     "quelle": "lf8-quellen",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-quellen",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-quellen",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-struktur",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-struktur",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-struktur",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-recht",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-recht",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-recht",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-auswahl",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-auswahl",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-auswahl",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-konzept",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-konzept",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-konzept",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-aufbereiten",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-aufbereiten",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-aufbereiten",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-uebergabe",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-uebergabe",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-uebergabe",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-reflexion",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-reflexion",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf8-reflexion",
+     "richtig": "c",
+     "n": 3
+    }
+   ]
+  },
+  "lf9": {
+   "key": "it-ausbildung.lf9-kontrolle.v1",
+   "hash": "15fb2a9581621437953d399ad3e4eb44e51c9df2d10c19b9754dba7d432fcd84",
+   "fragen": [
+    {
+     "quelle": "lf9-anforderung",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-anforderung",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-anforderung",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-ist",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-ist",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-ist",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-dienste",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-dienste",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-dienste",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-infrastruktur",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-infrastruktur",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-infrastruktur",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-eignung",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-eignung",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-eignung",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-standard",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-standard",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-standard",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-schutz",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-schutz",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-schutz",
+     "richtig": "c",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-zukunft",
+     "richtig": "a",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-zukunft",
+     "richtig": "b",
+     "n": 3
+    },
+    {
+     "quelle": "lf9-zukunft",
+     "richtig": "c",
+     "n": 3
+    }
+   ]
+  }
+ }
+}

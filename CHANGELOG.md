@@ -1,6 +1,7 @@
 # Changelog
 
 
+
 ## Unveröffentlicht (Branch feature/pc-explorer-grafik-2026-11-02)
 - PC-Explorer: Der Erklärungstext unter der Zeichnung gilt jetzt je Ansicht. Der Hinweis auf „Kühlung durchsichtig“ erscheint nur bei Desktop und Notebook. Mainboard, Rückseite und ältere Anschlüsse haben eigene Texte.
 - PC-Explorer, Rückseite: USB-A und USB-C sind als Steckerformen gezeichnet. USB 2.0, USB 3.2 und USB4 stehen als gestrichelte Plaketten in einem eigenen, beschrifteten Bereich „USB-Standardnamen (keine Steckerformen)“. USB4 hat keine eigene Buchse, nutzt die Steckerform USB-C, aber nicht jedes USB-C kann USB4. Die Farbe einer Buchse beweist keine Geschwindigkeit. Neue Quelle: USB-IF-Seite zu USB4. IDs, Auswahl, Legende und Tastaturbedienung sind unverändert.
@@ -12,6 +13,13 @@
 - Jedes Profil erklärt Zweck, Parameter, Praxisfall, simulierte Ausgabe, Interpretation, Fehler, Rechte und Risiken sowie eine beliebig wiederholbare Miniübung mit Rückmeldung.
 - PowerShell-5.1-/7-Grenzen, lesende Diagnose und verändernde Aufrufe werden getrennt. Keine Befehlsausführung im Browser; bestehende Lernkarten und Übungs-/Testmodi bleiben erhalten.
 - Optionaler mehrstufiger Diagnoseassistent und RAID-Implementierung sind nicht Bestandteil dieses Standes. Keine Produktions- oder Fachfreigabe.
+
+
+## Unveröffentlicht – 17.10.2026
+- LF8/LF9 direkt mit dem KMK-Original abgeglichen und fachlich geprüft; Kompetenzmatrix, Korrekturbefunde und Quellen dokumentiert. Feldpläne aktualisiert. Beide Felder bleiben auf Dennis' Entscheidung gesperrt; keine Inhalts- oder Katalogänderung.
+- LF8/LF9: reproduzierbare Chromium-Prüfung für alle 18 Seiten ergänzt; Fortschritt, Abgabe, Wiederladen, Browser-Zurück, Reset-Schutz und mobile Überbreite geprüft. Keine Katalogfreigabe.
+- Übersichts-Regressionstest berücksichtigt den bereits vorhandenen Freigabestatus des Lernfelds statt einer veralteten Funktionssignatur.
+- Übergabe und Übernahme mit Prüfgrenzen unter `docs/uebergabe-an-terminus-2026-10-17.md` und `docs/uebernahme-terminus-2026-10-17.md` gesichert. Keine Versionsanhebung, kein Push.
 
 
 ## 0.16.2-alpha.1

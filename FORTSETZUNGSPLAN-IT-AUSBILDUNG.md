@@ -1,3 +1,5 @@
+> **Aktueller Stand (17.10.2026):** Der Stand von Jahr 2 ist in [`docs/stand-jahr2-2026-10-17.md`](docs/stand-jahr2-2026-10-17.md) dokumentiert. Die folgenden Einträge vom 14.10.2026 sind ein älterer Fortsetzungsstand und nicht der aktuelle Projektstand.
+
 ## Etappe 14.10.2026 – Lernfeld 5, Arbeitsprozess
 
 - Version 0.16.2-alpha.1. Kleine Lektion `lf5-prozess`. Node-Test bestanden, nicht im Browser gesehen.

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Komponenten funktional zusammenführen. Fiktive Raumklima-Station, keine echte Inbetriebnahme.">
+  <title>Komponenten funktional zusammenführen</title>
+  <link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/desoworks/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/desoworks/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/netzwerk.css">
+  <style>
+    .opts{display:grid;grid-template-columns:1fr;gap:.65rem}
+    .opt{display:flex;gap:.7rem;padding:.85rem 1rem;border:2px solid var(--rahmen,#bdcde3);border-radius:.75rem;background:var(--flaeche,#fff);line-height:1.5;overflow-wrap:anywhere;cursor:pointer}
+    .opt:focus-within{outline:3px solid var(--fokus,#0754a6)}
+    .opt input{margin-top:.3rem;flex-shrink:0}
+    .result{margin-top:1rem;padding:1rem;border:2px solid var(--primaer,#0754a6);border-radius:.75rem}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body data-page="lf7-zusammenfuehren" data-base="../" data-lernfeld="lf7">
+  <a class="skip-link" href="#main">Direkt zum Inhalt springen</a>
+  <header class="kopf">
+    <a class="kopf-logo" href="../index.html" aria-label="DesoWorks – zur Themenübersicht"><img src="../assets/desoworks/logo-orbital-werkstatt.svg" alt=""></a>
+    <div class="kopf-inhalt">
+      <p class="kopf-marke">IT-Ausbildung · Lernfeld 7 · 2. Ausbildungsjahr</p>
+      <h1>Komponenten funktional zusammenführen</h1>
+      <p class="kopf-dauer">Fiktive Raumklima-Station · kein echtes Gebäude · keine echte Steuerung</p>
+    </div>
+  </header>
+  <nav class="schritte" aria-label="Lernschritte"><ol>
+    <li><button class="schritt-knopf" data-step="start" aria-current="step">1 · Überblick</button></li>
+    <li><button class="schritt-knopf" data-step="case">2 · Beispiel</button></li>
+    <li><button class="schritt-knopf" data-step="exercise">3 · Übung</button></li>
+    <li><button class="schritt-knopf" data-step="finish">4 · Abschluss</button></li>
+  </ol><div class="fortschritt"><div class="fortschritt-leiste"><div id="bar" class="fortschritt-balken" style="width:0%"></div></div><p id="pct" class="fortschritt-text" aria-live="polite">Fortschritt: 0 von 5 Schritten · Abschluss noch nicht geöffnet</p></div></nav>
+  <main id="main" tabindex="-1">
+    <p id="storage-hint" role="status"></p>
+    <noscript><p>Für die Lerninhalte und die Übung muss JavaScript aktiviert sein.</p></noscript>
+    <section id="start" class="abschnitt" tabindex="-1">
+      <h2>Was du lernst</h2><ul id="goals"></ul>
+      <aside class="hinweis-box"><strong>Fiktives Beispiel:</strong> Samira und Nordlicht IT-Service sind erfunden. Die Raumklima-Station im Besprechungsraum ist nur ein Lernmodell. Es gibt keine Verbindung zu einem echten Gebäude, keine echte Steuerung und kein Produktivsystem. Du schließt nichts an.</aside>
+      <button class="knopf knopf-haupt" data-next="case">Weiter zum Beispiel</button>
+    </section>
+    <section id="case" class="abschnitt" tabindex="-1" hidden>
+      <h2>Samiras Raumklima-Station</h2><div id="theory"></div>
+      <div class="knopf-reihe"><button class="knopf" data-next="start">Zurück</button><button class="knopf knopf-haupt" data-next="exercise">Weiter zur Übung</button></div>
+    </section>
+    <section id="exercise" class="abschnitt" tabindex="-1" hidden>
+      <h2>Übung: Vier Fragen zum Beispiel</h2><p>Wähle je Frage eine Antwort. Alle Fragen beziehen sich nur auf diese Lektion. Du kannst die Übung frei wiederholen.</p>
+      <div id="questions"></div><button id="check" class="knopf knopf-haupt">Antworten prüfen</button>
+      <section id="result" class="result" aria-live="polite" aria-atomic="true" hidden></section>
+      <div class="knopf-reihe"><button class="knopf" data-next="case">Zum Beispiel</button><button class="knopf" id="reset">Antworten zurücksetzen</button><button class="knopf knopf-haupt" data-next="finish">Zum Abschluss</button></div>
+    </section>
+    <section id="finish" class="abschnitt" tabindex="-1" hidden>
+      <h2>Das nimmst du mit</h2><ul id="takeaways"></ul><p id="done" aria-live="polite"></p>
+      <button class="knopf" data-next="exercise">Übung wiederholen</button><button class="knopf knopf-warn" id="reset-all">Fortschritt zurücksetzen</button>
+      <p>Lernfeld 7 bleibt im Katalog bis zur Prüfung und Freigabe des ganzen Felds „In Kürze“.</p>
+      <nav aria-label="Lektionen in Lernfeld 7"><ul>
+        <li><a href="lf7-system.html">1 · Ein cyber-physisches System erkennen</a></li>
+        <li><a href="lf7-schnittstelle.html">2 · Den Datenfluss an der Schnittstelle beschreiben</a></li>
+        <li><a href="lf7-fluesse.html">3 · Energiefluss, Stofffluss und Informationsfluss unterscheiden</a></li>
+        <li><a href="lf7-auswahl.html">4 · Kriterien für Energieversorgung, Hardware und Software aufstellen</a></li>
+        <li><a href="lf7-unterlage.html">5 · Eine technische Unterlage lesen und eine fehlende Angabe erkennen</a></li>
+        <li><a href="lf7-zusammenfuehren.html">6 · Komponenten funktional zusammenführen</a></li>
+        <li><a href="lf7-pruefung.html">7 · Funktion, Messwert und Energiebedarf prüfen</a></li>
+        <li><a href="lf7-sicherheit.html">8 · Betriebssicherheit und Datensicherheit unterscheiden</a></li>
+        <li><a href="lf7-kontrolle.html">9 · LF7 Lernzielkontrolle</a></li>
+      </ul></nav><p><a href="../index.html">Zur Themenübersicht</a></p>
+    </section>
+  </main>
+  <footer class="fuss"><p>Lernfeld 7 · Cyber-physische Systeme ergänzen · Version <span data-version></span> · Läuft lokal in deinem Browser.</p></footer>
+  <script src="../js/module-daten.js"></script>
+  <script src="../js/fortschritt.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/glossar-daten.js"></script>
+  <script src="../js/anzeige-glossar.js"></script>
+  <script src="../js/version.js"></script>
+  <script src="../js/lf7-lektion.js"></script>
+  <script src="../js/lf7-zusammenfuehren.js"></script>
+</body>
+</html>
