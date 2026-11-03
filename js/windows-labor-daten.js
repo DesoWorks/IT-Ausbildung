@@ -9,6 +9,11 @@
   "use strict";
 
   var QU = {
+    shutdown: ["Microsoft Learn: shutdown", "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/shutdown"],
+    ssh: ["OpenBSD: ssh(1)", "https://man.openbsd.org/ssh"],
+    openssh: ["Microsoft Learn: OpenSSH für Windows", "https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh-overview"],
+    diskpart: ["Microsoft Learn: diskpart", "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskpart"],
+    clean: ["Microsoft Learn: clean", "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/clean"],
     ping: ["Microsoft Learn: ping", "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ping"],
     ipconfig: ["Microsoft Learn: ipconfig", "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig"],
     tracert: ["Microsoft Learn: tracert", "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracert"],
@@ -59,6 +64,48 @@
   };
 
   var ROH = [
+    { id: "cmd-shutdown", name: "shutdown", shell: "cmd", kategorie: "system", risiko: "aendernd",
+      stichworte: ["herunterfahren", "neustart", "abbrechen", "zeitverzögerung"],
+      zweck: "Plant das Herunterfahren oder einen Neustart für vereinbarte Wartungsfenster. shutdown.exe ist auch aus PowerShell aufrufbar; kein Diagnosebefehl.",
+      syntax: [["shutdown /s /t 120", "Herunterfahren nach 120 Sekunden. /t größer als 0 impliziert /f!"], ["shutdown /r /t 0", "Sofort neu starten; kein Zeitfenster für /a."], ["shutdown /a", "Ausstehenden Vorgang innerhalb der Wartefrist abbrechen, separat aufrufen."], ["shutdown /s /t 0", "Sofort herunterfahren. Auch ohne /f vorher speichern."], ["shutdown /s /f /t 0", "Erzwingt das Schließen von Anwendungen; ungespeicherte Daten gefährdet."], ["shutdown /?", "Hilfe. /l meldet ab; /h benötigt verfügbaren Ruhezustand."]],
+      praxis: { befehl: "shutdown /a", situation: "SIMULATION: shutdown /s /t 120 wurde vor 30 Sekunden geplant. Du brichst wegen ungespeicherter Arbeit ab. Die Ausgabe ist eine didaktische Ereignisfolge, keine wortgetreue Konsolenausgabe." },
+      ausgabe: ["[Simulation, 0 s] Herunterfahren in 120 Sekunden geplant.", "[Simulation, 30 s] shutdown /a", "[Simulation] Ausstehender Vorgang abgebrochen."],
+      deutung: [["120 Sekunden", "Frist beginnt beim Planen."], ["Abgebrochen", "Nur ein noch ausstehender Vorgang ist abbrechbar. Bereits verlorene Daten werden nicht wiederhergestellt."]],
+      fehler: [["Kein Herunterfahren geplant (1116)", "Kein ausstehender Vorgang oder Frist abgelaufen."], ["Zugriff verweigert", "Benutzerrechte/Richtlinien prüfen; entfernte Systeme haben gesonderte Rechte."]],
+      rechte: "Erfordert das Recht zum Herunterfahren; lokal je nach Richtlinie auch für Standardbenutzer möglich.",
+      aenderung: "Beendet Programme und Sitzungen. /t > 0 impliziert /f und kann ungespeicherte Arbeit verwerfen.",
+      sicherheit: "Vorher speichern und Betroffene informieren. /a ist kein garantierter Notausgang. Hier werden keine Timer oder Systemaktionen gestartet.",
+      uebung: { frage: "Ein Herunterfahren ist seit 20 Sekunden mit /t 120 geplant. Wie brichst du es ab?", optionen: ["shutdown /a separat aufrufen.", "shutdown /r /t 0 aufrufen.", "Bis nach Fristablauf warten."], richtig: 0, erklaerung: "/a wirkt während der Wartefrist auf den ausstehenden Vorgang; ein Neustart gefährdet die Arbeit zusätzlich." },
+      quellen: ["shutdown"] },
+
+    { id: "cmd-ssh", name: "ssh", shell: "cmd", kategorie: "erreichbarkeit", risiko: "netzwerk",
+      stichworte: ["openssh", "remote", "hostkey", "schlüssel", "portweiterleitung", "powershell"],
+      zweck: "Öffnet eine verschlüsselte entfernte Sitzung. ssh.exe läuft aus CMD oder PowerShell, ist aber kein Cmdlet. Die entfernte Shell kann Systeme verändern.",
+      syntax: [["ssh azubi@server.lab.example", "Benutzer und Host; normalerweise TCP-Port 22."], ["ssh -p 2222 -i C:\\Users\\azubi\\.ssh\\id_ed25519 azubi@server.lab.example", "-p wählt den Port; -i die private Schlüsseldatei. Pfade mit Leerzeichen in Anführungszeichen setzen."], ["ssh -N -L 8080:127.0.0.1:80 azubi@server.lab.example", "TCP-Portweiterleitung ohne entfernte Shell: Ziel 127.0.0.1:80 aus Sicht des SSH-Servers. Standardmäßig lokaler Listener, keine allgemeine Dienstfreigabe."], ["ssh -V", "Clientversion anzeigen."]],
+      praxis: { befehl: "ssh azubi@server.lab.example", situation: "Erste Verbindung simulieren. Host-Key-Fingerprint vor Bestätigung über einen unabhängigen vertrauenswürdigen Kanal prüfen. Die Kennung ist ein absichtlicher Platzhalter." },
+      ausgabe: ["The authenticity of host 'server.lab.example (192.0.2.10)' can't be established.", "ED25519 key fingerprint is SHA256:<BEISPIEL-FINGERPRINT>.", "Are you sure you want to continue connecting (yes/no/[fingerprint])?", "[Simulation: Fingerprint unabhängig geprüft, dann yes]", "[Simulation: Anmeldung mit geschütztem Schlüssel erfolgreich]", "azubi@server:~$"],
+      deutung: [["Host fingerprint", "Identifiziert den Server-Schlüssel, nicht den Benutzer. Verschlüsselung allein belegt nicht die Serveridentität."], ["azubi@server:~$", "Du arbeitest nun auf dem entfernten Rechner. exit beendet die Sitzung."], ["-N / -L", "Ein Tunnel transportiert TCP-Verbindungen durch SSH, statt eine interaktive Shell zu öffnen. Er kann Zugriffsgrenzen überbrücken."]],
+      fehler: [["Connection refused", "Port nimmt keine Verbindung an oder wird aktiv zurückgewiesen."], ["Connection timed out", "Netzweg, Firewall oder Host prüfen; Ursache nicht eindeutig."], ["Permission denied (publickey)", "Benutzer, Schlüssel, Freigabe und Berechtigungen prüfen."], ["REMOTE HOST IDENTIFICATION HAS CHANGED", "Stoppen und Ursache/Fingerprint unabhängig klären. known_hosts nicht blind löschen, Prüfung nicht deaktivieren."]],
+      rechte: "Installierter Client und berechtigtes Zielkonto nötig. Ausgehende Verbindung meist ohne lokale Administratorrechte; entfernte Rechte bestimmt das Zielkonto.",
+      aenderung: "Netzwerkverkehr und eventuell known_hosts-Eintrag. Entfernte Befehle können Daten ändern; Tunnel brauchen einen Auftrag.",
+      sicherheit: "Private Schlüssel nie teilen; Passphrase und geschützte Datei/Agent verwenden. Nur den Public Key am Ziel autorisieren. Keine Passwörter in Befehlszeilen. Hier wird keine Verbindung geöffnet.",
+      uebung: { frage: "Ein bekannter Server meldet einen geänderten Host-Key. Was ist richtig?", optionen: ["Unabhängig mit der Administration prüfen, bevor du weiter verbindest.", "Host-Key-Prüfung deaktivieren.", "Privaten Schlüssel an den Betreiber schicken."], richtig: 0, erklaerung: "Wartung oder Angriff sind möglich. Erst Identität klären; private Schlüssel niemals weitergeben." },
+      quellen: ["ssh", "openssh"] },
+
+    { id: "cmd-diskpart", name: "diskpart", shell: "cmd", kategorie: "speicher", risiko: "aendernd",
+      stichworte: ["partition", "volume", "clean", "formatieren", "datenträger", "powershell"],
+      zweck: "Verwaltet Datenträger, Partitionen und Volumes in einem Interpreter. Auch aus PowerShell startbar. Die Auswahl bestimmt den Fokus späterer gefährlicher Befehle.",
+      syntax: [["diskpart", "Interpreter starten, üblicherweise mit Erhöhung/UAC."], ["list disk", "Datenträger auflisten."], ["select disk 1", "Fokus auf Datenträger 1 setzen; löscht noch nichts. Nummern sind nicht dauerhaft stabil."], ["detail disk", "Details des ausgewählten Datenträgers lesen."], ["list volume", "Volumes des Systems auflisten, nicht nur der gewählten Platte."], ["exit", "Interpreter verlassen."], ["clean", "GEFAHR: Entfernt Partitions-/Volumeinformationen am Fokus. clean all überschreibt zusätzlich jeden Sektor mit Nullen."], ["create partition primary", "ÄNDERND: Partition anlegen; ausschließlich an autorisierten leeren Laborplatten."], ["format fs=ntfs quick", "GEFAHR: Ausgewähltes Volume formatieren; Schnellformatierung ist keine sichere Datenlöschung."]],
+      praxis: { befehl: "diskpart", situation: "Nur Simulation: Nach dem Start folgen list disk, select disk 1, detail disk und list volume. Kein Formatieren/Partitionieren. Ausgabe gekürzt und vereinfacht." },
+      ausgabe: ["DISKPART> list disk", "  Datenträger ###  Status    Größe   Frei", "  Datenträger 0    Online    476 GB  0 B", "  Datenträger 1    Online    100 GB  100 GB", "DISKPART> select disk 1", "Datenträger 1 ist jetzt der gewählte Datenträger.", "DISKPART> detail disk", "LAB-VIRTUAL-DISK (simuliert)", "Datenträger-ID: 12345678", "Typ: SATA", "Status: Online", "Es sind keine Volumes vorhanden.", "DISKPART> list volume", "  Volume ###  Bst  Bezeichnung  DS    Typ         Größe", "  Volume 0    C    Windows      NTFS  Partition   475 GB"],
+      deutung: [["Frei 100 GB", "Nicht zugeordneter Plattenbereich, nicht freier Platz im Dateisystem."], ["Fokus", "detail disk bezieht sich auf die ausgewählte Platte. Identität und Größe vor Eingriffen erneut prüfen."], ["Volume 0 / C", "list volume zeigt systemweite Volumes; hier liegt Windows auf Datenträger 0."]],
+      fehler: [["Kein Datenträger ausgewählt", "Befehl benötigt einen Fokus."], ["Zugriff verweigert / schreibgeschützt", "Rechte, Richtlinien und Storage-Kontext klären; Schutz nicht blind entfernen."], ["Falsche Platte gewählt", "Stoppen. Nach versehentlichem clean nicht weiter schreiben; professionelle Wiederherstellung erwägen."]],
+      rechte: "Üblicherweise Administratorrechte. Diese ersetzen keine fachliche Prüfung.",
+      aenderung: "list/detail lesen; select ändert nur den Fokus. clean, delete, create und format verändern Speicher und können Daten zerstören.",
+      sicherheit: "Keine echte DiskPart-Sitzung zum Üben öffnen. Vor Eingriffen Auftrag, geprüfte Sicherung und eindeutige Identität verlangen. Hier nur feste Texte ohne Gerätezugriff.",
+      uebung: { frage: "Du möchtest nur Eigenschaften der gewählten Platte sehen. Was passt?", optionen: ["detail disk", "clean", "format fs=ntfs quick"], richtig: 0, erklaerung: "detail disk liest. clean entfernt Partitionsinformationen; format verändert ein Volume. Beides ist keine Diagnose." },
+      quellen: ["diskpart", "clean"] },
+
     /* ================= CMD ================= */
     { id: "cmd-hostname", name: "hostname", shell: "cmd", kategorie: "einstieg", risiko: "lesend",
       stichworte: ["rechnername", "computername", "name des pcs"],

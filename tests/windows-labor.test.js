@@ -5,9 +5,9 @@ const path = require('node:path');
 const d = require('../js/windows-labor-daten.js');
 const api = require('../js/windows-labor.js');
 assert.deepEqual(api.validiere(d), {ok:true,fehler:[]});
-const cmd=['ping','ipconfig','tracert','nslookup','netstat','arp','route print','hostname','whoami','systeminfo','tasklist','taskkill','sfc /scannow','DISM','chkdsk'];
+const cmd=['shutdown','ssh','diskpart','ping','ipconfig','tracert','nslookup','netstat','arp','route print','hostname','whoami','systeminfo','tasklist','taskkill','sfc /scannow','DISM','chkdsk'];
 const ps=['Get-Help','Get-Command','Get-Process','Get-Service','Get-ComputerInfo','Get-NetIPAddress','Test-Connection','Test-NetConnection','Resolve-DnsName','Get-EventLog','Get-WinEvent','Get-Volume','Get-Disk','Get-PhysicalDisk'];
-assert.equal(d.befehle.length,29);
+assert.equal(d.befehle.length,32);
 for(const [shell,names] of [['cmd',cmd],['powershell',ps]]) assert.deepEqual(d.befehle.filter(b=>b.shell===shell).map(b=>b.name).sort(),names.sort());
 for(const b of d.befehle){
   assert(b.ausgabe.length>0);
@@ -19,7 +19,7 @@ for(const b of d.befehle){
   assert(api.bewerte(b,b.uebung.loesungId).text.length>20);
   assert(api.filter(d,b.name,b.shell,'').some(x=>x.id===b.id));
 }
-assert.equal(api.filter(d,'','cmd','').length,15);
+assert.equal(api.filter(d,'','cmd','').length,18);
 assert.equal(api.filter(d,'','powershell','').length,14);
 assert.equal(api.filter(d,'  gibtesnicht-123  ','','').length,0);
 assert(api.filter(d,'DNS','','').length>=2);
@@ -42,4 +42,7 @@ for(const file of ['js/windows-labor.js','js/windows-labor-daten.js']){
 const html=fs.readFileSync(path.join(__dirname,'../module/windows-werkzeugkiste.html'),'utf8');
 for(const id of ['ww-modus-labor','ww-labor-suche','ww-labor-shell','ww-labor-kategorie','ww-labor-auswahl','ww-labor-status']) assert(html.includes('id="'+id+'"'));
 assert(html.indexOf('windows-labor-daten.js')<html.indexOf('windows-labor.js'));
-console.log('windows-labor: 29 Pflichtprofile, Didaktikfelder, Filter, 87 Antwortfälle, Quellen-/Sicherheits-/Fachregression bestanden');
+assert(b('cmd-shutdown').aenderung.includes('impliziert /f'));
+assert(b('cmd-ssh').fehler.some(f=>f.meldung.includes('IDENTIFICATION HAS CHANGED')));
+assert(b('cmd-diskpart').syntax.some(s=>s.aufruf==='clean'&&s.erklaerung.includes('GEFAHR')));
+console.log('windows-labor: 32 Profile, Didaktikfelder, Filter, 96 Antwortfälle, Quellen-/Sicherheits-/Fachregression bestanden');
