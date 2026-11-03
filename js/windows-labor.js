@@ -17,7 +17,7 @@
         if (!Array.isArray(b[f[0]]) || !b[f[0]].length || !b[f[0]].every(function (x) { return x && text(x[f[1]]) && text(x[f[2]]); })) fehler.push(b.id + ": " + f[0]);
       });
       if (!b.praxis || !text(b.praxis.befehl) || !text(b.praxis.situation) || !Array.isArray(b.ausgabe) || !b.ausgabe.some(text)) fehler.push(b.id + ": Praxis/Ausgabe");
-      if (!Array.isArray(b.quellen) || !b.quellen.length || !b.quellen.every(function (q) { return q && text(q.titel) && /^https:\/\/learn\.microsoft\.com\//.test(q.url); })) fehler.push(b.id + ": Quellen");
+      if (!Array.isArray(b.quellen) || !b.quellen.length || !b.quellen.every(function (q) { return q && text(q.titel) && /^https:\/\/(?:learn\.microsoft\.com|man\.openbsd\.org)\//.test(q.url); })) fehler.push(b.id + ": Quellen");
       var u = b.uebung;
       if (!u || !text(u.frage) || !text(u.erklaerung) || !Array.isArray(u.optionen) || u.optionen.length < 2 || !u.optionen.every(function (o) { return o && text(o.id) && text(o.text); }) || !u.optionen.some(function (o) { return o.id === u.loesungId; })) fehler.push(b.id + ": Übung");
     });

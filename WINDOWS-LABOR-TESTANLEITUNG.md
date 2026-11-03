@@ -5,7 +5,7 @@ Feature-Teststand, keine Produktions- oder Fachfreigabe.
 1. [Branch als ZIP herunterladen](https://github.com/DesoWorks/IT-Ausbildung/archive/refs/heads/feature/windows-werkzeugkiste.zip).
 2. Gesamten Ordner entpacken. `module/windows-werkzeugkiste.html` direkt im Browser öffnen; alternativ den vorhandenen lokalen Start verwenden.
 3. „Diagnose- und Administrationslabor“ wählen. Es ist keine Konsole: Alle Ausgaben sind erfundene, simulierte Lernbeispiele. Kein Befehl wird auf deinem Gerät ausgeführt.
-4. Prüfen: insgesamt 29 Befehle, CMD-Filter 15, PowerShell-Filter 14. Zum Beispiel nach DNS oder Get-Disk suchen. Nulltreffer sollen erklärt werden. „Filter zurücksetzen“ stellt alle Befehle wieder her.
+4. Prüfen: insgesamt 32 Befehle, CMD-Filter 18, PowerShell-Filter 14. Zum Beispiel nach DNS oder Get-Disk suchen. Nulltreffer sollen erklärt werden. „Filter zurücksetzen“ stellt alle Befehle wieder her.
 5. Einen Befehl auswählen: Zweck, Syntax, Praxisfall, simulierte Ausgabe, Deutung, Fehler, Rechte, Änderungen, Sicherheit, Miniübung und Quellen müssen vorhanden sein. Lange Ausgaben bei Bedarf innerhalb ihres Rahmens scrollen.
 6. Miniübung leer absenden, falsch beantworten und anschließend richtig: verständliche Rückmeldungen und Erklärung, keine Sperre und keine Speicherung. Der Wechsel des Befehls entfernt altes Feedback.
 7. Tastatur: Tab/Shift+Tab zu Filtern, Auswahl, Antworten und Buttons. Native Auswahl mit Pfeilen bzw. Home/End und Enter; Radios mit Pfeilen; Buttons mit Enter oder Leertaste. Der Fokus muss sichtbar bleiben. Die Ausgabebox per Tab fokussieren und mit Pfeilen scrollen.
