@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAID-Lernlabor · IT-Ausbildung</title>
+<link rel="icon" href="../assets/desoworks/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/styles.css"><link rel="stylesheet" href="../css/raid-labor.css">
+<script defer src="../js/raid-kern.js"></script><script defer src="../js/raid-labor.js"></script>
+</head>
+<body data-page="raid-labor" data-base="../">
+<a class="skip-link" href="#hauptinhalt">Direkt zum Inhalt springen</a>
+<header class="kopf"><div class="kopf-inhalt"><h1>RAID-Lernlabor</h1><p>Kapazität verstehen, Daten verteilen, Ausfälle untersuchen</p></div></header>
+<main id="hauptinhalt" tabindex="-1">
+<p><a class="zurueck-link" href="../index.html">Zur Themenübersicht</a></p>
+<section class="abschnitt"><h2>Dein Speicherexperiment</h2>
+<p>Dieses Labor simuliert klassische RAID-Arrays. Es greift nicht auf Datenträger zu. <strong>RAID ersetzt kein Backup.</strong> Schutz gegen Plattenausfall schützt nicht gegen Löschen, Schadsoftware oder den Verlust des ganzen Systems.</p>
+<noscript><p>Für den Konfigurator benötigst du JavaScript. Die Erklärungen bleiben lesbar.</p></noscript>
+<form id="raid-form"><div class="raid-steuerung">
+<label for="raid-level">RAID-Level<select id="raid-level"><option>0</option><option>1</option><option selected>5</option><option>6</option><option>10</option><option>50</option><option>60</option></select></label>
+<label for="raid-gruppen">Gruppen bei RAID 10 / 50 / 60<select id="raid-gruppen"><option value="2">2 Gruppen</option><option value="3">3 Gruppen</option><option value="4">4 Gruppen</option></select></label>
+</div><p id="raid-gruppen-hilfe">Bei einfachen Leveln bilden alle Laufwerke eine Gruppe. Bei verschachtelten Leveln verteilt das Labor die Laufwerke der Reihenfolge nach auf die gewählte Gruppenzahl. Ungültige Gruppengrößen werden erklärt.</p>
+<div id="raid-laufwerke" aria-label="Laufwerkskonfiguration"></div>
+<div class="knopf-reihe"><button class="knopf" type="button" id="raid-add">Laufwerk hinzufügen</button><button class="knopf" type="button" id="raid-preset">Passendes Beispiel laden</button><button class="knopf" type="button" id="raid-reset">Alle Ausfälle zurücknehmen</button></div>
+</form></section>
+<section class="abschnitt" aria-labelledby="raid-ergebnis-titel"><h2 id="raid-ergebnis-titel">Kapazität und Zustand</h2><div id="raid-ergebnis" role="status" aria-live="polite" aria-atomic="true"></div></section>
+<section class="abschnitt" aria-labelledby="raid-grafik-titel"><h2 id="raid-grafik-titel">So verteilen sich die Blöcke</h2>
+<p>D = Datenblock, M = vollständiger Spiegel desselben Datenblocks, P und Q = unterschiedliche Paritätsinformationen. Die Beschriftung ist auch ohne Farbe verständlich. Das Bild zeigt wenige schematische Stripes, nicht die gesamte Plattenbelegung.</p>
+<div class="knopf-reihe"><button class="knopf" id="raid-schritt" type="button">Nächsten Schreibschritt zeigen</button><button class="knopf" id="raid-schreiben-reset" type="button">Schreibdurchlauf zurücksetzen</button></div>
+<p id="raid-schritt-text" role="status" aria-live="polite"></p><div id="raid-grafik"></div>
+<details><summary>Blockverteilung als lesbare Liste</summary><div id="raid-blockliste"></div></details>
+</section>
+<section class="abschnitt"><h2>Striping, Spiegelung und Parität</h2>
+<dl><dt>Striping (RAID 0)</dt><dd>Datenblöcke wechseln zwischen Laufwerken. Das verteilt Arbeit, liefert aber keine Redundanz: Ein Plattenausfall macht das Array im Modell unvollständig.</dd>
+<dt>Spiegelung (RAID 1 / 10)</dt><dd>Mehrere Laufwerke halten denselben Inhalt. RAID 1 bedeutet hier ausdrücklich einen N-Wege-Spiegel über alle Platten. RAID 10 streift Daten über Zweier-Spiegelgruppen. Zwei ausgefallene Platten können über verschiedene Gruppen verteilt überlebbar sein; innerhalb derselben Zweiergruppe gehen die Daten dieser Gruppe verloren.</dd>
+<dt>Parität (RAID 5 / 6)</dt><dd>Ein P-Prüfblock wird aus den Daten eines Stripes errechnet, vereinfacht mit XOR. Beispiel mit einem Bit: 1 XOR 0 = 1; fehlt das erste Datenbit, ergibt 1 XOR 0 wieder 1. Das ist keine vollständige Kopie. RAID 6 ergänzt einen unabhängigen Q-Prüfwert mit anderer Algebra. Zwei identische P-Kopien würden nicht genügen, um zwei unbekannte Datenblöcke zu rekonstruieren. Das Labor veranschaulicht die Verteilung, berechnet aber keine echten P/Q-Nutzdaten.</dd>
+<dt>RAID 50 / 60</dt><dd>Ein Stripe über mehrere RAID-5- bzw. RAID-6-Gruppen. Jede Gruppe muss rekonstruierbar bleiben. Die Verteilung der Ausfälle ist entscheidend, nicht allein die Gesamtzahl.</dd></dl>
+<h3>Rebuild ist kein Zauberknopf</h3><p>Nach einem Ausfall wird ein geeignetes Ersatzlaufwerk eingebaut und aus den verbleibenden Daten rekonstruiert. Währenddessen sind Last und Risiko erhöht. Weitere Ausfälle oder nicht lesbare Sektoren können den Wiederaufbau verhindern. Die Schalter hier nehmen nur ein simuliertes Ausfallszenario zurück: Sie stellen keine Daten wieder her und simulieren keinen zeitlichen Rebuild.</p>
+<details><summary>Modellgrenzen und unterschiedliche Plattengrößen</summary><p id="raid-modell"></p><p>Gemischte Größen sind technisch nicht grundsätzlich ausgeschlossen. Im Lehrmodell bleibt jeder Anteil oberhalb der kleinsten Platte ungenutzt. Reale Controller können Konfigurationen begrenzen oder anders ausrichten; flexible Pools und andere Speichertechnologien benötigen eigene Regeln. Logische Nutzkapazität ist nicht gleich aktuell verfügbarer, fehlerfreier Speicher.</p></details>
+</section>
+<section class="abschnitt"><h2>Ausfälle gezielt untersuchen</h2><p>Wähle RAID 10 mit vier Platten. Lasse zuerst eine Platte je Gruppe ausfallen, dann beide Platten einer Gruppe. Vergleiche die Zustände. Wiederhole mit RAID 50: zwei Ausfälle verteilt oder in derselben Gruppe. Bei RAID 60 vergleiche zwei und drei Ausfälle innerhalb einer Gruppe.</p>
+<form id="raid-quiz"><fieldset><legend>RAID 10: Zwei Laufwerke fallen aus. Welche Aussage stimmt?</legend>
+<label><input type="radio" name="raid-antwort" value="immer"> Das Array ist unabhängig von der Gruppe immer lesbar.</label>
+<label><input type="radio" name="raid-antwort" value="gruppen"> Entscheidend ist, ob beide Laufwerke derselben Spiegelgruppe ausfallen.</label>
+<label><input type="radio" name="raid-antwort" value="backup"> Ein funktionierendes RAID ersetzt ein Backup.</label>
+</fieldset><button class="knopf" type="submit">Antwort prüfen</button><p id="raid-quiz-feedback" role="status" aria-live="polite"></p></form>
+</section>
+<section class="abschnitt"><h2>Quellen und Nachlesen</h2><ul>
+<li><a href="https://www.kernel.org/doc/html/latest/admin-guide/md.html">Linux-Kernel: Multiple Devices / Software RAID</a></li>
+<li><a href="https://man7.org/linux/man-pages/man4/md.4.html">Linux md(4): RAID-Level, Gruppen und Größen</a></li>
+<li><a href="https://www.synology.com/en-global/support/RAID_calculator">Synology: RAID-Rechner und Implementierungsgrenzen</a></li>
+</ul><p>Lehrmodell, keine Controllerkonfiguration oder Produktionsfreigabe. Ergebnisse sind keine Garantie gegen Datenverlust.</p></section>
+</main>
+</body></html>

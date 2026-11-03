@@ -7,6 +7,7 @@
   "use strict";
 
   global.MODULE_TOOLS = [
+    { id: "raid-labor", typ: "werkzeug", titel: "RAID-Lernlabor", beschreibung: "Kapazität, Blockverteilung und gruppenabhängige Ausfälle sicher simulieren.", page: "raid-labor", status: "verfuegbar", datei: "module/raid-labor.html" },
     { id: "windows-werkzeugkiste", typ: "werkzeug", titel: "Windows-Werkzeugkiste", beschreibung: "Windows-Tastenkombinationen und Systemwerkzeuge lernen, üben und testen.", page: "windows-werkzeugkiste", status: "verfuegbar", datei: "module/windows-werkzeugkiste.html" },
     { id: "lf3-zahlensysteme", typ: "werkzeug", titel: "Zahlensystemrechner", beschreibung: "Binär, Dezimal und Hexadezimal umrechnen, mit Stellenwerten und Rechenweg.", page: "zahlensysteme", status: "verfuegbar", datei: "module/zahlensysteme.html" },
     { id: "lf3-einheiten", typ: "werkzeug", titel: "Bit-/Byte- und Einheitenrechner", beschreibung: "Bit, Byte, GB und GiB umrechnen, mit nachvollziehbarem Rechenweg.", page: "einheiten", status: "verfuegbar", datei: "module/einheiten.html" },

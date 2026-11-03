@@ -364,6 +364,7 @@
     /* --- Modi --- */
     var modi = {
       karten: { knopf: doc.getElementById("ww-modus-karten"), bereich: doc.getElementById("ww-bereich-karten"), text: "Lernkarten sind aktiv." },
+      labor: { knopf: doc.getElementById("ww-modus-labor"), bereich: doc.getElementById("ww-bereich-labor"), text: "Diagnose- und Administrationslabor: nur simulierte Beispiele. Filter und Auswahl bleiben beim Moduswechsel erhalten." },
       uebung: { knopf: doc.getElementById("ww-modus-uebung"), bereich: doc.getElementById("ww-bereich-uebung"), text: "Übung ist aktiv. Sie startet bei Aufgabe 1." },
       test: { knopf: doc.getElementById("ww-modus-test"), bereich: doc.getElementById("ww-bereich-test"), text: "Wissenstest ist aktiv. Er startet bei Frage 1." }
     };
@@ -375,7 +376,7 @@
         if (modi[m].knopf) { modi[m].knopf.setAttribute("aria-pressed", aktiv ? "true" : "false"); }
         if (modi[m].bereich) { modi[m].bereich.hidden = !aktiv; }
       });
-      if (name !== "karten") { neustart(name); renderLauf(name, false); }
+      if (name === "uebung" || name === "test") { neustart(name); renderLauf(name, false); }
       if (status) { status.textContent = modi[name].text; }
     }
 

@@ -77,7 +77,8 @@ assert(subnetting.status === "verfuegbar" && subnetting.datei === "module/subnet
 assert(fs.existsSync(path.join(wurzel, subnetting.datei)), "Subnetting-Moduldatei existiert");
 
 const alle = daten.flatMap(j => j.module);
-assert.equal(global.MODULE_TOOLS.length, 6, "sechs Werkzeuge einschließlich BWL und PC-Explorer");
+assert.equal(global.MODULE_TOOLS.length, 7, "sieben Werkzeuge einschließlich BWL, PC-Explorer und RAID");
+assert.equal(global.MODULE_TOOLS.filter(t => t.id === 'raid-labor').length, 1, 'RAID genau einmal im Katalog');
 const windowsTools = global.MODULE_TOOLS.filter(u => u.id === "windows-werkzeugkiste");
 assert.strictEqual(windowsTools.length, 1, "Windows-Werkzeugkiste genau einmal im Werkzeugkatalog");
 assert.deepStrictEqual(windowsTools[0], {
