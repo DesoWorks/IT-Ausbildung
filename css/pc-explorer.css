@@ -208,3 +208,33 @@ main a:not(.knopf) { color: var(--farbe-akzent-dunkel); text-decoration: underli
 .pe-sockel-rahmen { fill: none; stroke: #1c2633; stroke-width: 3; }
 .pe-zeichnung .pe-teil.pe-aktiv .pe-haupt,
 .pe-zeichnung .pe-teil:focus-visible .pe-haupt { stroke: #111; stroke-width: 4; }
+
+/* Grafikphase 3: Mainboard in ATX-Maß, Rückblende mit erkennbaren Buchsen. Farben der Buchsen sind Herstellerbeispiele, keine Norm. */
+.pe-platine { fill: #d4ead6; stroke: #17512b; stroke-width: 3; }
+.pe-blende { fill: #9aa6b5; stroke: #1c2633; stroke-width: 2; }
+.pe-loch { fill: #fff; stroke: #17512b; stroke-width: 2; }
+.pe-kuehlkoerper { fill: #94a3b8; stroke: #334155; stroke-width: 2; }
+.pe-rippe { fill: #64748b; stroke: none; }
+.pe-drossel { fill: #334155; stroke: #0f172a; stroke-width: 1; }
+.pe-batterie { fill: #cbd5e1; stroke: #334155; stroke-width: 2; }
+.pe-batterie-innen { fill: #94a3b8; stroke: #334155; stroke-width: 1; }
+.pe-chip-deko { fill: #1e293b; stroke: #0f172a; }
+.pe-masslinie { stroke: #334155; stroke-width: 1.5; }
+.pe-massspitze { fill: #334155; }
+.pe-masstext { fill: #1e293b; font-size: 12px; font-family: sans-serif; font-weight: 600; }
+.pe-badge { fill: #fff; stroke: #1e3a5f; stroke-width: 2; }
+.pe-badge-zahl { fill: #102033; font-size: 11px; font-weight: 700; font-family: sans-serif; pointer-events: none; }
+.pe-label-klein { font-size: 14px; }
+.pe-etikett.pe-aktiv .pe-badge { fill: #111; stroke: #111; }
+.pe-etikett.pe-aktiv .pe-badge-zahl { fill: #fff; }
+.pe-etikett.pe-legende { cursor: pointer; }
+.pe-zeichnung .pe-teil .pe-hohlraum { fill: #0f172a; stroke: none; }
+.pe-zeichnung .pe-teil .pe-kontakt { fill: #d4a017; stroke: none; }
+.pe-zeichnung .pe-teil line.pe-modul { stroke: #17512b; stroke-width: 1; stroke-dasharray: 3 3; }
+.pe-zeichnung .pe-teil .pe-c-hellblau { fill: #7cc4ec; stroke: #0f172a; stroke-width: 1.5; }
+.pe-zeichnung .pe-teil .pe-c-lime { fill: #a3e635; stroke: #0f172a; stroke-width: 1.5; }
+.pe-zeichnung .pe-teil .pe-c-rosa { fill: #f9a8d4; stroke: #0f172a; stroke-width: 1.5; }
+.pe-zeichnung .pe-teil .pe-c-gruen { fill: #4ade80; stroke: #0f172a; stroke-width: 1.5; }
+.pe-zeichnung .pe-teil .pe-c-lila { fill: #a78bfa; stroke: #0f172a; stroke-width: 1.5; }
+.pe-zeichnung .pe-teil .pe-zunge { fill: #e2e8f0; }
+.pe-zeichnung .pe-teil text.pe-io-text:not(.pe-io-aussen) { stroke-width: 0; }

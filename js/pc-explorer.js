@@ -22,6 +22,7 @@
     "hdmi-org": { titel: "HDMI Licensing Administrator: Startseite", url: "https://www.hdmi.org/", abruf: "2026-11-02" },
     "displayport": { titel: "VESA: DisplayPort", url: "https://www.displayport.org/", abruf: "2026-11-02" },
     "legrand-rj45": { titel: "Legrand: Tout savoir sur la prise RJ45 (französisch)", url: "https://www.legrand.fr/guides/tout-savoir-sur-la-prise-rj45", abruf: "2026-11-02" },
+    "asus-d840": { titel: "ASUS D840MB Benutzerhandbuch (Beispiel für Anschlussfarben)", url: "https://dlcdnets.asus.com/pub/ASUS/Desktop/D840MB/XX09_D840MA_D840MB_D840SA_Win10_E14427_V1.pdf", abruf: "2026-11-03" },
     "ps2-wiki": { titel: "Wikipedia: PS/2 port", url: "https://en.wikipedia.org/wiki/PS/2_port", abruf: "2026-11-02", vorlaeufig: true },
     "atx-wiki": { titel: "Wikipedia: ATX (Einleitung)", url: "https://en.wikipedia.org/wiki/ATX", abruf: "2026-11-02", vorlaeufig: true },
     "pcie-wiki": { titel: "Wikipedia: PCI Express (Einleitung)", url: "https://en.wikipedia.org/wiki/Peripheral_Component_Interconnect_Express", abruf: "2026-11-02", vorlaeufig: true },
@@ -276,14 +277,14 @@
   var ATX_FAKT = "Wikipedia (vorläufig): ATX ist ein Mainboard-Standard, der unter anderem Maße, Befestigungspunkte, die Anschlussblende, die Lage der Erweiterungssteckplätze und Stromversorgungsanschlüsse festlegt. Der konkrete Stecker wird in diesem Artikel nicht belegt.";
 
   var RUECK_TEILE = [
-    { id: "usb-a", name: "USB-A-Anschluss", kurz: "USB-A", glossar: "USB", gruppe: "mainboard-io", layout: [152, 80, 110, 50], lab: [207, 148, "middle"],
+    { id: "usb-a", name: "USB-A-Anschluss", kurz: "USB-A", glossar: "USB", gruppe: "mainboard-io", layout: [152, 80, 96, 46],
       funktion: "Hier wird ein USB-Gerät angeschlossen.",
       ort: "Beispiel: In der Anschlussblende des Mainboards auf der Rückseite. Anzahl und Anordnung sind je nach Board verschieden.",
       zusammen: "Das Mainboard stellt den Anschluss bereit. Welcher USB-Standard dahintersteckt, sagt die Steckerform allein nicht.",
-      bauformen: "USB-A bezeichnet die Steckerform. Die Form des Steckers ist hier nicht durch eine USB-IF-Quelle belegt. USB 2.0, USB 3.2 und USB4 sind Standardnamen und keine Steckerformen.",
+      bauformen: "USB-A bezeichnet die Steckerform. Die Form des Steckers ist hier nicht durch eine USB-IF-Quelle belegt. USB 2.0, USB 3.2 und USB4 sind Standardnamen und keine Steckerformen. Auch die Farbe der Zunge im Stecker sagt nicht verlässlich, welchen Standard eine Buchse bietet.",
       praxis: "Ausbildungsbeispiel: Eine Kundin fragt, wo sie ein USB-Gerät anstecken kann. Du zeigst ihr die Buchsen und liest in den Herstellerangaben nach, welchen Standard sie bieten.",
       merk: "Steckerform und USB-Standard sind zwei verschiedene Fragen.", fakt: "", q: ["usb-if"] },
-    { id: "usb-c", name: "USB-C-Anschluss (USB Type-C)", kurz: "USB-C", glossar: "USB", gruppe: "mainboard-io", layout: [282, 80, 56, 50], lab: [310, 148, "middle"],
+    { id: "usb-c", name: "USB-C-Anschluss (USB Type-C)", kurz: "USB-C", glossar: "USB", gruppe: "mainboard-io", layout: [260, 80, 48, 46],
       funktion: "Ein USB-Anschluss mit der Bezeichnung USB Type-C.",
       ort: "Beispiel: In der Anschlussblende des Mainboards. Nicht jedes Board hat einen solchen Anschluss.",
       zusammen: "Das Mainboard stellt den Anschluss bereit. Was darüber läuft, hängt vom Board und vom angeschlossenen Gerät ab.",
@@ -291,7 +292,7 @@
       praxis: "Ausbildungsbeispiel: Ein Monitor soll an einen USB-C-Anschluss. Du prüfst in den Herstellerangaben, ob dieser Anschluss Bildausgabe unterstützt, bevor du ein Kabel kaufst.",
       merk: "Gleicher Stecker heißt nicht gleiche Fähigkeiten.",
       fakt: "Die USB-IF-Startseite führt USB Type-C als eigenen Themenbereich neben USB 2.0, USB 3.2 und USB4. Eine Beschreibung der Steckerform steht dort nicht. Laut VESA ist USB Type-C eine der Steckeroptionen für DisplayPort; daraus folgt nicht, dass jeder USB-C-Port DisplayPort kann.", q: ["usb-if", "displayport"] },
-    { id: "usb2", name: "USB 2.0 (Standardname)", kurz: "USB 2.0", glossar: "USB", gruppe: "mainboard-io", layout: [72, 204, 80, 30],
+    { id: "usb2", name: "USB 2.0 (Standardname)", kurz: "USB 2.0", glossar: "USB", gruppe: "mainboard-io", layout: [64, 252, 100, 34],
       funktion: "USB 2.0 ist der Name eines USB-Standards.",
       ort: "Die Plakette in der Zeichnung steht für den Standardnamen, nicht für eine bestimmte Buchse. Welche Buchse welchen Standard bietet, steht in den Angaben zum Board.",
       zusammen: "Ein Anschluss wie USB-A oder USB-C kann zu unterschiedlichen Standards gehören. Das Board legt fest, zu welchem.",
@@ -299,7 +300,7 @@
       praxis: "Ausbildungsbeispiel: Im Datenblatt eines Boards steht ein USB-Standard neben der Anzahl der Anschlüsse. Du ordnest ihn den Buchsen am Gerät zu.",
       merk: "Nicht jeder USB-Port kann jeden USB-Standard.",
       fakt: "Die USB-IF-Startseite führt USB 2.0 als eigenen Technologiebereich neben USB 3.2 und USB4.", q: ["usb-if"] },
-    { id: "usb3", name: "USB 3.x (hier USB 3.2, Standardname)", kurz: "USB 3.2", glossar: "USB", gruppe: "mainboard-io", layout: [172, 204, 80, 30],
+    { id: "usb3", name: "USB 3.x (hier USB 3.2, Standardname)", kurz: "USB 3.2", glossar: "USB", gruppe: "mainboard-io", layout: [180, 252, 100, 34],
       funktion: "USB 3.x steht für eine Familie von USB-Standards. Die USB-IF-Startseite nennt USB 3.2.",
       ort: "Die Plakette in der Zeichnung steht für den Standardnamen, nicht für eine bestimmte Buchse. Welche Buchse welchen Standard bietet, steht in den Angaben zum Board.",
       zusammen: "Ein Anschluss wie USB-A oder USB-C kann zu unterschiedlichen Standards gehören. Das Board legt fest, zu welchem.",
@@ -307,7 +308,7 @@
       praxis: "Ausbildungsbeispiel: Zwei Buchsen sehen gleich aus. Du liest im Handbuch nach, ob beide denselben Standard bieten.",
       merk: "Ähnliche Buchsen können zu verschiedenen Standards gehören.",
       fakt: "Die USB-IF-Startseite führt USB 3.2 als eigenen Technologiebereich neben USB 2.0 und USB4. Andere Versionen der USB-3-Familie werden hier nicht behandelt.", q: ["usb-if"] },
-    { id: "usb4", name: "USB4 (Standardname)", kurz: "USB4", glossar: "USB", gruppe: "mainboard-io", layout: [272, 204, 80, 30],
+    { id: "usb4", name: "USB4 (Standardname)", kurz: "USB4", glossar: "USB", gruppe: "mainboard-io", layout: [296, 252, 100, 34],
       funktion: "USB4 ist der Name eines USB-Standards.",
       ort: "Die Plakette in der Zeichnung steht für den Standardnamen, nicht für eine bestimmte Buchse. Nicht jedes Board bietet USB4.",
       zusammen: "Ob und an welcher Buchse ein Board USB4 bietet, steht in den Angaben zum Board.",
@@ -315,7 +316,7 @@
       praxis: "Ausbildungsbeispiel: Eine Kundin will ein Gerät mit USB4 betreiben. Du prüfst in den Boardangaben, ob und wo ein solcher Anschluss vorhanden ist.",
       merk: "Der Name auf dem Datenblatt zählt, nicht die Annahme, dass jeder USB-Port das kann.",
       fakt: "Die USB-IF-Startseite führt USB4 als eigenen Technologiebereich neben USB 3.2 und USB 2.0.", q: ["usb-if"] },
-    { id: "rj45", name: "RJ45-Netzwerkanschluss (Ethernet)", kurz: "RJ45", glossar: "Netzwerk", gruppe: "mainboard-io", layout: [358, 80, 100, 60], lab: [408, 158, "middle"],
+    { id: "rj45", name: "RJ45-Netzwerkanschluss (Ethernet)", kurz: "RJ45", glossar: "Netzwerk", gruppe: "mainboard-io", layout: [316, 80, 52, 46],
       funktion: "Hier wird ein Netzwerkkabel angeschlossen, um den Rechner mit einem Netzwerk zu verbinden.",
       ort: "Beispiel: In der Anschlussblende des Mainboards. Anzahl und Lage sind je nach Board verschieden.",
       zusammen: "Das Kabel führt zu einem Router, Switch oder einer Netzwerkdose. Die Netzwerkkarte im Mainboard wertet die Signale aus.",
@@ -323,14 +324,14 @@
       praxis: "Ausbildungsbeispiel: Ein Arbeitsplatz hat keine Netzwerkverbindung. Du prüfst, ob das Kabel in der richtigen Buchse steckt und ob an der Buchse eine Anzeige leuchtet.",
       merk: "RJ45 ist die Buchse. Wie schnell sie arbeitet, sagt die Form allein nicht.",
       fakt: "Legrand (französischsprachig) nennt die RJ45-Buchse auch „prise Ethernet“ und beschreibt sie als Anschlussstandard unter anderem für den Zugang zum Internet.", q: ["legrand-rj45"] },
-    { id: "audio", name: "Audioanschlüsse (Klinkenbuchsen)", kurz: "Audio", glossar: "Mainboard", gruppe: "mainboard-io", layout: [72, 262, 100, 50], lab: [122, 328, "middle"],
+    { id: "audio", name: "Audioanschlüsse (Klinkenbuchsen)", kurz: "Audio", glossar: "Mainboard", gruppe: "mainboard-io", layout: [380, 80, 116, 46],
       funktion: "Hier werden Lautsprecher, Kopfhörer oder ein Mikrofon angeschlossen.",
       ort: "Beispiel: In der Anschlussblende des Mainboards. Anzahl, Beschriftung und Farben hängen vom Board ab.",
       zusammen: "Ein Audiochip auf dem Mainboard liefert und verarbeitet die Signale. Welche Buchse welche Aufgabe hat, steht im Handbuch.",
-      bauformen: "Die Zeichnung zeigt ein Beispiel mit mehreren Buchsen. Bezeichnung und Belegung hängen vom Board ab und sind hier nicht belegt.",
+      bauformen: "Die Zeichnung zeigt ein Beispiel mit mehreren Buchsen. Bezeichnung und Belegung hängen vom Board ab und sind hier nicht belegt. Die Farben Hellblau, Lime und Rosa stammen aus einem ASUS-Handbuch (Line In, Line Out bzw. Kopfhörer, Mikrofon). Das ist ein Herstellerbeispiel, keine allgemeine Norm, und bei Mehrkanalbetrieb ändert sich die Belegung.",
       praxis: "Ausbildungsbeispiel: Ein Headset bleibt stumm. Du prüfst, ob es in der Buchse steckt, die laut Handbuch dafür vorgesehen ist.",
-      merk: "Gleich aussehende Buchsen können unterschiedliche Aufgaben haben.", fakt: "", q: [] },
-    { id: "hdmi-mb", name: "HDMI-Anschluss am Mainboard", kurz: "HDMI", glossar: "HDMI", gruppe: "mainboard-io", layout: [192, 262, 90, 40], lab: [237, 318, "middle"],
+      merk: "Gleich aussehende Buchsen können unterschiedliche Aufgaben haben.", fakt: "", q: ["asus-d840"] },
+    { id: "hdmi-mb", name: "HDMI-Anschluss am Mainboard", kurz: "HDMI", glossar: "HDMI", gruppe: "mainboard-io", layout: [64, 170, 100, 34],
       funktion: "HDMI ist eine Bildschnittstelle im HDMI-Ökosystem. Hier wird ein Monitor angeschlossen.",
       ort: "Beispiel: In der Anschlussblende des Mainboards. Ob ein Board Bildausgänge hat, steht in den Angaben zum Board.",
       zusammen: "Die Ausgänge der Grafikkarte sind eine eigene Gruppe auf der rechten Seite der Zeichnung. Prüfe in den Herstellerangaben, welcher Ausgang für dein Gerät vorgesehen ist.",
@@ -338,7 +339,7 @@
       praxis: "Ausbildungsbeispiel: Der Monitor bleibt dunkel. Du prüfst, an welchen Ausgang das Kabel angeschlossen ist und ob dieser Ausgang laut Herstellerangaben aktiv ist.",
       merk: "Ausgang am Mainboard und Ausgang an der Grafikkarte sind zwei verschiedene Anschlüsse.",
       fakt: HDMI_FAKT, q: ["hdmi-org"] },
-    { id: "dp-mb", name: "DisplayPort am Mainboard", kurz: "DisplayPort", glossar: "DisplayPort", gruppe: "mainboard-io", layout: [302, 262, 110, 40], lab: [347, 318, "middle"],
+    { id: "dp-mb", name: "DisplayPort am Mainboard", kurz: "DisplayPort", glossar: "DisplayPort", gruppe: "mainboard-io", layout: [180, 170, 100, 34],
       funktion: "DisplayPort ist eine Bildschnittstelle. Hier wird ein Monitor angeschlossen.",
       ort: "Beispiel: In der Anschlussblende des Mainboards. Ob ein Board einen solchen Ausgang hat, steht in den Angaben zum Board.",
       zusammen: "Die Ausgänge der Grafikkarte sind eine eigene Gruppe auf der rechten Seite der Zeichnung.",
@@ -346,22 +347,22 @@
       praxis: "Ausbildungsbeispiel: Ein Monitorkabel hat zwei verschiedene Enden. Du prüfst, welche Steckerform Gerät und Monitor tatsächlich haben.",
       merk: "DisplayPort ist die Schnittstelle. Der Stecker kann unterschiedlich aussehen.",
       fakt: DP_FAKT, q: ["displayport"] },
-    { id: "ps2", name: "PS/2-Anschluss (älteres Beispiel)", kurz: "PS/2", glossar: "Mainboard", gruppe: "mainboard-io", layout: [72, 80, 60, 50], lab: [102, 148, "middle"],
+    { id: "ps2", name: "PS/2-Anschluss (älteres Beispiel)", kurz: "PS/2", glossar: "Mainboard", gruppe: "mainboard-io", layout: [64, 80, 76, 46],
       funktion: "Älterer Anschluss für Tastatur und Maus.",
       ort: "Beispiel: In der Anschlussblende mancher Mainboards. Ob ein Board ihn hat, hängt vom Board ab.",
       zusammen: "Wikipedia nennt USB als Nachfolger. Neuere Peripherie nutzt in der Regel USB.",
-      bauformen: "PS/2 ist ein Mini-DIN-Stecker. Er ist ein älterer Anschluss und keine Standardausstattung aktueller PCs.",
+      bauformen: "PS/2 ist ein Mini-DIN-Stecker. Er ist ein älterer Anschluss und keine Standardausstattung aktueller PCs. Die Zeichnung zeigt Violett (Tastatur) und Grün (Maus). Das ist eine verbreitete Herstellerkonvention: Ein ASUS-Handbuch nennt diese Farben, eine allgemeine Norm folgt daraus nicht.",
       praxis: "Ausbildungsbeispiel: Ein sehr altes Gerät hat noch einen PS/2-Anschluss. Du erkennst ihn als ältere Technik und prüfst, ob das Board ihn überhaupt bietet.",
       merk: "PS/2 ist älter als USB und kein Standard von heute.",
-      fakt: "Wikipedia (vorläufig): Der PS/2-Port ist ein Mini-DIN-Stecker für Tastaturen und Mäuse an PC-kompatiblen Systemen. Der Name stammt von der IBM-Reihe Personal System/2. Die Seite nennt USB als Nachfolger.", q: ["ps2-wiki"] },
-    { id: "wlan", name: "WLAN-Antennenanschluss (Beispiel)", kurz: "WLAN", glossar: "WLAN", gruppe: "mainboard-io", layout: [432, 262, 60, 60], lab: [440, 338, "middle"],
+      fakt: "Wikipedia (vorläufig): Der PS/2-Port ist ein Mini-DIN-Stecker für Tastaturen und Mäuse an PC-kompatiblen Systemen. Der Name stammt von der IBM-Reihe Personal System/2. Die Seite nennt USB als Nachfolger.", q: ["ps2-wiki", "asus-d840"] },
+    { id: "wlan", name: "WLAN-Antennenanschluss (Beispiel)", kurz: "WLAN", glossar: "WLAN", gruppe: "mainboard-io", layout: [372, 170, 90, 34],
       funktion: "Hier werden Antennen für ein WLAN-Modul des Mainboards angeschlossen.",
       ort: "Beispiel: Nur bei Mainboards mit WLAN. Dieser Anschluss ist keine Standardausstattung.",
       zusammen: "Das WLAN-Modul auf dem Mainboard empfängt und sendet über die angeschlossenen Antennen. Wie viele Antennen ein Board nutzt, hängt vom Board ab.",
       bauformen: "Die Zeichnung zeigt ein Beispiel ohne belegte Antennenzahl. Form und Anzahl der Anschlüsse sind je nach Board verschieden.",
       praxis: "Ausbildungsbeispiel: Das WLAN-Signal ist schwach. Du prüfst, ob die Antennen am Board angeschlossen sind.",
       merk: "Antennenanschlüsse gibt es nur bei Boards mit WLAN.", fakt: "", q: [] },
-    { id: "hdmi-gpu", name: "HDMI-Ausgang der Grafikkarte", kurz: "HDMI (Karte)", glossar: "HDMI", gruppe: "erweiterungskarte", layout: [568, 110, 110, 36], lab: [623, 168, "middle"],
+    { id: "hdmi-gpu", name: "HDMI-Ausgang der Grafikkarte", kurz: "HDMI (Karte)", glossar: "HDMI", gruppe: "erweiterungskarte", layout: [548, 84, 100, 34],
       funktion: "HDMI ist eine Bildschnittstelle im HDMI-Ökosystem. Dieser Ausgang gehört zur Grafikkarte.",
       ort: "Beispiel: An der Slotblende einer dedizierten Grafikkarte, die im PCIe-Steckplatz des Mainboards steckt. Er gehört zur Erweiterungskarte, nicht zum Mainboard-I/O.",
       zusammen: "Die Grafikkarte berechnet das Bild und gibt es hier aus. Anzahl und Art der Ausgänge hängen von der Karte ab.",
@@ -369,7 +370,7 @@
       praxis: "Ausbildungsbeispiel: Ein Arbeitsplatz hat eine eigene Grafikkarte. Du steckst das Monitorkabel an einen Ausgang der Karte und nicht an die Blende des Mainboards, soweit die Herstellerangaben nichts anderes sagen.",
       merk: "Dieser Ausgang gehört zur Karte und nicht zum Mainboard.",
       fakt: HDMI_FAKT, q: ["hdmi-org"] },
-    { id: "dp-gpu", name: "DisplayPort-Ausgang der Grafikkarte", kurz: "DP (Karte)", glossar: "DisplayPort", gruppe: "erweiterungskarte", layout: [568, 200, 110, 36], lab: [623, 258, "middle"],
+    { id: "dp-gpu", name: "DisplayPort-Ausgang der Grafikkarte", kurz: "DP (Karte)", glossar: "DisplayPort", gruppe: "erweiterungskarte", layout: [664, 84, 100, 34],
       funktion: "DisplayPort ist eine Bildschnittstelle. Dieser Ausgang gehört zur Grafikkarte.",
       ort: "Beispiel: An der Slotblende einer dedizierten Grafikkarte. Er gehört zur Erweiterungskarte, nicht zum Mainboard-I/O.",
       zusammen: "Die Grafikkarte berechnet das Bild und gibt es hier aus. Anzahl und Art der Ausgänge hängen von der Karte ab.",
@@ -388,7 +389,7 @@
   ];
 
   var MAINBOARD_TEILE = [
-    { id: "atx24", name: "24-Pin-ATX", kurz: "ATX-Strom", glossar: "Mainboard", gruppe: "mainboard", layout: [690, 90, 40, 200], lab: [698, 182, "end"],
+    { id: "atx24", name: "24-Pin-ATX", kurz: "ATX-Strom", glossar: "Mainboard", gruppe: "mainboard", layout: [338, 150, 20, 78],
       funktion: "Stromanschluss des Mainboards: Hier kommt Strom vom Netzteil an.",
       ort: "Beispiel: Am Rand des Mainboards. Lage und Stecker sind je nach Board verschieden.",
       zusammen: "Das Netzteil liefert den Strom über ein Kabel, das Mainboard verteilt ihn an seine Bauteile.",
@@ -396,7 +397,7 @@
       praxis: "Ausbildungsbeispiel: Beim Zusammenbau steckst du Netzteilkabel nur an, wenn Handbuch und Netzteilangaben dazu passen. Belegung und Spannungen prüfst du in den Herstellerunterlagen.",
       merk: "Stromstecker nicht nach Gefühl, sondern nach Herstellerangaben anschließen.",
       fakt: ATX_FAKT, q: ["atx-wiki"] },
-    { id: "eps", name: "4-/8-Pin-EPS", kurz: "EPS/CPU-Strom", glossar: "Mainboard", gruppe: "mainboard", layout: [60, 50, 130, 28], lab: [128, 82, "middle"],
+    { id: "eps", name: "4-/8-Pin-EPS", kurz: "EPS/CPU-Strom", glossar: "Mainboard", gruppe: "mainboard", layout: [90, 72, 33, 14],
       funktion: "Zusätzliche Stromversorgung für den Bereich des Prozessors (CPU-Strom).",
       ort: "Beispiel: Am Rand des Mainboards in der Nähe des CPU-Sockels. Ob und wie viele solcher Anschlüsse ein Board hat, hängt vom Board ab.",
       zusammen: "Das Netzteil muss einen passenden Stecker haben. Das prüfst du in den Angaben von Board und Netzteil.",
@@ -404,7 +405,7 @@
       praxis: "Ausbildungsbeispiel: Ein Board bleibt nach dem Einschalten dunkel. Du prüfst, ob alle Stromanschlüsse laut Handbuch belegt sind.",
       merk: "CPU-Strom und Hauptstrom sind getrennte Anschlüsse. Welche das Board braucht, steht im Handbuch.",
       fakt: "", q: ["atx-wiki"] },
-    { id: "pcie-lang", name: "PCI-Express-Steckplatz (lang)", kurz: "PCIe lang", glossar: "GPU", gruppe: "mainboard", layout: [200, 400, 420, 28], lab: [358, 342, "start"],
+    { id: "pcie-lang", name: "PCI-Express-Steckplatz (lang)", kurz: "PCIe lang", glossar: "GPU", gruppe: "mainboard", layout: [80, 330, 134, 17],
       funktion: "Steckplatz für Erweiterungskarten, zum Beispiel eine Grafikkarte.",
       ort: "Beispiel: Unterhalb des CPU-Sockels auf dem Mainboard. Anzahl und Lage sind je nach Board verschieden.",
       zusammen: "Die Karte wird in den Steckplatz gesteckt und über PCIe mit dem Mainboard verbunden. Strom kann zusätzlich nötig sein.",
@@ -412,15 +413,15 @@
       praxis: "Ausbildungsbeispiel: Du sollst eine Karte einbauen und vergleichst Steckplatz, Kartenangaben und Platz im Gehäuse, bevor du etwas bestellst.",
       merk: "Steckplatz und Standard sind zwei Begriffe: der eine ist mechanisch, der andere beschreibt die Verbindung.",
       fakt: PCIE_FAKT, q: ["pcie-wiki"] },
-    { id: "pcie-kurz", name: "PCI-Express-Steckplatz (kürzer)", kurz: "PCIe kurz", glossar: "Mainboard", gruppe: "mainboard", layout: [200, 360, 200, 28], lab: [208, 388, "start"],
+    { id: "pcie-kurz", name: "PCI-Express-Steckplatz (kürzer)", kurz: "PCIe kurz", glossar: "Mainboard", gruppe: "mainboard", layout: [80, 296, 38, 17],
       funktion: "Kürzerer Steckplatz für Erweiterungskarten.",
-      ort: "Beispiel: Unter dem langen Steckplatz. Ob ein Board kürzere Steckplätze hat, hängt vom Board ab.",
+      ort: "Beispiel: In dieser Zeichnung oberhalb des langen Steckplatzes (näher am CPU-Sockel). Die Reihenfolge ist je nach Board verschieden. Ob ein Board kürzere Steckplätze hat, hängt vom Board ab.",
       zusammen: "Auch hier wird die Karte gesteckt und über PCIe mit dem Mainboard verbunden.",
       bauformen: "Ein kürzerer Steckplatz ist ein eigener Steckplatz. Ob eine bestimmte Karte darin funktioniert, lässt sich nicht pauschal sagen; die Angaben von Board und Karte entscheiden.",
       praxis: "Ausbildungsbeispiel: Eine Netzwerkkarte soll eingebaut werden. Du suchst im Handbuch, welche Steckplätze das Board dafür anbietet.",
       merk: "Länge des Steckplatzes und Eignung der Karte sind zwei verschiedene Fragen.",
       fakt: PCIE_FAKT, q: ["pcie-wiki"] },
-    { id: "m2", name: "M.2-Steckplatz", kurz: "M.2", glossar: "SSD", gruppe: "mainboard", layout: [60, 100, 130, 28], lab: [180, 276, "start"],
+    { id: "m2", name: "M.2-Steckplatz", kurz: "M.2", glossar: "SSD", gruppe: "mainboard", layout: [150, 200, 90, 24],
       funktion: "Steckplatz für kompakte Erweiterungsmodule, zum Beispiel eine M.2-SSD.",
       ort: "Beispiel: Direkt auf dem Mainboard, flach liegend. Anzahl und Lage hängen vom Board ab.",
       zusammen: "Das Modul wird eingesteckt und befestigt. Welche Schnittstelle dahinter liegt, hängt von Board und Modul ab.",
@@ -428,7 +429,7 @@
       praxis: "Ausbildungsbeispiel: Vor dem Kauf einer M.2-SSD prüfst du im Handbuch, welche Schnittstellen der Steckplatz unterstützt.",
       merk: "M.2 sagt, wie das Modul aussieht und steckt, nicht automatisch, wie es Daten überträgt.",
       fakt: "NVM Express nennt M.2 als eine SSD-Bauform und beschreibt NVMe als Spezifikation, die über Transporte wie PCI Express laufen kann. Wikipedia (vorläufig): Die unterstützten Schnittstellen variieren je nach Gerät und Host-Umsetzung.", q: ["nvme", "m2"] },
-    { id: "sata", name: "SATA-Anschluss", kurz: "SATA", glossar: "SATA", gruppe: "mainboard", layout: [60, 150, 130, 28], lab: [528, 334, "middle"],
+    { id: "sata", name: "SATA-Anschluss", kurz: "SATA", glossar: "SATA", gruppe: "mainboard", layout: [300, 310, 48, 21],
       funktion: "Datenanschluss für Laufwerke wie Festplatten oder SSDs.",
       ort: "Beispiel: Am Rand des Mainboards. Die Anzahl hängt vom Board ab.",
       zusammen: "Das Datenkabel führt zum Laufwerk. Den Strom bekommt das Laufwerk getrennt vom Netzteil.",
@@ -436,7 +437,7 @@
       praxis: "Ausbildungsbeispiel: Eine zweite Festplatte soll eingebaut werden. Du prüfst, ob das Board einen freien SATA-Anschluss hat.",
       merk: "SATA ist die Schnittstelle, nicht die Bauform des Laufwerks.",
       fakt: "SATA-IO nennt SATA den de-facto-Standard für PC-Speicher und führt Festplatten, optische Laufwerke, SSDs und Hybrid-Festplatten als Einsatzbereiche auf.", q: ["sata-io"] },
-    { id: "ramslot", name: "RAM-Steckplätze (DIMM)", kurz: "RAM-Steckplätze", glossar: "RAM", gruppe: "mainboard", layout: [540, 90, 110, 200], lab: [412, 298, "middle"],
+    { id: "ramslot", name: "RAM-Steckplätze (DIMM)", kurz: "RAM-Steckplätze", glossar: "RAM", gruppe: "mainboard", layout: [285, 100, 45, 200],
       funktion: "Steckplätze für Arbeitsspeicher-Module.",
       ort: "Beispiel: Neben dem CPU-Sockel. Die Anzahl der Steckplätze ist je nach Board verschieden.",
       zusammen: "Die CPU spricht über ihren Speichercontroller mit dem RAM. Die Speichergeneration muss zu Board und CPU passen.",
@@ -444,56 +445,56 @@
       praxis: "Ausbildungsbeispiel: Vor einer Speichererweiterung vergleichst du Modulart und Boardangaben.",
       merk: "Ein Modul passt nicht allein deshalb, weil es RAM ist.",
       fakt: "Laut IBM ist DIMM ein Speichermodulformat, das häufig in Desktop-PCs und Servern verwendet wird.", q: ["ibm-dimm"] },
-    { id: "cpu-fan", name: "CPU_FAN (Lüfter-Header)", kurz: "CPU_FAN", glossar: "Kühlung", gruppe: "mainboard", layout: [210, 50, 100, 28], lab: [355, 82, "middle"],
+    { id: "cpu-fan", name: "CPU_FAN (Lüfter-Header)", kurz: "CPU_FAN", glossar: "Kühlung", gruppe: "mainboard", layout: [135, 72, 23, 14],
       funktion: "Anschluss für den Lüfter des CPU-Kühlers.",
       ort: "Beispiel: In der Nähe des CPU-Sockels. Die Bezeichnung CPU_FAN ist ein Beispiel; Boards beschriften ihre Header unterschiedlich.",
       zusammen: "Das Mainboard kann den Lüfter über diesen Header versorgen und überwachen. Was genau möglich ist, steht im Handbuch des Boards.",
       bauformen: "Header sind interne Steckverbinder. Bezeichnung, Anzahl der Kontakte und Belegung hängen vom Board ab und sind hier nicht belegt.",
       praxis: "Ausbildungsbeispiel: Du schließt einen CPU-Kühler an. Im Handbuch suchst du den Header, den das Board dafür vorsieht.",
       merk: "Beschriftung auf dem Board und Handbuch zählen, nicht die Gewohnheit.", fakt: "", q: [] },
-    { id: "sys-fan", name: "SYS_FAN / CHA_FAN (Gehäuselüfter-Header)", kurz: "SYS_FAN", glossar: "Kühlung", gruppe: "mainboard", layout: [330, 50, 100, 28], lab: [585, 82, "middle"],
+    { id: "sys-fan", name: "SYS_FAN / CHA_FAN (Gehäuselüfter-Header)", kurz: "SYS_FAN", glossar: "Kühlung", gruppe: "mainboard", layout: [300, 72, 23, 14],
       funktion: "Anschluss für Gehäuselüfter.",
       ort: "Beispiel: Am Rand des Mainboards. Die Namen SYS_FAN und CHA_FAN sind Beispiele; Anzahl und Bezeichnung hängen vom Board ab.",
       zusammen: "Gehäuselüfter bewegen die Luft durch das Gehäuse. Das Mainboard kann sie über diesen Header versorgen und überwachen, soweit das Board es vorsieht.",
       bauformen: "Header sind interne Steckverbinder. Bezeichnung, Anzahl der Kontakte und Belegung hängen vom Board ab und sind hier nicht belegt.",
       praxis: "Ausbildungsbeispiel: Ein Gehäuselüfter soll angeschlossen werden. Du suchst im Handbuch den Header, den das Board dafür vorsieht.",
       merk: "Gleiche Lüfter können an unterschiedlich benannten Headern hängen.", fakt: "", q: [] },
-    { id: "aio", name: "AIO_PUMP / PUMP (Pumpen-Header, soweit vorhanden)", kurz: "AIO_PUMP", glossar: "Kühlung", gruppe: "mainboard", layout: [450, 50, 110, 28], lab: [665, 82, "middle"],
+    { id: "aio", name: "AIO_PUMP / PUMP (Pumpen-Header, soweit vorhanden)", kurz: "AIO_PUMP", glossar: "Kühlung", gruppe: "mainboard", layout: [170, 72, 23, 14],
       funktion: "Anschluss für die Pumpe einer Wasserkühlung (All-in-One), soweit das Board einen solchen Header hat.",
       ort: "Beispiel: Am Rand des Mainboards. Nicht jedes Board hat einen eigenen Pumpen-Header.",
       zusammen: "Die Pumpe fördert die Kühlflüssigkeit. Wie das Board sie versorgt, steht im Handbuch des Boards.",
       bauformen: "Header sind interne Steckverbinder. Bezeichnung, Anzahl der Kontakte und Belegung hängen vom Board ab und sind hier nicht belegt.",
       praxis: "Ausbildungsbeispiel: Eine Wasserkühlung wird eingebaut. Du liest im Handbuch von Board und Kühler, wo die Pumpe angeschlossen wird.",
       merk: "Pumpe und Lüfter können unterschiedliche Header brauchen.", fakt: "", q: [] },
-    { id: "usb-header", name: "USB-Header (intern)", kurz: "USB-Header", glossar: "USB", gruppe: "mainboard", layout: [60, 200, 130, 28], lab: [630, 368, "middle"],
+    { id: "usb-header", name: "USB-Header (intern)", kurz: "USB-Header", glossar: "USB", gruppe: "mainboard", layout: [150, 392, 33, 14],
       funktion: "Interner Anschluss, über den USB-Anschlüsse des Gehäuses mit dem Mainboard verbunden werden.",
       ort: "Beispiel: Am Rand des Mainboards. Anzahl und Art hängen vom Board ab.",
       zusammen: "Das Gehäusekabel verbindet die vordere USB-Buchse mit diesem Header. Welcher Standard dahintersteckt, steht im Handbuch.",
       bauformen: "Ein interner Header ist keine USB-A- oder USB-C-Buchse. Bezeichnung, Anzahl der Kontakte, Standard und Belegung hängen vom Board ab und sind hier nicht belegt.",
       praxis: "Ausbildungsbeispiel: Die vorderen USB-Buchsen funktionieren nicht. Du prüfst, ob das Gehäusekabel am richtigen Header steckt.",
       merk: "Header und Buchse am Gehäuse sind zwei Teile einer Verbindung.", fakt: "", q: [] },
-    { id: "frontpanel", name: "Front-Panel-Anschlüsse (Power, Reset, LEDs)", kurz: "Front-Panel", glossar: "Mainboard", gruppe: "mainboard", layout: [60, 300, 130, 28], lab: [520, 438, "middle"],
+    { id: "frontpanel", name: "Front-Panel-Anschlüsse (Power, Reset, LEDs)", kurz: "Front-Panel", glossar: "Mainboard", gruppe: "mainboard", layout: [280, 392, 39, 14],
       funktion: "Anschlüsse für Einschalttaster, Reset-Taster und Leuchtanzeigen des Gehäuses.",
       ort: "Beispiel: Am Rand des Mainboards. Lage und Aufbau sind je nach Board verschieden.",
       zusammen: "Die dünnen Kabel des Gehäuses werden hier angeschlossen. Das Handbuch des Boards zeigt, welches Kabel wohin gehört.",
       bauformen: "Die Kabel sind einzeln beschriftet. Lage und Belegung unterscheiden sich je nach Board und sind hier nicht belegt.",
       praxis: "Ausbildungsbeispiel: Der Rechner startet nicht, wenn man den Taster drückt. Du prüfst anhand des Handbuchs, ob das Power-Kabel richtig steckt.",
       merk: "Hier hilft nur das Handbuch, nicht das Raten.", fakt: "", q: [] },
-    { id: "front-audio", name: "Front-Audio-Header", kurz: "Front-Audio", glossar: "Mainboard", gruppe: "mainboard", layout: [60, 250, 130, 28], lab: [620, 438, "middle"],
+    { id: "front-audio", name: "Front-Audio-Header", kurz: "Front-Audio", glossar: "Mainboard", gruppe: "mainboard", layout: [90, 392, 33, 14],
       funktion: "Interner Anschluss für die Audiobuchsen an der Gehäusefront.",
       ort: "Beispiel: Am Rand des Mainboards. Nicht jedes Board und nicht jedes Gehäuse nutzt ihn gleich.",
       zusammen: "Das Gehäusekabel verbindet die Frontbuchsen mit dem Audioteil des Mainboards.",
       bauformen: "Bezeichnung, Anzahl der Kontakte und Belegung hängen vom Board ab und sind hier nicht belegt.",
       praxis: "Ausbildungsbeispiel: Der Kopfhörer an der Gehäusefront bleibt stumm. Du prüfst, ob das Audiokabel am Front-Audio-Header steckt.",
       merk: "Frontbuchse und Header gehören zusammen.", fakt: "", q: [] },
-    { id: "rgb", name: "RGB-Header (optional, Beispiel)", kurz: "RGB", glossar: "Mainboard", gruppe: "mainboard", layout: [560, 310, 70, 28], lab: [710, 352, "middle"],
+    { id: "rgb", name: "RGB-Header (optional, Beispiel)", kurz: "RGB", glossar: "Mainboard", gruppe: "mainboard", layout: [210, 392, 21, 14],
       funktion: "Optionaler Anschluss für Beleuchtung.",
       ort: "Beispiel: Am Rand des Mainboards. Viele Boards haben ihn nicht.",
       zusammen: "Beleuchtungsteile können hier angeschlossen werden, soweit das Board und das Teil zusammenpassen.",
       bauformen: "Bezeichnung und Belegung hängen vom Board und von der Beleuchtung ab und sind hier nicht belegt.",
       praxis: "Ausbildungsbeispiel: Ein Lichtstreifen soll angeschlossen werden. Du prüfst, welchen Anschluss das Teil braucht und welchen das Board bietet.",
       merk: "Beleuchtungsanschlüsse sind optional und boardabhängig.", fakt: "", q: [] },
-    { id: "argb", name: "ARGB-Header (optional, Beispiel)", kurz: "ARGB", glossar: "Mainboard", gruppe: "mainboard", layout: [650, 310, 70, 28], lab: [710, 412, "middle"],
+    { id: "argb", name: "ARGB-Header (optional, Beispiel)", kurz: "ARGB", glossar: "Mainboard", gruppe: "mainboard", layout: [208, 72, 18, 14],
       funktion: "Zweiter optionaler Anschluss für Beleuchtung.",
       ort: "Beispiel: Am Rand des Mainboards. Viele Boards haben ihn nicht.",
       zusammen: "Beleuchtungsteile können hier angeschlossen werden, soweit das Board und das Teil zusammenpassen.",
@@ -566,6 +567,7 @@
     server: null /* reservierter Daten-Slot, kein auswählbarer Zustand */
   };
 
+  var HINWEIS_MAINBOARD = "Die Platine ist im ATX-Höchstmaß gezeichnet: 244 mm breit und 305 mm hoch, die I/O-Blende liegt links (Beispiel, kein bestimmtes Modell). Anschlüsse und Bauteile sind vereinfacht und liegen nur ungefähr wie bei typischen Boards; Kühlkörper, Batterie und Chips sind Dekoration. Die Zeichnung besteht aus einzeln auswählbaren Elementen, ist kein Foto, und die Liste enthält alle Einträge.";
   var BILDHINWEIS = "Die Abbildung besteht aus einzeln auswählbaren Bauteilen. Sie ist ein farbiges Beispiel, nicht maßstäblich und kein Foto eines bestimmten Geräts. Echte Fotos gibt es bisher nur für PGA, LGA und BGA.";
   var BILDHINWEIS_NOTEBOOK = " Die Notebook-Ansicht ist eine eigene Zeichnung, kein verkleinerter Desktop. Für das Notebook liegt noch kein freigegebenes Komponentenbild vor. Die Liste bleibt gleichwertig.";
 var aktuelleAnsicht = "desktop";
@@ -782,121 +784,241 @@ var aktuelleAnsicht = "desktop";
   /* Anschlussansichten: erkennbare Formen statt Rechtecke. Didaktische Näherung, keine Normmaße, keine Pinbelegung. */
   var IO_KLASSE = { "mainboard-io": "pe-io-mb", "erweiterungskarte": "pe-io-karte", "mainboard": "pe-io-intern", "historisch": "pe-io-alt" };
   function ioKlasse(t) { return IO_KLASSE[t.gruppe] || "pe-io-intern"; }
+  /* Anschlussformen: Seitenverhältnisse grob nach den echten Steckern, nicht normgenau. Gleiche Buchsen als Block, damit die Blende wie eine Blende aussieht. */
+  function hohl(g, x, y, w, h, rx) { svgRect(g, x, y, w, h, "pe-hohlraum", rx || 1); }
   function buchseUsbA(g, x, y, w, h, cls) {
-   var bw = Math.max(16, Math.min(w - 6, 34)), bh = Math.max(8, Math.min(h - 8, 14));
-    var bx = x + (w - bw) / 2, by = y + Math.max(2, (h - bh) / 2 - 4);
-    svgRect(g, bx, by, bw, bh, "pe-haupt " + cls, 1);
-    svgRect(g, bx + 3, by + 3, bw - 6, Math.max(3, bh * 0.4), "pe-zunge", 1);
+    var bw = 36, bh = 15, spalten = w >= 80 ? 2 : 1, links = x + (w - spalten * bw - (spalten - 1) * 8) / 2;
+    for (var zeile = 0; zeile < 2; zeile++) {
+      for (var sp = 0; sp < spalten; sp++) {
+        var bx = links + sp * (bw + 8), by = y + 4 + zeile * 21;
+        svgRect(g, bx, by, bw, bh, "pe-haupt " + cls, 1.5);
+        hohl(g, bx + 3, by + 3, bw - 6, bh - 6);
+        svgRect(g, bx + 5, by + 7.5, bw - 10, 3.5, "pe-zunge", 0);
+      }
+    }
   }
   function buchseUsbC(g, x, y, w, h, cls) {
-    var bw = Math.max(12, Math.min(w - 8, 22)), bh = Math.max(7, Math.min(h - 10, 10));
-   var bx = x + (w - bw) / 2, by = y + (h - bh) / 2;
-    svgRect(g, bx, by, bw, bh, "pe-haupt " + cls, bh / 2);
+    var bw = 34, bh = 14, bx = x + (w - bw) / 2, by = y + (h - bh) / 2;
+    svgRect(g, bx, by, bw, bh, "pe-haupt " + cls, 7);
+    hohl(g, bx + 3, by + 3, bw - 6, bh - 6, 4);
+    svgRect(g, bx + 8, by + 6, bw - 16, 2, "pe-zunge", 1);
   }
   function buchseRj45(g, x, y, w, h, cls) {
-    var bw = Math.max(20, Math.min(w - 6, 40)), bh = Math.max(14, Math.min(h - 8, 26));
-   var bx = x + (w - bw) / 2, by = y + (h - bh) / 2;
-   svgRect(g, bx, by + 5, bw, bh - 5, "pe-haupt " + cls, 1);
-   svgRect(g, bx + bw * 0.28, by, bw * 0.44, 6, cls, 1);
+    var bw = 40, bh = 34, bx = x + (w - bw) / 2, by = y + (h - bh) / 2;
+    svgRect(g, bx, by, bw, bh, "pe-haupt " + cls, 2);
+    hohl(g, bx + 4, by + 8, bw - 8, bh - 12);
+    hohl(g, bx + bw * 0.34, by + 3, bw * 0.32, 6);
+    for (var i = 0; i < 8; i++) svgRect(g, bx + 7 + i * 3.5, by + 12, 1.8, 9, "pe-kontakt", 0);
   }
-  function buchseKlinke(g, x, y, w, h, cls) {
-   var n = w >= 70 ? 3 : 1, r = Math.max(5, Math.min(8, h * 0.22)), cy = y + h * 0.4;
-   for (var i = 0; i < n; i++) {
-     var cx = x + w * ((i + 1) / (n + 1));
-     svgKreis(g, cx, cy, r, (i === 0 ? "pe-haupt " : "") + cls);
-     svgKreis(g, cx, cy, r * 0.35, "pe-zunge");
-   }
+  /* Klinkenbuchsen: Farben nur als Beispiel eines Herstellerhandbuchs (hellblau, lime, rosa), keine Norm. */
+  function buchseKlinke(g, x, y, w, h) {
+    var farben = ["pe-c-hellblau", "pe-c-lime", "pe-c-rosa"], cy = y + h / 2;
+    for (var i = 0; i < 3; i++) {
+      var cx = x + w * (2 * i + 1) / 6;
+      svgKreis(g, cx, cy, 12, "pe-haupt " + farben[i]);
+      svgKreis(g, cx, cy, 6.5, "pe-hohlraum");
+      svgKreis(g, cx, cy, 2.5, "pe-zunge");
+    }
   }
   function buchseHdmi(g, x, y, w, h, cls) {
-   var bw = Math.max(18, Math.min(w - 8, 38)), bh = Math.max(9, Math.min(h - 8, 15));
-   var bx = x + (w - bw) / 2, by = y + (h - bh) / 2, inset = bw * 0.14;
-   svgForm(g, "polygon", { points: [bx + inset, by, bx + bw - inset, by, bx + bw, by + bh, bx, by + bh].join(" ") }, "pe-haupt " + cls);
+    var bw = 40, bh = 16, bx = x + (w - bw) / 2, by = y + (h - bh) / 2, ci = 5;
+    svgForm(g, "polygon", { points: [bx, by, bx + bw, by, bx + bw, by + bh - ci, bx + bw - ci, by + bh, bx + ci, by + bh, bx, by + bh - ci].join(" ") }, "pe-haupt " + cls);
+    hohl(g, bx + 4, by + 4, bw - 8, bh - 8);
+    svgRect(g, bx + 7, by + bh - 7, bw - 14, 2, "pe-kontakt", 0);
   }
   function buchseDisplayPort(g, x, y, w, h, cls) {
-   var bw = Math.max(16, Math.min(w - 8, 32)), bh = Math.max(9, Math.min(h - 8, 14));
-   var bx = x + (w - bw) / 2, by = y + (h - bh) / 2, cut = Math.min(6, bh * 0.45);
-   svgForm(g, "polygon", { points: [bx, by, bx + bw - cut, by, bx + bw, by + cut, bx + bw, by + bh, bx, by + bh].join(" ") }, "pe-haupt " + cls);
+    var bw = 40, bh = 16, bx = x + (w - bw) / 2, by = y + (h - bh) / 2, cut = 6;
+    svgForm(g, "polygon", { points: [bx, by, bx + bw - cut, by, bx + bw, by + cut, bx + bw, by + bh, bx, by + bh].join(" ") }, "pe-haupt " + cls);
+    hohl(g, bx + 4, by + 4, bw - 10, bh - 8);
+    svgRect(g, bx + 7, by + bh - 7, bw - 18, 2, "pe-kontakt", 0);
   }
-  function buchsePs2(g, x, y, w, h, cls) {
-   var r = Math.max(7, Math.min(w, h) * 0.28), cx = x + w / 2, cy = y + h / 2;
-   svgKreis(g, cx, cy, r, "pe-haupt " + cls);
-   svgRect(g, cx - 2, cy - r - 2, 4, 4, cls, 0);
+  /* PS/2: zwei Mini-DIN-Buchsen. Grün (Maus) und violett (Tastatur) sind eine verbreitete Herstellerkonvention, keine Norm. */
+  function buchsePs2(g, x, y, w, h) {
+    var farben = ["pe-c-lila", "pe-c-gruen"], cy = y + h / 2;
+    for (var i = 0; i < 2; i++) {
+      var cx = x + w * (i ? 0.73 : 0.27);
+      svgKreis(g, cx, cy, 13, "pe-haupt " + farben[i]);
+      svgKreis(g, cx, cy, 9, "pe-hohlraum");
+      svgRect(g, cx - 2.5, cy - 12, 5, 4, "pe-zunge", 0);
+      for (var p = 0; p < 6; p++) {
+        var a = Math.PI * (0.15 + p * 0.14 + 0.5);
+        svgKreis(g, cx + Math.cos(a) * 5, cy + Math.sin(a) * 5, 1.2, "pe-zunge");
+      }
+    }
   }
   function buchseAntenne(g, x, y, w, h, cls) {
-   var r = Math.max(4, Math.min(8, h * 0.18)), cy = y + h * 0.4;
-   svgKreis(g, x + w * 0.32, cy, r, "pe-haupt " + cls);
-   svgKreis(g, x + w * 0.68, cy, r, cls);
+    var cy = y + h / 2;
+    [0.3, 0.7].forEach(function (f) {
+      var cx = x + w * f, pts = [];
+      for (var k = 0; k < 6; k++) pts.push((cx + Math.cos(k * Math.PI / 3) * 12).toFixed(1) + "," + (cy + Math.sin(k * Math.PI / 3) * 12).toFixed(1));
+      svgForm(g, "polygon", { points: pts.join(" ") }, "pe-haupt " + cls);
+      svgKreis(g, cx, cy, 5, "pe-gold");
+      svgKreis(g, cx, cy, 1.8, "pe-zunge");
+    });
   }
   function steckplatzPcie(g, x, y, w, h, cls, kerbe) {
-   var bh = Math.max(7, Math.min(h - 4, 14)), by = y + (h - bh) / 2;
-   svgRect(g, x + 2, by, w - 4, bh, "pe-haupt " + cls, 1);
-   svgRect(g, x + 2 + (kerbe || 0.18) * (w - 12), by - 2, 8, bh + 4, "pe-kerbe", 0);
+    var bh = Math.max(7, Math.min(h - 2, 16)), by = y + (h - bh) / 2;
+    svgRect(g, x + 1, by, w - 2, bh, "pe-haupt " + cls, 1.5);
+    hohl(g, x + 4, by + 4, w - 8, bh - 8, 0);
+    svgRect(g, x + 2 + (kerbe || 0.18) * (w - 14), by - 1, 6, bh + 2, "pe-kerbe", 0);
   }
   function leisteIde(g, x, y, w, h, cls) {
-   svgRect(g, x + 2, y + 2, w - 4, h - 4, "pe-haupt " + cls, 1);
-   var cols = 20;
-   for (var row = 0; row < 2; row++) {
-     for (var col = 0; col < cols; col++) {
-       svgRect(g, x + 6 + col * ((w - 12) / cols), y + 5 + row * ((h - 10) / 2), 2, 2, "pe-pin", 0);
-     }
-   }
+    svgRect(g, x + 2, y + 2, w - 4, h - 4, "pe-haupt " + cls, 1);
+    var cols = 20;
+    for (var row = 0; row < 2; row++) {
+      for (var col = 0; col < cols; col++) {
+        svgRect(g, x + 6 + col * ((w - 12) / cols), y + 5 + row * ((h - 10) / 2), 2, 2, "pe-pin", 0);
+      }
+    }
   }
+  /* Stiftleisten auf dem Board: Pinzahl nur als Zeichnung (Reihen und Anzahl je Typ plausibel, nicht als Aussage beschriftet). */
+  var KOPF_STIFTE = { atx24: 12, eps: 4, "front-audio": 5, "usb-header": 5, frontpanel: 5 };
+  var KOPF_EINREIHIG = { "cpu-fan": 4, "sys-fan": 4, aio: 3, argb: 3, rgb: 4 };
   function kopfZweireihig(g, x, y, w, h, cls) {
-   var vertical = h > w * 1.3;
-   svgRect(g, x + 1, y + 1, Math.max(8, w - 2), Math.max(8, h - 2), "pe-haupt " + cls, 1);
-   var n = vertical ? 10 : 5;
-   for (var i = 0; i < n; i++) {
-     if (vertical) {
-       var yy = y + 4 + i * ((h - 8) / n);
-       svgRect(g, x + 4, yy, 3, 2, "pe-pin", 0);
-       svgRect(g, x + w - 7, yy, 3, 2, "pe-pin", 0);
-     } else {
-       var xx = x + 4 + i * ((w - 8) / n);
-       svgRect(g, xx, y + 3, 2, 3, "pe-pin", 0);
-       svgRect(g, xx, y + h - 6, 2, 3, "pe-pin", 0);
-     }
-   }
+    var vertical = h > w * 1.3, id = g.getAttribute("data-id"), ein = KOPF_EINREIHIG[id];
+    svgRect(g, x + 1, y + 1, Math.max(8, w - 2), Math.max(8, h - 2), "pe-haupt " + cls, 1.5);
+    var n = ein || KOPF_STIFTE[id] || (vertical ? 10 : 5);
+    for (var i = 0; i < n; i++) {
+      if (ein) {
+        svgRect(g, x + 4 + i * ((w - 8) / n) + 1, y + h / 2 - 1.5, 3, 3, "pe-pin", 0);
+      } else if (vertical) {
+        var yy = y + 5 + i * ((h - 10) / n);
+        svgRect(g, x + 4, yy, 3, 3, "pe-pin", 0);
+        svgRect(g, x + w - 7, yy, 3, 3, "pe-pin", 0);
+      } else {
+        var xx = x + 5 + i * ((w - 10) / n);
+        svgRect(g, xx, y + 3, 3, 3, "pe-pin", 0);
+        svgRect(g, xx, y + h - 6, 3, 3, "pe-pin", 0);
+      }
+    }
   }
+  /* RAM: vier DIMM-Schächte mit Mittelkerbe und Haltebügeln an den Enden. */
   function schlitzeRam(g, x, y, w, h, cls) {
-   var sw = Math.max(6, (w - 10) / 4);
-   for (var i = 0; i < 4; i++) {
-     svgRect(g, x + 3 + i * (sw + 2), y + 2, sw, h - 4, (i === 0 ? "pe-haupt " : "") + cls, 1);
-   }
+    var sw = (w - 6) / 4;
+    for (var i = 0; i < 4; i++) {
+      var sx = x + 3 + i * sw;
+      svgRect(g, sx + 1, y + 2, sw - 2, h - 4, "pe-haupt " + cls, 1);
+      hohl(g, sx + 3, y + 8, sw - 6, h - 16, 0);
+      svgRect(g, sx + 1, y + h * 0.58, sw - 2, 3, "pe-kerbe", 0);
+      svgRect(g, sx + 2, y + 3, sw - 4, 3, "pe-zunge", 0);
+      svgRect(g, sx + 2, y + h - 6, sw - 4, 3, "pe-zunge", 0);
+    }
   }
   function sataL(g, x, y, w, h, cls) {
-   var x1 = x + 4, y1 = y + 4, ww = Math.max(20, w - 8), hh = Math.max(10, h - 8);
-   svgForm(g, "path", { d: "M " + x1 + " " + y1 + " h " + (ww * 0.62) + " v " + (hh * 0.42) + " h " + (ww * 0.28) + " v " + (hh * 0.4) + " h -" + (ww * 0.18) + " v -" + (hh * 0.22) + " h -" + (ww * 0.72) + " z" }, "pe-haupt " + cls);
+    var x1 = x + 3, y1 = y + 2, ww = Math.max(20, w - 6), hh = Math.max(10, h - 4);
+    svgForm(g, "path", { d: "M " + x1 + " " + y1 + " h " + (ww * 0.62) + " v " + (hh * 0.42) + " h " + (ww * 0.38) + " v " + (hh * 0.58) + " h -" + ww + " z" }, "pe-haupt " + cls);
+    svgRect(g, x1 + 4, y1 + hh * 0.55, ww - 8, 2, "pe-kontakt", 0);
   }
+  /* M.2: Steckverbinder an einem Ende, Abstandshalter (Schraubpunkt) am anderen Ende der Moduleinbaulänge. */
   function m2Schlitz(g, x, y, w, h, cls) {
-   svgRect(g, x + 2, y + h * 0.28, w * 0.7, Math.max(6, h * 0.4), "pe-haupt " + cls, 1);
-   svgKreis(g, x + w * 0.84, y + h * 0.48, Math.min(4, h * 0.22), cls);
+    svgRect(g, x + 2, y + 3, 26, h - 6, "pe-haupt " + cls, 2);
+    for (var i = 0; i < 6; i++) svgRect(g, x + 6 + i * 3, y + 6, 1.6, h - 12, "pe-gold", 0);
+    svgKreis(g, x + w - 8, y + h / 2, 5, "pe-haupt " + cls);
+    svgKreis(g, x + w - 8, y + h / 2, 1.8, "pe-zunge");
+    svgForm(g, "line", { x1: x + 30, y1: y + h / 2, x2: x + w - 15, y2: y + h / 2 }, "pe-modul");
+  }
+  /* Standardname (USB 2.0, USB 3.2, USB4): Plakette mit Text, ausdrücklich keine Buchsenform. */
+  function plaketteStandard(g, t, x, y, w, h, cls) {
+    svgRect(g, x, y, w, h, "pe-haupt " + cls, h / 2);
+    svgText(g, x + w / 2, y + h / 2 + 5, t.kurz, "pe-io-text");
   }
   function beschrifteAnschluss(g, t, x, y, w, h) {
-   var ty = h >= 56 ? y + h - 4 : y - 3;
-   svgText(g, x + w / 2, ty, t.kurz, "pe-io-text pe-io-aussen");
+    if (aktuelleAnsicht === "mainboard") return;
+    var ty = aktuelleAnsicht === "rueckseite" ? y + h + 20 : (h >= 56 ? y + h - 4 : y - 3);
+    svgText(g, x + w / 2, ty, t.kurz, "pe-io-text pe-io-aussen");
   }
   function zeichneAnschlussTeil(t, g) {
-   var r = t.layout, x = r[0], y = r[1], w = r[2], h = r[3], cls = ioKlasse(t), id = t.id;
-   if (id === "usb-a" || id === "usb2" || id === "usb3" || id === "usb4") buchseUsbA(g, x, y, w, h, cls);
-   else if (id === "usb-c") buchseUsbC(g, x, y, w, h, cls);
-   else if (id === "rj45") buchseRj45(g, x, y, w, h, cls);
-   else if (id === "audio") buchseKlinke(g, x, y, w, h, cls);
-   else if (id === "hdmi-mb" || id === "hdmi-gpu") buchseHdmi(g, x, y, w, h, cls);
-   else if (id === "dp-mb" || id === "dp-gpu") buchseDisplayPort(g, x, y, w, h, cls);
-   else if (id === "ps2") buchsePs2(g, x, y, w, h, cls);
-   else if (id === "wlan") buchseAntenne(g, x, y, w, h, cls);
-   else if (id === "pcie-lang") steckplatzPcie(g, x, y, w, h, cls, 0.12);
-   else if (id === "pcie-kurz") steckplatzPcie(g, x, y, w, h, cls, 0.4);
-   else if (id === "pci") steckplatzPcie(g, x, y, w, h, cls, 0.2);
-   else if (id === "agp") steckplatzPcie(g, x, y, w, h, cls, 0.68);
-   else if (id === "ramslot") schlitzeRam(g, x, y, w, h, cls);
-   else if (id === "m2") m2Schlitz(g, x, y, w, h, cls);
-   else if (id === "sata") sataL(g, x, y, w, h, cls);
-   else if (id === "ide") leisteIde(g, x, y, w, h, cls);
-   else kopfZweireihig(g, x, y, w, h, cls);
-   beschrifteAnschluss(g, t, x, y, w, h);
+    var r = t.layout, x = r[0], y = r[1], w = r[2], h = r[3], cls = ioKlasse(t), id = t.id;
+    if (id === "usb2" || id === "usb3" || id === "usb4") {
+      /* Standardname, keine Buchse: Plakette mit Text statt Steckerform. */
+      plaketteStandard(g, t, x, y, w, h, cls);
+      return;
+    }
+    if (id === "usb-a") buchseUsbA(g, x, y, w, h, cls);
+    else if (id === "usb-c") buchseUsbC(g, x, y, w, h, cls);
+    else if (id === "rj45") buchseRj45(g, x, y, w, h, cls);
+    else if (id === "audio") buchseKlinke(g, x, y, w, h);
+    else if (id === "hdmi-mb" || id === "hdmi-gpu") buchseHdmi(g, x, y, w, h, cls);
+    else if (id === "dp-mb" || id === "dp-gpu") buchseDisplayPort(g, x, y, w, h, cls);
+    else if (id === "ps2") buchsePs2(g, x, y, w, h);
+    else if (id === "wlan") buchseAntenne(g, x, y, w, h, cls);
+    else if (id === "pcie-lang") steckplatzPcie(g, x, y, w, h, cls, 0.12);
+    else if (id === "pcie-kurz") steckplatzPcie(g, x, y, w, h, cls, 0.4);
+    else if (id === "pci") steckplatzPcie(g, x, y, w, h, cls, 0.2);
+    else if (id === "agp") steckplatzPcie(g, x, y, w, h, cls, 0.68);
+    else if (id === "ramslot") schlitzeRam(g, x, y, w, h, cls);
+    else if (id === "m2") m2Schlitz(g, x, y, w, h, cls);
+    else if (id === "sata") sataL(g, x, y, w, h, cls);
+    else if (id === "ide") leisteIde(g, x, y, w, h, cls);
+    else kopfZweireihig(g, x, y, w, h, cls);
+    beschrifteAnschluss(g, t, x, y, w, h);
   }
   function istAnschlussAnsicht(key) { return key === "rueckseite" || key === "mainboard" || key === "historisch"; }
+  /* Mainboard-Zeichnung: Platine im ATX-Höchstmaß, Hochformat 244 mm breit x 305 mm hoch (I/O-Blende links = Rückseite des Gehäuses),
+     1,25 px je mm, Ursprung (60, 48). Die Teile-Layouts der Liste sind Pixelwerte im selben Raster. */
+  var MB = { x0: 60, y0: 48, k: 1.25 };
+  function mbx(mm) { return MB.x0 + mm * MB.k; }
+  function mby(mm) { return MB.y0 + mm * MB.k; }
+  /* Marken-Positionen (Pixel) in freier Platinenfläche neben dem jeweiligen Teil; Nummern stehen in der Legende rechts. */
+  var MB_MARKE = {
+    eps: [106.5, 59], "cpu-fan": [146.5, 59], aio: [181.5, 59], argb: [217, 59], "sys-fan": [311.5, 59],
+    ramslot: [272, 150], atx24: [348, 135], m2: [262, 212], "pcie-kurz": [138, 304.5], "pcie-lang": [232, 338.5],
+    sata: [324, 347], "front-audio": [106.5, 376], "usb-header": [166.5, 376], rgb: [220.5, 376], frontpanel: [299.5, 376]
+  };
+  function zeichneMainboardDeko(deko) {
+    function r(x, y, w, h, cls, rx) { deko.appendChild(svgEl("rect", { x: mbx(x), y: mby(y), width: w * MB.k, height: h * MB.k, rx: rx || 0, "class": cls })); }
+    function c(x, y, rad, cls) { deko.appendChild(svgEl("circle", { cx: mbx(x), cy: mby(y), r: rad * MB.k, "class": cls })); }
+    function txt(x, y, text, cls) { deko.appendChild(svgEl("text", { x: x, y: y, "text-anchor": "middle", "class": cls }, text)); }
+    function pfeil(x1, y1, x2, y2) {
+      deko.appendChild(svgEl("line", { x1: x1, y1: y1, x2: x2, y2: y2, "class": "pe-masslinie" }));
+      var waag = y1 === y2, d = [[x1, y1, 1], [x2, y2, -1]];
+      d.forEach(function (p) {
+        var pts = waag ? [p[0], p[1], p[0] + 7 * p[2], p[1] - 3, p[0] + 7 * p[2], p[1] + 3] : [p[0], p[1], p[0] - 3, p[1] + 7 * p[2], p[0] + 3, p[1] + 7 * p[2]];
+        deko.appendChild(svgEl("polygon", { points: pts.join(" "), "class": "pe-massspitze" }));
+      });
+    }
+    txt(390, 16, "Beispiel-Mainboard (schematisch, kein bestimmtes Modell)", "pe-bereichstext");
+    pfeil(mbx(0), 33, mbx(244), 33);
+    txt(mbx(122), 29, "244 mm", "pe-masstext");
+    pfeil(385, mby(0), 385, mby(305));
+    deko.appendChild(svgEl("text", { x: 398, y: mby(152.5), "text-anchor": "middle", "class": "pe-masstext", transform: "rotate(-90 398 " + mby(152.5) + ")" }, "305 mm"));
+    r(-12, 8, 12, 150, "pe-blende", 2);
+    deko.appendChild(svgEl("text", { x: mbx(-3.5), y: mby(83), "text-anchor": "middle", "class": "pe-masstext", transform: "rotate(-90 " + mbx(-3.5) + " " + mby(83) + ")" }, "hinten (I/O-Blende)"));
+    r(0, 0, 244, 305, "pe-platine", 6);
+    [[8, 8], [236, 8], [8, 150], [122, 150], [8, 298], [122, 298], [236, 246], [236, 298]].forEach(function (m) { c(m[0], m[1], 3.2, "pe-loch"); });
+    r(70, 47, 45, 45, "pe-sockel-deko", 3);
+    r(74, 51, 37, 37, "pe-sockel-rahmen", 2);
+    txt(mbx(92.5), mby(70) + 4, "Sockel", "pe-bereichstext");
+    r(38, 45, 20, 62, "pe-kuehlkoerper", 2);
+    for (var i = 0; i < 5; i++) r(40 + i * 3.6, 48, 1.6, 56, "pe-rippe", 0);
+    for (var j = 0; j < 6; j++) r(72 + j * 7.5, 36, 5.5, 6, "pe-drossel", 1);
+    r(80, 162, 34, 32, "pe-kuehlkoerper", 3);
+    for (var k = 0; k < 5; k++) r(83, 166 + k * 5.5, 28, 1.3, "pe-rippe", 0);
+    txt(mbx(97), mby(180) + 4, "Chipsatz", "pe-masstext");
+    c(136, 178, 10, "pe-batterie");
+    c(136, 178, 6, "pe-batterie-innen");
+    r(150, 170, 11, 9, "pe-chip-deko", 1);
+    c(152, 172, 0.8, "pe-batterie-innen");
+  }
+  /* Legende: nummerierte Marken auf der Platine, dieselben Nummern als Zeilen rechts. Keine Linien quer über die Platine. */
+  function zeichneMainboardLegende(svg, teile, waehle) {
+    var schicht = svgEl("g", { "class": "pe-etiketten" });
+    teile.forEach(function (t, i) {
+      var m = MB_MARKE[t.id];
+      if (!m) return;
+      var cx = m[0], cy = m[1], py = 52 + i * 24.5, nr = String(i + 1);
+      var g = svgEl("g", { "class": "pe-etikett pe-legende", "data-id": t.id, "aria-hidden": "true" });
+      g.appendChild(svgEl("circle", { cx: cx, cy: cy, r: 8, "class": "pe-badge" }));
+      g.appendChild(svgEl("text", { x: cx, y: cy + 4, "text-anchor": "middle", "class": "pe-badge-zahl" }, nr));
+      g.appendChild(svgEl("rect", { x: 548, y: py, width: 222, height: 22, rx: 5, "class": "pe-label-platte" }));
+      g.appendChild(svgEl("circle", { cx: 563, cy: py + 11, r: 8, "class": "pe-badge" }));
+      g.appendChild(svgEl("text", { x: 563, y: py + 15, "text-anchor": "middle", "class": "pe-badge-zahl" }, nr));
+      g.appendChild(svgEl("text", { x: 578, y: py + 16, "class": "pe-label pe-label-klein" }, t.kurz));
+      g.addEventListener("click", function () { waehle(t.id); });
+      schicht.appendChild(g);
+    });
+    svg.appendChild(schicht);
+  }
   function zeichneDeko(key) {
     var deko = svgEl("g", { "class": "pe-deko", "aria-hidden": "true" });
     deko.appendChild(svgEl("rect", { x: 0, y: 0, width: 780, height: 480, "class": "pe-platte" }));
@@ -911,18 +1033,12 @@ var aktuelleAnsicht = "desktop";
       deko.appendChild(svgEl("text", { x: 538, y: 60, "class": "pe-bereichstext" }, "Erweiterungskarte (Grafik)"));
       deko.appendChild(svgEl("text", { x: 538, y: 250, "class": "pe-bereichstext" }, "Nur mit dedizierter Grafikkarte"));
     }
-    if (key === "mainboard") {
-      deko.appendChild(svgEl("rect", { x: 40, y: 30, width: 700, height: 424, rx: 10, "class": "pe-bereich pe-bereich-platine" }));
-      deko.appendChild(svgEl("text", { x: 390, y: 21, "text-anchor": "middle", "class": "pe-bereichstext" }, "Beispiel-Mainboard (schematisch, kein bestimmtes Modell)"));
-      deko.appendChild(svgEl("rect", { x: 220, y: 108, width: 150, height: 150, rx: 6, "class": "pe-sockel-deko" }));
-      deko.appendChild(svgEl("rect", { x: 236, y: 124, width: 118, height: 118, rx: 4, "class": "pe-sockel-rahmen" }));
-      deko.appendChild(svgEl("text", { x: 295, y: 190, "text-anchor": "middle", "class": "pe-bereichstext" }, "Sockel"));
-    }
+    if (key === "mainboard") zeichneMainboardDeko(deko);
     if (key === "historisch") {
       deko.appendChild(svgEl("text", { x: 390, y: 120, "text-anchor": "middle", "class": "pe-bereichstext" }, "Historische Technik zum Vergleich, nicht auf aktuellen Mainboards"));
     }
     var anschlussHinweis = key === "rueckseite" || key === "mainboard" || key === "historisch";
-    deko.appendChild(svgEl("text", { x: 8, y: 474, "class": "pe-hinweistext" }, anschlussHinweis ? "Beispiel, didaktische Näherung, nicht maßstäblich" : "Beispiel, nicht maßstäblich"));
+    deko.appendChild(svgEl("text", { x: 8, y: 474, "class": "pe-hinweistext" }, key === "mainboard" ? "Platine im Maß 244 × 305 mm (Breite × Höhe), Bauteile vereinfacht" : anschlussHinweis ? "Beispiel, didaktische Näherung, nicht maßstäblich" : "Beispiel, nicht maßstäblich"));
     return deko;
   }
   /* Kabel: nur Dekoration über den Bauteilen, nicht anklickbar und nicht fokussierbar. Verlegt, ohne Beschriftung oder Bauteile zu verdecken. */
@@ -1178,7 +1294,8 @@ function markiere(id) {
       });
       svg.appendChild(zeichneKabel(aktuelleAnsicht));
       zeichneRahmen(svg, ansicht.teile);
-      if (!istAnschlussAnsicht(aktuelleAnsicht)) zeichneEtiketten(svg, ansicht.teile, aktuelleAnsicht, gruppeTeile.waehle);
+      if (aktuelleAnsicht === "mainboard") zeichneMainboardLegende(svg, ansicht.teile, gruppeTeile.waehle);
+      else if (!istAnschlussAnsicht(aktuelleAnsicht)) zeichneEtiketten(svg, ansicht.teile, aktuelleAnsicht, gruppeTeile.waehle);
     }
 
     function zeigeAnsicht(key) {
@@ -1191,7 +1308,7 @@ function markiere(id) {
       });
       titel.textContent = a.titel;
       einleitung.textContent = a.einleitung;
-      if (hinweis) hinweis.textContent = istAnschlussAnsicht(key) ? HINWEIS_SCHEMA : BILDHINWEIS + (key === "notebook" ? BILDHINWEIS_NOTEBOOK : "");
+      if (hinweis) hinweis.textContent = key === "mainboard" ? HINWEIS_MAINBOARD : istAnschlussAnsicht(key) ? HINWEIS_SCHEMA : BILDHINWEIS + (key === "notebook" ? BILDHINWEIS_NOTEBOOK : "");
       var kuehlerKnopf = document.getElementById("pe-kuehler");
       if (kuehlerKnopf) kuehlerKnopf.hidden = istAnschlussAnsicht(key);
       document.title = a.titel + " (Entwurf)";

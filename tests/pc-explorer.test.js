@@ -297,4 +297,48 @@ assert(js.includes("pe-kaefig") && js.includes("pe-abdeckung"), "Käfig und Küh
   assert(!/function zeichneAnschlussTeil[\s\S]{0,400}svgRect\(g, x, y, w, h, "pe-haupt/.test(js), "Anschlussteile sind keine Einheitsrechtecke mehr");
 }
 
+// Grafikphase 3: ATX-Maß, Anschlusslage, Überlappungsfreiheit (Daten und Quelltext, ohne Browser)
+{
+  const sch = (a, b) => a[0] < b[0] + b[2] && b[0] < a[0] + a[2] && a[1] < b[1] + b[3] && b[1] < a[1] + a[3];
+  assert(/var MB = \{ x0: 60, y0: 48, k: 1\.25 \}/.test(js), "Mainboard-Maßstab 1,25 px je mm");
+  assert(/r\(0, 0, 244, 305, "pe-platine"/.test(js), "Platine im ATX-Höchstmaß: 244 mm breit, 305 mm hoch (I/O links, Hochformat)");
+  assert(!/r\(0, 0, 305, 244, "pe-platine"/.test(js), "keine Querformat-Platine mehr");
+  assert(/Platine im Maß 244 × 305 mm/.test(js) && js.includes("Kühlkörper, Batterie und Chips sind Dekoration"), "Maß und Dekoration sind benannt");
+  const board = [60, 48, 244 * 1.25, 305 * 1.25];
+  assert(board[3] / board[2] > 1.24 && board[3] / board[2] < 1.26, "Platine ist hoch: Höhe/Breite = 305/244");
+  assert(board[1] + board[3] < 480, "Platine passt in die viewBox");
+  const mt = D.ansichten.mainboard.teile;
+  mt.forEach(t => {
+    assert(t.layout[0] >= board[0] && t.layout[1] >= board[1] && t.layout[0] + t.layout[2] <= board[0] + board[2] && t.layout[1] + t.layout[3] <= board[1] + board[3], t.id + " liegt auf der Platine");
+  });
+  for (let i = 0; i < mt.length; i++) for (let j = i + 1; j < mt.length; j++) assert(!sch(mt[i].layout, mt[j].layout), "Mainboard-Teile überlappen: " + mt[i].id + "/" + mt[j].id);
+  const lx = id => e.finde(mt, id).layout;
+  assert(lx("eps")[1] < lx("ramslot")[1] + 20 && lx("eps")[0] < lx("ramslot")[0], "EPS oben links neben dem Sockel");
+  assert(lx("atx24")[0] > lx("ramslot")[0] + lx("ramslot")[2], "ATX24 rechts von den RAM-Steckplätzen");
+  assert(lx("atx24")[1] + lx("atx24")[3] < board[1] + board[3] * 0.75, "ATX24 nicht am unteren Rand");
+  assert(lx("pcie-lang")[1] > lx("pcie-kurz")[1], "langer PCIe-Slot liegt unterhalb des kurzen");
+  assert(/oberhalb des langen/.test(e.finde(mt, "pcie-kurz").ort) && !/Unter dem langen/.test(e.finde(mt, "pcie-kurz").ort), "ort-Text passt zur Lage");
+  assert(lx("ramslot")[3] > lx("ramslot")[2] * 3, "RAM-Steckplätze stehen senkrecht");
+  assert(lx("pcie-lang")[2] > lx("pcie-lang")[3] * 4, "PCIe-Steckplätze liegen waagerecht");
+  assert(lx("pcie-lang")[2] > lx("pcie-kurz")[2], "x16-Slot länger als x1-Slot");
+  assert(lx("sata")[1] > lx("atx24")[1] + lx("atx24")[3], "SATA unten rechts");
+  ["front-audio", "usb-header", "frontpanel"].forEach(id => assert(lx(id)[1] > board[1] + board[3] * 0.85, id + " am Unterrand"));
+  // Rückseite: Buchsen überlappen weder untereinander noch mit der Beschriftung der anderen
+  const rt = D.ansichten.rueckseite.teile;
+  const beschr = t => [t.layout[0] - 4, t.layout[1] + t.layout[3] + 6, t.layout[2] + 8, 22];
+  rt.forEach(a => rt.forEach(b => {
+    if (a === b) return;
+    assert(!sch(a.layout, b.layout), "Rückseite: " + a.id + " überlappt " + b.id);
+    assert(!sch(beschr(a), b.layout), "Rückseite: Beschriftung von " + a.id + " liegt auf " + b.id);
+  }));
+  ["usb-a", "usb-c", "hdmi-mb", "dp-mb", "rj45", "audio", "ps2"].forEach(id => assert(e.finde(rt, id), "Rückblende enthält " + id));
+  // Farben: nur Herstellerbeispiel, keine Norm; USB-Farbe sagt nichts über den Standard
+  assert(/ASUS-Handbuch/.test(e.finde(rt, "ps2").bauformen) && /keine allgemeine Norm|eine allgemeine Norm folgt daraus nicht/.test(e.finde(rt, "ps2").bauformen), "PS/2-Farben als Herstellerkonvention");
+  assert(/keine allgemeine Norm/.test(e.finde(rt, "audio").bauformen), "Audiofarben als Herstellerbeispiel");
+  assert(/Farbe der Zunge[^.]*nicht verlässlich/.test(e.finde(rt, "usb-a").bauformen), "USB-Farbe sagt nichts über den Standard");
+  assert(D.quellen["asus-d840"] && /^https:\/\//.test(D.quellen["asus-d840"].url), "ASUS-Quelle vorhanden");
+  assert(!/pe-c-(blau|rot)/.test(css) && !/USB 3\.[0-9]\s*=\s*blau/i.test(js), "keine feste Zuordnung USB-Standard = Farbe");
+  assert(/\.pe-etikett\.pe-aktiv \.pe-badge/.test(css) && js.includes("zeichneMainboardLegende"), "Mainboard nutzt Marken mit Legende statt Linien quer über die Platine");
+}
+
 console.log("pc-explorer: alle Prüfungen bestanden");
