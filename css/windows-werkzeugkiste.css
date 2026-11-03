@@ -24,3 +24,14 @@
 @media (max-width: 480px) {
   [data-page="windows-werkzeugkiste"] .knopf-reihe .knopf { flex: 1 1 100%; }
 }
+
+/* Labor: lange Befehle und Ausgaben dürfen nicht die Seite verbreitern. */
+[data-page="windows-werkzeugkiste"] .ww-filter { display: flex; flex-wrap: wrap; gap: 1rem; align-items: end; }
+[data-page="windows-werkzeugkiste"] .ww-filter label { flex: 1 1 14rem; min-width: 0; }
+[data-page="windows-werkzeugkiste"] #ww-bereich-labor select,
+[data-page="windows-werkzeugkiste"] #ww-bereich-labor input[type="search"] { display: block; width: 100%; max-width: 100%; box-sizing: border-box; font: inherit; padding: .6rem; color: var(--farbe-text); background: var(--farbe-flaeche); }
+[data-page="windows-werkzeugkiste"] #ww-labor-detail { min-width: 0; overflow-wrap: anywhere; }
+[data-page="windows-werkzeugkiste"] #ww-labor-detail pre { max-width: 100%; overflow-x: auto; padding: .8rem; border: 1px solid var(--farbe-rahmen); background: var(--farbe-flaeche); }
+[data-page="windows-werkzeugkiste"] #ww-labor-detail dt { font-weight: bold; margin-top: .75rem; }
+[data-page="windows-werkzeugkiste"] #ww-labor-detail dd { margin-left: 1rem; }
+[data-page="windows-werkzeugkiste"] #ww-labor-detail fieldset { min-width: 0; margin: 1.5rem 0; }

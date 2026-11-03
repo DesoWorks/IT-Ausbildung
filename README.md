@@ -13,6 +13,10 @@ Es muss weder Python noch Node.js installiert werden. Im Ordner `start/` liegt d
 
 **Hinweis zum Prüfstatus:** Der vollständige Lernweg über `file://` muss im vorgesehenen Windows-Browser interaktiv geprüft werden. Wenn dieser Browser den Zugriff zwischen lokalen Dateien blockiert, bitte nicht Schutzfunktionen ändern. Dann ist eine gebündelte Lösung mit lokalem, mitgeliefertem Laufzeitbestandteil zu evaluieren. Dieser README-Abschnitt ist keine Behauptung eines bestandenen End-to-End-Tests.
 
+## Feature-Teststand: Windows-Werkzeuglabor
+
+Auf `feature/windows-werkzeugkiste` ergänzt die bestehende Windows-Werkzeugkiste ein Diagnose- und Administrationslabor mit 15 CMD- und 14 PowerShell-Befehlen. Suche, Filter, erklärte simulierte Ausgaben und wiederholbare Miniübungen helfen beim Lernen; die Seite führt keine Systembefehle aus. Einstieg und Prüfgrenzen stehen in [WINDOWS-LABOR-TESTANLEITUNG.md](WINDOWS-LABOR-TESTANLEITUNG.md). Dieser Feature-Stand ist nicht nach `dev`/`main` integriert oder öffentlich bereitgestellt und hat keine Produktions- oder Fachfreigabe.
+
 ## Inhalte
 
 Stand 16.10.2026, Version `0.16.2-alpha.1`: Der Knopf „Fortschritt zurücksetzen“ auf den fünf Abschlussseiten fragt das Projektpasswort ab. Der Wortlaut steht nicht im Repository, nur ein SHA-256-Hash. Einzeltests und „Auswahl zurücksetzen“ bleiben frei. Öffentliche Vorschau: https://desoworks.github.io/IT-Ausbildung/

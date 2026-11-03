@@ -1,5 +1,11 @@
 # Changelog
 
+## Feature-Teststand 03.11.2026 – Windows-Werkzeuglabor
+- Bestehende Windows-Werkzeugkiste um 15 CMD- und 14 PowerShell-Befehlsprofile mit Suche, Umgebungs-/Lernbereichsfilter und direkter Auswahl erweitert.
+- Jedes Profil erklärt Zweck, Parameter, Praxisfall, simulierte Ausgabe, Interpretation, Fehler, Rechte und Risiken sowie eine beliebig wiederholbare Miniübung mit Rückmeldung.
+- PowerShell-5.1-/7-Grenzen, lesende Diagnose und verändernde Aufrufe werden getrennt. Keine Befehlsausführung im Browser; bestehende Lernkarten und Übungs-/Testmodi bleiben erhalten.
+- Optionaler mehrstufiger Diagnoseassistent und RAID-Implementierung sind nicht Bestandteil dieses Standes. Keine Produktions- oder Fachfreigabe.
+
 ## 0.16.2-alpha.1
 - Lernfeld 5 hat die kleine Lektion „Den Arbeitsprozess bewerten“. Geplant, geprüft und offen werden an einem fiktiven Zettel getrennt.
 - Node-Tests bestanden. Die Seite wurde nicht im Browser gesehen.
