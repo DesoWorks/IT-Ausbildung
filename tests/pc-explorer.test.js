@@ -352,3 +352,44 @@ assert(/\(i \+ 1\) \+ ". " \+ a\.teile\[i\]\.name/.test(js), "Mainboard-Legende 
 assert(/aria-label", breit \? "Legende: "/.test(js), "Legende ist beschriftet");
 
 console.log("pc-explorer: alle Prüfungen bestanden");
+
+// ---- Phase 1 (2026-11-03): ansichtsspezifischer Bildtext, USB-Steckerform vs. Standard ----
+{
+  const BT = e.BILDTEXT, V = ["desktop", "notebook", "rueckseite", "mainboard", "historisch"];
+  gleich(Object.keys(BT), V);
+  V.forEach(k => assert(typeof BT[k] === "string" && BT[k].length > 40, "Bildtext " + k));
+  // Der Hinweis auf die durchsichtige Kühlung gehört ausschließlich zu Desktop und Notebook.
+  ["desktop", "notebook"].forEach(k => assert(/Kühlung durchsichtig/.test(BT[k]), k + " nennt den Kühlungsknopf"));
+  ["rueckseite", "mainboard", "historisch"].forEach(k => assert(!/durchsichtig|Kühlung|Prozessor/i.test(BT[k]), k + " ohne Kühlungshinweis"));
+  assert(/USB-Standardnamen/.test(BT.rueckseite) && /keine Buchse/.test(BT.rueckseite), "Rückseitentext trennt Steckerform und Standard");
+  assert(/Nummer/.test(BT.mainboard) && /Legende/.test(BT.mainboard), "Mainboardtext erklärt Nummern und Legende");
+  assert(/älter/i.test(BT.historisch) && /neben oder unter/.test(BT.historisch), "Text der älteren Anschlüsse passt zum Layout");
+  // HTML: Absatz hat eine ID und trägt keinen festen Kühlungstext mehr; Knopf bleibt, nur bei Desktop/Notebook sichtbar.
+  const m = html.match(/<p id="pe-bildtext"[^>]*>([\s\S]*?)<\/p>/);
+  assert(m && !/durchsichtig|Kühlung/.test(m[1]), "statischer Bildtext ohne Kühlungshinweis");
+  assert(/id="pe-kuehler"/.test(html) && js.includes("kuehlerKnopf.hidden = istAnschlussAnsicht(key)"), "Kühlungsknopf bleibt, nur bei Desktop/Notebook sichtbar");
+  assert(js.includes('getElementById("pe-bildtext")') && js.includes("BILDTEXT[key]"), "Bildtext wird je Ansicht gesetzt");
+
+  // USB: Steckerformen A/C getrennt von Standards 2.0/3.2/4; IDs und Layouts unverändert.
+  const rt = D.ansichten.rueckseite.teile, f = id => e.finde(rt, id);
+  gleich(["usb-a", "usb-c", "usb2", "usb3", "usb4"].map(id => f(id).layout), [[152, 80, 96, 46], [260, 80, 48, 46], [64, 252, 100, 34], [180, 252, 100, 34], [296, 252, 100, 34]]);
+  assert(/Steckerform/.test(f("usb-a").bauformen) && /Steckerform/.test(f("usb-c").bauformen), "A und C sind Steckerformen");
+  assert(/USB4 verwendet diese Steckerform/.test(f("usb-c").bauformen) && /nicht jeder USB-C-Anschluss unterstützt USB4/.test(f("usb-c").bauformen), "USB-C: USB4 nutzt C, nicht jedes C ist USB4");
+  assert(/keine eigene Steckerform/.test(f("usb4").bauformen) && /nicht jeder USB-C-Anschluss USB4/.test(f("usb4").bauformen), "USB4 hat keine eigene Steckerform");
+  assert(/Farbe[^.]*beweist keine Geschwindigkeit/.test(f("usb-c").bauformen) && /nicht an Form oder Farbe/.test(f("usb4").bauformen), "Farbe ist kein Geschwindigkeitsbeweis");
+  assert(/Farbe einer Buchse beweist keine Geschwindigkeit/.test(D.ansichten.rueckseite.einleitung), "Einleitung der Rückseite nennt die Farbregel");
+  ["usb2", "usb3", "usb4"].forEach(id => assert(/Standardname/.test(f(id).name) && /nicht für eine bestimmte Buchse/.test(f(id).ort), id + " bleibt Standardname/Plakette"));
+  assert(D.quellen["usb-if-usb4"] && D.quellen["usb-if-usb4"].url === "https://www.usb.org/usb4" && f("usb4").q.includes("usb-if-usb4"), "USB4-Aussage hat eine Quelle");
+  // Grafik: Plaketten haben eigene gestrichelte Klasse und liegen im beschrifteten Standardbereich; Buchsen ragen nicht hinein.
+  assert(/function plaketteStandard[\s\S]{0,200}"pe-haupt pe-io-std"/.test(js), "Plaketten tragen pe-io-std");
+  assert(/rect\.pe-io-std\s*\{[^}]*stroke-dasharray/.test(css) && /\.pe-bereich-std\s*\{[^}]*stroke-dasharray/.test(css), "Standardbereich und Plaketten sind gestrichelt (nicht nur Farbe)");
+  assert(/USB-Standardnamen \(keine Steckerformen\)/.test(js) && /keine eigene Buchse/.test(js), "Standardbereich ist beschriftet");
+  const bandOben = 232, bandUnten = 334;
+  rt.filter(t => t.gruppe === "mainboard-io").forEach(t => {
+    const unten = t.layout[1] + t.layout[3];
+    if (["usb2", "usb3", "usb4"].includes(t.id)) assert(t.layout[1] > bandOben + 12 && unten < bandUnten - 40, t.id + " liegt im Standardbereich über den Hinweisen");
+    else assert(unten + 20 < bandOben + 4, t.id + " liegt samt Beschriftung oberhalb des Standardbereichs");
+  });
+  assert(js.includes('if (id === "usb2" || id === "usb3" || id === "usb4") {') && /id === "usb-a"\) buchseUsbA/.test(js) && /id === "usb-c"\) buchseUsbC/.test(js), "nur A und C haben Buchsenformen");
+}
+console.log("pc-explorer: Phase-1-Prüfungen bestanden");

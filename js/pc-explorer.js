@@ -19,6 +19,7 @@
     "btx": { titel: "Wikipedia: BTX (form factor)", url: "https://en.wikipedia.org/wiki/BTX_(form_factor)", abruf: "2026-11-02", vorlaeufig: true },
     "msi-pz": { titel: "MSI: Project Zero Desktop, Back-Connect", url: "https://www.msi.com/Landing/project-zero/desktop", abruf: "2026-11-02" },
     "usb-if": { titel: "USB Implementers Forum: Startseite (USB4, USB 3.2, USB 2.0 und USB Type-C als Themenbereiche)", url: "https://www.usb.org/", abruf: "2026-11-02" },
+    "usb-if-usb4": { titel: "USB Implementers Forum: USB4 (Betrieb über bestehende USB-Type-C-Kabel, Rückwärtskompatibilität)", url: "https://www.usb.org/usb4", abruf: "2026-11-03" },
     "hdmi-org": { titel: "HDMI Licensing Administrator: Startseite", url: "https://www.hdmi.org/", abruf: "2026-11-02" },
     "displayport": { titel: "VESA: DisplayPort", url: "https://www.displayport.org/", abruf: "2026-11-02" },
     "legrand-rj45": { titel: "Legrand: Tout savoir sur la prise RJ45 (französisch)", url: "https://www.legrand.fr/guides/tout-savoir-sur-la-prise-rj45", abruf: "2026-11-02" },
@@ -288,7 +289,7 @@
       funktion: "Ein USB-Anschluss mit der Bezeichnung USB Type-C.",
       ort: "Beispiel: In der Anschlussblende des Mainboards. Nicht jedes Board hat einen solchen Anschluss.",
       zusammen: "Das Mainboard stellt den Anschluss bereit. Was darüber läuft, hängt vom Board und vom angeschlossenen Gerät ab.",
-      bauformen: "USB-C beschreibt hier den Anschluss, nicht automatisch einen bestimmten USB-Standard. Ob darüber nur Daten oder auch ein Bild laufen, ist eine eigene Frage. Ein USB-C-Anschluss bietet nicht automatisch DisplayPort.",
+      bauformen: "USB-C beschreibt hier die Steckerform, nicht automatisch einen bestimmten USB-Standard. USB4 verwendet diese Steckerform, aber nicht jeder USB-C-Anschluss unterstützt USB4. Ob darüber nur Daten oder auch ein Bild laufen, ist eine eigene Frage. Ein USB-C-Anschluss bietet nicht automatisch DisplayPort. Die Farbe einer Buchse beweist keine Geschwindigkeit.",
       praxis: "Ausbildungsbeispiel: Ein Monitor soll an einen USB-C-Anschluss. Du prüfst in den Herstellerangaben, ob dieser Anschluss Bildausgabe unterstützt, bevor du ein Kabel kaufst.",
       merk: "Gleicher Stecker heißt nicht gleiche Fähigkeiten.",
       fakt: "Die USB-IF-Startseite führt USB Type-C als eigenen Themenbereich neben USB 2.0, USB 3.2 und USB4. Eine Beschreibung der Steckerform steht dort nicht. Laut VESA ist USB Type-C eine der Steckeroptionen für DisplayPort; daraus folgt nicht, dass jeder USB-C-Port DisplayPort kann.", q: ["usb-if", "displayport"] },
@@ -312,10 +313,10 @@
       funktion: "USB4 ist der Name eines USB-Standards.",
       ort: "Die Plakette in der Zeichnung steht für den Standardnamen, nicht für eine bestimmte Buchse. Nicht jedes Board bietet USB4.",
       zusammen: "Ob und an welcher Buchse ein Board USB4 bietet, steht in den Angaben zum Board.",
-      bauformen: "Ein Standardname sagt nichts über die Steckerform. Er benennt die Technik, nicht den Stecker.",
+      bauformen: "USB4 ist ein Standard und keine eigene Steckerform: Er verwendet die Steckerform USB-C, eine eigene USB4-Buchse gibt es nicht. Umgekehrt unterstützt nicht jeder USB-C-Anschluss USB4. Welche Standards ein Anschluss bietet, steht in den Herstellerangaben, nicht an Form oder Farbe der Buchse.",
       praxis: "Ausbildungsbeispiel: Eine Kundin will ein Gerät mit USB4 betreiben. Du prüfst in den Boardangaben, ob und wo ein solcher Anschluss vorhanden ist.",
       merk: "Der Name auf dem Datenblatt zählt, nicht die Annahme, dass jeder USB-Port das kann.",
-      fakt: "Die USB-IF-Startseite führt USB4 als eigenen Technologiebereich neben USB 3.2 und USB 2.0.", q: ["usb-if"] },
+      fakt: "Die USB-IF-Startseite führt USB4 als eigenen Technologiebereich neben USB 3.2 und USB 2.0. Die USB-IF-Seite zu USB4 beschreibt den Betrieb über bestehende USB-Type-C-Kabel und die Rückwärtskompatibilität zu früheren USB-Versionen. Daraus folgt nicht, dass jeder USB-C-Anschluss USB4 bietet.", q: ["usb-if", "usb-if-usb4"] },
     { id: "rj45", name: "RJ45-Netzwerkanschluss (Ethernet)", kurz: "RJ45", glossar: "Netzwerk", gruppe: "mainboard-io", layout: [316, 80, 52, 46],
       funktion: "Hier wird ein Netzwerkkabel angeschlossen, um den Rechner mit einem Netzwerk zu verbinden.",
       ort: "Beispiel: In der Anschlussblende des Mainboards. Anzahl und Lage sind je nach Board verschieden.",
@@ -548,7 +549,7 @@
       name: "Rückseite", titel: "PC-Explorer: Die Rückseite eines Desktop-PCs", gruppe: "Anschlüsse auf der Rückseite (Beispiel)",
       einleitung: "Rückseiten-Ansicht: Die gezeigten Anschlüsse sind ein Beispiel. Nicht jeder PC hat sie, und Anzahl, Anordnung und Standards unterscheiden sich je nach Mainboard und Grafikkarte. " +
         "Unterschieden wird zwischen den Anschlüssen des Mainboards (Mainboard-I/O) und den Anschlüssen einer Erweiterungskarte, zum Beispiel einer Grafikkarte. " +
-        "USB-A und USB-C sind Steckerformen. USB 2.0, USB 3.2 und USB4 sind Standardnamen und hier keine eigenen Buchsenformen. Die Formen sind eine didaktische Näherung, kein Normmaß.",
+        "USB-A und USB-C sind Steckerformen. USB 2.0, USB 3.2 und USB4 sind Standardnamen und hier keine eigenen Buchsenformen; sie stehen deshalb in gestrichelten Plaketten in einem eigenen Bereich. USB4 verwendet die Steckerform USB-C, aber nicht jeder USB-C-Anschluss unterstützt USB4. Die Farbe einer Buchse beweist keine Geschwindigkeit. Die Formen sind eine didaktische Näherung, kein Normmaß.",
       teile: RUECK_TEILE, sockel: [], formen: []
     },
     mainboard: {
@@ -570,7 +571,16 @@
   var HINWEIS_MAINBOARD = "Die Platine ist im ATX-Höchstmaß gezeichnet: 244 mm breit und 305 mm hoch, die I/O-Blende liegt links (Beispiel, kein bestimmtes Modell). Anschlüsse und Bauteile sind vereinfacht und liegen nur ungefähr wie bei typischen Boards; Kühlkörper, Batterie und Chips sind Dekoration. Die Zeichnung besteht aus einzeln auswählbaren Elementen, ist kein Foto, und die nummerierte Legende unter der Zeichnung enthält alle Einträge.";
   var BILDHINWEIS = "Die Abbildung besteht aus einzeln auswählbaren Bauteilen. Sie ist ein farbiges Beispiel, nicht maßstäblich und kein Foto eines bestimmten Geräts. Echte Fotos gibt es bisher nur für PGA, LGA und BGA.";
   var BILDHINWEIS_NOTEBOOK = " Die Notebook-Ansicht ist eine eigene Zeichnung, kein verkleinerter Desktop. Für das Notebook liegt noch kein freigegebenes Komponentenbild vor. Die Liste bleibt gleichwertig.";
-var aktuelleAnsicht = "desktop";
+  /* Erklärungstext unter der Zeichnung, je Ansicht. Der Hinweis auf die durchsichtige Kühlung gehört nur zu Desktop und Notebook,
+     weil nur dort der Knopf „Kühlung durchsichtig“ sichtbar ist. */
+  var BILDTEXT = {
+    desktop: "Die Abbildung zeigt ein Beispiel. Aufbau und Anordnung können je nach Hersteller und Modell abweichen. Verdeckt die Kühlung den Prozessor, bleibt er auswählbar. Mit „Kühlung durchsichtig“ siehst du ihn vollständig. Auf schmalen Bildschirmen entfallen die Beschriftungen in der Abbildung; dann nutzt du die Auswahl daneben oder darunter.",
+    notebook: "Die Abbildung zeigt ein Beispiel. Aufbau und Anordnung können je nach Hersteller und Modell abweichen. Verdeckt die Kühlung den Prozessor, bleibt er auswählbar. Mit „Kühlung durchsichtig“ siehst du ihn vollständig. Auf schmalen Bildschirmen entfallen die Beschriftungen in der Abbildung; dann nutzt du die Auswahl daneben oder darunter.",
+    rueckseite: "Die Zeichnung zeigt ein Beispiel für die Rückseite. Oben stehen Anschlüsse mit ihrer Steckerform, unten in gestrichelten Plaketten die USB-Standardnamen. Eine Plakette ist keine Buchse. Die Auswahl steht als Legende unter der Abbildung.",
+    mainboard: "Die Zeichnung zeigt ein Beispiel-Mainboard, kein bestimmtes Modell. Jede Marke in der Zeichnung trägt die Nummer des passenden Eintrags in der Legende darunter. Wähle ein Element in der Zeichnung oder in der Legende.",
+    historisch: "Die Zeichnung zeigt ältere Technik zum Vergleich. Sie gehört nicht zur typischen Ausstattung aktueller Mainboards. Die Auswahl steht neben oder unter der Zeichnung und enthält alle Einträge."
+  };
+  var aktuelleAnsicht = "desktop";
   /* Beschriftungen: [Platte x, Platte y, Zielpunkt x, Zielpunkt y, optional "o" = Linie startet oben an der Platte].
      Alle Platten stehen außerhalb des Gehäuses, die Linien enden mit einem Punkt auf dem Bauteil. */
   var LABELS = {
@@ -919,7 +929,7 @@ var aktuelleAnsicht = "desktop";
   }
   /* Standardname (USB 2.0, USB 3.2, USB4): Plakette mit Text, ausdrücklich keine Buchsenform. */
   function plaketteStandard(g, t, x, y, w, h, cls) {
-    svgRect(g, x, y, w, h, "pe-haupt " + cls, h / 2);
+    svgRect(g, x, y, w, h, "pe-haupt pe-io-std", h / 2);
     svgText(g, x + w / 2, y + h / 2 + 5, t.kurz, "pe-io-text");
   }
   function beschrifteAnschluss(g, t, x, y, w, h) {
@@ -1028,6 +1038,11 @@ var aktuelleAnsicht = "desktop";
       deko.appendChild(svgEl("rect", { x: 524, y: 40, width: 244, height: 220, rx: 8, "class": "pe-bereich pe-bereich-karte" }));
       deko.appendChild(svgEl("text", { x: 538, y: 60, "class": "pe-bereichstext" }, "Erweiterungskarte (Grafik)"));
       deko.appendChild(svgEl("text", { x: 538, y: 250, "class": "pe-bereichstext" }, "Nur mit dedizierter Grafikkarte"));
+      /* USB-Standards: eigener Bereich mit gestrichelten Plaketten, damit sie nicht wie Buchsen wirken. */
+      deko.appendChild(svgEl("rect", { x: 56, y: 232, width: 452, height: 102, rx: 6, "class": "pe-bereich pe-bereich-std" }));
+      deko.appendChild(svgEl("text", { x: 64, y: 248, "class": "pe-bereichstext" }, "USB-Standardnamen (keine Steckerformen)"));
+      deko.appendChild(svgEl("text", { x: 64, y: 306, "class": "pe-bereichstext pe-notiz" }, "USB4 verwendet die Steckerform USB-C, hat aber keine eigene Buchse."));
+      deko.appendChild(svgEl("text", { x: 64, y: 322, "class": "pe-bereichstext pe-notiz" }, "Nicht jedes USB-C ist USB4. Farbe beweist keine Geschwindigkeit."));
     }
     if (key === "mainboard") zeichneMainboardDeko(deko);
     if (key === "historisch") {
@@ -1101,7 +1116,7 @@ var aktuelleAnsicht = "desktop";
   }
 
   var api = { DATEN: DATEN, naechsterIndex: naechsterIndex, finde: finde, glossarVorhanden: glossarVorhanden, zeichenReihenfolge: zeichenReihenfolge,
-    fachUmschalten: fachUmschalten, fachOffen: fachOffen, fachBeschriftung: fachBeschriftung };
+    fachUmschalten: fachUmschalten, fachOffen: fachOffen, fachBeschriftung: fachBeschriftung, BILDTEXT: BILDTEXT };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   global.PC_EXPLORER = api;
   if (typeof document === "undefined") return;
@@ -1304,6 +1319,8 @@ function markiere(id) {
       });
       titel.textContent = a.titel;
       einleitung.textContent = a.einleitung;
+      var bildtext = document.getElementById("pe-bildtext");
+      if (bildtext) bildtext.textContent = BILDTEXT[key] || "";
       if (hinweis) hinweis.textContent = key === "mainboard" ? HINWEIS_MAINBOARD : istAnschlussAnsicht(key) ? HINWEIS_SCHEMA : BILDHINWEIS + (key === "notebook" ? BILDHINWEIS_NOTEBOOK : "");
       var kuehlerKnopf = document.getElementById("pe-kuehler");
       if (kuehlerKnopf) kuehlerKnopf.hidden = istAnschlussAnsicht(key);

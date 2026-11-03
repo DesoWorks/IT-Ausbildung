@@ -205,6 +205,11 @@ main a:not(.knopf) { color: var(--farbe-akzent-dunkel); text-decoration: underli
 .pe-bereich-mb { stroke: #1c3d63; fill: rgba(207, 227, 247, .25); }
 .pe-bereich-karte { stroke: #6b3f00; stroke-dasharray: 8 4; fill: rgba(246, 217, 168, .25); }
 .pe-bereich-platine { stroke: #17512b; fill: rgba(205, 236, 207, .3); }
+/* USB-Standardnamen: eigener Bereich und gestrichelte Plaketten (Muster statt nur Farbe), damit sie nicht wie Buchsen wirken. */
+.pe-bereich-std { stroke: #4b3a8a; stroke-dasharray: 3 4; fill: rgba(241, 237, 251, .6); }
+.pe-zeichnung .pe-teil rect.pe-io-std { fill: #f1edfb; stroke: #4b3a8a; stroke-width: 2; stroke-dasharray: 3 3; }
+.pe-zeichnung .pe-teil .pe-io-std { fill: #f1edfb; stroke: #4b3a8a; stroke-width: 2; stroke-dasharray: 3 3; }
+.pe-bereichstext.pe-notiz { font-size: 12px; font-weight: 400; }
 .pe-bereichstext { fill: #111; font-size: 13px; font-family: sans-serif; font-weight: 600; }
 .pe-zeichnung .pe-teil .pe-io-mb { fill: #cfe3f7; stroke: #1c3d63; stroke-width: 2; }
 .pe-zeichnung .pe-teil .pe-io-karte { fill: #f6d9a8; stroke: #6b3f00; stroke-width: 2; }

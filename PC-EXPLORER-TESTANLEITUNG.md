@@ -55,3 +55,10 @@ Die Lizenzlinks brauchen Internet, wenn du sie anklickst. Die Seite selbst nicht
 - Keine echten Fotos für Desktop-Teile oder das Notebook. Die auswählbare HTML-Legende ist die alternative Bedienung; bei Mainboard und Rückseite steht sie unter der Grafik.
 - Die drei Fotos sind unveränderte Wikimedia-Commons-Dateien. Das BGA-Foto zeigt Lotkugeln nach Entfernung des Chips, nicht eine vollständige CPU.
 - Wikipedia-Angaben im Modul sind vorläufig gekennzeichnet.
+
+## Nachprüfung: Kontexttexte und USB (03.11.2026)
+
+- Beim Wechsel aller fünf Ansichten den Erklärungstext direkt unter dem Schaubild prüfen: „Kühlung durchsichtig“ gehört ausschließlich zu Desktop und Notebook. Mainboard erklärt die Nummernlegende, Rückseite die Trennung von Buchsen und USB-Standardplaketten, ältere Anschlüsse ihren Vergleichszweck.
+- Rückseite: USB-A und USB-C sind physische Steckerformen. USB 2.0, USB 3.2 und USB4 stehen in einem eigenen gestrichelten Bereich als Standards/Standardfamilien, nicht als zusätzliche Buchsentypen. Die Standards bleiben anwählbar und erklären sich wie die Buchsen über Grafik oder HTML-Legende.
+- USB4 verwendet USB-C; daraus folgt nicht, dass jeder USB-C-Port USB4 unterstützt. Die Farbe einer Buchse beweist keine Geschwindigkeit. Bei 320 px die lesbaren Einleitungs-/Detailtexte und die HTML-Legende nutzen: der verkleinerte Grafiktext ist keine alleinige Informationsquelle.
+- Erneut bei 1440/768/320 px auf Seitenüberlauf, sichtbaren Tastaturfokus und passende Detailaktualisierung achten. Technische Ergebnisse dieser Korrekturphase werden getrennt im neuen QA-/Abschlussbericht dokumentiert; ältere Prüfnachweise oben beziehen sich auf die vorangegangene Layoutphase.
