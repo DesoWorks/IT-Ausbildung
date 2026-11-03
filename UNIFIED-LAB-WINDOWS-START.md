@@ -11,12 +11,13 @@ Dieser Feature-Stand enthält die bisherigen Lernmodule und Werkzeuge gemeinsam.
 
 Der Einstieg ist RAID 60: 16 Laufwerke mit je 2 TB, vier Gruppen mit je vier Laufwerken. Erwartet werden 32 TB Rohkapazität, 16 TB Nutzkapazität und 16 TB Paritätsanteil.
 
-- Auf einen betriebsbereiten Schacht klicken: Ausfall simulieren.
+- Auf einen Schacht klicken: auswählen. Das einzige Detailfeld darunter zeigt Kapazität, RAID-Gruppe und Aktionen. Auswahl allein löst keinen Ausfall aus.
+- Im Detailfeld „Ausfall simulieren“ wählen.
 - Zwei Ausfälle je Gruppe bleiben im Modell rekonstruierbar, drei in derselben Gruppe nicht.
-- Auf einen ausgefallenen Schacht klicken: Rebuild beginnen, sofern noch rekonstruierbar.
+- Ausgefallenen Schacht auswählen und im Detailfeld „Rebuild beginnen“ wählen, sofern noch rekonstruierbar.
 - Der orange Rebuild-Zustand bleibt bestehen, bis du den Abschluss ausdrücklich auswählst.
 - „Alle Ausfälle zurücknehmen“ startet nur das Szenario neu; es ist keine Datenrekonstruktion.
-- „Vollständige Laufwerksübersicht und Bedienung“ bietet Einsetzen, Entfernen, Kapazität und Gruppenzuweisung auch ohne grafische Auswahl.
+- „Kompakte Laufwerksübersicht – alternative Auswahl“ bietet alle Schächte auch ohne grafische Auswahl; dieselben Einstellungen bleiben im gemeinsamen Detailfeld bedienbar.
 
 Die Serverfront hat am Desktop vier mal vier Schächte; auf schmalen Bildschirmen zwei Spalten mit größeren Bedienflächen. Freie Laufwerke sind keine automatischen Hotspares. Gemischte Größen sind möglich; das vereinfachte Modell begrenzt alle Mitgliedsanteile auf die kleinste Platte.
 
@@ -24,7 +25,7 @@ Die Serverfront hat am Desktop vier mal vier Schächte; auf schmalen Bildschirme
 
 ## Prüfstatus und Grenzen
 
-Linux-Chrome, einschließlich direktem `file://`-Start, wurde getestet. Ein echter Windows-Test, Screenreader, echte Touchgeräte und weitere Browser sind noch offen. Die externe Nexus-Grafikvorlage lag nicht vor; ein direkter Referenzvergleich wird nicht behauptet.
+Die Unified-Basis wurde vom Commander unter Windows bestätigt. Die aktuelle kompakte UI folgt dem direkt beigefügten Nexus-Screenshot (Rack, Gruppenkennzeichen, Status-LED, Auswahlrand, ein Detailfeld), angepasst an die vorhandenen Plattform-Themes. Die erneute Windows-Sichtprüfung dieser Iteration, Screenreader, echte Touchgeräte und weitere Browser bleiben offen. Eigene Tests verwenden Linux-Chrome; Touch wird nur simuliert.
 
 Ausführliche Sollprüfungen: `docs/uebergaben/2026-11-03_unified-testanleitung.md`.
 Eigene Testergebnisse: `docs/uebergaben/2026-11-03_terminus-unified-pruefung.md`.

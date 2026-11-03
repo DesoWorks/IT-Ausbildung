@@ -1,5 +1,12 @@
 # Changelog
 
+## Feature-Teststand 03.11.2026 – Kompakte Nexus-RAID-Oberfläche
+- Schachtklick wählt nur aus; Kapazität, Gruppe und gezielte Aktionen stehen in einem dynamischen Detailfeld statt in 16 Einzelkonfigurationen.
+- Datenabhängige Gruppentexte und dezente Farbakzente ergänzen die getrennten Status-LEDs der Rackfront nach der beigefügten Nexus-Referenz.
+- Kompakte HTML-Auswahlliste bleibt als vollständiger alternativer Zugang zu denselben Einstellungen erhalten.
+- Rebuild bleibt bei ungültiger oder nicht rekonstruierbarer Konfiguration sichtbar gesperrt. Rechenkern, Lerninhalte und Unified-Navigation bleiben erhalten.
+- Unified-Basis vom Commander unter Windows bestätigt; die erneute Windows-Sichtprüfung dieser UI-Iteration und Assistenztechnikabnahme bleiben offen. Keine Produktionsfreigabe.
+
 ## Integrations-Teststand 03.11.2026 – Unified Lab
 - BWL, PC-Explorer, Windows-Labor mit 32 Profilen, RAID und vorhandene Unterrichtsmodule in einem Feature-Stand zusammengeführt; bestehende Freigabesperren bleiben erhalten.
 - RAID nutzt die zentrale Navigation und gespeicherte Anzeigeoptionen statt einer isolierten Seite.

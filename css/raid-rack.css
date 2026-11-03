@@ -18,3 +18,38 @@ body[data-page=raid-labor] .raid-bay:focus-visible { outline:4px solid #79d8ff; 
 #raid-rack-meldung { min-height:1.5em; }
 @media(max-width:600px) { .raid-rack {grid-template-columns:repeat(2,minmax(0,1fr));padding:12px 8px;gap:8px;border-width:7px;} .raid-bay {min-height:150px;padding:7px;border-left-width:5px;} .raid-rack-row {grid-template-columns:minmax(0,1fr);} }
 @media(forced-colors:active) { .raid-bay {border-color:ButtonText;background:ButtonFace;color:ButtonText;} .raid-bay-state::before {forced-color-adjust:none;} }
+
+/* Nexus-Referenz: ruhige Front, explizite Auswahl, ein gemeinsames Detailfeld. */
+.raid-rack { padding:14px; border:1px solid #465361; border-radius:12px; gap:10px; background:#101820; box-shadow:none; }
+.raid-bay { min-height:110px; border:1px solid #758697; border-radius:5px; background:#25323e; padding:10px; gap:5px; }
+.raid-bay svg { height:12px; }
+.raid-bay strong { font-size:.85rem; }
+.raid-bay[data-selected=true] { outline:2px solid #a0d8ff; outline-offset:1px; background:#344a5e; }
+.raid-bay-group { border-left:4px solid var(--group-color); padding-left:6px; color:#e4edf5; font-size:.76rem !important; }
+.raid-rack[data-groups=false] .raid-bay-group { border-left-color:transparent; }
+.raid-bay[data-group="0"] .raid-bay-group { border-left-style:dashed; }
+.raid-bay-state::before { top:.2em; }
+.raid-bay[data-state=failed] { background:#44282d; border-color:#ff8989; }
+.raid-bay[data-state=rebuild] { background:#433923; border-color:#ffcf78; }
+#raid-bay-detail { border:1px solid var(--farbe-rahmen); border-radius:12px; padding:1rem; margin:.8rem 0; }
+#raid-bay-detail h3 { margin:0; }
+#raid-bay-detail .raid-rack-row { border:0; padding:0; margin:.6rem 0; }
+#raid-bay-detail button { min-height:44px; padding:.5rem .8rem; }
+#raid-laufwerke { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.4rem; }
+#raid-laufwerke button { min-width:0; min-height:44px; text-align:left; font:inherit; padding:.5rem; overflow-wrap:anywhere; color:var(--farbe-text); background:var(--farbe-flaeche); border:1px solid var(--farbe-rahmen); border-radius:4px; }
+#raid-laufwerke button[aria-pressed=true] { border:2px solid var(--farbe-akzent); }
+body[data-page=raid-labor] #raid-bay-detail :focus-visible,
+body[data-page=raid-labor] #raid-laufwerke :focus-visible { outline:3px solid var(--farbe-akzent); outline-offset:3px; }
+@media(max-width:800px) { #raid-laufwerke {grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media(max-width:600px) { .raid-rack {padding:8px;gap:8px;border-width:1px;} .raid-bay {min-height:136px;padding:8px;} #raid-bay-detail .raid-rack-row {grid-template-columns:minmax(0,1fr);} }
+
+.raid-row-heading { grid-column:1/-1; color:#deebf6; font-size:.8rem; padding-top:.3rem; }
+.raid-bay { min-height:112px; }
+.raid-bay svg { display:none; }
+.raid-bay-state { padding-left:16px; }
+.raid-bay-group { font-size:.78rem !important; }
+#raid-bay-detail label { display:flex; flex-direction:column; gap:.4rem; font-weight:600; }
+#raid-bay-detail input,#raid-bay-detail select { box-sizing:border-box; width:100%; min-width:0; min-height:44px; padding:.55rem; font:inherit; background:var(--farbe-kontroll-flaeche); color:var(--farbe-kontroll-text); border:1px solid var(--farbe-rahmen); border-radius:8px; }
+#raid-bay-detail button { font:inherit; background:var(--farbe-flaeche); color:var(--farbe-text); border:1px solid var(--farbe-rahmen); border-radius:8px; }
+#raid-bay-detail button:disabled { opacity:.6; cursor:not-allowed; }
+@media(max-width:600px) { .raid-bay {min-height:114px;} .raid-bay strong {font-size:.78rem;} .raid-bay span {font-size:.78rem;} }

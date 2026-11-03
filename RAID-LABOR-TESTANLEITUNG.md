@@ -1,6 +1,20 @@
 # RAID-Lernlabor öffnen und nachvollziehen
 
-Feature-Teststand, keine Produktionsfreigabe. Branch `feature/raid-lernlabor` basiert auf Werkzeuglabor-Commit `8e06070`; die drei neuen Windows-Profile sind getrennt auf `feature/windows-werkzeugkiste` und nicht automatisch enthalten.
+Aktueller Unified-Feature-Teststand, keine Produktionsfreigabe: Branch `feature/unified-it-labs-2026-11-03`, einschließlich Windows-Labor mit 32 Profilen, PC-Explorer, BWL und Unterrichtsmodulen.
+
+## Aktuelle kompakte Nexus-Bedienung (ersetzt die ältere Formularanleitung unten)
+
+Vollständiges Unified-ZIP entpacken und `index.html` öffnen. Ein Schachtklick wählt ausschließlich aus; genau ein Detailfeld zeigt Kapazität, Gruppe und Aktionen. Eine kompakte alternative Auswahlliste bleibt verfügbar. Ausfall gezielt im Detailfeld auslösen, anschließend Rebuild beginnen und getrennt abschließen. Bei nicht rekonstruierbarem Array bleibt Rebuild gesperrt. Reset startet ein neues Szenario, keine Datenrettung.
+
+RAID 60: 16 × 2 TB, vier Gruppen mit je vier Mitgliedern, 32 TB roh / 16 TB nutzbar / 16 TB Parität. Je zwei Ausfälle pro Gruppe bleiben rekonstruierbar, drei in einer Gruppe nicht. Gruppenkennzeichen werden aus den Daten abgeleitet; bei gemischter Reihe nennt die Überschrift keine gemeinsame Gruppe. Freie Laufwerke gehören nicht zum Array. Grün/Rot/Orange/LED aus bedeuten bereit/ausgefallen/Rebuild/leer, immer zusätzlich textlich beschriftet. Alle sieben RAID-Level, gemischte Größen, Blockverteilung, Schreibschritte und Quiz bleiben erhalten.
+
+Alle 16 Schächte auswählen und bearbeiten; Hell/Dunkel und Navigation zwischen BWL, PC, Windows und RAID prüfen. Breiten 1440/768/320 px testen. Mobil zwei bedienbare Spalten statt vier winziger Ziele. Tab, Enter und Leertaste prüfen. Echte Touchgeräte und Screenreader bleiben separat offen.
+
+Aktuelle Tests: `node tests/raid-kern.test.js`, `node tests/raid-rack-modell.test.js`, `node --check js/raid-rack.js`. Mit eigenem Chrome-CDP und Vorschau: `CDP_PORT=9335 BASE_URL=http://127.0.0.1:8155/ node tests/raid-rack-browser.test.js` sowie `tests/unified-platform-browser.test.js`. Keine persönlichen Browserprofile verwenden.
+
+## Historische Anleitung der ursprünglichen RAID-Seite
+
+Die folgende Anleitung dokumentiert die frühere isolierte Formularversion, nicht die aktuelle Rackbedienung.
 
 1. Ganzes Branch-ZIP laden und entpacken: https://github.com/DesoWorks/IT-Ausbildung/archive/refs/heads/feature/raid-lernlabor.zip
 2. `module/raid-labor.html` öffnen, direkt lokal oder über einen lokalen HTTP-Server. Kein Backend, keine Installation oder Geräteberechtigung nötig.
