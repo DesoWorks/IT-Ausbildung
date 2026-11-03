@@ -53,3 +53,11 @@ body[data-page=raid-labor] #raid-laufwerke :focus-visible { outline:3px solid va
 #raid-bay-detail button { font:inherit; background:var(--farbe-flaeche); color:var(--farbe-text); border:1px solid var(--farbe-rahmen); border-radius:8px; }
 #raid-bay-detail button:disabled { opacity:.6; cursor:not-allowed; }
 @media(max-width:600px) { .raid-bay {min-height:114px;} .raid-bay strong {font-size:.78rem;} .raid-bay span {font-size:.78rem;} }
+
+/* Gruppenanzeige ist reine Präsentation: Schachtposition und LED bleiben erhalten. */
+.raid-group-summary { grid-column:1/-1; color:#deebf6; font-size:.85rem; }
+.raid-row-heading { display:none; }
+.raid-rack[data-groups=false] .raid-group-summary,
+.raid-rack[data-groups=false] .raid-bay-group { display:none; }
+.raid-bay[data-state=ersatz] { background:#433923; border-color:#ffcf78; }
+.raid-bay[data-state=ersatz] .raid-bay-state::before { background:#ffb539; }

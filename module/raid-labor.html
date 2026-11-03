@@ -23,7 +23,8 @@
 <label for="raid-gruppen">Gruppen bei RAID 10 / 50 / 60<select id="raid-gruppen"><option value="2">2 Gruppen</option><option value="3">3 Gruppen</option><option value="4">4 Gruppen</option></select></label>
 </div><p id="raid-gruppen-hilfe">Bei einfachen Leveln bilden alle Laufwerke eine Gruppe. Bei verschachtelten Leveln verteilt das Labor die Laufwerke der Reihenfolge nach auf die gewählte Gruppenzahl. Ungültige Gruppengrößen werden erklärt.</p>
 <div id="raid-laufwerke" aria-label="Laufwerkskonfiguration"></div>
-<div class="knopf-reihe"><button class="knopf" type="button" id="raid-add">Laufwerk hinzufügen</button><button class="knopf" type="button" id="raid-preset">Passendes Beispiel laden</button><button class="knopf" type="button" id="raid-reset">Alle Ausfälle zurücknehmen</button></div>
+<div class="knopf-reihe"><button class="knopf" type="button" id="raid-add">Laufwerk hinzufügen</button><button class="knopf" type="button" id="raid-preset">Passendes Beispiel laden</button><button class="knopf" type="button" id="raid-reset">Ausfallsimulation zurücksetzen</button><button class="knopf" type="button" id="raid-reset-all">Gesamtes RAID-Experiment zurücksetzen</button></div>
+<p>Ausfall → defektes Laufwerk austauschen → Rebuild starten → Rebuild ausdrücklich abschließen. Austausch erhält die Gruppe, synchronisiert aber noch keine Daten. Die drei Reset-/Beispielaktionen starten ausdrücklich ein neues Szenario und sind keine Datenrettung.</p>
 </form></section>
 <section class="abschnitt" aria-labelledby="raid-ergebnis-titel"><h2 id="raid-ergebnis-titel">Kapazität und Zustand</h2><div id="raid-ergebnis" role="status" aria-live="polite" aria-atomic="true"></div></section>
 <section class="abschnitt" aria-labelledby="raid-grafik-titel"><h2 id="raid-grafik-titel">So verteilen sich die Blöcke</h2>

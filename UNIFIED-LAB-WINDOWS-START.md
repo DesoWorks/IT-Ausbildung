@@ -14,9 +14,12 @@ Der Einstieg ist RAID 60: 16 Laufwerke mit je 2 TB, vier Gruppen mit je vier Lau
 - Auf einen Schacht klicken: auswählen. Das einzige Detailfeld darunter zeigt Kapazität, RAID-Gruppe und Aktionen. Auswahl allein löst keinen Ausfall aus.
 - Im Detailfeld „Ausfall simulieren“ wählen.
 - Zwei Ausfälle je Gruppe bleiben im Modell rekonstruierbar, drei in derselben Gruppe nicht.
-- Ausgefallenen Schacht auswählen und im Detailfeld „Rebuild beginnen“ wählen, sofern noch rekonstruierbar.
+- Ausgefallenen Schacht auswählen und „Defektes Laufwerk austauschen“ wählen. Gruppe bleibt erhalten; Ersatz ist noch nicht synchronisiert.
+- Anschließend „Rebuild starten“ wählen, sofern rekonstruierbar und Ersatz groß genug. Für das Standardbeispiel mindestens 2 TB.
 - Der orange Rebuild-Zustand bleibt bestehen, bis du den Abschluss ausdrücklich auswählst.
-- „Alle Ausfälle zurücknehmen“ startet nur das Szenario neu; es ist keine Datenrekonstruktion.
+- „Ausfallsimulation zurücksetzen“ stellt die vor dem Ausfall gesicherte gesunde Konfiguration wieder her. „Passendes Beispiel laden“ lädt ein gesundes Beispiel des aktuellen Levels. „Gesamtes RAID-Experiment zurücksetzen“ stellt RAID 60, 16 × 2 TB, alle Gruppen und Auswahl 01 wieder her. Alle drei verlangen Bestätigung und sind keine Datenrekonstruktion.
+- P0-Positivtest: RAID 60 → Schacht 06 → Ausfall → Austausch → Rebuild starten → Rebuild abschließen. Gruppe 2 muss ohne manuelle Umgruppierung wieder funktionsfähig sein.
+- P0-Gegentest: Schacht 05, 06 und 07 ausfallen lassen. Nach Austausch bleibt Rebuild gesperrt; Datenverlust kann nicht durch Austausch oder Umgruppierung geheilt werden.
 - „Kompakte Laufwerksübersicht – alternative Auswahl“ bietet alle Schächte auch ohne grafische Auswahl; dieselben Einstellungen bleiben im gemeinsamen Detailfeld bedienbar.
 
 Die Serverfront hat am Desktop vier mal vier Schächte; auf schmalen Bildschirmen zwei Spalten mit größeren Bedienflächen. Freie Laufwerke sind keine automatischen Hotspares. Gemischte Größen sind möglich; das vereinfachte Modell begrenzt alle Mitgliedsanteile auf die kleinste Platte.

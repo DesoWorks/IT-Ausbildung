@@ -1,5 +1,13 @@
 # Changelog
 
+## Feature-Teststand 03.11.2026 – RAID P0-Lebenszyklus
+- Ausgefallene Laufwerke ausdrücklich durch unsynchronisierten Ersatz im selben Schacht austauschen; Gruppenzuordnung bleibt erhalten.
+- Rebuild starten und getrennt abschließen; zu kleiner Ersatz und verlorene Rekonstruktionsgrundlage sperren die Aktion mit Erklärung.
+- Logische Array-Geometrie und betroffene Verlustgruppen bleiben im Ausfallexperiment erhalten, auch nach Entfernen. Kein scheinbares Heilen durch Umgruppieren.
+- Gesunden Ausgangszustand, passendes Beispiel und vollständiges Standardexperiment über drei bestätigte Szenarioaktionen unterscheiden.
+- Gruppenanzeige blendet gruppenbezogene Dekoration tatsächlich aus, ohne Schächte oder Status-LEDs zu entfernen.
+- Neue automatisierte Lifecycle- und reale Browserregressionen; keine Produktionsfreigabe.
+
 ## Feature-Teststand 03.11.2026 – Kompakte Nexus-RAID-Oberfläche
 - Schachtklick wählt nur aus; Kapazität, Gruppe und gezielte Aktionen stehen in einem dynamischen Detailfeld statt in 16 Einzelkonfigurationen.
 - Datenabhängige Gruppentexte und dezente Farbakzente ergänzen die getrennten Status-LEDs der Rackfront nach der beigefügten Nexus-Referenz.
